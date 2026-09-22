@@ -1,0 +1,53 @@
+id: 078
+narrative_anchor_date: '2028-01-01'
+test: Pull the archived result for EXP-2023-02-pricing-page, then create a historical midpoint note for
+  reviewers. Clearly separate what the first-week checkpoint showed, how uncertain that interim signal
+  was, and what we decided about the feature flag at that point from the later powered two-week result.
+  The note should prevent readers from mistaking the midpoint read for the final verdict.
+load_bearing_facts:
+- 342
+- 343
+expected_tool_calls:
+- query_experiment_results
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_midpoint_note
+      path: result.ok
+      value: true
+      check_id: riley_078_00
+    - check_id: riley_078_01
+      type: field_equals
+      tool: query_experiment_results
+      action_id: query_powered_result
+      path: args.experiment_id
+      value: EXP-2023-02-pricing-page
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_midpoint_note
+      path: args
+      criterion: 'The document body must accurately describe the Mar 17 first-week midpoint for EXP-2023-02-pricing-page:
+        treatment was about 0.6 percentage points below control on conversion, the confidence interval
+        crossed zero so the estimate was treated as noise or inconclusive rather than a verdict, and pricing_page_2023q2_rev
+        was deliberately left unchanged until the powered two-week read. Missing or contradictory treatment
+        of any of these midpoint facts must fail.
+
+
+        The document body must clearly distinguish the later powered two-week result from the earlier
+        midpoint and accurately report the archived result for EXP-2023-02-pricing-page: signup-to-paid
+        conversion uplift was -1.8 percentage points with p=0.03. It must not present these powered values
+        as the first-week estimate.'
+      check_id: riley_078_02
+mock_state:
+  experiment_results:
+  - experiment_id: EXP-2023-02-pricing-page
+    metric: signup-to-paid conversion
+    uplift_pts: -1.8
+    p_value: 0.03

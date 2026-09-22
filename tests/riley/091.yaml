@@ -1,0 +1,33 @@
+id: 091
+narrative_anchor_date: '2028-01-01'
+test: Create a concise retrospective note for EXP-2023-05-expansion-nudge recording its final status,
+  measured result, rollout decision, and useful direction for later Expansion Assist work.
+load_bearing_facts:
+- 405
+- 406
+- 407
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_expansion_retrospective
+      path: result.ok
+      value: true
+      check_id: riley_091_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_expansion_retrospective
+      path: args
+      criterion: The note says EXP-2023-05-expansion-nudge ended inconclusive on June 29, 2023; aggregate
+        lift settled below the +$8 expansion-MRR-per-account bar, so it did not justify a blanket rollout;
+        and later behavior-based Expansion Assist work should consider only upgrade-ready retained-mid
+        accounts showing integration depth, admin activity, and signs of a usage ceiling.
+      check_id: riley_091_01
+mock_state: {}

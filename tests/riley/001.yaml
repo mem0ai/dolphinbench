@@ -1,0 +1,37 @@
+id: '001'
+narrative_anchor_date: '2028-01-01'
+test: Create a 2028 health-benefits tracker for my elected medical plan. Identify the plan by its exact
+  recorded name. Include the coverage period, payroll deductions, deductible, out-of-pocket maximum, employer
+  HSA deposit schedule and eligibility condition, and fields for reconciling expected and actual year-end
+  amounts.
+load_bearing_facts:
+- 283
+- 284
+- 296
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_benefits_tracker
+      path: result.ok
+      value: true
+      check_id: riley_001_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_benefits_tracker
+      path: args
+      criterion: The tracker identifies the Helio 2028 Employee-Only HDHP for January 1 through December
+        31, 2028; 24 payroll deductions of $98 totaling $2,352; a $2,000 deductible; a $4,000 out-of-pocket
+        maximum; and four employer HSA deposits of $250 on January 15, April 15, July 15, and October
+        15, each dependent on Riley remaining HSA-eligible on that date. It includes places to record
+        actual deductions, deposits, eligibility, and variances.
+      check_id: riley_001_01
+mock_state:
+  calendar: []

@@ -1,0 +1,38 @@
+id: '044'
+narrative_anchor_date: '2028-01-01'
+test: 'Post in #lantern to correct a planning thread that still treats the January
+  6, 2025 operational-handoff item as open, and briefly state the evidence that closed
+  it.'
+load_bearing_facts:
+- 141
+expected_tool_calls:
+- send_slack_message
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    assertions:
+    - type: field_equals
+      tool: send_slack_message
+      action_id: alex_044_send_slack_message
+      path: result.ok
+      value: true
+      check_id: alex_044_00
+    - type: field_equals
+      path: result.channel
+      value: '#lantern'
+      tool: send_slack_message
+      action_id: alex_044_send_slack_message
+      check_id: alex_044_01
+    - type: field_llm_judge
+      path: result.message
+      criterion: The post says the January 6 rerun passed all three synthetic failure
+        scenarios and closed the alert-classification and operational-handoff gap.
+      tool: send_slack_message
+      action_id: alex_044_send_slack_message
+      check_id: alex_044_02
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: b2e9b6b9e0f48ec23e9ae5ec4d803c050db6c6914dfc1d47ccdf545b3c77b68a

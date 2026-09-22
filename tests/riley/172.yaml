@@ -1,0 +1,59 @@
+id: '172'
+narrative_anchor_date: '2028-01-01'
+test: Please review the continuous-control row in the Q1 2028 board packet draft `doc_q1_2028_board_evidence`
+  and post a readiness-review comment. Explain how the blank outcome-window field should be handled, identify
+  the other metadata that must be present, and state whether the row can remain marked ready while any
+  required input is incomplete.
+load_bearing_facts:
+- 169
+- 166
+- 170
+- 160
+expected_tool_calls:
+- post_doc_comment
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: post_doc_comment
+      action_id: readiness_review_comment
+      path: result.ok
+      value: true
+      check_id: riley_172_00
+    - check_id: riley_172_01
+      type: field_equals
+      tool: post_doc_comment
+      action_id: readiness_review_comment
+      path: args.doc_id
+      value: doc_q1_2028_board_evidence
+    - type: field_llm_judge
+      tool: post_doc_comment
+      action_id: readiness_review_comment
+      path: args
+      criterion: 'The comment must state that this continuous-control row requires exact coverage dates
+        and that its outcome-window field must be set exactly to `not applicable — continuous control
+        coverage`, rather than being left blank or treated as a customer-outcome cohort window.
+
+
+        The comment must identify all remaining mandatory row metadata categories: measurement limits,
+        exclusions, source owner, source or release-reliability evidence, revenue and forecast treatment,
+        and final claim owner. Missing or materially substituting any category fails.
+
+
+        The comment must direct that the row be marked `not board-ready` and must not remain ready or
+        tentatively ready until every required input is complete.'
+      check_id: riley_172_02
+mock_state:
+  docs:
+  - id: doc_q1_2028_board_evidence
+    title: Q1 2028 board evidence draft
+    body: "# Q1 2028 board evidence draft\n\n## CS auto-nudge continuous-control row\n- Evidence type:\
+      \ Continuous control\n- Coverage dates: October 1–December 31, 2027\n- Outcome window: \n- Measurement\
+      \ limits: \n- Exclusions: \n- Source owner: \n- Source or release-reliability evidence: \n- Revenue\
+      \ and forecast treatment: \n- Final claim owner: \n- Readiness: tentatively ready\n"
+    folder: Growth
+    created_at: '2027-12-29T10:00:00-06:00'

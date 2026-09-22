@@ -1,0 +1,5 @@
+PyYAML>=6.0,<7
+psycopg[binary]>=3.2,<4
+tiktoken>=0.9,<1
+markdown-it-py>=3.0,<5
+vercel==0.10.0

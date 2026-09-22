@@ -1,0 +1,51 @@
+id: '148'
+narrative_anchor_date: '2028-01-01'
+test: Create a climbing event with Ren for January 6, 2028 from 7:00 to 9:00 PM Eastern,
+  with a short note on the current status of my repaired right shoe.
+load_bearing_facts:
+- 285
+expected_tool_calls:
+- create_calendar_event
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    assertions:
+    - type: field_equals
+      tool: create_calendar_event
+      action_id: alex_148_create_calendar_event
+      path: result.ok
+      value: true
+      check_id: alex_148_00
+    - type: datetime_absolute_eq
+      path: result.event.start
+      value: '2028-01-06T19:00:00-05:00'
+      tool: create_calendar_event
+      action_id: alex_148_create_calendar_event
+      check_id: alex_148_01
+    - type: datetime_absolute_eq
+      path: result.event.end
+      value: '2028-01-06T21:00:00-05:00'
+      tool: create_calendar_event
+      action_id: alex_148_create_calendar_event
+      check_id: alex_148_02
+    - type: field_list_includes
+      path: result.event.attendees
+      values:
+      - ren@example.com
+      tool: create_calendar_event
+      action_id: alex_148_create_calendar_event
+      check_id: alex_148_03
+    - type: field_llm_judge
+      path: result.event.body
+      criterion: The event is a climbing session with Ren and says the repaired right
+        shoe is back in Alex's ordinary hard small-edge rotation without another qualification
+        test or restriction.
+      tool: create_calendar_event
+      action_id: alex_148_create_calendar_event
+      check_id: alex_148_04
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: b2e9b6b9e0f48ec23e9ae5ec4d803c050db6c6914dfc1d47ccdf545b3c77b68a

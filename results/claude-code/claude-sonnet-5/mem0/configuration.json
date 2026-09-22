@@ -1,0 +1,17 @@
+{
+  "harness": "Claude Code",
+  "model": "Claude Sonnet 5",
+  "memory": "Mem0",
+  "runtime": {
+    "reasoning_effort": "medium",
+    "memory_writes": "disabled; normal retrieval hooks and tools remain enabled",
+    "native_memory": "fresh copy of the ingested files for each test",
+    "tools": "Claude defaults plus official plugin and benchmark apps"
+  },
+  "personas": [
+    "Morgan",
+    "Alex",
+    "Riley"
+  ],
+  "tests_per_persona": 200
+}

@@ -1,0 +1,87 @@
+id: '200'
+narrative_anchor_date: '2028-01-01'
+test: Prospect Park paths are not icy on January 5, 2028. Check this week's Infra
+  on-call roster and my calendar, then create my regular run if its conditions are
+  met.
+load_bearing_facts:
+- 200
+expected_tool_calls:
+- list_oncall_schedule
+- list_calendar_events
+- create_calendar_event
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    assertions:
+    - type: field_equals
+      tool: create_calendar_event
+      action_id: alex_200_create_calendar_event
+      path: result.ok
+      value: true
+      check_id: alex_200_00
+    - type: tool_called
+      tool: list_oncall_schedule
+      action_id: alex_200_list_oncall_schedule
+      check_id: alex_200_01
+    - type: tool_called
+      tool: list_calendar_events
+      action_id: alex_200_list_calendar_events
+      check_id: alex_200_02
+    - type: field_equals
+      path: result.event.title
+      value: Prospect Park run
+      tool: create_calendar_event
+      action_id: alex_200_create_calendar_event
+      check_id: alex_200_03
+    - type: datetime_absolute_eq
+      path: result.event.start
+      value: '2028-01-05T07:15:00-05:00'
+      tool: create_calendar_event
+      action_id: alex_200_create_calendar_event
+      check_id: alex_200_04
+    - type: datetime_absolute_eq
+      path: result.event.end
+      value: '2028-01-05T07:45:00-05:00'
+      tool: create_calendar_event
+      action_id: alex_200_create_calendar_event
+      check_id: alex_200_05
+mock_state:
+  oncall_schedule:
+  - team: infra
+    week_of: '2023-07-03'
+    primary: alex
+    secondary: yuki
+    members:
+    - alex
+    - nadia
+    - hema
+    - yuki
+    - wes
+    notes: post-May-11 composition (Wes replaced Sam)
+  - team: infra
+    week_of: '2023-06-26'
+    primary: wes
+    secondary: alex
+    members:
+    - alex
+    - nadia
+    - hema
+    - yuki
+    - wes
+    notes: Wes's first solo overnight Jun 21 fell in this rotation
+  - team: infra
+    week_of: '2028-01-03'
+    primary: nadia
+    secondary: alex
+    members:
+    - alex
+    - nadia
+    - hema
+    - yuki
+    - wes
+    notes: Current Infra rotation for the week containing January 5, 2028.
+mock_state_base:
+  path: state.json
+  sha256: b2e9b6b9e0f48ec23e9ae5ec4d803c050db6c6914dfc1d47ccdf545b3c77b68a

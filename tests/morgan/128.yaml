@@ -1,0 +1,78 @@
+id: '128'
+narrative_anchor_date: '2026-09-14'
+test: 'Check Mercury, Atlas, and Compass, then create today''s manager update in my
+  usual status-update format.
+
+
+  Mercury implementation note: The teammate list now refreshes when a role-change
+  request completes instead of waiting for the next poll. The occasional pending banner
+  can still remain for about 30 seconds.
+
+
+  Atlas handoff: Review the cursor-versus-fresh-poll, webhook, and JWT examples before
+  the next support walkthrough.
+
+
+  Compass handoff: Check the archived screenshot captions before the September 18
+  review.'
+load_bearing_facts:
+- 66
+- 67
+expected_tool_calls:
+- check_project_status
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      path: result.ok
+      value: true
+      check_id: morgan_128_00
+      action_id: morgan_128_create_doc
+    - type: field_markdown_bullets
+      path: result.document.body
+      value:
+        max_items: 4
+      tool: create_doc
+      check_id: morgan_128_01
+      action_id: morgan_128_create_doc
+    - type: field_llm_judge
+      path: result.document.body
+      criterion: 'Uses short substantive status bullets rather than a detailed non-code
+        narrative. Reports all three projects without contradiction: Mercury''s role-change
+        refresh implementation may receive extra technical detail, the occasional
+        pending banner remains, and shipment is still conditional; Atlas''s examples
+        need review and its latest recorded case matched the API v2 contract without
+        showing a product problem; Compass''s caption review does not complete its
+        still-open September 18 evidence gate. Do not require the Atlas bullet to
+        list every absent problem, such as server errors and data loss. Brief labels
+        are acceptable.'
+      tool: create_doc
+      check_id: morgan_128_02
+      action_id: morgan_128_create_doc
+mock_state:
+  projects:
+    mercury:
+      project_name: Mercury
+      as_of: '2026-09-10'
+      progress: Teammate-list refresh-state polish is passing tests except for an
+        occasional pending banner lasting about 30 seconds after a role change. Shipping
+        remains conditional on tests staying green; shipment is not confirmed.
+    atlas:
+      project_name: Atlas
+      as_of: '2026-09-01'
+      progress: The latest recorded Acme cursor/fresh-poll support case behaved according
+        to the API v2 contract. No server error, data loss, or product defect evidence
+        was found in that case.
+    compass:
+      project_name: Compass
+      as_of: '2026-09-09'
+      progress: Owner-action evidence remains limited to Evergreen Bank and Acme.
+        The Compass evidence gate for the September 18 operating review is still unfinished.
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

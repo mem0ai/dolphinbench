@@ -1,0 +1,45 @@
+id: '114'
+narrative_anchor_date: '2026-09-14'
+test: On scaffold/mercury#3474, correct the launch-retro entry with the first external
+  Mercury wave's launch date, included design partner, and auth provider. Distinguish
+  its live auth scope from deferred enterprise features.
+load_bearing_facts:
+- 131
+expected_tool_calls:
+- post_pr_comment
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: post_pr_comment
+      path: result.ok
+      value: true
+      check_id: morgan_114_00
+      action_id: morgan_114_post_pr_comment
+    - type: field_equals
+      path: result.comment.pr_id
+      value: scaffold/mercury#3474
+      tool: post_pr_comment
+      check_id: morgan_114_01
+      action_id: morgan_114_post_pr_comment
+    - type: field_llm_judge
+      path: result.comment.body
+      criterion: Identifies August 10, 2023, Evergreen Bank, and Clerk-backed sessions,
+        magic links, and organization invites. Keeps SSO and deeper admin/security
+        controls outside that launch. No activation-measurement or sample-data checklist
+        is required.
+      tool: post_pr_comment
+      check_id: morgan_114_02
+      action_id: morgan_114_post_pr_comment
+mock_state:
+  open_prs:
+  - id: scaffold/mercury#3474
+    repo: scaffold/mercury
+    number: 3474
+    status: open
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

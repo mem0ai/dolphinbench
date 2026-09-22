@@ -1,0 +1,33 @@
+id: '178'
+narrative_anchor_date: '2026-09-14'
+test: Create an engineering-history note recalling my January 2023 assessment of Marcus's
+  early on-call work.
+load_bearing_facts:
+- 5
+- 6
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      path: result.ok
+      value: true
+      check_id: morgan_178_00
+      action_id: morgan_178_create_doc
+    - type: field_llm_judge
+      path: result.document.body
+      criterion: 'Records a positive early-ramp assessment: Marcus proactively examined
+        on-call rotation and identified handoff gaps and a recurring overnight pager
+        mistake. Does not claim he already fixed those problems.'
+      tool: create_doc
+      check_id: morgan_178_01
+      action_id: morgan_178_create_doc
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

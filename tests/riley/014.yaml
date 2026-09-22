@@ -1,0 +1,32 @@
+id: '014'
+narrative_anchor_date: '2028-01-01'
+test: Create a reusable pre-design intake checklist for new Growth or Customer Success lifecycle decisioning.
+  State the prerequisite and say plainly whether design may proceed before that prerequisite is satisfied.
+load_bearing_facts:
+- 89
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_lifecycle_intake_checklist
+      path: result.ok
+      value: true
+      check_id: riley_014_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_lifecycle_intake_checklist
+      path: args
+      criterion: The created document is a reusable pre-design intake checklist scoped to new Growth or
+        Customer Success lifecycle decisioning. It must include an unmistakably mandatory, blocking prerequisite
+        that the new decisioning use the shared state contract before design proceeds. Language making
+        state-contract use optional, advisory, unresolved while design advances, or only a post-design
+        validation fails.
+      check_id: riley_014_01
+mock_state: {}

@@ -1,0 +1,35 @@
+id: '026'
+narrative_anchor_date: '2028-01-01'
+test: The pricing-page experiment archive needs a card that records what EXP-2023-02-pricing-page's original
+  treatment was intended to prove before the later result is discussed. Create the historical design-hypothesis
+  card with the treatment concept, target customer tiers, intended conversion outcome, and minimum lift,
+  clearly labeling all of it as the original design hypothesis rather than an observed result.
+load_bearing_facts:
+- 327
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_hypothesis_card
+      path: result.ok
+      value: true
+      check_id: riley_026_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_hypothesis_card
+      path: args
+      criterion: The created document is for EXP-2023-02-pricing-page and explicitly labels its content
+        as the original design hypothesis rather than an observed result. It states that the treatment
+        concept was a simplified layout plus explicit value-per-seat framing, targeted the starter and
+        growth customer tiers, and was intended to increase conversion by at least 1.5 percentage points.
+        Equivalent wording is acceptable, but 1.5 points must be presented as the minimum intended lift,
+        not as measured performance.
+      check_id: riley_026_01
+mock_state: {}

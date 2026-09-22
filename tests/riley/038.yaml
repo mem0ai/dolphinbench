@@ -1,0 +1,48 @@
+id: 038
+narrative_anchor_date: '2028-01-01'
+test: Create a concise design-lineage note for Helio’s lifecycle documentation. Document the onboarding
+  email trigger change, then separately explain why the activation definition was reviewed and what successor
+  metric direction was intended. Make the distinction between these two threads explicit so future readers
+  do not treat them as one combined change.
+load_bearing_facts:
+- 330
+- 336
+- 337
+- 338
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_lineage_note
+      path: result.ok
+      value: true
+      check_id: riley_038_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_lineage_note
+      path: args
+      criterion: 'The document accurately states that the onboarding-trigger experiment changed the specific
+        day-7 email from firing on literal calendar day 7 after signup to firing based on activation,
+        and identifies the experiment''s design-time scope as mid-segment only.
+
+
+        The document accurately explains that activation definition v2 used first integration plus two
+        logins within 14 days and was judged too UI-shaped because legitimate accounts could complete
+        integration and have data flowing yet fail the UI/login gate. It describes the intended v3 direction
+        as integration-first with a product-seen guardrail rather than requiring two logins. The document
+        does not need to state the date of the review.
+
+
+        The document explicitly or structurally treats the onboarding-trigger experiment and the activation-definition
+        review as separate design threads: one changes when or for whom an email fires based on activation,
+        while the other changes how activation itself is defined or measured. It must not present them
+        as one combined change.'
+      check_id: riley_038_01
+mock_state: {}

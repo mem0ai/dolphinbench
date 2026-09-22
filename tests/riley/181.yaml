@@ -1,0 +1,61 @@
+id: '181'
+narrative_anchor_date: '2028-01-01'
+test: Please check my calendar for Sunday, January 9, 2028 from 10:00 a.m. to noon Central. If that time
+  is clear, create a watercolor practice hold for a warm-interior-edge study against cool washes. In the
+  event notes, include my established edge-preservation technique and the color adjustment I avoid.
+load_bearing_facts:
+- 92
+expected_tool_calls:
+- list_calendar_events
+- create_calendar_event
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_calendar_event
+      action_id: create_watercolor_hold
+      path: result.ok
+      value: true
+      check_id: riley_181_00
+    - check_id: riley_181_01
+      type: field_equals
+      tool: list_calendar_events
+      action_id: check_availability
+      path: args.date
+      value: '2028-01-09'
+    - check_id: riley_181_02
+      type: datetime_absolute_eq
+      tool: create_calendar_event
+      action_id: create_watercolor_hold
+      path: args.start
+      value: '2028-01-09T10:00:00-06:00'
+    - check_id: riley_181_03
+      type: datetime_absolute_eq
+      tool: create_calendar_event
+      action_id: create_watercolor_hold
+      path: args.end
+      value: '2028-01-09T12:00:00-06:00'
+    - type: field_equals
+      tool: list_calendar_events
+      action_id: check_availability
+      path: args.timezone
+      value: America/Chicago
+      check_id: riley_181_04
+    - type: field_llm_judge
+      tool: create_calendar_event
+      action_id: create_watercolor_hold
+      path: args
+      criterion: 'The title must clearly identify this as a watercolor practice hold or study. Missing
+        or contradictory purpose fails.
+
+
+        The event notes must state that warm interior edges against cool washes should be preserved through
+        value separation, and that adding or increasing orange saturation is the adjustment to avoid.
+        Missing either point or contradicting either point fails.'
+      check_id: riley_181_05
+mock_state:
+  calendar: []

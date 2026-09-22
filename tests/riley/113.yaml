@@ -1,0 +1,47 @@
+id: '113'
+narrative_anchor_date: '2028-01-01'
+test: 'Create a Cherrywood renter’s-insurance claims-intake worksheet for our household. Organize it around
+  four scenarios: property loss, liability, temporary displacement, and water backup. Use the documented
+  policy information you have, including the documented effective date, applicable coverage and deductible
+  fields, household members, and interested-party entry. Make it clear that the worksheet is an intake
+  aid rather than a coverage determination, and prominently instruct us to verify the latest declarations
+  page before relying on any figures. Do not imply that the older policy information has been revalidated
+  for 2028.'
+load_bearing_facts:
+- 19
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_claims_intake
+      path: result.ok
+      value: true
+      check_id: riley_113_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_claims_intake
+      path: args
+      criterion: 'The body is a usable Cherrywood renter''s-insurance claims-intake worksheet organized
+        around property loss, liability, temporary displacement, and water backup. Each scenario provides
+        appropriate intake prompts or fields and identifies the relevant coverage and deductible information
+        or fields without inventing a separate undocumented deductible.
+
+        The body records Sam and the user as the household members. The user may be identified as Riley,
+        you, me, or another unmistakable first-person reference; Riley''s name is not required. It also
+        accurately records the documented effective date of May 1, 2024; $30,000 personal-property coverage
+        with replacement-cost treatment; $300,000 liability coverage; a $500 deductible; $10,000 loss-of-use
+        coverage; $5,000 water-backup coverage; and Cherrywood or the Cherrywood property as the interested
+        party.
+
+        The body prominently warns the reader to verify the latest declarations page before relying on
+        the listed figures, does not present the older figures as revalidated or current for 2028, and
+        explains that the worksheet is an intake aid rather than a coverage determination.'
+      check_id: riley_113_01
+mock_state: {}

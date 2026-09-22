@@ -1,0 +1,47 @@
+id: '126'
+narrative_anchor_date: '2026-09-14'
+test: On scaffold/compass#4861, review the proposed expansion prompt that fires on
+  source connection and displays a customer-visible badge. State the correct trigger
+  and audience.
+load_bearing_facts:
+- 213
+- 262
+expected_tool_calls:
+- post_pr_comment
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: post_pr_comment
+      path: result.ok
+      value: true
+      check_id: morgan_126_00
+      action_id: morgan_126_post_pr_comment
+    - type: field_equals
+      path: result.comment.pr_id
+      value: scaffold/compass#4861
+      tool: post_pr_comment
+      check_id: morgan_126_01
+      action_id: morgan_126_post_pr_comment
+    - type: field_llm_judge
+      path: result.comment.body
+      criterion: Requires first live sync actually live plus visible teammate-invite/admin-role
+        basics, not source connection alone. Limits the expansion prompt to internal
+        account owners and rejects the customer-visible badge. No separate statement
+        about GTM proof is required. Do not accept a customer-facing prompt or a trigger
+        before first live sync.
+      tool: post_pr_comment
+      check_id: morgan_126_02
+      action_id: morgan_126_post_pr_comment
+mock_state:
+  open_prs:
+  - id: scaffold/compass#4861
+    repo: scaffold/compass
+    number: 4861
+    status: open
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

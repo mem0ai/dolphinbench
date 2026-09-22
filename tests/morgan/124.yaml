@@ -1,0 +1,40 @@
+id: '124'
+narrative_anchor_date: '2026-09-14'
+test: A routine production deploy is planned for Friday, September 18 at 4:00 p.m.
+  Pacific, and only the primary on-call engineer has confirmed availability. Text
+  Jake at +14155550166 with my decision and the production-deploy rule that applies.
+load_bearing_facts:
+- 86
+expected_tool_calls:
+- send_sms
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: send_sms
+      path: result.ok
+      value: true
+      check_id: morgan_124_00
+      action_id: morgan_124_send_sms
+    - type: field_equals
+      tool: send_sms
+      path: result.to
+      value: '+14155550166'
+      check_id: morgan_124_01
+      action_id: morgan_124_send_sms
+    - type: field_llm_judge
+      tool: send_sms
+      path: result.body
+      criterion: Says the Friday 4:00 p.m. production deploy must not proceed as planned
+        because production pushes after 3:00 p.m. Friday require the full on-call
+        roster online. Says the gate blocks the deploy by default and any exception
+        must go through Morgan. Equivalent direct wording is acceptable.
+      check_id: morgan_124_02
+      action_id: morgan_124_send_sms
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

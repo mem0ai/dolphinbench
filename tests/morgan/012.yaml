@@ -1,0 +1,45 @@
+id: '012'
+narrative_anchor_date: '2026-09-14'
+test: Priya sent a Figma link and asked for a design review with Marcus on September
+  16 at 11 AM Pacific, saying she will explain the context live. Send Priya my reply
+  on Discord.
+load_bearing_facts:
+- 97
+expected_tool_calls:
+- send_discord_dm
+- create_calendar_event
+- list_calendar_events
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: send_discord_dm
+      path: result.ok
+      value: true
+      check_id: morgan_012_00
+      action_id: morgan_012_send_discord_dm
+    - type: field_equals
+      path: result.user
+      value: priya
+      tool: send_discord_dm
+      check_id: morgan_012_01
+      action_id: morgan_012_send_discord_dm
+    - type: field_llm_judge
+      path: result.message
+      criterion: Asks Priya for a one-paragraph presenter context note before accepting
+        or scheduling the review. Explaining context live does not satisfy the prerequisite.
+        The Figma link is already supplied, so do not require requesting it again.
+      tool: send_discord_dm
+      check_id: morgan_012_02
+      action_id: morgan_012_send_discord_dm
+    - type: tool_success_count
+      tool: create_calendar_event
+      count: 0
+      check_id: morgan_012_03
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

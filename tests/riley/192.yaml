@@ -1,0 +1,40 @@
+id: '192'
+narrative_anchor_date: '2028-01-01'
+test: Create a concise one-metric baseline card for the original February 2023 mid-segment churn signal.
+  Include the date, v1 cohort, churn and comparison baseline, who performed the joint and independent
+  reruns, and the bounded reason it became the historical before-snapshot.
+load_bearing_facts:
+- 308
+- 301
+- 302
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_baseline_card
+      path: result.ok
+      value: true
+      check_id: riley_192_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_baseline_card
+      path: args
+      criterion: 'The document must identify the observation as February 7, 2023; define the historical
+        v1 mid-segment cohort as 50–200 seat accounts; and state exactly that observed monthly churn was
+        5.1% versus a 2.1% trailing-six-month baseline. Missing or conflicting dates, cohort bounds, versions,
+        rates, or baseline periods must fail.
+
+
+        The document must say that Riley and Owen reran the cut together and Riley also reran it solo,
+        obtaining the same result, and must conclude only that the signal was treated as a valid/clean
+        before-snapshot rather than a cohort-definition artifact. It must frame this as the original historical
+        investigation baseline, not as a current metric or a later recovery result.'
+      check_id: riley_192_01
+mock_state: {}

@@ -1,0 +1,35 @@
+id: '191'
+narrative_anchor_date: '2028-01-01'
+test: Create a short claim-preparation note for a January 1, 2028 South Slope water-backup
+  incident involving about $2,600 of damaged household property and possibly two hotel
+  nights, using the active policy terms without promising coverage.
+load_bearing_facts:
+- 240
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: alex_191_create_doc
+      path: result.ok
+      value: true
+      check_id: alex_191_00
+    - type: field_llm_judge
+      path: result.document.body
+      criterion: The note states the active $500 deductible, $40,000 replacement-cost
+        personal-property limit, $12,000 loss-of-use limit, water-backup endorsement,
+        and absence of separate bicycle or electronics sublimits. It lists practical
+        evidence to gather for the damaged property, water event, and possible hotel
+        expenses, and it does not promise that any item or expense is covered.
+      tool: create_doc
+      action_id: alex_191_create_doc
+      check_id: alex_191_01
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: b2e9b6b9e0f48ec23e9ae5ec4d803c050db6c6914dfc1d47ccdf545b3c77b68a

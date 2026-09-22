@@ -1,0 +1,186 @@
+id: '122'
+narrative_anchor_date: '2026-09-14'
+test: Search my notes for Scaffold pricing-model material and create a scratchpad
+  with the returned snippets and source labels.
+load_bearing_facts:
+- 70
+expected_tool_calls:
+- embeddings_encode
+- vector_search
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: vector_search
+      path: result.ok
+      value: true
+      check_id: morgan_122_00
+      action_id: morgan_122_vector_search
+    - type: field_equals_all_calls
+      path: args.namespace
+      value: mchen-notes-v3
+      tool: vector_search
+      check_id: morgan_122_01
+    - type: field_equals
+      tool: create_doc
+      path: result.ok
+      value: true
+      check_id: morgan_122_02
+      action_id: morgan_122_create_doc
+    - type: field_llm_judge
+      tool: create_doc
+      path: result.document.body
+      action_id: morgan_122_create_doc
+      check_id: morgan_122_03
+      criterion: 'Contains the full returned snippet below, labeled with its document
+        ID and mchen-notes-v3 as its source. Markdown quoting, headings, code fences,
+        and whitespace changes are acceptable; do not require an exact layout. Repeating
+        the same returned record is unnecessary. A summary replacing the snippet,
+        missing material, invented material, or attributing it to old namespaces does
+        not satisfy the request. A warning not to use old namespaces is valid. {"id":
+        "doc_1785274730003", "snippet": "Mercury pricing decision \u2014 hybrid platform
+        minimums\n\n# Mercury pricing decision \u2014 hybrid platform minimums\n\n##
+        Decision\nWe are no longer treating Mercury pricing as a pure-MAU-versus-pure-seat
+        debate. For new Mercury design-partner and post-launch quotes, use the hybrid
+        model below.\n\n## Quote guidance\n- Pilot platform minimum: $2,500/month,
+        including up to 50 monthly active developers\n- Growth platform minimum: $7,500/month,
+        including up to 200 monthly active developers\n- Overage: $1,000 per additional
+        50 monthly active developers\n- Enterprise add-ons such as SSO, audit logs,
+        and advanced admin controls are quoted separately only after those features
+        actually ship\n\n## Rationale\nThis keeps the usage-ramp logic honest while
+        giving Devon a cleaner floor for forecasting and procurement conversations."}'
+mock_state:
+  vector_documents:
+    mchen-notes-v1:
+    - id: doc_1785274730003
+      snippet: 'Mercury pricing decision — hybrid platform minimums
+
+
+        # Mercury pricing decision — hybrid platform minimums
+
+
+        ## Decision
+
+        We are no longer treating Mercury pricing as a pure-MAU-versus-pure-seat debate.
+        For new Mercury design-partner and post-launch quotes, use the hybrid model
+        below.
+
+
+        ## Quote guidance
+
+        - Pilot platform minimum: $2,500/month, including up to 50 monthly active
+        developers
+
+        - Growth platform minimum: $7,500/month, including up to 200 monthly active
+        developers
+
+        - Overage: $1,000 per additional 50 monthly active developers
+
+        - Enterprise add-ons such as SSO, audit logs, and advanced admin controls
+        are quoted separately only after those features actually ship
+
+
+        ## Rationale
+
+        This keeps the usage-ramp logic honest while giving Devon a cleaner floor
+        for forecasting and procurement conversations.'
+      vector:
+      - 0.7450980392156863
+      - 0.6313725490196078
+      - 0.10980392156862745
+      - 0.615686274509804
+      - 0.396078431372549
+      - 0.6784313725490196
+      - 0.7411764705882353
+      - 0.6549019607843137
+    mchen-notes-v2:
+    - id: doc_1785274730003
+      snippet: 'Mercury pricing decision — hybrid platform minimums
+
+
+        # Mercury pricing decision — hybrid platform minimums
+
+
+        ## Decision
+
+        We are no longer treating Mercury pricing as a pure-MAU-versus-pure-seat debate.
+        For new Mercury design-partner and post-launch quotes, use the hybrid model
+        below.
+
+
+        ## Quote guidance
+
+        - Pilot platform minimum: $2,500/month, including up to 50 monthly active
+        developers
+
+        - Growth platform minimum: $7,500/month, including up to 200 monthly active
+        developers
+
+        - Overage: $1,000 per additional 50 monthly active developers
+
+        - Enterprise add-ons such as SSO, audit logs, and advanced admin controls
+        are quoted separately only after those features actually ship
+
+
+        ## Rationale
+
+        This keeps the usage-ramp logic honest while giving Devon a cleaner floor
+        for forecasting and procurement conversations.'
+      vector:
+      - 0.7450980392156863
+      - 0.6313725490196078
+      - 0.10980392156862745
+      - 0.615686274509804
+      - 0.396078431372549
+      - 0.6784313725490196
+      - 0.7411764705882353
+      - 0.6549019607843137
+    mchen-notes-v3:
+    - id: doc_1785274730003
+      snippet: 'Mercury pricing decision — hybrid platform minimums
+
+
+        # Mercury pricing decision — hybrid platform minimums
+
+
+        ## Decision
+
+        We are no longer treating Mercury pricing as a pure-MAU-versus-pure-seat debate.
+        For new Mercury design-partner and post-launch quotes, use the hybrid model
+        below.
+
+
+        ## Quote guidance
+
+        - Pilot platform minimum: $2,500/month, including up to 50 monthly active
+        developers
+
+        - Growth platform minimum: $7,500/month, including up to 200 monthly active
+        developers
+
+        - Overage: $1,000 per additional 50 monthly active developers
+
+        - Enterprise add-ons such as SSO, audit logs, and advanced admin controls
+        are quoted separately only after those features actually ship
+
+
+        ## Rationale
+
+        This keeps the usage-ramp logic honest while giving Devon a cleaner floor
+        for forecasting and procurement conversations.'
+      vector:
+      - 0.7450980392156863
+      - 0.6313725490196078
+      - 0.10980392156862745
+      - 0.615686274509804
+      - 0.396078431372549
+      - 0.6784313725490196
+      - 0.7411764705882353
+      - 0.6549019607843137
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

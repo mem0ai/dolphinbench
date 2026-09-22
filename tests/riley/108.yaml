@@ -1,0 +1,44 @@
+id: '108'
+narrative_anchor_date: '2028-01-01'
+test: Create a compact decision-evidence sheet for the restaurant archive covering the three roasted-chicken
+  sale runs. State the evidence-based conclusions about production and customer demand, and keep the sheet
+  focused on the run evidence rather than making or reopening a menu decision.
+load_bearing_facts:
+- 47
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_roasted_chicken_evidence_sheet
+      path: result.ok
+      value: true
+      check_id: riley_108_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_roasted_chicken_evidence_sheet
+      path: args
+      criterion: 'The body is a compact decision-evidence sheet about the three roasted-chicken sale runs,
+        rather than unrelated notes or a general menu summary.
+
+
+        The body clearly states that across all three runs, production was repeatable and stayed within
+        the chef-owner''s labor and yield thresholds. Missing or contradicting either repeatability or
+        compliance with both types of threshold must fail.
+
+
+        The body clearly states that customer demand or sell-through varied across the runs. Any claim
+        that demand or sell-through was uniform must fail.
+
+
+        The body does not make, recommend, or purport to reopen a decision about permanent, standing,
+        weekly, private-event, or other future menu placement; it remains an evidence record of the sale
+        runs.'
+      check_id: riley_108_01
+mock_state: {}

@@ -1,0 +1,44 @@
+id: '065'
+narrative_anchor_date: '2028-01-01'
+test: Create an infra-on-call training entry explaining the secondary-page deadline
+  and Wes's June 21 example.
+load_bearing_facts:
+- 35
+- 63
+- 64
+expected_tool_calls:
+- create_runbook_entry
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    assertions:
+    - type: field_equals
+      tool: create_runbook_entry
+      action_id: alex_065_create_runbook_entry
+      path: result.ok
+      value: true
+      check_id: alex_065_00
+    - type: field_equals
+      path: result.runbook.service
+      value: infra-on-call
+      tool: create_runbook_entry
+      action_id: alex_065_create_runbook_entry
+      check_id: alex_065_01
+    - type: field_llm_judge
+      path: result.runbook.body
+      criterion: 'The entry says to page the secondary within 45 minutes when the
+        primary is still handling the incident. It uses Wes''s June 21 first solo
+        shift as the example: he brought in the secondary at about 40 minutes on a
+        minor metrics-router cardinality issue and then resolved it without further
+        escalation. It does not turn one shift into a broad performance claim.'
+      tool: create_runbook_entry
+      action_id: alex_065_create_runbook_entry
+      check_id: alex_065_02
+mock_state:
+  service_metrics:
+    infra-on-call: {}
+mock_state_base:
+  path: state.json
+  sha256: b2e9b6b9e0f48ec23e9ae5ec4d803c050db6c6914dfc1d47ccdf545b3c77b68a

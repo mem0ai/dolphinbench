@@ -1,0 +1,44 @@
+id: '064'
+narrative_anchor_date: '2028-01-01'
+test: Create a short internal two-lane routing card for CS auto-nudge explanations and escalations. Use
+  the current authority boundaries from our prior decisions, make the two routes easy to scan, and keep
+  it focused on explanation routing rather than turning it into a broader role or authority map.
+load_bearing_facts:
+- 116
+- 117
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_routing_card
+      path: result.ok
+      value: true
+      check_id: riley_064_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_routing_card
+      path: args
+      criterion: 'The title clearly identifies the document as a routing card or guide for CS auto-nudge
+        explanations and escalations.
+
+
+        The body is a compact, easy-to-scan card with two clearly distinguishable routes: one for routine
+        operating explanations and one for matters requiring escalation. Missing either route fails.
+
+
+        The routine operating-explanation route clearly directs CS auto-nudge operating explanations to
+        Owen and does not assign those routine explanations to Riley.
+
+
+        The escalation route clearly directs disputed semantics, cross-surface consequences, and executive
+        claims to Riley. All three categories must be covered, and the card must not give Owen final authority
+        over them.'
+      check_id: riley_064_01
+mock_state: {}

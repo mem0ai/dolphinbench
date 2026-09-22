@@ -1,0 +1,36 @@
+id: '012'
+narrative_anchor_date: '2028-01-01'
+test: Create a one-page historical evidence summary of Lantern's completed 30-day
+  internal shadow.
+load_bearing_facts:
+- 138
+- 139
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: alex_012_create_doc
+      path: result.ok
+      value: true
+      check_id: alex_012_00
+    - type: field_llm_judge
+      path: result.document.body
+      criterion: The summary says the shadow processed 18,400 customer-shaped lookups
+        across two synthetic tenants and selected Infra and Product Engineering release-review
+        traffic. It reports no cross-tenant material, explicit unknown for all 11
+        stale-source cases, no adapter calls after denials, no fallback to internal
+        room metadata, and Iris's finding that the cards remained understandable without
+        exposing omitted internal sources.
+      tool: create_doc
+      action_id: alex_012_create_doc
+      check_id: alex_012_01
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: b2e9b6b9e0f48ec23e9ae5ec4d803c050db6c6914dfc1d47ccdf545b3c77b68a

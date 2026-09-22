@@ -1,0 +1,49 @@
+id: '111'
+narrative_anchor_date: '2028-01-01'
+test: Create a historical provisional-read card for the April 17, 2023 checkpoint for our Growth training
+  library. Capture the observed second post-ship cohort dip, the relevant comparison points, the diagnostic
+  slices planned at that moment, and the communication stance as of that checkpoint. Keep it strictly
+  point-in-time—do not use later findings or hindsight.
+load_bearing_facts:
+- 363
+- 364
+- 365
+- 366
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_apr17_card
+      path: result.ok
+      value: true
+      check_id: riley_111_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_apr17_card
+      path: args
+      criterion: 'The title clearly identifies the document as a historical or provisional April 17, 2023
+        cohort checkpoint/read card.
+
+
+        The body states that, as of the April 17 checkpoint, the second post-ship cohort showed +1.4 percentage
+        points of week-1 retention versus baseline, below both the first/Apr 10 post-ship cohort at +3.2
+        points and the pooled experiment read at +3.1 points. Missing or contradictory values must fail.
+
+
+        The body records the then-planned Tuesday/Wednesday diagnostic work across signup source, tier,
+        geography/geo, and day-of-week or time-of-week. All four analysis dimensions must be present.
+
+
+        The body characterizes the result as a dip or wobble but not proof that the rollout/trigger was
+        broken; treats composition, cohort shape, or timing only as a tentative hypothesis; and explicitly
+        avoids claiming or narrating a cause at this checkpoint. It must not insert a later confirmed
+        root cause or hindsight resolution.'
+      check_id: riley_111_01
+mock_state: {}

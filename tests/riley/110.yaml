@@ -1,0 +1,54 @@
+id: '110'
+narrative_anchor_date: '2028-01-01'
+test: Create a concise two-stage reliability training note. For the June-July stage, reconcile the total
+  decisions into holds and decisions that proceeded or were suppressed, then explain the hold causes and
+  exactly why the pattern led to pre-breach monitoring. For the July-October stage, give the same reconciled
+  totals, alert outcomes, and control failures. Include dates and draw only a control-reliability conclusion.
+load_bearing_facts:
+- 120
+- 121
+- 228
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_reliability_case_study
+      path: result.ok
+      value: true
+      check_id: riley_110_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_reliability_case_study
+      path: args
+      criterion: 'The document accurately presents the first stage as the June 17–July 20 CS auto-nudge
+        readout: 914 unique decisions, 38 field-specific holds, and 876 decisions that proceeded or were
+        suppressed using current state. It gives the hold breakdown as 29 stale qualifying-human-admin
+        states, five unresolved external-authority states, and four stale entitlement states, and explains
+        that 24 of the 29 qualifying-admin holds clustered from 7:00am to 9:00am on six weekdays when
+        the overnight source refresh finished late.
+
+
+        The document explains that fail-closed holds were functioning as designed, but source lateness
+        was only being discovered after records reached the hold condition; it identifies that reactive
+        discovery as the reason pre-breach source monitoring was added.
+
+
+        The document accurately presents the later July 1–October 31 coverage: 6,704 unique decisions,
+        249 visible field-specific holds, and 6,455 decisions that proceeded or were suppressed using
+        current state. It states that four source-age alerts fired and resolved before breach and that
+        there was no governed-field disagreement, customer correction, or rollback.
+
+
+        The document explicitly connects the earlier reactive discovery pattern to the later pre-breach
+        alert evidence and draws a conclusion only about control reliability or the operation of the monitoring
+        and fail-closed controls. It does not claim that the monitoring improved customer outcomes, engagement,
+        revenue, growth, or other business performance.'
+      check_id: riley_110_01
+mock_state: {}

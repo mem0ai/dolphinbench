@@ -1,0 +1,37 @@
+id: 088
+narrative_anchor_date: '2028-01-01'
+test: Create a historical evidence card for the incomplete-setup reminder's October 6-18, 2027 initial
+  production interval. Reconcile every evaluation outcome, record the agreement and incident-control results,
+  and state what the interval did and did not decide.
+load_bearing_facts:
+- 289
+- 290
+- 291
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_initial_interval_card
+      path: result.ok
+      value: true
+      check_id: riley_088_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_initial_interval_card
+      path: args
+      criterion: The card says Owen closed the October 6-18, 2027 interval. It reconciles 3,240 fresh
+        evaluations into 412 displays, 138 suppressions for active Customer Success work, 61 holds for
+        missing, stale, unresolved, or conflicting state, and 2,629 non-displays because the incomplete-setup
+        or qualifying-human-admin condition was not met. Reporting, lifecycle, and reminder outcomes agreed
+        throughout, with no customer correction, incident stop, source-age breach, rollback, or need for
+        rollback. The interval supplied evidence for a separate rollout decision but did not make that
+        decision.
+      check_id: riley_088_01
+mock_state: {}

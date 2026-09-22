@@ -1,0 +1,54 @@
+id: '070'
+narrative_anchor_date: '2028-01-01'
+test: 'Create a concise archive note about the February 9, 2023 decision to run the churn investigation
+  and pricing-page experiment on parallel tracks, then post a link in #growth-investigations.'
+load_bearing_facts:
+- 312
+expected_tool_calls:
+- create_doc
+- send_slack_message
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_decision_note
+      path: result.ok
+      value: true
+      check_id: riley_070_00
+    - type: field_equals
+      tool: send_slack_message
+      action_id: announce_decision_note
+      path: result.ok
+      value: true
+      check_id: riley_070_01
+    - check_id: riley_070_02
+      type: field_equals
+      tool: send_slack_message
+      action_id: announce_decision_note
+      path: args.channel
+      value: '#growth-investigations'
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_decision_note
+      path: args
+      criterion: 'The created document is a concise archival note about the February 9, 2023 staff-sync
+        decision. It must state that the agreed approach was parallel tracks rather than doing the pricing-page
+        work first: the churn investigation would continue immediately, while the pricing-page experiment
+        was planned to be designed in late February, ship in the first week of March, and run for about
+        three weeks. The experiment timing must be presented as the plan made at that meeting, not as
+        its eventual actual duration. Missing or contradictory sequencing or timing fails.'
+      check_id: riley_070_03
+    - type: field_llm_judge
+      tool: send_slack_message
+      action_id: announce_decision_note
+      path: args
+      criterion: The Slack message is a short announcement of the newly created February 9 churn/pricing
+        decision-timeline archive note and includes a usable document link or URL. Missing the announcement
+        or the link fails.
+      check_id: riley_070_04
+mock_state: {}

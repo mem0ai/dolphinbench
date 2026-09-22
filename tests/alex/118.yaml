@@ -1,0 +1,49 @@
+id: '118'
+narrative_anchor_date: '2028-01-01'
+test: Find the 2027 year-end payroll reconciliation email and create a short note
+  answering its HSA catch-up question.
+load_bearing_facts:
+- 242
+expected_tool_calls:
+- list_inbox
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: alex_118_create_doc
+      path: result.ok
+      value: true
+      check_id: alex_118_00
+    - type: field_equals
+      tool: list_inbox
+      action_id: alex_118_read_email
+      path: result.0.id
+      value: sphere-payroll-2027-reconciliation
+      check_id: alex_118_01
+    - type: field_llm_judge
+      path: result.document.body
+      criterion: The note says the 2027 biweekly deductions were $98 for the individual
+        HDHP and $90 for the employee HSA, the obsolete $81 HSA amount never appeared,
+        and no catch-up adjustment is needed.
+      tool: create_doc
+      action_id: alex_118_create_doc
+      check_id: alex_118_02
+mock_state:
+  inbox:
+  - id: sphere-payroll-2027-reconciliation
+    from: Sphere Payroll <payroll@sphere.example>
+    subject: 2027 year-end reconciliation — HSA catch-up question
+    date: '2027-12-29T09:15:00-05:00'
+    category: payroll
+    body: We are completing the 2027 year-end reconciliation. An archived worksheet
+      contains an older employee-HSA deduction amount. Please confirm the actual medical
+      and employee-HSA deductions used in 2027, whether the older amount appeared
+      in payroll, and whether a catch-up adjustment is required.
+mock_state_base:
+  path: state.json
+  sha256: b2e9b6b9e0f48ec23e9ae5ec4d803c050db6c6914dfc1d47ccdf545b3c77b68a

@@ -1,0 +1,157 @@
+id: 081
+narrative_anchor_date: '2028-01-01'
+test: Inspect cardinality-guardrails#2028 and review its claim to contain the complete
+  first control slice.
+load_bearing_facts:
+- 89
+- 90
+- 91
+expected_tool_calls:
+- get_pr
+- review_pr
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    assertions:
+    - type: field_equals
+      tool: review_pr
+      action_id: alex_081_review_pr
+      path: result.ok
+      value: true
+      check_id: alex_081_00
+    - type: field_equals
+      tool: get_pr
+      action_id: alex_081_read_pr
+      path: result.pr.id
+      value: cardinality-guardrails#2028
+      check_id: alex_081_01
+    - type: field_equals
+      path: result.review.pr_id
+      value: cardinality-guardrails#2028
+      tool: review_pr
+      action_id: alex_081_review_pr
+      check_id: alex_081_02
+    - type: field_equals
+      path: result.review.decision
+      value: request_changes
+      tool: review_pr
+      action_id: alex_081_review_pr
+      check_id: alex_081_03
+    - type: field_llm_judge
+      path: result.review.body
+      criterion: The review says the first control slice must cover label-cardinality
+        preflight for both metrics-router and shard-keeper changes, alert-source classification
+        so replay or mirror panels cannot look like live rollback triggers, and a
+        rollup-service parity check before label-name changes cross service boundaries.
+        It rejects the metrics-router-only implementation as incomplete.
+      tool: review_pr
+      action_id: alex_081_review_pr
+      check_id: alex_081_04
+mock_state:
+  prs:
+  - id: metrics-router#412
+    title: 'metrics-router: tidy config-loader, prep for OTel cutover finish'
+    author: alex
+    repo: metrics-router
+    branch: alex/cfg-loader-tidy
+    status: merged
+    reviewers:
+    - nadia
+    assignees:
+    - alex
+    opened_at: '2023-06-30T14:02:00-04:00'
+    age_days: 3
+    merged_at: '2023-07-11T09:25:00-04:00'
+  - id: shard-keeper#188
+    title: 'shard-keeper: rollback path hardening (lessons from Apr 18)'
+    author: alex
+    repo: shard-keeper
+    branch: alex/rollback-hardening
+    status: merged
+    reviewers:
+    - nadia
+    - cyrus
+    assignees:
+    - alex
+    opened_at: '2023-06-28T11:30:00-04:00'
+    age_days: 5
+    merged_at: '2023-08-08T10:15:00-04:00'
+  - id: ingest-edge#221
+    title: 'ingest-edge: bump OTel collector to 0.91'
+    author: wes
+    repo: ingest-edge
+    branch: wes/otel-091
+    status: merged
+    reviewers:
+    - alex
+    assignees:
+    - wes
+    opened_at: '2023-07-01T09:14:00-04:00'
+    age_days: 2
+    merged_at: '2023-08-03T13:20:00-04:00'
+  - id: metrics-router#414
+    title: 'metrics-router: add label-name parity check on push'
+    author: nadia
+    repo: metrics-router
+    branch: nadia/label-parity-check
+    status: merged
+    reviewers:
+    - alex
+    assignees:
+    - nadia
+    opened_at: '2023-06-29T16:48:00-04:00'
+    age_days: 4
+    merged_at: '2023-07-26T13:05:00-04:00'
+  - id: lantern#3
+    title: 'lantern: v0 architecture doc — circulating for comment'
+    author: alex
+    repo: lantern
+    branch: alex/v0-arch
+    status: merged
+    reviewers:
+    - iris
+    - hema
+    - theo
+    assignees:
+    - alex
+    opened_at: '2023-07-03T10:00:00-04:00'
+    age_days: 0
+    merged_at: '2023-07-24T12:15:00-04:00'
+  - id: shard-keeper#190
+    title: 'shard-keeper: small cutover-readiness fix'
+    author: cyrus
+    repo: shard-keeper
+    branch: cyrus/cutover-fix
+    status: merged
+    reviewers:
+    - alex
+    assignees:
+    - cyrus
+    opened_at: '2023-06-26T13:00:00-04:00'
+    age_days: 7
+    merged_at: '2023-09-21T09:18:00-04:00'
+  - id: cardinality-guardrails#2028
+    title: 'Cardinality Guardrails: complete first-release control slice'
+    author: roman
+    repo: cardinality-guardrails
+    branch: roman/first-release-label-counts
+    status: open
+    reviewers:
+    - alex
+    assignees:
+    - roman
+    opened_at: '2027-12-29T10:15:00-05:00'
+    description: Ships a metrics-router check that rejects changes exceeding the configured
+      label-count ceiling. The PR describes this as the complete first-release control
+      slice; all validation beyond the metrics-router label-count check is deferred
+      to future work.
+    diff_summary: Adds a label-count validator to the metrics-router change path and
+      corresponding unit tests. No other service or validation path is modified.
+    files_changed:
+    - controls/metrics_router_label_count.go
+    - controls/metrics_router_label_count_test.go
+mock_state_base:
+  path: state.json
+  sha256: b2e9b6b9e0f48ec23e9ae5ec4d803c050db6c6914dfc1d47ccdf545b3c77b68a

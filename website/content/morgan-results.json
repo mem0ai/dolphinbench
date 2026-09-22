@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "persona": "morgan",
+  "agent": "Hermes",
+  "model_id": "gpt-5.6-luna",
+  "source_directory": "artifacts/morgan-release-final-20260908/results",
+  "source_sha256": {
+    "summary.json": "2f806cb246c504c515f829217ab1d2947f08d73927bd47747bbca005b59d9708",
+    "paired_scores.json": "f531b6654e5155487d6e991b04a0b2935f3576f728d95e40531491f5d168ab2c",
+    "builtin.json": "182e9dd2709a429b50c388ac0425c52af2598704465671d02456c3c80409d15c",
+    "mem0.json": "112cb105e911b0ae6041ecace3a0d08072c0acd69856e8e17c65d1c2ed6d7836",
+    "honcho.json": "e040013086fccd1fa7e4cb73f1aafafe3498f26924c387aed7c6522d74c5667d"
+  },
+  "summary": {
+    "builtin": {
+      "total": 200,
+      "passes": 82,
+      "pass_rate": 0.41,
+      "complete_200_test_run": true,
+      "fresh_executions": 3,
+      "saved_answers_regraded": 23,
+      "unchanged_answers": 174,
+      "system_reviewed_grades": 1,
+      "total_cost_usd_test_calls": 2.3900759999999996,
+      "cost_unavailable_count": 0,
+      "median_latency_seconds": 47.3568334229999,
+      "p95_latency_seconds": 83.07072222944967,
+      "agent_inference_cost_scope": "Token-priced agent inference only; excludes hosted memory-provider, Honcho, plugin, and other provider service fees."
+    },
+    "mem0": {
+      "total": 200,
+      "passes": 138,
+      "pass_rate": 0.69,
+      "complete_200_test_run": true,
+      "fresh_executions": 3,
+      "saved_answers_regraded": 23,
+      "unchanged_answers": 174,
+      "system_reviewed_grades": 1,
+      "total_cost_usd_test_calls": 1.0796005999999998,
+      "cost_unavailable_count": 0,
+      "median_latency_seconds": 38.09277498949973,
+      "p95_latency_seconds": 63.77915709184995,
+      "agent_inference_cost_scope": "Token-priced agent inference only; excludes hosted memory-provider, Honcho, plugin, and other provider service fees."
+    },
+    "honcho": {
+      "total": 200,
+      "passes": 126,
+      "pass_rate": 0.63,
+      "complete_200_test_run": true,
+      "fresh_executions": 21,
+      "saved_answers_regraded": 20,
+      "unchanged_answers": 159,
+      "system_reviewed_grades": 1,
+      "total_cost_usd_test_calls": 1.73391383,
+      "cost_unavailable_count": 0,
+      "median_latency_seconds": 43.31309612349992,
+      "p95_latency_seconds": 69.92972404775006,
+      "agent_inference_cost_scope": "Token-priced agent inference only; excludes hosted memory-provider, Honcho, plugin, and other provider service fees."
+    }
+  },
+  "paired_scores": {
+    "mem0_vs_honcho": {
+      "a_only": 35,
+      "b_only": 23,
+      "both_pass": 103,
+      "both_fail": 39
+    },
+    "mem0_vs_builtin": {
+      "a_only": 70,
+      "b_only": 14,
+      "both_pass": 68,
+      "both_fail": 48
+    },
+    "honcho_vs_builtin": {
+      "a_only": 60,
+      "b_only": 16,
+      "both_pass": 66,
+      "both_fail": 58
+    }
+  }
+}

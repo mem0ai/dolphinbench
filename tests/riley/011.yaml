@@ -1,0 +1,38 @@
+id: '011'
+narrative_anchor_date: '2028-01-01'
+test: Create a Helio Start archive note for onboarding and retrospective use that captures the original
+  sub-50-seat effort’s duration, core workstreams, and how commercial guardrails were meant to relate
+  to eligibility and product constraints.
+load_bearing_facts:
+- 388
+- 383
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_helio_start_archive
+      path: result.ok
+      value: true
+      check_id: riley_011_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_helio_start_archive
+      path: args
+      criterion: 'The document body clearly records the original sub-50-seat effort as a 12-week effort
+        and includes all four core workstreams: funnel event taxonomy redo, pricing page redesign, lifecycle
+        program changes, and dashboard build-out. Equivalent wording is acceptable, but all four workstreams
+        and the 12-week duration must be present.
+
+
+        The document body explains that the scoping was intended to keep packaging/pricing guardrails
+        separate from eligibility and product constraints rather than combining them into one undifferentiated
+        section. Equivalent wording is acceptable.'
+      check_id: riley_011_01
+mock_state: {}

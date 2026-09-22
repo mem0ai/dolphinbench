@@ -1,0 +1,76 @@
+id: '168'
+narrative_anchor_date: '2028-01-01'
+test: Retrieve EXP-2023-02-pricing-page and feature flag pricing_page_2023q2_rev. Create a concise audit
+  note reporting the current stored numeric result and comparing only the current allocation, the documented
+  concurrent-change confound, and rollback state. Do not treat an earlier pre-confound numeric read as
+  the final historical result. Make no production changes.
+load_bearing_facts:
+- 344
+- 345
+- 346
+expected_tool_calls:
+- query_experiment_results
+- get_feature_flag
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_reconciliation_note
+      path: result.ok
+      value: true
+      check_id: riley_168_00
+    - type: field_equals
+      tool: query_experiment_results
+      action_id: lookup_experiment
+      path: args.experiment_id
+      value: EXP-2023-02-pricing-page
+      check_id: riley_168_01
+    - type: field_equals
+      tool: get_feature_flag
+      action_id: lookup_flag
+      path: args.key
+      value: pricing_page_2023q2_rev
+      check_id: riley_168_02
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_reconciliation_note
+      path: args
+      criterion: The note reports the current experiment-results value of -1.7 percentage points. It reports
+        that the feature flag is at 0%, is decommissioned, and remains rolled back or off. It says the
+        March 2 signup-form layout change confounded the historical experiment. It does not present an
+        earlier pre-confound numerical read as the final historical result and does not claim a production
+        change was made.
+      check_id: riley_168_03
+mock_state:
+  feature_flags:
+  - id: flag_1771797600001
+    key: pricing_page_2023q2_rev
+    name: pricing_page_2023q2_rev
+    rollout_pct: 0
+    status: decommissioned
+    owner: riley
+    created_at: '2023-02-26T16:00:00-06:00'
+    notes: Reporting screenshots were frozen on November 17. Cleanup can proceed after that dependency.
+      Status remains rolled back. This cleanup is not new pricing-page exposure or a new pricing test.
+    updated_at: '2024-09-20T10:10:00-05:00'
+  experiment_results:
+  - experiment_id: EXP-2023-02-pricing-page
+    metric: starter_growth_conversion
+    control: 12.0
+    treatment: 10.3
+    uplift_pts: -1.7
+    p_value: 0.04
+    n_total: 20000
+    arms:
+    - name: control
+      n: 10000
+      value: 12.0
+    - name: treatment
+      n: 10000
+      value: 10.3

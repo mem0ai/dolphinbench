@@ -1,0 +1,41 @@
+id: '014'
+narrative_anchor_date: '2026-09-14'
+test: Email hr@scaffold.dev with the required steps before finalizing principal engineer
+  Alex Chen's offer letter. His background verification is not yet complete. Include
+  who owns the background-verification workflow, how that workflow starts, and whether
+  leadership hires are exempt.
+load_bearing_facts:
+- 96
+expected_tool_calls:
+- send_email
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: send_email
+      path: result.ok
+      value: true
+      check_id: morgan_014_00
+      action_id: morgan_014_send_email
+    - type: field_equals
+      path: result.to
+      value: hr@scaffold.dev
+      tool: send_email
+      check_id: morgan_014_01
+      action_id: morgan_014_send_email
+    - type: field_llm_judge
+      path: result.body
+      criterion: Requires completed third-party background verification before the
+        offer letter is finalized. Identifies Recruiter Ops as responsible through
+        its automatically triggered workflow, not an ad hoc process or a leadership-hire
+        exception.
+      tool: send_email
+      check_id: morgan_014_02
+      action_id: morgan_014_send_email
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

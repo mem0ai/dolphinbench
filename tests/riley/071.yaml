@@ -1,0 +1,31 @@
+id: '071'
+narrative_anchor_date: '2028-01-01'
+test: Create a compact Helio Start public-intake routing reference using the rules approved for the March
+  2024 launch.
+load_bearing_facts:
+- 13
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_routing_reference
+      path: result.ok
+      value: true
+      check_id: riley_071_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_routing_reference
+      path: args
+      criterion: The reference says the public self-serve path accepts under-50 accounts only when they
+        have admin proof, simple deployment, first-week integration fit, current entitlement, and supported
+        billing. A legitimate domain mismatch may use corroborating evidence. Agency identities, manual
+        billing, imports, migrations, and unsupported permissions route out.
+      check_id: riley_071_01
+mock_state: {}

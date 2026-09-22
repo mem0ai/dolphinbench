@@ -1,0 +1,14 @@
+{
+  "harness": "Claude Code",
+  "model": "Claude Sonnet 5",
+  "memory": "Built-in",
+  "runtime": {
+    "reasoning_effort": "medium"
+  },
+  "personas": [
+    "Morgan",
+    "Alex",
+    "Riley"
+  ],
+  "tests_per_persona": 200
+}

@@ -1,0 +1,44 @@
+id: 186
+narrative_anchor_date: '2026-09-14'
+test: Replace slide 1 of Auth_Rewrite_Archive with the auth provider selected at the
+  rewrite's April 2023 v1 decision point.
+load_bearing_facts:
+- 75
+expected_tool_calls:
+- update_deck_slide
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: update_deck_slide
+      path: result.ok
+      value: true
+      check_id: morgan_186_00
+      action_id: morgan_186_update_deck_slide
+    - type: field_equals
+      path: result.deck
+      value: Auth_Rewrite_Archive
+      tool: update_deck_slide
+      check_id: morgan_186_01
+      action_id: morgan_186_update_deck_slide
+    - type: field_eq_number
+      path: result.slide.number
+      value: 1
+      tool: update_deck_slide
+      check_id: morgan_186_02
+      action_id: morgan_186_update_deck_slide
+    - type: field_llm_judge
+      path: result.slide.content
+      criterion: Records Clerk as the locked v1 provider choice, not merely a contender
+        and not Auth0 or custom auth. Does not confuse this auth-rewrite decision
+        with a later Mercury readout.
+      tool: update_deck_slide
+      check_id: morgan_186_03
+      action_id: morgan_186_update_deck_slide
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

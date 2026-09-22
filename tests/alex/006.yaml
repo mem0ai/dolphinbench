@@ -1,0 +1,149 @@
+id: '006'
+narrative_anchor_date: '2028-01-01'
+test: Inspect north-pier/reporter#184 and comment on how its retryable worker should
+  identify and write quarterly handoff observations.
+load_bearing_facts:
+- 271
+- 272
+expected_tool_calls:
+- get_pr
+- post_pr_comment
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    assertions:
+    - type: field_equals
+      tool: post_pr_comment
+      action_id: alex_006_post_pr_comment
+      path: result.ok
+      value: true
+      check_id: alex_006_00
+    - type: field_equals
+      tool: get_pr
+      action_id: alex_006_read_pr
+      path: result.pr.id
+      value: north-pier/reporter#184
+      check_id: alex_006_01
+    - type: field_equals
+      path: result.comment.pr_id
+      value: north-pier/reporter#184
+      tool: post_pr_comment
+      action_id: alex_006_post_pr_comment
+      check_id: alex_006_02
+    - type: field_llm_judge
+      path: result.comment.body
+      criterion: The comment identifies the duplicate-observation risk from retries
+        and requires an atomic upsert or equivalent uniqueness rule keyed by team,
+        release candidate, and canonical-package version. Retrying the same handoff
+        must update one observation without increasing the count; a different release
+        candidate or package version must remain distinct.
+      tool: post_pr_comment
+      action_id: alex_006_post_pr_comment
+      check_id: alex_006_03
+mock_state:
+  prs:
+  - id: metrics-router#412
+    title: 'metrics-router: tidy config-loader, prep for OTel cutover finish'
+    author: alex
+    repo: metrics-router
+    branch: alex/cfg-loader-tidy
+    status: merged
+    reviewers:
+    - nadia
+    assignees:
+    - alex
+    opened_at: '2023-06-30T14:02:00-04:00'
+    age_days: 3
+    merged_at: '2023-07-11T09:25:00-04:00'
+  - id: shard-keeper#188
+    title: 'shard-keeper: rollback path hardening (lessons from Apr 18)'
+    author: alex
+    repo: shard-keeper
+    branch: alex/rollback-hardening
+    status: merged
+    reviewers:
+    - nadia
+    - cyrus
+    assignees:
+    - alex
+    opened_at: '2023-06-28T11:30:00-04:00'
+    age_days: 5
+    merged_at: '2023-08-08T10:15:00-04:00'
+  - id: ingest-edge#221
+    title: 'ingest-edge: bump OTel collector to 0.91'
+    author: wes
+    repo: ingest-edge
+    branch: wes/otel-091
+    status: merged
+    reviewers:
+    - alex
+    assignees:
+    - wes
+    opened_at: '2023-07-01T09:14:00-04:00'
+    age_days: 2
+    merged_at: '2023-08-03T13:20:00-04:00'
+  - id: metrics-router#414
+    title: 'metrics-router: add label-name parity check on push'
+    author: nadia
+    repo: metrics-router
+    branch: nadia/label-parity-check
+    status: merged
+    reviewers:
+    - alex
+    assignees:
+    - nadia
+    opened_at: '2023-06-29T16:48:00-04:00'
+    age_days: 4
+    merged_at: '2023-07-26T13:05:00-04:00'
+  - id: lantern#3
+    title: 'lantern: v0 architecture doc — circulating for comment'
+    author: alex
+    repo: lantern
+    branch: alex/v0-arch
+    status: merged
+    reviewers:
+    - iris
+    - hema
+    - theo
+    assignees:
+    - alex
+    opened_at: '2023-07-03T10:00:00-04:00'
+    age_days: 0
+    merged_at: '2023-07-24T12:15:00-04:00'
+  - id: shard-keeper#190
+    title: 'shard-keeper: small cutover-readiness fix'
+    author: cyrus
+    repo: shard-keeper
+    branch: cyrus/cutover-fix
+    status: merged
+    reviewers:
+    - alex
+    assignees:
+    - cyrus
+    opened_at: '2023-06-26T13:00:00-04:00'
+    age_days: 7
+    merged_at: '2023-09-21T09:18:00-04:00'
+  - repository: north-pier/reporter
+    number: 184
+    title: Emit blocked handoff observations from a retryable worker
+    author: mira
+    status: open
+    description: Moves quarterly handoff-observation writes off the readiness path.
+      Queue delivery is at least once, and a job may be retried after a timeout.
+    files:
+    - path: reporter/worker.py
+      patch: "def emit_observation(job):\n    row = build_report_row(job.handoff,
+        job.failure)\n    row[\"observation_id\"] = str(uuid4())\n    row[\"subject_member_id\"]
+        = job.handoff.owner_member_id\n    quarterly_handoff_observations.insert(row)\n
+        \   job.ack()"
+    - path: reporter/test_worker.py
+      patch: "def test_emits_blocked_handoff():\n    emit_observation(job)\n    assert
+        observations.count() == 1\n    assert observations.first().failure_details
+        == job.failure.details"
+    review_notes: No retry or redelivery test is included.
+    id: north-pier/reporter#184
+mock_state_base:
+  path: state.json
+  sha256: b2e9b6b9e0f48ec23e9ae5ec4d803c050db6c6914dfc1d47ccdf545b3c77b68a

@@ -1,0 +1,40 @@
+id: '146'
+narrative_anchor_date: '2028-01-01'
+test: Create a short evidence note for Lantern's February 5 to 18, 2027 internal reference
+  slice, including its use and customer-path boundary.
+load_bearing_facts:
+- 244
+- 245
+- 246
+- 247
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: alex_146_create_doc
+      path: result.ok
+      value: true
+      check_id: alex_146_00
+    - type: field_llm_judge
+      path: result.document.body
+      criterion: The note reports 52 staff-only reference-card renders, including
+        19 with both owner-map and Cardinality Guardrails references, and 11 of 11
+        mapped metrics-router controls remaining navigable. It says Wes reached the
+        authoritative pre-acceptance backpressure record without copying its value
+        into Lantern, Iris found no authority-transferring wording, and both Harbor
+        Health and Mosaic Commerce had zero internal-reference requests, artifacts,
+        and outputs. It does not present internal navigation as customer authorization
+        or an authority transfer.
+      tool: create_doc
+      action_id: alex_146_create_doc
+      check_id: alex_146_01
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: b2e9b6b9e0f48ec23e9ae5ec4d803c050db6c6914dfc1d47ccdf545b3c77b68a

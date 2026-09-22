@@ -1,0 +1,45 @@
+id: 46
+narrative_anchor_date: '2026-09-14'
+test: PR scaffold/mercury#5128 uses a broken-link icon for sync failure and a retry
+  arrow as the persistent status icon. Post a review comment correcting the icon treatment
+  and explaining why.
+load_bearing_facts:
+- 120
+expected_tool_calls:
+- post_pr_comment
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: post_pr_comment
+      path: result.ok
+      value: true
+      check_id: morgan_046_00
+      action_id: morgan_046_post_pr_comment
+    - type: field_equals
+      path: result.comment.pr_id
+      value: scaffold/mercury#5128
+      tool: post_pr_comment
+      check_id: morgan_046_01
+      action_id: morgan_046_post_pr_comment
+    - type: field_llm_judge
+      path: result.comment.body
+      criterion: Uses a neutral warning circle as the primary failure icon because
+        a broken link implies a vendor-specific or overly narrow failure cause. Keeps
+        the retry arrow as an action affordance, not the persistent failure-state
+        icon.
+      tool: post_pr_comment
+      check_id: morgan_046_02
+      action_id: morgan_046_post_pr_comment
+mock_state:
+  open_prs:
+  - id: scaffold/mercury#5128
+    repo: scaffold/mercury
+    number: 5128
+    status: open
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

@@ -1,0 +1,916 @@
+{
+  "schema_version": 2,
+  "configurations": [
+    {
+      "id": "hermes-luna-high-builtin-20260916",
+      "harness": {
+        "id": "hermes",
+        "name": "Hermes"
+      },
+      "model": {
+        "id": "gpt-5.6-luna-high",
+        "name": "GPT 5.6 Luna",
+        "provider": "OpenAI"
+      },
+      "memory": {
+        "id": "builtin",
+        "name": "Built-in"
+      },
+      "personas": {
+        "morgan": {
+          "total": 200,
+          "passes": 131,
+          "source": {
+            "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/morgan-builtin-results.json.gz/",
+            "sha256": "2fcb137075ddb29a72b14d1eacdb7f013202379fdae37f62b9999ac04246179e"
+          }
+        },
+        "alex": {
+          "total": 200,
+          "passes": 111,
+          "source": {
+            "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/alex-builtin-results.json.gz/",
+            "sha256": "308e7131053e76a1d56eda23511c59913db6491f0e5e57e0f479ad9f12dc77fd"
+          }
+        },
+        "riley": {
+          "total": 200,
+          "passes": 152,
+          "source": {
+            "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/riley-builtin-results.json.gz/",
+            "sha256": "0b8b8196f9f9a2eb538676f482b2239930a68189fd05abb010d692772700a218"
+          }
+        }
+      },
+      "evidence": {
+        "configuration": {
+          "url": "https://dolphinbench.ai/leaderboard/cost-records/builtin-configuration.zip",
+          "sha256": "5faa3c3b70a0670a5388028d094b3e263af0a628d45b2e9d8996b7542221007c"
+        },
+        "source": {
+          "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/builtin-sources.json/",
+          "sha256": "561237cdb3e244ad64c17bdf6a00c82d75dac6678c322fd7635958b90840a484"
+        },
+        "grades": {
+          "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/builtin-results-and-traces.tar/",
+          "sha256": "af8039aa2fd9e49e0444d1c1ff45428a9acbdc0af558e9a295e9dd3f699ecd60"
+        },
+        "recordings": {
+          "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/builtin-results-and-traces.tar/",
+          "sha256": "af8039aa2fd9e49e0444d1c1ff45428a9acbdc0af558e9a295e9dd3f699ecd60"
+        }
+      },
+      "total_cost_usd_test_calls": 8.04923834,
+      "median_latency_seconds": 44.35470588399994,
+      "p95_latency_seconds": 100.88306797600005,
+      "agent_inference_cost_scope": "Token-priced agent inference for all 600 tests; excludes ingestion, grading, and memory-provider service fees.",
+      "total": 600,
+      "passes": 394,
+      "pass_rate": 0.6566666666666666,
+      "total_cost_usd": 61.482132030000024,
+      "total_cost_scope": "Cost includes agent and memory-system processing during ingestion and testing.",
+      "runs_url": "https://github.com/mem0ai/dolphinbench/tree/main/results/hermes/gpt-5.6-luna/builtin"
+    },
+    {
+      "id": "hermes-luna-high-mem0-20260916",
+      "harness": {
+        "id": "hermes",
+        "name": "Hermes"
+      },
+      "model": {
+        "id": "gpt-5.6-luna-high",
+        "name": "GPT 5.6 Luna",
+        "provider": "OpenAI"
+      },
+      "memory": {
+        "id": "mem0",
+        "name": "Mem0"
+      },
+      "personas": {
+        "morgan": {
+          "total": 200,
+          "passes": 156,
+          "source": {
+            "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/morgan-mem0-results.json.gz/",
+            "sha256": "38ecb0f0be0619e344fd0f504392ec2c0a6bd8e186248f36d2b319c872c40161"
+          }
+        },
+        "alex": {
+          "total": 200,
+          "passes": 132,
+          "source": {
+            "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/alex-mem0-results.json.gz/",
+            "sha256": "33476ff28a07ded2e8f205c0b74f26d0c2934d7e5254f62e82bd05b49dcbc86e"
+          }
+        },
+        "riley": {
+          "total": 200,
+          "passes": 136,
+          "source": {
+            "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/riley-mem0-results.json.gz/",
+            "sha256": "c6397452ee46f383ffe2b0b4e7045fb5b28e14b9499730d7242f3849679d9800"
+          }
+        }
+      },
+      "evidence": {
+        "configuration": {
+          "url": "https://dolphinbench.ai/leaderboard/cost-records/mem0-configuration.zip",
+          "sha256": "ee75fb1e4fafde02370e45554048a4463c11ed1aff2c01e823054838c09d3e3f"
+        },
+        "source": {
+          "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/mem0-sources.json/",
+          "sha256": "ca1068d117af4a607d47559b89d1d1ec7536cd3c1f2b728484cfde03a1cc3f1e"
+        },
+        "grades": {
+          "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/mem0-results-and-traces.tar/",
+          "sha256": "4bd145825fcaf13ae1080c955b32916f4bf12848d173a032092b3800528dd2ae"
+        },
+        "recordings": {
+          "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/mem0-results-and-traces.tar/",
+          "sha256": "4bd145825fcaf13ae1080c955b32916f4bf12848d173a032092b3800528dd2ae"
+        }
+      },
+      "total_cost_usd_test_calls": 3.22984434,
+      "median_latency_seconds": 37.68894314099998,
+      "p95_latency_seconds": 81.16765088794976,
+      "agent_inference_cost_scope": "Token-priced agent inference for all 600 tests; excludes ingestion, grading, and memory-provider service fees.",
+      "total": 600,
+      "passes": 424,
+      "pass_rate": 0.7066666666666667,
+      "total_cost_usd": 96.21388145000003,
+      "total_cost_scope": "Cost includes agent and memory-system processing during ingestion and testing.",
+      "runs_url": "https://github.com/mem0ai/dolphinbench/tree/main/results/hermes/gpt-5.6-luna/mem0"
+    },
+    {
+      "id": "hermes-luna-high-honcho-20260916",
+      "harness": {
+        "id": "hermes",
+        "name": "Hermes"
+      },
+      "model": {
+        "id": "gpt-5.6-luna-high",
+        "name": "GPT 5.6 Luna",
+        "provider": "OpenAI"
+      },
+      "memory": {
+        "id": "honcho",
+        "name": "Honcho"
+      },
+      "personas": {
+        "morgan": {
+          "total": 200,
+          "passes": 144,
+          "source": {
+            "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/morgan-honcho-results.json.gz/",
+            "sha256": "ee9c163a527897166fa2483d133bb92db240dbd976703d868f5fbbc5341a8122"
+          }
+        },
+        "alex": {
+          "total": 200,
+          "passes": 120,
+          "source": {
+            "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/alex-honcho-results.json.gz/",
+            "sha256": "d1ede67c21c32aee44b353b0e868999fceb41870121bc0ba9fb76b81689ff626"
+          }
+        },
+        "riley": {
+          "total": 200,
+          "passes": 147,
+          "source": {
+            "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/riley-honcho-results.json.gz/",
+            "sha256": "b4087638890b02c6707fc0b5999dfa36142ed6c03524972372cca48216596832"
+          }
+        }
+      },
+      "evidence": {
+        "configuration": {
+          "url": "https://dolphinbench.ai/leaderboard/cost-records/honcho-configuration.zip",
+          "sha256": "547626d2b94d00035b1e3d1a19a215146f50354f67589aa6f42cd3b3a650a3f1"
+        },
+        "source": {
+          "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/honcho-sources.json/",
+          "sha256": "04461341965fa9158a60334d4834bc2a6e28f1397161770c6ce1bdf52891be15"
+        },
+        "grades": {
+          "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/honcho-results-and-traces.tar/",
+          "sha256": "95b35ce778c9e05148b3edb93c4c2364a171603ea97ce8520a3fad2d2132ec02"
+        },
+        "recordings": {
+          "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/honcho-results-and-traces.tar/",
+          "sha256": "95b35ce778c9e05148b3edb93c4c2364a171603ea97ce8520a3fad2d2132ec02"
+        }
+      },
+      "total_cost_usd_test_calls": 4.93670969,
+      "median_latency_seconds": 44.66409763349981,
+      "p95_latency_seconds": 94.57841570574975,
+      "agent_inference_cost_scope": "Token-priced agent inference for all 600 tests; excludes ingestion, grading, and memory-provider service fees.",
+      "total": 600,
+      "passes": 411,
+      "pass_rate": 0.685,
+      "total_cost_usd": 142.85233241179964,
+      "total_cost_scope": "Cost includes agent and memory-system processing during ingestion and testing.",
+      "runs_url": "https://github.com/mem0ai/dolphinbench/tree/main/results/hermes/gpt-5.6-luna/honcho"
+    },
+    {
+      "id": "hermes-luna-high-hindsight-20260916",
+      "harness": {
+        "id": "hermes",
+        "name": "Hermes"
+      },
+      "model": {
+        "id": "gpt-5.6-luna-high",
+        "name": "GPT 5.6 Luna",
+        "provider": "OpenAI"
+      },
+      "memory": {
+        "id": "hindsight",
+        "name": "Hindsight"
+      },
+      "personas": {
+        "morgan": {
+          "total": 200,
+          "passes": 144,
+          "source": {
+            "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/morgan-hindsight-results.json.gz/",
+            "sha256": "e9402d8c178761ef08180f4e8523cc95367d9121ced26a764db348dc1cd714b8"
+          }
+        },
+        "alex": {
+          "total": 200,
+          "passes": 127,
+          "source": {
+            "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/alex-hindsight-results.json.gz/",
+            "sha256": "36802caf541dcc6ae159fbbdf2e796e9835119e08b97514c473259421b2724fb"
+          }
+        },
+        "riley": {
+          "total": 200,
+          "passes": 146,
+          "source": {
+            "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/riley-hindsight-results.json.gz/",
+            "sha256": "5fc0d117f1675c71eb80dcfcf51310d8128259c2a4776825760400fd7d0cc4a2"
+          }
+        }
+      },
+      "evidence": {
+        "configuration": {
+          "url": "https://dolphinbench.ai/leaderboard/cost-records/hindsight-configuration.zip",
+          "sha256": "eb1c069251c60ecb8e290f4b237eccf48addfa0cf635365de469ed01c0a86b24"
+        },
+        "source": {
+          "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/hindsight-sources.json/",
+          "sha256": "43e9a1b4f4c45185aea807e1aa1b780657b2ff5e2e1efda50b118ce21324f7e2"
+        },
+        "grades": {
+          "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/hindsight-results-and-traces.tar/",
+          "sha256": "3383c53e35a65f4f6dbcd93b917bd5037a16bba6ef414c8828ad1c22791860d2"
+        },
+        "recordings": {
+          "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/hindsight-results-and-traces.tar/",
+          "sha256": "3383c53e35a65f4f6dbcd93b917bd5037a16bba6ef414c8828ad1c22791860d2"
+        }
+      },
+      "total_cost_usd_test_calls": 3.84165259,
+      "median_latency_seconds": 55.307897638500435,
+      "p95_latency_seconds": 158.87933509020013,
+      "agent_inference_cost_scope": "Token-priced agent inference for all 600 tests; excludes ingestion, grading, and memory-provider service fees.",
+      "total": 600,
+      "passes": 417,
+      "pass_rate": 0.695,
+      "total_cost_usd": 84.64996336682626,
+      "total_cost_scope": "Cost includes agent and memory-system processing during ingestion and testing.",
+      "runs_url": "https://github.com/mem0ai/dolphinbench/tree/main/results/hermes/gpt-5.6-luna/hindsight"
+    },
+    {
+      "id": "hermes-minimax-m3-high-builtin-20260921",
+      "harness": {
+        "id": "hermes",
+        "name": "Hermes"
+      },
+      "model": {
+        "id": "minimax-m3-high",
+        "name": "MiniMax M3",
+        "provider": "MiniMax"
+      },
+      "memory": {
+        "id": "builtin",
+        "name": "Built-in"
+      },
+      "personas": {
+        "morgan": {
+          "total": 200,
+          "passes": 56,
+          "source": {
+            "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/morgan-minimax-builtin-results.json.gz/",
+            "sha256": "c0ef9559b83b778ce8d6ece2d0e6ac66215780be1a047c35c062f9ba8e5e22b9"
+          }
+        },
+        "alex": {
+          "total": 200,
+          "passes": 45,
+          "source": {
+            "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/alex-minimax-builtin-results.json.gz/",
+            "sha256": "1b4aed29516e93436b96e3595304c48886a69acb4401780186fe3eeb0a1989b0"
+          }
+        },
+        "riley": {
+          "total": 200,
+          "passes": 58,
+          "source": {
+            "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/riley-minimax-builtin-results.json.gz/",
+            "sha256": "0f2157ff29358050de0b4aca506aa0cd2c1944dd92bd518929b7019f1cdc0b58"
+          }
+        }
+      },
+      "evidence": {
+        "configuration": {
+          "url": "https://dolphinbench.ai/leaderboard/cost-records/minimax-builtin-configuration.zip",
+          "sha256": "c873642feac7cdc3b5aff7e51b3c046dd382f6826b3cb38371507ce575a814ed"
+        },
+        "source": {
+          "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/minimax-builtin-sources.json/",
+          "sha256": "c7d1c001122d179514f15b8cb39b476b5f95b642761ac7352509cd9e4872eb42"
+        },
+        "grades": {
+          "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/minimax-builtin-results-and-traces.tar.gz/",
+          "sha256": "390b9d0a820a05c0f78eea7a6c477a4ad0eb782a685290afc60cee8f5aa30cf3"
+        },
+        "recordings": {
+          "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/minimax-builtin-results-and-traces.tar.gz/",
+          "sha256": "390b9d0a820a05c0f78eea7a6c477a4ad0eb782a685290afc60cee8f5aa30cf3"
+        }
+      },
+      "total_cost_usd_test_calls": 9.15751068,
+      "median_latency_seconds": 51.395184124499906,
+      "p95_latency_seconds": 172.2558978655,
+      "agent_inference_cost_scope": "Token-priced agent inference for all 600 tests; excludes ingestion, grading, and other provider fees.",
+      "total": 600,
+      "passes": 159,
+      "pass_rate": 0.265,
+      "total_cost_usd": 107.03188422,
+      "total_cost_scope": "Cost includes agent and memory-system processing during ingestion and testing.",
+      "runs_url": "https://github.com/mem0ai/dolphinbench/tree/main/results/hermes/minimax-m3/builtin"
+    },
+    {
+      "id": "hermes-minimax-m3-high-mem0-20260920",
+      "harness": {
+        "id": "hermes",
+        "name": "Hermes"
+      },
+      "model": {
+        "id": "minimax-m3-high",
+        "name": "MiniMax M3",
+        "provider": "MiniMax"
+      },
+      "memory": {
+        "id": "mem0",
+        "name": "Mem0"
+      },
+      "personas": {
+        "morgan": {
+          "total": 200,
+          "passes": 108,
+          "source": {
+            "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/morgan-minimax-mem0-results.json.gz/",
+            "sha256": "88a646c882cf25438a6322d4a0787df0a1a12648137e709a4cf120b3218628ce"
+          }
+        },
+        "alex": {
+          "total": 200,
+          "passes": 82,
+          "source": {
+            "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/alex-minimax-mem0-results.json.gz/",
+            "sha256": "41f2a237b061b27735053e3320ab63b84ac777645428bb9fc3c16f8bdc611b36"
+          }
+        },
+        "riley": {
+          "total": 200,
+          "passes": 97,
+          "source": {
+            "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/riley-minimax-mem0-results.json.gz/",
+            "sha256": "b905096299c97c9a182479d6c668b607988fda636a24e52007d1501dde10ec4b"
+          }
+        }
+      },
+      "evidence": {
+        "configuration": {
+          "url": "https://dolphinbench.ai/leaderboard/cost-records/minimax-mem0-configuration.zip",
+          "sha256": "cf17d2fee60a8606faa3ea2db2e9fc2f88840eba8da4accbd8f983b0f602b641"
+        },
+        "source": {
+          "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/minimax-mem0-sources.json/",
+          "sha256": "d5c86791256c94c2fd1fe89c1e3017de44bb63460216068047b7643bd5428572"
+        },
+        "grades": {
+          "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/minimax-mem0-results-and-traces.tar/",
+          "sha256": "7da0014e033363fa561a2abd2bb3608caf8256fea0211e904eea4192879ab695"
+        },
+        "recordings": {
+          "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/minimax-mem0-results-and-traces.tar/",
+          "sha256": "7da0014e033363fa561a2abd2bb3608caf8256fea0211e904eea4192879ab695"
+        }
+      },
+      "total_cost_usd_test_calls": 5.02433952,
+      "median_latency_seconds": 46.95490127649964,
+      "p95_latency_seconds": 266.30208848680013,
+      "agent_inference_cost_scope": "Token-priced agent inference for all 600 tests; excludes ingestion, grading, and other provider fees.",
+      "total": 600,
+      "passes": 287,
+      "pass_rate": 0.47833333333333333,
+      "total_cost_usd": 148.0180480712263,
+      "total_cost_scope": "Cost includes agent and memory-system processing during ingestion and testing.",
+      "runs_url": "https://github.com/mem0ai/dolphinbench/tree/main/results/hermes/minimax-m3/mem0"
+    },
+    {
+      "id": "hermes-gpt-5.6-luna-high-supermemory-20260921",
+      "harness": {
+        "id": "hermes",
+        "name": "Hermes"
+      },
+      "model": {
+        "id": "gpt-5.6-luna-high",
+        "name": "GPT 5.6 Luna",
+        "provider": "OpenAI"
+      },
+      "memory": {
+        "id": "supermemory",
+        "name": "Supermemory"
+      },
+      "personas": {
+        "morgan": {
+          "total": 200,
+          "passes": 138,
+          "source": {
+            "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/morgan-luna-supermemory-results.json.gz/",
+            "sha256": "203a84b383a4ada9a51130a51a166832021218ecd3e7e6df39f75021b60ea961"
+          }
+        },
+        "alex": {
+          "total": 200,
+          "passes": 98,
+          "source": {
+            "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/alex-luna-supermemory-results.json.gz/",
+            "sha256": "b8a4c53ed4d6b64068d773e1e08cc84f21b379b750959ab68ab1d0e08b8f2a7e"
+          }
+        },
+        "riley": {
+          "total": 200,
+          "passes": 119,
+          "source": {
+            "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/riley-luna-supermemory-results.json.gz/",
+            "sha256": "8b0fb0c62cd34f59172ad465451dd7330f78bd77b7966f217dbb6c2444b0c7a0"
+          }
+        }
+      },
+      "evidence": {
+        "configuration": {
+          "url": "https://dolphinbench.ai/leaderboard/cost-records/luna-supermemory-configuration.zip",
+          "sha256": "01dc011d029e1111b0b50eb1424e072bb53c238ac41ec103ea6d0384f9d1bea9"
+        },
+        "source": {
+          "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/luna-supermemory-sources.json/",
+          "sha256": "c97c531f4f61501b60cc9a8007231882bab506fd6bdacb7bc30ebf557273ace2"
+        },
+        "grades": {
+          "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/luna-supermemory-results-and-traces.tar.gz/",
+          "sha256": "2d4a57e7dff4fe51f939f6c1839697f05df1fb7563d2076c9617cc68598c4499"
+        },
+        "recordings": {
+          "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/luna-supermemory-results-and-traces.tar.gz/",
+          "sha256": "2d4a57e7dff4fe51f939f6c1839697f05df1fb7563d2076c9617cc68598c4499"
+        }
+      },
+      "total_cost_usd_test_calls": 7.38471046,
+      "median_latency_seconds": 52.67815892099995,
+      "p95_latency_seconds": 134.7041816865998,
+      "agent_inference_cost_scope": "Agent inference during evaluation; excludes ingestion, grading, memory processing, and infrastructure.",
+      "total_cost_usd": 345.6447958346001,
+      "total": 600,
+      "passes": 355,
+      "pass_rate": 0.5916666666666667,
+      "total_cost_scope": "Cost includes agent and memory-system processing during ingestion and testing.",
+      "runs_url": "https://github.com/mem0ai/dolphinbench/tree/main/results/hermes/gpt-5.6-luna/supermemory"
+    },
+    {
+      "id": "hermes-minimax-m3-high-honcho-20260921",
+      "harness": {
+        "id": "hermes",
+        "name": "Hermes"
+      },
+      "model": {
+        "id": "minimax-m3-high",
+        "name": "MiniMax M3",
+        "provider": "MiniMax"
+      },
+      "memory": {
+        "id": "honcho",
+        "name": "Honcho"
+      },
+      "personas": {
+        "morgan": {
+          "total": 200,
+          "passes": 108,
+          "source": {
+            "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/morgan-minimax-honcho-results.json.gz/",
+            "sha256": "e12520ef244d2e9d9a2e7fc7e12adbb3a07127f9e5da7605338902064d18f59b"
+          }
+        },
+        "alex": {
+          "total": 200,
+          "passes": 91,
+          "source": {
+            "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/alex-minimax-honcho-results.json.gz/",
+            "sha256": "045cd6cc0c76736bcd811c4b9486bcf066896e3e73c08d2d2d793eeb4f599be0"
+          }
+        },
+        "riley": {
+          "total": 200,
+          "passes": 85,
+          "source": {
+            "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/riley-minimax-honcho-results.json.gz/",
+            "sha256": "3b104493fc2bb774c39df10bfca4a7edfe8f3a73d88fc12743f8777da44cc014"
+          }
+        }
+      },
+      "evidence": {
+        "configuration": {
+          "url": "https://dolphinbench.ai/leaderboard/cost-records/minimax-honcho-configuration.zip",
+          "sha256": "6cabf7e4c5d481e0404ae1dd02a7dc68d52d0625c3219d4dd44ec1033abd87da"
+        },
+        "source": {
+          "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/minimax-honcho-sources.json/",
+          "sha256": "572441b005da6467388442061a6374798164ed4fa2cb0354c566470defaaac58"
+        },
+        "grades": {
+          "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/minimax-honcho-results-and-traces.tar.gz/",
+          "sha256": "f743447b642c8bf5a979cf7a925d765fb7775f04d1736298837d9d30b85703ec"
+        },
+        "recordings": {
+          "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/minimax-honcho-results-and-traces.tar.gz/",
+          "sha256": "f743447b642c8bf5a979cf7a925d765fb7775f04d1736298837d9d30b85703ec"
+        }
+      },
+      "total_cost_usd_test_calls": 7.040642579999999,
+      "median_latency_seconds": 80.32813606000036,
+      "p95_latency_seconds": 318.56076525949953,
+      "agent_inference_cost_scope": "Agent inference during evaluation; excludes ingestion, grading, memory processing, and infrastructure.",
+      "total_cost_usd": 211.84779666729017,
+      "total": 600,
+      "passes": 284,
+      "pass_rate": 0.47333333333333333,
+      "total_cost_scope": "Cost includes agent and memory-system processing during ingestion and testing.",
+      "runs_url": "https://github.com/mem0ai/dolphinbench/tree/main/results/hermes/minimax-m3/honcho"
+    },
+    {
+      "id": "hermes-minimax-m3-high-hindsight-20260921",
+      "harness": {
+        "id": "hermes",
+        "name": "Hermes"
+      },
+      "model": {
+        "id": "minimax-m3-high",
+        "name": "MiniMax M3",
+        "provider": "MiniMax"
+      },
+      "memory": {
+        "id": "hindsight",
+        "name": "Hindsight"
+      },
+      "personas": {
+        "morgan": {
+          "total": 200,
+          "passes": 109,
+          "source": {
+            "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/morgan-minimax-hindsight-results.json.gz/",
+            "sha256": "a8d43a4b4db3d90e5157cc6ec5a26d4ed1d0438c94b273daa69ba036d0071b5a"
+          }
+        },
+        "alex": {
+          "total": 200,
+          "passes": 93,
+          "source": {
+            "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/alex-minimax-hindsight-results.json.gz/",
+            "sha256": "1c50a2f8b7f34ea55d998cf28b3ccd9c5d732a4e761bbf8f1d126d5d98ff3fd4"
+          }
+        },
+        "riley": {
+          "total": 200,
+          "passes": 44,
+          "source": {
+            "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/riley-minimax-hindsight-results.json.gz/",
+            "sha256": "05a1bc96a72991824ade99bf158d1fdb2f1b9dfa056b1bf592d1a0c3e513ffe4"
+          }
+        }
+      },
+      "evidence": {
+        "configuration": {
+          "url": "https://dolphinbench.ai/leaderboard/cost-records/minimax-hindsight-configuration.zip",
+          "sha256": "77d362659f54e3aba20c37666801baedc2d61917dcc01862dc00a1ed5a4c7595"
+        },
+        "source": {
+          "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/minimax-hindsight-sources.json/",
+          "sha256": "1d49f52992ba3026bbe282e269a4ec13aad2895b3d2a92ed8cf7621eee4bc301"
+        },
+        "grades": {
+          "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/minimax-hindsight-results-and-traces.tar.gz/",
+          "sha256": "9b99ca95f3c76a488d37f23446829f09e777f28ee7562743fe7e6cfd219bca29"
+        },
+        "recordings": {
+          "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/minimax-hindsight-results-and-traces.tar.gz/",
+          "sha256": "9b99ca95f3c76a488d37f23446829f09e777f28ee7562743fe7e6cfd219bca29"
+        }
+      },
+      "total_cost_usd_test_calls": 9.97001916,
+      "median_latency_seconds": 144.27637541699983,
+      "p95_latency_seconds": 602.8579876240501,
+      "agent_inference_cost_scope": "Agent inference during evaluation; excludes ingestion, grading, memory processing, and infrastructure.",
+      "total_cost_usd": 158.3259366776085,
+      "total": 600,
+      "passes": 246,
+      "pass_rate": 0.41,
+      "total_cost_scope": "Cost includes agent and memory-system processing during ingestion and testing.",
+      "runs_url": "https://github.com/mem0ai/dolphinbench/tree/main/results/hermes/minimax-m3/hindsight"
+    },
+    {
+      "id": "hermes-minimax-m3-high-supermemory-20260921",
+      "harness": {
+        "id": "hermes",
+        "name": "Hermes"
+      },
+      "model": {
+        "id": "minimax-m3-high",
+        "name": "MiniMax M3",
+        "provider": "MiniMax"
+      },
+      "memory": {
+        "id": "supermemory",
+        "name": "Supermemory"
+      },
+      "personas": {
+        "morgan": {
+          "total": 200,
+          "passes": 45,
+          "source": {
+            "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/morgan-minimax-supermemory-results.json.gz/",
+            "sha256": "8b91022d18b835b641ecfda8d20676dd422a2b1f43cc6d9fd9ee6432a7decc86"
+          }
+        },
+        "alex": {
+          "total": 200,
+          "passes": 37,
+          "source": {
+            "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/alex-minimax-supermemory-results.json.gz/",
+            "sha256": "c5348806fbe88b8d605994b55398d3dc3459428bda98c2dd4faff392f3e0d6eb"
+          }
+        },
+        "riley": {
+          "total": 200,
+          "passes": 38,
+          "source": {
+            "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/riley-minimax-supermemory-results.json.gz/",
+            "sha256": "56ca7ad7033b24c523a9aa02d69e258f14091ecfcff7a5ac90cd88a48fbba0a5"
+          }
+        }
+      },
+      "evidence": {
+        "configuration": {
+          "url": "https://dolphinbench.ai/leaderboard/cost-records/minimax-supermemory-configuration.zip",
+          "sha256": "df7f1b8b4a33fbd5c70b56940912e16f68b2bd9fe898bdf2ec1c04baee990f41"
+        },
+        "source": {
+          "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/minimax-supermemory-sources.json/",
+          "sha256": "ec247efdf3d9b1ff84acf7200c71238fe452f6f6b033a8d594442e36d89ac025"
+        },
+        "grades": {
+          "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/minimax-supermemory-results-and-traces.tar.gz/",
+          "sha256": "ab0c02a97e0cc1d3eff776787242b2151615a14b12a6d1e8d793cd7f0066f7af"
+        },
+        "recordings": {
+          "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/minimax-supermemory-results-and-traces.tar.gz/",
+          "sha256": "ab0c02a97e0cc1d3eff776787242b2151615a14b12a6d1e8d793cd7f0066f7af"
+        }
+      },
+      "total_cost_usd_test_calls": 6.622469639999999,
+      "median_latency_seconds": 137.52324065899964,
+      "p95_latency_seconds": 1846.1710298052499,
+      "agent_inference_cost_scope": "Agent inference during evaluation; excludes ingestion, grading, memory processing, and infrastructure.",
+      "total_cost_usd": 497.7013825211592,
+      "total": 600,
+      "passes": 120,
+      "pass_rate": 0.2,
+      "total_cost_scope": "Cost includes agent and memory-system processing during ingestion and testing.",
+      "runs_url": "https://github.com/mem0ai/dolphinbench/tree/main/results/hermes/minimax-m3/supermemory"
+    },
+    {
+      "id": "claude-code-sonnet-5-builtin-20260921",
+      "harness": {
+        "id": "claude-code",
+        "name": "Claude Code"
+      },
+      "model": {
+        "id": "claude-sonnet-5",
+        "name": "Claude Sonnet 5",
+        "provider": "Anthropic"
+      },
+      "memory": {
+        "id": "builtin",
+        "name": "Built-in"
+      },
+      "personas": {
+        "morgan": {
+          "total": 200,
+          "passes": 69,
+          "source": {
+            "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/morgan-claude-builtin-results.json.gz/",
+            "sha256": "c6e091e4a47d31fb94c3d2b73ce392cca62bf43149ea124e84c61ad4ad06a5d3"
+          }
+        },
+        "alex": {
+          "total": 200,
+          "passes": 47,
+          "source": {
+            "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/alex-claude-builtin-results.json.gz/",
+            "sha256": "b3474a604c3a1bcbb55d5eb7c33de9fc948866401c8e3c6f0a59f5dd0c8572a0"
+          }
+        },
+        "riley": {
+          "total": 200,
+          "passes": 42,
+          "source": {
+            "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/riley-claude-builtin-results.json.gz/",
+            "sha256": "f17c317a5be8738090e3ca52eed5696274342e5739a3d8cc35e5d996a8fb3567"
+          }
+        }
+      },
+      "evidence": {
+        "configuration": {
+          "url": "https://dolphinbench.ai/leaderboard/cost-records/claude-builtin-configuration.zip",
+          "sha256": "b7faf2a5ff617654d0b171024c94a13e206eb4e695ef6126f91b213553c6cb34"
+        },
+        "source": {
+          "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/claude-builtin-sources.json/",
+          "sha256": "4cd0bd98db520722ac3e3dcf48cfdc1a6976292c7d1dcf0c1bde249a5cf619f2"
+        },
+        "grades": {
+          "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/claude-builtin-results-and-traces.tar.gz/",
+          "sha256": "8f8c04305aee0fc101f78e2228b6f64e8747d2f50cee3276f1b3882035d3b464"
+        },
+        "recordings": {
+          "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/claude-builtin-results-and-traces.tar.gz/",
+          "sha256": "8f8c04305aee0fc101f78e2228b6f64e8747d2f50cee3276f1b3882035d3b464"
+        }
+      },
+      "total_cost_usd_test_calls": 87.8874987,
+      "median_latency_seconds": 32.19062741699963,
+      "p95_latency_seconds": 68.7752687529997,
+      "agent_inference_cost_scope": "Token-priced Claude agent inference for all 600 tests; excludes ingestion, grading, and other fees.",
+      "total_cost_usd": 1132.74661225,
+      "total": 600,
+      "passes": 158,
+      "pass_rate": 0.2633333333333333,
+      "total_cost_scope": "Cost includes agent and memory-system processing during ingestion and testing.",
+      "runs_url": "https://github.com/mem0ai/dolphinbench/tree/main/results/claude-code/claude-sonnet-5/builtin"
+    },
+    {
+      "id": "claude-code-claude-sonnet-5-honcho-20260921",
+      "harness": {
+        "id": "claude-code",
+        "name": "Claude Code"
+      },
+      "model": {
+        "id": "claude-sonnet-5",
+        "name": "Claude Sonnet 5",
+        "provider": "Anthropic"
+      },
+      "memory": {
+        "id": "honcho",
+        "name": "Honcho"
+      },
+      "personas": {
+        "morgan": {
+          "total": 200,
+          "passes": 93,
+          "source": {
+            "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/morgan-claude-honcho-results.json.gz/",
+            "sha256": "d4c406ab14276c8ea63136040daa5b55191576ed24cce4315887d9aaf3d757d0"
+          }
+        },
+        "alex": {
+          "total": 200,
+          "passes": 63,
+          "source": {
+            "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/alex-claude-honcho-results.json.gz/",
+            "sha256": "5b6fc4ca5e20698ec211282c8ed759139c55487e55c35f3bead0bedcab9ce14a"
+          }
+        },
+        "riley": {
+          "total": 200,
+          "passes": 59,
+          "source": {
+            "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/riley-claude-honcho-results.json.gz/",
+            "sha256": "1996ac3a4fa02392c41f24b340f3e580df3ca5dc65d4efdc5e0cdabc68923b35"
+          }
+        }
+      },
+      "evidence": {
+        "configuration": {
+          "url": "https://dolphinbench.ai/leaderboard/cost-records/claude-honcho-configuration.zip",
+          "sha256": "411b513f61153deba128b01949caf6f36d413a07941bdeda8965b55ce72949d8"
+        },
+        "source": {
+          "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/claude-honcho-sources.json/",
+          "sha256": "08d932d8f5e4fff5e01525d5724f9532724e1bfe68e5c693c438bd121a492c3e"
+        },
+        "grades": {
+          "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/claude-honcho-results-and-traces.tar.gz/",
+          "sha256": "250cf1a17cb32fdde1bbf1a025d72aef9cd15b85ab3eb176e8c04f8509abd70a"
+        },
+        "recordings": {
+          "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/claude-honcho-results-and-traces.tar.gz/",
+          "sha256": "250cf1a17cb32fdde1bbf1a025d72aef9cd15b85ab3eb176e8c04f8509abd70a"
+        }
+      },
+      "total_cost_usd_test_calls": 95.7829394,
+      "median_latency_seconds": 37.923294940000005,
+      "p95_latency_seconds": 78.54438862180032,
+      "agent_inference_cost_scope": "Agent inference during evaluation; excludes ingestion, grading, memory processing, and infrastructure.",
+      "total_cost_usd": 1565.8183545579857,
+      "total": 600,
+      "passes": 215,
+      "pass_rate": 0.35833333333333334,
+      "total_cost_scope": "Cost includes agent and memory-system processing during ingestion and testing.",
+      "runs_url": "https://github.com/mem0ai/dolphinbench/tree/main/results/claude-code/claude-sonnet-5/honcho"
+    },
+    {
+      "id": "claude-code-claude-sonnet-5-mem0-20260921",
+      "harness": {
+        "id": "claude-code",
+        "name": "Claude Code"
+      },
+      "model": {
+        "id": "claude-sonnet-5",
+        "name": "Claude Sonnet 5",
+        "provider": "Anthropic"
+      },
+      "memory": {
+        "id": "mem0",
+        "name": "Mem0"
+      },
+      "personas": {
+        "morgan": {
+          "total": 200,
+          "passes": 81,
+          "source": {
+            "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/morgan-claude-mem0-results.json.gz/",
+            "sha256": "385c129e3996da8c0aa5558c41ab6a24798a6557c4d68358aa3f32adba727ba5"
+          }
+        },
+        "alex": {
+          "total": 200,
+          "passes": 72,
+          "source": {
+            "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/alex-claude-mem0-results.json.gz/",
+            "sha256": "5452e053ed4661e655506e09b6872593148ac6be1ebedf50e5b13721d8809af3"
+          }
+        },
+        "riley": {
+          "total": 200,
+          "passes": 41,
+          "source": {
+            "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/riley-claude-mem0-results.json.gz/",
+            "sha256": "65b923dee5b51ea276ae9ff7400373649d86b9dd88b3ac91acaf0e08e6d4b549"
+          }
+        }
+      },
+      "evidence": {
+        "configuration": {
+          "url": "https://dolphinbench.ai/leaderboard/cost-records/claude-mem0-configuration.zip",
+          "sha256": "0afde104822a121d32091b1ec64dc995d2373be98a4b734458e09e16e15c972b"
+        },
+        "source": {
+          "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/claude-mem0-sources.json/",
+          "sha256": "41abec2ff6d8881c01d56bfca89c3ef71b43661da8ce88a9367e8cf3b51b4018"
+        },
+        "grades": {
+          "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/claude-mem0-results-and-traces.tar.gz/",
+          "sha256": "839e33975dce834b0382677745d345144f71804e4da4cfc573ae7c85c96d831e"
+        },
+        "recordings": {
+          "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/claude-mem0-results-and-traces.tar.gz/",
+          "sha256": "839e33975dce834b0382677745d345144f71804e4da4cfc573ae7c85c96d831e"
+        }
+      },
+      "total_cost_usd_test_calls": 107.4124817,
+      "median_latency_seconds": 42.29555081899973,
+      "p95_latency_seconds": 153.8408404088997,
+      "agent_inference_cost_scope": "Agent inference during evaluation; excludes ingestion, grading, memory processing, and infrastructure.",
+      "total_cost_usd": 1830.56848095,
+      "total": 600,
+      "passes": 194,
+      "pass_rate": 0.3233333333333333,
+      "total_cost_scope": "Cost includes agent and memory-system processing during ingestion and testing.",
+      "runs_url": "https://github.com/mem0ai/dolphinbench/tree/main/results/claude-code/claude-sonnet-5/mem0"
+    }
+  ],
+  "release_sha256": "40107f293243a6cb3941c16e75ce2e3495ed31c68a1015b8537efeb8dfec2ae9"
+}

@@ -1,0 +1,55 @@
+id: '173'
+narrative_anchor_date: '2028-01-01'
+test: Create `Expansion Assist cohort comparison — Q1 vs Jul–Sep 2026` as two like-structured historical
+  entries. Include each period, denominator, complete-window status, request and expansion counts and
+  rates, and Customer Success exclusion. Keep cohorts separate, state whether the evidence included a
+  randomized comparison, and explain what that means for interpreting the observed rates.
+load_bearing_facts:
+- 174
+- 226
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_comparison_sheet
+      path: result.ok
+      value: true
+      check_id: riley_173_00
+    - check_id: riley_173_01
+      type: field_equals
+      tool: create_doc
+      action_id: create_comparison_sheet
+      path: args.title
+      value: Expansion Assist cohort comparison — Q1 vs Jul–Sep 2026
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_comparison_sheet
+      path: args
+      criterion: 'The document contains a distinct entry for the locked Q1 cohort that accurately states:
+        exposure period December 1 through January 30; fixed denominator of 18 actual exposures; all exposures
+        have complete 45-day outcome windows; 6 help-or-options requests, calculated as 33.3% of 18; 4
+        expansions, calculated as 22.2% of 18; and no account had active Customer Success adoption or
+        renewal work at exposure. Missing, materially ambiguous, or contradictory values must fail.
+
+
+        The document contains a separate entry for the later cohort that accurately states: exposure period
+        July 1 through September 15; fixed denominator of 16 actual exposures; all exposures have complete
+        45-day outcome windows; 6 help-or-options requests, calculated as 37.5% of 16; 4 expansions, calculated
+        as 25.0% of 16; and no exposed account had active Customer Success adoption or renewal work. Missing,
+        materially ambiguous, or contradictory values must fail.
+
+
+        The document keeps the two cohorts and their denominators separate rather than pooling them, and
+        gives a shared interpretation that treats the observed request and expansion rates as descriptive
+        only. It must not claim that the later cohort caused lift or otherwise establish causal improvement;
+        it should make clear that the evidence does not support such a causal conclusion, including the
+        absence of a randomized or claim-specific controlled comparison where relevant.'
+      check_id: riley_173_02
+mock_state: {}

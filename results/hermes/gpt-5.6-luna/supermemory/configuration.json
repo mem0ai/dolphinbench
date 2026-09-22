@@ -1,0 +1,17 @@
+{
+  "harness": "Hermes",
+  "model": "GPT 5.6 Luna",
+  "memory": "Supermemory",
+  "runtime": {
+    "provider": "azure-foundry",
+    "reasoning_effort": "high",
+    "context_length": 1050000,
+    "max_turns": 60
+  },
+  "personas": [
+    "Morgan",
+    "Alex",
+    "Riley"
+  ],
+  "tests_per_persona": 200
+}

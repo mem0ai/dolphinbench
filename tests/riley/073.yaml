@@ -1,0 +1,78 @@
+id: '073'
+narrative_anchor_date: '2028-01-01'
+test: We're preparing the CS auto-nudge rollback tabletop. Create a focused, runnable document titled
+  `CS auto-nudge restoration and rollback tabletop drill`. Distinguish the current production decision
+  path from the retained legacy configuration, and cover production decision prerequisites, field-specific
+  holds, suppression, legacy-path limitations, and restoration and rollback authority. Use each person's
+  name for restoration and rollback authority; do not substitute `you`, `the requester`, or a generic
+  role. Include roles, scenario injects, expected operator actions, evidence checkpoints, go/no-go criteria,
+  and exit criteria. Keep the drill scoped to CS auto-nudge.
+load_bearing_facts:
+- 94
+- 95
+- 96
+- 97
+- 118
+- 119
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_cs_auto_nudge_tabletop
+      path: result.ok
+      value: true
+      check_id: riley_073_00
+    - check_id: riley_073_01
+      type: field_equals
+      tool: create_doc
+      action_id: create_cs_auto_nudge_tabletop
+      path: args.title
+      value: CS auto-nudge restoration and rollback tabletop drill
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_cs_auto_nudge_tabletop
+      path: args
+      criterion: 'The body clearly distinguishes the current governed shared-state contract/feed as the
+        single production decision path from the legacy nightly configuration. It states that the legacy
+        path is disabled, retained only for engineering rollback, and no longer evaluates or releases
+        production decisions. It also accurately records all legacy limitations: only a feed-level timestamp;
+        possible preservation of last-known qualifying-human-admin and Customer Success-work values when
+        an individual source refresh lags; and no external-system-authority or connector-authentication
+        state in the nudge operator view. Missing or contradictory treatment must fail.
+
+
+        The body accurately states that a production nudge can proceed only when every required field
+        is within its recorded freshness limit and the five governed conditions are satisfied: external-system
+        authority is verified yes that the account or an available owner can perform the connector’s required
+        owner-level permission or network-allowlist action; connector authentication is authenticated;
+        entitlement is active; a qualifying human admin is present; and no active Customer Success adoption
+        or renewal work is recorded. It must also preserve that external-system authority is connector-readiness
+        state, not permission for automated contact. Missing or contradicted prerequisites must fail.
+
+
+        The body states that active Customer Success adoption or renewal work suppresses the nudge, while
+        any stale, unresolved, or conflicting required state creates a visible hold specific to the affected
+        field. It must not conflate suppression with a hold or permit either condition to proceed. Missing
+        or contradictory behavior must fail.
+
+
+        The body assigns engineering rollback control to Daniela and states that restoration is authorized
+        only through either Daniela’s incident rollback or Riley’s customer-correction or incident-stop
+        decision. It must not grant restoration or engineering rollback authority to another role. Missing
+        or contradictory authority must fail.
+
+
+        The document is a runnable tabletop rather than a narrative summary: it defines relevant participant
+        roles, provides multiple scenario injects, gives expected operator actions or decisions, identifies
+        evidence or observations to verify, and includes restoration/rollback go-no-go and exit criteria.
+        The scenarios collectively exercise normal production decisioning, suppression, field-specific
+        holds, attempted use of the retained legacy configuration, and restoration or rollback escalation.'
+      check_id: riley_073_02
+mock_state: {}

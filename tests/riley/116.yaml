@@ -1,0 +1,40 @@
+id: '116'
+narrative_anchor_date: '2028-01-01'
+test: Create an annual visual condition inspection form for `Before the House Wakes`. Make it a condition
+  sheet rather than a portfolio description. Prefill the known object and display details and the prior
+  condition baseline, then include practical check or fill-in fields for corner mounts, flatness, moisture,
+  abrasion, adhesive contact, conservation follow-up, inspection date, inspector, and observations.
+load_bearing_facts:
+- 161
+- 162
+- 163
+- 164
+- 165
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_condition_form
+      path: result.ok
+      value: true
+      check_id: riley_116_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_condition_form
+      path: args
+      criterion: 'The document is a usable annual condition inspection form for `Before the House Wakes`.
+        It prefills the 7-by-9-inch image on a 9-by-12-inch sheet, 11-by-14-inch archival mat, 6.75-by-8.75-inch
+        window, conservation-grade corner mounts, and Cherrywood painting-corner location. It records
+        the January 4, 2026 baseline: the shifted lower-right mount was replaced, the work was secure,
+        the sheet was flat and undamaged with no moisture, tear, abrasion, or adhesive contact, and no
+        further conservation work was pending. It provides fields for date, inspector, mounts, flatness,
+        moisture, abrasion, adhesive contact, follow-up, and observations.'
+      check_id: riley_116_01
+mock_state: {}

@@ -1,0 +1,79 @@
+id: '158'
+narrative_anchor_date: '2028-01-01'
+test: Please review `doc_helio_start_pricing_refresh_2028` and post a focused preflight comment identifying
+  the established instrumentation prerequisites and pricing-page change restriction that must be satisfied
+  before this proposal proceeds. Do not approve the proposal or claim that any prerequisite has already
+  been completed.
+load_bearing_facts:
+- 351
+- 397
+- 398
+- 399
+expected_tool_calls:
+- post_doc_comment
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: post_doc_comment
+      action_id: post_preflight_comment
+      path: result.ok
+      value: true
+      check_id: riley_158_00
+    - check_id: riley_158_01
+      type: field_equals
+      tool: post_doc_comment
+      action_id: post_preflight_comment
+      path: args.doc_id
+      value: doc_helio_start_pricing_refresh_2028
+    - type: field_llm_judge
+      tool: post_doc_comment
+      action_id: post_preflight_comment
+      path: args
+      criterion: 'The comment identifies as prerequisites before any Helio Start pricing-page experiment
+        or launch both clean event taxonomy and entitlement instrumentation covering all four required
+        areas: admin complexity, import or migration help, support handoff, and entitlement state. Missing
+        any area or treating the instrumentation as optional must fail.
+
+
+        The comment states that no other layout or UI changes may run or ship on the pricing page concurrently
+        with the pricing experiment or its measurement window. Generic advice to minimize changes is insufficient;
+        the restriction must be presented as a governing rule.
+
+
+        The comment does not approve the proposal and does not claim or imply that the required instrumentation
+        or restriction checks are already complete. It instead makes advancement contingent on verification
+        or completion of the prerequisites. Any invented completion evidence or approval must fail.'
+      check_id: riley_158_02
+mock_state:
+  docs:
+  - id: doc_helio_start_pricing_refresh_2028
+    title: Helio Start pricing-page refresh — 2028 proposal
+    body: '# Helio Start pricing-page refresh — 2028 proposal
+
+
+      ## Status
+
+      Proposed. The team wants a preflight decision before design work proceeds.
+
+
+      ## Proposed scope
+
+      - Refresh the Helio Start pricing-page layout and plan presentation.
+
+      - Rework the comparison area and primary call-to-action placement.
+
+      - Preserve the existing bounded Helio Start and assisted entry paths.
+
+
+      ## Decision requested
+
+      Identify the preconditions and operating restrictions that must be satisfied before the team advances
+      this proposal. This proposal contains no implementation logs, validation results, or completion
+      attestations.'
+    folder: Growth
+    created_at: '2028-01-01T09:00:00-06:00'

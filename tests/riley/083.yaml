@@ -1,0 +1,42 @@
+id: 083
+narrative_anchor_date: '2028-01-01'
+test: Create a historical note titled `Expansion Assist second cohort — exposure lock`. Record the final
+  actual exposure count, whether any more Q4 exposures could be added, and the final observation window's
+  length and complete start date including the year. Keep it separate from later outcome analysis and
+  include no later results.
+load_bearing_facts:
+- 65
+- 66
+- 67
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_exposure_lock_note
+      path: result.ok
+      value: true
+      check_id: riley_083_00
+    - type: field_equals
+      tool: create_doc
+      action_id: create_exposure_lock_note
+      path: args.title
+      value: Expansion Assist second cohort — exposure lock
+      check_id: riley_083_01
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_exposure_lock_note
+      path: args
+      criterion: The document says the second Expansion Assist cohort closed with 13 actual exposures
+        and does not imply it reached 15 or 18 exposures. It says no additional Q4 exposures would be
+        added. It says the final observation period was a 45-day outcome window starting November 8, 2024.
+        It remains limited to the historical exposure lock and opening of the observation window and does
+        not report later outcomes or claim the outcome analysis was complete.
+      check_id: riley_083_02
+mock_state: {}

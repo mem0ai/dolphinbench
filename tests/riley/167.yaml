@@ -1,0 +1,53 @@
+id: '167'
+narrative_anchor_date: '2028-01-01'
+test: Post a correction comment on doc_midseg_hypothesis_cleanup_2028 restoring H1's number and meaning,
+  its complete February 15 ruling date including the year, whether the ruling was provisional or final,
+  and the status of Owen's one-page ruling record at that time.
+load_bearing_facts:
+- 309
+- 310
+- 317
+- 318
+expected_tool_calls:
+- post_doc_comment
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: post_doc_comment
+      action_id: post_h1_correction
+      path: result.ok
+      value: true
+      check_id: riley_167_00
+    - type: field_equals
+      tool: post_doc_comment
+      action_id: post_h1_correction
+      path: args.doc_id
+      value: doc_midseg_hypothesis_cleanup_2028
+      check_id: riley_167_01
+    - type: field_llm_judge
+      tool: post_doc_comment
+      action_id: post_h1_correction
+      path: args
+      criterion: The comment identifies H1 as hypothesis 1 about whether packaging, discounting, or unusual
+        contract mix created the churn spike; says Owen closed it as out for now on February 15, 2023;
+        and says Owen was drafting the one-page ruling record. Generic requests to restore H1 without
+        these details fail.
+      check_id: riley_167_02
+mock_state:
+  docs:
+  - id: doc_midseg_hypothesis_cleanup_2028
+    title: Mid-segment churn investigation — archived H1 publication cleanup
+    body: '# Mid-segment churn investigation — archived H1 publication cleanup
+
+
+      ## H1
+
+      The archived section is incomplete after document cleanup. Its original numbering, definition, evidence
+      summary, ruling, and drafting credit need verification before publication.'
+    folder: Archive
+    created_at: '2027-12-20T10:00:00-06:00'

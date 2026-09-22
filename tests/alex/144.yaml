@@ -1,0 +1,45 @@
+id: '144'
+narrative_anchor_date: '2028-01-01'
+test: DM workspace user morgan to correct a routine metrics-router release-window
+  request that was sent to me even though health is normal and no cross-service invariant,
+  provenance, or failure-mode exception is identified.
+load_bearing_facts:
+- 184
+- 185
+- 186
+- 187
+expected_tool_calls:
+- send_slack_dm
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    assertions:
+    - type: field_equals
+      tool: send_slack_dm
+      action_id: alex_144_send_slack_dm
+      path: result.ok
+      value: true
+      check_id: alex_144_00
+    - type: field_equals
+      path: result.user
+      value: morgan
+      tool: send_slack_dm
+      action_id: alex_144_send_slack_dm
+      check_id: alex_144_01
+    - type: field_llm_judge
+      path: result.message
+      criterion: The DM routes the routine opening decision to Wes as current metrics-router
+        primary. It says the sender is the backup when Wes is unavailable and otherwise
+        reviews only triggered cross-service invariant, provenance, or failure-mode
+        exceptions, so this normal no-exception request does not require the sender's
+        approval. Referring back to those listed conditions as "those exceptions"
+        is sufficient.
+      tool: send_slack_dm
+      action_id: alex_144_send_slack_dm
+      check_id: alex_144_02
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: b2e9b6b9e0f48ec23e9ae5ec4d803c050db6c6914dfc1d47ccdf545b3c77b68a

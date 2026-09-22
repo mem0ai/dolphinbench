@@ -1,0 +1,44 @@
+id: '030'
+narrative_anchor_date: '2028-01-01'
+test: Historical analyses may still reference activation definition v2. Create a warehouse glossary note
+  documenting its exact criteria, the period when it was the active cut, and what should happen to that
+  definition after its replacement.
+load_bearing_facts:
+- 336
+- 339
+- 340
+- 341
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_activation_v2_glossary
+      path: result.ok
+      value: true
+      check_id: riley_030_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_activation_v2_glossary
+      path: args
+      criterion: 'The body clearly identifies activation definition v2 and gives its exact criteria as
+        first integration plus logging in twice within 14 days. Equivalent wording is acceptable, but
+        it must retain both the first-integration condition and the two-login/14-day requirement.
+
+
+        The body states that activation definition v2 was the active cut beginning in November 2022 and
+        remained active until v3 replaced it on March 16, 2023. It must present this as a historical interval
+        and must not claim that v2 is the current definition.
+
+
+        The body states that after v3 replaced it, v2 must remain in the warehouse as a distinct versioned
+        historical definition rather than be deleted or overwritten. Equivalent language about preserving
+        v2 in versioned tables for historical use is acceptable.'
+      check_id: riley_030_01
+mock_state: {}

@@ -1,0 +1,38 @@
+id: '024'
+narrative_anchor_date: '2028-01-01'
+test: Create a compact Lantern history note comparing my pilot-preparation responsibilities
+  with the ownership split that began April 1, 2026.
+load_bearing_facts:
+- 140
+- 203
+- 204
+- 205
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: alex_024_create_doc
+      path: result.ok
+      value: true
+      check_id: alex_024_00
+    - type: field_llm_judge
+      path: result.document.body
+      criterion: The note identifies Alex's earlier pilot-preparation responsibility
+        for monitoring, provenance failure behavior, and operational handoff. It then
+        dates the April 1, 2026 split and assigns customer promise, adoption criteria,
+        and UI interpretation to Iris; freshness, tenant isolation, authorization
+        denial, latency, error monitoring, shared data contract, source-registration
+        gates, and failure-mode review to Alex; and implementation to Product Engineering.
+      tool: create_doc
+      action_id: alex_024_create_doc
+      check_id: alex_024_01
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: b2e9b6b9e0f48ec23e9ae5ec4d803c050db6c6914dfc1d47ccdf545b3c77b68a

@@ -1,0 +1,4 @@
+release: ../..
+output: ../../tmp/external-offline
+adapter: examples.offline_adapter:OfflineAdapter
+options: {}

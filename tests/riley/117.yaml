@@ -1,0 +1,53 @@
+id: '117'
+narrative_anchor_date: '2028-01-01'
+test: Create a concise two-stage evidence-maturation case note for Lifecycle Systems training about the
+  onboarding-timing analysis. Contrast the initial provisional cut with the later sharpened read, preserving
+  the group definitions, observed churn rates, sample-strength context, and the reason the first read
+  was not yet decision-ready. Close by explaining how the later interpretation informed the test direction,
+  while clearly avoiding a causal claim from the cohort cut alone. Use a clear title and a skimmable structure.
+load_bearing_facts:
+- 326
+- 328
+- 329
+- 330
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_case_note
+      path: result.ok
+      value: true
+      check_id: riley_117_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_case_note
+      path: args
+      criterion: 'The document clearly presents the first stage as provisional and accurately distinguishes
+        the two activation-state groups: users activated before day 7 who received the touch post-activation
+        had about 3.1% churn, while users still unactivated at day 7 who received it pre-activation had
+        about 7.8% churn. It must explain that the sample was still small/flimsy, making the first read
+        not yet decision-ready.
+
+
+        The document presents the later sharpened activation-state cut as a distinct second stage, reporting
+        n=210, about 3.1% churn among users activated before the onboarding touch, about 7.8% churn among
+        users past day 7 but still pre-activation, and the resulting 4.7 percentage-point spread.
+
+
+        The document explains that the sharpened read suggested the literal calendar-day-7 email was poorly
+        timed for mid-segment users who had not activated and helped motivate testing an activation-triggered
+        send rather than retaining a fixed calendar-day schedule. It must frame the cohort evidence as
+        suggestive or operationally decision-useful, not as proof that the email caused the churn difference.
+
+
+        The title is clear and relevant to a two-stage evidence-maturation case note about the onboarding-timing
+        analysis.'
+      check_id: riley_117_01
+mock_state: {}

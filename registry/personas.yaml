@@ -1,0 +1,24 @@
+personas:
+  - id: morgan
+    name: Morgan Chen
+    archetype: founder_ceo
+    narrative_window:
+      start: 2026-01-05
+      end: 2026-04-30
+    mock_manifest: morgan.yaml
+
+  - id: alex
+    name: Alex Valdez
+    archetype: senior_ic_infra
+    narrative_window:
+      start: 2026-03-01
+      end: 2026-06-30
+    mock_manifest: alex.yaml
+
+  - id: riley
+    name: Riley Tanaka
+    archetype: growth_operator_series_b
+    narrative_window:
+      start: 2026-02-01
+      end: 2026-05-31
+    mock_manifest: riley.yaml

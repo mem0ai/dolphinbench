@@ -1,0 +1,13 @@
+{
+  "approved_plans": [],
+  "batches": [],
+  "checkpoint_identity": "a31ba9c207c055d697d8dabf19d8c09ac6da2d28839dfe4c7329062d04f16469",
+  "evaluation_date": "2028-01-01",
+  "persona": "riley",
+  "rejected_test_files": [],
+  "release_manifest": {
+    "path": "../release_manifests/riley.json",
+    "sha256": "cb6fea53567b65be3cda7128fb0c52520e01e0786b30bdd17f3271b8209125eb"
+  },
+  "version": 1
+}

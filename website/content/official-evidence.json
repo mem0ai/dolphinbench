@@ -1,0 +1,547 @@
+{
+  "dolphinbench-362fc999ae442b8c-f743d6251957dc4d.tar.gz": {
+    "pathname": "official-evidence/20260921/f743d6251957dc4d8c52fe5e6a2dcca783c6cade96b2d579a6245e4ff2ee8a1b/dolphinbench-362fc999ae442b8c-f743d6251957dc4d.tar.gz",
+    "sha256": "f743d6251957dc4d8c52fe5e6a2dcca783c6cade96b2d579a6245e4ff2ee8a1b",
+    "bytes": 142137610
+  },
+  "dolphinbench-b3086abf53cb7d93-ca463f529a092cdf.tar.gz": {
+    "pathname": "official-evidence/20260916/ca463f529a092cdf023b115e16dabbb35499f578479028ed4cd2ddf0a5c21157/dolphinbench-b3086abf53cb7d93-ca463f529a092cdf.tar.gz",
+    "sha256": "ca463f529a092cdf023b115e16dabbb35499f578479028ed4cd2ddf0a5c21157",
+    "bytes": 159731747
+  },
+  "dolphinbench-d7c30ac3f4801968-ea74671c5b9e2f94.tar.gz": {
+    "pathname": "official-evidence/20260916/ea74671c5b9e2f94a8b8df8d158e806b191a24e9522a9d0fb91c52bc7aaf7bbf/dolphinbench-d7c30ac3f4801968-ea74671c5b9e2f94.tar.gz",
+    "sha256": "ea74671c5b9e2f94a8b8df8d158e806b191a24e9522a9d0fb91c52bc7aaf7bbf",
+    "bytes": 133847773
+  },
+  "dolphinbench-aaf2d9ce1ce851e6-74b422bd42b6ec5d.tar.gz": {
+    "pathname": "official-evidence/20260916/74b422bd42b6ec5d03e76c5cd333bc26eefd578896b0ad91d7277e01218dfdc4/dolphinbench-aaf2d9ce1ce851e6-74b422bd42b6ec5d.tar.gz",
+    "sha256": "74b422bd42b6ec5d03e76c5cd333bc26eefd578896b0ad91d7277e01218dfdc4",
+    "bytes": 108593804
+  },
+  "morgan-builtin-results.json.gz": {
+    "pathname": "official-evidence/20260916/2fcb137075ddb29a72b14d1eacdb7f013202379fdae37f62b9999ac04246179e/morgan-builtin-results.json.gz",
+    "sha256": "2fcb137075ddb29a72b14d1eacdb7f013202379fdae37f62b9999ac04246179e",
+    "bytes": 361888
+  },
+  "alex-builtin-results.json.gz": {
+    "pathname": "official-evidence/20260916/308e7131053e76a1d56eda23511c59913db6491f0e5e57e0f479ad9f12dc77fd/alex-builtin-results.json.gz",
+    "sha256": "308e7131053e76a1d56eda23511c59913db6491f0e5e57e0f479ad9f12dc77fd",
+    "bytes": 2404769
+  },
+  "riley-builtin-results.json.gz": {
+    "pathname": "official-evidence/20260916/0b8b8196f9f9a2eb538676f482b2239930a68189fd05abb010d692772700a218/riley-builtin-results.json.gz",
+    "sha256": "0b8b8196f9f9a2eb538676f482b2239930a68189fd05abb010d692772700a218",
+    "bytes": 721792
+  },
+  "builtin-results-and-traces.tar": {
+    "pathname": "official-evidence/20260916/af8039aa2fd9e49e0444d1c1ff45428a9acbdc0af558e9a295e9dd3f699ecd60/builtin-results-and-traces.tar",
+    "sha256": "af8039aa2fd9e49e0444d1c1ff45428a9acbdc0af558e9a295e9dd3f699ecd60",
+    "bytes": 48302080
+  },
+  "builtin-configuration.zip": {
+    "pathname": "official-evidence/20260916/38dfc850eb880c5efcd21c7fd1a07d6ad93251460a2b859e9d7ff63985725ece/builtin-configuration.zip",
+    "sha256": "38dfc850eb880c5efcd21c7fd1a07d6ad93251460a2b859e9d7ff63985725ece",
+    "bytes": 1847430
+  },
+  "builtin-sources.json": {
+    "pathname": "official-evidence/20260916/561237cdb3e244ad64c17bdf6a00c82d75dac6678c322fd7635958b90840a484/builtin-sources.json",
+    "sha256": "561237cdb3e244ad64c17bdf6a00c82d75dac6678c322fd7635958b90840a484",
+    "bytes": 2994
+  },
+  "morgan-mem0-results.json.gz": {
+    "pathname": "official-evidence/20260916/38ecb0f0be0619e344fd0f504392ec2c0a6bd8e186248f36d2b319c872c40161/morgan-mem0-results.json.gz",
+    "sha256": "38ecb0f0be0619e344fd0f504392ec2c0a6bd8e186248f36d2b319c872c40161",
+    "bytes": 304722
+  },
+  "alex-mem0-results.json.gz": {
+    "pathname": "official-evidence/20260916/33476ff28a07ded2e8f205c0b74f26d0c2934d7e5254f62e82bd05b49dcbc86e/alex-mem0-results.json.gz",
+    "sha256": "33476ff28a07ded2e8f205c0b74f26d0c2934d7e5254f62e82bd05b49dcbc86e",
+    "bytes": 2242608
+  },
+  "riley-mem0-results.json.gz": {
+    "pathname": "official-evidence/20260916/c6397452ee46f383ffe2b0b4e7045fb5b28e14b9499730d7242f3849679d9800/riley-mem0-results.json.gz",
+    "sha256": "c6397452ee46f383ffe2b0b4e7045fb5b28e14b9499730d7242f3849679d9800",
+    "bytes": 630500
+  },
+  "mem0-results-and-traces.tar": {
+    "pathname": "official-evidence/20260916/4bd145825fcaf13ae1080c955b32916f4bf12848d173a032092b3800528dd2ae/mem0-results-and-traces.tar",
+    "sha256": "4bd145825fcaf13ae1080c955b32916f4bf12848d173a032092b3800528dd2ae",
+    "bytes": 28723200
+  },
+  "mem0-configuration.zip": {
+    "pathname": "official-evidence/20260916/37ca33192b5f46df4569c07dda038e87ae2f12f3969d867e933cc50d541ccab6/mem0-configuration.zip",
+    "sha256": "37ca33192b5f46df4569c07dda038e87ae2f12f3969d867e933cc50d541ccab6",
+    "bytes": 1847710
+  },
+  "mem0-sources.json": {
+    "pathname": "official-evidence/20260916/ca1068d117af4a607d47559b89d1d1ec7536cd3c1f2b728484cfde03a1cc3f1e/mem0-sources.json",
+    "sha256": "ca1068d117af4a607d47559b89d1d1ec7536cd3c1f2b728484cfde03a1cc3f1e",
+    "bytes": 2985
+  },
+  "morgan-honcho-results.json.gz": {
+    "pathname": "official-evidence/20260916/ee9c163a527897166fa2483d133bb92db240dbd976703d868f5fbbc5341a8122/morgan-honcho-results.json.gz",
+    "sha256": "ee9c163a527897166fa2483d133bb92db240dbd976703d868f5fbbc5341a8122",
+    "bytes": 326720
+  },
+  "alex-honcho-results.json.gz": {
+    "pathname": "official-evidence/20260916/d1ede67c21c32aee44b353b0e868999fceb41870121bc0ba9fb76b81689ff626/alex-honcho-results.json.gz",
+    "sha256": "d1ede67c21c32aee44b353b0e868999fceb41870121bc0ba9fb76b81689ff626",
+    "bytes": 2269527
+  },
+  "riley-honcho-results.json.gz": {
+    "pathname": "official-evidence/20260916/b4087638890b02c6707fc0b5999dfa36142ed6c03524972372cca48216596832/riley-honcho-results.json.gz",
+    "sha256": "b4087638890b02c6707fc0b5999dfa36142ed6c03524972372cca48216596832",
+    "bytes": 688949
+  },
+  "honcho-results-and-traces.tar": {
+    "pathname": "official-evidence/20260916/95b35ce778c9e05148b3edb93c4c2364a171603ea97ce8520a3fad2d2132ec02/honcho-results-and-traces.tar",
+    "sha256": "95b35ce778c9e05148b3edb93c4c2364a171603ea97ce8520a3fad2d2132ec02",
+    "bytes": 43868160
+  },
+  "honcho-configuration.zip": {
+    "pathname": "official-evidence/20260916/b6536273c0393b296e4d05ef554c1539a755ecba3ce0b887f8596a29b9eb3712/honcho-configuration.zip",
+    "sha256": "b6536273c0393b296e4d05ef554c1539a755ecba3ce0b887f8596a29b9eb3712",
+    "bytes": 2048674
+  },
+  "honcho-sources.json": {
+    "pathname": "official-evidence/20260916/04461341965fa9158a60334d4834bc2a6e28f1397161770c6ce1bdf52891be15/honcho-sources.json",
+    "sha256": "04461341965fa9158a60334d4834bc2a6e28f1397161770c6ce1bdf52891be15",
+    "bytes": 10737
+  },
+  "morgan-hindsight-results.json.gz": {
+    "pathname": "official-evidence/20260916/e9402d8c178761ef08180f4e8523cc95367d9121ced26a764db348dc1cd714b8/morgan-hindsight-results.json.gz",
+    "sha256": "e9402d8c178761ef08180f4e8523cc95367d9121ced26a764db348dc1cd714b8",
+    "bytes": 344078
+  },
+  "alex-hindsight-results.json.gz": {
+    "pathname": "official-evidence/20260916/36802caf541dcc6ae159fbbdf2e796e9835119e08b97514c473259421b2724fb/alex-hindsight-results.json.gz",
+    "sha256": "36802caf541dcc6ae159fbbdf2e796e9835119e08b97514c473259421b2724fb",
+    "bytes": 2016261
+  },
+  "riley-hindsight-results.json.gz": {
+    "pathname": "official-evidence/20260916/5fc0d117f1675c71eb80dcfcf51310d8128259c2a4776825760400fd7d0cc4a2/riley-hindsight-results.json.gz",
+    "sha256": "5fc0d117f1675c71eb80dcfcf51310d8128259c2a4776825760400fd7d0cc4a2",
+    "bytes": 655575
+  },
+  "hindsight-results-and-traces.tar": {
+    "pathname": "official-evidence/20260916/3383c53e35a65f4f6dbcd93b917bd5037a16bba6ef414c8828ad1c22791860d2/hindsight-results-and-traces.tar",
+    "sha256": "3383c53e35a65f4f6dbcd93b917bd5037a16bba6ef414c8828ad1c22791860d2",
+    "bytes": 34017280
+  },
+  "hindsight-configuration.zip": {
+    "pathname": "official-evidence/20260916/6cb8f8e54a3c0f7f62aae813fc924c0b6f64573c829ae14a8820ccf70e3c114e/hindsight-configuration.zip",
+    "sha256": "6cb8f8e54a3c0f7f62aae813fc924c0b6f64573c829ae14a8820ccf70e3c114e",
+    "bytes": 1848837
+  },
+  "hindsight-sources.json": {
+    "pathname": "official-evidence/20260916/43e9a1b4f4c45185aea807e1aa1b780657b2ff5e2e1efda50b118ce21324f7e2/hindsight-sources.json",
+    "sha256": "43e9a1b4f4c45185aea807e1aa1b780657b2ff5e2e1efda50b118ce21324f7e2",
+    "bytes": 4119
+  },
+  "dolphinbench-74cb48b9e2f8fe28-c08ac2624786cf0b.tar.gz": {
+    "pathname": "official-evidence/20260921/c08ac2624786cf0b4d2547a39370f7382f85a9254bc158878c3d72215b118d98/dolphinbench-74cb48b9e2f8fe28-c08ac2624786cf0b.tar.gz",
+    "sha256": "c08ac2624786cf0b4d2547a39370f7382f85a9254bc158878c3d72215b118d98",
+    "bytes": 118837520
+  },
+  "dolphinbench-672670a78d8dbdff-467c026f3fbba2a2.tar.gz": {
+    "pathname": "official-evidence/20260919/467c026f3fbba2a249577f5e0655a7176ba73d6aeec75bfa947cc012f7262fdb/dolphinbench-672670a78d8dbdff-467c026f3fbba2a2.tar.gz",
+    "sha256": "467c026f3fbba2a249577f5e0655a7176ba73d6aeec75bfa947cc012f7262fdb",
+    "bytes": 133896162
+  },
+  "morgan-minimax-builtin-results.json.gz": {
+    "pathname": "official-evidence/20260919/c0ef9559b83b778ce8d6ece2d0e6ac66215780be1a047c35c062f9ba8e5e22b9/morgan-minimax-builtin-results.json.gz",
+    "sha256": "c0ef9559b83b778ce8d6ece2d0e6ac66215780be1a047c35c062f9ba8e5e22b9",
+    "bytes": 479370
+  },
+  "alex-minimax-builtin-results.json.gz": {
+    "pathname": "official-evidence/20260919/1b4aed29516e93436b96e3595304c48886a69acb4401780186fe3eeb0a1989b0/alex-minimax-builtin-results.json.gz",
+    "sha256": "1b4aed29516e93436b96e3595304c48886a69acb4401780186fe3eeb0a1989b0",
+    "bytes": 1696126
+  },
+  "riley-minimax-builtin-results.json.gz": {
+    "pathname": "official-evidence/20260921/0f2157ff29358050de0b4aca506aa0cd2c1944dd92bd518929b7019f1cdc0b58/riley-minimax-builtin-results.json.gz",
+    "sha256": "0f2157ff29358050de0b4aca506aa0cd2c1944dd92bd518929b7019f1cdc0b58",
+    "bytes": 937610
+  },
+  "minimax-builtin-sources.json": {
+    "pathname": "official-evidence/20260921/c7d1c001122d179514f15b8cb39b476b5f95b642761ac7352509cd9e4872eb42/minimax-builtin-sources.json",
+    "sha256": "c7d1c001122d179514f15b8cb39b476b5f95b642761ac7352509cd9e4872eb42",
+    "bytes": 3305
+  },
+  "dolphinbench-949645bf396546f3-f01ecc4448f1fe4d.tar.gz": {
+    "pathname": "official-evidence/20260920/f01ecc4448f1fe4d11283cb327311f7931697a514adae307d6837518f22c43f7/dolphinbench-949645bf396546f3-f01ecc4448f1fe4d.tar.gz",
+    "sha256": "f01ecc4448f1fe4d11283cb327311f7931697a514adae307d6837518f22c43f7",
+    "bytes": 133949094
+  },
+  "dolphinbench-97af8e5e2e32e3c5-ef9f64d99b3e4092.tar.gz": {
+    "pathname": "official-evidence/20260920/ef9f64d99b3e4092e43625af336992d6952a3ee31cea2f0c9e91e425a60fa925/dolphinbench-97af8e5e2e32e3c5-ef9f64d99b3e4092.tar.gz",
+    "sha256": "ef9f64d99b3e4092e43625af336992d6952a3ee31cea2f0c9e91e425a60fa925",
+    "bytes": 81314602
+  },
+  "morgan-minimax-mem0-results.json.gz": {
+    "pathname": "official-evidence/20260920/88a646c882cf25438a6322d4a0787df0a1a12648137e709a4cf120b3218628ce/morgan-minimax-mem0-results.json.gz",
+    "sha256": "88a646c882cf25438a6322d4a0787df0a1a12648137e709a4cf120b3218628ce",
+    "bytes": 425979
+  },
+  "alex-minimax-mem0-results.json.gz": {
+    "pathname": "official-evidence/20260920/41f2a237b061b27735053e3320ab63b84ac777645428bb9fc3c16f8bdc611b36/alex-minimax-mem0-results.json.gz",
+    "sha256": "41f2a237b061b27735053e3320ab63b84ac777645428bb9fc3c16f8bdc611b36",
+    "bytes": 2259474
+  },
+  "riley-minimax-mem0-results.json.gz": {
+    "pathname": "official-evidence/20260920/b905096299c97c9a182479d6c668b607988fda636a24e52007d1501dde10ec4b/riley-minimax-mem0-results.json.gz",
+    "sha256": "b905096299c97c9a182479d6c668b607988fda636a24e52007d1501dde10ec4b",
+    "bytes": 800907
+  },
+  "minimax-mem0-results-and-traces.tar": {
+    "pathname": "official-evidence/20260920/7da0014e033363fa561a2abd2bb3608caf8256fea0211e904eea4192879ab695/minimax-mem0-results-and-traces.tar",
+    "sha256": "7da0014e033363fa561a2abd2bb3608caf8256fea0211e904eea4192879ab695",
+    "bytes": 23111680
+  },
+  "minimax-mem0-sources.json": {
+    "pathname": "official-evidence/20260920/d5c86791256c94c2fd1fe89c1e3017de44bb63460216068047b7643bd5428572/minimax-mem0-sources.json",
+    "sha256": "d5c86791256c94c2fd1fe89c1e3017de44bb63460216068047b7643bd5428572",
+    "bytes": 2961
+  },
+  "minimax-builtin-results-and-traces.tar.gz": {
+    "pathname": "official-evidence/20260921/390b9d0a820a05c0f78eea7a6c477a4ad0eb782a685290afc60cee8f5aa30cf3/minimax-builtin-results-and-traces.tar.gz",
+    "sha256": "390b9d0a820a05c0f78eea7a6c477a4ad0eb782a685290afc60cee8f5aa30cf3",
+    "bytes": 33297447
+  },
+  "dolphinbench-2a92c22aaea1ab76-f147a8ffb2275645.tar.gz": {
+    "pathname": "official-evidence/20260921/f147a8ffb22756453b58c46331eaeeff758d0c2939b193ed93283bd116366dd6/dolphinbench-2a92c22aaea1ab76-f147a8ffb2275645.tar.gz",
+    "sha256": "f147a8ffb22756453b58c46331eaeeff758d0c2939b193ed93283bd116366dd6",
+    "bytes": 81345387
+  },
+  "claude-builtin-results-and-traces.tar.gz": {
+    "pathname": "official-evidence/20260921/8f8c04305aee0fc101f78e2228b6f64e8747d2f50cee3276f1b3882035d3b464/claude-builtin-results-and-traces.tar.gz",
+    "sha256": "8f8c04305aee0fc101f78e2228b6f64e8747d2f50cee3276f1b3882035d3b464",
+    "bytes": 140428065
+  },
+  "claude-builtin-sources.json": {
+    "pathname": "official-evidence/20260921/4cd0bd98db520722ac3e3dcf48cfdc1a6976292c7d1dcf0c1bde249a5cf619f2/claude-builtin-sources.json",
+    "sha256": "4cd0bd98db520722ac3e3dcf48cfdc1a6976292c7d1dcf0c1bde249a5cf619f2",
+    "bytes": 1410
+  },
+  "morgan-claude-builtin-results.json.gz": {
+    "pathname": "official-evidence/20260921/c6e091e4a47d31fb94c3d2b73ce392cca62bf43149ea124e84c61ad4ad06a5d3/morgan-claude-builtin-results.json.gz",
+    "sha256": "c6e091e4a47d31fb94c3d2b73ce392cca62bf43149ea124e84c61ad4ad06a5d3",
+    "bytes": 301838
+  },
+  "alex-claude-builtin-results.json.gz": {
+    "pathname": "official-evidence/20260921/b3474a604c3a1bcbb55d5eb7c33de9fc948866401c8e3c6f0a59f5dd0c8572a0/alex-claude-builtin-results.json.gz",
+    "sha256": "b3474a604c3a1bcbb55d5eb7c33de9fc948866401c8e3c6f0a59f5dd0c8572a0",
+    "bytes": 1387664
+  },
+  "riley-claude-builtin-results.json.gz": {
+    "pathname": "official-evidence/20260921/f17c317a5be8738090e3ca52eed5696274342e5739a3d8cc35e5d996a8fb3567/riley-claude-builtin-results.json.gz",
+    "sha256": "f17c317a5be8738090e3ca52eed5696274342e5739a3d8cc35e5d996a8fb3567",
+    "bytes": 526965
+  },
+  "dolphinbench-claude-builtin-morgan-source.tar.gz": {
+    "pathname": "official-evidence/20260921/d0ae7b38d1a5cd7d2293cad28ed721cde68a1d112be0d981d9f7bb08fe7b9302/dolphinbench-claude-builtin-morgan-source.tar.gz",
+    "sha256": "d0ae7b38d1a5cd7d2293cad28ed721cde68a1d112be0d981d9f7bb08fe7b9302",
+    "bytes": 45583750
+  },
+  "dolphinbench-claude-builtin-alex-source.tar.gz": {
+    "pathname": "official-evidence/20260921/e8861018dbfcead8320b3c842ad9de9d300d4d00e9027fa45647eadba51f71c1/dolphinbench-claude-builtin-alex-source.tar.gz",
+    "sha256": "e8861018dbfcead8320b3c842ad9de9d300d4d00e9027fa45647eadba51f71c1",
+    "bytes": 67120140
+  },
+  "dolphinbench-claude-builtin-riley-source.tar.gz": {
+    "pathname": "official-evidence/20260921/870fabdfb36ce321252684172bcea0ae4918a6868eb07f4671562b942076cfd4/dolphinbench-claude-builtin-riley-source.tar.gz",
+    "sha256": "870fabdfb36ce321252684172bcea0ae4918a6868eb07f4671562b942076cfd4",
+    "bytes": 992724
+  },
+  "luna-supermemory-sources.json": {
+    "pathname": "official-evidence/20260921/c97c531f4f61501b60cc9a8007231882bab506fd6bdacb7bc30ebf557273ace2/luna-supermemory-sources.json",
+    "sha256": "c97c531f4f61501b60cc9a8007231882bab506fd6bdacb7bc30ebf557273ace2",
+    "bytes": 6570
+  },
+  "dolphinbench-0b4990d5ec0f6b40-ee69af7f06a3743b.tar.gz": {
+    "pathname": "official-evidence/20260921/ee69af7f06a3743be29e1d552b8c9364a60d975eae80591f79fd0e497f1ade3c/dolphinbench-0b4990d5ec0f6b40-ee69af7f06a3743b.tar.gz",
+    "sha256": "ee69af7f06a3743be29e1d552b8c9364a60d975eae80591f79fd0e497f1ade3c",
+    "bytes": 133825614
+  },
+  "alex-luna-supermemory-ingestion.json.gz": {
+    "pathname": "official-evidence/20260921/3b0e5e81ecfb46e34c0eddb6aa094079c57206f13617591b08c5bfe004134a76/alex-luna-supermemory-ingestion.json.gz",
+    "sha256": "3b0e5e81ecfb46e34c0eddb6aa094079c57206f13617591b08c5bfe004134a76",
+    "bytes": 369396
+  },
+  "riley-luna-supermemory-results.json.gz": {
+    "pathname": "official-evidence/20260921/8b0fb0c62cd34f59172ad465451dd7330f78bd77b7966f217dbb6c2444b0c7a0/riley-luna-supermemory-results.json.gz",
+    "sha256": "8b0fb0c62cd34f59172ad465451dd7330f78bd77b7966f217dbb6c2444b0c7a0",
+    "bytes": 704987
+  },
+  "riley-luna-supermemory-ingestion.json.gz": {
+    "pathname": "official-evidence/20260921/30b53e60eecc09e2a501f5cd5b4ee4726934e8466688ad7b555b63731b59e9d0/riley-luna-supermemory-ingestion.json.gz",
+    "sha256": "30b53e60eecc09e2a501f5cd5b4ee4726934e8466688ad7b555b63731b59e9d0",
+    "bytes": 379004
+  },
+  "morgan-luna-supermemory-ingestion.json.gz": {
+    "pathname": "official-evidence/20260921/1b948dc5feb3173ed9fcadf72559616853d9a57f42407b7ba4b673d80aa8c621/morgan-luna-supermemory-ingestion.json.gz",
+    "sha256": "1b948dc5feb3173ed9fcadf72559616853d9a57f42407b7ba4b673d80aa8c621",
+    "bytes": 241097
+  },
+  "alex-luna-supermemory-results.json.gz": {
+    "pathname": "official-evidence/20260921/b8a4c53ed4d6b64068d773e1e08cc84f21b379b750959ab68ab1d0e08b8f2a7e/alex-luna-supermemory-results.json.gz",
+    "sha256": "b8a4c53ed4d6b64068d773e1e08cc84f21b379b750959ab68ab1d0e08b8f2a7e",
+    "bytes": 1913857
+  },
+  "morgan-luna-supermemory-results.json.gz": {
+    "pathname": "official-evidence/20260921/203a84b383a4ada9a51130a51a166832021218ecd3e7e6df39f75021b60ea961/morgan-luna-supermemory-results.json.gz",
+    "sha256": "203a84b383a4ada9a51130a51a166832021218ecd3e7e6df39f75021b60ea961",
+    "bytes": 359807
+  },
+  "dolphinbench-parallel-0cdcb2f1198ab381690da51b.tar.gz": {
+    "pathname": "official-evidence/20260921/0cdcb2f1198ab381690da51bfd18f2aae8c375f4c27f80ca7c2b03b6636d3ab8/dolphinbench-parallel-0cdcb2f1198ab381690da51b.tar.gz",
+    "sha256": "0cdcb2f1198ab381690da51bfd18f2aae8c375f4c27f80ca7c2b03b6636d3ab8",
+    "bytes": 90962898
+  },
+  "luna-supermemory-results-and-traces.tar.gz": {
+    "pathname": "official-evidence/20260921/2d4a57e7dff4fe51f939f6c1839697f05df1fb7563d2076c9617cc68598c4499/luna-supermemory-results-and-traces.tar.gz",
+    "sha256": "2d4a57e7dff4fe51f939f6c1839697f05df1fb7563d2076c9617cc68598c4499",
+    "bytes": 48552397
+  },
+  "riley-minimax-honcho-results.json.gz": {
+    "pathname": "official-evidence/20260921/3b104493fc2bb774c39df10bfca4a7edfe8f3a73d88fc12743f8777da44cc014/riley-minimax-honcho-results.json.gz",
+    "sha256": "3b104493fc2bb774c39df10bfca4a7edfe8f3a73d88fc12743f8777da44cc014",
+    "bytes": 847452
+  },
+  "minimax-honcho-sources.json": {
+    "pathname": "official-evidence/20260921/572441b005da6467388442061a6374798164ed4fa2cb0354c566470defaaac58/minimax-honcho-sources.json",
+    "sha256": "572441b005da6467388442061a6374798164ed4fa2cb0354c566470defaaac58",
+    "bytes": 13548
+  },
+  "morgan-minimax-honcho-ingestion.json.gz": {
+    "pathname": "official-evidence/20260921/0ddddcd80d1d7b3c9d87f581c74b04cc8c62926e5f2be9ea1645f7183b48666a/morgan-minimax-honcho-ingestion.json.gz",
+    "sha256": "0ddddcd80d1d7b3c9d87f581c74b04cc8c62926e5f2be9ea1645f7183b48666a",
+    "bytes": 259254
+  },
+  "dolphinbench-81ec8edf8b8b8b83-90678a210b4e6d33.tar.gz": {
+    "pathname": "official-evidence/20260921/90678a210b4e6d33a646a6a1cb5d46b02faf50c7507c3cce75aef819b97d6208/dolphinbench-81ec8edf8b8b8b83-90678a210b4e6d33.tar.gz",
+    "sha256": "90678a210b4e6d33a646a6a1cb5d46b02faf50c7507c3cce75aef819b97d6208",
+    "bytes": 136902054
+  },
+  "alex-minimax-honcho-results.json.gz": {
+    "pathname": "official-evidence/20260921/045cd6cc0c76736bcd811c4b9486bcf066896e3e73c08d2d2d793eeb4f599be0/alex-minimax-honcho-results.json.gz",
+    "sha256": "045cd6cc0c76736bcd811c4b9486bcf066896e3e73c08d2d2d793eeb4f599be0",
+    "bytes": 1710671
+  },
+  "minimax-honcho-results-and-traces.tar.gz": {
+    "pathname": "official-evidence/20260921/f743447b642c8bf5a979cf7a925d765fb7775f04d1736298837d9d30b85703ec/minimax-honcho-results-and-traces.tar.gz",
+    "sha256": "f743447b642c8bf5a979cf7a925d765fb7775f04d1736298837d9d30b85703ec",
+    "bytes": 38989766
+  },
+  "alex-minimax-honcho-ingestion.json.gz": {
+    "pathname": "official-evidence/20260921/7b8940c27e7aec260fbc6165c4ff7e0a1d3e324fa9994548dfdbff88fd6e2f5f/alex-minimax-honcho-ingestion.json.gz",
+    "sha256": "7b8940c27e7aec260fbc6165c4ff7e0a1d3e324fa9994548dfdbff88fd6e2f5f",
+    "bytes": 394436
+  },
+  "dolphinbench-parallel-a54cf14c9de899d1e7f0fc23.tar.gz": {
+    "pathname": "official-evidence/20260921/a54cf14c9de899d1e7f0fc230542f1bffe1987f74465ec80ff506dcd94dd3d93/dolphinbench-parallel-a54cf14c9de899d1e7f0fc23.tar.gz",
+    "sha256": "a54cf14c9de899d1e7f0fc230542f1bffe1987f74465ec80ff506dcd94dd3d93",
+    "bytes": 180281856
+  },
+  "dolphinbench-parallel-2ed016b5bc6808b290af471c.tar.gz": {
+    "pathname": "official-evidence/20260921/2ed016b5bc6808b290af471c2f95c658058700c16fc100c6ec61f54e9c759917/dolphinbench-parallel-2ed016b5bc6808b290af471c.tar.gz",
+    "sha256": "2ed016b5bc6808b290af471c2f95c658058700c16fc100c6ec61f54e9c759917",
+    "bytes": 114067980
+  },
+  "morgan-minimax-honcho-results.json.gz": {
+    "pathname": "official-evidence/20260921/e12520ef244d2e9d9a2e7fc7e12adbb3a07127f9e5da7605338902064d18f59b/morgan-minimax-honcho-results.json.gz",
+    "sha256": "e12520ef244d2e9d9a2e7fc7e12adbb3a07127f9e5da7605338902064d18f59b",
+    "bytes": 465490
+  },
+  "riley-minimax-honcho-ingestion.json.gz": {
+    "pathname": "official-evidence/20260921/a16166afb6aef6f846a6bc349fd423f71d686a6563bd5c8f71445b5733a5ca8b/riley-minimax-honcho-ingestion.json.gz",
+    "sha256": "a16166afb6aef6f846a6bc349fd423f71d686a6563bd5c8f71445b5733a5ca8b",
+    "bytes": 401763
+  },
+  "claude-honcho-riley-source.tar.gz": {
+    "pathname": "official-evidence/20260921/2329bb274ccc0e829dc6c177a4ecad95cd444a284bd8c96d1be8842b3df1a2cc/claude-honcho-riley-source.tar.gz",
+    "sha256": "2329bb274ccc0e829dc6c177a4ecad95cd444a284bd8c96d1be8842b3df1a2cc",
+    "bytes": 991663
+  },
+  "alex-claude-honcho-results.json.gz": {
+    "pathname": "official-evidence/20260921/5b6fc4ca5e20698ec211282c8ed759139c55487e55c35f3bead0bedcab9ce14a/alex-claude-honcho-results.json.gz",
+    "sha256": "5b6fc4ca5e20698ec211282c8ed759139c55487e55c35f3bead0bedcab9ce14a",
+    "bytes": 1385953
+  },
+  "claude-honcho-alex-source.tar.gz": {
+    "pathname": "official-evidence/20260921/1afa42314ee057e20dfa2c403f1fdee4ecef3a60ca97a339ef4139625cad5242/claude-honcho-alex-source.tar.gz",
+    "sha256": "1afa42314ee057e20dfa2c403f1fdee4ecef3a60ca97a339ef4139625cad5242",
+    "bytes": 67121031
+  },
+  "claude-honcho-morgan-source.tar.gz": {
+    "pathname": "official-evidence/20260921/8466d4c92b252d6acdd34998449d3a55dcf25a7d398e53dfd1af6c596dc28d6d/claude-honcho-morgan-source.tar.gz",
+    "sha256": "8466d4c92b252d6acdd34998449d3a55dcf25a7d398e53dfd1af6c596dc28d6d",
+    "bytes": 45585883
+  },
+  "riley-claude-honcho-results.json.gz": {
+    "pathname": "official-evidence/20260921/1996ac3a4fa02392c41f24b340f3e580df3ca5dc65d4efdc5e0cdabc68923b35/riley-claude-honcho-results.json.gz",
+    "sha256": "1996ac3a4fa02392c41f24b340f3e580df3ca5dc65d4efdc5e0cdabc68923b35",
+    "bytes": 526773
+  },
+  "claude-honcho-sources.json": {
+    "pathname": "official-evidence/20260921/08d932d8f5e4fff5e01525d5724f9532724e1bfe68e5c693c438bd121a492c3e/claude-honcho-sources.json",
+    "sha256": "08d932d8f5e4fff5e01525d5724f9532724e1bfe68e5c693c438bd121a492c3e",
+    "bytes": 2968
+  },
+  "claude-honcho-results-and-traces.tar.gz": {
+    "pathname": "official-evidence/20260921/250cf1a17cb32fdde1bbf1a025d72aef9cd15b85ab3eb176e8c04f8509abd70a/claude-honcho-results-and-traces.tar.gz",
+    "sha256": "250cf1a17cb32fdde1bbf1a025d72aef9cd15b85ab3eb176e8c04f8509abd70a",
+    "bytes": 551719847
+  },
+  "morgan-claude-honcho-results.json.gz": {
+    "pathname": "official-evidence/20260921/d4c406ab14276c8ea63136040daa5b55191576ed24cce4315887d9aaf3d757d0/morgan-claude-honcho-results.json.gz",
+    "sha256": "d4c406ab14276c8ea63136040daa5b55191576ed24cce4315887d9aaf3d757d0",
+    "bytes": 284074
+  },
+  "alex-claude-mem0-results.json.gz": {
+    "pathname": "official-evidence/20260921/5452e053ed4661e655506e09b6872593148ac6be1ebedf50e5b13721d8809af3/alex-claude-mem0-results.json.gz",
+    "sha256": "5452e053ed4661e655506e09b6872593148ac6be1ebedf50e5b13721d8809af3",
+    "bytes": 1277545
+  },
+  "claude-mem0-sources.json": {
+    "pathname": "official-evidence/20260921/41abec2ff6d8881c01d56bfca89c3ef71b43661da8ce88a9367e8cf3b51b4018/claude-mem0-sources.json",
+    "sha256": "41abec2ff6d8881c01d56bfca89c3ef71b43661da8ce88a9367e8cf3b51b4018",
+    "bytes": 2923
+  },
+  "morgan-claude-mem0-results.json.gz": {
+    "pathname": "official-evidence/20260921/385c129e3996da8c0aa5558c41ab6a24798a6557c4d68358aa3f32adba727ba5/morgan-claude-mem0-results.json.gz",
+    "sha256": "385c129e3996da8c0aa5558c41ab6a24798a6557c4d68358aa3f32adba727ba5",
+    "bytes": 332541
+  },
+  "claude-mem0-results-and-traces.tar.gz": {
+    "pathname": "official-evidence/20260921/839e33975dce834b0382677745d345144f71804e4da4cfc573ae7c85c96d831e/claude-mem0-results-and-traces.tar.gz",
+    "sha256": "839e33975dce834b0382677745d345144f71804e4da4cfc573ae7c85c96d831e",
+    "bytes": 143165262
+  },
+  "claude-mem0-morgan-source.tar.gz": {
+    "pathname": "official-evidence/20260921/87bf36c0f03b533a001df2c1016f0e214fa48d76672c200aabfb281f83bd17a5/claude-mem0-morgan-source.tar.gz",
+    "sha256": "87bf36c0f03b533a001df2c1016f0e214fa48d76672c200aabfb281f83bd17a5",
+    "bytes": 45586810
+  },
+  "claude-mem0-alex-source.tar.gz": {
+    "pathname": "official-evidence/20260921/00f0b99207e5c6dc41f8411e7b6a6c33fa7bd6275d9fd3515c71885ee7c9c910/claude-mem0-alex-source.tar.gz",
+    "sha256": "00f0b99207e5c6dc41f8411e7b6a6c33fa7bd6275d9fd3515c71885ee7c9c910",
+    "bytes": 67122791
+  },
+  "riley-claude-mem0-results.json.gz": {
+    "pathname": "official-evidence/20260921/65b923dee5b51ea276ae9ff7400373649d86b9dd88b3ac91acaf0e08e6d4b549/riley-claude-mem0-results.json.gz",
+    "sha256": "65b923dee5b51ea276ae9ff7400373649d86b9dd88b3ac91acaf0e08e6d4b549",
+    "bytes": 517663
+  },
+  "claude-mem0-riley-source.tar.gz": {
+    "pathname": "official-evidence/20260921/87f4179f2f6ddedd45398120740b2bcd3968d6df4403f7cfb1b036c342beb906/claude-mem0-riley-source.tar.gz",
+    "sha256": "87f4179f2f6ddedd45398120740b2bcd3968d6df4403f7cfb1b036c342beb906",
+    "bytes": 996453
+  },
+  "dolphinbench-parallel-e87329b491efdd193f33bf0c.tar.gz": {
+    "pathname": "official-evidence/20260921/e87329b491efdd193f33bf0c0ea43d90d9c72e903a8581a47d834e55db964577/dolphinbench-parallel-e87329b491efdd193f33bf0c.tar.gz",
+    "sha256": "e87329b491efdd193f33bf0c0ea43d90d9c72e903a8581a47d834e55db964577",
+    "bytes": 157207531
+  },
+  "alex-minimax-hindsight-ingestion.json.gz": {
+    "pathname": "official-evidence/20260921/531a8135b20d31becbf64b28e14b7e2ffbc53b910b5a6f0204029a3a1a926975/alex-minimax-hindsight-ingestion.json.gz",
+    "sha256": "531a8135b20d31becbf64b28e14b7e2ffbc53b910b5a6f0204029a3a1a926975",
+    "bytes": 392371
+  },
+  "dolphinbench-parallel-288bbf7cea107e565f0fdbf7.tar.gz": {
+    "pathname": "official-evidence/20260921/288bbf7cea107e565f0fdbf7aee96e1785a9813c1251e809858a8533f7e06c38/dolphinbench-parallel-288bbf7cea107e565f0fdbf7.tar.gz",
+    "sha256": "288bbf7cea107e565f0fdbf7aee96e1785a9813c1251e809858a8533f7e06c38",
+    "bytes": 90991501
+  },
+  "riley-minimax-hindsight-results.json.gz": {
+    "pathname": "official-evidence/20260921/05a1bc96a72991824ade99bf158d1fdb2f1b9dfa056b1bf592d1a0c3e513ffe4/riley-minimax-hindsight-results.json.gz",
+    "sha256": "05a1bc96a72991824ade99bf158d1fdb2f1b9dfa056b1bf592d1a0c3e513ffe4",
+    "bytes": 692534
+  },
+  "alex-minimax-hindsight-results.json.gz": {
+    "pathname": "official-evidence/20260921/1c50a2f8b7f34ea55d998cf28b3ccd9c5d732a4e761bbf8f1d126d5d98ff3fd4/alex-minimax-hindsight-results.json.gz",
+    "sha256": "1c50a2f8b7f34ea55d998cf28b3ccd9c5d732a4e761bbf8f1d126d5d98ff3fd4",
+    "bytes": 2471174
+  },
+  "morgan-minimax-hindsight-ingestion.json.gz": {
+    "pathname": "official-evidence/20260921/bbd36af6e0411fbc47d3009c83ee7be9e06fc8a5c7140eab346813d7f7857a7b/morgan-minimax-hindsight-ingestion.json.gz",
+    "sha256": "bbd36af6e0411fbc47d3009c83ee7be9e06fc8a5c7140eab346813d7f7857a7b",
+    "bytes": 255386
+  },
+  "riley-minimax-hindsight-ingestion.json.gz": {
+    "pathname": "official-evidence/20260921/bd3b94bfc0895caaf8ea35617d497df020d4961db0389f292bbe074f00bbd653/riley-minimax-hindsight-ingestion.json.gz",
+    "sha256": "bd3b94bfc0895caaf8ea35617d497df020d4961db0389f292bbe074f00bbd653",
+    "bytes": 391883
+  },
+  "minimax-hindsight-sources.json": {
+    "pathname": "official-evidence/20260921/1d49f52992ba3026bbe282e269a4ec13aad2895b3d2a92ed8cf7621eee4bc301/minimax-hindsight-sources.json",
+    "sha256": "1d49f52992ba3026bbe282e269a4ec13aad2895b3d2a92ed8cf7621eee4bc301",
+    "bytes": 6705
+  },
+  "minimax-hindsight-results-and-traces.tar.gz": {
+    "pathname": "official-evidence/20260921/9b99ca95f3c76a488d37f23446829f09e777f28ee7562743fe7e6cfd219bca29/minimax-hindsight-results-and-traces.tar.gz",
+    "sha256": "9b99ca95f3c76a488d37f23446829f09e777f28ee7562743fe7e6cfd219bca29",
+    "bytes": 50587063
+  },
+  "morgan-minimax-hindsight-results.json.gz": {
+    "pathname": "official-evidence/20260921/a8d43a4b4db3d90e5157cc6ec5a26d4ed1d0438c94b273daa69ba036d0071b5a/morgan-minimax-hindsight-results.json.gz",
+    "sha256": "a8d43a4b4db3d90e5157cc6ec5a26d4ed1d0438c94b273daa69ba036d0071b5a",
+    "bytes": 513065
+  },
+  "minimax-supermemory-sources.json": {
+    "pathname": "official-evidence/20260921/ec247efdf3d9b1ff84acf7200c71238fe452f6f6b033a8d594442e36d89ac025/minimax-supermemory-sources.json",
+    "sha256": "ec247efdf3d9b1ff84acf7200c71238fe452f6f6b033a8d594442e36d89ac025",
+    "bytes": 8357
+  },
+  "minimax-supermemory-results-and-traces.tar.gz": {
+    "pathname": "official-evidence/20260921/ab0c02a97e0cc1d3eff776787242b2151615a14b12a6d1e8d793cd7f0066f7af/minimax-supermemory-results-and-traces.tar.gz",
+    "sha256": "ab0c02a97e0cc1d3eff776787242b2151615a14b12a6d1e8d793cd7f0066f7af",
+    "bytes": 22463771
+  },
+  "morgan-minimax-supermemory-results.json.gz": {
+    "pathname": "official-evidence/20260921/8b91022d18b835b641ecfda8d20676dd422a2b1f43cc6d9fd9ee6432a7decc86/morgan-minimax-supermemory-results.json.gz",
+    "sha256": "8b91022d18b835b641ecfda8d20676dd422a2b1f43cc6d9fd9ee6432a7decc86",
+    "bytes": 426193
+  },
+  "riley-minimax-supermemory-results.json.gz": {
+    "pathname": "official-evidence/20260921/56ca7ad7033b24c523a9aa02d69e258f14091ecfcff7a5ac90cd88a48fbba0a5/riley-minimax-supermemory-results.json.gz",
+    "sha256": "56ca7ad7033b24c523a9aa02d69e258f14091ecfcff7a5ac90cd88a48fbba0a5",
+    "bytes": 738794
+  },
+  "dolphinbench-parallel-6406eaa4d32a8a0a4b7d5c4b.tar.gz": {
+    "pathname": "official-evidence/20260921/6406eaa4d32a8a0a4b7d5c4b4b2f41b0d50930805630b5cab3588f2d205f1782/dolphinbench-parallel-6406eaa4d32a8a0a4b7d5c4b.tar.gz",
+    "sha256": "6406eaa4d32a8a0a4b7d5c4b4b2f41b0d50930805630b5cab3588f2d205f1782",
+    "bytes": 90970025
+  },
+  "dolphinbench-parallel-5330031f471da610816422d6.tar.gz": {
+    "pathname": "official-evidence/20260921/5330031f471da610816422d64a3712ad7f994c36348339e2c0e71eb67a13128d/dolphinbench-parallel-5330031f471da610816422d6.tar.gz",
+    "sha256": "5330031f471da610816422d64a3712ad7f994c36348339e2c0e71eb67a13128d",
+    "bytes": 157187303
+  },
+  "alex-minimax-supermemory-ingestion.json.gz": {
+    "pathname": "official-evidence/20260921/966290c1b4826cb2b884de7fbe373b0a25f4c95f0b7c032131b348a9d1e6b145/alex-minimax-supermemory-ingestion.json.gz",
+    "sha256": "966290c1b4826cb2b884de7fbe373b0a25f4c95f0b7c032131b348a9d1e6b145",
+    "bytes": 507071
+  },
+  "riley-minimax-supermemory-ingestion.json.gz": {
+    "pathname": "official-evidence/20260921/565b178e96d5b957dfad9c2f622a4bd3333d8eec8649de84d5c72aa347aa0049/riley-minimax-supermemory-ingestion.json.gz",
+    "sha256": "565b178e96d5b957dfad9c2f622a4bd3333d8eec8649de84d5c72aa347aa0049",
+    "bytes": 546488
+  },
+  "alex-minimax-supermemory-results.json.gz": {
+    "pathname": "official-evidence/20260921/c5348806fbe88b8d605994b55398d3dc3459428bda98c2dd4faff392f3e0d6eb/alex-minimax-supermemory-results.json.gz",
+    "sha256": "c5348806fbe88b8d605994b55398d3dc3459428bda98c2dd4faff392f3e0d6eb",
+    "bytes": 1943861
+  },
+  "morgan-minimax-supermemory-ingestion.json.gz": {
+    "pathname": "official-evidence/20260921/432afe988e92a40abbfdd90dde0dbf3fedda86d164a1206d9aa1ab1ca75307d0/morgan-minimax-supermemory-ingestion.json.gz",
+    "sha256": "432afe988e92a40abbfdd90dde0dbf3fedda86d164a1206d9aa1ab1ca75307d0",
+    "bytes": 259294
+  },
+  "dolphinbench-70fd705f1fa4536f-18ddc9b0df711f54.tar.gz": {
+    "pathname": "official-evidence/20260921/18ddc9b0df711f549343ee8b925cb0d2d0c70f0b285c84f891ef12c88b664f04/dolphinbench-70fd705f1fa4536f-18ddc9b0df711f54.tar.gz",
+    "sha256": "18ddc9b0df711f549343ee8b925cb0d2d0c70f0b285c84f891ef12c88b664f04",
+    "bytes": 115759867
+  }
+}

@@ -1,0 +1,38 @@
+id: '193'
+narrative_anchor_date: '2026-09-14'
+test: Text Maya at +14155501346 what help I offered Mom after Christmas in December
+  2023 and whether Jamie was included. This is a historical reminder, not a new commitment.
+load_bearing_facts:
+- 164
+expected_tool_calls:
+- send_sms
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: send_sms
+      path: result.ok
+      value: true
+      check_id: morgan_193_00
+      action_id: morgan_193_send_sms
+    - type: field_equals
+      path: result.to
+      value: '+14155501346'
+      tool: send_sms
+      check_id: morgan_193_01
+      action_id: morgan_193_send_sms
+    - type: field_llm_judge
+      path: result.body
+      criterion: Limits the historical offer to one specific question after receiving
+        the exact form first, not an open-ended paperwork afternoon/week. Keeps Jamie
+        outside the plan and does not offer new help today.
+      tool: send_sms
+      check_id: morgan_193_02
+      action_id: morgan_193_send_sms
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

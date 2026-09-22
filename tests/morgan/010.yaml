@@ -1,0 +1,43 @@
+id: '010'
+narrative_anchor_date: '2026-09-14'
+test: Email finance@scaffold.dev a reminder of my invoice-review rule. State the exact
+  dollar boundary, when an invoice must be flagged, and whether manual review is optional.
+load_bearing_facts:
+- 36
+expected_tool_calls:
+- send_email
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: send_email
+      path: result.ok
+      value: true
+      check_id: morgan_010_00
+      action_id: morgan_010_send_email
+    - type: field_equals
+      tool: send_email
+      path: result.to
+      value: finance@scaffold.dev
+      check_id: morgan_010_01
+      action_id: morgan_010_send_email
+    - type: field_llm_judge
+      tool: send_email
+      path: result.body
+      criterion: States that every payment over $5,000 must be flagged before payment
+        and manually reviewed every time, and that this rule is not optional.
+      check_id: morgan_010_02
+      action_id: morgan_010_send_email
+mock_state:
+  invoices:
+  - id: INV-2026-0914-A
+    vendor: Northwind Ops
+    amount: 6240
+    currency: USD
+    status: pending
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

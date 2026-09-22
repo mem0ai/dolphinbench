@@ -1,0 +1,45 @@
+id: '006'
+narrative_anchor_date: '2028-01-01'
+test: Create a compact Helio Start field-handling quick reference that identifies the readiness states
+  that must remain separate. Include who records the external-authority state, who withholds setup messaging
+  while it is pending, and who reports it.
+load_bearing_facts:
+- 70
+- 71
+- 72
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_field_reference
+      path: result.ok
+      value: true
+      check_id: riley_006_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_field_reference
+      path: args
+      criterion: 'The body presents this as Helio Start guidance and unambiguously treats external-authority
+        readiness, Helio admin proof, and connector authentication as distinct states rather than aliases
+        or one combined state.
+
+
+        The body assigns Daniela responsibility for recording external-authority readiness as its own
+        state.
+
+
+        The body assigns Ines responsibility for holding, withholding, or suppressing setup prompts while
+        the external-authority state is pending.
+
+
+        The body assigns Owen responsibility for reporting the external-authority state separately rather
+        than folding it into other admission or readiness measures.'
+      check_id: riley_006_01
+mock_state: {}

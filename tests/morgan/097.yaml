@@ -1,0 +1,40 @@
+id: 097
+narrative_anchor_date: '2026-09-14'
+test: An investor wrote, "I'll be in town next week. Would you have time for coffee?"
+  Email devon.ramirez@example.com my decision on scheduling it and what would change
+  that decision.
+load_bearing_facts:
+- 51
+expected_tool_calls:
+- send_email
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: send_email
+      path: result.ok
+      value: true
+      check_id: morgan_097_00
+      action_id: morgan_097_send_email
+    - type: field_equals
+      path: result.to
+      value: devon.ramirez@example.com
+      tool: send_email
+      check_id: morgan_097_01
+      action_id: morgan_097_send_email
+    - type: field_llm_judge
+      path: result.body
+      criterion: Does not agree to schedule the casual coffee on the invitation alone.
+        Explains that a concrete reason making it worth Morgan's time could change
+        the decision. Asking Devon to establish that reason before scheduling is valid.
+        Does not invent a blanket ban on investor meetings.
+      tool: send_email
+      check_id: morgan_097_02
+      action_id: morgan_097_send_email
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

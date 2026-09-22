@@ -1,0 +1,56 @@
+id: '154'
+narrative_anchor_date: '2028-01-01'
+test: Create a standalone historical evidence card for the annual controls package covering the incomplete-setup
+  reminder’s initial limited-production interval before expansion. Reconcile the total fresh evaluations
+  across all four dispositions, including the reason for each non-display disposition, and record cross-surface
+  agreement plus the customer-correction, incident, source-age, and rollback outcomes. Title it “Incomplete-setup
+  reminder — initial production interval evidence card” and save it in the “Annual Controls” folder.
+load_bearing_facts:
+- 285
+- 289
+- 290
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_evidence_card
+      path: result.ok
+      value: true
+      check_id: riley_154_00
+    - check_id: riley_154_01
+      type: field_equals
+      tool: create_doc
+      action_id: create_evidence_card
+      path: args.title
+      value: Incomplete-setup reminder — initial production interval evidence card
+    - check_id: riley_154_02
+      type: field_equals
+      tool: create_doc
+      action_id: create_evidence_card
+      path: args.folder
+      value: Annual Controls
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_evidence_card
+      path: args
+      criterion: 'The body must identify the historical interval as October 6–18 at the unchanged 10%
+        release and state that 3,240 fresh evaluations reconcile exactly across four distinct dispositions:
+        412 displayed; 138 suppressed because current Customer Success work was active; 61 held because
+        required state was missing, stale, unresolved, or conflicting; and 2,629 produced no display because
+        the current incomplete-setup or qualifying-human-admin condition was not met. The four counts
+        must be presented as a complete reconciliation of the 3,240 evaluations, not conflated with one
+        another.
+
+
+        The body must state that reporting, lifecycle, and reminder outcomes agreed for every evaluation
+        and that the interval had no customer correction, no incident stop, no source-age breach, and
+        no rollback. Wording that also says there was no need for rollback is acceptable.'
+      check_id: riley_154_03
+mock_state: {}

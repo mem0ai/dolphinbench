@@ -1,0 +1,57 @@
+id: '126'
+narrative_anchor_date: '2028-01-01'
+test: Please kick off our 2028 annual review of the self-serve operating model. Create a concise one-page
+  agenda organized around my established areas of accountability and the measurement balance we use. Then
+  send our CEO a short Slack DM with a link to the agenda. Frame it as an operating-review kickoff, not
+  an org change or new reporting-line announcement.
+load_bearing_facts:
+- 423
+- 412
+- 313
+expected_tool_calls:
+- create_doc
+- send_slack_dm
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_review_agenda
+      path: result.ok
+      value: true
+      check_id: riley_126_00
+    - type: field_equals
+      tool: send_slack_dm
+      action_id: send_ceo_kickoff
+      path: result.ok
+      value: true
+      check_id: riley_126_01
+    - type: field_equals
+      tool: send_slack_dm
+      action_id: send_ceo_kickoff
+      path: args.user
+      value: tomas
+      check_id: riley_126_02
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_review_agenda
+      path: args
+      criterion: 'The body is a concise, plausibly one-page agenda for a 2028 annual review of Helio''s
+        self-serve operating model. It is organized around Riley''s continuing accountable review areas:
+        eligibility and product constraints; activation and support-load measurement, with support load
+        treated as a first-class peer to activation; lifecycle; support boundaries; and executive language.
+        It should read as an actionable review agenda rather than a general essay.'
+      check_id: riley_126_03
+    - type: field_llm_judge
+      tool: send_slack_dm
+      action_id: send_ceo_kickoff
+      path: args
+      criterion: The message is a short Slack kickoff note for the 2028 annual review, includes an explicit
+        link presented as the newly created agenda, and does not state or imply that Riley has a new reporting
+        relationship to Tomás or that an organizational change has occurred.
+      check_id: riley_126_04
+mock_state: {}

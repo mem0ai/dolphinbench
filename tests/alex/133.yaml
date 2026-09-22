@@ -1,0 +1,62 @@
+id: '133'
+narrative_anchor_date: '2028-01-01'
+test: Create a "Q1 Cardinality Guardrails review" event for January 18, 2028 from
+  2:00 to 2:45 PM Eastern with alex@sphere.example, nadia@sphere.example, and cyrus@sphere.example,
+  and give each attendee's established responsibility its own agenda item.
+load_bearing_facts:
+- 82
+- 96
+- 97
+- 299
+expected_tool_calls:
+- create_calendar_event
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    assertions:
+    - type: field_equals
+      tool: create_calendar_event
+      action_id: alex_133_create_calendar_event
+      path: result.ok
+      value: true
+      check_id: alex_133_00
+    - type: field_equals
+      path: result.event.title
+      value: Q1 Cardinality Guardrails review
+      tool: create_calendar_event
+      action_id: alex_133_create_calendar_event
+      check_id: alex_133_01
+    - type: datetime_absolute_eq
+      path: result.event.start
+      value: '2028-01-18T14:00:00-05:00'
+      tool: create_calendar_event
+      action_id: alex_133_create_calendar_event
+      check_id: alex_133_02
+    - type: datetime_absolute_eq
+      path: result.event.end
+      value: '2028-01-18T14:45:00-05:00'
+      tool: create_calendar_event
+      action_id: alex_133_create_calendar_event
+      check_id: alex_133_03
+    - type: field_list_includes
+      path: result.event.attendees
+      values:
+      - alex@sphere.example
+      - nadia@sphere.example
+      - cyrus@sphere.example
+      tool: create_calendar_event
+      action_id: alex_133_create_calendar_event
+      check_id: alex_133_04
+    - type: field_llm_judge
+      path: result.event.body
+      criterion: The agenda separately covers Alex's project ownership, Nadia's alert-semantics
+        review, and Cyrus's cost and cardinality review.
+      tool: create_calendar_event
+      action_id: alex_133_create_calendar_event
+      check_id: alex_133_05
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: b2e9b6b9e0f48ec23e9ae5ec4d803c050db6c6914dfc1d47ccdf545b3c77b68a

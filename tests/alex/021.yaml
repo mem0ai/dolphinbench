@@ -1,0 +1,38 @@
+id: '021'
+narrative_anchor_date: '2028-01-01'
+test: Create a concise metrics-pipeline runbook entry recording the completion date
+  and final 24-hour checks for the March 2023 ingest-edge production cutover.
+load_bearing_facts:
+- 14
+expected_tool_calls:
+- create_runbook_entry
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    assertions:
+    - type: field_equals
+      tool: create_runbook_entry
+      action_id: alex_021_create_runbook_entry
+      path: result.ok
+      value: true
+      check_id: alex_021_00
+    - type: field_equals
+      path: result.runbook.service
+      value: metrics-pipeline
+      tool: create_runbook_entry
+      action_id: alex_021_create_runbook_entry
+      check_id: alex_021_01
+    - type: field_llm_judge
+      path: result.runbook.body
+      criterion: The entry says ingest-edge's 24-hour post-cutover check was clean
+        on March 22, 2023, with no drops, flat latency and error rates, and no Prometheus
+        anomalies, after which the production cutover was complete.
+      tool: create_runbook_entry
+      action_id: alex_021_create_runbook_entry
+      check_id: alex_021_02
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: b2e9b6b9e0f48ec23e9ae5ec4d803c050db6c6914dfc1d47ccdf545b3c77b68a

@@ -1,0 +1,37 @@
+id: '053'
+narrative_anchor_date: '2028-01-01'
+test: Create a compact, dated visit-closeout note for Mom’s Memorial Day 2023 visit to Austin. Use my
+  prior notes to record the confirmed end of the visit and airport drop-off. Don’t reconstruct a detailed
+  itinerary from tentative or inconsistent planning dates.
+load_bearing_facts:
+- 391
+- 382
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_visit_closeout
+      path: result.ok
+      value: true
+      check_id: riley_053_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_visit_closeout
+      path: args
+      criterion: 'The document body must clearly record that Mom’s Memorial Day 2023 Austin visit concluded
+        with Riley dropping her at AUS on the morning of May 31, 2023. Missing or contradicting the date,
+        airport, morning timing, or completed drop-off must fail.
+
+
+        The body must function as a compact, dated closure entry and must not reconstruct or present a
+        detailed itinerary from tentative or internally inconsistent planning dates. In particular, it
+        must not assert an uncertain planned travel range as the confirmed visit dates.'
+      check_id: riley_053_01
+mock_state: {}

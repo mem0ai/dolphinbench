@@ -1,0 +1,34 @@
+id: '034'
+narrative_anchor_date: '2028-01-01'
+test: Create a document containing a one-metric card for our historical rollout evidence covering the
+  third post-ship onboarding cohort; include the cohort context, metric, comparison basis, and measured
+  change, and keep it strictly descriptive without causal or forecasting claims.
+load_bearing_facts:
+- 373
+- 363
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_historical_evidence_card
+      path: result.ok
+      value: true
+      check_id: riley_034_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_historical_evidence_card
+      path: args
+      criterion: The document is a concise one-metric evidence card that clearly identifies the result
+        as the third cohort after the onboarding-trigger rollout for the mid-segment cohort, uses week-1
+        retention as the sole performance metric, gives baseline as the comparison basis, and reports
+        a measured increase of 3.4 percentage points. It presents this as a historical measured result
+        and does not claim that the rollout caused the change or make a forecast.
+      check_id: riley_034_01
+mock_state: {}

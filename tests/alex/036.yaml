@@ -1,0 +1,33 @@
+id: '036'
+narrative_anchor_date: '2028-01-01'
+test: Create a short training appendix for the April 18 shard-keeper outage covering
+  the misleading early investigation branch and confirmed data impact.
+load_bearing_facts:
+- 31
+- 32
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: alex_036_create_doc
+      path: result.ok
+      value: true
+      check_id: alex_036_00
+    - type: field_llm_judge
+      path: result.document.body
+      criterion: The appendix says a network-layer hypothesis was an early red herring
+        before the label-name discrepancy was found, and separately records that the
+        outage caused no data loss.
+      tool: create_doc
+      action_id: alex_036_create_doc
+      check_id: alex_036_01
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: b2e9b6b9e0f48ec23e9ae5ec4d803c050db6c6914dfc1d47ccdf545b3c77b68a

@@ -1,0 +1,54 @@
+id: '130'
+narrative_anchor_date: '2028-01-01'
+test: Find today's mobile billing notice and email the carrier asking it to reconcile
+  the notice with the final status of case MC-270225-184.
+load_bearing_facts:
+- 252
+- 253
+expected_tool_calls:
+- list_inbox
+- send_email
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    assertions:
+    - type: field_equals
+      tool: send_email
+      action_id: alex_130_send_email
+      path: result.ok
+      value: true
+      check_id: alex_130_00
+    - type: field_equals
+      tool: list_inbox
+      action_id: alex_130_read_email
+      path: result.0.id
+      value: mobile_bill_2028_01
+      check_id: alex_130_01
+    - type: field_equals
+      path: result.to
+      value: billing@mobilecarrier.example
+      tool: send_email
+      action_id: alex_130_send_email
+      check_id: alex_130_02
+    - type: field_llm_judge
+      path: result.body
+      criterion: The email says case MC-270225-184 was closed after the disputed $10
+        credit was applied, and asks the carrier to explain and correct the January
+        notice without treating the old credit as still pending or reopening the resolved
+        dispute.
+      tool: send_email
+      action_id: alex_130_send_email
+      check_id: alex_130_03
+mock_state:
+  inbox:
+  - id: mobile_bill_2028_01
+    from: billing@mobilecarrier.example
+    subject: 'January 2028 mobile bill: $78 base plan + $10 Premium voicemail; reference
+      closed case MC-270225-184'
+    date: '2028-01-01T08:00:00-05:00'
+    category: billing
+mock_state_base:
+  path: state.json
+  sha256: b2e9b6b9e0f48ec23e9ae5ec4d803c050db6c6914dfc1d47ccdf545b3c77b68a

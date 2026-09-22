@@ -1,0 +1,40 @@
+id: 019
+narrative_anchor_date: '2028-01-01'
+test: Create a durable private-portfolio catalog record for the watercolor Mom and I started together
+  in February 2026, separate from any exhibition or sales system. Include the work’s title, physical format
+  and surface, palette, storage location, completion status, and any limits on sale, exhibition, or public-demonstration
+  commitments.
+load_bearing_facts:
+- 192
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_ordinary_light_catalog
+      path: result.ok
+      value: true
+      check_id: riley_019_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_ordinary_light_catalog
+      path: args
+      criterion: 'Across args.title and args.body, the catalog record identifies the work as `Ordinary
+        Light`, records its dimensions as 9 by 12 inches and its surface as cold-press paper, and marks
+        the work as finished or completed. Equivalent punctuation and dimension notation are acceptable.
+
+
+        The catalog record gives the palette as ultramarine, burnt sienna, and yellow ochre and gives
+        the storage location as Riley’s Cherrywood personal watercolor portfolio.
+
+
+        The catalog record accurately states that the work has no current sale, exhibition, or public-demonstration
+        commitment, without turning that current status into a permanent prohibition.'
+      check_id: riley_019_01
+mock_state: {}

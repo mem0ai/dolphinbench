@@ -1,0 +1,46 @@
+id: 173
+narrative_anchor_date: '2026-09-14'
+test: Write slide 9 of Archived_2023_B_Round_Fundraising_v2 as an archive of the metrics-section
+  structure I was considering on February 3, 2023. Record the intended metrics and
+  customer-proof format without inventing historical numbers.
+load_bearing_facts:
+- 8
+expected_tool_calls:
+- update_deck_slide
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: update_deck_slide
+      path: result.ok
+      value: true
+      check_id: morgan_173_00
+      action_id: morgan_173_update_deck_slide
+    - type: field_equals
+      path: result.deck
+      value: Archived_2023_B_Round_Fundraising_v2
+      tool: update_deck_slide
+      check_id: morgan_173_01
+      action_id: morgan_173_update_deck_slide
+    - type: field_eq_number
+      path: result.slide.number
+      value: 9
+      tool: update_deck_slide
+      check_id: morgan_173_02
+      action_id: morgan_173_update_deck_slide
+    - type: field_llm_judge
+      path: result.slide.content
+      criterion: Records the contemplated structure as net new ARR, retention shape,
+        expansion by cohort, then one customer slide with actual names rather than
+        anonymous logos. Does not add unrelated core metric categories, invent numbers,
+        or claim the tentative structure was definitively approved.
+      tool: update_deck_slide
+      check_id: morgan_173_03
+      action_id: morgan_173_update_deck_slide
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

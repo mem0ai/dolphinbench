@@ -1,0 +1,58 @@
+id: '187'
+narrative_anchor_date: '2028-01-01'
+test: The Cardinality Guardrails review has separate questions about replay-versus-live
+  alert sources and the cost impact of a metrics change. Send each question privately
+  to its established reviewer.
+load_bearing_facts:
+- 96
+- 97
+expected_tool_calls:
+- send_slack_dm
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    assertions:
+    - type: field_equals
+      tool: send_slack_dm
+      action_id: route_alert_semantics
+      path: result.ok
+      value: true
+      check_id: alex_187_00
+    - type: field_equals
+      tool: send_slack_dm
+      action_id: route_cost_review
+      path: result.ok
+      value: true
+      check_id: alex_187_01
+    - type: field_equals
+      action_id: route_alert_semantics
+      path: result.user
+      value: nadia
+      tool: send_slack_dm
+      check_id: alex_187_02
+    - type: field_llm_judge
+      action_id: route_alert_semantics
+      path: result.message
+      criterion: The DM asks Nadia to review the replay-versus-live alert-source interpretation
+        and does not assign her the cost review.
+      tool: send_slack_dm
+      check_id: alex_187_03
+    - type: field_equals
+      action_id: route_cost_review
+      path: result.user
+      value: cyrus
+      tool: send_slack_dm
+      check_id: alex_187_04
+    - type: field_llm_judge
+      action_id: route_cost_review
+      path: result.message
+      criterion: The DM asks Cyrus to review the cost and cardinality impact of the
+        metrics change and does not assign him the alert-semantics review.
+      tool: send_slack_dm
+      check_id: alex_187_05
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: b2e9b6b9e0f48ec23e9ae5ec4d803c050db6c6914dfc1d47ccdf545b3c77b68a

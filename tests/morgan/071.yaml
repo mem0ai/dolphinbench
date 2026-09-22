@@ -1,0 +1,42 @@
+id: '071'
+narrative_anchor_date: '2026-09-14'
+test: Post a review comment on scaffold/metrics#2417 naming the tracing vendor our
+  new request instrumentation should target.
+load_bearing_facts:
+- 57
+expected_tool_calls:
+- post_pr_comment
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: post_pr_comment
+      path: result.ok
+      value: true
+      check_id: morgan_071_00
+      action_id: morgan_071_post_pr_comment
+    - type: field_equals
+      path: result.comment.pr_id
+      value: scaffold/metrics#2417
+      tool: post_pr_comment
+      check_id: morgan_071_01
+      action_id: morgan_071_post_pr_comment
+    - type: field_llm_judge
+      path: result.comment.body
+      criterion: Selects Honeycomb for request tracing, not Datadog or an unspecified
+        vendor.
+      tool: post_pr_comment
+      check_id: morgan_071_02
+      action_id: morgan_071_post_pr_comment
+mock_state:
+  open_prs:
+  - id: scaffold/metrics#2417
+    repo: scaffold/metrics
+    number: 2417
+    status: open
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

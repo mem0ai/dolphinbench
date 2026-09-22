@@ -1,0 +1,39 @@
+id: 109
+narrative_anchor_date: '2026-09-14'
+test: Add a CRM entry for Anna Rao from our April 19, 2023 conversation. Record her
+  company, role, and what the company did then, clearly as historical information.
+load_bearing_facts:
+- 63
+- 64
+expected_tool_calls:
+- add_crm_row
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: add_crm_row
+      path: result.ok
+      value: true
+      check_id: morgan_109_00
+      action_id: morgan_109_add_crm_row
+    - type: field_equals
+      path: result.row.name
+      value: Anna Rao
+      tool: add_crm_row
+      check_id: morgan_109_01
+      action_id: morgan_109_add_crm_row
+    - type: field_llm_judge
+      path: result.row
+      criterion: Sets the company to Tessl, allowing unambiguous capitalization or
+        business-name variants, and records Anna as a co-founder doing data tooling
+        for ML pipelines at that time. Does not assert these old details remain current.
+      tool: add_crm_row
+      check_id: morgan_109_02
+      action_id: morgan_109_add_crm_row
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

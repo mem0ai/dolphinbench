@@ -1,0 +1,39 @@
+id: '052'
+narrative_anchor_date: '2026-09-14'
+test: Acme asks whether its JWT clock-skew docs issue warrants a Compass proof point
+  or an Atlas sequencing item. Email support@scaffold.dev the triage decision.
+load_bearing_facts:
+- 294
+expected_tool_calls:
+- send_email
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: send_email
+      path: result.ok
+      value: true
+      check_id: morgan_052_00
+      action_id: morgan_052_send_email
+    - type: field_equals
+      path: result.to
+      value: support@scaffold.dev
+      tool: send_email
+      check_id: morgan_052_01
+      action_id: morgan_052_send_email
+    - type: field_llm_judge
+      path: result.body
+      criterion: Treats the issue as closed-for-now docs/support cleanup through normal
+        Atlas/API v2 support, not Compass proof or a new Atlas sequencing item. The
+        rejected alternatives need not be repeated if the disposition is unambiguous
+        and not contradicted.
+      tool: send_email
+      check_id: morgan_052_02
+      action_id: morgan_052_send_email
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

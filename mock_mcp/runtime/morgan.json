@@ -1,0 +1,1984 @@
+{
+  "manifest": {
+    "persona_id": "morgan",
+    "baseline_state": "state/morgan_baseline.json",
+    "tools": [
+      "list_calendar_events",
+      "create_calendar_event",
+      "update_calendar_event",
+      "list_inbox",
+      "send_email",
+      "archive_email",
+      "delete_email",
+      "send_sms",
+      "add_crm_row",
+      "get_stock_data",
+      "send_discord_message",
+      "send_slack_message",
+      "send_slack_dm",
+      "send_discord_dm",
+      "process_payment",
+      "flag_for_review",
+      "place_order",
+      "check_project_status",
+      "search_venues",
+      "book_flight",
+      "batch_dedup",
+      "embeddings_encode",
+      "vector_search",
+      "gh_pr_create",
+      "metrics_fetch",
+      "metrics_fetch_batch",
+      "shell_run",
+      "internal_search_v1_legacy",
+      "internal_search_v2",
+      "deploy_via_kubectl",
+      "deploy_via_pipeline",
+      "list_open_prs",
+      "list_invoices",
+      "update_deck_slide",
+      "create_doc",
+      "book_hotel",
+      "post_pr_comment",
+      "update_crm_row",
+      "update_headcount_plan"
+    ]
+  },
+  "tests": {
+    "001": {
+      "tool_config": {
+        "active_tools": [
+          "place_order"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "002": {
+      "tool_config": {
+        "active_tools": [
+          "send_sms"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "003": {
+      "tool_config": {
+        "active_tools": [
+          "send_slack_message"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "004": {
+      "tool_config": {
+        "active_tools": [
+          "send_sms"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "005": {
+      "tool_config": {
+        "active_tools": [
+          "send_email"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "006": {
+      "tool_config": {
+        "active_tools": [
+          "send_email"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "007": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "008": {
+      "tool_config": {
+        "active_tools": [
+          "send_discord_dm"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "009": {
+      "tool_config": {
+        "active_tools": [
+          "send_email"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "010": {
+      "tool_config": {
+        "active_tools": [
+          "send_email"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "011": {
+      "tool_config": {
+        "active_tools": [
+          "send_email"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "012": {
+      "tool_config": {
+        "active_tools": [
+          "send_discord_dm",
+          "create_calendar_event",
+          "list_calendar_events"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "013": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "014": {
+      "tool_config": {
+        "active_tools": [
+          "send_email"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "015": {
+      "tool_config": {
+        "active_tools": [
+          "add_crm_row"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "016": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "017": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "018": {
+      "tool_config": {
+        "active_tools": [
+          "send_discord_message"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "019": {
+      "tool_config": {
+        "active_tools": [
+          "post_pr_comment"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "020": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "021": {
+      "tool_config": {
+        "active_tools": [
+          "post_pr_comment"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "022": {
+      "tool_config": {
+        "active_tools": [
+          "send_email"
+        ]
+      },
+      "workspace": "1383069e951d1c19029466c53c98a8db9160cc08a76c2b432d29629cb10f983c"
+    },
+    "023": {
+      "tool_config": {
+        "active_tools": [
+          "send_email"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "024": {
+      "tool_config": {
+        "active_tools": [
+          "send_email"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "025": {
+      "tool_config": {
+        "active_tools": [
+          "send_email"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "026": {
+      "tool_config": {
+        "active_tools": [
+          "send_sms"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "027": {
+      "tool_config": {
+        "active_tools": [
+          "send_sms"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "028": {
+      "tool_config": {
+        "active_tools": [
+          "send_discord_dm"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "029": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "030": {
+      "tool_config": {
+        "active_tools": [
+          "send_email"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "031": {
+      "tool_config": {
+        "active_tools": [
+          "send_email"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "032": {
+      "tool_config": {
+        "active_tools": [
+          "create_calendar_event"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "033": {
+      "tool_config": {
+        "active_tools": [
+          "send_email"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "034": {
+      "tool_config": {
+        "active_tools": [
+          "send_email"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "035": {
+      "tool_config": {
+        "active_tools": [
+          "send_email"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "036": {
+      "tool_config": {
+        "active_tools": [
+          "send_discord_dm"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "037": {
+      "tool_config": {
+        "active_tools": [
+          "send_email"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "038": {
+      "tool_config": {
+        "active_tools": [
+          "update_calendar_event"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "039": {
+      "tool_config": {
+        "active_tools": [
+          "send_discord_dm"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "040": {
+      "tool_config": {
+        "active_tools": [
+          "update_deck_slide"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "041": {
+      "tool_config": {
+        "active_tools": [
+          "create_calendar_event"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "042": {
+      "tool_config": {
+        "active_tools": [
+          "send_email"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "043": {
+      "tool_config": {
+        "active_tools": [
+          "update_deck_slide"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "044": {
+      "tool_config": {
+        "active_tools": [
+          "send_email"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "045": {
+      "tool_config": {
+        "active_tools": [
+          "send_email"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "046": {
+      "tool_config": {
+        "active_tools": [
+          "post_pr_comment"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "047": {
+      "tool_config": {
+        "active_tools": [
+          "send_sms"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "048": {
+      "tool_config": {
+        "active_tools": [
+          "send_discord_dm"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "049": {
+      "tool_config": {
+        "active_tools": [
+          "send_email"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "050": {
+      "tool_config": {
+        "active_tools": [
+          "send_email"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "051": {
+      "tool_config": {
+        "active_tools": [
+          "send_email"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "052": {
+      "tool_config": {
+        "active_tools": [
+          "send_email"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "053": {
+      "tool_config": {
+        "active_tools": [
+          "send_discord_dm"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "054": {
+      "tool_config": {
+        "active_tools": [
+          "send_email"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "055": {
+      "tool_config": {
+        "active_tools": [
+          "send_email"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "056": {
+      "tool_config": {
+        "active_tools": [
+          "update_deck_slide"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "057": {
+      "tool_config": {
+        "active_tools": [
+          "create_calendar_event"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "058": {
+      "tool_config": {
+        "active_tools": [
+          "post_pr_comment"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "059": {
+      "tool_config": {
+        "active_tools": [
+          "post_pr_comment"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "060": {
+      "tool_config": {
+        "active_tools": [
+          "create_calendar_event"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "061": {
+      "tool_config": {
+        "active_tools": [
+          "send_discord_dm"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "062": {
+      "tool_config": {
+        "active_tools": [
+          "send_sms"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "063": {
+      "tool_config": {
+        "active_tools": [
+          "send_slack_message"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "064": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "065": {
+      "tool_config": {
+        "active_tools": [
+          "send_email"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "066": {
+      "tool_config": {
+        "active_tools": [
+          "post_pr_comment"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "067": {
+      "tool_config": {
+        "active_tools": [
+          "send_sms"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "068": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "069": {
+      "tool_config": {
+        "active_tools": [
+          "send_discord_dm"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "070": {
+      "tool_config": {
+        "active_tools": [
+          "place_order"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "071": {
+      "tool_config": {
+        "active_tools": [
+          "post_pr_comment"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "072": {
+      "tool_config": {
+        "active_tools": [
+          "post_pr_comment"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "073": {
+      "tool_config": {
+        "active_tools": [
+          "update_calendar_event"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "074": {
+      "tool_config": {
+        "active_tools": [
+          "send_discord_dm"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "075": {
+      "tool_config": {
+        "active_tools": [
+          "send_sms"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "076": {
+      "tool_config": {
+        "active_tools": [
+          "send_discord_dm"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "077": {
+      "tool_config": {
+        "active_tools": [
+          "send_discord_dm"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "078": {
+      "tool_config": {
+        "active_tools": [
+          "send_discord_dm"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "079": {
+      "tool_config": {
+        "active_tools": [
+          "send_email"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "080": {
+      "tool_config": {
+        "active_tools": [
+          "send_email"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "081": {
+      "tool_config": {
+        "active_tools": [
+          "update_deck_slide"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "082": {
+      "tool_config": {
+        "active_tools": [
+          "send_discord_dm"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "083": {
+      "tool_config": {
+        "active_tools": [
+          "send_email"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "084": {
+      "tool_config": {
+        "active_tools": [
+          "send_email"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "085": {
+      "tool_config": {
+        "active_tools": [
+          "list_inbox",
+          "archive_email"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "086": {
+      "tool_config": {
+        "active_tools": [
+          "create_calendar_event"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "087": {
+      "tool_config": {
+        "active_tools": [
+          "send_email"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "088": {
+      "tool_config": {
+        "active_tools": [
+          "send_email"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "089": {
+      "tool_config": {
+        "active_tools": [
+          "send_email"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "090": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "091": {
+      "tool_config": {
+        "active_tools": [
+          "send_sms"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "092": {
+      "tool_config": {
+        "active_tools": [
+          "send_sms"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "093": {
+      "tool_config": {
+        "active_tools": [
+          "post_pr_comment"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "094": {
+      "tool_config": {
+        "active_tools": [
+          "send_email"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "095": {
+      "tool_config": {
+        "active_tools": [
+          "send_email"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "096": {
+      "tool_config": {
+        "active_tools": [
+          "send_sms"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "097": {
+      "tool_config": {
+        "active_tools": [
+          "send_email"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "098": {
+      "tool_config": {
+        "active_tools": [
+          "send_discord_dm"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "099": {
+      "tool_config": {
+        "active_tools": [
+          "send_sms"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "100": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "101": {
+      "tool_config": {
+        "active_tools": [
+          "send_discord_dm"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "102": {
+      "tool_config": {
+        "active_tools": [
+          "send_email"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "103": {
+      "tool_config": {
+        "active_tools": [
+          "post_pr_comment"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "104": {
+      "tool_config": {
+        "active_tools": [
+          "update_crm_row"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "105": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "106": {
+      "tool_config": {
+        "active_tools": [
+          "send_email"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "107": {
+      "tool_config": {
+        "active_tools": [
+          "send_sms"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "108": {
+      "tool_config": {
+        "active_tools": [
+          "post_pr_comment"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "109": {
+      "tool_config": {
+        "active_tools": [
+          "add_crm_row"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "110": {
+      "tool_config": {
+        "active_tools": [
+          "send_email"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "111": {
+      "tool_config": {
+        "active_tools": [
+          "send_email"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "112": {
+      "tool_config": {
+        "active_tools": [
+          "send_email"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "113": {
+      "tool_config": {
+        "active_tools": [
+          "send_email"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "114": {
+      "tool_config": {
+        "active_tools": [
+          "post_pr_comment"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "115": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "116": {
+      "tool_config": {
+        "active_tools": [
+          "send_email"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "117": {
+      "tool_config": {
+        "active_tools": [
+          "send_sms"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "118": {
+      "tool_config": {
+        "active_tools": [
+          "send_email"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "119": {
+      "tool_config": {
+        "active_tools": [
+          "send_discord_dm"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "120": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "121": {
+      "tool_config": {
+        "active_tools": [
+          "send_sms"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "122": {
+      "tool_config": {
+        "active_tools": [
+          "embeddings_encode",
+          "vector_search",
+          "create_doc"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "123": {
+      "tool_config": {
+        "active_tools": [
+          "send_email"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "124": {
+      "tool_config": {
+        "active_tools": [
+          "send_sms"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "125": {
+      "tool_config": {
+        "active_tools": [
+          "send_email"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "126": {
+      "tool_config": {
+        "active_tools": [
+          "post_pr_comment"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "127": {
+      "tool_config": {
+        "active_tools": [
+          "send_discord_dm"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "128": {
+      "tool_config": {
+        "active_tools": [
+          "check_project_status",
+          "create_doc"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "129": {
+      "tool_config": {
+        "active_tools": [
+          "book_flight",
+          "book_hotel"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "130": {
+      "tool_config": {
+        "active_tools": [
+          "update_crm_row"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "131": {
+      "tool_config": {
+        "active_tools": [
+          "send_email"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "132": {
+      "tool_config": {
+        "active_tools": [
+          "update_deck_slide"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "133": {
+      "tool_config": {
+        "active_tools": [
+          "send_email"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "134": {
+      "tool_config": {
+        "active_tools": [
+          "update_crm_row"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "135": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "136": {
+      "tool_config": {
+        "active_tools": [
+          "post_pr_comment"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "137": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "138": {
+      "tool_config": {
+        "active_tools": [
+          "send_email"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "139": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "140": {
+      "tool_config": {
+        "active_tools": [
+          "post_pr_comment"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "141": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "142": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "143": {
+      "tool_config": {
+        "active_tools": [
+          "send_email"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "144": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "145": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "146": {
+      "tool_config": {
+        "active_tools": [
+          "list_inbox",
+          "archive_email"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "147": {
+      "tool_config": {
+        "active_tools": [
+          "post_pr_comment"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "148": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "149": {
+      "tool_config": {
+        "active_tools": [
+          "update_deck_slide"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "150": {
+      "tool_config": {
+        "active_tools": [
+          "send_email"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "151": {
+      "tool_config": {
+        "active_tools": [
+          "metrics_fetch_batch",
+          "create_doc"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "152": {
+      "tool_config": {
+        "active_tools": [
+          "post_pr_comment"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "153": {
+      "tool_config": {
+        "active_tools": [
+          "send_email"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "154": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "155": {
+      "tool_config": {
+        "active_tools": [
+          "update_deck_slide"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "156": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "157": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "158": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "159": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "160": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "161": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "162": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "163": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "164": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "165": {
+      "tool_config": {
+        "active_tools": [
+          "post_pr_comment"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "166": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "167": {
+      "tool_config": {
+        "active_tools": [
+          "post_pr_comment"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "168": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "169": {
+      "tool_config": {
+        "active_tools": [
+          "send_email"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "170": {
+      "tool_config": {
+        "active_tools": [
+          "post_pr_comment"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "171": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "172": {
+      "tool_config": {
+        "active_tools": [
+          "post_pr_comment"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "173": {
+      "tool_config": {
+        "active_tools": [
+          "update_deck_slide"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "174": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "175": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "176": {
+      "tool_config": {
+        "active_tools": [
+          "send_discord_dm"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "177": {
+      "tool_config": {
+        "active_tools": [
+          "update_deck_slide"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "178": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "179": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "180": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "181": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "182": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "183": {
+      "tool_config": {
+        "active_tools": [
+          "update_crm_row"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "184": {
+      "tool_config": {
+        "active_tools": [
+          "create_calendar_event"
+        ]
+      },
+      "workspace": "1383069e951d1c19029466c53c98a8db9160cc08a76c2b432d29629cb10f983c"
+    },
+    "185": {
+      "tool_config": {
+        "active_tools": [
+          "send_email"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "186": {
+      "tool_config": {
+        "active_tools": [
+          "update_deck_slide"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "187": {
+      "tool_config": {
+        "active_tools": [
+          "update_deck_slide"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "188": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "189": {
+      "tool_config": {
+        "active_tools": [
+          "update_crm_row"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "190": {
+      "tool_config": {
+        "active_tools": [
+          "post_pr_comment"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "191": {
+      "tool_config": {
+        "active_tools": [
+          "update_deck_slide"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "192": {
+      "tool_config": {
+        "active_tools": [
+          "update_crm_row"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "193": {
+      "tool_config": {
+        "active_tools": [
+          "send_sms"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "194": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "195": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "196": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "197": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "198": {
+      "tool_config": {
+        "active_tools": [
+          "update_crm_row"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "199": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    },
+    "200": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4"
+    }
+  },
+  "workspaces": {
+    "dd4bb6f75e1907273d603cb0727304da90ce89874b36b744e426fbf12cfe8ee4": {
+      "users": [
+        {
+          "key": "anna_martinez",
+          "name": "Anna Martinez"
+        },
+        {
+          "key": "anna_rao",
+          "name": "Anna Rao"
+        },
+        {
+          "key": "devon",
+          "name": "Devon Hayes"
+        },
+        {
+          "key": "elena",
+          "name": "Elena Volkov"
+        },
+        {
+          "key": "greg",
+          "name": "Greg Shipman"
+        },
+        {
+          "key": "jake",
+          "name": "Jake"
+        },
+        {
+          "key": "jamie",
+          "name": "Jamie"
+        },
+        {
+          "key": "jordan",
+          "name": "Jordan"
+        },
+        {
+          "key": "kara",
+          "name": "Kara"
+        },
+        {
+          "key": "kenji",
+          "name": "Kenji Nakamura"
+        },
+        {
+          "key": "leo",
+          "name": "Leo Park"
+        },
+        {
+          "key": "marcus",
+          "name": "Marcus"
+        },
+        {
+          "key": "maya",
+          "name": "Maya Chen"
+        },
+        {
+          "key": "mike",
+          "name": "Mike"
+        },
+        {
+          "key": "mom",
+          "name": "Mom"
+        },
+        {
+          "key": "morgan",
+          "name": "Morgan Chen"
+        },
+        {
+          "key": "nadia",
+          "name": "Nadia Singh"
+        },
+        {
+          "key": "olivia",
+          "name": "Olivia"
+        },
+        {
+          "key": "priya",
+          "name": "Priya"
+        },
+        {
+          "key": "reece",
+          "name": "Reece"
+        },
+        {
+          "key": "rishi",
+          "name": "Rishi"
+        },
+        {
+          "key": "sarah_founders_fund",
+          "name": "Sarah at Founders Fund"
+        },
+        {
+          "key": "sarah_kim",
+          "name": "Sarah Kim"
+        },
+        {
+          "key": "sofia",
+          "name": "Sofia Alvarez"
+        },
+        {
+          "key": "alex",
+          "name": "Alex"
+        }
+      ],
+      "channels": [
+        {
+          "key": "#eng-all"
+        },
+        {
+          "key": "#eng-releases"
+        },
+        {
+          "key": "#hiring-leads"
+        },
+        {
+          "key": "#support"
+        }
+      ],
+      "discord_channels": [
+        {
+          "key": "#atlas"
+        },
+        {
+          "key": "#compass-owners"
+        },
+        {
+          "key": "#eng-all"
+        },
+        {
+          "key": "#eng-releases"
+        },
+        {
+          "key": "#eng-team"
+        },
+        {
+          "key": "#leadership"
+        },
+        {
+          "key": "#mercury-eng"
+        }
+      ]
+    },
+    "1383069e951d1c19029466c53c98a8db9160cc08a76c2b432d29629cb10f983c": {
+      "users": [
+        {
+          "key": "anna_martinez",
+          "name": "Anna Martinez"
+        },
+        {
+          "key": "anna_rao",
+          "name": "Anna Rao"
+        },
+        {
+          "key": "devon",
+          "name": "Devon Hayes"
+        },
+        {
+          "key": "elena",
+          "name": "Elena Volkov"
+        },
+        {
+          "key": "greg",
+          "name": "Greg Shipman"
+        },
+        {
+          "key": "jake",
+          "name": "Jake"
+        },
+        {
+          "key": "jamie",
+          "name": "Jamie"
+        },
+        {
+          "key": "jordan",
+          "name": "Jordan"
+        },
+        {
+          "key": "kara",
+          "name": "Kara"
+        },
+        {
+          "key": "kenji",
+          "name": "Kenji Nakamura"
+        },
+        {
+          "key": "leo",
+          "name": "Leo Park"
+        },
+        {
+          "key": "marcus",
+          "name": "Marcus"
+        },
+        {
+          "key": "maya",
+          "name": "Maya Chen"
+        },
+        {
+          "key": "mike",
+          "name": "Mike"
+        },
+        {
+          "key": "mom",
+          "name": "Mom"
+        },
+        {
+          "key": "morgan",
+          "name": "Morgan Chen"
+        },
+        {
+          "key": "nadia",
+          "name": "Nadia Singh"
+        },
+        {
+          "key": "olivia",
+          "name": "Olivia"
+        },
+        {
+          "key": "priya",
+          "name": "Priya"
+        },
+        {
+          "key": "reece",
+          "name": "Reece"
+        },
+        {
+          "key": "rishi",
+          "name": "Rishi"
+        },
+        {
+          "key": "sarah_founders_fund",
+          "name": "Sarah at Founders Fund"
+        },
+        {
+          "key": "sarah_kim",
+          "name": "Sarah Kim"
+        },
+        {
+          "key": "sofia",
+          "name": "Sofia Alvarez"
+        },
+        {
+          "key": "alex",
+          "name": "Alex"
+        }
+      ],
+      "channels": [
+        {
+          "key": "#eng-all"
+        },
+        {
+          "key": "#eng-releases"
+        },
+        {
+          "key": "#hiring-leads"
+        },
+        {
+          "key": "#support"
+        }
+      ],
+      "discord_channels": [
+        {
+          "key": "#atlas"
+        },
+        {
+          "key": "#compass-owners"
+        },
+        {
+          "key": "#eng-all"
+        },
+        {
+          "key": "#eng-releases"
+        },
+        {
+          "key": "#eng-team"
+        },
+        {
+          "key": "#leadership"
+        },
+        {
+          "key": "#mercury-eng"
+        }
+      ],
+      "contacts": [
+        {
+          "name": "Morgan Chen",
+          "email": "morgan@scaffold.com"
+        },
+        {
+          "name": "Anna Martinez",
+          "email": "anna@scaffold.com"
+        },
+        {
+          "name": "Devon Hayes",
+          "email": "devon@scaffold.dev"
+        },
+        {
+          "name": "Jake",
+          "email": "jake@scaffold.dev"
+        },
+        {
+          "name": "Priya",
+          "email": "priya@scaffold.dev"
+        },
+        {
+          "name": "Sarah Kim",
+          "email": "sarah@scaffold.dev"
+        },
+        {
+          "name": "Leo Park",
+          "email": "leo@scaffold.dev"
+        },
+        {
+          "name": "Rishi Patel",
+          "email": "rishi@atlas-test.com"
+        },
+        {
+          "name": "Sofia Alvarez",
+          "email": "sofia.alvarez@northstar.example"
+        },
+        {
+          "name": "HR",
+          "email": "hr@scaffold.dev"
+        }
+      ]
+    }
+  }
+}

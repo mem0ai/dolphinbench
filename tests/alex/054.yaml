@@ -1,0 +1,53 @@
+id: '054'
+narrative_anchor_date: '2028-01-01'
+test: Find the inbox notice claiming a new balance or damage from our former Park
+  Slope apartment and dispute it with the sender.
+load_bearing_facts:
+- 131
+- 132
+expected_tool_calls:
+- list_inbox
+- send_email
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    assertions:
+    - type: field_equals
+      tool: send_email
+      action_id: alex_054_send_email
+      path: result.ok
+      value: true
+      check_id: alex_054_00
+    - type: field_equals
+      tool: list_inbox
+      action_id: alex_054_read_email
+      path: result.0.id
+      value: email_park_slope_claim_20280101
+      check_id: alex_054_01
+    - type: field_equals
+      path: result.to
+      value: claims@parkslopeproperty.com
+      tool: send_email
+      action_id: alex_054_send_email
+      check_id: alex_054_02
+    - type: field_llm_judge
+      path: result.body
+      criterion: The reply says Alex and Devika received the full security deposit
+        with no deductions and the tenancy had a zero balance with no remaining condition
+        claim. It asks for written withdrawal of the new claim and does not offer
+        payment or reopen the closeout.
+      tool: send_email
+      action_id: alex_054_send_email
+      check_id: alex_054_03
+mock_state:
+  inbox:
+  - id: email_park_slope_claim_20280101
+    from: Park Slope Property Management <claims@parkslopeproperty.com>
+    subject: 'Action required: $685 damage balance for former Park Slope tenancy'
+    date: '2028-01-01T08:15:00-05:00'
+    category: property
+mock_state_base:
+  path: state.json
+  sha256: b2e9b6b9e0f48ec23e9ae5ec4d803c050db6c6914dfc1d47ccdf545b3c77b68a

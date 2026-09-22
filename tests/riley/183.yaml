@@ -1,0 +1,57 @@
+id: '183'
+narrative_anchor_date: '2028-01-01'
+test: Owen expects to close the Q1 four-lane evidence packet on March 31, 2028. Please check April 3 and,
+  if 10:00 a.m. Central is free, reserve a 30-minute audit handoff. Put the standard quarterly hands-on
+  audit scope in the notes.
+load_bearing_facts:
+- 230
+expected_tool_calls:
+- list_calendar_events
+- create_calendar_event
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_calendar_event
+      action_id: create_audit_handoff
+      path: result.ok
+      value: true
+      check_id: riley_183_00
+    - type: field_equals
+      tool: list_calendar_events
+      action_id: check_apr3_calendar
+      path: args.date
+      value: '2028-04-03'
+      check_id: riley_183_01
+    - type: datetime_absolute_eq
+      tool: create_calendar_event
+      action_id: create_audit_handoff
+      path: args.start
+      value: '2028-04-03T10:00:00-05:00'
+      check_id: riley_183_02
+    - type: datetime_absolute_eq
+      tool: create_calendar_event
+      action_id: create_audit_handoff
+      path: args.end
+      value: '2028-04-03T10:30:00-05:00'
+      check_id: riley_183_03
+    - type: field_equals
+      tool: list_calendar_events
+      action_id: check_apr3_calendar
+      path: args.timezone
+      value: America/Chicago
+      check_id: riley_183_04
+    - type: field_llm_judge
+      tool: create_calendar_event
+      action_id: create_audit_handoff
+      path: args
+      criterion: The event is clearly a Q1 evidence audit handoff. Its notes say that after Owen closes
+        the four-lane packet, one lane will be independently rechecked for its denominator or coverage
+        dates, outcome window, exclusions, reliability evidence, revenue treatment, and forecast treatment.
+      check_id: riley_183_05
+mock_state:
+  calendar: []

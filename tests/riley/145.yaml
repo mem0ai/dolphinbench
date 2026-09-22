@@ -1,0 +1,62 @@
+id: '145'
+narrative_anchor_date: '2028-01-01'
+test: Before archiving document doc_1833013200001, post a correction comment containing only the mature
+  Helio Start evidence certified on August 16, 2027.
+load_bearing_facts:
+- 270
+- 271
+- 272
+- 273
+- 274
+- 275
+expected_tool_calls:
+- post_doc_comment
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: post_doc_comment
+      action_id: correct_august_snapshot
+      path: result.ok
+      value: true
+      check_id: riley_145_00
+    - type: field_equals
+      tool: post_doc_comment
+      action_id: correct_august_snapshot
+      path: args.doc_id
+      value: doc_1833013200001
+      check_id: riley_145_01
+    - type: field_llm_judge
+      tool: post_doc_comment
+      action_id: correct_august_snapshot
+      path: args
+      criterion: The comment says all day-90 windows were complete for the 25 workspaces admitted April
+        12-May 17, 2027; outcomes were 18 paid-active, three canceled, two past due, and two on billing
+        hold; support effort was 33 minutes at the median and 116 minutes at the 90th percentile, with
+        five workspaces above 90 minutes, four requiring separate owner-level permission or network-allowlist
+        coordination and one ordinary connector troubleshooting; refund-adjusted collected cash was $27,860;
+        attribution reconciled for all 61 paid-source starts with no unsupported admission; and no lifecycle
+        hold or suppression was bypassed.
+      check_id: riley_145_02
+mock_state:
+  docs:
+  - id: doc_1833013200001
+    title: Helio Start evidence snapshot — August 16, 2027
+    body: '# Helio Start evidence snapshot — August 16, 2027
+
+
+      ## Draft conclusion
+
+      The mature cohort is already board-ready. The elevated support effort appears to be ordinary connector
+      troubleshooting and does not require a separate qualification.
+
+
+      ## Archival status
+
+      Pending evidence check before archival.'
+    folder: Growth
+    created_at: '2027-08-16T16:00:00-05:00'

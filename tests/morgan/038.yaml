@@ -1,0 +1,1533 @@
+id: 38
+narrative_anchor_date: '2026-09-14'
+test: Restore event evt_focus_20260925_sync on September 25 to the recurring focus
+  block's title and Pacific-time window. A sync error replaced it with an all-day
+  placeholder; keep it attendee-free.
+load_bearing_facts:
+- 69
+expected_tool_calls:
+- update_calendar_event
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: update_calendar_event
+      path: result.ok
+      value: true
+      check_id: morgan_038_00
+      action_id: morgan_038_update_calendar_event
+    - type: field_equals
+      path: result.id
+      value: evt_focus_20260925_sync
+      tool: update_calendar_event
+      check_id: morgan_038_01
+      action_id: morgan_038_update_calendar_event
+    - type: field_equals
+      path: result.event.title
+      value: Deep focus block -- no interruptions
+      tool: update_calendar_event
+      check_id: morgan_038_02
+      action_id: morgan_038_update_calendar_event
+    - type: datetime_absolute_eq
+      path: result.event.start
+      value: '2026-09-25T13:00:00-07:00'
+      tool: update_calendar_event
+      check_id: morgan_038_03
+      action_id: morgan_038_update_calendar_event
+    - type: datetime_absolute_eq
+      path: result.event.end
+      value: '2026-09-25T15:00:00-07:00'
+      tool: update_calendar_event
+      check_id: morgan_038_04
+      action_id: morgan_038_update_calendar_event
+    - type: field_list_equals_unordered
+      path: result.event.attendees
+      values: []
+      tool: update_calendar_event
+      check_id: morgan_038_05
+      action_id: morgan_038_update_calendar_event
+mock_state:
+  calendar:
+  - attendees:
+    - Devon
+    end: '2023-01-11T10:30:00-08:00'
+    id: cal_000004_1
+    start: '2023-01-11T10:00:00-08:00'
+    title: Numbers slide review with Devon
+  - attendees:
+    - Marcus
+    end: '2023-01-11T11:05:00-08:00'
+    id: cal_000004_2
+    start: '2023-01-11T10:35:00-08:00'
+    title: Support rotation doc review
+  - attendees:
+    - Priya
+    end: '2023-01-12T10:20:00-08:00'
+    id: evt_20230111130000000
+    start: '2023-01-12T10:00:00-08:00'
+    title: Review onboarding flow mocks
+  - attendees: []
+    end: '2023-01-13T07:05:00-08:00'
+    id: evt_20230112170000000
+    start: '2023-01-13T07:00:00-08:00'
+    title: 'Reminder: review Priya''s design spec before standup'
+  - attendees: []
+    end: '2023-01-14T17:35:00-08:00'
+    id: evt_20230114140000000
+    start: '2023-01-14T17:30:00-08:00'
+    title: 'Reminder: grab the Trader Joe''s order before 6'
+  - attendees: []
+    end: '2023-01-27T09:05:00-08:00'
+    id: evt_20230126173000000
+    start: '2023-01-27T09:00:00-08:00'
+    title: 'Reminder: submit December expenses'
+  - attendees:
+    - Devon
+    end: '2023-02-06T11:30:00-08:00'
+    id: cal_000094_1
+    start: '2023-02-06T11:00:00-08:00'
+    title: 1:1 with Devon
+  - attendees:
+    - Devon
+    end: '2023-02-23T16:00:00-08:00'
+    id: evt_20230222140000000
+    start: '2023-02-23T14:00:00-08:00'
+    title: Working session on the H2 plan
+  - attendees: []
+    end: '2023-02-27T09:05:00-08:00'
+    id: evt_20230224153000000
+    start: '2023-02-27T09:00:00-08:00'
+    title: 'Reminder: send the board pre-read'
+  - attendees:
+    - Devon
+    end: '2023-03-08T10:00:00-08:00'
+    id: cal_000198_1
+    start: '2023-03-08T09:00:00-08:00'
+    title: Q3 planning check-in
+  - attendees:
+    - Devon
+    body: No interrupting.
+    end: '2023-03-08T12:00:00-08:00'
+    id: evt_20230307140000004
+    start: '2023-03-08T10:00:00-08:00'
+    title: Conversation with Devon about the prior month
+  - attendees:
+    - reservations@pennyroma-test.com
+    end: '2023-03-19T21:00:00-07:00'
+    id: cal_000260_1
+    start: '2023-03-19T19:30:00-07:00'
+    title: Dinner reservation at Penny Roma
+  - attendees: []
+    end: '2023-04-28T11:00:00-07:00'
+    id: evt_20230421093000000
+    start: '2023-04-28T10:00:00-07:00'
+    title: All-hands -- Q&A format
+  - attendees: []
+    end: '2023-04-28T15:00:00-07:00'
+    id: evt_20230421100000000
+    start: '2023-04-28T14:00:00-07:00'
+    title: quarterly all-hands
+  - attendees:
+    - Priya
+    end: '2023-04-22T15:30:00-07:00'
+    id: evt_20230421140000000
+    start: '2023-04-22T15:00:00-07:00'
+    title: Sync w/ Priya
+  - attendees: []
+    end: '2023-05-08T12:00:00-07:00'
+    id: evt_1784911051711
+    start: '2023-05-08T10:00:00-07:00'
+    title: 'Protected time — Mercury operating work: Jake''s weekly agenda + blockers'
+  - attendees:
+    - Morgan Chen
+    - Devon Hayes
+    - Jake
+    - Priya
+    - Anna Martinez
+    end: '2023-05-12T16:00:00-07:00'
+    id: evt_1784911056457
+    start: '2023-05-12T10:00:00-07:00'
+    title: Mercury product offsite — decisions, owners, launch blockers
+  - attendees:
+    - Morgan Chen
+    - Anna Martinez
+    - Devon Hayes
+    end: '2023-05-17T11:45:00-07:00'
+    id: evt_1784920497852
+    start: '2023-05-17T11:00:00-07:00'
+    title: Mercury retention package review — weekly cuts + board view
+  - attendees: []
+    end: '2023-05-18T11:05:00-07:00'
+    id: evt_1784920499960
+    start: '2023-05-18T09:05:00-07:00'
+    title: Travel buffer — SFO airport arrival for AS 16
+  - attendees: []
+    end: '2023-05-18T19:41:00-04:00'
+    id: evt_1784920500387
+    start: '2023-05-18T11:05:00-07:00'
+    title: Flight AS 16 — SFO to JFK (Alaska RK7Q2M)
+  - attendees: []
+    end: '2023-05-20T11:00:00-04:00'
+    id: evt_1784920500820
+    start: '2023-05-18T16:00:00-04:00'
+    title: Hotel stay — Ace Hotel Brooklyn (88417326)
+  - attendees: []
+    end: '2023-05-20T15:30:00-04:00'
+    id: evt_1784920501254
+    start: '2023-05-20T13:30:00-04:00'
+    title: Travel buffer — JFK airport arrival for AS 23
+  - attendees: []
+    end: '2023-05-20T18:58:00-07:00'
+    id: evt_1784920501700
+    start: '2023-05-20T15:30:00-04:00'
+    title: Flight AS 23 — JFK to SFO (Alaska RK7Q2M)
+  - attendees: []
+    body: Protected hold for Mercury operating follow-through.
+    end: '2023-05-22T12:00:00-07:00'
+    id: evt_1785100219582
+    start: '2023-05-22T10:00:00-07:00'
+    title: Protected time — Mercury operating follow-through
+  - attendees:
+    - Morgan Chen
+    - Anna Martinez
+    - Devon Hayes
+    body: Review the suspect Mercury activation mapping before any board or external
+      use.
+    end: '2023-05-24T13:30:00-07:00'
+    id: evt_1785100220511
+    start: '2023-05-24T13:00:00-07:00'
+    title: Mercury activation mapping review
+  - attendees: []
+    body: October 12–22, 2023 Tokyo trip hold is postponed/canceled before buying
+      flights. No replacement hold or booked date is being created; revisit only after
+      Mercury follow-through, Jamie’s hospital schedule, and H2 fundraising timing
+      are clearer.
+    end: '2023-09-20T09:19:00-07:00'
+    id: evt_1785100222856
+    start: '2023-09-20T09:18:00-07:00'
+    title: Postponed — Tokyo trip (no active October hold)
+  - attendees:
+    - ops@bluelinehq.com
+    - morgan@atlas-test.com
+    end: '2023-06-06T17:45:00-07:00'
+    id: evt_morgan_20260529_blueline_offsite
+    notes: Contractor touchpoint; preserve the existing invitation when rescheduling.
+    start: '2023-06-06T17:15:00-07:00'
+    title: Blueline contractor offsite touchpoint
+  - attendees: []
+    body: Protected hold for Mercury operating follow-through before Jake's weekly
+      turns into scattered follow-ups.
+    end: '2023-06-05T12:00:00-07:00'
+    id: evt_1785104285741
+    start: '2023-06-05T10:00:00-07:00'
+    title: Protected time — Mercury operating work
+  - attendees:
+    - morgan@atlas-test.com
+    - jake@atlas-test.com
+    - rishi@atlas-test.com
+    body: Short Mercury auth v0.2 readout with Morgan, Jake, and Rishi.
+    end: '2023-06-08T11:00:00-07:00'
+    id: evt_1785104290048
+    start: '2023-06-08T10:30:00-07:00'
+    title: Mercury auth v0.2 readout
+  - attendees: []
+    body: Protected hold for Mercury operating work.
+    end: '2023-06-12T12:00:00-07:00'
+    id: evt_1785105380282
+    start: '2023-06-12T10:00:00-07:00'
+    title: Protected time — Mercury operating work
+  - attendees:
+    - morgan@atlas-test.com
+    - priya@atlas-test.com
+    - jake@atlas-test.com
+    - marcus@atlas-test.com
+    body: Session for resolving activation-surface QA blockers before the next Mercury
+      readout.
+    end: '2023-06-27T15:15:00-07:00'
+    id: evt_1785127165403
+    start: '2023-06-27T14:30:00-07:00'
+    title: Mercury activation surface bug bash
+  - attendees:
+    - Morgan Chen
+    - Leo Park
+    body: CEO welcome and Mercury context on Leo’s first morning.
+    end: '2023-07-10T10:30:00-07:00'
+    id: evt_1785127681379
+    start: '2023-07-10T10:00:00-07:00'
+    title: Leo Park — CEO welcome and Mercury context
+  - attendees:
+    - Morgan Chen
+    - Priya
+    - Marcus
+    - Leo Park
+    body: 'Figma: https://www.figma.com/file/7mQvR1aH2k9p4LxM3Yc8nR/Mercury-activation-v0.2?node-id=1842%3A9912
+
+
+      Priya''s context: Review the latest Mercury failed-sync and small-width frames.
+      Focus on whether the 320px source-unavailable clipping follow-up is resolved;
+      whether the failed-sync states still preserve the neutral warning-circle direction
+      and normalized error buckets cleanly at small widths; and whether anything under
+      setup-guide copy or icon polish has crossed from nonblocking follow-up into
+      a release-readiness blocker. Do not reopen the settled CTA or failed-state icon
+      decisions. Use the review to confirm the frames are good enough for the next
+      dogfood pass and that Marcus and Leo can tie remaining evidence questions back
+      to MER-1279.'
+    end: '2023-07-26T15:00:00-07:00'
+    id: evt_1785179885099
+    start: '2023-07-26T14:00:00-07:00'
+    title: Mercury failed-sync / small-width review
+  - attendees:
+    - Morgan Chen
+    - Devon Hayes
+    - Anna Martinez
+    - Sofia Alvarez
+    - Northstar partner group
+    body: 'Agenda: September/October Mercury cohort package; Evergreen enterprise-readiness
+      signal; hybrid pricing. Boundaries: focused diligence readout only; no term-sheet
+      implication, no lead designation for Northstar, and no weekly activation cuts
+      in the deck.'
+    end: '2024-01-11T11:30:00-08:00'
+    id: evt_1785306027016
+    start: '2024-01-11T10:00:00-08:00'
+    title: Northstar Mercury partner readout
+  - attendees: []
+    body: 'Protected local reset with Jamie and Kibo: Dec. 24 through Jan. 1 stays
+      local and travel-free, with Oakland/Lake Merritt plans and no Tokyo or substitute-trip
+      hold. Exception only for work directly required for the already-scheduled Jan.
+      11 Northstar readout.'
+    end: '2024-01-02T00:00:00-08:00'
+    id: evt_1785307426116
+    start: '2023-12-24T00:00:00-08:00'
+    title: Holiday local reset — Oakland/Lake Merritt
+  - attendees: []
+    body: 'Booked Tokyo trip for Morgan Chen and Jamie, Thu Mar 7 through Tue Mar
+      12, 2024. Flights: JAL 1 San Francisco to Tokyo Haneda, departs Mar 7 at 12:40
+      PM PST and arrives Mar 8 at 4:55 PM JST; JAL 2 Tokyo Haneda to San Francisco,
+      departs Mar 12 at 6:25 PM JST and arrives Mar 12 at 11:10 AM PDT. Flight confirmation
+      H7K4Q2. Hotel: Trunk Hotel Shibuya, check-in Mar 8 and check-out Mar 12, confirmation
+      54188231. Kibo care confirmed locally in Oakland. Devon Hayes owns non-urgent
+      investor close-out follow-up while Morgan is away.'
+    end: '2024-03-13T00:00:00-07:00'
+    id: evt_1785523421608
+    start: '2024-03-07T00:00:00-08:00'
+    title: Protected travel window — Tokyo trip
+  - id: evt_1786405354514
+    title: Evergreen enterprise-readiness review
+    start: '2024-07-11T10:00:00-07:00'
+    end: '2024-07-11T11:00:00-07:00'
+    attendees:
+    - Evergreen procurement and security reviewers
+    - Sarah Kim
+    - Devon Hayes
+    - Nadia Singh
+    - Morgan Chen
+    body: 'Enterprise-readiness review centered on current-state evidence, SSO/SAML
+      evaluation framing, admin-side audit history, admin vs. billing-owner separation,
+      and what a standalone procurement/security packet would need to include.
+
+
+      Role boundaries:
+
+      - Sarah keeps the customer thread.
+
+      - Devon owns the commercial/procurement framing without feature-date promises.
+
+      - Nadia listens for repeatable customer-growth patterns.'
+  - id: evt_1786564591567
+    title: Review Oakland lease renewal with Jamie
+    start: '2024-09-03T09:00:00-07:00'
+    end: '2024-09-03T09:15:00-07:00'
+    attendees: []
+  - id: evt_1786933546919
+    title: Oakland maintenance — window leak reseal
+    start: '2025-01-06T10:00:00-08:00'
+    end: '2025-01-06T12:00:00-08:00'
+    attendees: []
+    body: Living-room window lower-frame reseal for Unit 3B. Keep towel setup until
+      done; keep Kibo out of the work area while sealant is applied/cures.
+  - id: evt_1786933939856
+    title: Kibo routine senior-dog recheck
+    start: '2025-04-11T10:00:00-07:00'
+    end: '2025-04-11T10:30:00-07:00'
+    attendees: []
+    body: 'Routine senior-dog recheck after stable Jan. 10 gait visit; go sooner if
+      appetite, vomiting, or gait problems recur.
+
+
+      Prep notes for Apr 11: short flat Lake Merritt-side walks have been okay; Apr
+      5 had mild starting stiffness, then Kibo loosened up; eating normally; no vomiting;
+      no new gait issue. Current baseline: measured food, strict no-poultry care,
+      vet-approved non-poultry joint supplement, and shorter or flatter walks when
+      stiff.'
+  - id: evt_1739468760000
+    title: Q1 company update + collected Q&A
+    start: '2025-03-06T10:00:00-08:00'
+    end: '2025-03-06T11:00:00-08:00'
+    attendees:
+    - Scaffold team
+    body: 'Structured quarterly all-hands: short company update, pre-collected questions,
+      live answers only on approved current topics, async or named-owner routing for
+      the rest. No open-mic Q&A block.'
+  - id: evt_1741655100003
+    title: Protected evening — Morgan + Jamie anniversary
+    start: '2025-03-19T18:00:00-07:00'
+    end: '2025-03-19T22:00:00-07:00'
+    attendees: []
+    body: Protected anniversary evening in Oakland. Only an actual incident or similarly
+      customer-impacting emergency should override it; route routine investor, board,
+      customer, and internal catch-ups around this hold.
+  - id: evt_1742229720003
+    title: Evergreen SAML certificate rotation prep
+    start: '2025-04-01T11:00:00-07:00'
+    end: '2025-04-01T11:30:00-07:00'
+    attendees:
+    - Sarah Kim
+    - Leo Park
+    - Devon Hayes
+    body: Prep for Evergreen’s April 3 SAML certificate rotation on the annual Mercury
+      Growth account. Keep this to shipped SAML operational readiness and workspace-admin
+      support path; no advanced-admin, procurement/security add-on, or roadmap commitments.
+  - id: evt_1744247220000
+    title: Offline household morning — Jamie/Kibo
+    start: '2025-04-12T08:30:00-07:00'
+    end: '2025-04-12T11:00:00-07:00'
+    attendees: []
+    body: Protected Oakland household block with Jamie and Kibo. Route routine Scaffold
+      work, investor follow-ups, customer check-ins, and internal catch-ups around
+      it unless there is an actual incident or customer-impacting emergency.
+  - id: evt_1744766580001
+    title: Offline household dinner — Morgan/Jamie
+    start: '2025-04-17T18:30:00-07:00'
+    end: '2025-04-17T20:30:00-07:00'
+    attendees: []
+    body: Protected weeknight household block. Route routine Scaffold work, investor
+      follow-ups, customer check-ins, and internal catch-ups around it unless there
+      is an actual incident or customer-impacting emergency.
+  - id: evt_1745335920000
+    title: Compass April prompt evidence review
+    start: '2025-04-25T10:00:00-07:00'
+    end: '2025-04-25T10:45:00-07:00'
+    attendees:
+    - Morgan Chen
+    - Anna Martinez
+    - Nadia Singh
+    - Jake
+    - Leo Park
+    - Sarah Kim
+    body: 'Review the April Compass action-prompt trial evidence. Anna brings definitions,
+      evidence sources, dates, and caveats. Sarah brings account-thread evidence within
+      Evergreen annual-account and Acme live-only boundaries. Leo covers data/platform
+      seam and source-recency checks. Jake confirms prompt-level implementation only,
+      no dashboard rebuild. Nadia covers account-team scripts and whether behavior
+      changed. Decision boundaries: no customer-facing proof, no board-dashboard framing,
+      no hiring implication before the May board-cycle evidence gate.'
+  - id: evt_1745457120004
+    title: Offline household morning — Jamie/Kibo
+    start: '2025-04-26T08:30:00-07:00'
+    end: '2025-04-26T10:30:00-07:00'
+    attendees: []
+    body: Protected Oakland household block with Jamie and Kibo. Short flat Lake Merritt-side
+      walk if Kibo is moving comfortably. Route routine Scaffold work, investor follow-ups,
+      customer check-ins, and internal catch-ups around it unless there is an actual
+      incident or customer-impacting emergency.
+  - id: evt_1745888520009
+    title: Offline household dinner — Morgan/Jamie
+    start: '2025-05-01T18:30:00-07:00'
+    end: '2025-05-01T20:30:00-07:00'
+    attendees: []
+    body: Protected weeknight household block. Route routine Scaffold work, investor
+      follow-ups, customer check-ins, and internal catch-ups around it unless there
+      is an actual incident or customer-impacting emergency.
+  - id: evt_1746061440003
+    title: Offline household morning — Jamie/Kibo
+    start: '2025-05-03T08:30:00-07:00'
+    end: '2025-05-03T10:30:00-07:00'
+    attendees: []
+    body: Protected Oakland household block with Jamie and Kibo. Short flat Lake Merritt-side
+      walk if Kibo is moving comfortably. Route routine Scaffold work, investor follow-ups,
+      customer check-ins, and internal catch-ups around it unless there is an actual
+      incident or customer-impacting emergency.
+  - id: evt_1746112560004
+    title: Evergreen annual account operating read — current state + repeatability
+    start: '2025-05-05T10:00:00-07:00'
+    end: '2025-05-05T10:50:00-07:00'
+    attendees:
+    - Morgan Chen
+    - Devon Hayes
+    - Sarah Kim
+    - Nadia Singh
+    - Anna Martinez
+    body: 'Operating read for Evergreen’s annual Mercury Growth account.
+
+
+      Agenda:
+
+      - Current-state evidence: shipped SAML rotation, audit lookup, workspace-admin
+      support, monthly-active-developer usage.
+
+      - Commercial/procurement boundary: standard Growth terms; no advanced-admin
+      add-on claim unless Devon confirms a shipped/quotable package.
+
+      - Customer-growth question: what, if anything, repeats beyond Evergreen?
+
+      - Staffing boundary: no RevOps/CS/SDR/field-sales/customer-growth support or
+      second Mercury engineering req unless May board-cycle evidence gate changes.
+
+
+      Not a customer-facing packet, not a board-dashboard session, and not a hiring
+      meeting.'
+  - id: evt_1746496020011
+    title: Offline household dinner — Morgan/Jamie
+    start: '2025-05-07T18:30:00-07:00'
+    end: '2025-05-07T20:30:00-07:00'
+    attendees: []
+    body: Protected weeknight household block. Route routine Scaffold work, investor
+      follow-ups, customer check-ins, and internal catch-ups around it unless there
+      is an actual incident or customer-impacting emergency.
+  - id: evt_1746675780002
+    title: Offline household morning — Jamie/Kibo
+    start: '2025-05-10T08:30:00-07:00'
+    end: '2025-05-10T10:30:00-07:00'
+    attendees: []
+    body: Protected Oakland household block with Jamie and Kibo. Short flat Lake Merritt-side
+      walk if Kibo is moving comfortably. Route routine Scaffold work, investor follow-ups,
+      customer check-ins, and internal catch-ups around it unless there is an actual
+      incident or customer-impacting emergency.
+  - id: evt_1746750120005
+    title: May board-cycle evidence review — staffing gate
+    start: '2025-05-13T11:00:00-07:00'
+    end: '2025-05-13T11:45:00-07:00'
+    attendees:
+    - Morgan Chen
+    - Devon Hayes
+    - Sofia Alvarez
+    body: 'Focused May board-cycle evidence review. Agenda: Compass prompt behavior-change
+      evidence; account-source quality beyond Evergreen; owner-routed enterprise-readiness
+      intake. Boundary: evidence review only, not a default staffing decision or fundraising
+      narrative.'
+  - id: evt_1747098660012
+    title: Offline household dinner — Morgan/Jamie
+    start: '2025-05-15T18:30:00-07:00'
+    end: '2025-05-15T20:30:00-07:00'
+    attendees: []
+    body: Protected weeknight household block during May board-cycle week. Route routine
+      Scaffold work, investor follow-ups, customer check-ins, and internal catch-ups
+      around it unless there is an actual incident or customer-impacting emergency.
+  - id: evt_1747238760004
+    title: Compass June closeout — narrow evidence read
+    start: '2025-06-04T10:00:00-07:00'
+    end: '2025-06-04T10:45:00-07:00'
+    attendees:
+    - Morgan Chen
+    - Devon Hayes
+    - Anna Martinez
+    - Nadia Singh
+    - Jake
+    - Leo Park
+    - Sarah Kim
+    body: 'Narrow Compass closeout after the May board-cycle review.
+
+
+      Agenda:
+
+      - Did either action prompt change customer or account-team behavior beyond internal
+      owner follow-up?
+
+      - What account-source quality is reliable beyond Sarah Kim’s Evergreen Bank
+      thread?
+
+      - Is enterprise-readiness intake still owner-routed, and where did routing break
+      down?
+
+      - What remains worth keeping as internal prompt evidence work?
+
+
+      Exclusions: no customer-facing Compass launch, no board dashboard, no GTM proof
+      claim, no staffing trigger, and no Series C narrative.'
+  - id: evt_1747271760005
+    title: Offline household morning — Jamie/Kibo
+    start: '2025-05-17T08:30:00-07:00'
+    end: '2025-05-17T10:30:00-07:00'
+    attendees: []
+    body: Protected Oakland household block with Jamie and Kibo. Short flat Lake Merritt-side
+      walk if Kibo is moving comfortably. Route routine Scaffold work, investor follow-ups,
+      customer check-ins, and internal catch-ups around it unless there is an actual
+      incident or customer-impacting emergency.
+  - id: evt_1747703220008
+    title: Offline household dinner — Morgan/Jamie
+    start: '2025-05-22T18:30:00-07:00'
+    end: '2025-05-22T20:30:00-07:00'
+    attendees: []
+    body: Protected weeknight household block. Route routine Scaffold work, investor
+      follow-ups, customer check-ins, and internal catch-ups around it unless there
+      is an actual incident or customer-impacting emergency.
+  - id: evt_1747789860003
+    title: Offline household morning — Jamie/Kibo
+    start: '2025-05-24T08:30:00-07:00'
+    end: '2025-05-24T10:30:00-07:00'
+    attendees: []
+    body: Protected Oakland household block with Jamie and Kibo. Short flat Lake Merritt-side
+      walk if Kibo is moving comfortably. Route routine Scaffold work, investor follow-ups,
+      customer check-ins, and internal catch-ups around it unless there is an actual
+      incident or customer-impacting emergency.
+  - id: evt_1748306280011
+    title: Offline household dinner — Morgan/Jamie
+    start: '2025-05-29T18:30:00-07:00'
+    end: '2025-05-29T20:30:00-07:00'
+    attendees: []
+    body: Protected weeknight household block. Route routine Scaffold work, investor
+      follow-ups, customer check-ins, and internal catch-ups around it unless there
+      is an actual incident or customer-impacting emergency.
+  - id: evt_1748394360001
+    title: Offline household morning — Jamie/Kibo
+    start: '2025-05-31T08:30:00-07:00'
+    end: '2025-05-31T10:30:00-07:00'
+    attendees: []
+    body: Protected Oakland household block with Jamie and Kibo. Short flat Lake Merritt-side
+      walk if Kibo is moving comfortably. Route routine Scaffold work, investor follow-ups,
+      customer check-ins, and internal catch-ups around it unless there is an actual
+      incident or customer-impacting emergency.
+  - id: evt_1748913180008
+    title: Offline household dinner — Morgan/Jamie
+    start: '2025-06-05T18:30:00-07:00'
+    end: '2025-06-05T20:30:00-07:00'
+    attendees: []
+    body: Protected weeknight household block during Compass closeout week. Route
+      routine Scaffold work, investor follow-ups, customer check-ins, and internal
+      catch-ups around it unless there is an actual incident or customer-impacting
+      emergency.
+  - id: evt_1748999040001
+    title: Offline household morning — Jamie/Kibo
+    start: '2025-06-07T08:30:00-07:00'
+    end: '2025-06-07T10:30:00-07:00'
+    attendees: []
+    body: Protected Oakland household block with Jamie and Kibo. Short flat Lake Merritt-side
+      walk if Kibo is moving comfortably. Route routine Scaffold work, investor follow-ups,
+      customer check-ins, and internal catch-ups around it unless there is an actual
+      incident or customer-impacting emergency.
+  - id: evt_1749494820011
+    title: Customer Growth role calibration — current phase alignment
+    start: '2025-06-10T10:30:00-07:00'
+    end: '2025-06-10T11:15:00-07:00'
+    attendees:
+    - Morgan Chen
+    - Devon Hayes
+    - Nadia Singh
+    body: 'Private conversation about whether the Head of Customer Growth role matches
+      Scaffold''s current phase after the Compass closeout. Boundary: role fit and
+      next-step discussion only; no blame framing, no replacement-search assumption,
+      and no final transition terms in the invite.'
+  - id: evt_1749518340013
+    title: Offline household dinner — Morgan/Jamie
+    start: '2025-06-11T18:30:00-07:00'
+    end: '2025-06-11T20:30:00-07:00'
+    attendees: []
+    body: Protected weeknight household block. Route routine Scaffold work, investor
+      follow-ups, customer check-ins, and internal catch-ups around it unless there
+      is an actual incident or customer-impacting emergency.
+  - id: evt_1749580860001
+    title: Customer Growth role-fit follow-up — next steps
+    start: '2025-06-12T10:00:00-07:00'
+    end: '2025-06-12T10:30:00-07:00'
+    attendees:
+    - Morgan Chen
+    - Devon Hayes
+    - Nadia Singh
+    body: Private follow-up after the June 10 role-fit conversation. Discuss next
+      steps only; do not use replacement-search, final-transition, or broad communications
+      framing in the invite.
+  - id: evt_1749689760005
+    title: Offline household morning — Jamie/Kibo
+    start: '2025-06-14T08:30:00-07:00'
+    end: '2025-06-14T10:30:00-07:00'
+    attendees: []
+    body: Protected Oakland household block with Jamie and Kibo. Short flat Lake Merritt-side
+      walk if Kibo is moving comfortably. Route routine Scaffold work, investor follow-ups,
+      customer check-ins, and internal catch-ups around it unless there is an actual
+      incident or customer-impacting emergency.
+  - id: evt_1749763560009
+    title: Nadia / Sarah handoff — scripts + account-thread hygiene
+    start: '2025-06-16T09:00:00-07:00'
+    end: '2025-06-16T09:30:00-07:00'
+    attendees:
+    - Nadia Singh
+    - Sarah Kim
+    body: 'Private transition handoff. Scope: customer-growth scripts, account-prep
+      language, account-thread hygiene, and Evergreen/Acme boundaries. Not a customer-facing
+      owner-story change and not a roadmap or procurement commitment.'
+  - id: evt_1749763560010
+    title: Nadia / Anna handoff — Compass behavior read + caveats
+    start: '2025-06-16T13:00:00-07:00'
+    end: '2025-06-16T13:30:00-07:00'
+    attendees:
+    - Nadia Singh
+    - Anna Martinez
+    body: 'Private transition handoff. Scope: behavior-read context, Compass prompt
+      caveats, evidence quality, and what not to claim. Compass remains internal prompt
+      work, not customer-facing proof, GTM proof, a board dashboard, or a hiring trigger.'
+  - id: evt_1750122420016
+    title: Offline household dinner — Morgan/Jamie
+    start: '2025-06-19T18:30:00-07:00'
+    end: '2025-06-19T20:30:00-07:00'
+    attendees: []
+    body: Protected weeknight household block during Nadia's final transition week.
+      Route routine Scaffold work, investor follow-ups, customer check-ins, and internal
+      catch-ups around it unless there is an actual incident or customer-impacting
+      emergency.
+  - id: evt_1750122420017
+    title: Offline household morning — Jamie/Kibo
+    start: '2025-06-21T08:00:00-07:00'
+    end: '2025-06-21T10:00:00-07:00'
+    attendees: []
+    body: Protected Oakland household block with Jamie and Kibo. Short flat Lake Merritt-side
+      walk if Kibo is moving comfortably. Route routine Scaffold work, investor follow-ups,
+      customer check-ins, and internal catch-ups around it unless there is an actual
+      incident or customer-impacting emergency.
+  - id: evt_1750813380001
+    title: Offline household dinner — Morgan/Jamie
+    start: '2025-06-26T18:30:00-07:00'
+    end: '2025-06-26T20:30:00-07:00'
+    attendees: []
+    body: Protected weeknight household block during Q2 board-cycle week. Route routine
+      Scaffold work, investor follow-ups, customer check-ins, and internal catch-ups
+      around it unless there is an actual incident or customer-impacting emergency.
+  - id: evt_1750813380002
+    title: Offline household morning — Jamie/Kibo
+    start: '2025-06-28T08:00:00-07:00'
+    end: '2025-06-28T10:00:00-07:00'
+    attendees: []
+    body: Protected Oakland household block with Jamie and Kibo. Short flat Lake Merritt-side
+      walk if Kibo is moving comfortably. Route routine Scaffold work, investor follow-ups,
+      customer check-ins, and internal catch-ups around it unless there is an actual
+      incident or customer-impacting emergency.
+  - id: evt_1751152680010
+    title: Devon July pause planning — private
+    start: '2025-06-29T09:30:00-07:00'
+    end: '2025-06-29T10:15:00-07:00'
+    attendees:
+    - Morgan Chen
+    - Devon Hayes
+    body: Private founder conversation after Q2 board-cycle close. Discuss whether
+      Devon takes a real July pause from day-to-day work, emergency-only boundary,
+      owner coverage, and what not to announce before Morgan and Devon agree.
+  - id: evt_1751296980012
+    title: Devon away from day-to-day Scaffold work — emergency-only
+    start: '2025-07-01T00:00:00-07:00'
+    end: '2025-08-01T00:00:00-07:00'
+    attendees:
+    - Morgan Chen
+    - Devon Hayes
+    body: 'Devon is away from day-to-day Scaffold work July 1–31, 2025. Only true
+      emergencies route to him. July owner split: Jake owns Mercury sequencing; Leo
+      Park owns platform seams and Atlas first technical reads; Priya owns activation/onboarding
+      quality; Anna Martinez owns retention and Compass evidence quality; Sarah Kim
+      owns Evergreen customer-thread continuity; Morgan Chen owns board/customer narrative
+      without Devon as the default second brain.'
+  - id: evt_1751330760020
+    title: Offline household dinner — Morgan/Jamie
+    start: '2025-07-03T18:30:00-07:00'
+    end: '2025-07-03T20:30:00-07:00'
+    attendees: []
+    body: Protected weeknight household block during the first week of Devon's July
+      pause. Route routine Scaffold work, investor follow-ups, customer check-ins,
+      and internal catch-ups around it unless there is an actual incident or customer-impacting
+      emergency.
+  - id: evt_1751330760021
+    title: Offline household morning — Jamie/Kibo
+    start: '2025-07-05T08:00:00-07:00'
+    end: '2025-07-05T10:00:00-07:00'
+    attendees: []
+    body: Protected Oakland household block with Jamie and Kibo. Short flat Lake Merritt-side
+      walk if Kibo is moving comfortably. Route routine Scaffold work, investor follow-ups,
+      customer check-ins, and internal catch-ups around it unless there is an actual
+      incident or customer-impacting emergency.
+  - id: evt_1751851320012
+    title: Offline household dinner — Morgan/Jamie
+    start: '2025-07-10T18:30:00-07:00'
+    end: '2025-07-10T20:30:00-07:00'
+    attendees: []
+    body: Protected weeknight household block during Devon's July pause. Route routine
+      Scaffold work, investor follow-ups, customer check-ins, and internal catch-ups
+      around it unless there is an actual incident or customer-impacting emergency.
+  - id: evt_1751851320013
+    title: Offline household morning — Jamie/Kibo
+    start: '2025-07-12T08:00:00-07:00'
+    end: '2025-07-12T10:00:00-07:00'
+    attendees: []
+    body: Protected Oakland household block with Jamie and Kibo. Short flat Lake Merritt-side
+      walk if Kibo is moving comfortably. Route routine Scaffold work, investor follow-ups,
+      customer check-ins, and internal catch-ups around it unless there is an actual
+      incident or customer-impacting emergency.
+  - id: evt_1752454560024
+    title: Offline household dinner — Morgan/Jamie
+    start: '2025-07-17T18:30:00-07:00'
+    end: '2025-07-17T20:30:00-07:00'
+    attendees: []
+    body: Protected weeknight household block during Devon's July pause. Route routine
+      Scaffold work, investor follow-ups, customer check-ins, and internal catch-ups
+      around it unless there is an actual incident or customer-impacting emergency.
+  - id: evt_1752454560025
+    title: Offline household morning — Jamie/Kibo
+    start: '2025-07-19T08:00:00-07:00'
+    end: '2025-07-19T10:00:00-07:00'
+    attendees: []
+    body: Protected Oakland household block with Jamie and Kibo. Short flat Lake Merritt-side
+      walk if Kibo is moving comfortably. Route routine Scaffold work, investor follow-ups,
+      customer check-ins, and internal catch-ups around it unless there is an actual
+      incident or customer-impacting emergency.
+  - id: evt_1752507360000
+    title: Compass July first-pass evidence read
+    start: '2025-07-16T10:00:00-07:00'
+    end: '2025-07-16T10:45:00-07:00'
+    attendees:
+    - Morgan Chen
+    - Anna Martinez
+    - Sarah Kim
+    - Jake
+    - Leo Park
+    body: 'First Q3 read of retained Compass prompt usage. Bring structured rows only:
+      account, prompt type, sighting date, owner, source/excerpt, caveat, owner follow-up
+      date, outcome/current status. Boundaries: prompt sightings alone do not count;
+      dated owner follow-up can be tracked; Acme export signal must be checked as
+      Atlas/API v2 support context, not Compass proof; no customer-facing claims,
+      GTM proof, staffing trigger, or Devon route during the July pause.'
+  - id: evt_1753058760014
+    title: Offline household dinner — Morgan/Jamie
+    start: '2025-07-24T18:30:00-07:00'
+    end: '2025-07-24T20:30:00-07:00'
+    attendees: []
+    body: Protected weeknight household block during Devon's July pause. Route routine
+      Scaffold work, investor follow-ups, customer check-ins, and internal catch-ups
+      around it unless there is an actual incident or customer-impacting emergency.
+  - id: evt_1753058760015
+    title: Offline household morning — Jamie/Kibo
+    start: '2025-07-26T08:00:00-07:00'
+    end: '2025-07-26T10:00:00-07:00'
+    attendees: []
+    body: Protected Oakland household block with Jamie and Kibo. Short flat Lake Merritt-side
+      walk if Kibo is moving comfortably, and keep it shorter if the morning is warm
+      or he starts stiff. Route routine Scaffold work, investor follow-ups, customer
+      check-ins, and internal catch-ups around it unless there is an actual incident
+      or customer-impacting emergency.
+  - id: evt_1753660680020
+    title: Offline household dinner — Morgan/Jamie
+    start: '2025-07-31T18:30:00-07:00'
+    end: '2025-07-31T20:30:00-07:00'
+    attendees: []
+    body: Protected weeknight household block during the final day of Devon's July
+      pause. Route routine Scaffold work, investor follow-ups, customer check-ins,
+      and internal catch-ups around it unless there is an actual incident or customer-impacting
+      emergency.
+  - id: evt_1753660680021
+    title: Offline household morning — Jamie/Kibo
+    start: '2025-08-02T08:00:00-07:00'
+    end: '2025-08-02T10:00:00-07:00'
+    attendees: []
+    body: Protected Oakland household block with Jamie and Kibo. Short flat Lake Merritt-side
+      walk if Kibo is moving comfortably, and keep it shorter if the morning is warm
+      or he starts stiff. Route routine Scaffold work, investor follow-ups, customer
+      check-ins, and internal catch-ups around it unless there is an actual incident
+      or customer-impacting emergency.
+  - id: evt_1753715460000
+    title: Devon pause re-entry conversation — August lane shape
+    start: '2025-07-29T16:30:00-07:00'
+    end: '2025-07-29T17:15:00-07:00'
+    attendees:
+    - Morgan Chen
+    - Devon Hayes
+    body: Private founder conversation at the end of Devon's July pause. Discuss August
+      re-entry shape, what should not snap back, and which July owner lanes stay intact
+      until Morgan and Devon explicitly agree otherwise. Not a broad operating announcement.
+  - id: evt_1753919040018
+    title: Mercury activation-copy review — July samples and source-owner cue
+    start: '2025-08-05T10:00:00-07:00'
+    end: '2025-08-05T10:45:00-07:00'
+    attendees:
+    - Morgan Chen
+    - Priya
+    - Jake
+    - Leo Park
+    body: 'Review Priya''s July activation-copy sample packet. Focus: clip evidence,
+      source-owner cue visibility, product state correctness, and whether setup-guide/admin
+      copy is confusing invited teammates. Boundaries: no admin-role model reopen,
+      no custom admin policy, no granular permissions scope, no Atlas scope. Outcome
+      should be a bounded copy/product-state read, not a product escalation by default.'
+  - id: evt_1754265120025
+    title: Offline household dinner — Morgan/Jamie
+    start: '2025-08-07T18:30:00-07:00'
+    end: '2025-08-07T20:30:00-07:00'
+    attendees: []
+    body: Protected weeknight household block during the first full August workweek
+      after Devon's pause. Route routine Scaffold work, investor follow-ups, customer
+      check-ins, and internal catch-ups around it unless there is an actual incident
+      or customer-impacting emergency.
+  - id: evt_1754265120026
+    title: Offline household morning — Jamie/Kibo
+    start: '2025-08-09T08:00:00-07:00'
+    end: '2025-08-09T10:00:00-07:00'
+    attendees: []
+    body: Protected Oakland household block with Jamie and Kibo. Short flat Lake Merritt-side
+      walk if Kibo is moving comfortably; keep it shorter if the morning is warm or
+      he starts stiff. Route routine Scaffold work, investor follow-ups, customer
+      check-ins, and internal catch-ups around it unless there is an actual incident
+      or customer-impacting emergency.
+  - id: evt_1754869200028
+    title: Offline household dinner — Morgan/Jamie
+    start: '2025-08-14T18:30:00-07:00'
+    end: '2025-08-14T20:30:00-07:00'
+    attendees: []
+    body: Protected weeknight household block. Route routine Scaffold work, investor
+      follow-ups, customer check-ins, and internal catch-ups around it unless there
+      is an actual incident or customer-impacting emergency.
+  - id: evt_1754869200029
+    title: Offline household morning — Jamie/Kibo
+    start: '2025-08-16T08:00:00-07:00'
+    end: '2025-08-16T10:00:00-07:00'
+    attendees: []
+    body: Protected Oakland household block with Jamie and Kibo. Short flat Lake Merritt-side
+      walk if Kibo is moving comfortably; keep it shorter if the morning is warm or
+      he starts stiff. Route routine Scaffold work, investor follow-ups, customer
+      check-ins, and internal catch-ups around it unless there is an actual incident
+      or customer-impacting emergency.
+  - id: evt_1755015480004
+    title: Compass owner-action prototype scope decision
+    start: '2025-08-13T10:00:00-07:00'
+    end: '2025-08-13T10:45:00-07:00'
+    attendees:
+    - Morgan Chen
+    - Anna Martinez
+    - Sarah Kim
+    - Jake
+    - Leo Park
+    body: 'Decision meeting: whether to approve a small internal Compass owner-action
+      prototype. Proposed scope: renewal-risk/admin-friction and post-first-live-sync
+      prompts; next action + evidence source + caveat in one place; owner-action status.
+      Boundaries: no dashboard, no customer-facing surface, no GTM/customer-proof/staffing
+      claim, and Acme export signals stay Atlas/API v2 support context.'
+  - id: evt_1755473700025
+    title: Offline household dinner — Morgan/Jamie
+    start: '2025-08-21T18:30:00-07:00'
+    end: '2025-08-21T20:30:00-07:00'
+    attendees: []
+    body: Protected weeknight household block. Route routine Scaffold work, investor
+      follow-ups, customer check-ins, and internal catch-ups around it unless there
+      is an actual incident or customer-impacting emergency.
+  - id: evt_1755473700026
+    title: Offline household morning — Jamie/Kibo
+    start: '2025-08-23T08:00:00-07:00'
+    end: '2025-08-23T10:00:00-07:00'
+    attendees: []
+    body: Protected Oakland household block with Jamie and Kibo. Short flat Lake Merritt-side
+      walk if Kibo is moving comfortably; keep it shorter if the morning is warm or
+      he starts stiff. Route routine Scaffold work, investor follow-ups, customer
+      check-ins, and internal catch-ups around it unless there is an actual incident
+      or customer-impacting emergency.
+  - id: evt_1756077720028
+    title: Offline household dinner — Morgan/Jamie
+    start: '2025-08-28T18:30:00-07:00'
+    end: '2025-08-28T20:30:00-07:00'
+    attendees: []
+    body: Protected weeknight household block. Route routine Scaffold work, investor
+      follow-ups, customer check-ins, and internal catch-ups around it unless there
+      is an actual incident or customer-impacting emergency.
+  - id: evt_1756077720029
+    title: Offline household morning — Jamie/Kibo
+    start: '2025-08-30T08:00:00-07:00'
+    end: '2025-08-30T10:00:00-07:00'
+    attendees: []
+    body: Protected Oakland household block with Jamie and Kibo. Short flat Lake Merritt-side
+      walk if Kibo is moving comfortably; keep it shorter if the morning is warm or
+      he starts stiff. Route routine Scaffold work, investor follow-ups, customer
+      check-ins, and internal catch-ups around it unless there is an actual incident
+      or customer-impacting emergency.
+  - id: evt_1756310760007
+    title: Evergreen treasury current-flow setup walkthrough
+    start: '2025-09-17T10:00:00-07:00'
+    end: '2025-09-17T10:30:00-07:00'
+    attendees:
+    - Sarah Kim
+    - Jake
+    - Leo Park
+    - Evergreen treasury operations department
+    body: 'Current-flow setup walkthrough under Evergreen''s existing annual Growth
+      account. Sarah leads the customer thread. Scope: workspace setup, invited teammate/source-owner
+      path, first source connection, and first live sync if ready. Jake optional for
+      Mercury product-scope questions; Leo optional for SAML/platform questions only.
+      Excludes custom admin policy, granular role editor, advanced-admin controls,
+      and procurement/security commitments.
+
+
+      Prep note for Evergreen treasury operations: come ready with the workspace name,
+      teammate/source-owner participants, the first source to connect, and any current-flow
+      setup questions. If advanced-admin or granular-role questions come up, Scaffold
+      will capture them separately as follow-up, not as blockers or commitments for
+      this walkthrough.'
+  - id: evt_1756326120009
+    title: Compass owner-action prototype readout — actions, caveats, rejected-thin
+      rows
+    start: '2025-09-05T10:00:00-07:00'
+    end: '2025-09-05T10:45:00-07:00'
+    attendees:
+    - Morgan Chen
+    - Anna Martinez
+    - Sarah Kim
+    - Jake
+    - Leo Park
+    body: Internal readout for the September Compass owner-action prototype. Bring
+      counts by owner_action_status; completed owner actions with evidence source
+      and caveat; rejected_thin_source_or_date rows; blocked_waiting_customer_follow_up
+      rows; and source_freshness_warning caveats. This is not a customer-facing Compass
+      launch, GTM proof, staffing trigger, or fundraising claim.
+  - id: evt_1756395660010
+    title: Review Oakland Unit 3B lease renewal decision
+    start: '2025-09-04T18:00:00-07:00'
+    end: '2025-09-04T18:30:00-07:00'
+    attendees: []
+    body: 'Review pending Unit 3B renewal offer before response deadline. Terms: Oct
+      1, 2025–Sept 30, 2026; $4,460/month base rent; utility bill-back unchanged;
+      response due Sept 12. Decision frame: renewal increase versus moving cost/disruption,
+      Kibo senior-care routine, Jamie schedule, and Oakland/Lake Merritt cadence.
+      Do not assume decision yet.'
+  - id: evt_1756395660011
+    title: Completed — Oakland Unit 3B lease renewal response sent
+    start: '2025-09-12T09:00:00-07:00'
+    end: '2025-09-12T09:15:00-07:00'
+    attendees: []
+    body: Renewal response sent September 10, 2025. Unit 3B renewed for October 1,
+      2025 through September 30, 2026 at $4,460/month; no new deposit, no renewal
+      fee, and utility bill-back unchanged. No action needed on the September 12 deadline.
+  - id: evt_1756683360017
+    title: Offline household dinner — Morgan/Jamie
+    start: '2025-09-04T18:30:00-07:00'
+    end: '2025-09-04T20:30:00-07:00'
+    attendees: []
+    body: Protected weeknight household block. Route routine Scaffold work, investor
+      follow-ups, customer check-ins, and internal catch-ups around it unless there
+      is an actual incident or customer-impacting emergency.
+  - id: evt_1756683360018
+    title: Offline household morning — Jamie/Kibo
+    start: '2025-09-06T08:00:00-07:00'
+    end: '2025-09-06T10:00:00-07:00'
+    attendees: []
+    body: Protected Oakland household block with Jamie and Kibo. Short flat Lake Merritt-side
+      walk if Kibo is comfortable; keep it shorter if the morning is warm or he starts
+      stiff. Route routine Scaffold work, investor follow-ups, customer check-ins,
+      and internal catch-ups around it unless there is an actual incident or customer-impacting
+      emergency.
+  - id: evt_1757287680018
+    title: Offline household dinner — Morgan/Jamie
+    start: '2025-09-11T18:30:00-07:00'
+    end: '2025-09-11T20:30:00-07:00'
+    attendees: []
+    body: Protected weeknight household block. Route routine Scaffold work, investor
+      follow-ups, customer check-ins, and internal catch-ups around it unless there
+      is an actual incident or customer-impacting emergency.
+  - id: evt_1757287680019
+    title: Offline household morning — Jamie/Kibo
+    start: '2025-09-13T08:00:00-07:00'
+    end: '2025-09-13T10:00:00-07:00'
+    attendees: []
+    body: Protected Oakland household block with Jamie and Kibo. Short flat Lake Merritt-side
+      walk if Kibo is comfortable; keep it shorter if the morning is warm or he starts
+      stiff. Route routine Scaffold work, investor follow-ups, customer check-ins,
+      and internal catch-ups around it unless there is an actual incident or customer-impacting
+      emergency.
+  - id: evt_1757892840012
+    title: Offline household dinner — Morgan/Jamie
+    start: '2025-09-18T18:30:00-07:00'
+    end: '2025-09-18T20:30:00-07:00'
+    attendees: []
+    body: Protected weeknight household block. Route routine Scaffold work, investor
+      follow-ups, customer check-ins, and internal catch-ups around it unless there
+      is an actual incident or customer-impacting emergency.
+  - id: evt_1757892840013
+    title: Offline household morning — Jamie/Kibo
+    start: '2025-09-20T08:00:00-07:00'
+    end: '2025-09-20T10:00:00-07:00'
+    attendees: []
+    body: Protected Oakland household block with Jamie and Kibo. Short flat Lake Merritt-side
+      walk if Kibo is comfortable; keep it shorter if the morning is warm or he starts
+      stiff. Route routine Scaffold work, investor follow-ups, customer check-ins,
+      and internal catch-ups around it unless there is an actual incident or customer-impacting
+      emergency.
+  - id: evt_1758038820001
+    title: Q3 operating review — Evergreen, Compass, Atlas/Mercury evidence
+    start: '2025-09-24T10:00:00-07:00'
+    end: '2025-09-24T11:15:00-07:00'
+    attendees:
+    - Morgan Chen
+    - Devon Hayes
+    - Sofia Alvarez
+    - Anna Martinez
+    - Sarah Kim
+    - Jake
+    - Leo Park
+    body: 'Evidence review only, not a fundraising kickoff. Questions: (1) whether
+      Evergreen evidence is repeatable beyond one clean thread; (2) whether Compass
+      owner-action evidence is strong enough to relaunch narrowly; (3) whether Atlas/Mercury
+      reliability is holding under the post-pause owner split; (4) what evidence would
+      ever justify restarting Series C market-warming. Bring actual evidence, caveats,
+      owner boundaries, and what not to claim.'
+  - id: evt_1758497820013
+    title: Offline household dinner — Morgan/Jamie
+    start: '2025-09-25T18:30:00-07:00'
+    end: '2025-09-25T20:30:00-07:00'
+    attendees: []
+    body: Protected weeknight household block. Route routine Scaffold work, investor
+      follow-ups, customer check-ins, and internal catch-ups around it unless there
+      is an actual incident or customer-impacting emergency.
+  - id: evt_1758497820014
+    title: Offline household morning — Jamie/Kibo
+    start: '2025-09-27T08:00:00-07:00'
+    end: '2025-09-27T10:00:00-07:00'
+    attendees: []
+    body: Protected Oakland household block with Jamie and Kibo. Short flat Lake Merritt-side
+      walk if Kibo is comfortable; keep it shorter if the morning is warm or he starts
+      stiff. Route routine Scaffold work, investor follow-ups, customer check-ins,
+      and internal catch-ups around it unless there is an actual incident or customer-impacting
+      emergency.
+  - id: evt_1759102260020
+    title: Offline household dinner — Morgan/Jamie
+    start: '2025-10-02T18:30:00-07:00'
+    end: '2025-10-02T20:30:00-07:00'
+    attendees: []
+    body: Protected weeknight household block. Route routine Scaffold work, investor
+      follow-ups, customer check-ins, and internal catch-ups around it unless there
+      is an actual incident or customer-impacting emergency.
+  - id: evt_1759102260021
+    title: Offline household morning — Jamie/Kibo
+    start: '2025-10-04T08:00:00-07:00'
+    end: '2025-10-04T10:00:00-07:00'
+    attendees: []
+    body: Protected Oakland household block with Jamie and Kibo. Short flat Lake Merritt-side
+      walk if Kibo is comfortable; keep it shorter if the morning is warm or he starts
+      stiff. Route routine Scaffold work, investor follow-ups, customer check-ins,
+      and internal catch-ups around it unless there is an actual incident or customer-impacting
+      emergency.
+  - id: evt_1759176720003
+    title: Q4 operating lanes decision — Morgan/Devon
+    start: '2025-09-30T09:30:00-07:00'
+    end: '2025-09-30T10:00:00-07:00'
+    attendees:
+    - Devon Hayes
+    body: 'Private founder decision after Q3 review closeout: whether July/August
+      owner lanes become the durable Q4 operating model. Decision frame: Devon handles
+      commercial/procurement context and selective cofounder judgment; avoid snapping
+      back to Devon as default board/customer cleanup or loose-owner route.'
+  - id: evt_1762543080000
+    title: Q4 operating review
+    start: '2025-12-12T10:00:00-08:00'
+    end: '2025-12-12T11:30:00-08:00'
+    attendees:
+    - Sofia Alvarez
+    - Devon Hayes
+    - Anna Martinez
+    - Sarah Kim
+    - Jake
+    - Leo Park
+    - Morgan Chen
+    body: 'Review whether Q4 evidence survives beyond Evergreen and the internal Compass
+      workflow, whether Acme is normal support again, and whether Series C market-warming
+      or hiring posture changes.
+
+
+      Hard stop at 11:30 PT. Please read the Evergreen usage/overage note, Compass
+      November behavior read, and Acme support-routing summary before the meeting.
+      This is an operating-evidence review, not a fundraising kickoff or default staffing-decision
+      meeting.'
+  - id: evt_1763088360000
+    title: Oakland household time — no normal Scaffold scheduling
+    start: '2025-12-24T00:00:00-08:00'
+    end: '2025-12-29T00:00:00-08:00'
+    attendees: []
+    body: Morgan and Jamie are local in Oakland with Kibo for protected household
+      time. There is no normal Scaffold scheduling during Dec 24-28; owner lanes and
+      the support rotation handle normal work. Pull Morgan in only for an actual customer-impacting
+      incident or a founder-level decision. Evergreen's normal admin follow-up stays
+      on Jan 6. If Kibo is stiff, walks should stay short and flat.
+  - id: evt_1765426260002
+    title: Family call
+    start: '2025-12-14T16:30:00-08:00'
+    end: '2025-12-14T17:00:00-08:00'
+    attendees: []
+    body: Keep it light; mention local holiday plans and Kibo.
+  - id: evt_1765483560003
+    title: Q4 review opening notes final pass
+    start: '2025-12-12T08:15:00-08:00'
+    end: '2025-12-12T08:45:00-08:00'
+    attendees: []
+    body: 'Use bounded language: Evergreen strong but one account; Compass internal
+      workflow; Acme normal support; no pre-review staffing decision.'
+  - id: evt_1765842900001
+    title: Offline household dinner
+    start: '2025-12-18T18:30:00-08:00'
+    end: '2025-12-18T20:30:00-08:00'
+    attendees: []
+    body: Normal Scaffold scheduling routes around it unless there is an actual incident.
+  - id: evt_1765842900002
+    title: Kibo flat walk and coffee
+    start: '2025-12-21T09:00:00-08:00'
+    end: '2025-12-21T10:30:00-08:00'
+    attendees: []
+    body: Short flat route if Kibo is stiff and no work catch-ups.
+  - id: evt_1767212640001
+    title: Jan 2 re-entry — owner-lane cleanup only
+    start: '2026-01-02T08:30:00-08:00'
+    end: '2026-01-02T09:15:00-08:00'
+    attendees: []
+    body: route Q4 closeout cleanup to owners; Evergreen January 6 stays with Sarah
+      and Devon; Leo owns Atlas/webhook follow-up unless there is renewed customer
+      impact; Priya/Jake stay on OAuth-cancel activation fix; do not reopen Series
+      C, Head of Customer Growth, or second Mercury engineering req from the first-hour
+      sweep.
+  - id: evt_1768009200003
+    title: Family call
+    start: '2026-01-11T16:30:00-08:00'
+    end: '2026-01-11T17:00:00-08:00'
+    attendees: []
+    body: Keep it short; no hosting plan.
+  - id: evt_1768786500001
+    title: Evergreen redline review hold
+    start: '2026-01-20T08:30:00-08:00'
+    end: '2026-01-20T09:15:00-08:00'
+    attendees: []
+    body: Review Evergreen renewal redlines; keep standard Growth/current-state admin
+      line; no roadmap or overage concession.
+  - id: evt_1769995320002
+    title: Mercury empty source-list review — no scope creep
+    start: '2026-02-02T08:30:00-08:00'
+    end: '2026-02-02T09:00:00-08:00'
+    attendees: []
+    body: Review Priya/Jake empty source-list options. Keep focus on explanation after
+      canceled auth or no connected sources. No invite-link status, admin roles, granular
+      roles, or growth-metric claims.
+  - id: evt_1770845160003
+    title: Compass evidence review — internal owner actions only
+    start: '2026-02-13T10:00:00-08:00'
+    end: '2026-02-13T10:45:00-08:00'
+    attendees:
+    - morgan@scaffold.com
+    - anna@scaffold.com
+    - sarah@scaffold.com
+    - jake@scaffold.com
+    - leo@scaffold.com
+    body: Review January/early-Feb owner-action rows. Classify completed dated owner
+      outcomes vs accepted prompts/planned follow-ups/thin signals. No customer-facing
+      Compass claims, GTM proof, or Q1 repeatability conclusion in the agenda.
+  - id: evt_1771279500001
+    title: Evergreen admin review prep — current-state only
+    start: '2026-02-18T11:30:00-08:00'
+    end: '2026-02-18T12:00:00-08:00'
+    attendees:
+    - Sarah Kim
+    - Devon Hayes
+    body: 'Internal prep before Evergreen''s later current-state/admin review. Procurement
+      may join the customer session, so align on bounded language first.
+
+
+      Scope:
+
+      - SAML login hygiene
+
+      - Visible invite/source/admin audit lookup
+
+      - Department usage snapshot
+
+      - How to answer the granular sync-operator roadmap question as later advanced-admin
+      research only
+
+
+      Boundary:
+
+      - Current-state/admin controls only
+
+      - No advanced-admin package
+
+      - No granular sync-operator commitment
+
+      - No custom admin package
+
+      - No renewal obligation'
+  - id: evt_1772567280001
+    title: Q1 Board Durability Review — operating evidence only
+    start: '2026-03-27T10:00:00-07:00'
+    end: '2026-03-27T11:30:00-07:00'
+    attendees:
+    - Morgan Chen
+    - Sofia Alvarez
+    - Devon Hayes
+    - Anna Martinez
+    - Sarah Kim
+    - Jake
+    - Leo Park
+    body: 'Scope:
+
+      - standard-term Evergreen retention and usage
+
+      - Acme support posture
+
+      - Mercury activation quality
+
+      - Compass repeatability limits
+
+      - Atlas owner-lane reliability
+
+      - margin discipline
+
+      - whether H1 Series C market-warming remains off
+
+
+      Non-goals:
+
+      - not a fundraising kickoff
+
+      - not a hiring meeting
+
+      - not a customer-facing Compass decision by default'
+  - id: evt_1772758020000
+    title: Q1 durability evidence-owner checkpoint
+    start: '2026-03-12T09:00:00-07:00'
+    end: '2026-03-12T09:30:00-07:00'
+    attendees:
+    - Morgan Chen
+    - Sofia Alvarez
+    - Devon Hayes
+    - Anna Martinez
+    - Sarah Kim
+    - Jake
+    - Leo Park
+    body: 'Purpose: check evidence rows and open questions only before the March 27
+      durability review. This is not a fundraising kickoff, hiring meeting, or customer-facing
+      Compass decision.'
+  - id: evt_1773775680002
+    title: Kibo short flat walk
+    start: '2026-03-17T12:50:00-07:00'
+    end: '2026-03-17T13:15:00-07:00'
+    attendees: []
+    body: Use the ramp/runner if the entry is damp.
+  - id: evt_1775489280002
+    title: Evergreen current-state/admin review
+    start: '2026-04-16T10:00:00-07:00'
+    end: '2026-04-16T10:45:00-07:00'
+    attendees:
+    - Sarah Kim
+    - Devon Hayes
+    - Evergreen's admin team
+    body: 'Current-state/admin review under standard Growth terms only.
+
+
+      In scope:
+
+      - shipped SAML login
+
+      - visible invite/source/admin audit lookup
+
+      - workspace-admin support
+
+      - March closed usage under standard Growth mechanics
+
+
+      Out of scope:
+
+      - no custom admin-policy discussion
+
+      - no granular-role or sync-operator roadmap commitment
+
+      - no procurement or add-on negotiation
+
+      - no overage forecast
+
+      - no department carveout
+
+
+      This event schedules the review only; it does not imply the review is already
+      completed.'
+  - id: evt_1776699360001
+    title: Kibo vet recheck
+    start: '2026-04-22T11:30:00-07:00'
+    end: '2026-04-22T12:00:00-07:00'
+    attendees: []
+    body: Repeated damp side-entry stair hesitation twice in one week; normal eating
+      and normal on flat sidewalk; use ramp and non-slip runner when damp or stiff
+      until the vet result; do not test damp steps as proof he is fine.
+  - id: evt_1777581120001
+    title: Manager Q&A — Q2 operating focus
+    start: '2026-05-05T09:00:00-07:00'
+    end: '2026-05-05T09:30:00-07:00'
+    attendees:
+    - managers@scaffold.dev
+    - hr@scaffold.dev
+    body: This session is for manager language on Q2 execution, retention, margin
+      discipline, standard customer work, owner lanes, and avoiding fundraising or
+      staffing speculation.
+  - id: evt_1779204240002
+    title: May board deck dry run — overclaim pass
+    start: '2026-05-21T14:00:00-07:00'
+    end: '2026-05-21T14:45:00-07:00'
+    attendees:
+    - devon@scaffold.dev
+    - jake@scaffold.dev
+    - priya@scaffold.dev
+    - sarah@scaffold.dev
+    - leo@scaffold.dev
+    body: 'Working pass before packet freeze. Check April close, Evergreen standard
+      mechanics, Mercury docs/support scope, vendor hygiene, and no-H1-market-warming
+      language. This is a factual overclaim pass, not a strategy reset.
+
+
+      Leo is needed from 2:00 to 2:15 PM PT only for the Compass/Atlas overclaim boundary.'
+  - id: evt_1779981360000
+    title: May close hygiene pass — vendor/customer overclaim check
+    start: '2026-06-03T11:00:00-07:00'
+    end: '2026-06-03T11:30:00-07:00'
+    attendees:
+    - Devon Hayes
+    - Sarah Kim
+    body: AWS should stay rightsizing/vendor hygiene. Pinecone should stay monthly
+      unless sustained baseline usage changes the picture. Evergreen May usage should
+      stay under standard Growth mechanics. No expansion, financing, or admin-commitment
+      language.
+  - id: evt_1781709840000
+    title: Q2 durability read
+    start: '2026-06-24T10:00:00-07:00'
+    end: '2026-06-24T11:00:00-07:00'
+    attendees:
+    - Sofia Alvarez
+    - Devon Hayes
+    - Anna Martinez
+    - Sarah Kim
+    - Jake
+    - Leo Park
+    body: 'Purpose: bounded internal read before H1 closes.
+
+
+      Scope:
+
+      - Q2 operating evidence
+
+      - July market-warming posture
+
+      - Whether any staffing revisit is actually justified
+
+
+      Out of scope:
+
+      - not a data-room refresh
+
+      - not an investor packet
+
+      - not a customer-facing Compass decision
+
+      - not a default hiring-reopen meeting'
+  - id: evt_1782401520002
+    title: Evergreen Q3 current-state/admin review — bounded scope
+    start: '2026-07-16T10:00:00-07:00'
+    end: '2026-07-16T10:45:00-07:00'
+    attendees:
+    - Sarah Kim
+    - Devon Hayes
+    - Evergreen admin team
+    body: 'Quarterly current-state/admin review under standard Growth scope.
+
+
+      In scope:
+
+      - shipped SAML login
+
+      - visible invite/source/admin audit lookup
+
+      - workspace-admin support
+
+      - standard Growth usage mechanics
+
+      - questions on current-state admin controls
+
+
+      Out of scope:
+
+      - custom admin policy scoping
+
+      - granular sync-operator roadmap commitments
+
+      - procurement/security add-ons
+
+      - overage caps
+
+      - department carveouts
+
+      - renewal conditions
+
+      - Q3 expansion motion'
+  - id: evt_1783443960003
+    title: Mercury setup-copy/support-quality lane kickoff
+    start: '2026-07-09T11:00:00-07:00'
+    end: '2026-07-09T11:30:00-07:00'
+    attendees:
+    - Priya
+    - Jake
+    - Sarah Kim
+    body: 'One-time kickoff for the Mercury setup-copy/support-quality lane.
+
+
+      Scope:
+
+      - empty source-list copy
+
+      - admin labels during teammate invitations
+
+      - first-sync support wording
+
+      - where source-specific caveats belong
+
+
+      Out of scope:
+
+      - activation metrics
+
+      - enterprise-readiness claims
+
+      - advanced admin scope
+
+      - staffing evidence'
+  - id: evt_1783723500001
+    title: Private engagement logistics check-in
+    start: '2026-07-12T18:30:00-07:00'
+    end: '2026-07-12T19:15:00-07:00'
+    attendees:
+    - Jamie
+    body: Private and limited to what to defer plus family-message boundaries, with
+      no date, venue, guest-list, social-post, or family scheduling decisions.
+  - id: evt_1784935500001
+    title: Private engagement logistics check-in
+    start: '2026-07-27T20:15:00-07:00'
+    end: '2026-07-27T21:00:00-07:00'
+    attendees:
+    - Jamie
+    body: Compare what we're deferring and how to keep family messaging calm; no date-picking,
+      venue search, guest list, social post, or family weekend scheduling.
+  - id: evt_1786333260003
+    title: Fill water before building shutoff
+    start: '2026-08-11T08:15:00-07:00'
+    end: '2026-08-11T09:00:00-07:00'
+    attendees: []
+    body: Building water is off from 9:00 AM to noon. Fill the kettle and Kibo's water
+      bowl before calls.
+  - id: evt_1787599320003
+    title: Oakland lease renewal — compare options
+    start: '2026-08-25T19:30:00-07:00'
+    end: '2026-08-25T20:00:00-07:00'
+    attendees: []
+    body: Review $4,620 renewal offer, no new deposit/fee, unchanged utility and pet
+      terms, ramp/runner okay. Compare against moving disruption; no decision required
+      in the calendar item.
+  - id: evt_focus_20260925_sync
+    title: Calendar sync placeholder
+    start: '2026-09-25T00:00:00-07:00'
+    end: '2026-09-26T00:00:00-07:00'
+    attendees: []
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

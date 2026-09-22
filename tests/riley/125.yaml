@@ -1,0 +1,33 @@
+id: '125'
+narrative_anchor_date: '2028-01-01'
+test: Create a compact, reusable cohort-cut template for the analytics archive based on the operating
+  pattern we used while the two experiments were live concurrently. Include the two historical experiment
+  lanes, the weekly owner and cadence, and the required summary-plus-raw-data packaging. Make it explicit
+  that this documents a historical operating pattern rather than assigning current work.
+load_bearing_facts:
+- 335
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_historical_cohort_template
+      path: result.ok
+      value: true
+      check_id: riley_125_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_historical_cohort_template
+      path: args
+      criterion: The reusable template identifies the pricing-page experiment and onboarding experiment
+        as separate historical lanes, with Owen producing a separate cohort cut for each every Monday.
+        Each lane uses a one-page summary followed by the underlying raw data. The document clearly describes
+        the past operating pattern while both experiments were live and does not assign current work.
+      check_id: riley_125_01
+mock_state: {}

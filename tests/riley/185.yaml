@@ -1,0 +1,59 @@
+id: '185'
+narrative_anchor_date: '2028-01-01'
+test: Please create a Kibo insurance archive worksheet for closing the 2027 household records. Cover the
+  2027 months that fell within the documented policy term, include the scheduled premium baseline and
+  relevant policy terms, and provide fields for recording actual claims and reimbursements. Clearly distinguish
+  this historical term from any later coverage, which should be marked unverified rather than presented
+  as current. Save it in the Household Records folder.
+load_bearing_facts:
+- 224
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_kibo_archive
+      path: result.ok
+      value: true
+      check_id: riley_185_00
+    - check_id: riley_185_01
+      type: field_equals
+      tool: create_doc
+      action_id: create_kibo_archive
+      path: args.folder
+      value: Household Records
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_kibo_archive
+      path: args
+      criterion: 'The document is clearly an archival insurance worksheet for Kibo and identifies the
+        applicable policy as Lone Star Companion Insurance Company''s CompanionCare Plus Accident and
+        Illness Policy. It states that the policy term was November 1, 2026 through October 31, 2027 and
+        limits the 2027 worksheet schedule to January through October 2027.
+
+
+        The worksheet provides an identifiable scheduled premium baseline for each month January through
+        October 2027 at $69 per month. It may also state the resulting ten-month scheduled total of $690
+        and/or the full-policy annual figure of $828, but it must not substitute either total for the
+        monthly January-through-October schedule.
+
+
+        The document states all of these policy terms accurately: $500 annual deductible, reimbursement
+        of 80% of covered expenses, $10,000 annual limit, and behavioral-care eligibility after the deductible.
+
+
+        The worksheet includes usable blank fields or columns for entering actual claims and actual reimbursements
+        for the covered 2027 months; equivalent clearly labeled claim-expense and insurer-reimbursement
+        fields are acceptable.
+
+
+        The document clearly says that coverage after October 31, 2027 is unverified or not documented
+        and does not present the archived policy as current 2028 coverage.'
+      check_id: riley_185_02
+mock_state: {}

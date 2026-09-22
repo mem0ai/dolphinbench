@@ -1,0 +1,27 @@
+{
+  "name": "hermes-builtin-luna",
+  "source_base": "935c1e8962d43de3ef0adde30e80dda55d0247db",
+  "evaluated_commit": "b115aeaf34a44a85742e53b3568741f042e34776",
+  "ingestion_commit": "c90cc022bb15c60cb70361bba128e61dd5857a10",
+  "patch_sha256": "24e3d35204eff99e3b321b3efc1a643f60eb55348ced9142af7265ba5fa32f8b",
+  "uv_lock_sha256": "6393f09ee88cc5683f0e563306f96b5c068f901a8baa60f7209f302c1ac602d9",
+  "pyproject_sha256": "b66524fe2da8c3014f28f34de89779ba0797650fb562752749b1d4986bb5ae6d",
+  "python_minor": [3, 11],
+  "extras": ["mcp", "honcho"],
+  "app_packages": {"mcp": "1.29.0", "pyyaml": "6.0.3"},
+  "agent": {
+    "provider": "azure-foundry",
+    "model": "gpt-5.6-luna",
+    "api_mode": "codex_responses",
+    "context_length": 1050000,
+    "reasoning_effort": "high",
+    "max_turns": 60,
+    "api_key_env": "AZURE_OPENAI_API_KEY"
+  },
+  "evidence": {
+    "profile": "dolphinbench-20260827184218-fd82bab3-builtin-morgan-profile",
+    "canonical_trace": "artifacts/morgan-release-final-20260908/results/traces/builtin/001.json",
+    "canonical_trace_sha256": "4641ca6d18e26eb5838d1cf0f8e118a28282cea114bf1e38b622a0f21ef235c9",
+    "scope": "Morgan reference configuration; other personas use the same protocol, not a claim of completed reference results."
+  }
+}

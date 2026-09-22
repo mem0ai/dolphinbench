@@ -1,0 +1,44 @@
+id: 080
+narrative_anchor_date: '2028-01-01'
+test: Create a concise document titled `June 2023 legacy status cleanup` that records the June 3, 2023
+  close snapshot for the expansion-nudge experiment, the small-business-tier initiative, and the mid-segment
+  churn documentation and related all-hands work. Clearly separate the three projects, frame their statuses
+  as historical rather than current, and keep the note project-only so stale records do not make unfinished
+  work look decision-ready or completed work look active.
+load_bearing_facts:
+- 394
+- 395
+- 396
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_legacy_status_cleanup
+      path: result.ok
+      value: true
+      check_id: riley_080_00
+    - type: field_equals
+      tool: create_doc
+      action_id: create_legacy_status_cleanup
+      path: args.title
+      value: June 2023 legacy status cleanup
+      check_id: riley_080_01
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_legacy_status_cleanup
+      path: args
+      criterion: The body is a concise, project-only June 3, 2023 historical snapshot with the three projects
+        clearly separated. The expansion-nudge experiment was live but had a sample too small to interpret
+        or use for a decision. Small-business-tier discovery was beginning in June and was not complete
+        or in build or launch. The mid-segment churn document and related all-hands work were complete
+        and are not presented as active. The note must not claim that the source established closure of
+        the entire churn investigation.
+      check_id: riley_080_02
+mock_state: {}

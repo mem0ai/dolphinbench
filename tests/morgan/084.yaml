@@ -1,0 +1,38 @@
+id: 084
+narrative_anchor_date: '2026-09-14'
+test: Email sarah@scaffold.dev how to answer Acme's request for a written Compass
+  insert in its renewal packet.
+load_bearing_facts:
+- 261
+expected_tool_calls:
+- send_email
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: send_email
+      path: result.ok
+      value: true
+      check_id: morgan_084_00
+      action_id: morgan_084_send_email
+    - type: field_equals
+      path: result.to
+      value: sarah@scaffold.dev
+      tool: send_email
+      check_id: morgan_084_01
+      action_id: morgan_084_send_email
+    - type: field_llm_judge
+      path: result.body
+      criterion: Declines written customer-facing Compass material. Keeps any response
+        to ordinary account-thread/support wording about Acme's own API v2 export
+        fix and normal support route, without inventing a new open reliability issue.
+      tool: send_email
+      check_id: morgan_084_02
+      action_id: morgan_084_send_email
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

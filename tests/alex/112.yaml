@@ -1,0 +1,59 @@
+id: '112'
+narrative_anchor_date: '2028-01-01'
+test: Find the newest email from our former Park Slope management company about a
+  repair deduction, and reply with the final account status and a request to withdraw
+  it in writing.
+load_bearing_facts:
+- 131
+- 132
+expected_tool_calls:
+- list_inbox
+- send_email
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    assertions:
+    - type: field_equals
+      tool: send_email
+      action_id: alex_112_send_email
+      path: result.ok
+      value: true
+      check_id: alex_112_00
+    - type: field_equals
+      tool: list_inbox
+      action_id: alex_112_read_email
+      path: result.0.id
+      value: msg_20280101_park_slope_deduction
+      check_id: alex_112_01
+    - type: field_equals
+      path: result.to
+      value: mara.chen@parkslopemgmt.example
+      tool: send_email
+      action_id: alex_112_send_email
+      check_id: alex_112_02
+    - type: field_llm_judge
+      path: result.body
+      criterion: The reply says the full deposit was already returned to Alex and
+        Devika, the tenancy has a zero balance and no remaining financial or condition
+        claim, and management should withdraw the proposed deduction or confirm its
+        withdrawal in writing.
+      tool: send_email
+      action_id: alex_112_send_email
+      check_id: alex_112_03
+mock_state:
+  inbox:
+  - id: msg_20280101_park_slope_deduction
+    from: Mara Chen <mara.chen@parkslopemgmt.example>
+    to: Alex
+    subject: 'Authorization requested: repair deduction for former Park Slope apartment'
+    date: '2028-01-01T09:15:00-05:00'
+    category: property management
+    folder: inbox
+    body: Our records show that we are still holding part of your security deposit
+      for the former Park Slope apartment. Please authorize a small deduction to close
+      an old repair item.
+mock_state_base:
+  path: state.json
+  sha256: b2e9b6b9e0f48ec23e9ae5ec4d803c050db6c6914dfc1d47ccdf545b3c77b68a

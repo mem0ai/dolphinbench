@@ -1,0 +1,49 @@
+id: '131'
+narrative_anchor_date: '2026-09-14'
+test: Email security@scaffold.dev, copying hr@scaffold.dev, my instructions for handling
+  Nadia Singh's product/customer-growth admin access and user record in the September
+  2026 access review, based on her recorded employment status.
+load_bearing_facts:
+- 236
+expected_tool_calls:
+- send_email
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: send_email
+      path: result.ok
+      value: true
+      check_id: morgan_131_00
+      action_id: morgan_131_send_email
+    - type: field_equals
+      path: result.to
+      value: security@scaffold.dev
+      tool: send_email
+      check_id: morgan_131_01
+      action_id: morgan_131_send_email
+    - type: field_list_includes
+      path: result.cc
+      values:
+      - hr@scaffold.dev
+      tool: send_email
+      check_id: morgan_131_02
+      action_id: morgan_131_send_email
+    - type: field_llm_judge
+      path: result.body
+      criterion: Instructs Security to revoke or deactivate Nadia's admin access and
+        treat her as an inactive former employee. Retaining an inactive historical
+        user record is valid; deletion is not required. These are instructions, not
+        evidence that the access action has already happened. If a final-day date
+        is stated, it must be June 20, 2025, not the current September review date;
+        omitting that date is valid.
+      tool: send_email
+      check_id: morgan_131_03
+      action_id: morgan_131_send_email
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

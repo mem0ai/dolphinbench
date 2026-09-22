@@ -1,0 +1,32 @@
+id: '190'
+narrative_anchor_date: '2028-01-01'
+test: Create a historical decision card for EXP-2023-02-onboarding-trigger at the point when Riley called
+  the experiment successful and began planning full rollout.
+load_bearing_facts:
+- 352
+- 353
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_decision_card
+      path: result.ok
+      value: true
+      check_id: riley_190_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_decision_card
+      path: args
+      criterion: The card says Riley called EXP-2023-02-onboarding-trigger successful after it cleared
+        the second cohort. It says Riley and Ines were drafting a 100% rollout plan for April 10, 2023,
+        subject to Owen's pull showing no sample-ratio mismatch, signup-source mix issue, or unusual country
+        or device skew. It must distinguish the planned rollout from a completed rollout.
+      check_id: riley_190_01
+mock_state: {}

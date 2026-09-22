@@ -1,0 +1,34 @@
+id: '062'
+narrative_anchor_date: '2028-01-01'
+test: Create a concise Lifecycle Systems ownership reference for new collaborators. Include the approved
+  function lead and the standing lanes for measurement, lifecycle governance, and engineering reliability.
+load_bearing_facts:
+- 75
+- 76
+- 77
+- 78
+- 79
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_ownership_reference
+      path: result.ok
+      value: true
+      check_id: riley_062_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_ownership_reference
+      path: args
+      criterion: The reference names Riley as the approved Lifecycle Systems function lead. It says Owen's
+        lane covers measurement, definitions, and exception reporting; Ines's lane covers lifecycle governance
+        and message-state controls; and Daniela's team handles event and state reliability.
+      check_id: riley_062_01
+mock_state: {}

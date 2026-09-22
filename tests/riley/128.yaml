@@ -1,0 +1,31 @@
+id: '128'
+narrative_anchor_date: '2028-01-01'
+test: Create a historical Helio Start operating-phase card for the period after the October 2023 close.
+  State the next period when limited exposure could continue, the public and commercial uses that remained
+  excluded, and who accepted that distinction.
+load_bearing_facts:
+- 415
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_operating_phase_card
+      path: result.ok
+      value: true
+      check_id: riley_128_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_operating_phase_card
+      path: args
+      criterion: The card says another small manually reviewed November batch could proceed after the
+        October close, while public or pricing-page exposure, paid acquisition, general availability,
+        and pipeline framing remained excluded; Tomás accepted that distinction.
+      check_id: riley_128_01
+mock_state: {}

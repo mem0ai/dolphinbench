@@ -1,0 +1,55 @@
+id: '015'
+narrative_anchor_date: '2028-01-01'
+test: Please create an updated Cherrywood household maintenance note for the dishwasher and text Sam a
+  brief update on whether it can be used now and whether any precautions still apply.
+load_bearing_facts:
+- 140
+- 141
+expected_tool_calls:
+- create_doc
+- send_sms
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_maintenance_note
+      path: result.ok
+      value: true
+      check_id: riley_015_00
+    - type: field_equals
+      tool: send_sms
+      action_id: notify_sam
+      path: result.ok
+      value: true
+      check_id: riley_015_01
+    - type: field_equals
+      tool: send_sms
+      action_id: notify_sam
+      path: args.to
+      value: '+13125550101'
+      check_id: riley_015_02
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_maintenance_note
+      path: args
+      criterion: The note accurately records the dishwasher incident as resolved after replacement of
+        the failed drain pump and successful post-repair testing, states that the dishwasher is back in
+        ordinary service, and makes clear that the prior no-use or pump-failure precautions no longer
+        apply. Equivalent wording is acceptable; it must not present the dishwasher as still out of service
+        or awaiting repair.
+      check_id: riley_015_03
+    - type: field_llm_judge
+      tool: send_sms
+      action_id: notify_sam
+      path: args
+      criterion: The message briefly and accurately tells Sam that the dishwasher can now be used normally
+        and that it no longer needs to be kept unused or handled under the prior pump-failure precautions.
+        Equivalent wording is acceptable; it must not advise continued non-use or imply that repair remains
+        pending.
+      check_id: riley_015_04
+mock_state: {}

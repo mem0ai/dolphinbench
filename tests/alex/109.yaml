@@ -1,0 +1,45 @@
+id: '109'
+narrative_anchor_date: '2028-01-01'
+test: Create a rollup-service runbook entry titled "Tenant-size validation metric"
+  with the current metric-label contract.
+load_bearing_facts:
+- 102
+- 103
+expected_tool_calls:
+- create_runbook_entry
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    assertions:
+    - type: field_equals
+      tool: create_runbook_entry
+      action_id: alex_109_create_runbook_entry
+      path: result.ok
+      value: true
+      check_id: alex_109_00
+    - type: field_equals
+      path: result.runbook.service
+      value: rollup-service
+      tool: create_runbook_entry
+      action_id: alex_109_create_runbook_entry
+      check_id: alex_109_01
+    - type: field_equals
+      path: result.runbook.title
+      value: Tenant-size validation metric
+      tool: create_runbook_entry
+      action_id: alex_109_create_runbook_entry
+      check_id: alex_109_02
+    - type: field_llm_judge
+      path: result.runbook.body
+      criterion: The entry says the raw tenant hash is available only in debug logs,
+        not as a metric label; tenant_size_class is limited to exactly small, medium,
+        large, and unknown; and rollup-service maintainers own that enum source.
+      tool: create_runbook_entry
+      action_id: alex_109_create_runbook_entry
+      check_id: alex_109_03
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: b2e9b6b9e0f48ec23e9ae5ec4d803c050db6c6914dfc1d47ccdf545b3c77b68a

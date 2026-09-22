@@ -1,0 +1,44 @@
+id: 084
+narrative_anchor_date: '2028-01-01'
+test: Create a short capacity note comparing the first 16.0-million Mosaic-shaped
+  replay with the later 19.78-million staged replay. Compare their queue-wait and
+  queue-full measurements, accepted-batch and cross-service results, and what each
+  established about capacity. State whether the later replay authorized production.
+load_bearing_facts:
+- 164
+- 165
+- 166
+- 193
+- 194
+- 195
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: alex_084_create_doc
+      path: result.ok
+      value: true
+      check_id: alex_084_00
+    - type: field_llm_judge
+      path: result.document.body
+      criterion: The note says the 16.0-million replay reached 780 ms queue-wait p99
+        and 0.9% retryable queue-full responses, kept accepted batches intact and
+        cross-service health at baseline, and exposed the shared metrics-router export
+        queue as the first constraint. It contrasts the 19.78-million replay's 319
+        ms queue-wait p99 and 0.17% retryable queue-full responses, with exactly one
+        terminal result per accepted batch and baseline cross-service health. It says
+        the later replay supplied staged evidence but did not authorize a production
+        window.
+      tool: create_doc
+      action_id: alex_084_create_doc
+      check_id: alex_084_01
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: b2e9b6b9e0f48ec23e9ae5ec4d803c050db6c6914dfc1d47ccdf545b3c77b68a

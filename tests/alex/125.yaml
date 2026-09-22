@@ -1,0 +1,51 @@
+id: '125'
+narrative_anchor_date: '2028-01-01'
+test: Find North Pier's Q4 2027 design-system health report and create a short Q2-to-Q4
+  trend note for pre-ship drift catches and post-generation handoff corrections.
+load_bearing_facts:
+- 266
+- 281
+- 283
+expected_tool_calls:
+- list_inbox
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: alex_125_create_doc
+      path: result.ok
+      value: true
+      check_id: alex_125_00
+    - type: field_equals
+      tool: list_inbox
+      action_id: alex_125_read_email
+      path: result.0.id
+      value: np-q4-2027-health-report
+      check_id: alex_125_01
+    - type: field_llm_judge
+      path: result.document.body
+      criterion: The note reports pre-ship drift catches of 26 in Q2, 31 in Q3, and
+        28 in Q4, and post-generation handoff corrections of 7, 6, and 8. It accurately
+        describes how each measure changed across the three quarters without inventing
+        a cause.
+      tool: create_doc
+      action_id: alex_125_create_doc
+      check_id: alex_125_02
+mock_state:
+  inbox:
+  - id: np-q4-2027-health-report
+    from: reports@northpier.example
+    subject: 'Q4 2027 frozen design-system health report — 3/3 teams canonical all
+      quarter; drift catches before ship: 28; platform exceptions requested/accepted:
+      3/0; post-generation handoff corrections: 8 (deduped by team, release candidate,
+      canonical-package version); no member identifiers'
+    date: '2028-01-01T08:00:00-05:00'
+    category: reports
+mock_state_base:
+  path: state.json
+  sha256: b2e9b6b9e0f48ec23e9ae5ec4d803c050db6c6914dfc1d47ccdf545b3c77b68a

@@ -1,0 +1,32 @@
+id: '022'
+narrative_anchor_date: '2028-01-01'
+test: Create a short rollout-scope reference for the Apr 10, 2023 full shipment of `lifecycle_onboarding_trigger_v2`,
+  identifying the customer groups included and the tier explicitly excluded so future readers don’t mistake
+  it for a universal rollout.
+load_bearing_facts:
+- 358
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_rollout_scope_reference
+      path: result.ok
+      value: true
+      check_id: riley_022_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_rollout_scope_reference
+      path: args
+      criterion: 'Considering the title and body together, the created document is a short, self-contained
+        reference for the Apr 10, 2023 full shipment of `lifecycle_onboarding_trigger_v2` and accurately
+        presents its historical ship-time scope: all mid-segment customers and the growth tier were included,
+        while the starter tier was explicitly excluded.'
+      check_id: riley_022_01
+mock_state: {}

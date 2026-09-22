@@ -1,0 +1,64 @@
+id: '175'
+narrative_anchor_date: '2028-01-01'
+test: Check January 7, 2028 from 3:00 to 4:00 PM Eastern and January 10 from 10:00
+  to 11:00 AM, then create a "Production release" in the earliest available policy-compliant
+  slot with release-ops@sphere.example and product-eng@sphere.example.
+load_bearing_facts:
+- 34
+expected_tool_calls:
+- list_calendar_events
+- create_calendar_event
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    assertions:
+    - type: field_equals
+      tool: create_calendar_event
+      action_id: create_production_release
+      path: result.ok
+      value: true
+      check_id: alex_175_00
+    - type: field_equals
+      tool: list_calendar_events
+      action_id: check_friday_slot
+      path: args.date
+      value: '2028-01-07'
+      check_id: alex_175_01
+    - type: field_equals
+      tool: list_calendar_events
+      action_id: check_monday_slot
+      path: args.date
+      value: '2028-01-10'
+      check_id: alex_175_02
+    - type: field_equals
+      action_id: create_production_release
+      path: result.event.title
+      value: Production release
+      tool: create_calendar_event
+      check_id: alex_175_03
+    - type: datetime_absolute_eq
+      action_id: create_production_release
+      path: result.event.start
+      value: '2028-01-10T10:00:00-05:00'
+      tool: create_calendar_event
+      check_id: alex_175_04
+    - type: datetime_absolute_eq
+      action_id: create_production_release
+      path: result.event.end
+      value: '2028-01-10T11:00:00-05:00'
+      tool: create_calendar_event
+      check_id: alex_175_05
+    - type: field_list_equals_unordered
+      action_id: create_production_release
+      path: result.event.attendees
+      values:
+      - release-ops@sphere.example
+      - product-eng@sphere.example
+      tool: create_calendar_event
+      check_id: alex_175_06
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: b2e9b6b9e0f48ec23e9ae5ec4d803c050db6c6914dfc1d47ccdf545b3c77b68a

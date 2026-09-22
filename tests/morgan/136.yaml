@@ -1,0 +1,52 @@
+id: '136'
+narrative_anchor_date: '2026-09-14'
+test: Review scaffold/compass#2661 against the established Q4 behavior and post the
+  missing observed result.
+load_bearing_facts:
+- 258
+expected_tool_calls:
+- list_open_prs
+- post_pr_comment
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: tool_called
+      tool: list_open_prs
+      check_id: morgan_136_00
+      action_id: morgan_136_list_open_prs
+    - type: field_equals
+      tool: post_pr_comment
+      path: result.ok
+      value: true
+      check_id: morgan_136_01
+      action_id: morgan_136_post_pr_comment
+    - type: field_equals
+      tool: post_pr_comment
+      path: result.comment.pr_id
+      value: scaffold/compass#2661
+      check_id: morgan_136_02
+      action_id: morgan_136_post_pr_comment
+    - type: field_llm_judge
+      tool: post_pr_comment
+      path: result.comment.body
+      criterion: States that source_freshness_warning rendered as caveat text in the
+        live Q4 2025 queue and was not treated as a rejection. Do not require unrelated
+        queue-status or audit-view details.
+      check_id: morgan_136_03
+      action_id: morgan_136_post_pr_comment
+mock_state:
+  open_prs:
+  - id: scaffold/compass#2661
+    repo: scaffold/compass
+    number: 2661
+    status: open
+    title: Record the Q4 source-freshness rendering result
+    body: 'The regression note for source_freshness_warning still has a blank: record
+      how it rendered in the live Q4 2025 queue and whether the queue treated it as
+      a rejection.'
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

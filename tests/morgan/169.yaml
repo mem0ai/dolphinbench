@@ -1,0 +1,37 @@
+id: '169'
+narrative_anchor_date: '2026-09-14'
+test: Email support@scaffold.dev with the decision about what to do with the old API
+  v2 auth-refresh retry notification draft and whether customers need to act.
+load_bearing_facts:
+- 142
+expected_tool_calls:
+- send_email
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: send_email
+      path: result.ok
+      value: true
+      check_id: morgan_169_00
+      action_id: morgan_169_send_email
+    - type: field_equals
+      path: result.to
+      value: support@scaffold.dev
+      tool: send_email
+      check_id: morgan_169_01
+      action_id: morgan_169_send_email
+    - type: field_llm_judge
+      path: result.body
+      criterion: States the auth-refresh retry fix is live and no customer action
+        is needed. Does not describe an unfinished rollout or ask customers to migrate.
+      tool: send_email
+      check_id: morgan_169_02
+      action_id: morgan_169_send_email
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

@@ -1,0 +1,1779 @@
+version: 1
+persona: alex
+facts:
+- id: 1
+  statement: The unnamed cafe Alex Valdez visited is on 7th Avenue in Park Slope,
+    on the same block as an unnamed bagel place and at the opposite corner.
+  source_session_ids:
+  - '000001'
+- id: 2
+  statement: On March 6, 2023, Alex Valdez documented the metrics-router cutover plan
+    as 30% → 60% → 95% → 100%, with a 48-hour soak at each step, so nobody later compresses
+    the phased rollout.
+  source_session_ids:
+  - '000005'
+- id: 3
+  statement: The metrics pipeline migration cutover order is now fixed as ingest-edge
+    first because it has the lowest blast radius, metrics-router second, and shard-keeper
+    last because its long-tail cardinality logic gets complicated.
+  source_session_ids:
+  - '000007'
+- id: 4
+  statement: As of March 7, 2023, work on shard-keeper for the metrics pipeline migration
+    has not started.
+  source_session_ids:
+  - '000007'
+- id: 5
+  statement: Alex's existing metrics-router phased cutover plan is conditional on
+    staging not looking weird.
+  source_session_ids:
+  - '000012'
+- id: 6
+  statement: Alex Valdez agreed to investigate the data-platform throughput regression
+    Cyrus brought to him during the week of March 13, 2023.
+  source_session_ids:
+  - '000013'
+- id: 7
+  statement: Metrics-router code retained in the Go repository must use strict gofmt
+    formatting, a standing convention since the previous year's rewrite.
+  source_session_ids:
+  - 000019
+- id: 8
+  statement: Metrics-router routing logic must use table-driven tests, a standing
+    convention since the previous year's rewrite.
+  source_session_ids:
+  - 000019
+- id: 9
+  statement: Metrics-router handlers must not use log.Fatal because request-handling
+    code must not decide that the process terminates; this has been the standing convention
+    since the previous year's rewrite.
+  source_session_ids:
+  - 000019
+- id: 10
+  statement: Alex Valdez reports that ingest-edge cut over cleanly on staging and
+    its 48-hour shadow-traffic run recorded zero dropped events.
+  source_session_ids:
+  - '000021'
+- id: 11
+  statement: As of March 18, 2023, Alex Valdez counted 19 label_map read sites in
+    shard-keeper; the cutover surface includes validation paths as well as shard-assignment
+    and routing reads.
+  source_session_ids:
+  - '000035'
+- id: 12
+  statement: Alex Valdez is leaning toward writing shard-keeper’s touch matrix first
+    and then eliminating label_map read sites in groups rather than working file by
+    file, to reduce the risk of missing a site and shipping a falsely clean cutover.
+  source_session_ids:
+  - '000035'
+- id: 13
+  statement: The ingest-edge production cutover was completed cleanly on March 21,
+    2023, mid-morning; Alex monitored the dashboards during the 90-minute hold and
+    observed nothing unusual.
+  source_session_ids:
+  - 000039
+- id: 14
+  statement: On March 22, 2023, ingest-edge’s 24-hour post-cutover check was clean,
+    with no drops, flat latency and error rates, and no anomalies in Prometheus; Alex
+    Valdez called the cutover complete.
+  source_session_ids:
+  - '000043'
+- id: 15
+  statement: Alex Valdez regularly joins Diego's non-work Sunday pickup soccer group,
+    which has about twelve regulars.
+  source_session_ids:
+  - '000050'
+- id: 16
+  statement: As of March 28, 2023, the metrics-router rollout is at 30%, with no notable
+    metric issues so far.
+  source_session_ids:
+  - '000053'
+- id: 17
+  statement: Cyrus Ahmadi is on the data platform team rather than Alex Valdez's team,
+    sits nearby, and is Alex's Slack back-channel contact when technical issues get
+    unusual.
+  source_session_ids:
+  - '000053'
+- id: 18
+  statement: On March 29, 2023, Alex Valdez and Cyrus spent about an hour investigating
+    the metrics-router OTel collector, whose batch window was still too long under
+    heavier traffic bursts and was causing the memory-spike artifact to recur.
+  source_session_ids:
+  - '000057'
+- id: 19
+  statement: On March 29, 2023, Alex Valdez and Cyrus reduced the metrics-router OTel
+    collector flush interval from 2 seconds to 1.2 seconds.
+  source_session_ids:
+  - '000057'
+- id: 20
+  statement: The metrics-router traces and resident set looked better after the flush-interval
+    change, but Alex Valdez planned to let it run longer before declaring the issue
+    resolved because the previous setting had initially appeared healthy.
+  source_session_ids:
+  - '000057'
+- id: 21
+  statement: As of April 3, 2023, the current infrastructure on-call rotation comprised
+    Alex Valdez, Nadia, Hema, Yuki, and Sam.
+  source_session_ids:
+  - '000067'
+- id: 22
+  statement: Alex Valdez pushed metrics-router to 75% in mid-afternoon on April 5,
+    2023; it was holding clean as of 6:30 p.m., and he was still leaning toward reaching
+    95% by April 13 if production remained uneventful that night.
+  source_session_ids:
+  - '000072'
+- id: 23
+  statement: Alex Valdez approved Cyrus's three-line PR for the data-platform throughput
+    regression on April 6, 2023.
+  source_session_ids:
+  - '000074'
+- id: 24
+  statement: Alex Valdez requested a team-channel note stating that around 14:30 ET
+    on April 7, 2023, the metrics-router cutover triggered an info-level canary alert—not
+    a page—after an OTel collector batch-window regression; automatic rollback activated,
+    Alex investigated and redeployed cleanly, metrics-router returned to healthy within
+    four hours, and Alex viewed the response as the system working as intended.
+  source_session_ids:
+  - '000076'
+- id: 25
+  statement: On April 12 EOD, metrics-router was at 92%; one batch-export hiccup self-cleared
+    in about 90 seconds, and everything else looked normal.
+  source_session_ids:
+  - 000088
+- id: 26
+  statement: On April 15, Nadia explicitly approved shipping the label-name change
+    in the next config push.
+  source_session_ids:
+  - 000095
+- id: 27
+  statement: Because the rollup-service consumer was absent from the April 15 pre–shard-keeper
+    sync, parity is currently confirmed only on the shard-keeper side; Alex Valdez
+    wants this limitation documented before the label-name change is treated as end-to-end
+    clean.
+  source_session_ids:
+  - 000095
+- id: 28
+  statement: The shard-keeper config push finished at 6:05 PM on April 18, 2023; initial
+    dashboards were green, and the label rename looked clean so far.
+  source_session_ids:
+  - '000102'
+- id: 29
+  statement: At 11:45 p.m. ET on April 18, 2023, Alex Valdez was still responding
+    to INC-2023-04-18-001 after receiving a shard-keeper page at 9:42 p.m.
+  source_session_ids:
+  - '000103'
+- id: 30
+  statement: Alex Valdez believed INC-2023-04-18-001 was caused by an earlier label-name
+    change reaching shard-keeper but not rollup-service, which triggered all symptom
+    alerts and no cause alerts.
+  source_session_ids:
+  - '000103'
+- id: 31
+  statement: The April 18 shard-keeper outage caused no data loss.
+  source_session_ids:
+  - '000105'
+- id: 32
+  statement: 'On the morning of April 19, 2023, Alex Valdez sent Cyrus the full April
+    18 outage sequence: the rollback was unusually shaky, a network-layer issue was
+    a temporary red herring, and the eventual finding was a label-name difference
+    in shard-keeper from an earlier Nadia dashboard change.'
+  source_session_ids:
+  - '000106'
+- id: 33
+  statement: In Alex Valdez’s April 25, 2023 1:1, Hema assessed the April 18 outage
+    response as a procedural miss with fair criticism of the escalation timing, while
+    concluding that Alex’s technical call was correct; Alex agreed with that distinction.
+  source_session_ids:
+  - '000126'
+- id: 34
+  statement: At the April 28, 2023 incident review for the April 18 outage, Sphere
+    adopted a team-wide rule prohibiting Friday-afternoon production deployments.
+  source_session_ids:
+  - '000135'
+- id: 35
+  statement: At the April 28, 2023 incident review for the April 18 outage, Sphere
+    adopted a rule to page the secondary within 45 minutes if the primary is still
+    handling the incident.
+  source_session_ids:
+  - '000135'
+- id: 36
+  statement: Sphere will audit runbook ownership following the April 18 outage, with
+    Nadia cross-reviewing the service sections she touches.
+  source_session_ids:
+  - '000135'
+- id: 37
+  statement: The shard-keeper migration is paused pending the runbook ownership audit.
+  source_session_ids:
+  - '000135'
+- id: 38
+  statement: On May 2, Alex Valdez's runbook-audit inventory treated legacy-aggregator
+    as a service he informally owns because migration off it was not fully finished.
+  source_session_ids:
+  - '000145'
+- id: 39
+  statement: On May 2, Alex Valdez's runbook-audit inventory treated the old metric-rollup
+    service as history-based informal ownership, although it was effectively unowned
+    in practice.
+  source_session_ids:
+  - '000145'
+- id: 40
+  statement: Alex Valdez wants the April 18 outage’s technical-lessons section to
+    explain that rollup-service’s lack of practical ownership left everyone with only
+    a partial map and nobody with the full downstream story.
+  source_session_ids:
+  - '000146'
+- id: 41
+  statement: The runbook audit starts on the morning of May 8, 2023, with Hema running
+    it.
+  source_session_ids:
+  - '000155'
+- id: 42
+  statement: Alex Valdez prepared a clean list of every service touching metrics-router,
+    ingest-edge, and shard-keeper to avoid ownership-boundary debates and keep the
+    audit's ownership pass mechanical.
+  source_session_ids:
+  - '000155'
+- id: 43
+  statement: The goal of the runbook-ownership audit is for every service to have
+    both a primary owner and a backup.
+  source_session_ids:
+  - '000156'
+- id: 44
+  statement: Alex Valdez flagged shard-keeper's runbook as the worst in the audit
+    set because it was 18 months stale and still lacked the newer label-routing updates.
+  source_session_ids:
+  - '000156'
+- id: 45
+  statement: Alex Valdez said six sections of the shard-keeper runbook need a full
+    rewrite pass because many steps assume obsolete decision points and the screenshots
+    and queries no longer match what on-call operators see.
+  source_session_ids:
+  - 000158
+- id: 46
+  statement: Alex Valdez described the shard-keeper runbook rewrite as by far the
+    largest part of the runbook-ownership audit.
+  source_session_ids:
+  - 000158
+- id: 47
+  statement: Alex Valdez is leaning toward first splitting the shard-keeper runbook
+    into operator and owner paths, then updating the backup-owner details, to keep
+    the primary/backup rules from being scattered across every section and making
+    the runbook unreadable.
+  source_session_ids:
+  - 000158
+- id: 48
+  statement: As of May 11, 2023, three of the shard-keeper runbook’s six sections
+    were done and three remained.
+  source_session_ids:
+  - '000163'
+- id: 49
+  statement: As of May 11, 2023, the other services’ one-pagers were in progress,
+    mostly undergoing document review and ownership cleanup.
+  source_session_ids:
+  - '000163'
+- id: 50
+  statement: On May 15, 2023, Wes Tanaka replaced Sam on the infra on-call rotation
+    in a planned handoff, not because of fallout.
+  source_session_ids:
+  - 000169
+- id: 51
+  statement: 'Alex Valdez requested that the May 19, 2023 Hema 1:1 agenda contain
+    only three bullets: runbook-audit progress, Wes Tanaka’s onboarding status (“he’s
+    good”), and a June shard-keeper migration restart timeline conditional on the
+    audit closing.'
+  source_session_ids:
+  - '000177'
+- id: 52
+  statement: Alex Valdez wants the May 19 Hema 1:1 prep in his usual short bullet-point
+    format, limited to 3–4 bullets and sent 30 minutes before the meeting.
+  source_session_ids:
+  - 000178
+- id: 53
+  statement: Alex Valdez says `metric-rollup` is deprecated and must not be touched.
+  source_session_ids:
+  - 000186
+- id: 54
+  statement: Alex Valdez clarifies that `rollup-service`, not `metric-rollup`, was
+    affected by the April 18 outage; the similarly named services have different code
+    paths.
+  source_session_ids:
+  - 000186
+- id: 55
+  statement: 'Alex Valdez wants any use of the ambiguous name "rollup" in #infra returned
+    for clarification unless the exact service name is provided.'
+  source_session_ids:
+  - 000186
+- id: 56
+  statement: Iris Kemper works in product engineering and previously worked at Figma.
+  source_session_ids:
+  - 000188
+- id: 57
+  statement: 'On May 30, 2023, Alex Valdez closed the shard-keeper rollback-path fix:
+    rollback now uses one command instead of three coordinated commands, avoiding
+    timing-related half-reverted states and making operation safer for humans during
+    overnight incidents; it stayed clean in four consecutive staging runs.'
+  source_session_ids:
+  - 000199
+- id: 58
+  statement: As of May 30, 2023, the shard-keeper migration restart is no longer blocked
+    by the rollback path.
+  source_session_ids:
+  - 000199
+- id: 59
+  statement: By June 8, 2023, Alex Valdez and Nadia had completed four cross-reviews
+    since April 28; their interaction progressed from icy on May 10 to basically normal
+    by May 31 and routine by June 8, a change Cyrus also noticed.
+  source_session_ids:
+  - 000218
+- id: 60
+  statement: Theo, the CTO, is pushing Project Lantern as a Q3 priority while trying
+    to prevent it from becoming a large platform rewrite.
+  source_session_ids:
+  - '000236'
+- id: 61
+  statement: Project Lantern reports up through Hema.
+  source_session_ids:
+  - '000237'
+- id: 62
+  statement: Alex Valdez and Iris Kemper are co-leading Project Lantern, with Alex
+    leading infra/architecture and Iris leading UI.
+  source_session_ids:
+  - '000237'
+- id: 63
+  statement: Overnight on June 21, 2023, Wes Tanaka handled his first real solo on-call
+    shift.
+  source_session_ids:
+  - 000248
+- id: 64
+  statement: During Wes Tanaka’s June 21, 2023 solo on-call shift, he brought in Alex
+    Valdez as secondary at the 40-minute mark for a minor metrics-router cardinality
+    blip because he was not fully sure, then resolved it cleanly without escalation.
+  source_session_ids:
+  - 000248
+- id: 65
+  statement: On June 22, 2023, Alex Valdez told Hema that Wes handled his first real
+    solo overnight well, including a small metrics-router blip, and that Wes’s ping
+    about 40 minutes in was the right time to involve Alex—not late or unnecessary.
+  source_session_ids:
+  - '000251'
+- id: 66
+  statement: Hema characterized Wes’s first real solo overnight as growth; Alex Valdez
+    agreed but did not want to over-index on one clean shift.
+  source_session_ids:
+  - '000251'
+- id: 67
+  statement: Alex Valdez plans to increase the shard-keeper rollout to 95% on the
+    morning of June 30, hold it there through the weekend, and increase it to 100%
+    on Monday, July 3, if it continues behaving normally.
+  source_session_ids:
+  - '000267'
+- id: 68
+  statement: As of July 12, 2023, shard-keeper reached 100%; the final push stayed
+    clean, Nadia’s alerting checks and Roman’s rollup-service checks remained aligned,
+    Wes found no canary regression, and Hema accepted the cutover as complete.
+  source_session_ids:
+  - '000304'
+- id: 69
+  statement: Alex Valdez finished the Project Lantern v0 contract pass with Iris Kemper,
+    and the contract decision is now locked rather than merely approaching consensus.
+  source_session_ids:
+  - '000331'
+- id: 70
+  statement: 'Alex Valdez requested one final contract-lock comment on lantern#3 to
+    establish a single authoritative v0 boundary: the backend emits a thin event envelope;
+    facts are appended to the store; provenance fields are mandatory; the stable status
+    enum remains small; the UI uses a derived read model instead of guessing hidden
+    transitions; and v0 excludes raw incident bodies and unpermissioned status chatter.'
+  source_session_ids:
+  - '000331'
+- id: 71
+  statement: Alex Valdez and Hema settled that Wes must use the deploy pipeline rather
+    than laptop deploys because laptop deploys bypass the canary.
+  source_session_ids:
+  - 000386
+- id: 72
+  statement: Alex Valdez and Hema settled that Wes may operate solo in metrics-router
+    non-prod and ingest-edge staging; shard-keeper requires explicit pairing with
+    Alex or the Cyrus-team backup.
+  source_session_ids:
+  - 000386
+- id: 73
+  statement: For the live Lantern v0, Alex Valdez owns the data and failure-mode shape,
+    while Iris Kemper owns the UI’s interpretation and presentation.
+  source_session_ids:
+  - '000404'
+- id: 74
+  statement: On August 16, 2023, during Cyrus's load test, metrics-router triggered
+    a sev3 cardinality canary; Wes checked the deploy path, confirmed there was no
+    router change, traced the spike to an unbounded `experiment_id` label appearing
+    only in load-test traffic, and brought Alex Valdez in within the 45-minute secondary
+    rule for confirmation.
+  source_session_ids:
+  - 000419
+- id: 75
+  statement: Cyrus's side stopped the August 16, 2023 load test, clearing the metrics-router
+    canary and avoiding escalation and an unnecessary rollback.
+  source_session_ids:
+  - 000419
+- id: 76
+  statement: Alex Valdez wants Wes's handling of the metrics-router canary recorded
+    as a concrete signal of production judgment, not as an ownership change.
+  source_session_ids:
+  - 000419
+- id: 77
+  statement: Alex Valdez and Devika feel their Park Slope one-bedroom may be a phase
+    they will outgrow, but as of September 22, 2023, they have not started an apartment
+    search.
+  source_session_ids:
+  - '000543'
+- id: 78
+  statement: Alex Valdez's household replaced Kibo's older harness with a properly
+    fitted front-clip harness on October 8, 2023, after a scare in September.
+  source_session_ids:
+  - 000592
+- id: 79
+  statement: Alex Valdez's household agreed to use the shorter leash by default near
+    Prospect Park entrances because bikes pass close to the curb.
+  source_session_ids:
+  - 000592
+- id: 80
+  statement: Wes revised the metrics-router dashboard labels after Alex Valdez pushed
+    back on the wording `validation-only, safe to ignore`; the new labels separate
+    live metrics-router traffic and live canary hosts from replay and mirror validation
+    samples.
+  source_session_ids:
+  - 000595
+- id: 81
+  statement: The metrics-router dashboard legend now says rollback discussion should
+    start from live-path signals, while validation-source movement is evidence for
+    investigation rather than rollback criteria.
+  source_session_ids:
+  - 000595
+- id: 82
+  statement: During Q4 planning, Hema asked Alex Valdez to turn the September mirror/replay
+    cardinality wobble into a named controls effort, and Alex agreed to own it as
+    Cardinality Guardrails.
+  source_session_ids:
+  - 000599
+- id: 83
+  statement: The first cut of Cardinality Guardrails is deliberately limited to label
+    limits, alert-source semantics, and label-change preflight.
+  source_session_ids:
+  - 000599
+- id: 84
+  statement: The October 12, 2023 virtual alumni panel shifted Alex Valdez and Devika’s
+    comparison of chief-resident, hospitalist, and QI/research bridge paths toward
+    practical scheduling rather than prestige.
+  source_session_ids:
+  - 000609
+- id: 85
+  statement: Chief-resident alumni said a chief year can cluster nights and weekends
+    around hospital needs even when teaching and administrative days are nominally
+    protected.
+  source_session_ids:
+  - 000609
+- id: 86
+  statement: Hospitalist alumni said block schedules are more predictable in advance,
+    but recovery after heavy service weeks can be consumed by errands, charting catch-up,
+    or pressure to take extra service.
+  source_session_ids:
+  - 000609
+- id: 87
+  statement: QI/research bridge alumni said schedule quality depends heavily on the
+    sponsor and requires negotiated protected time and clinic load.
+  source_session_ids:
+  - 000609
+- id: 88
+  statement: Lantern’s five Product Engineering ownership gaps are now corrected in
+    the owner-map source with reviewer provenance rather than patched in the UI.
+  source_session_ids:
+  - '000625'
+- id: 89
+  statement: On October 24, 2023, Alex Valdez, Cyrus, Nadia, and Roman selected a
+    label-cardinality preflight for metrics-router and shard-keeper changes as part
+    of Cardinality Guardrails' first concrete control slice.
+  source_session_ids:
+  - 000648
+- id: 90
+  statement: On October 24, 2023, Alex Valdez, Cyrus, Nadia, and Roman selected alert-source
+    classification for Cardinality Guardrails so replay or mirror panels cannot appear
+    to be live rollback triggers; Roman linked this control to the Q3 replay/mirror
+    confusion.
+  source_session_ids:
+  - 000648
+- id: 91
+  statement: On October 24, 2023, Alex Valdez, Cyrus, Nadia, and Roman selected a
+    rollup-service parity check before label-name changes cross service boundaries
+    as part of Cardinality Guardrails; Nadia linked this control to the April 17 label
+    mismatch.
+  source_session_ids:
+  - 000648
+- id: 92
+  statement: Theo approved Lantern’s narrow internal-adoption step, allowing its use
+    in selected release reviews and incident follow-ups for Infra and Product Engineering;
+    Hema backed the decision because the access and content boundaries remained explicit.
+  source_session_ids:
+  - 000708
+- id: 93
+  statement: Lantern access is limited to selected internal operating rooms and existing
+    responsible participants.
+  source_session_ids:
+  - 000709
+- id: 94
+  statement: 'The rollup-service validation metrics review finished: Cyrus’s sample
+    showed that raw `replay_source_id` would be effectively unbounded in the replay
+    stream; Roman agreed the debugging need is real but the raw ID belongs in logs,
+    and the metric will instead use a bounded `source_class` enum.'
+  source_session_ids:
+  - '000732'
+- id: 95
+  statement: Alex Valdez requested that Cardinality Guardrails runbook entry `rb_1697635080004`
+    add the provided `Pilot prevention note — Nov 14, 2023` section as the project’s
+    first concrete prevention case, without implying the project is mature and without
+    changing the entry title.
+  source_session_ids:
+  - '000732'
+- id: 96
+  statement: Nadia retains responsibility for alert semantics in the Cardinality Guardrails
+    review path.
+  source_session_ids:
+  - 000844
+- id: 97
+  statement: Cyrus retains responsibility for the cost and cardinality aspects of
+    Cardinality Guardrails reviews.
+  source_session_ids:
+  - 000844
+- id: 98
+  statement: Cyrus agreed that remaining legacy-aggregator validation should use the
+    OTel/Prometheus path plus Cardinality Guardrails fixtures instead of legacy mirrored
+    writes.
+  source_session_ids:
+  - 000871
+- id: 99
+  statement: Legacy-aggregator mirrored writes have been stopped; the service is now
+    archived legacy code and is no longer an active replay source.
+  source_session_ids:
+  - 000871
+- id: 100
+  statement: After reviewing Wes's Q4 examples, Hema and Alex Valdez agreed that Wes
+    is the default daylight first-pass handoff for metrics-router canary questions
+    and ingest-edge staging rollback drills.
+  source_session_ids:
+  - 000899
+- id: 101
+  statement: Wes is a practical backup for metrics-router canaries and ingest-edge
+    staging rollback drills, but is not a formal primary owner.
+  source_session_ids:
+  - 000899
+- id: 102
+  statement: For the rollup-service validation metric, the raw tenant hash is available
+    only in debug logs.
+  source_session_ids:
+  - 000974
+- id: 103
+  statement: For the rollup-service validation metric, `tenant_size_class` is limited
+    to `small`, `medium`, `large`, and `unknown`; the rollup-service maintainers own
+    the enum source.
+  source_session_ids:
+  - 000974
+- id: 104
+  statement: Hema and Theo approved a bounded Project Lantern internal-adoption lane
+    administered by Iris Kemper, who may admit a named internal room when its service
+    area, purpose, provenance source, and permission boundary meet the accepted criteria.
+  source_session_ids:
+  - '001073'
+- id: 105
+  statement: Alex Valdez is no longer the approver for ordinary Project Lantern room
+    admissions; Iris Kemper will involve him only for data-contract, failure-mode,
+    or provenance exceptions.
+  source_session_ids:
+  - '001073'
+- id: 106
+  statement: Devika accepted the post-residency attending hospitalist role at the
+    Manhattan hospital on February 8, 2024, and the hospitalist-division coordinator
+    confirmed receipt of her acceptance.
+  source_session_ids:
+  - 001098
+- id: 107
+  statement: On February 12, 2024, Alex Valdez ended his self-imposed calf restrictions
+    and returned to normal unrestricted pickup soccer and bouldering without a separate
+    recovery plan after unrestricted pickup caused no pain, stiffness, swelling, tenderness,
+    altered gait, or pulling the next morning.
+  source_session_ids:
+  - 001109
+- id: 108
+  statement: 'Roman completed the production rollout of the shard-keeper label rename:
+    shard-keeper now emits `storage_region`, rollup-service reads it, and one hour
+    of production observation showed matching label counts, zero dropped rollups,
+    normal rollup completion, and no change to alert semantics.'
+  source_session_ids:
+  - 001139
+- id: 109
+  statement: Anya started at North Pier on March 18, 2024, and is no longer employed
+    at the agency.
+  source_session_ids:
+  - 001228
+- id: 110
+  statement: Alex Valdez requests that the existing `rb_ingest_edge_cutover` playbook
+    be updated to state that randomized one-to-three-second `Retry-After` behavior
+    is now the production behavior, document the explicit stop boundaries, and record
+    the observed maxima from the 10%, 50%, and 100% gates.
+  source_session_ids:
+  - 001286
+- id: 111
+  statement: Hema and Theo completed Alex Valdez’s formal calibration, and Sphere
+    approved his promotion to Staff IC effective May 20, 2024.
+  source_session_ids:
+  - '001456'
+- id: 112
+  statement: Alex Valdez’s Staff IC role grants broader technical and cross-service
+    authority, while mapped engineers and service owners retain implementation and
+    operational responsibility; the role has no people-management assignment.
+  source_session_ids:
+  - '001456'
+- id: 113
+  statement: After the formal review reported on June 20, 2024, North Pier adopted
+    the canonical versioned token package, generated downstream files, and automated
+    drift check for ongoing design-system work rather than extending the trial.
+  source_session_ids:
+  - '001571'
+- id: 114
+  statement: North Pier confirmed Anya as the operating owner of its design-system
+    and engineering-handoff lane.
+  source_session_ids:
+  - '001571'
+- id: 115
+  statement: The Manhattan hospital's GME office confirmed that Devika completed all
+    internal-medicine residency requirements effective June 30, 2024; she is no longer
+    a resident, and her resident-style night blocks are over.
+  source_session_ids:
+  - '001605'
+- id: 116
+  statement: Synthetic revocations across the remaining shard-keeper production population
+    preserved exactly one serving holder, closed each old holder’s serving gate before
+    another routing response, and produced no stale reads; brief latency and error
+    movement returned to baseline without restarts.
+  source_session_ids:
+  - '001614'
+- id: 117
+  statement: Alex Valdez requested that runbook entry `rb_1710794400000` state that
+    lease-loss notification closes the shard-keeper serving gate before another response,
+    that periodic polling is only a backup detector, and that production verification
+    must cover holder count, gate-close latency, stale responses, replacement acquisition,
+    p99 latency, errors, and restarts.
+  source_session_ids:
+  - '001614'
+- id: 118
+  statement: At both 50% and full production, repeated ingest-edge noisy-tenant tests
+    preserved the eight-waiting-per-tenant cap, immediately inserted newly queued
+    low-volume tenants into the ring, used every eligible slot through work-conserving
+    dispatch, removed empty tenants from the ring after cancellation, and retained
+    Retry-After on every queue-cap response.
+  source_session_ids:
+  - '001621'
+- id: 119
+  statement: Anya handled the North Pier migration implementation and routine review
+    independently, contacting Alex Valdez only after completion; Alex is available
+    for unusual design-to-engineering failures rather than serving as a standing reviewer.
+  source_session_ids:
+  - '001644'
+- id: 120
+  statement: Alex Valdez and Devika will prepare the night before each known clinical
+    day by assigning Kibo's walks, choosing dinner coverage, and placing the next
+    morning's essentials, rather than improvising by text during the shift.
+  source_session_ids:
+  - '001674'
+- id: 121
+  statement: 'Alex Valdez reports that the forty-eight-hour production observation
+    of the `deployment.environment` rollout is complete: across production OTel ingestion,
+    metrics-router, and rollup-service, mixed-case allowed inputs normalize only to
+    `prod`, `staging`, or `dev`; missing input omits the label; unknown, `qa`, malformed,
+    and arbitrary raw values are rejected before publication and create no series;
+    no tenant has more than three distinct values; and rollup-service reports no producer-consumer
+    mismatch.'
+  source_session_ids:
+  - '001752'
+- id: 122
+  statement: Alex Valdez, Iris, and Theo classified the Lantern cache defect as a
+    release blocker.
+  source_session_ids:
+  - 001872
+- id: 123
+  statement: Alex Valdez requires Lantern deploy-card cache keys to include tenant
+    identity.
+  source_session_ids:
+  - 001872
+- id: 124
+  statement: Alex Valdez requires the full Lantern cross-tenant rehearsal to pass
+    on repetition before customer access can be opened.
+  source_session_ids:
+  - 001872
+- id: 125
+  statement: The windowed second room in Alex Valdez and Devika’s South Slope home
+    now functions as a dedicated work room, with Alex’s desk, chair, two monitors,
+    work lighting, and closed work-equipment storage; household overflow is kept elsewhere.
+  source_session_ids:
+  - 001925
+- id: 126
+  statement: Alex Valdez and Devika decided that the unnamed 7th Avenue cafe in Park
+    Slope will be an occasional destination when they want a longer walk from South
+    Slope, rather than an automatic convenience stop they recreate every week.
+  source_session_ids:
+  - 001929
+- id: 127
+  statement: The Park Slope apartment’s internet connection was terminated effective
+    September 30, 2024, resolving Alex Valdez’s last pending utility from the former
+    apartment.
+  source_session_ids:
+  - 001937
+- id: 128
+  statement: The final Park Slope internet invoice has no equipment-return charge
+    because Alex Valdez owns the Arris S33 modem and separate router.
+  source_session_ids:
+  - 001937
+- id: 129
+  statement: Hema accepted the exercised metrics-router canary-response reference
+    for future use by Wes and other mapped operators.
+  source_session_ids:
+  - 001965
+- id: 130
+  statement: Alex Valdez requested that the existing `rb_metrics_router_canary` entry
+    replace its pending-validation marker with the completed 94-millisecond exercise
+    and Hema’s acceptance while preserving all thresholds, rollback conditions, and
+    ownership language.
+  source_session_ids:
+  - 001965
+- id: 131
+  statement: The Park Slope property manager completed the post-handoff accounting
+    and returned the full security deposit to Alex Valdez and Devika, with no deductions
+    for cleaning, repairs, damage, utilities, keys, or occupancy.
+  source_session_ids:
+  - '002000'
+- id: 132
+  statement: The former Park Slope tenancy has a zero balance and no remaining condition
+    claim; its financial and condition accounting is closed.
+  source_session_ids:
+  - '002000'
+- id: 133
+  statement: North Pier accepted Anya's measured capacity note, and North Pier's temporary
+    QA lane expires on November 1, 2024; Anya has no QA shifts or release-note obligations
+    from that lane after that date.
+  source_session_ids:
+  - 002048
+- id: 134
+  statement: Anya's capacity released from North Pier's temporary QA lane returns
+    to the design-system and engineering-handoff work she already owns.
+  source_session_ids:
+  - 002048
+- id: 135
+  statement: Alex Valdez and Devika moved Devika’s smaller charting surface from the
+    dining table into the dedicated South Slope work room, on a separate wall from
+    Alex’s desk.
+  source_session_ids:
+  - 002090
+- id: 136
+  statement: In the South Slope work room, Devika’s power cable runs directly along
+    her wall to a separate outlet without crossing or joining Alex Valdez’s desk power;
+    the door swing and window remain clear.
+  source_session_ids:
+  - 002090
+- id: 137
+  statement: The new South Slope work-room setup restored use of the dining table
+    and means Kibo no longer has to cross either cable path.
+  source_session_ids:
+  - 002090
+- id: 138
+  statement: Product Engineering completed Lantern's authorized 30-day internal shadow
+    by December 4, 2024, after 18,400 customer-shaped lookups; no response contained
+    material from the other synthetic tenant, all 11 deliberately stale permitted-source
+    cases rendered explicit unknown, denied requests made no adapter calls, and no
+    external field fell back to internal room metadata.
+  source_session_ids:
+  - 002168
+- id: 139
+  statement: Iris confirmed that Lantern's resulting cards remained understandable
+    without exposing omitted internal sources.
+  source_session_ids:
+  - 002168
+- id: 140
+  statement: For Project Lantern pilot preparation, Iris Kemper owns customer interpretation
+    and selection criteria; Alex Valdez owns monitoring, provenance failure behavior,
+    and the operational handoff.
+  source_session_ids:
+  - 002194
+- id: 141
+  statement: 'On January 6, 2025, Lantern''s internal operational-handoff rerun passed
+    all three synthetic failure scenarios: responders identified stale provenance
+    from an explicit unknown state without pursuing adapter latency, verified that
+    a policy denial made zero adapter calls, and distinguished an adapter timeout
+    occurring after a successful freshness check; every page contained only tenant-safe
+    synthetic context, traces matched the displayed failure classes, and the alert-classification
+    and operational-handoff gap is now closed.'
+  source_session_ids:
+  - 002283
+- id: 142
+  statement: Anya signed the limited-use agreement herself.
+  source_session_ids:
+  - '002301'
+- id: 143
+  statement: Anya granted North Pier a limited recording license.
+  source_session_ids:
+  - '002301'
+- id: 144
+  statement: North Pier may prepare the edit under Anya's limited recording license.
+  source_session_ids:
+  - '002301'
+- id: 145
+  statement: Participating SDKs must reject batches above 8,000 points before transmission
+    and instruct callers to split them.
+  source_session_ids:
+  - '002312'
+- id: 146
+  statement: Ingest-edge must retain deterministic HTTP 413 whole-batch rejection
+    for older or nonconforming clients, with zero accepted points, rejected points
+    equal to the submitted count, and the `oversized_batch` reason.
+  source_session_ids:
+  - '002312'
+- id: 147
+  statement: Alex Valdez requested a comment on the incident-practice document recording
+    that, in the January 24 exercise, five of eight participants paged the secondary
+    before the 45-minute boundary when the cause remained unisolated, three of eight
+    treated a Friday staging rehearsal with no production-state change as a prohibited
+    deploy, and four of eight initially stopped the postmortem at the triggering operator
+    command instead of identifying the absent validation guardrail.
+  source_session_ids:
+  - '002341'
+- id: 148
+  statement: Hema adopted the incident-practice scenarios as a quarterly infrastructure-rotation
+    onboarding module; Wes will teach the responder path, Nadia will review the postmortem
+    section, and Alex Valdez will maintain the cross-service failure cases.
+  source_session_ids:
+  - '002401'
+- id: 149
+  statement: The clinician cleared Alex Valdez to return to bouldering with a longer
+    forearm warmup and progressive load management.
+  source_session_ids:
+  - '002420'
+- id: 150
+  statement: 'Alex Valdez and Iris locked the already implemented 24-hour explanation
+    rule: joined explanations are allowed only for fully sourced, independently current
+    signals from the same tenant and published service; stale or missing inputs must
+    appear as explicit unknown, while valid signals more than 24 hours apart must
+    remain separate and display their source times.'
+  source_session_ids:
+  - '002562'
+- id: 151
+  statement: On April 1, 2025, a plumber and building handyman opened the back-left
+    sink-cabinet panel at Alex Valdez and Devika's residence and found condensation
+    on an uninsulated cold-water riser, with no supply, drain, trap, wall, or electrical
+    leak.
+  source_session_ids:
+  - '002600'
+- id: 152
+  statement: Product Engineering corrected the Lantern UI refactor to calculate the
+    24-hour explanation boundary from elapsed source instants rather than truncated
+    local dates; signals exactly 24 hours apart remain eligible, signals 24 hours
+    and one second apart remain separate, and regressions cover midnight crossings
+    and both daylight-saving offset directions.
+  source_session_ids:
+  - 002608
+- id: 153
+  statement: The South Slope sink-cabinet cold-water riser has been insulated.
+  source_session_ids:
+  - 002628
+- id: 154
+  statement: Post-repair supply, drain, trap, and filled-basin tests at the South
+    Slope sink cabinet were dry, and the musty odor is gone.
+  source_session_ids:
+  - 002628
+- id: 155
+  statement: Alex Valdez and Devika owe $0 for the South Slope sink-cabinet repair.
+  source_session_ids:
+  - 002628
+- id: 156
+  statement: 'The Lantern pilot ran from March 10 through April 8, 2025, with 326
+    customer sessions and 61 explanation requests: 39 eligible combined renders completed,
+    14 valid requests more than 24 hours apart were correctly separated, and 8 stale
+    or missing requests rendered explicit unknown; there were no eligible renderer
+    failures or automatic-stop conditions.'
+  source_session_ids:
+  - 002638
+- id: 157
+  statement: Harbor Health used published ownership to route two release follow-ups
+    during the Lantern pilot.
+  source_session_ids:
+  - 002638
+- id: 158
+  statement: Mosaic Commerce requested cost context outside the Lantern pilot contract.
+  source_session_ids:
+  - 002638
+- id: 159
+  statement: Harbor Health and Mosaic Commerce both requested continuation of the
+    Lantern pilot.
+  source_session_ids:
+  - 002638
+- id: 160
+  statement: Based on the completed 30-day results and both customers’ continuation
+    requests, Hema and Theo authorized uninterrupted read-only Lantern access for
+    Harbor Health and Mosaic Commerce from April 9 through June 30, 2025; they remain
+    the only customer accounts with access.
+  source_session_ids:
+  - '002642'
+- id: 161
+  statement: 'Alex Valdez requested that the Lantern preparation note retain the July
+    1–9, 2025 operating snapshot and append the factual July 25, 2025 result: twelve
+    retry duplicates, the deploy-identity rule, an unavailable result when the source-event
+    ID is missing, unchanged read-only authorization for two accounts, and a correction
+    pending before the next evidence cut.'
+  source_session_ids:
+  - '003013'
+- id: 162
+  statement: The full Harbor Health and Mosaic Commerce replay processed 3,406 ingestion-attempt
+    rows into 3,394 unique deploy movements identified by `(tenant_id, published_service_id,
+    provenance_source, source_event_id)`; it collapsed all 12 known retry duplicates
+    while preserving rollback and redeploy events with distinct source-event IDs.
+  source_session_ids:
+  - '003050'
+- id: 163
+  statement: On August 12, 2025, Devika submitted the November 12 ceremony date to
+    the hospital, which recorded it against her approved November 10–14 leave; the
+    exact-date leave alignment is complete, with no extra leave day or schedule exception
+    needed.
+  source_session_ids:
+  - '003076'
+- id: 164
+  statement: As of September 3, 2025, Mosaic Commerce’s forecast baseline is 11.8
+    million data points per minute and its forecast peak for October 6, 2025 is 16.0
+    million data points per minute; the forecast increase is not yet live traffic.
+  source_session_ids:
+  - '003164'
+- id: 165
+  statement: Cyrus replayed the Mosaic Commerce-shaped mix at 16.0 million data points
+    per minute; metrics-router pending-batch wait reached 780 ms p99 and retryable
+    queue-full responses reached 0.9%, while accepted batches remained intact and
+    shard-keeper lease health and rollup-service parity stayed at baseline.
+  source_session_ids:
+  - '003164'
+- id: 166
+  statement: The Mosaic Commerce replay isolated the shared metrics-router export
+    queue as the first constraint rather than a cross-service consistency defect.
+  source_session_ids:
+  - '003164'
+- id: 167
+  statement: Alex Valdez requested that the September 3 Mosaic capacity-response preparation
+    brief become the final decision record stating that Hema approved a bounded metrics-router
+    response—not a pipeline rewrite—with the global queue capped at 2,048 batches,
+    each tenant limited to 64 pending batches, and additional work sent to the existing
+    retryable backpressure path before acceptance.
+  source_session_ids:
+  - '003171'
+- id: 168
+  statement: Alex Valdez requested that the final Mosaic decision record assign Wes
+    implementation and load-test evidence for the bounded metrics-router response
+    without making Wes the metrics-router primary owner.
+  source_session_ids:
+  - '003171'
+- id: 169
+  statement: Alex Valdez requested that the final Mosaic decision record assign Alex
+    cross-service invariants and any future decision to open a production window.
+  source_session_ids:
+  - '003171'
+- id: 170
+  statement: Alex Valdez requested that the final Mosaic decision record assign Cyrus
+    and Roman the rollup-service capacity and parity evidence.
+  source_session_ids:
+  - '003171'
+- id: 171
+  statement: Alex Valdez requested that the final Mosaic decision record assign Nadia
+    the queue and refusal alert semantics.
+  source_session_ids:
+  - '003171'
+- id: 172
+  statement: Alex Valdez requested that the final Mosaic decision record require every
+    stage to stop if queue-wait p99 exceeds 400 milliseconds for five consecutive
+    minutes, retryable queue-full responses exceed 0.5% for five consecutive minutes,
+    any accepted batch is lost, or any consistency, parity, dropped-series, route,
+    or full-health check departs baseline.
+  source_session_ids:
+  - '003171'
+- id: 173
+  statement: The scheduled replay of the revised metrics-router candidate ran for
+    90 minutes at 18.4 million data points per minute, 15% above Mosaic Commerce’s
+    forecast peak; queue-wait p99 was 230 ms, retryable queue-full responses were
+    0.07%, no tenant exceeded 64 pending batches, no accepted points were lost, and
+    shard-keeper lease health, rollup-service parity, route consistency, dropped-series,
+    and the full-health set remained at baseline, so no hard stop was reached.
+  source_session_ids:
+  - '003202'
+- id: 174
+  statement: Alex Valdez and Iris completed the rescheduled Lantern evidence review
+    covering July 1 through September 18, 2025; the reconciled package contains 2,412
+    customer sessions, 463 logical explanation requests, 307 eligible combined explanations,
+    103 valid over-24-hour cases kept separate, 53 explicit-unknown outcomes, zero
+    eligible renderer failures, and no automatic-stop conditions.
+  source_session_ids:
+  - '003231'
+- id: 175
+  statement: The Lantern results are for the October 8, 2025 final review and do not
+    constitute an early renewal, continuation, expansion, cost-data, additional-account,
+    or broader-adoption decision.
+  source_session_ids:
+  - '003231'
+- id: 176
+  statement: The Mosaic Commerce tenant-bounded queue and retryable-backpressure control
+    is now running in metrics-router production.
+  source_session_ids:
+  - '003256'
+- id: 177
+  statement: Wes maintains the Mosaic Commerce bounded metrics-router operating slice
+    and its diagnostics.
+  source_session_ids:
+  - '003256'
+- id: 178
+  statement: Alex Valdez selected Sphere’s individual HDHP coverage for January 1
+    through December 31, 2026, with a $92 biweekly employee premium, a $2,200 deductible,
+    10% coinsurance after the deductible, and fully covered preventive care.
+  source_session_ids:
+  - '003271'
+- id: 179
+  statement: Alex Valdez elected an $81 employee HSA contribution from each of 26
+    biweekly paychecks in 2026, totaling $2,106. Sphere will contribute $900 through
+    four $225 deposits in January, April, July, and October, making planned combined
+    2026 HSA funding $3,006.
+  source_session_ids:
+  - '003271'
+- id: 180
+  statement: Wes’s independent handling of the October 6 live Mosaic Commerce ramp
+    is now formal ownership-review evidence.
+  source_session_ids:
+  - '003275'
+- id: 181
+  statement: Alex Valdez and Devika completed their civil ceremony at 11:00 AM on
+    November 12, 2025 at the Manhattan City Clerk Marriage Bureau, after arriving
+    before 10:45 AM with current photo IDs and an active New York marriage license;
+    the marriage record was executed, and they are now married.
+  source_session_ids:
+  - '003303'
+- id: 182
+  statement: Anya attended Alex Valdez and Devika's November 12, 2025 ceremony with
+    current photo ID and signed as their adult witness.
+  source_session_ids:
+  - '003303'
+- id: 183
+  statement: On November 12, 2025, the family party of eight, including Alex Valdez's
+    mother, had dinner at Restaurant A's quiet back table from 6:30 to 8:30 PM, using
+    the regular menu and step-free entrance.
+  source_session_ids:
+  - '003303'
+- id: 184
+  statement: Effective December 5, 2025, Alex Valdez, Hema, and Wes changed the formal
+    metrics-router ownership record so Wes is the primary owner.
+  source_session_ids:
+  - 003319
+- id: 185
+  statement: Wes owns routine metrics-router implementation, production operations,
+    release and rollback decisions, and owner-led-window opening decisions under the
+    existing deploy-pipeline, canary, health-return, stop, and rollback rules.
+  source_session_ids:
+  - 003319
+- id: 186
+  statement: Effective December 5, 2025, Alex Valdez is the metrics-router backup
+    and may decide to open an owner-led window when covering for an unavailable Wes.
+  source_session_ids:
+  - 003319
+- id: 187
+  statement: Alex Valdez is the metrics-router architectural reviewer and escalation
+    path only for triggered cross-service invariant, provenance, or failure-mode exceptions;
+    he no longer gates ordinary metrics-router windows.
+  source_session_ids:
+  - 003319
+- id: 188
+  statement: On January 6, 2026, Sphere confirmed Devika as Alex Valdez’s 100% primary
+    beneficiary for both retirement and employer life-insurance benefits and as his
+    first emergency contact.
+  source_session_ids:
+  - '003336'
+- id: 189
+  statement: On January 6, 2026, Devika’s hospital confirmed Alex Valdez as her 100%
+    primary beneficiary for both retirement and employer life-insurance benefits and
+    as her first emergency contact.
+  source_session_ids:
+  - '003336'
+- id: 190
+  statement: Alex Valdez and Devika used their marriage certificate to complete these
+    employer-system updates; nothing in this set remains pending.
+  source_session_ids:
+  - '003336'
+- id: 191
+  statement: Alex Valdez and Devika did not change their legal names after marriage.
+  source_session_ids:
+  - '003336'
+- id: 192
+  statement: Alex Valdez and Devika each retained individual employer medical coverage.
+  source_session_ids:
+  - '003336'
+- id: 193
+  statement: On January 8, 2026, the required Mosaic-shaped staged replay finished
+    after 90 minutes at 19.78 million data points per minute using the new forecast’s
+    tenant, batch-size, and burst-pattern distributions. Queue-wait p99 reached 319
+    milliseconds, retryable queue-full responses reached 0.17%, and the highest tenant
+    reached 62 pending batches.
+  source_session_ids:
+  - 003338
+- id: 194
+  statement: The Mosaic-shaped staged replay reconciled every accepted batch to exactly
+    one terminal result with no accepted batch lost; consistency, parity, dropped-series,
+    route, shard-keeper lease, rollup-service, and full-health checks stayed at baseline
+    throughout.
+  source_session_ids:
+  - 003338
+- id: 195
+  statement: The Mosaic-shaped staged replay supplies the required staged evidence
+    but does not open or authorize a capacity-related production window; direct production
+    evidence and a later closeout decision remain pending.
+  source_session_ids:
+  - 003338
+- id: 196
+  statement: Alex Valdez requested a “Mosaic Commerce capacity-observation window”
+    for January 20, 2026, from 8:30 AM to 12:00 PM with Alex, Wes, Cyrus, Roman, and
+    Nadia; the event must require Wes, as metrics-router primary, to make a fresh
+    opening decision only if the full health set is at baseline, preserve the existing
+    role boundaries, and clarify that scheduling does not open or authorize a capacity-related
+    production window before the January 20 checks.
+  source_session_ids:
+  - '003342'
+- id: 197
+  statement: Alex Valdez requested a “Mosaic Commerce capacity evidence review” for
+    January 22, 2026, from 2:00 to 2:45 PM with Alex, Wes, Cyrus, Roman, Nadia, and
+    Hema; the review must assess the January 20 production evidence before deciding
+    whether the broader scale-response cycle can close, preserve the existing role
+    boundaries, and clarify that the forecast is not observed traffic and scheduling
+    does not itself authorize a capacity-related production window.
+  source_session_ids:
+  - '003342'
+- id: 198
+  statement: During the January 20, 2026 Mosaic Commerce capacity observation, every
+    accepted batch reconciled to exactly one terminal result with no loss; consistency,
+    parity, dropped-series, route, shard-keeper lease, rollup-service, and full-health
+    checks remained at baseline, so no stop condition was reached.
+  source_session_ids:
+  - '003347'
+- id: 199
+  statement: The January 22, 2026 Mosaic Commerce evidence review is complete, and
+    the Mosaic scale-response cycle was closed without another queue design, configuration
+    change, or production push.
+  source_session_ids:
+  - 003349
+- id: 200
+  statement: 'Alex Valdez established a conditional Wednesday 7:15 AM routine: run
+    for 30 minutes when he is not the active on-call primary and paths are not icy;
+    if either condition fails, skip the run rather than move it into Devika’s protected
+    weekend.'
+  source_session_ids:
+  - '003360'
+- id: 201
+  statement: Harbor Health used Lantern’s existing view in seven release follow-ups
+    during the January 1–March 15, 2026 continuation period.
+  source_session_ids:
+  - 003389
+- id: 202
+  statement: Mosaic Commerce used Lantern’s existing view in six incident handoffs
+    during the January 1–March 15, 2026 continuation period.
+  source_session_ids:
+  - 003389
+- id: 203
+  statement: Effective April 1, 2026, Iris owns Lantern’s customer promise, adoption
+    criteria, and UI interpretation.
+  source_session_ids:
+  - 003397
+- id: 204
+  statement: Effective April 1, 2026, Alex Valdez owns Lantern’s freshness, tenant-isolation,
+    authorization-denial, latency, and error monitoring, along with the shared data
+    contract, source-registration safety gates, and failure-mode review.
+  source_session_ids:
+  - 003397
+- id: 205
+  statement: Effective April 1, 2026, Product Engineering owns Lantern implementation.
+  source_session_ids:
+  - 003397
+- id: 206
+  statement: Roman revised Cardinality Guardrails PR 512 after Alex Valdez’s March
+    2026 blocking review so the fixture compares key presence in both directions and
+    requires exact equality between each expected bounded-value set and the set observed
+    from rollup-service.
+  source_session_ids:
+  - '003401'
+- id: 207
+  statement: Executed regressions for Cardinality Guardrails PR 512 fail when an expected
+    value is missing or an unexpected downstream value appears, and pass when the
+    key-and-value set matches exactly.
+  source_session_ids:
+  - '003401'
+- id: 208
+  statement: Harbor Health used the Lantern view in eight release follow-ups, including
+    two on the corrected published-alias path, while Mosaic Commerce used it in seven
+    incident handoffs.
+  source_session_ids:
+  - '003455'
+- id: 209
+  statement: 'Lantern now evaluates every tenant-scoped owner-map alias whose effective
+    interval covers the source event timestamp: if all qualifying records identify
+    the same canonical published service, Lantern resolves the identity once; if they
+    identify multiple distinct canonical services, Lantern keeps the signals separate
+    and renders ownership as explicit unknown regardless of storage order.'
+  source_session_ids:
+  - '003461'
+- id: 210
+  statement: Alex Valdez owns only the shared cross-system contract and failure-mode
+    review for the Lantern authority-boundary rehearsal.
+  source_session_ids:
+  - '003470'
+- id: 211
+  statement: Cyrus owns the Cardinality Guardrails authority interface and cost semantics
+    for the Lantern authority-boundary rehearsal.
+  source_session_ids:
+  - '003470'
+- id: 212
+  statement: Wes owns the metrics-router operating-limit mapping for the Lantern authority-boundary
+    rehearsal.
+  source_session_ids:
+  - '003470'
+- id: 213
+  statement: Alex Valdez rejected Product Engineering’s combined-payload candidate
+    because it copied the metrics-router operating limit and estimated cost into a
+    Lantern-owned payload and added an owner-map mutation endpoint, which would make
+    Lantern a second authority for Cardinality Guardrails data and give Lantern a
+    write path into published responsibility.
+  source_session_ids:
+  - 003491
+- id: 214
+  statement: The Lantern platform-reference design now uses a reference-only contract
+    containing exactly `tenant_id`, `canonical_service_id`, `authority_type`, `authority_record_id`,
+    and `source_timestamp`; it may contain neither authority payload values nor mutation
+    capability.
+  source_session_ids:
+  - 003491
+- id: 215
+  statement: Iris confirmed that Lantern may explain system state and navigate to
+    authoritative detail but may not present copied authoritative values as Lantern’s
+    own.
+  source_session_ids:
+  - 003491
+- id: 216
+  statement: The Lantern rehearsal does not expand authorization for either Harbor
+    Health or Mosaic Commerce.
+  source_session_ids:
+  - 003491
+- id: 217
+  statement: Harbor Health used Lantern in nine release follow-ups during the June
+    16–September 15, 2026 evidence period, including three uses of the published-alias
+    path.
+  source_session_ids:
+  - '003517'
+- id: 218
+  statement: Mosaic Commerce used Lantern in eight incident handoffs during the June
+    16–September 15, 2026 evidence period.
+  source_session_ids:
+  - '003517'
+- id: 219
+  statement: For Lantern’s internal platform cycle, Wes’s metrics-router responsibilities
+    expand to include operating evidence.
+  source_session_ids:
+  - '003524'
+- id: 220
+  statement: Lantern’s first internal implementation slice may attach separate read-only
+    owner-map and Cardinality Guardrails references to the same canonical service,
+    with each reference preserving its own `authority_type`, `authority_record_id`,
+    and `source_timestamp`.
+  source_session_ids:
+  - '003531'
+- id: 221
+  statement: No Lantern reference output may enter the Harbor Health or Mosaic Commerce
+    customer paths.
+  source_session_ids:
+  - '003531'
+- id: 222
+  statement: The $82.60 South Slope rent refund posted to Alex Valdez and Devika’s
+    original payment method.
+  source_session_ids:
+  - '003536'
+- id: 223
+  statement: 'South Slope management corrected the portal’s erroneous $3,717.00 September
+    debit to the proper $3,634.40 transition-month rent: $1,652.00 for September 1–14
+    and $1,982.40 for September 15–30.'
+  source_session_ids:
+  - '003536'
+- id: 224
+  statement: The South Slope rent account now has a zero balance, no late fee, no
+    new recurring charge, and nothing pending.
+  source_session_ids:
+  - '003536'
+- id: 225
+  statement: Sphere's posted 2027 individual HDHP costs $98 per biweekly paycheck,
+    has a $2,300 deductible and 10% coinsurance after the deductible, fully covers
+    preventive care, and is HSA-eligible.
+  source_session_ids:
+  - '003541'
+- id: 226
+  statement: Sphere will fund $900 for the 2027 individual HDHP's HSA through four
+    $225 deposits in January, April, July, and October.
+  source_session_ids:
+  - '003541'
+- id: 227
+  statement: Sphere's posted 2027 individual PPO costs $164 per biweekly paycheck,
+    has a $750 deductible and 20% coinsurance after the deductible, fully covers preventive
+    care, and is not HSA-eligible.
+  source_session_ids:
+  - '003541'
+- id: 228
+  statement: Sphere's 2027 individual medical-plan open enrollment deadline is October
+    23, 2026 at 5:00 PM Eastern.
+  source_session_ids:
+  - '003541'
+- id: 229
+  statement: Alex Valdez requests a clean side-by-side comparison of Sphere’s 2027
+    individual medical plans, including annual payroll premiums over 26 paychecks,
+    with the $900 employer HSA funding shown separately from medical coverage.
+  source_session_ids:
+  - '003542'
+- id: 230
+  statement: As of October 12, 2026, North Pier has resolved the `android-2026.09.2`
+    handoff failure by making the release-candidate manifest authoritative for required
+    outputs and having each handoff name its `release_candidate` and associated `canonical_package_version`;
+    a handoff is implementation-ready only if every manifest-listed output is present,
+    includes generated-artifact metadata, and carries the same `canonical_package_version`
+    as the handoff record.
+  source_session_ids:
+  - '003555'
+- id: 231
+  statement: Alex Valdez’s confirmed Sphere individual HDHP election covers January
+    1 through December 31, 2027, costs $98 per biweekly paycheck, has a $2,300 deductible,
+    charges 10% coinsurance after the deductible, and fully covers preventive care.
+  source_session_ids:
+  - 003568
+- id: 232
+  statement: Alex Valdez elected a $90 employee HSA contribution from each of 26 biweekly
+    paychecks in 2027, totaling $2,340; Sphere will add four $225 employer deposits
+    totaling $900, for planned combined 2027 HSA funding of $3,240.
+  source_session_ids:
+  - 003568
+- id: 233
+  statement: Across 120 fixture runs—60 Harbor Health-shaped and 60 Mosaic Commerce-shaped—the
+    corrected Lantern PR 1226 build preserved separate owner-map and Cardinality Guardrails
+    references in all 24 dual-authority cases and both insertion orders, keyed by
+    `tenant_id`, `canonical_service_id`, `authority_type`, and `authority_record_id`,
+    with each reference retaining its own `source_timestamp`; 12 stale or missing
+    authority records rendered explicit unknown, and eight denied requests made zero
+    adapter calls. No run copied authority payload values, exposed a mutation path,
+    crossed tenants, dropped required provenance or a source timestamp, or created
+    a request or artifact in either customer path.
+  source_session_ids:
+  - 003618
+- id: 234
+  statement: Alex Valdez is closing the triggered contract review for Lantern PR 1226.
+  source_session_ids:
+  - 003618
+- id: 235
+  statement: Alex Valdez is admitting the corrected Lantern PR 1226 build to bounded
+    internal shadow for Infra and Product Engineering; the integration remains absent
+    from Harbor Health and Mosaic Commerce.
+  source_session_ids:
+  - 003618
+- id: 236
+  statement: On December 17, 2026, Hema and Theo approved Lantern's reference-only
+    integration for continuing internal operating use by Infra and Product Engineering.
+  source_session_ids:
+  - 003695
+- id: 237
+  statement: Lantern internal cards may navigate staff to authoritative owner-map
+    and Cardinality Guardrails records using only `tenant_id`, `canonical_service_id`,
+    `authority_type`, `authority_record_id`, and `source_timestamp`; they may not
+    copy authority payload values or offer mutation capability.
+  source_session_ids:
+  - 003695
+- id: 238
+  statement: Lantern's reference-only integration will remain absent from Harbor Health
+    and Mosaic Commerce unless separately authorized later.
+  source_session_ids:
+  - 003695
+- id: 239
+  statement: On January 4, 2027, Devika agreed to the South Slope renter’s-insurance
+    renewal, and Alex Valdez and Devika accepted it and paid the $231 annual premium
+    before the deadline.
+  source_session_ids:
+  - 003729
+- id: 240
+  statement: The bound South Slope renter’s-insurance policy runs from January 5,
+    2027 through January 5, 2028 with a $500 deductible, $40,000 in replacement-cost
+    personal-property coverage, $12,000 in loss-of-use coverage, the water-backup
+    endorsement, and no separate bicycle or electronics sublimits; coverage is continuous
+    with no gap, and no renewal follow-up remains.
+  source_session_ids:
+  - 003729
+- id: 241
+  statement: Hema approved Wes as owner of the Q1 metrics-router control-and-evidence
+    inventory.
+  source_session_ids:
+  - '003735'
+- id: 242
+  statement: Alex Valdez's January 8, 2027 paycheck posted with a $98 individual HDHP
+    deduction and a $90 employee HSA contribution; the obsolete $81 HSA amount was
+    absent, so no catch-up adjustment is needed and the 2027 payroll deductions are
+    operating at the correct amounts.
+  source_session_ids:
+  - '003737'
+- id: 243
+  statement: 'Alex Valdez requested that `ingest-edge: cutover playbook` be updated
+    with the observed opaque-key and same-key-and-operation replay behavior while
+    preserving Yuki’s release and rollback ownership.'
+  source_session_ids:
+  - '003764'
+- id: 244
+  statement: Product Engineering delivered the reconciled February 5–18, 2027 operating
+    package before the February 18 10:30 AM closeout review; it included 52 staff-only
+    reference-card renders, 19 cards with both owner-map and Cardinality Guardrails
+    references, and 11 of 11 mapped metrics-router controls remaining navigable.
+  source_session_ids:
+  - 003834
+- id: 245
+  statement: Wes reached the authoritative pre-acceptance backpressure record without
+    copying its value into Lantern.
+  source_session_ids:
+  - 003834
+- id: 246
+  statement: Iris found no wording that transfers authority to Lantern.
+  source_session_ids:
+  - 003834
+- id: 247
+  statement: Harbor Health and Mosaic Commerce each had zero internal-reference requests,
+    artifacts, and outputs in the February 5–18, 2027 operating package.
+  source_session_ids:
+  - 003834
+- id: 248
+  statement: At the February 18, 2027 Q1 platform-workstreams closeout review, Hema
+    accepted the first four deliverables as complete.
+  source_session_ids:
+  - 003836
+- id: 249
+  statement: From April 1 through September 30, 2027, every Harbor Health and Mosaic
+    Commerce Lantern lookup must remain behind the shared authorization wrapper, with
+    read-only access limited to provenance-backed deploy movement, published service
+    ownership, timestamped incident-load summaries, and explicit unknown states. Cost
+    data, CSV export, raw incident text, internal room metadata, employee identifiers
+    or comparisons, inferred or unpublished ownership, internal-only fallback data,
+    write capability, release-readiness judgments, employee-performance interpretations,
+    and the internal owner-map/Cardinality Guardrails reference navigation remain
+    unauthorized and outside the customer surface.
+  source_session_ids:
+  - 003917
+- id: 250
+  statement: From April 1 through September 30, 2027, an authorization-wrapper bypass,
+    adapter call after denial, cross-tenant material, stale or missing input rendered
+    as anything other than explicit unknown, deploy event without required provenance,
+    unpublished ownership, incident-load summary without its source timestamp, exposure
+    of an excluded field, or loss of read-only enforcement will immediately suspend
+    both Harbor Health and Mosaic Commerce pending correction and a successful rerun
+    of the affected safety check; latency and other errors do not independently suspend
+    access unless they cause one of those violations.
+  source_session_ids:
+  - 003917
+- id: 251
+  statement: 'Alex Valdez requested that “Alex Q2 2027 operating focus — draft” preserve
+    the existing ownership boundaries: Product Engineering owns implementation, Iris
+    owns customer interpretation, and Alex handles only triggered shared-contract
+    and failure-boundary work.'
+  source_session_ids:
+  - 003942
+- id: 252
+  statement: A carrier supervisor reversed the earlier denial in case MC-270225-184
+    and applied the disputed $10 credit before the statement deadline because the
+    carrier had no retained authenticated-session identifier, device details, IP address,
+    confirmation email, or confirmation SMS supporting the February 3 activation.
+  source_session_ids:
+  - 003955
+- id: 253
+  statement: Carrier case MC-270225-184 is closed.
+  source_session_ids:
+  - 003955
+- id: 254
+  statement: Alex Valdez received and installed the $0 warranty gas cylinder on April
+    9, 2027.
+  source_session_ids:
+  - 003972
+- id: 255
+  statement: After repeated height changes and a two-hour seated work block, the work-room
+    chair held its set height without sinking; its base, casters, seat, back, and
+    arms remained stable with no cracks, looseness, or sudden movement.
+  source_session_ids:
+  - 003972
+- id: 256
+  statement: The work-room chair returned to regular use, with no service or replacement
+    purchase pending.
+  source_session_ids:
+  - 003972
+- id: 257
+  statement: Iris confirmed that the corrected combined sentence describes sequence
+    by authoritative source time without making a causal, release-readiness, or employee-performance
+    claim.
+  source_session_ids:
+  - '004002'
+- id: 258
+  statement: For Harbor Health and Mosaic Commerce, customer-visible records now order
+    only by authoritative `source_timestamp`; observation, serialization, processing,
+    render, and retry times are non-ordering audit metadata, and a missing or malformed
+    required source timestamp renders explicit unknown.
+  source_session_ids:
+  - '004002'
+- id: 259
+  statement: Alex Valdez and Devika now prefer direct car travel and one longer outing
+    with substantial downtime for short trips with Kibo.
+  source_session_ids:
+  - '004041'
+- id: 260
+  statement: The veterinarian reduced Kibo’s household food allowance to 2.0 cups
+    total per day, with training treats counted within that amount.
+  source_session_ids:
+  - '004064'
+- id: 261
+  statement: Alex Valdez scheduled Kibo’s weight recheck for Friday, June 25, 2027,
+    from 9:00 to 9:20 AM and requests a confirmed shared calendar event for Alex and
+    Devika; its notes must include the 2.0-cup daily food allowance including training
+    treats, at least a 10-minute after-dinner loop five days per week, and instructions
+    to contact the clinic if Kibo exceeds 55 pounds or his exercise tolerance changes.
+  source_session_ids:
+  - '004064'
+- id: 262
+  statement: Alex Valdez completed Kibo’s online dog-license renewal and paid the
+    accepted $8.50 one-year fee; the renewed license runs from July 1, 2027 through
+    June 30, 2028 with no coverage gap or additional veterinary visit or certificate
+    requirement.
+  source_session_ids:
+  - 004099
+- id: 263
+  statement: 'Hema and Nadia completed their review of the first 17 requests after
+    the May 12, 2027 intake correction: 14 named a mapped owner, selected a listed
+    exception class, stated a concrete failed or at-risk condition, and proceeded
+    to bounded exception review; three ordinary implementation or release requests
+    were returned before review; none asked Alex Valdez to approve routine implementation
+    or release after entering his lane.'
+  source_session_ids:
+  - 004269
+- id: 264
+  statement: Kibo's 2027 dedicated weight-recheck cycle is closed, with no further
+    dedicated weight visit pending.
+  source_session_ids:
+  - 004287
+- id: 265
+  statement: The July 1, 2027 service visit for Alex Valdez's refrigerator was completed;
+    the technician diagnosed and replaced a failed evaporator-fan motor, and the refrigerator
+    began cooling again.
+  source_session_ids:
+  - '004313'
+- id: 266
+  statement: 'Anya completed and froze North Pier’s first-business-week Q2 2027 design-system
+    health review: all three teams used the canonical package throughout the quarter,
+    drift checks caught 26 failures before generated output shipped, four platform-specific
+    exceptions were requested and none accepted, and seven handoff corrections were
+    found after generation.'
+  source_session_ids:
+  - 004318
+- id: 267
+  statement: On July 2, 2027, Alex Valdez recorded matching morning and evening temperatures
+    of 37°F in the repaired South Slope refrigerator compartment and 0°F in its freezer,
+    with no smoke, burning odor, leak, unusual noise, or cord or receptacle problem;
+    after the second stable reading, Alex and Devika restocked ordinary groceries,
+    normal food storage resumed, and no appliance repair or storage restriction remained.
+  source_session_ids:
+  - '004320'
+- id: 268
+  statement: Alex Valdez completed the owner-held shard-keeper certificate replacement
+    during the scheduled July 6, 2027, 10:00–11:00 AM window, installing the signed
+    tenant-auth bundle through the approved configuration path while Cyrus covered
+    the backup lane.
+  source_session_ids:
+  - '004333'
+- id: 269
+  statement: The shard-keeper replacement passed the signed-bundle, rollback-material
+    availability, production tenant-auth, and July 1 baseline parity checks.
+  source_session_ids:
+  - '004333'
+- id: 270
+  statement: The shard-keeper certificate rotation’s 24-hour production observation
+    ended on July 7, 2027 at 11:00 AM with tenant authentication successful, parity
+    checks still matching the July 1 baseline, rollback material available through
+    closeout, and no rollback condition occurring.
+  source_session_ids:
+  - '004337'
+- id: 271
+  statement: North Pier’s implementation owner corrected the automated handoff reporter
+    to upsert one audit observation per team, release candidate, and canonical-package
+    version; a worker retry now updates the existing observation rather than adding
+    another quarterly count, while different release candidates or canonical-package
+    versions remain distinct.
+  source_session_ids:
+  - '004347'
+- id: 272
+  statement: Across 300 retry injections of North Pier’s automated handoff reporter,
+    repeated emission of the same blocked handoff created no additional count.
+  source_session_ids:
+  - '004347'
+- id: 273
+  statement: 'Devika completed the short facilitator outline for her August 11, 2027
+    documentation-update session during the scheduled 7:00–7:30 PM preparation block
+    on July 28, 2027. It contains two fully anonymized, distinct examples: one separates
+    the actual reassessment time from the later entry time, and the other uses a correction
+    or addendum while preserving the original record; each includes bullets on what
+    happened, safe wording, and what the wording must not imply.'
+  source_session_ids:
+  - '004422'
+- id: 274
+  statement: Beginning August 6, 2027, Hema assigned Nadia front-door triage for asynchronous
+    cross-service exception intake; before review, Nadia must verify the affected
+    component, mapped implementation or release owner, exactly one selected boundary,
+    and a concrete observed failed or at-risk condition, returning any incomplete
+    or placeholder-only request to the mapped owner without review.
+  source_session_ids:
+  - '004455'
+- id: 275
+  statement: Nadia does not make implementation, release, or rollback decisions for
+    asynchronous cross-service exception requests.
+  source_session_ids:
+  - '004455'
+- id: 276
+  statement: The hospital is adopting Devika’s two-example, three-bullet structure
+    for future quarterly facilitator packets.
+  source_session_ids:
+  - 004482
+- id: 277
+  statement: At the September 23, 2027 Lantern renewal review, Hema and Theo accepted
+    the frozen July 1–September 15 evidence, including zero instances of stale or
+    missing input rendering as anything other than explicit unknown.
+  source_session_ids:
+  - '004672'
+- id: 278
+  statement: Hema and Theo authorized Harbor Health and Mosaic Commerce, and no other
+    account, for a read-only Lantern term from October 1, 2027 through March 31, 2028;
+    no lookup under the new term may occur before October 1.
+  source_session_ids:
+  - '004672'
+- id: 279
+  statement: Alex Valdez enabled automatic HSA investment; the account now keeps an
+    exact $2,800 cash threshold and directs settled cash above that amount to the
+    existing investment allocation.
+  source_session_ids:
+  - '004705'
+- id: 280
+  statement: North Pier’s Q3 2027 design-system health review found that all three
+    teams used the canonical package throughout the quarter.
+  source_session_ids:
+  - '004716'
+- id: 281
+  statement: North Pier’s Q3 2027 automated drift checks caught 31 failures before
+    generated output shipped.
+  source_session_ids:
+  - '004716'
+- id: 282
+  statement: During Q3 2027, North Pier teams requested four platform-specific exceptions,
+    and none were accepted.
+  source_session_ids:
+  - '004716'
+- id: 283
+  statement: North Pier’s Q3 2027 review found six post-generation handoff corrections
+    after deduplicating by team, release candidate, and canonical-package version.
+  source_session_ids:
+  - '004716'
+- id: 284
+  statement: North Pier’s Q3 2027 design-system health report contains no member identifier.
+  source_session_ids:
+  - '004716'
+- id: 285
+  statement: Alex Valdez’s repaired right climbing shoe has returned to his ordinary
+    hard small-edge rotation.
+  source_session_ids:
+  - '004754'
+- id: 286
+  statement: Alex Valdez selected Sphere’s individual HDHP for January 1 through December
+    31, 2028, at $104 per biweekly paycheck ($2,704 across 26 paychecks), with a $2,400
+    deductible, 10% coinsurance after the deductible, fully covered preventive care,
+    a $4,800 out-of-pocket maximum, and HSA eligibility.
+  source_session_ids:
+  - 004778
+- id: 287
+  statement: Alex Valdez elected a $90 employee HSA contribution from each of 26 paychecks
+    in 2028, totaling $2,340; Sphere will contribute four $225 deposits in January,
+    April, July, and October, bringing planned combined 2028 HSA funding to $3,240.
+  source_session_ids:
+  - 004778
+- id: 288
+  statement: Devika accepted the hospital’s co-facilitator role for all four quarters
+    of 2028; each engagement will be one 90-minute remote, anonymized, nonclinical
+    session with no overnight coverage, and individual dates and household coverage
+    will be set only when the hospital posts them within Devika’s ordinary eight-week
+    scheduling horizon.
+  source_session_ids:
+  - 004810
+- id: 289
+  statement: On November 1, 2027, the ISP remotely activated Alex Valdez’s 300 Mbps
+    internet plan at $60 per month using his existing customer-owned equipment, with
+    no installation or plan-change fee; the account page shows no remaining 1 Gbps
+    charge.
+  source_session_ids:
+  - 004827
+- id: 290
+  statement: On December 13, 2027, Nadia delivered the complete October 1–December
+    10 asynchronous-intake sample, containing 61 requests.
+  source_session_ids:
+  - 004978
+- id: 291
+  statement: 'Of the 61 asynchronous-intake requests, 42 identified the affected component,
+    mapped implementation or release owner, exactly one valid exception class, and
+    a concrete observed failed or at-risk condition: 19 `failure_mode`, 10 `invariant`,
+    seven `provenance`, four `ownership`, and two `escalation`.'
+  source_session_ids:
+  - 004978
+- id: 292
+  statement: 'Nineteen asynchronous-intake requests were returned before review: eight
+    for placeholder-only conditions, six for multiple exception classes, and five
+    for ordinary implementation or release work.'
+  source_session_ids:
+  - 004978
+- id: 293
+  statement: 'Eight asynchronous-intake requests reached Alex Valdez: four `invariant`,
+    three `provenance`, and one cross-service `failure_mode`; all eight retained the
+    affected component, mapped owner, concrete condition, executable evidence, and
+    closure.'
+  source_session_ids:
+  - 004978
+- id: 294
+  statement: No routine implementation or release approval entered Alex Valdez’s review
+    lane; mapped owners made every implementation, release, and rollback decision
+    for the October 1–December 10 asynchronous-intake sample.
+  source_session_ids:
+  - 004978
+- id: 295
+  statement: Alex Valdez requested that Hema receive her concise final closeout in
+    a private Slack direct message.
+  source_session_ids:
+  - 004978
+- id: 296
+  statement: 'The renewed Lantern term’s frozen Q4 operating package contains 3,402
+    customer sessions and 651 logical explanation requests: 431 eligible combined
+    explanations, 145 valid cases kept separate because their source timestamps differed
+    by more than 24 hours, and 75 explicit-unknown outcomes for stale or missing input;
+    eligible renderer failures were zero.'
+  source_session_ids:
+  - 004988
+- id: 297
+  statement: Harbor Health used the Lantern view in 14 release follow-ups, and Mosaic
+    Commerce used it in 13 incident handoffs.
+  source_session_ids:
+  - 004988
+- id: 298
+  statement: The Lantern Q4 operating-package freeze makes no decision about post-March
+    renewal, expansion, implementation, release, or ownership.
+  source_session_ids:
+  - 004988
+- id: 299
+  statement: The user signs correspondence as Alex Valdez.
+  source_session_ids:
+  - 004992

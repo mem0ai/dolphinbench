@@ -1,0 +1,38 @@
+id: '136'
+narrative_anchor_date: '2028-01-01'
+test: Create a historical eligibility audit worksheet for the approved July Expansion Assist pilot. Title
+  it `Expansion Assist July pilot — eligibility audit worksheet` and save it in the Growth folder. Use
+  the approved pilot history as the source of truth. Keep the worksheet limited to that pilot’s eligibility
+  review, summarize the required current-state controls, and include the validated fixture cases with
+  each case’s expected pass/fail decision and reason.
+load_bearing_facts:
+- 35
+- 34
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_audit_worksheet
+      path: result.ok
+      value: true
+      check_id: riley_136_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_audit_worksheet
+      path: args
+      criterion: 'The document is an eligibility audit worksheet for the approved July Expansion Assist
+        pilot. It says qualifying activity must come from a currently active human administrator, service-token-only
+        activity is insufficient, active renewal work suppresses eligibility, and stale or conflicting
+        adoption or renewal state and deactivated-admin state fail closed. It includes all fixtures: A
+        and F pass; B fails for service-token-only activity; C fails for stale human-admin activity; D
+        fails for active renewal work; E fails for a missing usage-ceiling signal; and G fails because
+        the recently active human admin is now deactivated.'
+      check_id: riley_136_01
+mock_state: {}

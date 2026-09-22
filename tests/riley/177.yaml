@@ -1,0 +1,78 @@
+id: '177'
+narrative_anchor_date: '2028-01-01'
+test: Create `2026 Helio Start paid-search mature benchmark card` in the Growth folder for the 2028 acquisition-review
+  library. State whether every workspace had a complete day-90 outcome, then include the full denominator,
+  mutually exclusive outcomes and rates, cash and collection ratio, support effort and high-support incidence,
+  attribution and admission checks, and claim and authorization limits.
+load_bearing_facts:
+- 195
+- 196
+- 215
+- 216
+- 217
+- 218
+- 219
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_benchmark_card
+      path: result.ok
+      value: true
+      check_id: riley_177_00
+    - check_id: riley_177_01
+      type: field_equals
+      tool: create_doc
+      action_id: create_benchmark_card
+      path: args.title
+      value: 2026 Helio Start paid-search mature benchmark card
+    - check_id: riley_177_02
+      type: field_equals
+      tool: create_doc
+      action_id: create_benchmark_card
+      path: args.folder
+      value: Growth
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_benchmark_card
+      path: args
+      criterion: 'The document clearly identifies the benchmark as the closed 2026 high-intent Helio Start
+        paid-search cohort and states that all 50 workspaces have complete day-90 outcomes. Missing or
+        contradictory cohort identity, denominator, or maturity status fails.
+
+
+        The document presents four mutually exclusive workspace outcomes for the 50-workspace cohort:
+        37 paid-active (74%), 6 canceled (12%), 4 past due (8%), and 3 on billing hold (6%). The categories
+        must be represented as exhaustive and non-overlapping, with counts and corresponding rates; any
+        incorrect or contradictory value fails.
+
+
+        The document reports $60,480 as gross billed cash and $56,230 as refund-adjusted collected cash,
+        clearly distinguishes the two, and gives the collection ratio as refund-adjusted collected cash
+        divided by gross billed cash: approximately 92.97% (93.0% when rounded to one decimal, or an equivalent
+        decimal such as 0.9297). Incorrect labels, amounts, numerator/denominator, or ratio fail.
+
+
+        The document reports account-level support effort of 26 minutes at the median and 104 minutes
+        at the 90th percentile, and states that 7 of 50 workspaces, or 14%, exceeded 90 support minutes.
+        Any missing or contradictory support measure fails.
+
+
+        The document states that paid-source attribution reconciled for all 50 workspaces and that no
+        unsupported applicant entered the admitted path. Missing or contradicted checks fail.
+
+
+        The document explicitly classifies the 2026 cohort packet as descriptive paid-source evidence
+        because it had no randomized control; it does not treat the packet as causal acquisition, scale,
+        pipeline, or forecast evidence; and it states that the historical packet/card did not itself authorize
+        another paid batch. It must not falsely claim that no later batch was ever approved or run. Missing
+        or contradictory limitations fail.'
+      check_id: riley_177_03
+mock_state: {}

@@ -1,0 +1,45 @@
+id: 059
+narrative_anchor_date: '2028-01-01'
+test: Create a concise design-input card for a bounded Expansion Assist proposal before design work begins.
+  Capture the key observed pilot pattern and the evidence limitations that reviewers must preserve. Title
+  it `Expansion Assist — bounded proposal evidence card`.
+load_bearing_facts:
+- 50
+- 51
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_evidence_card
+      path: result.ok
+      value: true
+      check_id: riley_059_00
+    - check_id: riley_059_01
+      type: field_equals
+      tool: create_doc
+      action_id: create_evidence_card
+      path: args.title
+      value: Expansion Assist — bounded proposal evidence card
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_evidence_card
+      path: args
+      criterion: 'The document accurately states the observed concentration: all six expansions and seven
+        of the eight help requests came from the 12 exposed accounts whose product-visible usage ceiling
+        had been crossed within the preceding 14 days. It may also note that the other 18 exposed accounts
+        produced one help request and no expansions. Missing or materially contradicting the concentration
+        must fail.
+
+
+        The document explicitly limits interpretation of the pilot: the result is descriptive or observational,
+        does not establish causal lift, and does not justify a broad rollout. Missing either the non-causal
+        limitation or the no-broad-rollout boundary must fail.'
+      check_id: riley_059_02
+mock_state: {}

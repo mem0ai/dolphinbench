@@ -1,0 +1,77 @@
+id: '131'
+narrative_anchor_date: '2028-01-01'
+test: Create a compact condition-check sheet for `Before the House Wakes` using its last verified mounting
+  and damage baseline. Describe the full mounting setup, not only the corner that was repaired, and include
+  the known sheet, mat, window, and mount materials and sizes. Check January 4, 2028 and, if 6:00 PM Central
+  is free, add a 15-minute routine annual inspection reminder.
+load_bearing_facts:
+- 164
+- 165
+expected_tool_calls:
+- create_doc
+- list_calendar_events
+- create_calendar_event
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_calendar_event
+      action_id: inspection_reminder
+      path: result.ok
+      value: true
+      check_id: riley_131_00
+    - type: field_equals
+      tool: create_doc
+      action_id: condition_sheet
+      path: result.ok
+      value: true
+      check_id: riley_131_01
+    - type: field_equals
+      tool: list_calendar_events
+      action_id: calendar_review
+      path: args.date
+      value: '2028-01-04'
+      check_id: riley_131_02
+    - type: datetime_absolute_eq
+      tool: create_calendar_event
+      action_id: inspection_reminder
+      path: args.start
+      value: '2028-01-04T18:00:00-06:00'
+      check_id: riley_131_03
+    - type: datetime_absolute_eq
+      tool: create_calendar_event
+      action_id: inspection_reminder
+      path: args.end
+      value: '2028-01-04T18:15:00-06:00'
+      check_id: riley_131_04
+    - type: field_equals
+      tool: list_calendar_events
+      action_id: calendar_review
+      path: args.timezone
+      value: America/Chicago
+      check_id: riley_131_05
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: condition_sheet
+      path: args
+      criterion: 'The document is a compact condition-check sheet for `Before the House Wakes`. It identifies
+        the verified setup and baseline: the 9-by-12-inch sheet uses conservation-grade corner mounts
+        with an 11-by-14-inch mat and a 6.75-by-8.75-inch window; the lower-right corner mount was replaced;
+        the work is in the Cherrywood painting corner; and the sheet was flat and undamaged with no moisture,
+        tear, abrasion, or adhesive contact. It provides practical checks for mount security, sheet flatness,
+        the named damage categories, and the unchanged mat and window, and says no conservation repair
+        or professional intervention is currently pending.'
+      check_id: riley_131_06
+    - type: field_llm_judge
+      tool: create_calendar_event
+      action_id: inspection_reminder
+      path: args
+      criterion: The event identifies `Before the House Wakes` as a brief routine annual condition inspection.
+        It does not claim conservation work, repair, or professional intervention is pending.
+      check_id: riley_131_07
+mock_state:
+  calendar: []

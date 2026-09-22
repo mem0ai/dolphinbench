@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "prepare_evidence": true,
+  "max_model_corrections": 3,
+  "technical_retries": 1,
+  "preparation_workers": 2,
+  "writing_workers": 4,
+  "preflight_workers": 4,
+  "certification_workers": 4,
+  "review_workers": 2,
+  "model_timeout_seconds": 180,
+  "model_output_tokens": 16384,
+  "writer_reasoning": "high",
+  "reviewer_reasoning": "medium",
+  "oracle_model": "gpt-5.6-sol",
+  "oracle_reasoning": "medium",
+  "oracle_timeout_seconds": 120,
+  "baseline_probe_ids": [
+    29,
+    41
+  ],
+  "action_batched_judge": true,
+  "provider_concurrency": 16,
+  "provider_tokens_per_minute": 600000,
+  "provider_requests_per_minute": 60,
+  "provider_capacity_directory": "tmp/authoring/staged_provider_capacity_v3"
+}

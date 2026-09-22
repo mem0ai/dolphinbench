@@ -1,0 +1,61 @@
+id: '060'
+narrative_anchor_date: '2028-01-01'
+test: Create a concise, current operating checklist for the lifecycle team covering routine-send release,
+  audit and stop conditions, state-changing preflight requirements, and escalation. Use each person's
+  name for routine release, preflight exceptions, customer corrections and incident stops, and engineering
+  release controls. Do not use `you`, `the requester`, or a generic role in place of a person's name.
+  Make the checklist usable without case-by-case approval of each low-risk send.
+load_bearing_facts:
+- 62
+- 6
+- 7
+- 63
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_release_checklist
+      path: result.ok
+      value: true
+      check_id: riley_060_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_release_checklist
+      path: args
+      criterion: 'The body is a concise, actionable operating checklist for lifecycle routine-send release,
+        rather than merely a narrative summary.
+
+
+        The checklist clearly states that Ines may independently approve and release routine, non-state-changing
+        lifecycle sends without Riley''s case-by-case approval.
+
+
+        The checklist imposes an exact ceiling of no more than three routine lifecycle sends per week.
+
+
+        The checklist requires every routine, non-state-changing lifecycle send released under Ines''s
+        delegated authority to be audited within 24 hours. It need not apply this delegated-lane audit
+        condition to state-changing sends, which are outside Ines''s routine release authority.
+
+
+        The checklist says missing or conflicting required state fails closed, meaning the send must not
+        be released while that condition exists.
+
+
+        For state-changing sends, the checklist requires both an active-suppression check and a recipient-level
+        merge-alias check during preflight.
+
+
+        The checklist draws a clear escalation boundary: routine non-state-changing work stays in Ines''s
+        lane, while preflight exceptions go to Riley; customer corrections and incident stops remain with
+        Riley, and state-changing, ambiguous, or exception-heavy sends are outside routine release authority
+        and must be escalated rather than released under it.'
+      check_id: riley_060_01
+mock_state: {}

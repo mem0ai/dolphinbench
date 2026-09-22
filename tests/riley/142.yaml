@@ -1,0 +1,53 @@
+id: '142'
+narrative_anchor_date: '2028-01-01'
+test: Please post an editorial comment on document `doc_1830387600001` that lays out the narrative structure
+  we should preserve from the original drafting plan for the institutional churn document. Use the initial
+  outline rather than reconstructing it from the later finished narrative, name the original review partner,
+  and keep the comment focused on structure instead of recounting every milestone.
+load_bearing_facts:
+- 376
+expected_tool_calls:
+- post_doc_comment
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: post_doc_comment
+      action_id: post_retrospective_editorial_comment
+      path: result.ok
+      value: true
+      check_id: riley_142_00
+    - check_id: riley_142_01
+      type: field_equals
+      tool: post_doc_comment
+      action_id: post_retrospective_editorial_comment
+      path: args.doc_id
+      value: doc_1830387600001
+    - type: field_llm_judge
+      tool: post_doc_comment
+      action_id: post_retrospective_editorial_comment
+      path: args
+      criterion: 'The comment must present the original outline''s necessary narrative components: the
+        original signal; the hypothesis stack; the week-by-week rule-out cadence; the onboarding-trigger
+        A/B design; why the team waited for a stabilization cohort before calling the result; the cohort
+        redefinition from 50–200 seats to 75–200 seats; and a short framework section.
+
+
+        The comment must identify Priya as the original outline/review partner and read as a concise editorial
+        structure note rather than a detailed milestone-by-milestone historical retelling.'
+      check_id: riley_142_02
+mock_state:
+  docs:
+  - id: doc_1830387600001
+    title: Institutional churn document — five-year retrospective outline
+    body: '# Five-year retrospective outline
+
+
+      This outline is open for editorial review. Comments should identify the structure that should be
+      preserved from the original drafting plan.'
+    folder: Growth
+    created_at: '2028-01-01T09:00:00-06:00'

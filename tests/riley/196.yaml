@@ -1,0 +1,57 @@
+id: '196'
+narrative_anchor_date: '2028-01-01'
+test: As part of our New Year household maintenance cleanup, create a current-condition appliance card
+  for the Cherrywood dishwasher using the latest known repair outcome. Record the repair performed, operational
+  test result, safety and damage checks, and present use status without carrying forward obsolete precautions.
+  Then send Sam a brief confirmation of its current condition.
+load_bearing_facts:
+- 140
+- 141
+expected_tool_calls:
+- create_doc
+- send_sms
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_appliance_card
+      path: result.ok
+      value: true
+      check_id: riley_196_00
+    - type: field_equals
+      tool: send_sms
+      action_id: send_condition_confirmation
+      path: result.ok
+      value: true
+      check_id: riley_196_01
+    - check_id: riley_196_02
+      type: field_equals
+      tool: send_sms
+      action_id: send_condition_confirmation
+      path: args.to
+      value: '+13125550101'
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_appliance_card
+      path: args
+      criterion: 'The document must clearly be a current-condition card for the Cherrywood dishwasher
+        and accurately state all of the following: the failed drain pump was replaced; a full fill-and-drain
+        cycle completed successfully; checks found no leak, electrical fault, smoke, burning odor, or
+        cabinet damage; and the dishwasher is now back in ordinary service, so the former non-use or pump-failure
+        precautions no longer apply. It must not preserve or recommend those obsolete restrictions.'
+      check_id: riley_196_03
+    - type: field_llm_judge
+      tool: send_sms
+      action_id: send_condition_confirmation
+      path: args
+      criterion: The message must be a brief confirmation that the Cherrywood dishwasher was repaired
+        and successfully tested or checked, is currently back in ordinary service, and is no longer subject
+        to the old non-use or pump-failure precautions. It must not suggest that the dishwasher remains
+        restricted or unsafe.
+      check_id: riley_196_04
+mock_state: {}

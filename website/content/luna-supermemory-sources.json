@@ -1,0 +1,129 @@
+{
+  "morgan": {
+    "run_id": "ca323ceff95e47fb955a160c87fa77e8-hermes-gpt-5.6-luna-high-supermemory",
+    "source_bundle": {
+      "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/dolphinbench-362fc999ae442b8c-f743d6251957dc4d.tar.gz/",
+      "sha256": "f743d6251957dc4d8c52fe5e6a2dcca783c6cade96b2d579a6245e4ff2ee8a1b"
+    },
+    "results": {
+      "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/morgan-luna-supermemory-results.json.gz/",
+      "sha256": "203a84b383a4ada9a51130a51a166832021218ecd3e7e6df39f75021b60ea961"
+    },
+    "records_archive": {
+      "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/luna-supermemory-results-and-traces.tar.gz/",
+      "sha256": "2d4a57e7dff4fe51f939f6c1839697f05df1fb7563d2076c9617cc68598c4499"
+    },
+    "frozen_profile_archive": "profile-dolphinbench-supermemory-morgan-frozen-be44e27a7ce2-b608d6c565c77a97.tar.gz",
+    "runtime_provenance": {
+      "hermes": {
+        "git_revision": "b115aeaf34a44a85742e53b3568741f042e34776",
+        "source_root": "/tmp/dolphinbench-job/workspace/external/01-hermes_code",
+        "source_sha256": "48a1baac00436ec11d186b2e251e81d1f6cf217f2bd583654357be4fb5ea9a9c"
+      },
+      "mem0": {
+        "package": "mem0ai",
+        "package_version": null,
+        "plugin_git_revision": "b115aeaf34a44a85742e53b3568741f042e34776",
+        "plugin_root": "/tmp/dolphinbench-job/workspace/external/03-mem0_plugin",
+        "plugin_sha256": "62b1cafe03a10c9c23f41a374ec30cd1b55326fe79f79ccece3d134b3d1689b8"
+      },
+      "supermemory": {
+        "package": "supermemory",
+        "package_version": null,
+        "plugin_git_revision": "b115aeaf34a44a85742e53b3568741f042e34776",
+        "plugin_root": "/tmp/dolphinbench-job/workspace/external/05-supermemory_plugin",
+        "plugin_sha256": "01d19f94d1ee5feb53b73532539855add2cd4e57507b048245c8b7c3f7597d43"
+      }
+    },
+    "ingestion_record": {
+      "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/morgan-luna-supermemory-ingestion.json.gz/",
+      "sha256": "1b948dc5feb3173ed9fcadf72559616853d9a57f42407b7ba4b673d80aa8c621"
+    }
+  },
+  "alex": {
+    "run_id": "84df695c56a04ba8988aeebd4052e989-hermes-gpt-5.6-luna-high-supermemory",
+    "source_bundle": {
+      "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/dolphinbench-0b4990d5ec0f6b40-ee69af7f06a3743b.tar.gz/",
+      "sha256": "ee69af7f06a3743be29e1d552b8c9364a60d975eae80591f79fd0e497f1ade3c"
+    },
+    "results": {
+      "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/alex-luna-supermemory-results.json.gz/",
+      "sha256": "b8a4c53ed4d6b64068d773e1e08cc84f21b379b750959ab68ab1d0e08b8f2a7e"
+    },
+    "records_archive": {
+      "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/luna-supermemory-results-and-traces.tar.gz/",
+      "sha256": "2d4a57e7dff4fe51f939f6c1839697f05df1fb7563d2076c9617cc68598c4499"
+    },
+    "frozen_profile_archive": "profile-dolphinbench-supermemory-alex-frozen-6561886adfe5-2da8de8ebe1fceda.tar.gz",
+    "runtime_provenance": {
+      "hermes": {
+        "git_revision": "b115aeaf34a44a85742e53b3568741f042e34776",
+        "source_root": "/tmp/dolphinbench-job/workspace/external/01-hermes_code",
+        "source_sha256": "48a1baac00436ec11d186b2e251e81d1f6cf217f2bd583654357be4fb5ea9a9c"
+      },
+      "mem0": {
+        "package": "mem0ai",
+        "package_version": null,
+        "plugin_git_revision": "b115aeaf34a44a85742e53b3568741f042e34776",
+        "plugin_root": "/tmp/dolphinbench-job/workspace/external/03-mem0_plugin",
+        "plugin_sha256": "62b1cafe03a10c9c23f41a374ec30cd1b55326fe79f79ccece3d134b3d1689b8"
+      },
+      "supermemory": {
+        "package": "supermemory",
+        "package_version": null,
+        "plugin_git_revision": "b115aeaf34a44a85742e53b3568741f042e34776",
+        "plugin_root": "/tmp/dolphinbench-job/workspace/external/05-supermemory_plugin",
+        "plugin_sha256": "01d19f94d1ee5feb53b73532539855add2cd4e57507b048245c8b7c3f7597d43"
+      }
+    },
+    "ingestion_record": {
+      "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/alex-luna-supermemory-ingestion.json.gz/",
+      "sha256": "3b0e5e81ecfb46e34c0eddb6aa094079c57206f13617591b08c5bfe004134a76"
+    }
+  },
+  "riley": {
+    "run_id": "1bebed425ed24e2081ee2a139b087529-hermes-gpt-5.6-luna-high-supermemory",
+    "source_bundle": {
+      "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/dolphinbench-parallel-0cdcb2f1198ab381690da51b.tar.gz/",
+      "sha256": "0cdcb2f1198ab381690da51bfd18f2aae8c375f4c27f80ca7c2b03b6636d3ab8"
+    },
+    "results": {
+      "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/riley-luna-supermemory-results.json.gz/",
+      "sha256": "8b0fb0c62cd34f59172ad465451dd7330f78bd77b7966f217dbb6c2444b0c7a0"
+    },
+    "records_archive": {
+      "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/luna-supermemory-results-and-traces.tar.gz/",
+      "sha256": "2d4a57e7dff4fe51f939f6c1839697f05df1fb7563d2076c9617cc68598c4499"
+    },
+    "frozen_profile_archive": "profile-dolphinbench-supermemory-riley-frozen-12e3f38e34e3-745fadab76025d0f.tar.gz",
+    "runtime_provenance": {
+      "agent_container": {
+        "backend": "modal-sandbox",
+        "image": "im-WUXDPwWPWtx8Anv1KpnROf"
+      },
+      "hermes": {
+        "git_revision": "b115aeaf34a44a85742e53b3568741f042e34776",
+        "source_root": "/tmp/dolphinbench-job/workspace/external/01-hermes_code",
+        "source_sha256": "22a3a49f06e0acc2db7415b174e337ec4a14490e95f01cdb9ba65d2ef852e132"
+      },
+      "mem0": {
+        "package": "mem0ai",
+        "package_version": null,
+        "plugin_git_revision": "b115aeaf34a44a85742e53b3568741f042e34776",
+        "plugin_root": "/tmp/dolphinbench-job/workspace/external/03-mem0_plugin",
+        "plugin_sha256": "62b1cafe03a10c9c23f41a374ec30cd1b55326fe79f79ccece3d134b3d1689b8"
+      },
+      "supermemory": {
+        "package": "supermemory",
+        "package_version": null,
+        "plugin_git_revision": "b115aeaf34a44a85742e53b3568741f042e34776",
+        "plugin_root": "/tmp/dolphinbench-job/workspace/external/05-supermemory_plugin",
+        "plugin_sha256": "5e97ed0b1311d9e02e134234cd9c7365a9e3624d8d33dfad557492535780e7b2"
+      }
+    },
+    "ingestion_record": {
+      "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/riley-luna-supermemory-ingestion.json.gz/",
+      "sha256": "30b53e60eecc09e2a501f5cd5b4ee4726934e8466688ad7b555b63731b59e9d0"
+    }
+  }
+}

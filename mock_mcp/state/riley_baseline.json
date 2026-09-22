@@ -1,0 +1,161 @@
+{
+  "calendar": [
+    {
+      "id": "evt_priya_one_on_one_recurring",
+      "title": "Priya 1:1 (recurring Friday)",
+      "start": "2026-02-06T10:00:00-06:00",
+      "end": "2026-02-06T10:30:00-06:00",
+      "attendees": ["riley", "priya"],
+      "recurring": "weekly:friday"
+    },
+    {
+      "id": "evt_owen_one_on_one_recurring",
+      "title": "Owen 1:1 (recurring Tuesday)",
+      "start": "2026-02-03T11:00:00-06:00",
+      "end": "2026-02-03T11:30:00-06:00",
+      "attendees": ["riley", "owen"],
+      "recurring": "weekly:tuesday"
+    },
+    {
+      "id": "evt_ines_one_on_one_recurring",
+      "title": "Ines 1:1 (recurring Wednesday)",
+      "start": "2026-02-04T14:00:00-06:00",
+      "end": "2026-02-04T14:30:00-06:00",
+      "attendees": ["riley", "ines"],
+      "recurring": "weekly:wednesday"
+    }
+  ],
+  "inbox": [],
+  "sent_emails": [],
+  "slack_messages": [],
+  "slack_dm_log": [],
+  "docs": [],
+  "doc_comments": [],
+  "feature_flags": [
+    {
+      "id": "flag_lifecycle_onboarding_trigger_v2",
+      "key": "lifecycle_onboarding_trigger_v2",
+      "name": "Onboarding day-7 email \u2014 trigger condition rev",
+      "rollout_pct": 0,
+      "status": "draft",
+      "created_at": "2026-01-15T09:00:00-06:00",
+      "owner": "riley"
+    },
+    {
+      "id": "flag_lifecycle_onboarding_trigger_v1",
+      "key": "lifecycle_onboarding_trigger_v1",
+      "name": "Onboarding day-7 email \u2014 trigger condition (v1, decommissioned)",
+      "rollout_pct": 0,
+      "status": "decommissioned",
+      "created_at": "2025-11-04T09:00:00-06:00",
+      "owner": "riley",
+      "notes": "Kept for history; superseded by v2 on Apr 6 2026 ship."
+    },
+    {
+      "id": "flag_pricing_page_v3",
+      "key": "pricing_page_v3",
+      "name": "Pricing page v3 experiment",
+      "rollout_pct": 0,
+      "status": "draft",
+      "created_at": "2026-01-22T11:00:00-06:00",
+      "owner": "riley"
+    },
+    {
+      "key": "pricing_page_2026q2_rev",
+      "name": "Pricing page Q2 2026 revision",
+      "rollout_percentage": 0,
+      "status": "registered",
+      "audience": "starter+growth",
+      "owner": "riley",
+      "notes": "Registered Feb 22 2026 as placeholder for the pricing-page experiment."
+    }
+  ],
+  "funnels": [],
+  "retention_cohorts": [],
+  "user_paths": [],
+  "subscriptions": [
+    {
+      "subscription_id": "sub_helio_mid_seg_sentinel_001",
+      "customer_id": "cus_acme_dev_shop",
+      "plan": "growth_50_seats",
+      "tier": "mid_seg",
+      "seats": 84,
+      "mrr": 1680.0,
+      "status": "active",
+      "started_at": "2025-04-12T00:00:00-06:00"
+    },
+    {
+      "subscription_id": "sub_helio_starter_sentinel_001",
+      "customer_id": "cus_quickbits_io",
+      "plan": "starter_25_seats",
+      "tier": "starter",
+      "seats": 22,
+      "mrr": 440.0,
+      "status": "active",
+      "started_at": "2025-09-30T00:00:00-06:00"
+    }
+  ],
+  "customers": [
+    {
+      "customer_id": "cus_acme_dev_shop",
+      "name": "Acme Dev Shop",
+      "segment": "mid_seg",
+      "seats": 84,
+      "signup_date": "2025-04-12",
+      "first_integration_at": "2025-04-26"
+    },
+    {
+      "customer_id": "cus_quickbits_io",
+      "name": "QuickBits.io",
+      "segment": "starter",
+      "seats": 22,
+      "signup_date": "2025-09-30",
+      "first_integration_at": "2025-10-04"
+    }
+  ],
+  "stripe_invoices": [],
+  "churn_events": [],
+  "mrr_snapshots": [
+    {
+      "asof_date": "2026-01-31",
+      "total_mrr": 4000000.0,
+      "arr": 48000000.0,
+      "net_new_mrr": 320000.0,
+      "expansion_mrr": 95000.0,
+      "churned_mrr": 41000.0
+    }
+  ],
+  "churn_metrics": {
+    "mid_seg|2026-05-28": {
+      "tier": "mid_seg",
+      "asof_date": "2026-05-28",
+      "definition": "v2",
+      "churn_rate_pct": 3.5,
+      "churned_mrr": 28000.0,
+      "churned_accounts": 25,
+      "note": "Lowest reading of the corpus window."
+    }
+  },
+  "experiments": [
+    {
+      "experiment_id": "EXP-2026-02-onboarding-trigger",
+      "name": "Onboarding-trigger v2 (activation-trigger email)",
+      "hypothesis": "Switching the new-user onboarding trigger from time-based to event-based (lifecycle_onboarding_trigger_v2) for mid-segment + growth-tier cohorts will lift day-7 activation by >=2pts without degrading email opt-in.",
+      "metric_of_record": "day-7 activation rate, mid_seg+growth cohort",
+      "cohort_scope": "mid_seg + growth tier",
+      "flag_id": "lifecycle_onboarding_trigger_v2",
+      "status": "running",
+      "designed_at": "2026-02-18",
+      "created_at": "2026-02-18T15:00:00Z"
+    }
+  ],
+  "experiment_results": [],
+  "growth_briefs": [],
+  "contacts": [
+    {
+      "name": "Marcus Vail",
+      "email": "marcus.vail@helio.com",
+      "role": "Chief Product Officer"
+    }
+  ]
+}

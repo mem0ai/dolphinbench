@@ -1,0 +1,50 @@
+id: 21
+narrative_anchor_date: '2026-09-14'
+test: PR scaffold/connectors#5271 adds underscore-style signature headers and a query-string
+  fallback to Pinecone verification. Post a review comment correcting the proposed
+  behavior.
+load_bearing_facts:
+- 143
+expected_tool_calls:
+- post_pr_comment
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: post_pr_comment
+      path: result.ok
+      value: true
+      check_id: morgan_021_00
+      action_id: morgan_021_post_pr_comment
+    - type: field_equals
+      path: result.comment.pr_id
+      value: scaffold/connectors#5271
+      tool: post_pr_comment
+      check_id: morgan_021_01
+      action_id: morgan_021_post_pr_comment
+    - type: field_llm_judge
+      path: result.comment.body
+      criterion: Says to use the hyphenated X-Scaffold-Signature header, allows normal
+        case-insensitive handling of that header, and rejects underscore-style names
+        and the query-string fallback.
+      tool: post_pr_comment
+      check_id: morgan_021_02
+      action_id: morgan_021_post_pr_comment
+    - type: field_regex
+      path: result.comment.body
+      pattern: (?i)(?<![A-Za-z0-9_])x-scaffold-signature(?![A-Za-z0-9_-])
+      tool: post_pr_comment
+      check_id: morgan_021_03
+      action_id: morgan_021_post_pr_comment
+mock_state:
+  open_prs:
+  - id: scaffold/connectors#5271
+    repo: scaffold/connectors
+    number: 5271
+    status: open
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

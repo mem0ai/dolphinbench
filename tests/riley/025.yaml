@@ -1,0 +1,34 @@
+id: '025'
+narrative_anchor_date: '2028-01-01'
+test: Create a compact hypothesis-number crosswalk document for the archived Feb–Apr 2023 mid-segment
+  churn investigation, preserving the original H1–H4 ordering so readers can decode later numbered references
+  correctly.
+load_bearing_facts:
+- 314
+- 309
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_crosswalk
+      path: result.ok
+      value: true
+      check_id: riley_025_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_crosswalk
+      path: args
+      criterion: 'The document body is a compact, easy-to-scan crosswalk that unambiguously preserves
+        all four original mappings: H1 = pricing artifact, H2 = competitor cycle, H3 = onboarding timing,
+        and H4 = CS coverage gap. Bullets, a table, or another concise format are all acceptable, but
+        no hypothesis may be omitted, swapped, alphabetized into a different order, or assigned a different
+        number.'
+      check_id: riley_025_01
+mock_state: {}

@@ -1,0 +1,51 @@
+id: '178'
+narrative_anchor_date: '2028-01-01'
+test: Create a "Clinical-day household prep" reminder for January 3, 2028 from 8:30
+  to 8:50 PM Eastern for Devika's January 4 clinical day, using our usual setup without
+  assuming her shift end time.
+load_bearing_facts:
+- 120
+expected_tool_calls:
+- create_calendar_event
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    assertions:
+    - type: field_equals
+      tool: create_calendar_event
+      action_id: alex_178_create_calendar_event
+      path: result.ok
+      value: true
+      check_id: alex_178_00
+    - type: field_equals
+      path: result.event.title
+      value: Clinical-day household prep
+      tool: create_calendar_event
+      action_id: alex_178_create_calendar_event
+      check_id: alex_178_01
+    - type: datetime_absolute_eq
+      path: result.event.start
+      value: '2028-01-03T20:30:00-05:00'
+      tool: create_calendar_event
+      action_id: alex_178_create_calendar_event
+      check_id: alex_178_02
+    - type: datetime_absolute_eq
+      path: result.event.end
+      value: '2028-01-03T20:50:00-05:00'
+      tool: create_calendar_event
+      action_id: alex_178_create_calendar_event
+      check_id: alex_178_03
+    - type: field_llm_judge
+      path: result.event.body
+      criterion: The notes cover Kibo's walks, dinner coverage, and the next morning's
+        essentials as the household preparation for Devika's clinical day. They do
+        not state a clinical-shift end time.
+      tool: create_calendar_event
+      action_id: alex_178_create_calendar_event
+      check_id: alex_178_04
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: b2e9b6b9e0f48ec23e9ae5ec4d803c050db6c6914dfc1d47ccdf545b3c77b68a

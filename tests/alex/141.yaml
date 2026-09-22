@@ -1,0 +1,39 @@
+id: '141'
+narrative_anchor_date: '2028-01-01'
+test: 'Send the proposed Lantern admission details for #payments-release-review to
+  the person who decides ordinary room admissions, leaving the decision with them.
+  The room is for Payments release reviews, uses deploy data and the owner map as
+  provenance, and is restricted to Payments and Infra.'
+load_bearing_facts:
+- 104
+- 105
+expected_tool_calls:
+- send_slack_dm
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    assertions:
+    - type: field_equals
+      tool: send_slack_dm
+      action_id: alex_141_send_slack_dm
+      path: result.ok
+      value: true
+      check_id: alex_141_00
+    - type: field_equals
+      path: result.user
+      value: iris
+      tool: send_slack_dm
+      action_id: alex_141_send_slack_dm
+      check_id: alex_141_01
+    - type: field_llm_judge
+      path: result.message
+      criterion: The DM asks Iris to decide whether to admit
+      tool: send_slack_dm
+      action_id: alex_141_send_slack_dm
+      check_id: alex_141_02
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: b2e9b6b9e0f48ec23e9ae5ec4d803c050db6c6914dfc1d47ccdf545b3c77b68a

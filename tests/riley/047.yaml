@@ -1,0 +1,35 @@
+id: '047'
+narrative_anchor_date: '2028-01-01'
+test: 'Post a short historical validation note in #growth-investigations with the validated mid-segment
+  monthly churn result and its trailing-six-month comparison.'
+load_bearing_facts:
+- 308
+expected_tool_calls:
+- send_slack_message
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: send_slack_message
+      action_id: post_validated_cut
+      path: result.ok
+      value: true
+      check_id: riley_047_00
+    - type: field_equals
+      tool: send_slack_message
+      action_id: post_validated_cut
+      path: args.channel
+      value: '#growth-investigations'
+      check_id: riley_047_01
+    - type: field_llm_judge
+      tool: send_slack_message
+      action_id: post_validated_cut
+      path: args
+      criterion: The message states that validated mid-segment monthly churn was 5.1%, compared with 2.1%
+        over the trailing six months.
+      check_id: riley_047_02
+mock_state: {}

@@ -1,0 +1,56 @@
+id: 097
+narrative_anchor_date: '2028-01-01'
+test: Create a document titled `Pricing-page continuity baseline card — 2028-01-01` in the `Pricing Analytics
+  Archive` folder. Make it a concise, citation-ready card for the July–October 2026 pricing-page continuity
+  period. Include the certified coverage dates, organic-session and Helio Start eligibility-flow-start
+  denominators, unsupported-condition routed-out count and rate, eligible-workspace admission-completion
+  rate, and account-level tail support effort. Explicitly frame the figures as post-rollout descriptive
+  continuity evidence rather than a randomized test or causal result. Add a brief source note identifying
+  the November 6, 2026 source-closure summary and the November 13, 2026 final-claims review.
+load_bearing_facts:
+- 227
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_continuity_card
+      path: result.ok
+      value: true
+      check_id: riley_097_00
+    - check_id: riley_097_01
+      type: field_equals
+      tool: create_doc
+      action_id: create_continuity_card
+      path: args.title
+      value: Pricing-page continuity baseline card — 2028-01-01
+    - check_id: riley_097_02
+      type: field_equals
+      tool: create_doc
+      action_id: create_continuity_card
+      path: args.folder
+      value: Pricing Analytics Archive
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_continuity_card
+      path: args
+      criterion: 'The body must accurately state all of these certified pricing-page continuity measurements:
+        coverage from July 1 through October 31, 2026; 12,426 organic sessions; 2,576 Helio Start eligibility-flow
+        starts; 183 starts, or 7.1%, later routed out for an existing unsupported condition; 44.4% eligible-workspace
+        admission completion; and account-level support time at the 90th percentile of 74 minutes. Each
+        number must be associated with the correct population or measure, and missing or contradictory
+        values fail.
+
+
+        The body must explicitly characterize the figures as post-rollout descriptive continuity evidence
+        and must not present them as a randomized or controlled experiment, a causal result, or evidence
+        of causal improvement. It must also include a brief source note identifying both the November
+        6, 2026 source-closure summary and the November 13, 2026 final-claims review.'
+      check_id: riley_097_03
+mock_state: {}

@@ -1,0 +1,37 @@
+id: 069
+narrative_anchor_date: '2026-09-14'
+test: Jordan proposes a short written Friday team update because there are no major
+  launches. Send him my decision in a Discord DM.
+load_bearing_facts:
+- 73
+expected_tool_calls:
+- send_discord_dm
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: send_discord_dm
+      path: result.ok
+      value: true
+      check_id: morgan_069_00
+      action_id: morgan_069_send_discord_dm
+    - type: field_equals
+      path: result.user
+      value: jordan
+      tool: send_discord_dm
+      check_id: morgan_069_01
+      action_id: morgan_069_send_discord_dm
+    - type: field_llm_judge
+      path: result.message
+      criterion: Chooses a brief Loom or video update instead of the written post.
+        No exact duration or engagement statistics are required.
+      tool: send_discord_dm
+      check_id: morgan_069_02
+      action_id: morgan_069_send_discord_dm
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

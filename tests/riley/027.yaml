@@ -1,0 +1,34 @@
+id: '027'
+narrative_anchor_date: '2028-01-01'
+test: Create a Helio Start change-sequencing checklist. For packaging, a pricing-page experiment, paid
+  acquisition, and activation measurement, state what must be settled first. Present each prerequisite
+  with the downstream work it blocks, and preserve any required separation between measurement populations.
+load_bearing_facts:
+- 403
+- 404
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_sequence_checklist
+      path: result.ok
+      value: true
+      check_id: riley_027_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_sequence_checklist
+      path: args
+      criterion: The document is an actionable Helio Start change-sequencing checklist. It states that
+        eligibility and refusal rules must be settled before packaging; taxonomy and entitlements must
+        be settled before a pricing-page experiment; the lifecycle fork must be settled before paid acquisition;
+        and activation measurement must remain separate from retained mid-segment measurement. It presents
+        these as required dependencies rather than an unordered topic list.
+      check_id: riley_027_01
+mock_state: {}

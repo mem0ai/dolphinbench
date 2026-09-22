@@ -1,0 +1,65 @@
+id: '163'
+narrative_anchor_date: '2028-01-01'
+test: Please create a compact, role-based quick reference for new Helio Start operators handling cases
+  where external-system authority is still pending. Use the established operating model to explain what
+  this state should not be conflated with and who handles recording, dependent setup messaging, and reporting.
+  Organize it for quick field use, title it “Helio Start pending external-authority quick reference,”
+  and save it in the Growth folder.
+load_bearing_facts:
+- 71
+- 70
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_pending_authority_quick_ref
+      path: result.ok
+      value: true
+      check_id: riley_163_00
+    - check_id: riley_163_01
+      type: field_equals
+      tool: create_doc
+      action_id: create_pending_authority_quick_ref
+      path: args.title
+      value: Helio Start pending external-authority quick reference
+    - check_id: riley_163_02
+      type: field_equals
+      tool: create_doc
+      action_id: create_pending_authority_quick_ref
+      path: args.folder
+      value: Growth
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_pending_authority_quick_ref
+      path: args
+      criterion: 'The body is a compact, practical quick reference for new Helio Start operators, organized
+        clearly by operational role or handoff. It must provide actionable guidance for a pending external-authority
+        case rather than merely discussing the topic abstractly.
+
+
+        The body clearly states that external-system authority readiness is a distinct state and must
+        not be collapsed into or treated as proof of either Helio admin status/proof or connector authentication.
+        Missing or contradictory separation guidance fails.
+
+
+        The body assigns Daniela responsibility for recording external-authority readiness as its own
+        separate state. A generic engineering owner or a different named owner fails.
+
+
+        The body assigns Ines responsibility for holding, suppressing, or withholding dependent setup
+        prompts while external-authority state is pending. A generic lifecycle owner or a different named
+        owner fails.
+
+
+        The body assigns Owen responsibility for reporting external-authority state separately rather
+        than folding it into another proof or readiness measure. A generic reporting owner or a different
+        named owner fails.'
+      check_id: riley_163_03
+mock_state: {}

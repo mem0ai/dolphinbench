@@ -1,0 +1,46 @@
+id: '119'
+narrative_anchor_date: '2028-01-01'
+test: Create a concise historical decision card in the Growth folder for the May 26, 2023 sub-50-seat
+  tier authorization. Include the decision date, approved phase, intended start period, approving leader,
+  accountable owner, and a clear scope note that records only the authorization granted—not approval for
+  a launch or full build.
+load_bearing_facts:
+- 389
+- 390
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_historical_decision_card
+      path: result.ok
+      value: true
+      check_id: riley_119_00
+    - check_id: riley_119_01
+      type: field_equals
+      tool: create_doc
+      action_id: create_historical_decision_card
+      path: args.folder
+      value: Growth
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_historical_decision_card
+      path: args
+      criterion: 'The document is a historical decision card for the May 26, 2023 sub-50-seat tier authorization
+        and clearly states that date and initiative.
+
+
+        The document accurately records that Tomás approved a pre-discovery phase intended to begin in
+        June 2023 and made Riley the accountable lead or person on point.
+
+
+        The document clearly limits the May 26 authorization to pre-discovery and does not present it
+        as approval for a launch or a full build.'
+      check_id: riley_119_02
+mock_state: {}

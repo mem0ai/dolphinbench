@@ -1,0 +1,43 @@
+id: '153'
+narrative_anchor_date: '2028-01-01'
+test: Create the historical preflight evidence card for the single Q2 2027 Helio Start high-intent paid-search
+  test considered at Priya's April 9 decision. Reconcile the cases by expected route and name who completed
+  or verified each preflight result. Preserve unchanged boundaries and separate technical readiness from
+  budget and launch authority.
+load_bearing_facts:
+- 253
+- 254
+- 255
+- 252
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_preflight_card
+      path: result.ok
+      value: true
+      check_id: riley_153_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_preflight_card
+      path: args
+      criterion: The title identifies a historical preflight evidence card for the single Q2 2027 Helio
+        Start high-intent paid-search test considered for Priya's April 9 decision. The body says Daniela
+        completed a fresh 24-case nonproduction preflight in which all eight expected admissions, all
+        eight expected assisted routes, and all eight expected fail-closed or suppressed cases reconciled
+        paid source from eligibility-flow start to the expected final route. It says Ines verified that
+        no case bypassed an existing lifecycle branch, hold, or suppression, and Customer Success verified
+        that assisted-route reasons and support minutes could be recorded from first contact. It says
+        no state meaning, eligibility condition, or owner authority changed. It distinguishes technical,
+        lifecycle, attribution, and support-recording readiness from Priya's separate decision and says
+        the preflight itself authorized no budget, paid traffic, launch, pipeline treatment, forecast
+        credit, pipeline target, or later additional paid batch.
+      check_id: riley_153_01
+mock_state: {}

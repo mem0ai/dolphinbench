@@ -1,0 +1,66 @@
+{
+  "morgan": {
+    "run_id": "claude-morgan-honcho-20260921T055335",
+    "source_bundle": {
+      "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/claude-honcho-morgan-source.tar.gz/",
+      "sha256": "8466d4c92b252d6acdd34998449d3a55dcf25a7d398e53dfd1af6c596dc28d6d"
+    },
+    "results": {
+      "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/morgan-claude-honcho-results.json.gz/",
+      "sha256": "d4c406ab14276c8ea63136040daa5b55191576ed24cce4315887d9aaf3d757d0"
+    },
+    "records_archive": {
+      "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/claude-honcho-results-and-traces.tar.gz/",
+      "sha256": "250cf1a17cb32fdde1bbf1a025d72aef9cd15b85ab3eb176e8c04f8509abd70a"
+    },
+    "referenced_runs": [
+      "claude-morgan-honcho-20260921T002500",
+      "claude-morgan-honcho-20260921T025001",
+      "claude-morgan-honcho-20260921T042838",
+      "claude-morgan-honcho-20260921T050006",
+      "claude-morgan-honcho-20260921T055335"
+    ],
+    "ingestion_record_path": "morgan/ingestion-receipt.json"
+  },
+  "alex": {
+    "run_id": "claude-alex-honcho-20260921T051100",
+    "source_bundle": {
+      "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/claude-honcho-alex-source.tar.gz/",
+      "sha256": "1afa42314ee057e20dfa2c403f1fdee4ecef3a60ca97a339ef4139625cad5242"
+    },
+    "results": {
+      "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/alex-claude-honcho-results.json.gz/",
+      "sha256": "5b6fc4ca5e20698ec211282c8ed759139c55487e55c35f3bead0bedcab9ce14a"
+    },
+    "records_archive": {
+      "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/claude-honcho-results-and-traces.tar.gz/",
+      "sha256": "250cf1a17cb32fdde1bbf1a025d72aef9cd15b85ab3eb176e8c04f8509abd70a"
+    },
+    "referenced_runs": [
+      "claude-alex-honcho-20260921T002508",
+      "claude-alex-honcho-20260921T025000",
+      "claude-alex-honcho-20260921T042843",
+      "claude-alex-honcho-20260921T051100"
+    ],
+    "ingestion_record_path": "alex/ingestion-receipt.json"
+  },
+  "riley": {
+    "run_id": "claude-riley-honcho-20260921T002503",
+    "source_bundle": {
+      "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/claude-honcho-riley-source.tar.gz/",
+      "sha256": "2329bb274ccc0e829dc6c177a4ecad95cd444a284bd8c96d1be8842b3df1a2cc"
+    },
+    "results": {
+      "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/riley-claude-honcho-results.json.gz/",
+      "sha256": "1996ac3a4fa02392c41f24b340f3e580df3ca5dc65d4efdc5e0cdabc68923b35"
+    },
+    "records_archive": {
+      "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/claude-honcho-results-and-traces.tar.gz/",
+      "sha256": "250cf1a17cb32fdde1bbf1a025d72aef9cd15b85ab3eb176e8c04f8509abd70a"
+    },
+    "referenced_runs": [
+      "claude-riley-honcho-20260921T002503"
+    ],
+    "ingestion_record_path": "riley/ingestion-receipt.json"
+  }
+}

@@ -1,0 +1,44 @@
+id: '186'
+narrative_anchor_date: '2028-01-01'
+test: 'Post a short January reminder in #helio-start-ops summarizing the current public self-serve applicant
+  guardrails. Distinguish applicants routed to assistance from applicants determined ineligible, and state
+  what happens to unresolved cases.'
+load_bearing_facts:
+- 13
+- 17
+- 18
+expected_tool_calls:
+- send_slack_message
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: send_slack_message
+      action_id: post_helio_january_reminder
+      path: result.ok
+      value: true
+      check_id: riley_186_00
+    - check_id: riley_186_01
+      type: field_equals
+      tool: send_slack_message
+      action_id: post_helio_january_reminder
+      path: args.channel
+      value: '#helio-start-ops'
+    - type: field_llm_judge
+      tool: send_slack_message
+      action_id: post_helio_january_reminder
+      path: args
+      criterion: 'The message concisely communicates that Helio Start''s live public or pricing-page self-serve
+        path is bounded by supported applicant criteria; it must not portray the product as unrestricted
+        self-serve or suggest that eligibility has been broadened.
+
+
+        The message explicitly says that applicants outside Helio Start''s supported boundaries are routed
+        to an assisted path or determined ineligible rather than being admitted into self-serve. Missing
+        either the assisted outcome or the ineligible outcome, or implying silent admission, must fail.'
+      check_id: riley_186_02
+mock_state: {}

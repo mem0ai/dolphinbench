@@ -1,0 +1,54 @@
+id: '030'
+narrative_anchor_date: '2028-01-01'
+test: Review the January South Slope internet invoice in my inbox. Then send the provider
+  an email asking it to correct only charges that conflict with our current service.
+  State our current speed, monthly price, equipment ownership, and whether installation
+  or plan-change fees apply.
+load_bearing_facts:
+- 289
+expected_tool_calls:
+- list_inbox
+- send_email
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    assertions:
+    - type: field_equals
+      tool: send_email
+      action_id: alex_030_send_email
+      path: result.ok
+      value: true
+      check_id: alex_030_00
+    - type: field_equals
+      tool: list_inbox
+      action_id: alex_030_read_email
+      path: result.0.id
+      value: inv_ss_2028_01
+      check_id: alex_030_01
+    - type: field_equals
+      path: result.to
+      value: billing@southslopeisp.example
+      tool: send_email
+      action_id: alex_030_send_email
+      check_id: alex_030_02
+    - type: field_llm_judge
+      path: result.body
+      criterion: The email states that the current service is 300 Mbps for $60 with
+        customer-owned equipment and no installation or plan-change fee. It asks the
+        provider to correct or credit charges that conflict with those terms without
+        canceling service, changing plans again, or ordering equipment.
+      tool: send_email
+      action_id: alex_030_send_email
+      check_id: alex_030_03
+mock_state:
+  inbox:
+  - id: inv_ss_2028_01
+    from: billing@southslopeisp.example
+    subject: January South Slope internet invoice — $93 due
+    date: '2028-01-01T08:15:00-05:00'
+    category: billing
+mock_state_base:
+  path: state.json
+  sha256: b2e9b6b9e0f48ec23e9ae5ec4d803c050db6c6914dfc1d47ccdf545b3c77b68a

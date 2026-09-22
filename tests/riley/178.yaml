@@ -1,0 +1,39 @@
+id: '178'
+narrative_anchor_date: '2028-01-01'
+test: DM Ines and ask for a focused January refresh of the Helio Start lifecycle-fork map. Ask her to
+  revisit the three retained-mid assumptions she previously identified and name those assumptions in the
+  message. Keep this to a map refresh, not a wholesale lifecycle redesign.
+load_bearing_facts:
+- 400
+- 402
+expected_tool_calls:
+- send_slack_dm
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: send_slack_dm
+      action_id: send_map_refresh
+      path: result.ok
+      value: true
+      check_id: riley_178_00
+    - type: field_equals
+      tool: send_slack_dm
+      action_id: send_map_refresh
+      path: args.user
+      value: ines
+      check_id: riley_178_01
+    - type: field_llm_judge
+      tool: send_slack_dm
+      action_id: send_map_refresh
+      path: args
+      criterion: The message asks for a focused January refresh of the Helio Start lifecycle-fork map.
+        It asks Ines to revisit retained-mid assumptions about multi-admin invitations, permission context,
+        and upgrade or team-use language appearing before simple workspaces understand imports and billing.
+        It keeps the work to a map refresh rather than a wholesale lifecycle redesign.
+      check_id: riley_178_02
+mock_state: {}

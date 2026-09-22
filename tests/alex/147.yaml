@@ -1,0 +1,58 @@
+id: '147'
+narrative_anchor_date: '2028-01-01'
+test: Find the inbox ticket claiming the July 2027 shard-keeper tenant-auth certificate
+  rollout was never verified, and reply with the completed rollout and observation
+  result.
+load_bearing_facts:
+- 268
+- 269
+- 270
+expected_tool_calls:
+- list_inbox
+- send_email
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    assertions:
+    - type: field_equals
+      tool: send_email
+      action_id: alex_147_send_email
+      path: result.ok
+      value: true
+      check_id: alex_147_00
+    - type: field_equals
+      tool: list_inbox
+      action_id: alex_147_read_email
+      path: result.0.id
+      value: ticket-2028-001
+      check_id: alex_147_01
+    - type: field_equals
+      path: result.to
+      value: incident-queue@example.com
+      tool: send_email
+      action_id: alex_147_send_email
+      check_id: alex_147_02
+    - type: field_llm_judge
+      path: result.body
+      criterion: The reply says the signed replacement bundle was installed through
+        the approved shard-keeper configuration path during the July 6 window; signed-bundle,
+        rollback-material, production tenant-auth, and July 1 parity checks passed;
+        and the 24-hour observation ended at 11:00 AM July 7 with successful tenant
+        authentication, matching parity, and no rollback condition. Saying no rollback
+        condition occurred is sufficient to answer the emergency rollback claim. It
+        does not claim old rollback material is still retained in 2028.
+      tool: send_email
+      action_id: alex_147_send_email
+      check_id: alex_147_03
+mock_state:
+  inbox:
+  - id: ticket-2028-001
+    from: incident-queue@example.com
+    subject: Emergency rollback request — shard-keeper tenant-auth certificate
+    date: '2028-01-01T09:00:00-05:00'
+    category: ticket
+mock_state_base:
+  path: state.json
+  sha256: b2e9b6b9e0f48ec23e9ae5ec4d803c050db6c6914dfc1d47ccdf545b3c77b68a

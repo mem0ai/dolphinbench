@@ -1,0 +1,39 @@
+id: '175'
+narrative_anchor_date: '2028-01-01'
+test: Create a concise 2026 Helio Start paid-search pilot closeout. State when and what closed the pilot,
+  final spend and unused budget, attribution and admission checks, every pause-rule result, and whether
+  traffic or further admissions remain open.
+load_bearing_facts:
+- 186
+- 194
+- 195
+- 196
+- 197
+- 198
+- 199
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_pilot_closeout
+      path: result.ok
+      value: true
+      check_id: riley_175_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_pilot_closeout
+      path: args
+      criterion: The closeout says the pilot closed on May 18, 2026 at 50 admitted workspaces after $14,420
+        in spend, before its $15,000 cap, leaving $580 unused. Attribution reconciled for all 50; no unsupported
+        applicant was admitted; no routing or instrumentation failure caused a pause; four of 50 exceeded
+        90 support minutes, below the more-than-10% pause threshold; paid traffic is off; and the fixed
+        cohort cannot accept more admissions.
+      check_id: riley_175_01
+mock_state: {}

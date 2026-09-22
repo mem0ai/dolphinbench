@@ -1,0 +1,46 @@
+id: '120'
+narrative_anchor_date: '2028-01-01'
+test: Create a compact archival ownership card titled “July 2023 analysis ownership card” for the Operating
+  Archive. Cover the Helio Start baseline analysis and retained-mid expansion eligibility analysis as
+  two distinct lanes, identify the default owner for each, and make clear that these assignments were
+  limited to July 2023 rather than a current standing org rule.
+load_bearing_facts:
+- 408
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_july_ownership_card
+      path: result.ok
+      value: true
+      check_id: riley_120_00
+    - check_id: riley_120_01
+      type: field_equals
+      tool: create_doc
+      action_id: create_july_ownership_card
+      path: args.title
+      value: July 2023 analysis ownership card
+    - check_id: riley_120_02
+      type: field_equals
+      tool: create_doc
+      action_id: create_july_ownership_card
+      path: args.folder
+      value: Operating Archive
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_july_ownership_card
+      path: args
+      criterion: 'The created document must clearly function as an archival July 2023 ownership card and
+        state that Owen was the default owner for each of two separate analysis lanes: (1) the Helio Start
+        baseline readout shape and (2) the retained-mid expansion eligibility cuts. It must also clearly
+        limit this assignment to July 2023 and avoid presenting it as a current or permanent org rule.
+        Missing, merging, or contradicting either lane, owner, or time limitation must fail.'
+      check_id: riley_120_03
+mock_state: {}

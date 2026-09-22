@@ -1,0 +1,82 @@
+id: '146'
+narrative_anchor_date: '2026-09-14'
+test: Inspect the October Stripe renewal remediation follow-up asking whether to reopen.
+  No affected customer reports a duplicate charge. Archive it if the original outcome
+  and closure rule justify leaving it closed.
+load_bearing_facts:
+- 146
+- 147
+expected_tool_calls:
+- list_inbox
+- archive_email
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: archive_email
+      path: result.ok
+      value: true
+      check_id: morgan_146_00
+      action_id: morgan_146_archive_email
+    - type: field_equals
+      path: result.email_id
+      value: msg_oct_stripe_renewal_reopen_2026
+      tool: archive_email
+      check_id: morgan_146_01
+      action_id: morgan_146_archive_email
+mock_state:
+  inbox:
+  - body: 'Hi Morgan -- quick billing q from our team: can we get a status update
+      on invoice-level webhook retries and whether failed billing events can be replayed
+      without support? Thanks, Nina'
+    date: '2023-01-19T16:05:00-08:00'
+    folder: inbox
+    from: Nina Patel <nina.patel@customer-test.com>
+    id: msg_000047_1
+    subject: Billing question on webhook retries
+  - category: promotional
+    date: '2021-03-19'
+    folder: archive
+    from: deals@techpromo.example
+    id: em_001
+    subject: 50% off all developer tools — last chance!
+  - category: promotional
+    date: '2021-03-26'
+    folder: archive
+    from: newsletter@airlines.example
+    id: em_002
+    subject: Spring fare sale — fly from $99
+  - category: promotional
+    date: '2021-04-01'
+    folder: archive
+    from: no-reply@shopping.example
+    id: em_003
+    subject: Flash sale ends tonight
+  - category: promotional
+    date: '2021-03-14'
+    folder: archive
+    from: offers@coffee.example
+    id: em_004
+    subject: Free latte with any purchase this week
+  - category: promotional
+    date: '2021-03-09'
+    folder: archive
+    from: updates@gym.example
+    id: em_005
+    subject: New spring classes — sign up now
+  - id: msg_oct_stripe_renewal_reopen_2026
+    from: Billing Operations <billing-ops@example.com>
+    subject: October Stripe renewal remediation — reopen?
+    date: '2026-09-14T09:00:00-07:00'
+    category: updates
+    folder: inbox
+    body: Hi Morgan — should the October 2023 Stripe renewal remediation thread be
+      reopened, or can this follow-up be cleared? No affected customer has reported
+      a duplicate charge. This email does not include the original remediation results
+      or the historical closure criterion.
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

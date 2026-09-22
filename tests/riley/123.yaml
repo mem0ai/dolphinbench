@@ -1,0 +1,90 @@
+id: '123'
+narrative_anchor_date: '2028-01-01'
+test: Please create a year-end memo in the Growth folder titled `2027 Lifecycle Systems development evidence
+  — Ines and Owen`. For each person, document the demonstrated behaviors, the basis for marking the development
+  goal complete, how exceptions or disputes were handled, and which decision authority was not transferred
+  by completion. Name the person to whom Owen must escalate any future semantic dispute, using the user's
+  name established in the earlier self-review message; do not infer that person from the recipient of
+  this request. Then send Priya a concise private Slack summary of both results and their continuing boundaries.
+load_bearing_facts:
+- 258
+- 280
+- 281
+- 279
+- 257
+expected_tool_calls:
+- create_doc
+- send_slack_dm
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_development_memo
+      path: result.ok
+      value: true
+      check_id: riley_123_00
+    - type: field_equals
+      tool: send_slack_dm
+      action_id: send_priya_summary
+      path: result.ok
+      value: true
+      check_id: riley_123_01
+    - check_id: riley_123_02
+      type: field_equals
+      tool: create_doc
+      action_id: create_development_memo
+      path: args.title
+      value: 2027 Lifecycle Systems development evidence — Ines and Owen
+    - check_id: riley_123_03
+      type: field_equals
+      tool: create_doc
+      action_id: create_development_memo
+      path: args.folder
+      value: Growth
+    - check_id: riley_123_04
+      type: field_equals
+      tool: send_slack_dm
+      action_id: send_priya_summary
+      path: args.user
+      value: priya
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_development_memo
+      path: args
+      criterion: 'The memo must state that Ines’s H1 2027 routine-send audit development expectation was
+        met and accurately cover all necessary evidence: 17 routine non-state-changing sends from April
+        1 through June 23; every audit remained visibly open until completion and closed within 24 hours;
+        none became overdue; no later routine send was released against an overdue audit; and no review
+        found a customer correction, state conflict, message defect, or incident issue requiring escalation.
+        It must also explain that completion did not expand her authority beyond no more than three routine
+        non-state-changing sends per week and did not transfer the customer-correction, incident-stop,
+        disputed-semantics, engineering-release, or rollback lanes to her. Missing or contradictory claims
+        fail.
+
+
+        The memo must state that Owen’s H2 2027 mature-outcome-packet development goal was met and accurately
+        explain that his independently assembled packet used the correct denominator and dates, waited
+        for every predeclared window, placed owner certifications and measurement limits before conclusions,
+        and established that no semantic interpretation was disputed. It must state that any future semantic
+        dispute requires Owen to leave the review incomplete and escalate it to Riley, and that completion
+        transferred no board-readiness, causal, revenue, forecast, or executive-language decision authority
+        to Owen. Missing or contradictory claims fail.'
+      check_id: riley_123_05
+    - type: field_llm_judge
+      tool: send_slack_dm
+      action_id: send_priya_summary
+      path: args
+      criterion: The message must concisely summarize that both Ines’s routine-send audit expectation
+        and Owen’s mature-outcome-packet goal were met. For Ines, it must convey the material completion
+        evidence (17 sends, timely audits with no overdue-audit release or escalation-triggering issue)
+        and that her routine-send limit and exception/control boundaries remain unchanged. For Owen, it
+        must convey the material packet-quality evidence, preserve escalation to Riley whenever semantics
+        are disputed, and make clear that no board-readiness, causal, revenue, forecast, or executive-language
+        authority transferred. Missing either person’s result or contradicting a continuing boundary fails.
+      check_id: riley_123_06
+mock_state: {}

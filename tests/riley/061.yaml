@@ -1,0 +1,50 @@
+id: '061'
+narrative_anchor_date: '2028-01-01'
+test: Create a concise one-page document titled `Expansion Assist — 2028 planning claims boundary` for
+  leadership. State what kind of evidence supports the standing lane, what leadership may say, what pipeline,
+  revenue, forecast, and rollout claims remain prohibited, and the status of the old time-based nudge.
+load_bearing_facts:
+- 74
+- 73
+- 421
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_expansion_assist_boundary
+      path: result.ok
+      value: true
+      check_id: riley_061_00
+    - check_id: riley_061_01
+      type: field_equals
+      tool: create_doc
+      action_id: create_expansion_assist_boundary
+      path: args.title
+      value: Expansion Assist — 2028 planning claims boundary
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_expansion_assist_boundary
+      path: args
+      criterion: 'The body is concise enough to function as a one-page planning guardrail and states that
+        Expansion Assist may be described as a narrow standing retained-mid operating lane whose evidence
+        is operational and descriptive, not causal. Missing or contradicting either the narrow operating-lane
+        status or the descriptive/non-causal evidence boundary must fail.
+
+
+        The body clearly prohibits treating Expansion Assist as pipeline, a revenue commitment or revenue-credit
+        source, forecast credit or a forecastable alert stream, and a blanket, broad, or broad retained-mid
+        rollout. Equivalent wording is acceptable, but all four categories—pipeline, revenue, forecast/forecastable
+        stream, and broad rollout—must be covered, and any contradiction must fail.
+
+
+        The body states that the legacy day-60 or equivalent signup-age/time-based nudge remains retired
+        and does not recommend reviving it. Missing or contradicted retirement status must fail.'
+      check_id: riley_061_02
+mock_state: {}

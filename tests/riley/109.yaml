@@ -1,0 +1,46 @@
+id: '109'
+narrative_anchor_date: '2028-01-01'
+test: 'Please post a concise routing summary to #helio-start-ops for these current Helio Start authority-readiness
+  cases: HS-801 — verified yes; HS-802 — no; HS-803 — not sure. Identify what happens next for each case
+  and briefly name the readiness confirmation being applied.'
+load_bearing_facts:
+- 68
+- 69
+expected_tool_calls:
+- send_slack_message
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: send_slack_message
+      action_id: post_authority_routing
+      path: result.ok
+      value: true
+      check_id: riley_109_00
+    - check_id: riley_109_01
+      type: field_equals
+      tool: send_slack_message
+      action_id: post_authority_routing
+      path: args.channel
+      value: '#helio-start-ops'
+    - type: field_llm_judge
+      tool: send_slack_message
+      action_id: post_authority_routing
+      path: args
+      criterion: 'The message must briefly and accurately identify the separate authority-readiness confirmation
+        as whether the applicant or an available owner can perform the selected connector’s required owner-level
+        permission or network-allowlist action in the setup or pre-setup context. Semantically equivalent
+        wording is acceptable; the literal phrase “selected for first-week setup” is not required. The
+        message must not conflate this confirmation with Helio admin proof, connector authentication,
+        or another proof.
+
+
+        The message clearly identifies HS-801 (verified yes) as permitted to continue, and clearly identifies
+        both HS-802 (no) and HS-803 (not sure) as requiring routing to Customer Success before admission.
+        Missing, swapped, or contradictory outcomes must fail.'
+      check_id: riley_109_02
+mock_state: {}

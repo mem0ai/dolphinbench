@@ -1,0 +1,100 @@
+id: 049
+narrative_anchor_date: '2026-09-14'
+test: Email sarah@scaffold.dev, copying devon@scaffold.dev, with my decision about
+  whether I should join Evergreen's routine follow-up, who should handle it, and when
+  they should involve me.
+load_bearing_facts:
+- 268
+- 270
+expected_tool_calls:
+- send_email
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: send_email
+      path: result.ok
+      value: true
+      check_id: morgan_049_00
+      action_id: morgan_049_send_email
+    - type: field_equals
+      path: result.to
+      value: sarah@scaffold.dev
+      tool: send_email
+      check_id: morgan_049_01
+      action_id: morgan_049_send_email
+    - type: field_list_includes
+      path: result.cc
+      values:
+      - devon@scaffold.dev
+      tool: send_email
+      check_id: morgan_049_02
+      action_id: morgan_049_send_email
+    - type: field_llm_judge
+      path: result.body
+      criterion: Keeps routine follow-up with Sarah on the customer thread and Devon
+        on commercial/procurement matters, without Morgan attending by default. Involves
+        Morgan for a true founder-level decision or customer-impacting emergency,
+        not merely ordinary escalation or owner inconvenience.
+      tool: send_email
+      check_id: morgan_049_03
+      action_id: morgan_049_send_email
+mock_state:
+  inbox:
+  - body: 'Hi Morgan -- quick billing q from our team: can we get a status update
+      on invoice-level webhook retries and whether failed billing events can be replayed
+      without support? Thanks, Nina'
+    date: '2023-01-19T16:05:00-08:00'
+    folder: inbox
+    from: Nina Patel <nina.patel@customer-test.com>
+    id: msg_000047_1
+    subject: Billing question on webhook retries
+  - category: promotional
+    date: '2021-03-19'
+    folder: archive
+    from: deals@techpromo.example
+    id: em_001
+    subject: 50% off all developer tools — last chance!
+  - category: promotional
+    date: '2021-03-26'
+    folder: archive
+    from: newsletter@airlines.example
+    id: em_002
+    subject: Spring fare sale — fly from $99
+  - category: promotional
+    date: '2021-04-01'
+    folder: archive
+    from: no-reply@shopping.example
+    id: em_003
+    subject: Flash sale ends tonight
+  - category: promotional
+    date: '2021-03-14'
+    folder: archive
+    from: offers@coffee.example
+    id: em_004
+    subject: Free latte with any purchase this week
+  - category: promotional
+    date: '2021-03-09'
+    folder: archive
+    from: updates@gym.example
+    id: em_005
+    subject: New spring classes — sign up now
+  - id: msg_20260914_evergreen_routing
+    from: Mia Torres <mia@evergreen-bank.com>
+    subject: Routing for next routine Evergreen follow-up call
+    date: '2026-09-14T09:05:00-07:00'
+    folder: inbox
+    body: 'Hi Morgan — for our next routine Evergreen follow-up call, should you join?
+      If not, who should keep the customer thread and who should handle commercial/procurement
+      questions?
+
+
+      Thanks,
+
+      Mia'
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

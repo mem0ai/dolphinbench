@@ -1,0 +1,39 @@
+id: 008
+narrative_anchor_date: '2026-09-14'
+test: Send Sarah Kim a Discord DM naming who should review her Mercury empty-source
+  setup-copy question and her Atlas cursor-pagination support-docs question.
+load_bearing_facts:
+- 304
+- 305
+expected_tool_calls:
+- send_discord_dm
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: send_discord_dm
+      path: result.ok
+      value: true
+      check_id: morgan_008_00
+      action_id: morgan_008_send_discord_dm
+    - type: field_equals
+      path: result.user
+      value: sarah_kim
+      tool: send_discord_dm
+      check_id: morgan_008_01
+      action_id: morgan_008_send_discord_dm
+    - type: field_llm_judge
+      path: result.message
+      criterion: Assigns the Mercury setup-copy question to Priya and the Atlas cursor-pagination
+        support-docs question to Leo Park. First names suffice when unambiguous; reversing
+        the assignments fails.
+      tool: send_discord_dm
+      check_id: morgan_008_02
+      action_id: morgan_008_send_discord_dm
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

@@ -1,0 +1,59 @@
+id: '016'
+narrative_anchor_date: '2028-01-01'
+test: The January sanitized campaign snapshot is due Tuesday, January 4, 2028. Create a concise source-readiness
+  checklist covering the check timing, required source details, and late or missing-certification handling,
+  and DM Owen the same guidance as a January-cycle reminder.
+load_bearing_facts:
+- 241
+expected_tool_calls:
+- create_doc
+- send_slack_dm
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: checklist_doc
+      path: result.ok
+      value: true
+      check_id: riley_016_00
+    - type: field_equals
+      tool: send_slack_dm
+      action_id: january_reminder
+      path: result.ok
+      value: true
+      check_id: riley_016_01
+    - type: field_equals
+      tool: send_slack_dm
+      action_id: january_reminder
+      path: args.user
+      value: owen
+      check_id: riley_016_02
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: checklist_doc
+      path: args
+      criterion: The body is a concise, usable source-readiness checklist for the January 4, 2028 snapshot.
+        It identifies the check time as noon Central on the business day before that deadline (Monday,
+        January 3, 2028; either relational or explicit-date wording is acceptable), requires every required
+        source to show a named owner, an exact certified-through date, and a certification ETA, says an
+        ETA after the snapshot deadline makes the cycle at risk, and says certification still absent on
+        the due date requires opening the snapshot in a visibly incomplete state rather than using stale
+        data.
+      check_id: riley_016_03
+    - type: field_llm_judge
+      tool: send_slack_dm
+      action_id: january_reminder
+      path: args
+      criterion: The message is a January-cycle readiness reminder for the January 4, 2028 snapshot. It
+        identifies the check time as noon Central on the business day before that deadline (Monday, January
+        3, 2028; either relational or explicit-date wording is acceptable), requires every required source
+        to show a named owner, an exact certified-through date, and a certification ETA, says an ETA after
+        the snapshot deadline makes the cycle at risk, and says certification still absent on the due
+        date requires opening the snapshot in a visibly incomplete state rather than using stale data.
+      check_id: riley_016_04
+mock_state: {}

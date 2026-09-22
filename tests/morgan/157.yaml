@@ -1,0 +1,32 @@
+id: '157'
+narrative_anchor_date: '2026-09-14'
+test: Create an archive note explaining what the 2024 customer-growth/GTM leader search
+  was meant to achieve and what it did not authorize.
+load_bearing_facts:
+- 187
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      path: result.ok
+      value: true
+      check_id: morgan_157_00
+      action_id: morgan_157_create_doc
+    - type: field_llm_judge
+      path: result.document.body
+      criterion: Centers converting design-partner learning into repeatable customer
+        growth, not a generic enterprise-sales VP role or authority for bespoke product
+        promises.
+      tool: create_doc
+      check_id: morgan_157_01
+      action_id: morgan_157_create_doc
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

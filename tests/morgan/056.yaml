@@ -1,0 +1,46 @@
+id: 56
+narrative_anchor_date: '2026-09-14'
+test: Write slide 1 of Principal_Engineering_Candidate_Briefing with Scaffold's current
+  financing stage and the amount, close date, and lead investor of the round that
+  established it. Do not estimate current runway.
+load_bearing_facts:
+- 178
+expected_tool_calls:
+- update_deck_slide
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: update_deck_slide
+      path: result.ok
+      value: true
+      check_id: morgan_056_00
+      action_id: morgan_056_update_deck_slide
+    - type: field_equals
+      path: result.deck
+      value: Principal_Engineering_Candidate_Briefing
+      tool: update_deck_slide
+      check_id: morgan_056_01
+      action_id: morgan_056_update_deck_slide
+    - type: field_eq_number
+      path: result.slide.number
+      value: 1
+      tool: update_deck_slide
+      check_id: morgan_056_02
+      action_id: morgan_056_update_deck_slide
+    - type: field_llm_judge
+      path: result.slide.content
+      criterion: 'Describes Scaffold as post-Series-B: the $18M round led by Northstar
+        Ventures closed February 22, 2024. Does not describe it as pending or infer
+        present runway from the old financing. No exact slide title or internal legal/diligence
+        recap is required.'
+      tool: update_deck_slide
+      check_id: morgan_056_03
+      action_id: morgan_056_update_deck_slide
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

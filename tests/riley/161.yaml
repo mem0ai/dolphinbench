@@ -1,0 +1,51 @@
+id: '161'
+narrative_anchor_date: '2028-01-01'
+test: Create a concise incident case study for the 2028 reliability-training library about the first live
+  pre-breach source-age alert. Cover what stalled, the warning and restoration timing, the affected pending
+  decisions, the fresh reevaluation outcomes, and whether any decision became stale or required manual
+  release, rollback, or customer correction. Use a clear title and brief, practical sections suitable
+  for training.
+load_bearing_facts:
+- 123
+- 124
+- 125
+- 126
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_reliability_case_study
+      path: result.ok
+      value: true
+      check_id: riley_161_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_reliability_case_study
+      path: args
+      criterion: 'The case study accurately identifies a stalled qualifying-human-admin source refresh
+        affecting 17 pending CS auto-nudge decisions, says the alert fired 43 minutes before the freshness
+        limit, and says Daniela restored the refresh with 18 minutes remaining. Missing or contradictory
+        timing, count, source, or restoration information must fail.
+
+
+        The case study states that a fresh reevaluation occurred and accurately reports that 13 decisions
+        proceeded while four were suppressed because current Customer Success adoption or renewal work
+        was active. Missing, reversed, or contradictory dispositions must fail.
+
+
+        The case study clearly states that none of the affected decisions entered stale state, nobody
+        manually released a decision, and neither a customer correction nor a rollback was required. Any
+        claim that one of these events occurred must fail.
+
+
+        The document title clearly identifies this as an incident case study about the first live pre-breach
+        source-age alert. A generic, irrelevant, or misleading title must fail.'
+      check_id: riley_161_01
+mock_state: {}

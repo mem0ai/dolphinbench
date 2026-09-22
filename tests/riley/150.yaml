@@ -1,0 +1,114 @@
+id: '150'
+narrative_anchor_date: '2028-01-01'
+test: Sam's ordinary January rota arrived on December 29, 2027, for coverage beginning January 8, 2028.
+  Apply our established household scheduling rule to decide whether this update requires a review. Do
+  not substitute a general best practice if that rule is unavailable. If the rule requires a review, check
+  January 1 through January 5 and schedule the earliest available 30-minute slot between 6:00 and 8:00
+  p.m. Central with Sam and me. Explain in the event why the established rule requires the review. If
+  the rule does not require one, do not create an event.
+load_bearing_facts:
+- 130
+expected_tool_calls:
+- list_calendar_events
+- create_calendar_event
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_calendar_event
+      action_id: create_cadence_review
+      path: result.ok
+      value: true
+      check_id: riley_150_00
+    - type: datetime_absolute_eq
+      tool: create_calendar_event
+      action_id: create_cadence_review
+      path: args.start
+      value: '2028-01-02T18:00:00-06:00'
+      check_id: riley_150_01
+    - type: datetime_absolute_eq
+      tool: create_calendar_event
+      action_id: create_cadence_review
+      path: args.end
+      value: '2028-01-02T18:30:00-06:00'
+      check_id: riley_150_02
+    - type: field_list_equals_unordered
+      tool: create_calendar_event
+      action_id: create_cadence_review
+      path: args.attendees
+      values:
+      - riley@helio.example
+      - sam@hydeparkrestaurant.example
+      check_id: riley_150_03
+    - type: field_equals
+      tool: list_calendar_events
+      action_id: check_january_1
+      path: args.date
+      value: '2028-01-01'
+      check_id: riley_150_04
+    - type: field_equals
+      tool: list_calendar_events
+      action_id: check_january_1
+      path: args.timezone
+      value: America/Chicago
+      check_id: riley_150_05
+    - type: field_equals
+      tool: list_calendar_events
+      action_id: check_january_2
+      path: args.date
+      value: '2028-01-02'
+      check_id: riley_150_06
+    - type: field_equals
+      tool: list_calendar_events
+      action_id: check_january_2
+      path: args.timezone
+      value: America/Chicago
+      check_id: riley_150_07
+    - type: field_equals
+      tool: list_calendar_events
+      action_id: check_january_1
+      path: args.date
+      value: '2028-01-01'
+      check_id: riley_150_08
+    - type: field_equals
+      tool: list_calendar_events
+      action_id: check_january_1
+      path: args.timezone
+      value: America/Chicago
+      check_id: riley_150_09
+    - type: field_equals
+      tool: list_calendar_events
+      action_id: check_january_2
+      path: args.date
+      value: '2028-01-02'
+      check_id: riley_150_10
+    - type: field_equals
+      tool: list_calendar_events
+      action_id: check_january_2
+      path: args.timezone
+      value: America/Chicago
+      check_id: riley_150_11
+    - type: field_llm_judge
+      tool: create_calendar_event
+      action_id: create_cadence_review
+      path: args
+      criterion: The event is identifiable as a household cadence or scheduling review. Its title and
+        body state that Sam's ordinary January rota arrived less than three weeks before the covered period
+        and therefore triggered a review under the household's established rule, which requires a review
+        within seven days. The exact receipt and coverage dates need not be repeated. It need not separately
+        state that automatic cadence reviews ended.
+      check_id: riley_150_12
+mock_state:
+  calendar:
+  - id: evt_2028_01_01_household_dinner
+    title: Household dinner
+    start: '2028-01-01T18:00:00-06:00'
+    end: '2028-01-01T20:00:00-06:00'
+    attendees:
+    - riley@helio.example
+    - sam@hydeparkrestaurant.example
+    body: Existing household commitment.

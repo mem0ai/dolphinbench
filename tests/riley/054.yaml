@@ -1,0 +1,35 @@
+id: '054'
+narrative_anchor_date: '2028-01-01'
+test: Please create a brief, narrowly dated context note for a retrospective on the pricing-rollback period
+  with Marcus Vail. Capture the status of our working relationship by April 28, 2023, based on what I
+  previously shared. Keep it factual, and don't imply permanent harmony or invent a formal reconciliation
+  event.
+load_bearing_facts:
+- 374
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_context_note
+      path: result.ok
+      value: true
+      check_id: riley_054_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_context_note
+      path: args
+      criterion: The body must be a narrowly dated historical context note conveying that the March 21,
+        2023 pricing-rollback tension with Marcus Vail preceded a return by the April 28, 2023 1:1 to
+        a normal, professional, and easy regular working dynamic. Equivalent wording is acceptable. It
+        must frame this as a limited status snapshot rather than permanent harmony or close friendship,
+        and it must not assert that a formal reconciliation event occurred. Missing or contradictory core
+        status must fail.
+      check_id: riley_054_01
+mock_state: {}

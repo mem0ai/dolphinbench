@@ -1,0 +1,61 @@
+id: '100'
+narrative_anchor_date: '2026-09-14'
+test: 'Create a document titled Sep 14 support-triage summary using my usual summary
+  format from the notes below.
+
+
+  Notes:
+
+  Acme asked where the export documentation explains resuming a request after a connection
+  drops. Their follow-up asks whether the example covers a long date range. These
+  are documentation questions, not a report that an export failed. Evergreen asked
+  whether the usage wording in its help text refers to active developers or every
+  invited teammate, and requested an example for someone invited but not active that
+  month. Mercury has three source-specific tickets: one reports an invitation email
+  that did not arrive, another asks about an unexpected role label, and the third
+  concerns a teammate list that did not refresh after a change. They arrived separately;
+  there is no evidence here of one shared cause. Atlas has a JWT clock-skew question.
+  The customer wants to know which timestamps to include in the support thread. The
+  on-call handoff reports no customer-impacting incident. A second handoff entry repeats
+  the Evergreen wording question and should not be mistaken for another customer or
+  incident.'
+load_bearing_facts:
+- 39
+- 40
+- 41
+- 42
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      path: result.ok
+      value: true
+      check_id: morgan_100_00
+      action_id: morgan_100_create_doc
+    - type: field_markdown_bullets
+      path: result.document.body
+      value:
+        max_items: 5
+        max_words: 15
+        only_bullets: true
+      tool: create_doc
+      check_id: morgan_100_01
+      action_id: morgan_100_create_doc
+    - type: field_llm_judge
+      path: result.document.body
+      criterion: Contains substantive summary points, not introductory or concluding
+        wrappers disguised as bullets. Contains no emoji. Do not demand five bullets
+        when fewer convey the supplied notes.
+      tool: create_doc
+      check_id: morgan_100_02
+      action_id: morgan_100_create_doc
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

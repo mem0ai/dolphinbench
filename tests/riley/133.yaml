@@ -1,0 +1,38 @@
+id: '133'
+narrative_anchor_date: '2028-01-01'
+test: Create a document for our 2028 Cherrywood housing budget. Itemize the recurring charges under the
+  lease active at the start of 2028, show the monthly household total, our equal monthly transfer per
+  person, and the annualized household and per-person totals. Include the applicable lease term and renewal-processing-fee
+  treatment, and do not carry prior lease terms into the current budget.
+load_bearing_facts:
+- 299
+- 300
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_2028_cherrywood_budget
+      path: result.ok
+      value: true
+      check_id: riley_133_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_2028_cherrywood_budget
+      path: args
+      criterion: The title clearly identifies the document as a 2028 Cherrywood housing budget or sheet.
+        The document itemizes the active recurring monthly charges as exactly $2,660 base rent, $75 parking,
+        $25 Kibo pet rent, and $20 trash, and gives the exact monthly household total of $2,780. It shows
+        that the two household members make equal monthly transfers of exactly $1,390 per person and gives
+        annualized totals of exactly $33,360 for the household and $16,680 per person. It presents those
+        figures as annualized from the active monthly amounts. It identifies the lease term as December
+        1, 2027 through November 30, 2028, states that there is no renewal-processing fee, and does not
+        carry expired lease amounts, credits, or fees into the current budget.
+      check_id: riley_133_01
+mock_state: {}

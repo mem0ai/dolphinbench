@@ -1,0 +1,55 @@
+id: '122'
+narrative_anchor_date: '2028-01-01'
+test: The current renewal-prioritization sizing question has been reopened. Please send Owen a concise
+  request for the previously approved sizing deliverable, and create a short cover note for Customer Success
+  that explains the allowed scope and how the output may be used.
+load_bearing_facts:
+- 201
+expected_tool_calls:
+- send_slack_dm
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: send_slack_dm
+      action_id: request_owen_sizing
+      path: result.ok
+      value: true
+      check_id: riley_122_00
+    - type: field_equals
+      tool: create_doc
+      action_id: create_cs_cover_note
+      path: result.ok
+      value: true
+      check_id: riley_122_01
+    - type: field_equals
+      tool: send_slack_dm
+      action_id: request_owen_sizing
+      path: args.user
+      value: owen
+      check_id: riley_122_02
+    - type: field_llm_judge
+      tool: send_slack_dm
+      action_id: request_owen_sizing
+      path: args
+      criterion: The message asks Owen for a one-time aggregate sizing cut for the reopened current renewal-prioritization
+        question. It must not ask for account-level records, a reusable account list or feed, or recurring
+        delivery. Missing or contradictory scope must fail.
+      check_id: riley_122_03
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_cs_cover_note
+      path: args
+      criterion: The document is clearly a cover note for Customer Success and explains that the deliverable
+        is a one-time aggregate sizing cut for the current renewal-prioritization question. Stating that
+        it is one-time is sufficient to communicate the nonrecurring limit unless the note contradictorily
+        permits or requests recurring delivery. The note must explicitly prevent use or repurposing as
+        an account-level list or feed and must not permit a reusable audience or recurring delivery. Missing
+        or contradictory limits must fail.
+      check_id: riley_122_04
+mock_state: {}

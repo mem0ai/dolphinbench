@@ -1,0 +1,30 @@
+id: '050'
+narrative_anchor_date: '2028-01-01'
+test: Create a compact historical communication example card for the one-line update Riley sent Tomás
+  about the pricing-page postmortem.
+load_bearing_facts:
+- 347
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_communication_card
+      path: result.ok
+      value: true
+      check_id: riley_050_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_communication_card
+      path: args
+      criterion: The card says Riley sent Tomás a one-line Slack update that the pricing-page postmortem
+        was planned for the week of March 27, 2023. It presents this as a historical example, not a universal
+        communication rule.
+      check_id: riley_050_01
+mock_state: {}

@@ -1,0 +1,36 @@
+id: '017'
+narrative_anchor_date: '2028-01-01'
+test: Create a short ownership-map document for maintaining the standing investigation framework so teams
+  can route standard readout-shape and example updates, and lifecycle-risk content, without sending every
+  change to me.
+load_bearing_facts:
+- 15
+- 16
+- 422
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: ownership_map_doc
+      path: result.ok
+      value: true
+      check_id: riley_017_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: ownership_map_doc
+      path: args
+      criterion: 'The document clearly routes maintenance of the standing investigation framework''s standard
+        readout shape and examples to Owen.
+
+
+        The document clearly routes maintenance of the standing investigation framework''s lifecycle-risk
+        content to Ines.'
+      check_id: riley_017_01
+mock_state: {}

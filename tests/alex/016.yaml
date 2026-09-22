@@ -1,0 +1,39 @@
+id: '016'
+narrative_anchor_date: '2028-01-01'
+test: Create a shard-keeper migration-history runbook entry about the rollback-path
+  fix completed after the May 2023 audit.
+load_bearing_facts:
+- 57
+- 58
+expected_tool_calls:
+- create_runbook_entry
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    assertions:
+    - type: field_equals
+      tool: create_runbook_entry
+      action_id: alex_016_create_runbook_entry
+      path: result.ok
+      value: true
+      check_id: alex_016_00
+    - type: field_equals
+      path: result.runbook.service
+      value: shard-keeper
+      tool: create_runbook_entry
+      action_id: alex_016_create_runbook_entry
+      check_id: alex_016_01
+    - type: field_llm_judge
+      path: result.runbook.body
+      criterion: The entry says the rollback changed from three coordinated commands
+        to one command, avoided half-reverted timing states, passed four consecutive
+        staging runs, and no longer blocked the shard-keeper migration restart.
+      tool: create_runbook_entry
+      action_id: alex_016_create_runbook_entry
+      check_id: alex_016_02
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: b2e9b6b9e0f48ec23e9ae5ec4d803c050db6c6914dfc1d47ccdf545b3c77b68a

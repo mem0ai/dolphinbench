@@ -1,0 +1,52 @@
+id: 095
+narrative_anchor_date: '2028-01-01'
+test: Start planning Mom's spring 2028 Austin visit. Create a short note explaining the agreed ordinary-week
+  format, including what normal work schedules it can contain, then text Mom asking for two or three possible
+  date ranges. Do not build an itinerary before dates are settled.
+load_bearing_facts:
+- 172
+- 171
+expected_tool_calls:
+- create_doc
+- send_sms
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: send_sms
+      action_id: spring_visit_outreach
+      path: result.ok
+      value: true
+      check_id: riley_095_00
+    - type: field_equals
+      tool: create_doc
+      action_id: spring_visit_note
+      path: result.ok
+      value: true
+      check_id: riley_095_01
+    - type: field_equals
+      tool: send_sms
+      action_id: spring_visit_outreach
+      path: args.to
+      value: '+15125550102'
+      check_id: riley_095_02
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: spring_visit_note
+      path: args
+      criterion: The note plans one spring 2028 Austin visit with dates still unsettled, uses a five-to-seven-night
+        ordinary-week format that can include Riley's workdays and Sam's shifts, and defers choosing the
+        single shared plan until after dates are settled rather than creating a full itinerary.
+      check_id: riley_095_03
+    - type: field_llm_judge
+      tool: send_sms
+      action_id: spring_visit_outreach
+      path: args
+      criterion: The message asks Mom for two or three possible date ranges in spring 2028 for a five-to-seven-night
+        Austin visit. It does not claim dates are already selected or present a developed itinerary.
+      check_id: riley_095_04
+mock_state: {}

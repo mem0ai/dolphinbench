@@ -1,0 +1,45 @@
+id: '032'
+narrative_anchor_date: '2026-09-14'
+test: Create a personal 15-minute reminder immediately before the Friday production-deploy
+  cutoff on September 18, Pacific Time. Put the cutoff, staffing requirement, and
+  exception procedure in its notes.
+load_bearing_facts:
+- 86
+expected_tool_calls:
+- create_calendar_event
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: create_calendar_event
+      path: result.ok
+      value: true
+      check_id: morgan_032_00
+      action_id: morgan_032_create_calendar_event
+    - type: datetime_absolute_eq
+      path: result.event.start
+      value: '2026-09-18T14:45:00-07:00'
+      tool: create_calendar_event
+      check_id: morgan_032_01
+      action_id: morgan_032_create_calendar_event
+    - type: datetime_absolute_eq
+      path: result.event.end
+      value: '2026-09-18T15:00:00-07:00'
+      tool: create_calendar_event
+      check_id: morgan_032_02
+      action_id: morgan_032_create_calendar_event
+    - type: field_llm_judge
+      path: result.event.body
+      criterion: States that production pushes after 3 PM Friday are blocked by default
+        and require the full on-call roster online; requests for exceptions go through
+        Morgan. Equivalent unambiguous first-person wording is acceptable.
+      tool: create_calendar_event
+      check_id: morgan_032_03
+      action_id: morgan_032_create_calendar_event
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

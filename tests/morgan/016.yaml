@@ -1,0 +1,91 @@
+id: 16
+narrative_anchor_date: '2026-09-14'
+test: Create an archive note recording the March 27, 2026 board review's decision
+  on first-half fundraising and the operating priorities it set for Q2.
+load_bearing_facts:
+- 287
+- 288
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      path: result.ok
+      value: true
+      check_id: morgan_016_00
+      action_id: morgan_016_create_doc
+    - type: field_llm_judge
+      path: result.document.body
+      criterion: Records the March 27 board decision not to force a Series C in the
+        first half of 2026, and Q2 priorities of retention, margin discipline, standard-term
+        customer work, and execution by the existing owners rather than vanity growth.
+        Keeps this as a historical decision, not a claim about current September authorization.
+      tool: create_doc
+      check_id: morgan_016_01
+      action_id: morgan_016_create_doc
+mock_state:
+  headcount_plans:
+    mercury_engineering_headcount_plan:
+      created_at: '2023-06-22T09:54:00-07:00'
+      next_two_hires:
+      - No immediate second Mercury engineering hire — keep the req on hold until
+        external design-partner launch-readiness feedback identifies whether the next
+        profile should be senior, implementation-heavy mid-level, or no hire
+      - null
+      notes: 'July 23: Mercury supported-source docs/support-macro QA completed; no
+        full-time Mercury engineering path, headcount exception, or July hiring reopen.'
+      plan_id: mercury_engineering_headcount_plan
+      rationale_tags:
+      - second_hire_on_hold
+      - external_launch_readiness_feedback
+      - no_arbitrary_month_end_revisit
+      - profile_depends_on_signal
+      - contractor_docs_support_qa_completed_no_headcount_change
+      revisit_after: Stronger future Q3 operating evidence on Mercury setup/support
+        quality and Atlas owner-lane execution; not July 2026 Series C market-warming
+        or an automatic second Mercury engineering requisition.
+      updated_at: '2026-07-27T11:05:00-07:00'
+    customer_growth_staffing_plan_2025_spring:
+      plan_id: customer_growth_staffing_plan_2025_spring
+      created_at: '2025-03-14T11:18:00-07:00'
+      next_two_hires:
+      - null
+      - null
+      revisit_after: Stronger future customer and operating evidence with nameable
+        repeatability; not July 2026 Series C market-warming or a Head of Customer
+        Growth backfill.
+      rationale_tags:
+      - q2_hiring_hold_extended
+      - compass_customer_facing_plan_cut
+      - compass_prompts_internal_only
+      - no_behavior_change_proof
+      - no_series_c_or_staffing_story
+      - nadia_transition_not_hiring_trigger
+      - nadia_exit_no_backfill
+      - customer_growth_routes_to_existing_owners
+      - evergreen_contained_no_advanced_admin_promise
+      - acme_bounded_atlas_route
+      - q3_staffing_flat_until_september_evidence
+      notes: The June 24 Q2 durability read confirmed no July market-warming, no data-room
+        refresh, no Head of Customer Growth backfill, and no second Mercury engineering
+        req; Q3 planning remains retention, margin discipline, standard-term customer
+        work, Mercury/Atlas owner lanes, and internal Compass evidence quality.
+      updated_at: '2026-06-24T14:24:00-07:00'
+    Scaffold-Q4-2026-headcount:
+      plan_id: Scaffold-Q4-2026-headcount
+      next_two_hires:
+      - Head of Customer Growth
+      - Additional Mercury engineering requisition
+      revisit_after: Q4 2026 planning kickoff
+      rationale_tags:
+      - carry_forward_growth_roles
+      - q4_planning
+      notes: Pre-review draft carrying forward previously proposed roles.
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

@@ -1,0 +1,45 @@
+id: 082
+narrative_anchor_date: '2028-01-01'
+test: 'Please create a document titled `Expansion Assist Q4 second-cohort candidate audit`. Build a candidate-audit
+  worksheet for the historical cohort, using an eligibility-check date of October 15, 2024. Include each
+  candidate’s qualifying product-visible usage-ceiling crossing date, the event’s age in days at the check,
+  and a pass/fail result under the cohort’s applicable recency rule. Candidates: - EA-104 — crossing date:
+  October 8, 2024 - EA-219 — crossing date: September 24, 2024 - EA-337 — crossing date: October 14, 2024
+  Also state the rule or calculation used so an auditor can reproduce the results.'
+load_bearing_facts:
+- 53
+- 52
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_candidate_audit
+      path: result.ok
+      value: true
+      check_id: riley_082_00
+    - check_id: riley_082_01
+      type: field_equals
+      tool: create_doc
+      action_id: create_candidate_audit
+      path: args.title
+      value: Expansion Assist Q4 second-cohort candidate audit
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_candidate_audit
+      path: args
+      criterion: The document body is an auditable worksheet using October 15, 2024 as the eligibility-check
+        date. It includes EA-104 with an October 8, 2024 crossing date and age 7 days marked Pass; EA-219
+        with a September 24, 2024 crossing date and age 21 days marked Fail; and EA-337 with an October
+        14, 2024 crossing date and age 1 day marked Pass. It must state or clearly encode that passing
+        requires the product-visible usage ceiling to have been newly crossed within the prior/preceding
+        14 days, so the displayed outcomes are reproducible. Equivalent table layouts and wording are
+        acceptable, but missing or contradictory dates, calculations, rule, or outcomes fail.
+      check_id: riley_082_02
+mock_state: {}

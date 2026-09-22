@@ -1,0 +1,42 @@
+id: '100'
+narrative_anchor_date: '2028-01-01'
+test: Send Tomas a one-line Slack briefing on the fixed Q2 2027 Helio Start paid-test lane. Include the
+  complete approved descriptive result and every excluded claim category, while omitting how the evidence
+  was assembled.
+load_bearing_facts:
+- 276
+- 277
+- 278
+expected_tool_calls:
+- send_slack_dm
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: send_slack_dm
+      action_id: send_tomas_q2_brief
+      path: result.ok
+      value: true
+      check_id: riley_100_00
+    - type: field_equals
+      tool: send_slack_dm
+      action_id: send_tomas_q2_brief
+      path: args.user
+      value: tomas
+      check_id: riley_100_01
+    - type: field_llm_judge
+      tool: send_slack_dm
+      action_id: send_tomas_q2_brief
+      path: args
+      criterion: The one-line or equivalently compact message identifies the fixed 25-workspace Q2 2027
+        Helio Start paid-test cohort and states 18 paid-active workspaces, $27,860 in refund-adjusted
+        collected cash that receives no revenue credit and is not revenue, support effort of 33 minutes
+        at the median and 116 minutes at the 90th percentile, and five of 25 workspaces above 90 support
+        minutes. It excludes causal acquisition, scale, pipeline, forecast, revenue, and support-improvement
+        claims and does not summarize evidence assembly.
+      check_id: riley_100_02
+mock_state: {}

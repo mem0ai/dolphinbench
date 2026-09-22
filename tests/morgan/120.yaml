@@ -1,0 +1,35 @@
+id: '120'
+narrative_anchor_date: '2026-09-14'
+test: Create a short late-deploy coverage note explaining what the Q3 2022 weekend
+  incident should have taught us before the later March outage.
+load_bearing_facts:
+- 18
+- 78
+- 79
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      path: result.ok
+      value: true
+      check_id: morgan_120_00
+      action_id: morgan_120_create_doc
+    - type: field_llm_judge
+      path: result.document.body
+      criterion: Explains that the earlier incident had a smaller blast radius and
+        lucky timing but exposed the same late-deploy coverage problem as March. The
+        team failed to document it or codify the rule, which should have happened
+        then. Does not invent the rule's exact hours or staffing numbers.
+      tool: create_doc
+      check_id: morgan_120_01
+      action_id: morgan_120_create_doc
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

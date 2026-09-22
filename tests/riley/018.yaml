@@ -1,0 +1,43 @@
+id: 018
+narrative_anchor_date: '2028-01-01'
+test: Create a historical growth brief for the mid-segment churn investigation’s pre-ruling H2 phase,
+  using monthly churn as the metric of record. Include the active hypothesis, the planned historical comparison
+  work, and the agreed owner and contents for each hypothesis-ruling one-pager, and label it clearly as
+  a pre-ruling artifact.
+load_bearing_facts:
+- 323
+- 319
+- 316
+expected_tool_calls:
+- create_growth_brief
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_llm_judge
+      tool: create_growth_brief
+      action_id: create_h2_preruling_brief
+      path: args
+      criterion: 'The hypothesis identifies H2 as the active hypothesis for this phase and expresses the
+        substantive hypothesis that a seasonal or competitor-cycle effect could explain the mid-segment
+        churn spike.
+
+
+        The brief describes the planned H2 comparison work: pull historical February or equivalent same-window
+        churn comparisons by segment and align them with timestampable market dates and competitor activity
+        or noise.
+
+
+        The brief states that every hypothesis ruling, whether ruled in or ruled out, receives a one-pager
+        authored by Owen containing the why, the cuts, p-value and effect-size details, and the final
+        call.
+
+
+        Considering the title and body together, the created brief is clearly labeled as a historical
+        pre-ruling artifact and preserves a pre-decision posture rather than presenting H2 as already
+        ruled.'
+      check_id: riley_018_00
+mock_state: {}

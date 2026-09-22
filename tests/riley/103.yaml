@@ -1,0 +1,70 @@
+id: '103'
+narrative_anchor_date: '2028-01-01'
+test: Please post a decision comment on proposal document `doc_activation_recovery_banner_2028`. The historical
+  replay is complete and found no semantic disagreement. Record the furthest stage the proposal may currently
+  reach, the production approvals that are still required, and the intake fields that must remain explicit
+  under our standing shared-state consumer admission gate.
+load_bearing_facts:
+- 200
+expected_tool_calls:
+- post_doc_comment
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: post_doc_comment
+      action_id: post_admission_decision
+      path: result.ok
+      value: true
+      check_id: riley_103_00
+    - check_id: riley_103_01
+      type: field_equals
+      tool: post_doc_comment
+      action_id: post_admission_decision
+      path: args.doc_id
+      value: doc_activation_recovery_banner_2028
+    - type: field_llm_judge
+      tool: post_doc_comment
+      action_id: post_admission_decision
+      path: args
+      criterion: 'The comment clearly states that, because replay found no semantic disagreement, the
+        proposal may advance to shadow but may not yet advance to production.
+
+
+        The comment clearly identifies both remaining production approvals: Riley must approve the customer-action
+        scope, and Daniela must approve the release and rollback controls. Missing either approval or
+        implying production is already approved must fail.
+
+
+        The comment requires all of these intake items to remain explicit: the customer action; every
+        governed field used with its established meaning unchanged; each source owner and freshness limit;
+        fail-closed behavior and suppression behavior; ownership for customer corrections and incident
+        stops; and engineering rollback ownership. Missing any category must fail.'
+      check_id: riley_103_02
+mock_state:
+  docs:
+  - id: doc_activation_recovery_banner_2028
+    title: Shared-state activation-recovery banner — proposal
+    body: '# Shared-state activation-recovery banner — proposal
+
+
+      ## Proposal
+
+      Add an activation-recovery banner as a proposed consumer of the shared lifecycle state feed.
+
+
+      ## Replay status
+
+      Historical replay is complete. No semantic disagreement was found.
+
+
+      ## Decision record
+
+      A decision comment is requested before further progression. No production approval is recorded in
+      this proposal.'
+    folder: Growth
+    created_at: '2028-01-01T09:00:00-06:00'

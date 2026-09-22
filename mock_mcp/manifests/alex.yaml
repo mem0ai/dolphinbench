@@ -1,0 +1,30 @@
+persona_id: alex
+baseline_state: state/alex_baseline.json
+tools:
+  - create_calendar_event
+  - list_calendar_events
+  - update_calendar_event
+  - send_email
+  - send_sms
+  - list_inbox
+  - send_slack_message
+  - send_slack_dm
+  - internal_search_v2
+  - create_doc
+  - update_doc
+  - post_pr_comment
+  - post_doc_comment
+  - list_open_prs
+  - get_pr
+  - review_pr
+  - merge_pr
+  - list_oncall_schedule
+  - acknowledge_incident
+  - escalate_incident
+  - create_runbook_entry
+  - update_runbook_entry
+  - get_runbook
+  - deploy_service
+  - rollback_deploy
+  - get_service_metrics
+  - query_logs

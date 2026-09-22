@@ -1,0 +1,51 @@
+id: '200'
+narrative_anchor_date: '2028-01-01'
+test: Create a new document titled `Helio Start 2028 bounded proposal worksheet`. Make it a reusable worksheet
+  for a proposed 2028 Helio Start run, with fill-in sections for scope, owner, dates, budget, operating
+  safeguards, and approval/sign-off. Prefill the maximum-admissions field using the Customer Success capacity
+  we established. Set the approval section to Pending, and make clear that neither the staffing capacity
+  nor this worksheet authorizes paid traffic or a launch; those require separate approval.
+load_bearing_facts:
+- 248
+- 249
+- 250
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_2028_helio_proposal
+      path: result.ok
+      value: true
+      check_id: riley_200_00
+    - check_id: riley_200_01
+      type: field_equals
+      tool: create_doc
+      action_id: create_2028_helio_proposal
+      path: args.title
+      value: Helio Start 2028 bounded proposal worksheet
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_2028_helio_proposal
+      path: args
+      criterion: 'The body is a reusable proposal worksheet rather than a completed launch announcement.
+        It provides clearly identifiable fill-in areas for scope, owner, dates, budget, operating safeguards,
+        and approval or sign-off.
+
+
+        The worksheet has a clearly labeled maximum-admissions field prefilled with exactly 25 admitted
+        workspaces as the operational ceiling. Fail if the field is blank, gives another number, treats
+        25 only as an unrelated historical result, or permits more than 25 admissions.
+
+
+        The approval section is clearly marked Pending. The body also explicitly states that the staffing
+        capacity and worksheet do not authorize paid traffic or launch and that separate approval is required;
+        it must not imply that a 2028 run is already approved or live.'
+      check_id: riley_200_02
+mock_state: {}

@@ -1,0 +1,8 @@
+node_modules
+.next
+out
+.vercel
+.env*
+.venv
+test-results
+playwright-report

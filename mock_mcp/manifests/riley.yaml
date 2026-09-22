@@ -1,0 +1,33 @@
+persona_id: riley
+baseline_state: state/riley_baseline.json
+tools:
+  - list_calendar_events
+  - create_calendar_event
+  - update_calendar_event
+  - list_inbox
+  - send_email
+  - send_sms
+  - send_slack_message
+  - send_slack_dm
+  - create_doc
+  - update_doc
+  - post_doc_comment
+  - list_feature_flags
+  - get_feature_flag
+  - update_feature_flag
+  - query_event_funnel
+  - query_retention_cohort
+  - query_user_path
+  - list_subscriptions
+  - get_subscription
+  - list_stripe_invoices
+  - get_customer
+  - list_recent_churn
+  - get_mrr_metrics
+  - get_churn_metrics
+  - get_arr_segments
+  - create_experiment
+  - update_experiment
+  - query_experiment_results
+  - create_growth_brief
+  - update_growth_brief

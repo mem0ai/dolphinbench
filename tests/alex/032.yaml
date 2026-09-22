@@ -1,0 +1,159 @@
+id: '032'
+narrative_anchor_date: '2028-01-01'
+test: Inspect north-pier-design-system#184 and comment with North Pier's current token
+  workflow. State the date the formal review's findings were reported, what the review
+  established, what source must change, how Android output is produced, how drift
+  is blocked, and whether the trial became the ongoing workflow or continued only
+  as a trial.
+load_bearing_facts:
+- 113
+expected_tool_calls:
+- get_pr
+- post_pr_comment
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    assertions:
+    - type: field_equals
+      tool: post_pr_comment
+      action_id: alex_032_post_pr_comment
+      path: result.ok
+      value: true
+      check_id: alex_032_00
+    - type: field_equals
+      tool: get_pr
+      action_id: alex_032_read_pr
+      path: result.pr.id
+      value: north-pier-design-system#184
+      check_id: alex_032_01
+    - type: field_equals
+      path: result.comment.pr_id
+      value: north-pier-design-system#184
+      tool: post_pr_comment
+      action_id: alex_032_post_pr_comment
+      check_id: alex_032_02
+    - type: field_llm_judge
+      path: result.comment.body
+      criterion: Says the formal review reported on June 20, 2024 established the
+        versioned canonical token package, generated downstream files including Android
+        output, and an automated drift check as North Pier's ongoing workflow rather
+        than an extension of the trial. Says to change the canonical package, regenerate
+        Android output, and make automation block drift between the source package
+        and generated output.
+      tool: post_pr_comment
+      action_id: alex_032_post_pr_comment
+      check_id: alex_032_03
+mock_state:
+  prs:
+  - id: metrics-router#412
+    title: 'metrics-router: tidy config-loader, prep for OTel cutover finish'
+    author: alex
+    repo: metrics-router
+    branch: alex/cfg-loader-tidy
+    status: merged
+    reviewers:
+    - nadia
+    assignees:
+    - alex
+    opened_at: '2023-06-30T14:02:00-04:00'
+    age_days: 3
+    merged_at: '2023-07-11T09:25:00-04:00'
+  - id: shard-keeper#188
+    title: 'shard-keeper: rollback path hardening (lessons from Apr 18)'
+    author: alex
+    repo: shard-keeper
+    branch: alex/rollback-hardening
+    status: merged
+    reviewers:
+    - nadia
+    - cyrus
+    assignees:
+    - alex
+    opened_at: '2023-06-28T11:30:00-04:00'
+    age_days: 5
+    merged_at: '2023-08-08T10:15:00-04:00'
+  - id: ingest-edge#221
+    title: 'ingest-edge: bump OTel collector to 0.91'
+    author: wes
+    repo: ingest-edge
+    branch: wes/otel-091
+    status: merged
+    reviewers:
+    - alex
+    assignees:
+    - wes
+    opened_at: '2023-07-01T09:14:00-04:00'
+    age_days: 2
+    merged_at: '2023-08-03T13:20:00-04:00'
+  - id: metrics-router#414
+    title: 'metrics-router: add label-name parity check on push'
+    author: nadia
+    repo: metrics-router
+    branch: nadia/label-parity-check
+    status: merged
+    reviewers:
+    - alex
+    assignees:
+    - nadia
+    opened_at: '2023-06-29T16:48:00-04:00'
+    age_days: 4
+    merged_at: '2023-07-26T13:05:00-04:00'
+  - id: lantern#3
+    title: 'lantern: v0 architecture doc — circulating for comment'
+    author: alex
+    repo: lantern
+    branch: alex/v0-arch
+    status: merged
+    reviewers:
+    - iris
+    - hema
+    - theo
+    assignees:
+    - alex
+    opened_at: '2023-07-03T10:00:00-04:00'
+    age_days: 0
+    merged_at: '2023-07-24T12:15:00-04:00'
+  - id: shard-keeper#190
+    title: 'shard-keeper: small cutover-readiness fix'
+    author: cyrus
+    repo: shard-keeper
+    branch: cyrus/cutover-fix
+    status: merged
+    reviewers:
+    - alex
+    assignees:
+    - cyrus
+    opened_at: '2023-06-26T13:00:00-04:00'
+    age_days: 7
+    merged_at: '2023-09-21T09:18:00-04:00'
+  - id: north-pier-design-system#184
+    title: 'Android: allow independent warning-token override'
+    author: mira
+    repo: north-pier-design-system
+    branch: mira/android-warning-token
+    status: open
+    reviewers:
+    - alex
+    assignees:
+    - mira
+    opened_at: '2027-12-29T14:10:00-05:00'
+    age_days: 3
+    description: Updates the generated Android representation directly. This PR treats
+      the Android copy as an independent source of truth for Android so it can diverge
+      from the other token representations.
+    changed_files:
+    - path: platform/android/generated/tokens.json
+      status: modified
+      generated: true
+      patch: '@@ warning token
+
+        -  "color.warning.surface": "#FFF1C2"
+
+        +  "color.warning.surface": "#FFE39A"'
+    source_package_changes: []
+    ci_changes: []
+mock_state_base:
+  path: state.json
+  sha256: b2e9b6b9e0f48ec23e9ae5ec4d803c050db6c6914dfc1d47ccdf545b3c77b68a

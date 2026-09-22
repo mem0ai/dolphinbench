@@ -1,0 +1,42 @@
+id: '032'
+narrative_anchor_date: '2028-01-01'
+test: Create a wallet-reference note for my current travel card that lists its annual fee and travel/dining
+  earning rate, explains what happened to my existing and pending points, and flags any former travel
+  benefits I should no longer count on when booking.
+load_bearing_facts:
+- 99
+- 98
+- 100
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_wallet_card_note
+      path: result.ok
+      value: true
+      check_id: riley_032_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_wallet_card_note
+      path: args
+      criterion: 'The note clearly states that the current travel card has no annual fee, equivalently
+        a $0 annual fee.
+
+
+        The note states that the current card earns 1.5 rewards points per dollar on both travel and dining.
+
+
+        The note states that both existing points and pending points remain in the same rewards account.
+
+
+        The note identifies both the $75 travel credit and lounge passes as ended or unavailable on the
+        current card, making clear that neither should be relied on when booking.'
+      check_id: riley_032_01
+mock_state: {}

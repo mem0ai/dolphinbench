@@ -1,0 +1,153 @@
+id: '186'
+narrative_anchor_date: '2028-01-01'
+test: Inspect shard-keeper#4216 and review its proposed return to shard_region without
+  a rollup-service change.
+load_bearing_facts:
+- 108
+expected_tool_calls:
+- get_pr
+- review_pr
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    assertions:
+    - type: field_equals
+      tool: review_pr
+      action_id: alex_186_review_pr
+      path: result.ok
+      value: true
+      check_id: alex_186_00
+    - type: field_equals
+      tool: get_pr
+      action_id: alex_186_read_pr
+      path: result.pr.id
+      value: shard-keeper#4216
+      check_id: alex_186_01
+    - type: field_equals
+      path: result.review.pr_id
+      value: shard-keeper#4216
+      tool: review_pr
+      action_id: alex_186_review_pr
+      check_id: alex_186_02
+    - type: field_equals
+      path: result.review.decision
+      value: request_changes
+      tool: review_pr
+      action_id: alex_186_review_pr
+      check_id: alex_186_03
+    - type: field_llm_judge
+      path: result.review.body
+      criterion: The review says the active production contract has shard-keeper emit
+        storage_region and rollup-service read storage_region. Returning the producer
+        to shard_region while deferring the consumer change would create a blocking
+        mismatch; the review also asks for cross-service evidence rather than shard-keeper
+        unit tests alone.
+      tool: review_pr
+      action_id: alex_186_review_pr
+      check_id: alex_186_04
+mock_state:
+  prs:
+  - id: metrics-router#412
+    title: 'metrics-router: tidy config-loader, prep for OTel cutover finish'
+    author: alex
+    repo: metrics-router
+    branch: alex/cfg-loader-tidy
+    status: merged
+    reviewers:
+    - nadia
+    assignees:
+    - alex
+    opened_at: '2023-06-30T14:02:00-04:00'
+    age_days: 3
+    merged_at: '2023-07-11T09:25:00-04:00'
+  - id: shard-keeper#188
+    title: 'shard-keeper: rollback path hardening (lessons from Apr 18)'
+    author: alex
+    repo: shard-keeper
+    branch: alex/rollback-hardening
+    status: merged
+    reviewers:
+    - nadia
+    - cyrus
+    assignees:
+    - alex
+    opened_at: '2023-06-28T11:30:00-04:00'
+    age_days: 5
+    merged_at: '2023-08-08T10:15:00-04:00'
+  - id: ingest-edge#221
+    title: 'ingest-edge: bump OTel collector to 0.91'
+    author: wes
+    repo: ingest-edge
+    branch: wes/otel-091
+    status: merged
+    reviewers:
+    - alex
+    assignees:
+    - wes
+    opened_at: '2023-07-01T09:14:00-04:00'
+    age_days: 2
+    merged_at: '2023-08-03T13:20:00-04:00'
+  - id: metrics-router#414
+    title: 'metrics-router: add label-name parity check on push'
+    author: nadia
+    repo: metrics-router
+    branch: nadia/label-parity-check
+    status: merged
+    reviewers:
+    - alex
+    assignees:
+    - nadia
+    opened_at: '2023-06-29T16:48:00-04:00'
+    age_days: 4
+    merged_at: '2023-07-26T13:05:00-04:00'
+  - id: lantern#3
+    title: 'lantern: v0 architecture doc — circulating for comment'
+    author: alex
+    repo: lantern
+    branch: alex/v0-arch
+    status: merged
+    reviewers:
+    - iris
+    - hema
+    - theo
+    assignees:
+    - alex
+    opened_at: '2023-07-03T10:00:00-04:00'
+    age_days: 0
+    merged_at: '2023-07-24T12:15:00-04:00'
+  - id: shard-keeper#190
+    title: 'shard-keeper: small cutover-readiness fix'
+    author: cyrus
+    repo: shard-keeper
+    branch: cyrus/cutover-fix
+    status: merged
+    reviewers:
+    - alex
+    assignees:
+    - cyrus
+    opened_at: '2023-06-26T13:00:00-04:00'
+    age_days: 7
+    merged_at: '2023-09-21T09:18:00-04:00'
+  - id: shard-keeper#4216
+    title: 'shard-keeper: restore former region label for compatibility'
+    author: roman
+    repo: shard-keeper
+    branch: roman/restore-region-label
+    status: open
+    reviewers:
+    - alex
+    assignees:
+    - roman
+    opened_at: '2027-12-29T10:15:00-05:00'
+    description: Emit `shard_region` again from shard-keeper to restore the former
+      region-label behavior. Any required downstream translation in rollup-service
+      can be added in a follow-up.
+    changes:
+    - file: internal/metrics/labels.go
+      summary: Replace the producer's current region-label key with `shard_region`.
+    tests: Shard-keeper unit tests pass. No cross-service fixture was run.
+mock_state_base:
+  path: state.json
+  sha256: b2e9b6b9e0f48ec23e9ae5ec4d803c050db6c6914dfc1d47ccdf545b3c77b68a

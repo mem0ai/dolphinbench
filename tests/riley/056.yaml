@@ -1,0 +1,57 @@
+id: '056'
+narrative_anchor_date: '2028-01-01'
+test: Create a concise document in the Growth folder titled `Q4 live investigation-framework pilot — historical
+  RACI card`. Use a compact RACI-style table or card to capture the historical Q4 pilot scope and the
+  established owner for each responsibility from our earlier decisions. Give denominator, effect size,
+  conclusion order, lifecycle QA, and audience-risk caveats separate entries. Treat this as a retrospective
+  record of that pilot rather than a statement of current ownership, and do not invent Consulted or Informed
+  assignments that were never established.
+load_bearing_facts:
+- 418
+- 417
+- 416
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_historical_raci
+      path: result.ok
+      value: true
+      check_id: riley_056_00
+    - check_id: riley_056_01
+      type: field_equals
+      tool: create_doc
+      action_id: create_historical_raci
+      path: args.title
+      value: Q4 live investigation-framework pilot — historical RACI card
+    - check_id: riley_056_02
+      type: field_equals
+      tool: create_doc
+      action_id: create_historical_raci
+      path: args.folder
+      value: Growth
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_historical_raci
+      path: args
+      criterion: 'The body clearly presents this as a historical Q4 live pilot record, not current ownership,
+        and identifies both pilot lanes: Customer Success renewal-risk readouts and Growth team experiment
+        summaries. Missing either lane, presenting the assignments as current, or contradicting the historical
+        framing must fail.
+
+
+        The body uses a compact RACI-style table or card with distinct entries for all five responsibilities
+        and clearly records Owen as the established owner for denominator, effect size, and conclusion
+        order, and Ines as the established owner for lifecycle QA and audience-risk caveats. Labels such
+        as owner, Responsible, or Accountable are acceptable because the source establishes ownership
+        but not a finer R-versus-A distinction. Any missing responsibility, swapped owner, conflicting
+        owner, or invented Consulted/Informed person must fail.'
+      check_id: riley_056_03
+mock_state: {}

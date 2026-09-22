@@ -1,0 +1,41 @@
+id: '163'
+narrative_anchor_date: '2028-01-01'
+test: 'Post in #lantern-incidents how to respond when a Mosaic Commerce denial is
+  followed by a source-adapter call while Harbor Health latency is also elevated but
+  causes no other policy violation.'
+load_bearing_facts:
+- 250
+- 278
+expected_tool_calls:
+- send_slack_message
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    assertions:
+    - type: field_equals
+      tool: send_slack_message
+      action_id: alex_163_send_slack_message
+      path: result.ok
+      value: true
+      check_id: alex_163_00
+    - type: field_equals
+      path: result.channel
+      value: '#lantern-incidents'
+      tool: send_slack_message
+      action_id: alex_163_send_slack_message
+      check_id: alex_163_01
+    - type: field_llm_judge
+      path: result.message
+      criterion: The message says the post-denial adapter call immediately suspends
+        both Harbor Health and Mosaic Commerce until the issue is corrected and the
+        affected safety check passes on rerun. It says elevated latency alone does
+        not independently suspend access unless it causes a listed safety violation.
+      tool: send_slack_message
+      action_id: alex_163_send_slack_message
+      check_id: alex_163_02
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: b2e9b6b9e0f48ec23e9ae5ec4d803c050db6c6914dfc1d47ccdf545b3c77b68a

@@ -1,0 +1,43 @@
+id: '193'
+narrative_anchor_date: '2028-01-01'
+test: Email service@metroappliance.example to close ticket SS-FRIDGE-771 using the
+  repair and post-repair verification results, declining further service or storage
+  restrictions unless a new symptom appears.
+load_bearing_facts:
+- 265
+- 267
+expected_tool_calls:
+- send_email
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    assertions:
+    - type: field_equals
+      tool: send_email
+      action_id: alex_193_send_email
+      path: result.ok
+      value: true
+      check_id: alex_193_00
+    - type: field_equals
+      path: result.to
+      value: service@metroappliance.example
+      tool: send_email
+      action_id: alex_193_send_email
+      check_id: alex_193_01
+    - type: field_llm_judge
+      path: result.body
+      criterion: The email identifies SS-FRIDGE-771, says the failed evaporator-fan
+        motor was replaced, and records matching morning and evening readings of 37
+        degrees Fahrenheit in the refrigerator and 0 degrees in the freezer with no
+        smoke, burning odor, leak, unusual noise, or cord or receptacle problem. It
+        says normal food storage resumed, declines further service or restrictions
+        unless a new symptom appears, and asks Metro Appliance to close the ticket.
+      tool: send_email
+      action_id: alex_193_send_email
+      check_id: alex_193_02
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: b2e9b6b9e0f48ec23e9ae5ec4d803c050db6c6914dfc1d47ccdf545b3c77b68a

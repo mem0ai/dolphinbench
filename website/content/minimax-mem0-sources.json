@@ -1,0 +1,65 @@
+{
+  "morgan": {
+    "job_id": "f7c6eedfe7eb4e8f930c5d26768ea58c-hermes-minimax_minimax-m3-high-mem0",
+    "source_bundle": {
+      "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/dolphinbench-74cb48b9e2f8fe28-c08ac2624786cf0b.tar.gz/",
+      "sha256": "c08ac2624786cf0b4d2547a39370f7382f85a9254bc158878c3d72215b118d98"
+    },
+    "runtime_provenance": {
+      "hermes": {
+        "git_revision": "b115aeaf34a44a85742e53b3568741f042e34776",
+        "source_root": "/tmp/dolphinbench-job/workspace/external/01-hermes_code",
+        "source_sha256": "48a1baac00436ec11d186b2e251e81d1f6cf217f2bd583654357be4fb5ea9a9c"
+      },
+      "mem0": {
+        "package": "mem0ai",
+        "package_version": null,
+        "plugin_git_revision": "b115aeaf34a44a85742e53b3568741f042e34776",
+        "plugin_root": "/tmp/dolphinbench-job/workspace/external/03-mem0_plugin",
+        "plugin_sha256": "62b1cafe03a10c9c23f41a374ec30cd1b55326fe79f79ccece3d134b3d1689b8"
+      }
+    }
+  },
+  "alex": {
+    "job_id": "7ca3f62308a148ef9cb4298432170752-hermes-minimax_minimax-m3-high-mem0",
+    "source_bundle": {
+      "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/dolphinbench-949645bf396546f3-f01ecc4448f1fe4d.tar.gz/",
+      "sha256": "f01ecc4448f1fe4d11283cb327311f7931697a514adae307d6837518f22c43f7"
+    },
+    "runtime_provenance": {
+      "hermes": {
+        "git_revision": "b115aeaf34a44a85742e53b3568741f042e34776",
+        "source_root": "/tmp/dolphinbench-job/workspace/external/01-hermes_code",
+        "source_sha256": "65de5c4c7af5a15bbac1068f5f8919105dd836d32587a5f8fefed03b40fbe5a7"
+      },
+      "mem0": {
+        "package": "mem0ai",
+        "package_version": null,
+        "plugin_git_revision": "b115aeaf34a44a85742e53b3568741f042e34776",
+        "plugin_root": "/tmp/dolphinbench-job/workspace/external/03-mem0_plugin",
+        "plugin_sha256": "62b1cafe03a10c9c23f41a374ec30cd1b55326fe79f79ccece3d134b3d1689b8"
+      }
+    }
+  },
+  "riley": {
+    "job_id": "5dcc58d8b8c64acca7a6a338dc84910c-hermes-minimax_minimax-m3-high-mem0",
+    "source_bundle": {
+      "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/dolphinbench-97af8e5e2e32e3c5-ef9f64d99b3e4092.tar.gz/",
+      "sha256": "ef9f64d99b3e4092e43625af336992d6952a3ee31cea2f0c9e91e425a60fa925"
+    },
+    "runtime_provenance": {
+      "hermes": {
+        "git_revision": "b115aeaf34a44a85742e53b3568741f042e34776",
+        "source_root": "/tmp/dolphinbench-job/workspace/external/01-hermes_code",
+        "source_sha256": "65de5c4c7af5a15bbac1068f5f8919105dd836d32587a5f8fefed03b40fbe5a7"
+      },
+      "mem0": {
+        "package": "mem0ai",
+        "package_version": null,
+        "plugin_git_revision": "b115aeaf34a44a85742e53b3568741f042e34776",
+        "plugin_root": "/tmp/dolphinbench-job/workspace/external/03-mem0_plugin",
+        "plugin_sha256": "62b1cafe03a10c9c23f41a374ec30cd1b55326fe79f79ccece3d134b3d1689b8"
+      }
+    }
+  }
+}

@@ -1,0 +1,38 @@
+id: '042'
+narrative_anchor_date: '2026-09-14'
+test: Email support@scaffold.dev a customer-ready explanation of API v2 webhook delivery
+  behavior and how their integration should process incoming events.
+load_bearing_facts:
+- 316
+expected_tool_calls:
+- send_email
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: send_email
+      path: result.ok
+      value: true
+      check_id: morgan_042_00
+      action_id: morgan_042_send_email
+    - type: field_equals
+      path: result.to
+      value: support@scaffold.dev
+      tool: send_email
+      check_id: morgan_042_01
+      action_id: morgan_042_send_email
+    - type: field_llm_judge
+      path: result.body
+      criterion: Explains at-least-once webhook retries rather than an exactly-once
+        guarantee, and tells the customer to handle deliveries idempotently by event
+        ID.
+      tool: send_email
+      check_id: morgan_042_02
+      action_id: morgan_042_send_email
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

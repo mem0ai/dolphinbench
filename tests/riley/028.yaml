@@ -1,0 +1,34 @@
+id: 028
+narrative_anchor_date: '2028-01-01'
+test: Create a historical running-rehabilitation note for March 21-25, 2025. Record the first continuous
+  run result, the limit for the rest of March, and the next planned short run.
+load_bearing_facts:
+- 84
+- 85
+- 86
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_march_rehab_note
+      path: result.ok
+      value: true
+      check_id: riley_028_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_march_rehab_note
+      path: args
+      criterion: The note says Riley completed a first 15-minute continuous easy run on March 21, 2025
+        and remained free of the focal inside-right-ankle ache during next-morning walking and stairs;
+        she would keep two nonconsecutive short runs per week for the rest of March rather than return
+        to three-mile runs or add a third weekly run; and her next short run was planned for the morning
+        of March 25.
+      check_id: riley_028_01
+mock_state: {}

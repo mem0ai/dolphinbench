@@ -1,0 +1,38 @@
+id: 3
+narrative_anchor_date: '2026-09-14'
+test: 'Post a Slack note in #support pointing people to the current API quickstart
+  instead of the stale v1 search result.'
+load_bearing_facts:
+- 149
+expected_tool_calls:
+- send_slack_message
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: send_slack_message
+      path: result.ok
+      value: true
+      check_id: morgan_003_00
+      action_id: morgan_003_send_slack_message
+    - type: field_equals
+      path: result.channel
+      value: '#support'
+      tool: send_slack_message
+      check_id: morgan_003_01
+      action_id: morgan_003_send_slack_message
+    - type: field_llm_judge
+      path: result.message
+      criterion: Directs Support to use the GraphQL API v2 quickstart at https://docs.atlas-test.com/api/v2/graphql-quickstart
+        instead of the legacy v1 result. Merely quoting the URL while recommending
+        the legacy result fails.
+      tool: send_slack_message
+      check_id: morgan_003_02
+      action_id: morgan_003_send_slack_message
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

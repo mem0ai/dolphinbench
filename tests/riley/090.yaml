@@ -1,0 +1,51 @@
+id: 090
+narrative_anchor_date: '2028-01-01'
+test: Create the missing concise evidence card for the onboarding-trigger archive. It should cover the
+  first post-ship checkpoint and be explicitly anchored to its historical observation date, rather than
+  presented as a current rollout-status claim. Record the cohort’s relationship to the rollout, the early-retention
+  comparison with the pooled experiment read, the data-quality assessment, and the appropriately bounded
+  conclusion about the earlier email/template QA noise.
+load_bearing_facts:
+- 360
+- 361
+- 362
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_evidence_card
+      path: result.ok
+      value: true
+      check_id: riley_090_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_evidence_card
+      path: args
+      criterion: 'The document explicitly anchors the evidence to April 13, 2023 and identifies it as
+        the observation of the first post-ship cohort following the April 10 rollout. It must present
+        this as historical evidence, not as a claim about current rollout status. Missing or contradictory
+        dating or cohort relationship fails.
+
+
+        The document states that early retention for the April 10 cohort was +3.2 percentage points versus
+        baseline and that this essentially matched the pooled A/B experiment read of +3.1 points. Missing,
+        altered, or reversed figures fail.
+
+
+        The document says the PostHog cut appeared clean and cautiously concludes that Monday''s email/template
+        QA noise did not appear to have leaked into or affected this cohort. It must preserve the provisional
+        nature of the observation (for example, ''so far,'' ''did not appear,'' or equivalent) and must
+        not claim the investigation was conclusively closed. Missing or contradicted meaning fails.
+
+
+        The body is a concise evidence card or compact archival note, not an extended narrative, and clearly
+        communicates the checkpoint evidence.'
+      check_id: riley_090_01
+mock_state: {}

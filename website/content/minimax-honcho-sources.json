@@ -1,0 +1,241 @@
+{
+  "morgan": {
+    "run_id": "c598fd1c3f4c4d04a922553ce9f9aa83-hermes-minimax_minimax-m3-high-honcho",
+    "source_bundle": {
+      "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/dolphinbench-81ec8edf8b8b8b83-90678a210b4e6d33.tar.gz/",
+      "sha256": "90678a210b4e6d33a646a6a1cb5d46b02faf50c7507c3cce75aef819b97d6208"
+    },
+    "results": {
+      "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/morgan-minimax-honcho-results.json.gz/",
+      "sha256": "e12520ef244d2e9d9a2e7fc7e12adbb3a07127f9e5da7605338902064d18f59b"
+    },
+    "records_archive": {
+      "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/minimax-honcho-results-and-traces.tar.gz/",
+      "sha256": "f743447b642c8bf5a979cf7a925d765fb7775f04d1736298837d9d30b85703ec"
+    },
+    "frozen_profile_archive": "profile-dolphinbench-20260911235133-dedab02b-honcho-morgan-profile-2e6eb978c286f17b.tar.gz",
+    "runtime_provenance": {
+      "hermes": {
+        "git_revision": "b115aeaf34a44a85742e53b3568741f042e34776",
+        "source_root": "/tmp/dolphinbench-job/workspace/external/01-hermes_code",
+        "source_sha256": "48a1baac00436ec11d186b2e251e81d1f6cf217f2bd583654357be4fb5ea9a9c"
+      },
+      "honcho": {
+        "embedding_model": "openai/text-embedding-3-small",
+        "embedding_transport": "openai",
+        "internal_models": {
+          "DERIVER_MODEL_CONFIG__MODEL": "gpt-5.6-luna",
+          "DIALECTIC_LEVELS__high__MODEL_CONFIG__MODEL": "gpt-5.6-luna",
+          "DIALECTIC_LEVELS__low__MODEL_CONFIG__MODEL": "gpt-5.6-luna",
+          "DIALECTIC_LEVELS__max__MODEL_CONFIG__MODEL": "gpt-5.6-luna",
+          "DIALECTIC_LEVELS__medium__MODEL_CONFIG__MODEL": "gpt-5.6-luna",
+          "DIALECTIC_LEVELS__minimal__MODEL_CONFIG__MODEL": "gpt-5.6-luna",
+          "DREAM_DEDUCTION_MODEL_CONFIG__MODEL": "gpt-5.6-luna",
+          "DREAM_INDUCTION_MODEL_CONFIG__MODEL": "gpt-5.6-luna",
+          "SUMMARY_MODEL_CONFIG__MODEL": "gpt-5.6-luna"
+        },
+        "internal_reasoning_efforts": {
+          "DERIVER_MODEL_CONFIG__THINKING_EFFORT": "medium",
+          "DIALECTIC_LEVELS__high__MODEL_CONFIG__THINKING_EFFORT": "none",
+          "DIALECTIC_LEVELS__low__MODEL_CONFIG__THINKING_EFFORT": "none",
+          "DIALECTIC_LEVELS__max__MODEL_CONFIG__THINKING_EFFORT": "none",
+          "DIALECTIC_LEVELS__medium__MODEL_CONFIG__THINKING_EFFORT": "none",
+          "DIALECTIC_LEVELS__minimal__MODEL_CONFIG__THINKING_EFFORT": "none",
+          "DREAM_DEDUCTION_MODEL_CONFIG__THINKING_EFFORT": "none",
+          "DREAM_INDUCTION_MODEL_CONFIG__THINKING_EFFORT": "none",
+          "SUMMARY_MODEL_CONFIG__THINKING_EFFORT": "medium"
+        },
+        "internal_transports": {
+          "DERIVER_MODEL_CONFIG__TRANSPORT": "openai",
+          "DIALECTIC_LEVELS__high__MODEL_CONFIG__TRANSPORT": "openai",
+          "DIALECTIC_LEVELS__low__MODEL_CONFIG__TRANSPORT": "openai",
+          "DIALECTIC_LEVELS__max__MODEL_CONFIG__TRANSPORT": "openai",
+          "DIALECTIC_LEVELS__medium__MODEL_CONFIG__TRANSPORT": "openai",
+          "DIALECTIC_LEVELS__minimal__MODEL_CONFIG__TRANSPORT": "openai",
+          "DREAM_DEDUCTION_MODEL_CONFIG__TRANSPORT": "openai",
+          "DREAM_INDUCTION_MODEL_CONFIG__TRANSPORT": "openai",
+          "SUMMARY_MODEL_CONFIG__TRANSPORT": "openai"
+        },
+        "overlay_path": "/tmp/dolphinbench-job/workspace/external/03-honcho_source/docker-compose.dolphinbench.yml",
+        "overlay_sha256": "eb816322e8c72e3a4b374ee288d00b2c38b232cfd4290743668c6cec3bd9f128",
+        "pinned_upstream_commit": "e1537216cfa2f675f1a52afa16da93d9f5f7d3a1",
+        "source_git_revision": "d2bba70e4e44ba3c0c90be9266b75b64978942a1",
+        "source_root": "/tmp/dolphinbench-job/workspace/external/03-honcho_source",
+        "source_sha256": "33d58a38376b389e0b022474c4ea4236b31afab1b93e6167a953c18005d2e179"
+      },
+      "mem0": {
+        "package": "mem0ai",
+        "package_version": null,
+        "plugin_git_revision": "b115aeaf34a44a85742e53b3568741f042e34776",
+        "plugin_root": "/tmp/dolphinbench-job/workspace/external/04-mem0_plugin",
+        "plugin_sha256": "62b1cafe03a10c9c23f41a374ec30cd1b55326fe79f79ccece3d134b3d1689b8"
+      }
+    },
+    "ingestion_record": {
+      "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/morgan-minimax-honcho-ingestion.json.gz/",
+      "sha256": "0ddddcd80d1d7b3c9d87f581c74b04cc8c62926e5f2be9ea1645f7183b48666a"
+    }
+  },
+  "alex": {
+    "run_id": "5ce450d995894dd8936207c84e2361c6-hermes-minimax_minimax-m3-high-honcho",
+    "source_bundle": {
+      "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/dolphinbench-parallel-a54cf14c9de899d1e7f0fc23.tar.gz/",
+      "sha256": "a54cf14c9de899d1e7f0fc230542f1bffe1987f74465ec80ff506dcd94dd3d93"
+    },
+    "results": {
+      "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/alex-minimax-honcho-results.json.gz/",
+      "sha256": "045cd6cc0c76736bcd811c4b9486bcf066896e3e73c08d2d2d793eeb4f599be0"
+    },
+    "records_archive": {
+      "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/minimax-honcho-results-and-traces.tar.gz/",
+      "sha256": "f743447b642c8bf5a979cf7a925d765fb7775f04d1736298837d9d30b85703ec"
+    },
+    "frozen_profile_archive": "profile-dolphinbench-20260911235159-3b572491-honcho-alex-profile-41ed0bb9f1cad01e.tar.gz",
+    "runtime_provenance": {
+      "agent_container": {
+        "backend": "modal-sandbox",
+        "image": "im-WUXDPwWPWtx8Anv1KpnROf"
+      },
+      "hermes": {
+        "git_revision": "b115aeaf34a44a85742e53b3568741f042e34776",
+        "source_root": "/tmp/dolphinbench-job/workspace/external/01-hermes_code",
+        "source_sha256": "22a3a49f06e0acc2db7415b174e337ec4a14490e95f01cdb9ba65d2ef852e132"
+      },
+      "honcho": {
+        "embedding_model": "openai/text-embedding-3-small",
+        "embedding_transport": "openai",
+        "internal_models": {
+          "DERIVER_MODEL_CONFIG__MODEL": "gpt-5.6-luna",
+          "DIALECTIC_LEVELS__high__MODEL_CONFIG__MODEL": "gpt-5.6-luna",
+          "DIALECTIC_LEVELS__low__MODEL_CONFIG__MODEL": "gpt-5.6-luna",
+          "DIALECTIC_LEVELS__max__MODEL_CONFIG__MODEL": "gpt-5.6-luna",
+          "DIALECTIC_LEVELS__medium__MODEL_CONFIG__MODEL": "gpt-5.6-luna",
+          "DIALECTIC_LEVELS__minimal__MODEL_CONFIG__MODEL": "gpt-5.6-luna",
+          "DREAM_DEDUCTION_MODEL_CONFIG__MODEL": "gpt-5.6-luna",
+          "DREAM_INDUCTION_MODEL_CONFIG__MODEL": "gpt-5.6-luna",
+          "SUMMARY_MODEL_CONFIG__MODEL": "gpt-5.6-luna"
+        },
+        "internal_reasoning_efforts": {
+          "DERIVER_MODEL_CONFIG__THINKING_EFFORT": "medium",
+          "DIALECTIC_LEVELS__high__MODEL_CONFIG__THINKING_EFFORT": "none",
+          "DIALECTIC_LEVELS__low__MODEL_CONFIG__THINKING_EFFORT": "none",
+          "DIALECTIC_LEVELS__max__MODEL_CONFIG__THINKING_EFFORT": "none",
+          "DIALECTIC_LEVELS__medium__MODEL_CONFIG__THINKING_EFFORT": "none",
+          "DIALECTIC_LEVELS__minimal__MODEL_CONFIG__THINKING_EFFORT": "none",
+          "DREAM_DEDUCTION_MODEL_CONFIG__THINKING_EFFORT": "none",
+          "DREAM_INDUCTION_MODEL_CONFIG__THINKING_EFFORT": "none",
+          "SUMMARY_MODEL_CONFIG__THINKING_EFFORT": "medium"
+        },
+        "internal_transports": {
+          "DERIVER_MODEL_CONFIG__TRANSPORT": "openai",
+          "DIALECTIC_LEVELS__high__MODEL_CONFIG__TRANSPORT": "openai",
+          "DIALECTIC_LEVELS__low__MODEL_CONFIG__TRANSPORT": "openai",
+          "DIALECTIC_LEVELS__max__MODEL_CONFIG__TRANSPORT": "openai",
+          "DIALECTIC_LEVELS__medium__MODEL_CONFIG__TRANSPORT": "openai",
+          "DIALECTIC_LEVELS__minimal__MODEL_CONFIG__TRANSPORT": "openai",
+          "DREAM_DEDUCTION_MODEL_CONFIG__TRANSPORT": "openai",
+          "DREAM_INDUCTION_MODEL_CONFIG__TRANSPORT": "openai",
+          "SUMMARY_MODEL_CONFIG__TRANSPORT": "openai"
+        },
+        "overlay_path": "/tmp/dolphinbench-job/workspace/external/03-honcho_source/docker-compose.dolphinbench.yml",
+        "overlay_sha256": "eb816322e8c72e3a4b374ee288d00b2c38b232cfd4290743668c6cec3bd9f128",
+        "pinned_upstream_commit": "e1537216cfa2f675f1a52afa16da93d9f5f7d3a1",
+        "source_git_revision": "d2bba70e4e44ba3c0c90be9266b75b64978942a1",
+        "source_root": "/tmp/dolphinbench-job/workspace/external/03-honcho_source",
+        "source_sha256": "33d58a38376b389e0b022474c4ea4236b31afab1b93e6167a953c18005d2e179"
+      },
+      "mem0": {
+        "package": "mem0ai",
+        "package_version": null,
+        "plugin_git_revision": "b115aeaf34a44a85742e53b3568741f042e34776",
+        "plugin_root": "/tmp/dolphinbench-job/workspace/external/04-mem0_plugin",
+        "plugin_sha256": "62b1cafe03a10c9c23f41a374ec30cd1b55326fe79f79ccece3d134b3d1689b8"
+      }
+    },
+    "ingestion_record": {
+      "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/alex-minimax-honcho-ingestion.json.gz/",
+      "sha256": "7b8940c27e7aec260fbc6165c4ff7e0a1d3e324fa9994548dfdbff88fd6e2f5f"
+    }
+  },
+  "riley": {
+    "run_id": "92cafb29b061435ea5bd7d9a1c4e4287-hermes-minimax_minimax-m3-high-honcho",
+    "source_bundle": {
+      "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/dolphinbench-parallel-2ed016b5bc6808b290af471c.tar.gz/",
+      "sha256": "2ed016b5bc6808b290af471c2f95c658058700c16fc100c6ec61f54e9c759917"
+    },
+    "results": {
+      "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/riley-minimax-honcho-results.json.gz/",
+      "sha256": "3b104493fc2bb774c39df10bfca4a7edfe8f3a73d88fc12743f8777da44cc014"
+    },
+    "records_archive": {
+      "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/minimax-honcho-results-and-traces.tar.gz/",
+      "sha256": "f743447b642c8bf5a979cf7a925d765fb7775f04d1736298837d9d30b85703ec"
+    },
+    "frozen_profile_archive": "profile-dolphinbench-20260912072612-ef46d073-honcho-riley-profile-05787da016deb960.tar.gz",
+    "runtime_provenance": {
+      "agent_container": {
+        "backend": "modal-sandbox",
+        "image": "im-WUXDPwWPWtx8Anv1KpnROf"
+      },
+      "hermes": {
+        "git_revision": "b115aeaf34a44a85742e53b3568741f042e34776",
+        "source_root": "/tmp/dolphinbench-job/workspace/external/01-hermes_code",
+        "source_sha256": "22a3a49f06e0acc2db7415b174e337ec4a14490e95f01cdb9ba65d2ef852e132"
+      },
+      "honcho": {
+        "embedding_model": "openai/text-embedding-3-small",
+        "embedding_transport": "openai",
+        "internal_models": {
+          "DERIVER_MODEL_CONFIG__MODEL": "gpt-5.6-luna",
+          "DIALECTIC_LEVELS__high__MODEL_CONFIG__MODEL": "gpt-5.6-luna",
+          "DIALECTIC_LEVELS__low__MODEL_CONFIG__MODEL": "gpt-5.6-luna",
+          "DIALECTIC_LEVELS__max__MODEL_CONFIG__MODEL": "gpt-5.6-luna",
+          "DIALECTIC_LEVELS__medium__MODEL_CONFIG__MODEL": "gpt-5.6-luna",
+          "DIALECTIC_LEVELS__minimal__MODEL_CONFIG__MODEL": "gpt-5.6-luna",
+          "DREAM_DEDUCTION_MODEL_CONFIG__MODEL": "gpt-5.6-luna",
+          "DREAM_INDUCTION_MODEL_CONFIG__MODEL": "gpt-5.6-luna",
+          "SUMMARY_MODEL_CONFIG__MODEL": "gpt-5.6-luna"
+        },
+        "internal_reasoning_efforts": {
+          "DERIVER_MODEL_CONFIG__THINKING_EFFORT": "medium",
+          "DIALECTIC_LEVELS__high__MODEL_CONFIG__THINKING_EFFORT": "none",
+          "DIALECTIC_LEVELS__low__MODEL_CONFIG__THINKING_EFFORT": "none",
+          "DIALECTIC_LEVELS__max__MODEL_CONFIG__THINKING_EFFORT": "none",
+          "DIALECTIC_LEVELS__medium__MODEL_CONFIG__THINKING_EFFORT": "none",
+          "DIALECTIC_LEVELS__minimal__MODEL_CONFIG__THINKING_EFFORT": "none",
+          "DREAM_DEDUCTION_MODEL_CONFIG__THINKING_EFFORT": "none",
+          "DREAM_INDUCTION_MODEL_CONFIG__THINKING_EFFORT": "none",
+          "SUMMARY_MODEL_CONFIG__THINKING_EFFORT": "medium"
+        },
+        "internal_transports": {
+          "DERIVER_MODEL_CONFIG__TRANSPORT": "openai",
+          "DIALECTIC_LEVELS__high__MODEL_CONFIG__TRANSPORT": "openai",
+          "DIALECTIC_LEVELS__low__MODEL_CONFIG__TRANSPORT": "openai",
+          "DIALECTIC_LEVELS__max__MODEL_CONFIG__TRANSPORT": "openai",
+          "DIALECTIC_LEVELS__medium__MODEL_CONFIG__TRANSPORT": "openai",
+          "DIALECTIC_LEVELS__minimal__MODEL_CONFIG__TRANSPORT": "openai",
+          "DREAM_DEDUCTION_MODEL_CONFIG__TRANSPORT": "openai",
+          "DREAM_INDUCTION_MODEL_CONFIG__TRANSPORT": "openai",
+          "SUMMARY_MODEL_CONFIG__TRANSPORT": "openai"
+        },
+        "overlay_path": "/tmp/dolphinbench-job/workspace/external/03-honcho_source/docker-compose.dolphinbench.yml",
+        "overlay_sha256": "eb816322e8c72e3a4b374ee288d00b2c38b232cfd4290743668c6cec3bd9f128",
+        "pinned_upstream_commit": "e1537216cfa2f675f1a52afa16da93d9f5f7d3a1",
+        "source_git_revision": "d2bba70e4e44ba3c0c90be9266b75b64978942a1",
+        "source_root": "/tmp/dolphinbench-job/workspace/external/03-honcho_source",
+        "source_sha256": "33d58a38376b389e0b022474c4ea4236b31afab1b93e6167a953c18005d2e179"
+      },
+      "mem0": {
+        "package": "mem0ai",
+        "package_version": null,
+        "plugin_git_revision": "b115aeaf34a44a85742e53b3568741f042e34776",
+        "plugin_root": "/tmp/dolphinbench-job/workspace/external/04-mem0_plugin",
+        "plugin_sha256": "62b1cafe03a10c9c23f41a374ec30cd1b55326fe79f79ccece3d134b3d1689b8"
+      }
+    },
+    "ingestion_record": {
+      "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/riley-minimax-honcho-ingestion.json.gz/",
+      "sha256": "a16166afb6aef6f846a6bc349fd423f71d686a6563bd5c8f71445b5733a5ca8b"
+    }
+  }
+}

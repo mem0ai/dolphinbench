@@ -1,0 +1,86 @@
+id: 085
+narrative_anchor_date: '2026-09-14'
+test: Email a reply to the inbox follow-up titled AWS non-prod log retention cleanup
+  with my earlier decision on release notes and what would reopen the work.
+load_bearing_facts:
+- 155
+expected_tool_calls:
+- send_email
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      path: result.ok
+      value: true
+      tool: send_email
+      action_id: morgan_085_send_email
+      check_id: morgan_085_00
+    - type: field_equals
+      path: result.to
+      value: cloud-ops@scaffold.example
+      tool: send_email
+      action_id: morgan_085_send_email
+      check_id: morgan_085_01
+    - type: field_llm_judge
+      path: result.body
+      criterion: Says no release note is needed because customer behavior did not
+        change. Keeps the cleanup closed as cost hygiene unless the AWS budget line
+        jumps again. Does not imply production retention changed or that a new customer-facing
+        release is needed.
+      tool: send_email
+      action_id: morgan_085_send_email
+      check_id: morgan_085_02
+mock_state:
+  inbox:
+  - body: 'Hi Morgan -- quick billing q from our team: can we get a status update
+      on invoice-level webhook retries and whether failed billing events can be replayed
+      without support? Thanks, Nina'
+    date: '2023-01-19T16:05:00-08:00'
+    folder: inbox
+    from: Nina Patel <nina.patel@customer-test.com>
+    id: msg_000047_1
+    subject: Billing question on webhook retries
+  - category: promotional
+    date: '2021-03-19'
+    folder: archive
+    from: deals@techpromo.example
+    id: em_001
+    subject: 50% off all developer tools — last chance!
+  - category: promotional
+    date: '2021-03-26'
+    folder: archive
+    from: newsletter@airlines.example
+    id: em_002
+    subject: Spring fare sale — fly from $99
+  - category: promotional
+    date: '2021-04-01'
+    folder: archive
+    from: no-reply@shopping.example
+    id: em_003
+    subject: Flash sale ends tonight
+  - category: promotional
+    date: '2021-03-14'
+    folder: archive
+    from: offers@coffee.example
+    id: em_004
+    subject: Free latte with any purchase this week
+  - category: promotional
+    date: '2021-03-09'
+    folder: archive
+    from: updates@gym.example
+    id: em_005
+    subject: New spring classes — sign up now
+  - id: msg_aws_nonprod_retention_followup_20260914
+    from: Cloud Operations <cloud-ops@scaffold.example>
+    subject: AWS non-prod log retention cleanup
+    date: '2026-09-14T09:00:00-07:00'
+    category: updates
+    folder: inbox
+    body: Hi Morgan, checking in on the AWS non-prod log retention cleanup. Does this
+      item still need any release-note work?
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

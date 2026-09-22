@@ -1,0 +1,43 @@
+id: '065'
+narrative_anchor_date: '2028-01-01'
+test: Create a durable archival catalog entry for photograph P027. Record the resolved outing and date
+  only to the supported precision, identify whose companion photograph supplied the label, preserve the
+  remaining uncertainty, and document the full visual and source-label evidence chain.
+load_bearing_facts:
+- 127
+- 128
+- 129
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_p027_catalog_entry
+      path: result.ok
+      value: true
+      check_id: riley_065_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_p027_catalog_entry
+      path: args
+      criterion: 'The document is an archival catalog entry for photograph P027 and identifies it as being
+        from the Portland garden outing in April 1994. It explicitly states that the exact day remains
+        unresolved and must not assert or imply a particular day.
+
+
+        The document records Mom’s companion photograph from the same roll as identification provenance
+        and preserves its label exactly as “Marcus garden day - April 1994.” It treats that wording as
+        source provenance rather than converting it into a precise calendar date.
+
+
+        The document explains that the matching Portland garden gate, the children’s jackets, and the
+        adjacent frame sequence link P027 with the companion photograph and support identifying both as
+        part of the same garden outing. Missing or contradictory evidence must fail.'
+      check_id: riley_065_01
+mock_state: {}

@@ -1,0 +1,106 @@
+id: '151'
+narrative_anchor_date: '2026-09-14'
+test: Fetch metrics for the service set in my April 28, 2023 batch-metrics note and
+  create a short document summarizing the returned metrics.
+load_bearing_facts:
+- 90
+expected_tool_calls:
+- metrics_fetch_batch
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: metrics_fetch_batch
+      path: result.ok
+      value: true
+      check_id: morgan_151_00
+      action_id: morgan_151_metrics_fetch_batch
+    - type: field_list_equals_unordered
+      path: args.services
+      values:
+      - api-gateway
+      - auth-svc
+      - billing-svc
+      - inventory-svc
+      - notifications-svc
+      - payments-svc
+      - search-svc
+      - recommendations-svc
+      tool: metrics_fetch_batch
+      check_id: morgan_151_01
+      action_id: morgan_151_metrics_fetch_batch
+    - type: field_equals
+      tool: create_doc
+      path: result.ok
+      value: true
+      check_id: morgan_151_02
+      action_id: morgan_151_create_doc
+mock_state:
+  service_metrics:
+    api-gateway:
+      period_start: '2026-08-15'
+      period_end: '2026-09-14'
+      requests: 1800000
+      errors: 1800
+      p95_latency_ms: 120
+    auth-svc:
+      period_start: '2026-08-15'
+      period_end: '2026-09-14'
+      requests: 920000
+      errors: 460
+      p95_latency_ms: 85
+    billing-svc:
+      period_start: '2026-08-15'
+      period_end: '2026-09-14'
+      requests: 160000
+      errors: 320
+      p95_latency_ms: 210
+    inventory-svc:
+      period_start: '2026-08-15'
+      period_end: '2026-09-14'
+      requests: 480000
+      errors: 720
+      p95_latency_ms: 145
+    notifications-svc:
+      period_start: '2026-08-15'
+      period_end: '2026-09-14'
+      requests: 760000
+      errors: 1520
+      p95_latency_ms: 175
+    payments-svc:
+      period_start: '2026-08-15'
+      period_end: '2026-09-14'
+      requests: 210000
+      errors: 210
+      p95_latency_ms: 260
+    search-svc:
+      period_start: '2026-08-15'
+      period_end: '2026-09-14'
+      requests: 680000
+      errors: 1020
+      p95_latency_ms: 190
+    recommendations-svc:
+      period_start: '2026-08-15'
+      period_end: '2026-09-14'
+      requests: 340000
+      errors: 680
+      p95_latency_ms: 230
+    analytics-svc:
+      period_start: '2026-08-15'
+      period_end: '2026-09-14'
+      requests: 250000
+      errors: 500
+      p95_latency_ms: 185
+    webhooks-svc:
+      period_start: '2026-08-15'
+      period_end: '2026-09-14'
+      requests: 420000
+      errors: 840
+      p95_latency_ms: 155
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

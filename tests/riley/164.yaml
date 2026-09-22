@@ -1,0 +1,58 @@
+id: '164'
+narrative_anchor_date: '2028-01-01'
+test: Create a document in the `Growth archive` folder titled `Expansion Assist — first-pilot cohort integrity
+  note`. State the exact operational exposure maximum separately from the locked primary reporting denominator.
+  Also document the rule for prompts during outcome maturation and how reserve exposures must be handled,
+  so analysts can safely reuse the mature-window reporting population.
+load_bearing_facts:
+- 46
+- 44
+- 45
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_integrity_note
+      path: result.ok
+      value: true
+      check_id: riley_164_00
+    - check_id: riley_164_01
+      type: field_equals
+      tool: create_doc
+      action_id: create_integrity_note
+      path: args.title
+      value: Expansion Assist — first-pilot cohort integrity note
+    - check_id: riley_164_02
+      type: field_equals
+      tool: create_doc
+      action_id: create_integrity_note
+      path: args.folder
+      value: Growth archive
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_integrity_note
+      path: args
+      criterion: 'The body clearly states that the original pilot exposure phase closed at the approved
+        operational maximum of 30 actual exposures.
+
+
+        The body clearly states that no further prompts were to be added while the final 45-day outcome
+        windows matured.
+
+
+        The body identifies the original locked 30-record primary population as the intent-to-treat reporting
+        population, with 28 primary accounts exposed and the two pre-exposure eligibility losses retained
+        as nonexposures.
+
+
+        The body states that the two reserve exposures were tracked separately as operational replacements
+        and were not analytically substituted into the locked 30-record primary intent-to-treat population.'
+      check_id: riley_164_03
+mock_state: {}

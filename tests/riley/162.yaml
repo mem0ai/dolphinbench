@@ -1,0 +1,40 @@
+id: '162'
+narrative_anchor_date: '2028-01-01'
+test: Please create a concise document titled “Prior Residence Closeout — Holly” for the household balance-sheet
+  archive. Record the final deposit disposition, the status of any damage deductions or dispute, and whether
+  any practical or financial obligation remains for the former Holly apartment. Keep it strictly about
+  closing out that prior residence; do not include current lease terms.
+load_bearing_facts:
+- 27
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_holly_closeout
+      path: result.ok
+      value: true
+      check_id: riley_162_00
+    - check_id: riley_162_01
+      type: field_equals
+      tool: create_doc
+      action_id: create_holly_closeout
+      path: args.title
+      value: Prior Residence Closeout — Holly
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_holly_closeout
+      path: args
+      criterion: 'The body must be a concise closeout record for the former Holly apartment that clearly
+        states all of the following: the refundable deposit was released; there were no damage deductions
+        and no dispute; and Riley and Sam have no remaining practical or financial obligation related
+        to Holly. It must present the matter as closed rather than unresolved and must not include current-residence
+        or current-lease terms. Missing or contradictory status information must fail.'
+      check_id: riley_162_02
+mock_state: {}

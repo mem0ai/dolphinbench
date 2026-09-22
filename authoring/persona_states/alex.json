@@ -1,0 +1,13 @@
+{
+  "approved_plans": [],
+  "batches": [],
+  "checkpoint_identity": "318453dd19718aa845783f74421002f7b552348b04bb23b1b43f6026d88b4294",
+  "evaluation_date": "2028-01-01",
+  "persona": "alex",
+  "rejected_test_files": [],
+  "release_manifest": {
+    "path": "../release_manifests/alex.json",
+    "sha256": "ff3f6b8f157479f65042a82cd316e16826ed12427cba86c24025455ecba3dbd6"
+  },
+  "version": 1
+}

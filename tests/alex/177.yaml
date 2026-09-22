@@ -1,0 +1,52 @@
+id: '177'
+narrative_anchor_date: '2028-01-01'
+test: Create a "Review first 2028 Sphere payroll statement" event for January 14,
+  2028 from 8:30 to 8:50 AM Eastern. In the notes, include the medical deduction,
+  employee HSA contribution, and January employer HSA deposit to verify.
+load_bearing_facts:
+- 286
+- 287
+expected_tool_calls:
+- create_calendar_event
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    assertions:
+    - type: field_equals
+      tool: create_calendar_event
+      action_id: alex_177_create_calendar_event
+      path: result.ok
+      value: true
+      check_id: alex_177_00
+    - type: field_equals
+      path: result.event.title
+      value: Review first 2028 Sphere payroll statement
+      tool: create_calendar_event
+      action_id: alex_177_create_calendar_event
+      check_id: alex_177_01
+    - type: datetime_absolute_eq
+      path: result.event.start
+      value: '2028-01-14T08:30:00-05:00'
+      tool: create_calendar_event
+      action_id: alex_177_create_calendar_event
+      check_id: alex_177_02
+    - type: datetime_absolute_eq
+      path: result.event.end
+      value: '2028-01-14T08:50:00-05:00'
+      tool: create_calendar_event
+      action_id: alex_177_create_calendar_event
+      check_id: alex_177_03
+    - type: field_llm_judge
+      path: result.event.body
+      criterion: The notes say to verify a $104 medical deduction, a $90 employee
+        HSA contribution, and Sphere's $225 January HSA deposit on the first 2028
+        payroll statement.
+      tool: create_calendar_event
+      action_id: alex_177_create_calendar_event
+      check_id: alex_177_04
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: b2e9b6b9e0f48ec23e9ae5ec4d803c050db6c6914dfc1d47ccdf545b3c77b68a

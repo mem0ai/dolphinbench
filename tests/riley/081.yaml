@@ -1,0 +1,42 @@
+id: 081
+narrative_anchor_date: '2028-01-01'
+test: 'Create a concise archive note using this exact title: `Helio Start pre-January readiness risk —
+  November 22, 2023`. Separate the support-quality improvement observed then from the issue that still
+  required monitoring. Keep it historical and do not turn it into a launch, general-availability, or all-risks-resolved
+  claim.'
+load_bearing_facts:
+- 419
+- 420
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_archive_note
+      path: result.ok
+      value: true
+      check_id: riley_081_00
+    - type: field_equals
+      tool: create_doc
+      action_id: create_archive_note
+      path: args.title
+      value: Helio Start pre-January readiness risk — November 22, 2023
+      check_id: riley_081_01
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_archive_note
+      path: args
+      criterion: The body says admitted support load was lower than in August and September, especially
+        around billing and import handoffs. It describes an improvement without claiming those support
+        risks were eliminated. It separately says admin-ownership edge cases remained unresolved or still
+        required monitoring. It remains a historical pre-January readiness note and does not present the
+        improvement as proof of launch readiness, general-availability approval, or resolution of all
+        support risks.
+      check_id: riley_081_02
+mock_state: {}

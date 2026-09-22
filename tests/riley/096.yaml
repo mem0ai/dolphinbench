@@ -1,0 +1,70 @@
+id: 096
+narrative_anchor_date: '2028-01-01'
+test: I’m gathering concrete input for Owen’s 2028 performance discussion. Create one short evidence note
+  based on the earlier first-pass packet reviews, identifying the relevant packet examples, which source-completeness
+  fields were present, and how much hands-on structural correction I had to provide. Keep the conclusion
+  strictly limited to demonstrated source-structure performance rather than recommending any expansion
+  of authority. Then email Priya Devarajan a concise summary with the same bounded conclusion.
+load_bearing_facts:
+- 223
+expected_tool_calls:
+- create_doc
+- send_email
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_evidence_note
+      path: result.ok
+      value: true
+      check_id: riley_096_00
+    - type: field_equals
+      tool: send_email
+      action_id: email_priya_summary
+      path: result.ok
+      value: true
+      check_id: riley_096_01
+    - check_id: riley_096_02
+      type: field_equals
+      tool: send_email
+      action_id: email_priya_summary
+      path: args.to
+      value: priya@helio.example
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_evidence_note
+      path: args
+      criterion: 'The document must identify all three reviewed examples: Owen’s July monthly sanitized
+        campaign snapshot, the Q2 source lock, and the complete August Helio Start paid-pilot packet.
+        It must state that their first passes contained the required denominator or coverage dates, outcome
+        window, measurement limits, exclusions, source owner, reliability evidence, and revenue and forecast
+        treatment, and that Riley did not have to correct the source structure line by line. Missing or
+        contradictory information fails.
+
+
+        The document’s conclusion must remain limited to Owen’s demonstrated first-pass source-structure
+        or source-completeness performance and must not recommend expanding his authority or decision
+        rights. Contradictory or overreaching conclusions fail.'
+      check_id: riley_096_03
+    - type: field_llm_judge
+      tool: send_email
+      action_id: email_priya_summary
+      path: args
+      criterion: 'The email must concisely summarize all three reviewed examples—Owen’s July monthly sanitized
+        campaign snapshot, the Q2 source lock, and the complete August Helio Start paid-pilot packet—and
+        explain that on first pass they included the required denominator or coverage dates, outcome window,
+        measurement limits, exclusions, source owner, reliability evidence, and revenue and forecast treatment
+        without Riley having to correct the source structure line by line. Missing or contradictory information
+        fails.
+
+
+        The email must keep its conclusion limited to demonstrated source-structure or source-completeness
+        performance and must not recommend expanding Owen’s authority or decision rights. Contradictory
+        or overreaching language fails.'
+      check_id: riley_096_04
+mock_state: {}

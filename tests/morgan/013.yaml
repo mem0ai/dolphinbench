@@ -1,0 +1,35 @@
+id: '013'
+narrative_anchor_date: '2026-09-14'
+test: Create the agenda template for the October quarterly all-hands. Include how
+  questions and follow-ups should be handled and who alone may choose to add an open-mic
+  block.
+load_bearing_facts:
+- 172
+- 336
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      path: result.ok
+      value: true
+      check_id: morgan_013_00
+      action_id: morgan_013_create_doc
+    - type: field_llm_judge
+      path: result.document.body
+      criterion: Uses a short company update and pre-collected questions, with live
+        answers limited to approved current topics and other questions handled asynchronously
+        or routed to named owners. No open-mic block unless Morgan explicitly chooses
+        one. Do not require old 2023 agenda topics to be repeated in October 2026.
+      tool: create_doc
+      check_id: morgan_013_01
+      action_id: morgan_013_create_doc
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

@@ -1,0 +1,44 @@
+id: 059
+narrative_anchor_date: '2026-09-14'
+test: PR scaffold/retrieval#2407 switches my notes lookup to mchen-notes-v2. Post
+  a review comment saying whether that namespace is correct and what to use if it
+  is not.
+load_bearing_facts:
+- 70
+expected_tool_calls:
+- post_pr_comment
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: post_pr_comment
+      path: result.ok
+      value: true
+      check_id: morgan_059_00
+      action_id: morgan_059_post_pr_comment
+    - type: field_equals
+      path: result.comment.pr_id
+      value: scaffold/retrieval#2407
+      tool: post_pr_comment
+      check_id: morgan_059_01
+      action_id: morgan_059_post_pr_comment
+    - type: field_llm_judge
+      path: result.comment.body
+      criterion: Requires mchen-notes-v3 instead of mchen-notes-v2 because the older
+        namespace is stale or untrusted. Merely mentioning v3 without selecting it
+        fails.
+      tool: post_pr_comment
+      check_id: morgan_059_02
+      action_id: morgan_059_post_pr_comment
+mock_state:
+  open_prs:
+  - id: scaffold/retrieval#2407
+    repo: scaffold/retrieval
+    number: 2407
+    status: open
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

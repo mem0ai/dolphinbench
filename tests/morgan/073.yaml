@@ -1,0 +1,42 @@
+id: 73
+narrative_anchor_date: '2026-09-14'
+test: Update the body of calendar event evt_1787599320003 with our final lease decision,
+  the resulting lease dates, and whether to plan a fall move or home search. Keep
+  the offer terms already recorded there.
+load_bearing_facts:
+- 286
+- 324
+- 325
+expected_tool_calls:
+- update_calendar_event
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: update_calendar_event
+      path: result.ok
+      value: true
+      check_id: morgan_073_00
+      action_id: morgan_073_update_calendar_event
+    - type: field_equals
+      path: result.id
+      value: evt_1787599320003
+      tool: update_calendar_event
+      check_id: morgan_073_01
+      action_id: morgan_073_update_calendar_event
+    - type: field_llm_judge
+      path: result.event.body
+      criterion: Records acceptance of the renewal for October 1, 2026 through September
+        30, 2027 and no fall move or active home search. Preserves the existing $4,620
+        monthly rent, no new deposit or fee, unchanged utility/pet terms, and ramp/runner
+        permission without presenting the decision as pending.
+      tool: update_calendar_event
+      check_id: morgan_073_02
+      action_id: morgan_073_update_calendar_event
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

@@ -1,0 +1,48 @@
+id: '044'
+narrative_anchor_date: '2028-01-01'
+test: Please create a private home-inventory document for the finished still life I told you about. Use
+  the artwork details and current private-status limitations from our earlier conversation. Format it
+  for insurance and condition tracking, not as a sales catalog, with a blank valuation field and an empty
+  condition-notes area for future updates.
+load_bearing_facts:
+- 192
+- 193
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_inventory_doc
+      path: result.ok
+      value: true
+      check_id: riley_044_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_inventory_doc
+      path: args
+      criterion: 'The document identifies the finished artwork as `Ordinary Light` and records all of
+        these physical details without contradiction: it is a 9-by-12-inch still life on a cold-press
+        surface, with a palette of ultramarine, burnt sienna, and yellow ochre.
+
+
+        The document records the storage location as Riley''s Cherrywood personal watercolor portfolio
+        and clearly states that the artwork is personal practice with no sale, exhibition, or public-demonstration
+        commitment. Missing or contradictory availability language must fail.
+
+
+        The body is presented as a private home-inventory or insurance record rather than marketing copy
+        or a sales listing, and it includes a clearly labeled condition-notes field or area that is left
+        empty for future tracking.
+
+
+        The body contains a clearly labeled valuation field that is blank or explicitly unfilled, and
+        it does not invent or provide any monetary value, estimate, price, or appraisal amount for the
+        artwork.'
+      check_id: riley_044_01
+mock_state: {}

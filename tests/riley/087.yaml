@@ -1,0 +1,45 @@
+id: 087
+narrative_anchor_date: '2028-01-01'
+test: Create a concise, clinician-ready historical checkpoint note for my rehabilitation archive summarizing
+  the evidence reviewed on February 19, 2027, that supported advancement beyond the initial 20-minute
+  run-walk restart stage. Include the completed session count, session structure, spacing, and both during-session
+  and following-day symptom checks. Clearly frame this as prior advancement evidence, not as current clearance.
+load_bearing_facts:
+- 243
+- 238
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_historical_checkpoint
+      path: result.ok
+      value: true
+      check_id: riley_087_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_historical_checkpoint
+      path: args
+      criterion: 'The document states that six sessions were completed, that they were nonconsecutive,
+        that each session lasted 20 minutes, and that each used alternating four-minute easy runs with
+        one-minute walks. Missing or contradictory count, duration, spacing, or interval structure must
+        fail.
+
+
+        The document states that every completed session and every corresponding following day remained
+        free of focal pain, swelling, instability, and gait change. It must cover both the during-session
+        and following-day observations; omissions or contradictions must fail.
+
+
+        The document is clearly framed as a concise clinician-facing historical checkpoint describing
+        prior evidence that supported advancement beyond the initial 20-minute restart stage at the February
+        19, 2027 review. It must not present this checkpoint as current clearance or a current tolerated
+        running level.'
+      check_id: riley_087_01
+mock_state: {}

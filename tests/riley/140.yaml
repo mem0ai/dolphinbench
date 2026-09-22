@@ -1,0 +1,53 @@
+id: '140'
+narrative_anchor_date: '2028-01-01'
+test: Please review the draft executive-communications retrospective at document ID `doc_1830355200001`
+  and post a comment correcting its account of the April 3, 2023 onboarding-trigger briefing. The correction
+  should reflect the stance held at that checkpoint and the additional confirmation still needed before
+  describing the result as fully settled. Do not edit the document itself.
+load_bearing_facts:
+- 355
+expected_tool_calls:
+- post_doc_comment
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: post_doc_comment
+      action_id: post_historical_correction
+      path: result.ok
+      value: true
+      check_id: riley_140_00
+    - check_id: riley_140_01
+      type: field_equals
+      tool: post_doc_comment
+      action_id: post_historical_correction
+      path: args.doc_id
+      value: doc_1830355200001
+    - type: field_llm_judge
+      tool: post_doc_comment
+      action_id: post_historical_correction
+      path: args
+      criterion: The comment must correct the draft's claim that the result was fully settled on April
+        3, 2023. It must convey that Riley's contemporaneous executive framing was cautiously optimistic
+        rather than conclusive and that Riley still wanted one additional post-ship cohort before treating
+        the result as fully settled. Missing either the cautious framing or the specific post-ship-cohort
+        confirmation boundary, or endorsing the draft's settled-win framing, must fail.
+      check_id: riley_140_02
+mock_state:
+  docs:
+  - id: doc_1830355200001
+    title: Executive communications retrospective — onboarding-trigger briefing
+    body: '# Executive communications retrospective
+
+
+      ## April 3, 2023 onboarding-trigger briefing
+
+      The second-cohort result made the onboarding-trigger experiment a settled win. The executive briefing
+      could therefore present the result as conclusively established, with no further confirmation needed
+      before leadership treated the matter as closed.'
+    folder: Growth
+    created_at: '2028-01-01T09:00:00-06:00'

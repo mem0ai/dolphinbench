@@ -1,0 +1,64 @@
+name: dolphinbench-final-memory
+
+# This project is intentionally separate from every existing local memory
+# service. The only published ports bind to DOLPHINBENCH_BIND_ADDRESS, which
+# setup restricts to either 127.0.0.1 or this host's Tailscale IPv4 address.
+services:
+  hindsight-db:
+    image: pgvector/pgvector:0.8.0-pg16@sha256:c72df104202409108a1660ecccd2b7ffac6b17e44c31b2636d10e983f410f8eb
+    environment:
+      POSTGRES_DB: dolphinbench
+      POSTGRES_USER: dolphinbench
+      POSTGRES_PASSWORD: ${HINDSIGHT_POSTGRES_PASSWORD:?run setup and set service.env first}
+    volumes:
+      - ${DOLPHINBENCH_MEMORY_ROOT:?run setup first}/hindsight/postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U dolphinbench -d dolphinbench"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+    networks: [hindsight-internal]
+
+  hindsight:
+    image: ghcr.io/vectorize-io/hindsight:0.9.2@sha256:3b46e26ec69355422c46ceb496cd758ae226d751be4a0799b4e844251d524d46
+    depends_on:
+      hindsight-db:
+        condition: service_healthy
+    command: ["hindsight-api"]
+    environment:
+      HINDSIGHT_API_HOST: 0.0.0.0
+      HINDSIGHT_API_PORT: "8888"
+      HINDSIGHT_API_DATABASE_URL: postgresql://dolphinbench:${HINDSIGHT_POSTGRES_PASSWORD:?run setup and set service.env first}@hindsight-db:5432/dolphinbench
+      HINDSIGHT_API_LLM_PROVIDER: ${HINDSIGHT_API_LLM_PROVIDER:?set HINDSIGHT_API_LLM_PROVIDER in service.env}
+      HINDSIGHT_API_LLM_MODEL: ${HINDSIGHT_API_LLM_MODEL:?set HINDSIGHT_API_LLM_MODEL in service.env}
+      HINDSIGHT_API_LLM_BASE_URL: ${HINDSIGHT_API_LLM_BASE_URL:?set HINDSIGHT_API_LLM_BASE_URL in service.env}
+      HINDSIGHT_API_LLM_API_KEY: ${HINDSIGHT_API_LLM_API_KEY:?set HINDSIGHT_API_LLM_API_KEY in service.env}
+      HINDSIGHT_API_EMBEDDINGS_PROVIDER: local
+      HINDSIGHT_API_EMBEDDINGS_LOCAL_MODEL: BAAI/bge-small-en-v1.5
+      HINDSIGHT_API_TENANT_EXTENSION: hindsight_api.extensions.builtin.tenant:ApiKeyTenantExtension
+      HINDSIGHT_API_TENANT_API_KEY: ${HINDSIGHT_API_TENANT_API_KEY:?run setup and set service.env first}
+    ports:
+      - ${DOLPHINBENCH_BIND_ADDRESS:?run setup first}:${DOLPHINBENCH_HINDSIGHT_PORT:?run setup first}:8888
+    networks: [hindsight-internal, hindsight-outbound]
+
+  supermemory:
+    build:
+      context: .
+      dockerfile: Dockerfile.supermemory
+    image: dolphinbench-supermemory:0.0.8
+    environment:
+      SUPERMEMORY_DATA_DIR: /var/lib/supermemory
+      SUPERMEMORY_PORT: "6767"
+      SUPERMEMORY_DISABLE_TELEMETRY: "1"
+      OPENAI_API_KEY: ${OPENAI_API_KEY:?set OPENAI_API_KEY in service.env}
+      OPENAI_BASE_URL: ${OPENAI_BASE_URL:?set OPENAI_BASE_URL in service.env}
+      OPENAI_MODEL: ${OPENAI_MODEL:?set OPENAI_MODEL in service.env}
+    volumes:
+      - ${DOLPHINBENCH_MEMORY_ROOT:?run setup first}/supermemory:/var/lib/supermemory
+    ports:
+      - ${DOLPHINBENCH_BIND_ADDRESS:?run setup first}:${DOLPHINBENCH_SUPERMEMORY_PORT:?run setup first}:6767
+
+networks:
+  hindsight-internal:
+    internal: true
+  hindsight-outbound: {}

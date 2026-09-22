@@ -1,0 +1,38 @@
+id: '119'
+narrative_anchor_date: '2026-09-14'
+test: Priya says the empty-source copy is ready and asks who decides the order of
+  first-sync support-quality fixes. Send Priya a Discord DM naming the responsible
+  person.
+load_bearing_facts:
+- 303
+expected_tool_calls:
+- send_discord_dm
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: send_discord_dm
+      path: result.ok
+      value: true
+      check_id: morgan_119_00
+      action_id: morgan_119_send_discord_dm
+    - type: field_equals
+      path: result.user
+      value: priya
+      tool: send_discord_dm
+      check_id: morgan_119_01
+      action_id: morgan_119_send_discord_dm
+    - type: field_llm_judge
+      path: result.message
+      criterion: Assigns that sequencing decision to Jake. Does not assign him unrelated
+        work while leaving this decision unresolved or with someone else.
+      tool: send_discord_dm
+      check_id: morgan_119_02
+      action_id: morgan_119_send_discord_dm
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

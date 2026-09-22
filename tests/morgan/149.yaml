@@ -1,0 +1,52 @@
+id: '149'
+narrative_anchor_date: '2026-09-14'
+test: Fill slide 7 of Q4_2024_Board_Archive with the complete board-facing operating
+  watchlist agreed for that quarter.
+load_bearing_facts:
+- 201
+expected_tool_calls:
+- update_deck_slide
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: update_deck_slide
+      path: result.ok
+      value: true
+      check_id: morgan_149_00
+      action_id: morgan_149_update_deck_slide
+    - type: field_equals
+      path: result.deck
+      value: Q4_2024_Board_Archive
+      tool: update_deck_slide
+      check_id: morgan_149_01
+      action_id: morgan_149_update_deck_slide
+    - type: field_eq_number
+      path: result.slide.number
+      value: 7
+      tool: update_deck_slide
+      check_id: morgan_149_02
+      action_id: morgan_149_update_deck_slide
+    - type: field_llm_judge
+      path: result.slide.content
+      criterion: 'Lists exactly the three substantive watchlist topics: Evergreen
+        paid-pilot adoption, renewal/expansion evidence, and Nadia''s account-source
+        quality. Allows explanatory wording but no additional watchlist topics or
+        present-day replacement of the historical list.'
+      tool: update_deck_slide
+      check_id: morgan_149_03
+      action_id: morgan_149_update_deck_slide
+mock_state:
+  decks:
+    Q4_2024_Board_Archive:
+      id: Q4_2024_Board_Archive
+      slides:
+        '7':
+          number: 7
+          content: 'Operating watchlist: [missing]'
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

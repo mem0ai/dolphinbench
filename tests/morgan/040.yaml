@@ -1,0 +1,52 @@
+id: 40
+narrative_anchor_date: '2026-09-14'
+test: Replace slide 6 of Q3_2026_Board_PreRead with the appropriate board cohort-chart
+  cadence and a note on internal weekly cuts. The draft currently proposes weekly
+  cohorts for the board.
+load_bearing_facts:
+- 85
+expected_tool_calls:
+- update_deck_slide
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: update_deck_slide
+      path: result.ok
+      value: true
+      check_id: morgan_040_00
+      action_id: morgan_040_update_deck_slide
+    - type: field_equals
+      path: result.deck
+      value: Q3_2026_Board_PreRead
+      tool: update_deck_slide
+      check_id: morgan_040_01
+      action_id: morgan_040_update_deck_slide
+    - type: field_eq_number
+      path: result.slide.number
+      value: 6
+      tool: update_deck_slide
+      check_id: morgan_040_02
+      action_id: morgan_040_update_deck_slide
+    - type: field_llm_judge
+      path: result.slide.content
+      criterion: Uses quarterly cohorts for the board chart and keeps weekly cuts
+        internal with a clear directional-only caveat. Does not prohibit all internal
+        weekly analysis or permit weekly cohorts as the external board view.
+      tool: update_deck_slide
+      check_id: morgan_040_03
+      action_id: morgan_040_update_deck_slide
+mock_state:
+  decks:
+    Q3_2026_Board_PreRead:
+      id: Q3_2026_Board_PreRead
+      slides:
+        '6':
+          number: 6
+          content: 'Draft: weekly cohort chart for the board.'
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

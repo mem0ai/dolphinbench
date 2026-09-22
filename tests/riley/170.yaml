@@ -1,0 +1,49 @@
+id: '170'
+narrative_anchor_date: '2028-01-01'
+test: Create a concise, denominator-first evidence card in the “Connector-access-check archive” for future
+  Helio Start operating reviews. Summarize what the first fully mature post-check cohort established about
+  credential-related failures, and clearly separate that operational finding from any longer-horizon business
+  outcomes the cohort did not establish.
+load_bearing_facts:
+- 28
+- 29
+- 30
+- 31
+- 32
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_connector_evidence_card
+      path: result.ok
+      value: true
+      check_id: riley_170_00
+    - check_id: riley_170_01
+      type: field_equals
+      tool: create_doc
+      action_id: create_connector_evidence_card
+      path: args.folder
+      value: Connector-access-check archive
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_connector_evidence_card
+      path: args
+      criterion: 'The body gives a denominator-first comparison for credential-related failures among
+        admitted workspaces: 3 of 68 in the first fully mature cohort after the connector-access check
+        (about 4.4%) versus 18 of 147 in the prior cohort (about 12.2%). It accurately interprets the
+        lower post-check rate as operational evidence supporting the connector-access check, without presenting
+        the comparison as proof of broader causality.
+
+
+        The body clearly and explicitly states that the mature-cohort result did not establish mature
+        retention, paid conversion, or revenue performance. Missing any of these three limitations, or
+        claiming that any was established, must fail.'
+      check_id: riley_170_02
+mock_state: {}

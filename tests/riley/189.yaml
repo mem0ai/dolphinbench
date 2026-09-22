@@ -1,0 +1,31 @@
+id: '189'
+narrative_anchor_date: '2028-01-01'
+test: Create a concise release record for the October 20, 2027 incomplete-setup reminder rollout. State
+  who changed the audience, the old and final percentages, and the boundaries that remained unchanged.
+load_bearing_facts:
+- 292
+- 293
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_release_record
+      path: result.ok
+      value: true
+      check_id: riley_189_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_release_record
+      path: args
+      criterion: The record says Daniela moved the incomplete-setup reminder from 10% to 100% of otherwise
+        eligible production evaluations on October 20, 2027. It says the full release created no reusable
+        audience, changed no governed-field meaning, and broadened no authority.
+      check_id: riley_189_01
+mock_state: {}

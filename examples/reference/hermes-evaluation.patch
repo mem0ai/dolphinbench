@@ -1,0 +1,1424 @@
+diff --git a/agent/benchmark_memory.py b/agent/benchmark_memory.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..4dfef6ad934775a019101db9022d9ccc82dc38f7
+--- /dev/null
++++ b/agent/benchmark_memory.py
+@@ -0,0 +1,76 @@
++"""Small helpers used only by DolphinBench memory ingestion and evaluation."""
++
++from __future__ import annotations
++
++import json
++import os
++from pathlib import Path
++from typing import Any
++
++
++def env_true(name: str) -> bool:
++    return os.environ.get(name, "").strip().lower() in {"1", "true", "yes", "on"}
++
++
++def memory_is_read_only(provider: str) -> bool:
++    return env_true("DOLPHINBENCH_MEMORY_READ_ONLY") or env_true(
++        f"DOLPHINBENCH_{provider.upper()}_READ_ONLY"
++    )
++
++
++def seed_item(receipt_env: str) -> tuple[Path, str] | None:
++    receipt_path = os.environ.get(receipt_env, "").strip()
++    item_id = os.environ.get("DOLPHINBENCH_SEED_ITEM_ID", "").strip()
++    if not receipt_path or not item_id:
++        return None
++    return Path(receipt_path), item_id
++
++
++def seed_item_has_receipt(receipt_env: str, provider: str) -> bool:
++    value = seed_item(receipt_env)
++    if value is None:
++        return False
++    path, item_id = value
++    try:
++        lines = path.read_text(encoding="utf-8").splitlines()
++    except FileNotFoundError:
++        return False
++    for line in lines:
++        if not line.strip():
++            continue
++        record = json.loads(line)
++        if (
++            record.get("provider") == provider
++            and record.get("operation_kind") == "automatic_sync_turn"
++            and record.get("seed_item_id") == item_id
++        ):
++            return True
++    return False
++
++
++def write_seed_receipt(
++    receipt_env: str,
++    provider: str,
++    *,
++    details: dict[str, Any],
++) -> None:
++    value = seed_item(receipt_env)
++    if value is None:
++        return
++    path, item_id = value
++    path.parent.mkdir(parents=True, exist_ok=True)
++    record = {
++        "receipt_type": "memory_seed_operation",
++        "provider": provider,
++        "operation_kind": "automatic_sync_turn",
++        "seed_item_id": item_id,
++        **details,
++    }
++    payload = (json.dumps(record, sort_keys=True, separators=(",", ":")) + "\n").encode()
++    fd = os.open(path, os.O_WRONLY | os.O_APPEND | os.O_CREAT, 0o600)
++    try:
++        written = os.write(fd, payload)
++        if written != len(payload):
++            raise OSError(f"short receipt write: {written}/{len(payload)} bytes")
++    finally:
++        os.close(fd)
+diff --git a/agent/memory_manager.py b/agent/memory_manager.py
+index 496562c2e87f5ae34c4760ca81253c038b121cd8..3389f7cf9b98bc4a9f3f97e7cfbecf5cbd2b13da 100644
+--- a/agent/memory_manager.py
++++ b/agent/memory_manager.py
+@@ -27,6 +27,7 @@ from __future__ import annotations
+ 
+ import json
+ import logging
++import os
+ import re
+ import inspect
+ import threading
+@@ -77,7 +78,7 @@ logger = logging.getLogger(__name__)
+ # to drain before abandoning it. A wedged provider must never block process
+ # teardown indefinitely — the worker threads are daemon, so anything still
+ # running past this window dies with the interpreter.
+-_SYNC_DRAIN_TIMEOUT_S = 5.0
++_SYNC_DRAIN_TIMEOUT_S = float(os.environ.get("HERMES_MEMORY_SYNC_DRAIN_TIMEOUT_SECONDS", "5"))
+ _EXTERNAL_PREFETCH_TIMEOUT_S = 8.0
+ 
+ 
+diff --git a/hermes_cli/mcp_startup.py b/hermes_cli/mcp_startup.py
+index c57b00eb43c4ab82dbeafb9c8e2787d41a240cd0..cd3c028980e9805d3435aa3653387b854d71be45 100644
+--- a/hermes_cli/mcp_startup.py
++++ b/hermes_cli/mcp_startup.py
+@@ -43,6 +43,22 @@ def get_mcp_server_filter() -> Optional[list[str]]:
+     return _mcp_server_filter
+ 
+ 
++def _explicitly_requested_mcp_servers() -> set[str]:
++    """Return configured MCP servers explicitly selected with --toolsets."""
++    if _mcp_server_filter is None:
++        return set()
++    try:
++        from hermes_cli.config import read_raw_config
++
++        raw_config = read_raw_config() or {}
++        configured = raw_config.get("mcp_servers")
++        if not isinstance(configured, dict):
++            return set()
++        return set(_mcp_server_filter).intersection(configured)
++    except Exception:
++        return set()
++
++
+ def _has_configured_mcp_servers() -> bool:
+     """Cheap config probe so non-MCP users avoid importing the MCP stack."""
+     try:
+@@ -309,7 +325,7 @@ def ensure_mcp_discovery_before_agent_build(
+     single_query: bool = False,
+     thread_name: str = "cli-mcp-discovery",
+ ) -> None:
+-    """Give configured MCP tools a bounded chance to register before AIAgent.
++    """Register explicitly requested MCP tools before building AIAgent.
+ 
+     Non-interactive first turns (``chat -q``, ``hermes -z``) can construct
+     ``AIAgent`` before the normal banner or tool-list paths touch
+@@ -327,14 +343,42 @@ def ensure_mcp_discovery_before_agent_build(
+     ``mcp_single_query_discovery_timeout`` bound is used (default 15s vs 1.5s
+     interactive) because one-shot sessions have no second turn to recover.
+ 
+-    Failures are swallowed so a broken MCP config never aborts agent
+-    construction — the agent runs without MCP tools, same as before.
++    A one-shot command that explicitly requests a configured MCP server cannot
++    recover on a later turn. Wait for discovery to finish and fail before the
++    model call if that server did not register any tools. Other startup paths
++    retain the existing bounded, fail-open behavior.
+     """
++    required_servers = _explicitly_requested_mcp_servers() if single_query else set()
++    start_background_mcp_discovery(
++        logger=logger,
++        thread_name=thread_name,
++    )
++
++    if required_servers:
++        _start_deferred_mcp_discovery_now()
++        thread = _mcp_discovery_thread
++        if thread is not None:
++            thread.join()
++
++        from tools.mcp_tool import get_registered_mcp_server_names, get_mcp_status
++
++        registered = get_registered_mcp_server_names()
++        missing = sorted(required_servers - registered)
++        if missing:
++            statuses = {
++                entry.get("name"): entry.get("status")
++                for entry in (get_mcp_status() or [])
++                if entry.get("name") in missing
++            }
++            details = ", ".join(
++                f"{name} ({statuses.get(name, 'not connected')})" for name in missing
++            )
++            raise RuntimeError(
++                "Required MCP server did not register its tools: " + details
++            )
++        return
++
+     try:
+-        start_background_mcp_discovery(
+-            logger=logger,
+-            thread_name=thread_name,
+-        )
+         wait_for_mcp_discovery(timeout=timeout, single_query=single_query)
+     except Exception:
+         logger.debug(
+diff --git a/plugins/memory/hindsight/__init__.py b/plugins/memory/hindsight/__init__.py
+index cf3b9f618f328366e4fa8f92e5af49e23a7f2b50..96f3ac063f8fcb680bd641c55fe06ddebf1aa339 100644
+--- a/plugins/memory/hindsight/__init__.py
++++ b/plugins/memory/hindsight/__init__.py
+@@ -49,6 +49,12 @@ from typing import Any, Callable, Dict, List, Optional
+ from agent.secret_scope import get_secret
+ 
+ from agent.memory_provider import MemoryProvider, RecallStatus
++from agent.benchmark_memory import (
++    memory_is_read_only,
++    seed_item,
++    seed_item_has_receipt,
++    write_seed_receipt,
++)
+ from hermes_constants import get_hermes_home
+ from hermes_time import now as _hermes_now
+ from tools.registry import tool_error
+@@ -1854,6 +1860,13 @@ class HindsightMemoryProvider(MemoryProvider):
+             t.start()
+ 
+     def system_prompt_block(self) -> str:
++        if memory_is_read_only("hindsight"):
++            return (
++                "# Hindsight Memory\n"
++                f"Relevant memories from bank {self._bank_id} are added automatically. "
++                "Use hindsight_recall to search memories and hindsight_reflect to "
++                "combine information from several memories."
++            )
+         if self._memory_mode == "context":
+             return (
+                 f"# Hindsight Memory\n"
+@@ -2105,7 +2118,7 @@ class HindsightMemoryProvider(MemoryProvider):
+         further sync_turn() calls are dropped — this prevents post-exit
+         retains from reaching aiohttp after interpreter shutdown begins.
+         """
+-        if not self._auto_retain:
++        if memory_is_read_only("hindsight") or not self._auto_retain:
+             logger.debug("sync_turn: skipped (auto_retain disabled)")
+             return
+         if self._shutting_down.is_set():
+@@ -2125,7 +2138,19 @@ class HindsightMemoryProvider(MemoryProvider):
+                          self._turn_counter, self._turn_counter + (self._retain_every_n_turns - self._turn_counter % self._retain_every_n_turns))
+             return
+ 
+-        document_id, update_mode = self._resolve_retain_target(self._document_id)
++        benchmark_seed = seed_item("DOLPHINBENCH_HINDSIGHT_SEED_RECEIPTS")
++        if benchmark_seed is not None:
++            if seed_item_has_receipt(
++                "DOLPHINBENCH_HINDSIGHT_SEED_RECEIPTS", "hindsight"
++            ):
++                return
++            if self._retain_async:
++                raise RuntimeError(
++                    "DolphinBench Hindsight ingestion requires retain_async=false"
++                )
++            document_id, update_mode = benchmark_seed[1], None
++        else:
++            document_id, update_mode = self._resolve_retain_target(self._document_id)
+ 
+         # On append-capable APIs each retain only needs to ship the turns
+         # accumulated since the last retain — the server appends them to the
+@@ -2187,8 +2212,22 @@ class HindsightMemoryProvider(MemoryProvider):
+             # true server-side completion (read-after-write) before recalling.
+             if retain_async_flag:
+                 self._track_retain_ops(resp, bank_id)
++            if benchmark_seed is not None:
++                write_seed_receipt(
++                    "DOLPHINBENCH_HINDSIGHT_SEED_RECEIPTS",
++                    "hindsight",
++                    details={
++                        "bank_id": bank_id,
++                        "document_id": document_id,
++                        "hermes_session_id": session_id or self._session_id,
++                    },
++                )
+             logger.debug("Hindsight retain succeeded")
+ 
++        if benchmark_seed is not None:
++            _do_retain()
++            return
++
+         self._ensure_writer()
+         self._register_atexit()
+         # Deterministic "saving to memory" indicator — emitted the moment a
+@@ -2217,11 +2256,15 @@ class HindsightMemoryProvider(MemoryProvider):
+             logger.debug("Retain indicator emit failed (non-fatal)", exc_info=True)
+ 
+     def get_tool_schemas(self) -> List[Dict[str, Any]]:
++        if memory_is_read_only("hindsight"):
++            return [RECALL_SCHEMA, REFLECT_SCHEMA]
+         if self._memory_mode == "context":
+             return []
+         return [RETAIN_SCHEMA, RECALL_SCHEMA, REFLECT_SCHEMA]
+ 
+     def handle_tool_call(self, tool_name: str, args: dict, **kwargs) -> str:
++        if tool_name == "hindsight_retain" and memory_is_read_only("hindsight"):
++            return tool_error("Hindsight memory writes are disabled for this evaluation.")
+         if tool_name == "hindsight_retain":
+             content = args.get("content", "")
+             if not content:
+diff --git a/plugins/memory/honcho/__init__.py b/plugins/memory/honcho/__init__.py
+index 1347014cea72a64707d91eb0ebcef15cdee38abe..f4452e348676f72a38d16b99ede1dd326c90f25b 100644
+--- a/plugins/memory/honcho/__init__.py
++++ b/plugins/memory/honcho/__init__.py
+@@ -22,6 +22,7 @@ import threading
+ import time
+ from typing import Any, Callable, Dict, List, Optional
+ 
++from agent.benchmark_memory import memory_is_read_only
+ from agent.memory_manager import sanitize_context
+ from agent.memory_provider import TRIVIAL_PROMPT_RE, MemoryProvider, is_trivial_prompt
+ from plugins.memory.honcho.client import spawn_context_thread
+@@ -697,16 +698,26 @@ class HonchoMemoryProvider(MemoryProvider):
+                 "managed automatically."
+             )
+         elif self._recall_mode == "tools":
++            write_tool = (
++                ""
++                if memory_is_read_only("honcho")
++                else "honcho_conclude to save facts about the user. "
++            )
+             header = (
+                 "# Honcho Memory\n"
+                 "Active (tools-only mode). Use honcho_profile for a quick factual snapshot, "
+                 "honcho_search for raw excerpts, honcho_context for raw peer context, "
+                 "honcho_reasoning for synthesized answers (pass reasoning_level "
+                 "minimal/low/medium/high/max — you pick the depth per call), "
+-                "honcho_conclude to save facts about the user. "
++                f"{write_tool}"
+                 "No automatic context injection — you must use tools to access memory."
+             )
+         else:  # hybrid
++            write_tool = (
++                ""
++                if memory_is_read_only("honcho")
++                else "honcho_conclude to save facts about the user."
++            )
+             header = (
+                 "# Honcho Memory\n"
+                 "Active (hybrid mode). Relevant context is auto-injected AND memory tools are available. "
+@@ -714,7 +725,7 @@ class HonchoMemoryProvider(MemoryProvider):
+                 "honcho_search for raw excerpts, honcho_context for raw peer context, "
+                 "honcho_reasoning for synthesized answers (pass reasoning_level "
+                 "minimal/low/medium/high/max — you pick the depth per call), "
+-                "honcho_conclude to save facts about the user."
++                f"{write_tool}"
+             )
+ 
+         return header
+@@ -1413,7 +1424,7 @@ class HonchoMemoryProvider(MemoryProvider):
+         Honors saveMessages: false — the provider then never persists raw
+         turns to Honcho (read/tools paths stay fully functional).
+         """
+-        if self._cron_skipped:
++        if self._cron_skipped or memory_is_read_only("honcho"):
+             return
+         # ``saveMessages`` is the operator's hard write gate. Previously it
+         # was parsed into HonchoClientConfig but never enforced here, so a
+@@ -1477,7 +1488,7 @@ class HonchoMemoryProvider(MemoryProvider):
+         """
+         if action != "add" or target != "user" or not content:
+             return
+-        if self._cron_skipped:
++        if self._cron_skipped or memory_is_read_only("honcho"):
+             return
+         # ``saveMessages`` is the operator's hard write gate; the memory-tool
+         # mirror is an automatic Honcho mutation path and must respect it too,
+@@ -1501,7 +1512,7 @@ class HonchoMemoryProvider(MemoryProvider):
+ 
+     def on_session_end(self, messages: List[Dict[str, Any]]) -> None:
+         """Flush all pending messages to Honcho on session end."""
+-        if self._cron_skipped:
++        if self._cron_skipped or memory_is_read_only("honcho"):
+             return
+         if not getattr(self._config, "save_messages", True):
+             return
+@@ -1526,6 +1537,8 @@ class HonchoMemoryProvider(MemoryProvider):
+             return []
+         if self._recall_mode == "context":
+             return []
++        if memory_is_read_only("honcho"):
++            return [PROFILE_SCHEMA, SEARCH_SCHEMA, REASONING_SCHEMA, CONTEXT_SCHEMA]
+         return list(ALL_TOOL_SCHEMAS)
+ 
+     def handle_tool_call(self, tool_name: str, args: dict, **kwargs) -> str:
+@@ -1534,6 +1547,8 @@ class HonchoMemoryProvider(MemoryProvider):
+ 
+         if self._cron_skipped:
+             return tool_error("Honcho is not active (cron context).")
++        if tool_name == "honcho_conclude" and memory_is_read_only("honcho"):
++            return tool_error("Honcho writes are disabled during benchmark tests.")
+ 
+         if not self._session_initialized:
+             if self._init_thread and self._init_thread.is_alive():
+diff --git a/plugins/memory/mem0/README.md b/plugins/memory/mem0/README.md
+index b956e13729cf447fe1e40816fcbb46db96b82707..5f20ac268d7491854e439759a8e236ffeb25d746 100644
+--- a/plugins/memory/mem0/README.md
++++ b/plugins/memory/mem0/README.md
+@@ -60,7 +60,7 @@ Connect the plugin to a standalone Mem0 server you run yourself — the Docker-s
+      "api_key": "your-admin-api-key"
+    }
+    ```
+-3. Start a fresh Hermes session and call `mem0_search` — it connects to your server.
++3. Start a fresh Hermes session and call `search_memories` — it connects to your server.
+ 
+ The plugin authenticates with `X-API-Key` and uses the server's `/search` and `/memories` routes. `api_key` is optional — omit it only for servers running with `AUTH_DISABLED`.
+ 
+@@ -142,10 +142,10 @@ hermes memory setup mem0 --mode oss --oss-llm-key sk-... --dry-run
+ 
+ | Tool | Description |
+ |------|-------------|
+-| `mem0_search` | Semantic search by meaning |
+-| `mem0_add` | Store a fact verbatim (no LLM extraction) |
+-| `mem0_update` | Update a memory's text by ID |
+-| `mem0_delete` | Delete a memory by ID |
++| `search_memories` | Search memories using one or more focused queries |
++| `save_memory` | Store information verbatim without extraction |
++| `update_memory` | Replace a saved memory by ID |
++| `delete_memory` | Delete a saved memory by ID |
+ 
+ ## Troubleshooting
+ 
+@@ -182,6 +182,6 @@ curl http://localhost:11434/api/tags
+ 
+ ### Memories not appearing
+ 
+-- `mem0_add` stores verbatim (no extraction). Use `sync_turn` for LLM extraction.
++- `save_memory` stores verbatim (no extraction). Automatic turn sync uses LLM extraction.
+ - Search uses semantic matching — try broader queries.
+ - Check `user_id` matches between sessions (`$HERMES_HOME/mem0.json`).
+diff --git a/plugins/memory/mem0/__init__.py b/plugins/memory/mem0/__init__.py
+index ea871c44cc41fb2f598af6ca9a0f11ca848d254d..7a74389e90e8aa6bb1cbaf998a89da820e504179 100644
+--- a/plugins/memory/mem0/__init__.py
++++ b/plugins/memory/mem0/__init__.py
+@@ -40,6 +40,7 @@ import threading
+ import time
+ from typing import Any, Dict, List
+ 
++from agent.benchmark_memory import env_true, memory_is_read_only, write_seed_receipt
+ from agent.memory_provider import MemoryProvider
+ from agent.secret_scope import get_secret
+ from tools.registry import tool_error
+@@ -60,6 +61,20 @@ _CLIENT_ERROR_TYPES = ("MemoryNotFoundError", "ValidationError")
+ # wrote this exact placeholder) still allow gateway-native ids to flow
+ # through instead of silently overriding them with the placeholder.
+ _DEFAULT_USER_ID = "hermes-user"
++_DEFAULT_CUSTOM_INSTRUCTIONS = (
++    "Save information from the user's message that could matter in a later "
++    "conversation. State who said or did each thing. Preserve dates, numbers, "
++    "confidence levels, limits, and exceptions. When the user gives exact "
++    "wording, a quotation, name, identifier, address, number, date, or another "
++    "value whose precise form may matter later, copy it verbatim into the "
++    "memory instead of paraphrasing it. Keep details from the same event or "
++    "decision together when separating them would change their meaning. Include "
++    "the relevant people, organizations, projects, and dates so the memory can "
++    "be found later. Split unrelated information into separate memories. Treat "
++    "the user's statements as the source of the user's preferences, decisions, "
++    "and rules. You may save what the assistant did, but label it as an "
++    "assistant action or draft and do not turn it into a user preference or rule."
++)
+ 
+ 
+ def _is_client_error(exc: Exception) -> bool:
+@@ -115,35 +130,31 @@ def _load_config() -> dict:
+ # ---------------------------------------------------------------------------
+ 
+ SEARCH_SCHEMA = {
+-    "name": "mem0_search",
++    "name": "search_memories",
+     "description": (
+-        "Search the user's memories by meaning; returns facts ranked by "
+-        "relevance. Use this before answering any question that may depend on "
+-        "what you know about the user (preferences, facts, history, people, "
+-        "projects, past decisions). For multi-part or multi-hop questions, "
+-        "call it several times — vary the wording and run follow-up searches "
+-        "on what earlier results reveal; one search is rarely enough."
++        "Search facts saved from earlier conversations by meaning. Write one "
++        "short, specific query for each fact you need. Name the person, project, "
++        "decision, date, number, quotation, or other detail that identifies it. "
++        "When the request needs several facts, send several queries in the same "
++        "call. Do not combine several facts into one query. If the results are "
++        "incomplete, search again with narrower or different words."
+     ),
+     "parameters": {
+         "type": "object",
+         "properties": {
+-            "query": {"type": "string", "description": "What to search for."},
+-            "top_k": {"type": "integer", "description": "Max results (default: 10, max: 50)."},
+-            "rerank": {"type": "boolean", "description": "Rerank results for relevance (default: false, platform mode only)."},
++            "queries": {
++                "type": "array",
++                "items": {"type": "string"},
++                "description": "One short query for each separate fact you need.",
++            },
+         },
+-        "required": ["query"],
++        "required": ["queries"],
+     },
+ }
+ 
+ ADD_SCHEMA = {
+-    "name": "mem0_add",
+-    "description": (
+-        "Store a durable fact about the user, verbatim (no LLM extraction). "
+-        "Call this the moment the user states a lasting preference, correction, "
+-        "decision, or personal detail worth recalling on future turns — don't "
+-        "wait to be asked to remember. Skip transient chit-chat and facts you've "
+-        "already stored."
+-    ),
++    "name": "save_memory",
++    "description": "Save information for a later conversation.",
+     "parameters": {
+         "type": "object",
+         "properties": {
+@@ -154,12 +165,8 @@ ADD_SCHEMA = {
+ }
+ 
+ UPDATE_SCHEMA = {
+-    "name": "mem0_update",
+-    "description": (
+-        "Replace the text of an existing memory by its ID (take the ID from a "
+-        "mem0_search result). Use when a stored fact has changed "
+-        "or was wrong — correct it in place instead of adding a duplicate."
+-    ),
++    "name": "update_memory",
++    "description": "Replace a saved memory.",
+     "parameters": {
+         "type": "object",
+         "properties": {
+@@ -171,12 +178,8 @@ UPDATE_SCHEMA = {
+ }
+ 
+ DELETE_SCHEMA = {
+-    "name": "mem0_delete",
+-    "description": (
+-        "Delete a memory by its ID (take the ID from a mem0_search "
+-        "result). Use when a stored fact is obsolete or the user asks you to "
+-        "forget it; prefer mem0_update if the fact merely changed."
+-    ),
++    "name": "delete_memory",
++    "description": "Delete a saved memory.",
+     "parameters": {
+         "type": "object",
+         "properties": {
+@@ -205,6 +208,7 @@ class Mem0MemoryProvider(MemoryProvider):
+         self._host = ""
+         self._user_id = _DEFAULT_USER_ID
+         self._agent_id = "hermes"
++        self._session_id = ""
+         self._rerank_default = False
+         self._channel = "cli"  # gateway channel name (cli/telegram/discord/...)
+         self._sync_thread = None
+@@ -335,6 +339,7 @@ class Mem0MemoryProvider(MemoryProvider):
+             )
+ 
+     def initialize(self, session_id: str, **kwargs) -> None:
++        self._session_id = session_id
+         self._config = _load_config()
+         self._mode = self._config.get("mode", "platform")
+         self._api_key = self._config.get("api_key", "")
+@@ -382,33 +387,25 @@ class Mem0MemoryProvider(MemoryProvider):
+         # per-channel filtered views without coupling identity to the channel.
+         return {"channel": self._channel} if self._channel else {}
+ 
++    def _automatic_custom_instructions(self) -> str | None:
++        if self._mode != "platform" or self._host:
++            return None
++        return _DEFAULT_CUSTOM_INSTRUCTIONS
++
+     def system_prompt_block(self) -> str:
+-        # Mirror the precedence in _create_backend (oss > host > platform) so
+-        # the label always names the backend that actually runs. Checking
+-        # ``host`` first here would mislabel an ``oss``+``host`` config as
+-        # self-hosted HTTP even though OSS wins the routing.
+-        if self._mode == "oss":
+-            mode_label = "OSS (self-hosted)"
+-        elif self._host:
+-            mode_label = "self-hosted (HTTP API)"
+-        else:
+-            mode_label = "platform (cloud API)"
+-        # Rerank is a Mem0 Platform feature only.
+-        rerank_note = " Rerank is available on search." if (self._mode == "platform" and not self._host) else ""
+         return (
+-            "# Mem0 Memory\n"
+-            f"Active. Mode: {mode_label}. User: {self._user_id}.\n"
+-            "You have persistent memory of this user from past conversations. "
+-            "You should call mem0_search before answering anything that could depend "
+-            "on prior context (the user's preferences, facts, history, people, "
+-            "projects, or earlier decisions) — do not rely on the chat window "
+-            "alone, and do not assume you have no memory.\n"
+-            "For multi-part or multi-hop questions, run several searches with "
+-            "different wording/angles and follow-up searches on what the first "
+-            "results surface; one search is rarely enough. Keep searching until "
+-            "you have every fact the question needs before you answer.\n"
+-            "Tools: mem0_search to find memories, mem0_add to store facts, "
+-            f"mem0_update and mem0_delete to manage by ID.{rerank_note}"
++            "Use search_memories first when a request depends on facts from "
++            "earlier conversations, including people, preferences, projects, "
++            "decisions, instructions, dates, numbers, or exact wording. It "
++            "searches facts saved from those conversations by meaning. Ask for "
++            "each fact with a short, specific query, and search again with "
++            "narrower or different words if the results do not contain what you "
++            "need. Use session_search only when you need to inspect the raw text "
++            "of an original conversation, such as the surrounding exchange or a "
++            "detail that was not saved as a memory. session_search matches text "
++            "in past sessions and works best when you know words that appeared "
++            "there. Do not use session_search instead of search_memories when "
++            "you need a remembered fact."
+         )
+ 
+     def on_turn_start(self, turn_number: int, message: str, **kwargs) -> None:
+@@ -445,7 +442,7 @@ class Mem0MemoryProvider(MemoryProvider):
+                 )
+                 lines = [r.get("memory", "") for r in (results or []) if r.get("memory")]
+                 if lines:
+-                    body = "## Mem0 Memory\n" + "\n".join(f"- {l}" for l in lines)
++                    body = "\n".join(f"- {line}" for line in lines)
+                 self._record_success()
+             except Exception as e:
+                 self._record_failure()
+@@ -473,12 +470,12 @@ class Mem0MemoryProvider(MemoryProvider):
+         cached = self._consume_prefetch_result(query)
+         if cached is not None:
+             return cached
+-        # Slow backend: skip injection; mem0_search tool remains the backstop.
++        # Slow backend: skip injection; search_memories remains the backstop.
+         return ""
+ 
+     def sync_turn(self, user_content: str, assistant_content: str, *, session_id: str = "") -> None:
+         """Send the turn to Mem0 for server-side fact extraction (non-blocking)."""
+-        if self._backend is None or self._is_breaker_open():
++        if memory_is_read_only("mem0") or self._backend is None or self._is_breaker_open():
+             return
+ 
+         def _sync():
+@@ -490,18 +487,35 @@ class Mem0MemoryProvider(MemoryProvider):
+                     {"role": "user", "content": user_content},
+                     {"role": "assistant", "content": assistant_content},
+                 ]
+-                backend.add(
++                custom_instructions = self._automatic_custom_instructions()
++                result = backend.add(
+                     messages,
+                     user_id=self._user_id,
+-                    agent_id=self._agent_id,
++                    agent_id=None,
+                     infer=True,
+                     metadata=self._write_metadata(),
++                    custom_instructions=custom_instructions,
++                )
++                write_seed_receipt(
++                    "DOLPHINBENCH_MEM0_SEED_RECEIPTS",
++                    "mem0",
++                    details={
++                        "hermes_session_id": session_id or self._session_id,
++                        "event_id": result.get("event_id") if isinstance(result, dict) else None,
++                        "event_status": result.get("status") if isinstance(result, dict) else None,
++                        "user_id": self._user_id,
++                        "agent_id": None,
++                    },
+                 )
+                 self._record_success()
+             except Exception as e:
+                 self._record_failure()
+                 logger.warning("Mem0 sync failed: %s", e)
+ 
++        if env_true("DOLPHINBENCH_MEM0_SYNC_WRITES"):
++            _sync()
++            return
++
+         with self._sync_lock:
+             if self._sync_thread and self._sync_thread.is_alive():
+                 self._sync_thread.join(timeout=5.0)
+@@ -512,9 +526,22 @@ class Mem0MemoryProvider(MemoryProvider):
+             self._sync_thread.start()
+ 
+     def get_tool_schemas(self) -> List[Dict[str, Any]]:
++        if memory_is_read_only("mem0"):
++            return [SEARCH_SCHEMA]
+         return [SEARCH_SCHEMA, ADD_SCHEMA, UPDATE_SCHEMA, DELETE_SCHEMA]
+ 
+     def handle_tool_call(self, tool_name: str, args: dict, **kwargs) -> str:
++        legacy_names = {
++            "mem0_search": "search_memories",
++            "mem0_add": "save_memory",
++            "mem0_update": "update_memory",
++            "mem0_delete": "delete_memory",
++        }
++        tool_name = legacy_names.get(tool_name, tool_name)
++        if memory_is_read_only("mem0") and tool_name in {
++            "save_memory", "update_memory", "delete_memory"
++        }:
++            return tool_error("Mem0 writes are disabled during benchmark tests.")
+         if self._backend is None:
+             err = getattr(self, "_init_error", "unknown error")
+             hint = ""
+@@ -531,30 +558,34 @@ class Mem0MemoryProvider(MemoryProvider):
+                 msg += f" Check that your {vs.get('provider', 'vector store')} is running."
+             return json.dumps({"error": msg})
+ 
+-        if tool_name == "mem0_search":
+-            query = args.get("query", "")
+-            if not query:
+-                return tool_error("Missing required parameter: query")
++        if tool_name == "search_memories":
++            queries = args.get("queries")
++            if queries is None and isinstance(args.get("query"), str):
++                queries = [args["query"]]
++            if not isinstance(queries, list) or not queries:
++                return tool_error("Missing required parameter: queries")
++            if any(not isinstance(query, str) or not query.strip() for query in queries):
++                return tool_error("Each query must be a non-empty string")
+             try:
+-                top_k = max(1, min(int(args.get("top_k", 10)), 50))
+-                rerank_raw = args.get("rerank", getattr(self, "_rerank_default", False))
+-                if isinstance(rerank_raw, str):
+-                    rerank = rerank_raw.lower() not in ("false", "0", "no")
+-                else:
+-                    rerank = bool(rerank_raw)
+-                results = self._backend.search(query, filters=self._read_filters(), top_k=top_k, rerank=rerank)
++                searches = []
++                for query in queries:
++                    results = self._backend.search(
++                        query.strip(), filters=self._read_filters(), top_k=10,
++                        rerank=getattr(self, "_rerank_default", False),
++                    )
++                    memories = [
++                        {"id": result.get("id"), "memory": result.get("memory", "")}
++                        for result in (results or []) if result.get("memory")
++                    ]
++                    searches.append({"query": query.strip(), "memories": memories})
+                 self._record_success()
+-                if not results:
+-                    return json.dumps({"result": "No relevant memories found."})
+-                items = [{"id": r.get("id"), "memory": r.get("memory", ""),
+-                          "score": r.get("score", 0)} for r in results]
+-                return json.dumps({"results": items, "count": len(items)})
++                return json.dumps({"searches": searches})
+             except Exception as e:
+                 if not _is_client_error(e):
+                     self._record_failure()
+                 return tool_error(self._format_error("Search failed", e))
+ 
+-        elif tool_name == "mem0_add":
++        elif tool_name == "save_memory":
+             content = args.get("content", "")
+             if not content:
+                 return tool_error("Missing required parameter: content")
+@@ -562,7 +593,7 @@ class Mem0MemoryProvider(MemoryProvider):
+                 result = self._backend.add(
+                     [{"role": "user", "content": content}],
+                     user_id=self._user_id,
+-                    agent_id=self._agent_id,
++                    agent_id=None,
+                     infer=False,
+                     metadata=self._write_metadata(),
+                 )
+@@ -575,7 +606,7 @@ class Mem0MemoryProvider(MemoryProvider):
+                 self._record_failure()
+                 return tool_error(self._format_error("Failed to store", e))
+ 
+-        elif tool_name == "mem0_update":
++        elif tool_name == "update_memory":
+             memory_id = args.get("memory_id", "")
+             text = args.get("text", "")
+             if not memory_id:
+@@ -592,7 +623,7 @@ class Mem0MemoryProvider(MemoryProvider):
+                 self._record_failure()
+                 return tool_error(self._format_error("Update failed", e))
+ 
+-        elif tool_name == "mem0_delete":
++        elif tool_name == "delete_memory":
+             memory_id = args.get("memory_id", "")
+             if not memory_id:
+                 return tool_error("Missing required parameter: memory_id")
+diff --git a/plugins/memory/mem0/_backend.py b/plugins/memory/mem0/_backend.py
+index 09da207815885d580dd04542ecbefe588da41736..c313328004ccb856b01f1d44580561fcb11a216a 100644
+--- a/plugins/memory/mem0/_backend.py
++++ b/plugins/memory/mem0/_backend.py
+@@ -19,9 +19,10 @@ class Mem0Backend(ABC):
+         messages: list,
+         *,
+         user_id: str,
+-        agent_id: str,
++        agent_id: str | None = None,
+         infer: bool = False,
+         metadata: dict | None = None,
++        custom_instructions: str | None = None,
+     ) -> dict:
+         ...
+ 
+@@ -62,13 +63,18 @@ class PlatformBackend(Mem0Backend):
+         messages: list,
+         *,
+         user_id: str,
+-        agent_id: str,
++        agent_id: str | None = None,
+         infer: bool = False,
+         metadata: dict | None = None,
++        custom_instructions: str | None = None,
+     ) -> dict:
+-        kwargs: dict[str, Any] = {"user_id": user_id, "agent_id": agent_id, "infer": infer}
++        kwargs: dict[str, Any] = {"user_id": user_id, "infer": infer}
++        if agent_id is not None:
++            kwargs["agent_id"] = agent_id
+         if metadata:
+             kwargs["metadata"] = metadata
++        if custom_instructions is not None:
++            kwargs["custom_instructions"] = custom_instructions
+         return self._client.add(messages, **kwargs)
+ 
+     def update(self, memory_id: str, text: str) -> dict:
+@@ -124,16 +130,18 @@ class SelfHostedBackend(Mem0Backend):
+         messages: list,
+         *,
+         user_id: str,
+-        agent_id: str,
++        agent_id: str | None = None,
+         infer: bool = False,
+         metadata: dict | None = None,
++        custom_instructions: str | None = None,
+     ) -> dict:
+         body: dict[str, Any] = {
+             "messages": messages,
+             "user_id": user_id,
+-            "agent_id": agent_id,
+             "infer": infer,
+         }
++        if agent_id is not None:
++            body["agent_id"] = agent_id
+         if metadata:
+             body["metadata"] = metadata
+         return self._json("POST", "/memories", json=body)
+@@ -321,11 +329,14 @@ class OSSBackend(Mem0Backend):
+         messages: list,
+         *,
+         user_id: str,
+-        agent_id: str,
++        agent_id: str | None = None,
+         infer: bool = False,
+         metadata: dict | None = None,
++        custom_instructions: str | None = None,
+     ) -> dict:
+-        kwargs: dict[str, Any] = {"user_id": user_id, "agent_id": agent_id, "infer": infer}
++        kwargs: dict[str, Any] = {"user_id": user_id, "infer": infer}
++        if agent_id is not None:
++            kwargs["agent_id"] = agent_id
+         if metadata:
+             kwargs["metadata"] = metadata
+         return self._memory.add(messages, **kwargs)
+diff --git a/plugins/memory/supermemory/__init__.py b/plugins/memory/supermemory/__init__.py
+index 5bd968bd61c9132aa8758f698318a8e4c8d22098..694d09a6013711cd27007be48819fc5c1931c1ef 100644
+--- a/plugins/memory/supermemory/__init__.py
++++ b/plugins/memory/supermemory/__init__.py
+@@ -18,6 +18,12 @@ from pathlib import Path
+ from typing import Any, Dict, List, Optional
+ 
+ from agent.memory_provider import MemoryProvider
++from agent.benchmark_memory import (
++    memory_is_read_only,
++    seed_item,
++    seed_item_has_receipt,
++    write_seed_receipt,
++)
+ from agent.secret_scope import get_secret, is_multiplex_active
+ from tools.registry import tool_error
+ 
+@@ -705,6 +711,12 @@ class SupermemoryMemoryProvider(MemoryProvider):
+     def system_prompt_block(self) -> str:
+         if not self._active:
+             return ""
++        if memory_is_read_only("supermemory"):
++            return (
++                "# Supermemory\n"
++                "Relevant memories are added automatically. Use supermemory_search "
++                "to search memories and supermemory_profile to retrieve saved profile facts."
++            )
+         lines = [
+             "# Supermemory",
+             f"Active. Container: {self._container_tag}.",
+@@ -762,9 +774,16 @@ class SupermemoryMemoryProvider(MemoryProvider):
+             return
+         if len(cleaned) == 1 and len(cleaned[0].get("content", "")) < 20:
+             return
++        benchmark_seed = seed_item("DOLPHINBENCH_SUPERMEMORY_SEED_RECEIPTS")
++        if benchmark_seed is not None and seed_item_has_receipt(
++            "DOLPHINBENCH_SUPERMEMORY_SEED_RECEIPTS", "supermemory"
++        ):
++            self._session_turns = []
++            return
++        conversation_id = benchmark_seed[1] if benchmark_seed is not None else self._session_id
+         try:
+             self._client.ingest_conversation(
+-                self._session_id,
++                conversation_id,
+                 cleaned,
+                 metadata={
+                     "type": "full_session",
+@@ -772,6 +791,16 @@ class SupermemoryMemoryProvider(MemoryProvider):
+                     "message_count": len(cleaned),
+                 },
+             )
++            if benchmark_seed is not None:
++                write_seed_receipt(
++                    "DOLPHINBENCH_SUPERMEMORY_SEED_RECEIPTS",
++                    "supermemory",
++                    details={
++                        "container_tag": self._container_tag,
++                        "conversation_id": conversation_id,
++                        "hermes_session_id": self._session_id,
++                    },
++                )
+         except urllib.error.HTTPError:
+             logger.warning("Supermemory session ingest failed", exc_info=True)
+         except Exception:
+@@ -917,6 +946,10 @@ class SupermemoryMemoryProvider(MemoryProvider):
+                 expanded.append(copy)
+             return expanded
+ 
++        if memory_is_read_only("supermemory"):
++            return [SEARCH_SCHEMA, PROFILE_SCHEMA]
++        if seed_item("DOLPHINBENCH_SUPERMEMORY_SEED_RECEIPTS") is not None:
++            return [STORE_SCHEMA, SEARCH_SCHEMA, FORGET_SCHEMA, PROFILE_SCHEMA]
+         if not self._enable_custom_containers:
+             return with_kebab_aliases([STORE_SCHEMA, SEARCH_SCHEMA, FORGET_SCHEMA, PROFILE_SCHEMA])
+ 
+@@ -1036,6 +1069,10 @@ class SupermemoryMemoryProvider(MemoryProvider):
+             "supermemory-profile": "supermemory_profile",
+         }
+         tool_name = aliases.get(tool_name, tool_name)
++        if memory_is_read_only("supermemory") and tool_name in {
++            "supermemory_store", "supermemory_forget",
++        }:
++            return tool_error("Supermemory writes are disabled for this evaluation.")
+         if tool_name == "supermemory_store":
+             return self._tool_store(args)
+         if tool_name == "supermemory_search":
+diff --git a/tests/agent/test_builtin_memory_disabled_surface.py b/tests/agent/test_builtin_memory_disabled_surface.py
+index 7d6c00a697ffe465d9cd44d7bcf68ba4315bf2b1..5cf744109f9586f7eb139b0b2d686cd368024dc0 100644
+--- a/tests/agent/test_builtin_memory_disabled_surface.py
++++ b/tests/agent/test_builtin_memory_disabled_surface.py
+@@ -91,6 +91,15 @@ class TestBuiltinMemoryToolAvailability:
+         """No config file at all must not strip a working tool."""
+         assert "memory" in _memory_tool_names()
+ 
++    def test_tool_hidden_during_read_only_benchmark_tests(
++        self, hermes_home, monkeypatch
++    ):
++        _write_memory_config(
++            hermes_home, memory_enabled=True, user_profile_enabled=True
++        )
++        monkeypatch.setenv("DOLPHINBENCH_MEMORY_READ_ONLY", "1")
++        assert "memory" not in _memory_tool_names()
++
+     def test_missing_memory_flags_fail_open_consistently(self):
+         from tools.memory_tool import get_builtin_memory_store_flags
+ 
+diff --git a/tests/hermes_cli/test_mcp_discovery_timing.py b/tests/hermes_cli/test_mcp_discovery_timing.py
+index 4660744f2c5b63f44f2cbb43f421804201fd82f2..8cd0deb7944149bc5ec11fdb2055d13b07816597 100644
+--- a/tests/hermes_cli/test_mcp_discovery_timing.py
++++ b/tests/hermes_cli/test_mcp_discovery_timing.py
+@@ -30,9 +30,11 @@ from hermes_cli import mcp_startup
+ def _reset_mcp_startup_state():
+     saved_started = mcp_startup._mcp_discovery_started
+     saved_thread = mcp_startup._mcp_discovery_thread
++    saved_filter = mcp_startup._mcp_server_filter
+     try:
+         mcp_startup._mcp_discovery_started = False
+         mcp_startup._mcp_discovery_thread = None
++        mcp_startup._mcp_server_filter = None
+         yield
+     finally:
+         thread = mcp_startup._mcp_discovery_thread
+@@ -40,6 +42,7 @@ def _reset_mcp_startup_state():
+             thread.join(timeout=1.0)
+         mcp_startup._mcp_discovery_started = saved_started
+         mcp_startup._mcp_discovery_thread = saved_thread
++        mcp_startup._mcp_server_filter = saved_filter
+ 
+ 
+ # ── _resolve_discovery_timeout: single_query bound ──────────────────────────
+@@ -178,6 +181,78 @@ def test_ensure_helper_swallows_errors(monkeypatch):
+     mcp_startup.ensure_mcp_discovery_before_agent_build(logger=logger)
+ 
+ 
++def test_single_query_waits_for_explicitly_requested_server(monkeypatch):
++    """Do not build a one-shot agent while its requested MCP tools are pending."""
++    registered = set()
++    monkeypatch.setitem(
++        sys.modules,
++        "hermes_cli.config",
++        types.SimpleNamespace(
++            read_raw_config=lambda: {"mcp_servers": {"demo": {"transport": "stdio"}}},
++        ),
++    )
++    monkeypatch.setitem(
++        sys.modules,
++        "tools.mcp_tool",
++        types.SimpleNamespace(
++            get_registered_mcp_server_names=lambda: set(registered),
++            get_mcp_status=lambda: [{"name": "demo", "status": "connected"}],
++        ),
++    )
++
++    def _start(**_kwargs):
++        def _connect():
++            time.sleep(0.02)
++            registered.add("demo")
++
++        thread = threading.Thread(target=_connect, daemon=True)
++        mcp_startup._mcp_discovery_thread = thread
++        thread.start()
++
++    monkeypatch.setattr(mcp_startup, "start_background_mcp_discovery", _start)
++    mcp_startup.set_mcp_server_filter("demo,memory")
++    logger = types.SimpleNamespace(debug=lambda *_a, **_k: None)
++
++    mcp_startup.ensure_mcp_discovery_before_agent_build(
++        logger=logger,
++        single_query=True,
++    )
++
++    assert registered == {"demo"}
++
++
++def test_single_query_stops_when_requested_server_failed(monkeypatch):
++    """A failed requested MCP server must stop the run before the model call."""
++    monkeypatch.setitem(
++        sys.modules,
++        "hermes_cli.config",
++        types.SimpleNamespace(
++            read_raw_config=lambda: {"mcp_servers": {"demo": {"transport": "stdio"}}},
++        ),
++    )
++    monkeypatch.setitem(
++        sys.modules,
++        "tools.mcp_tool",
++        types.SimpleNamespace(
++            get_registered_mcp_server_names=lambda: set(),
++            get_mcp_status=lambda: [{"name": "demo", "status": "failed"}],
++        ),
++    )
++    monkeypatch.setattr(
++        mcp_startup,
++        "start_background_mcp_discovery",
++        lambda **_kwargs: None,
++    )
++    mcp_startup.set_mcp_server_filter("demo,memory")
++    logger = types.SimpleNamespace(debug=lambda *_a, **_k: None)
++
++    with pytest.raises(RuntimeError, match=r"demo \(failed\)"):
++        mcp_startup.ensure_mcp_discovery_before_agent_build(
++            logger=logger,
++            single_query=True,
++        )
++
++
+ # ── oneshot ordering: discovery before AIAgent ──────────────────────────────
+ 
+ 
+diff --git a/tests/plugins/memory/test_dolphinbench_seed_controls.py b/tests/plugins/memory/test_dolphinbench_seed_controls.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..4bdc3ecf0d36db7dc90b971701375e11120ff79e
+--- /dev/null
++++ b/tests/plugins/memory/test_dolphinbench_seed_controls.py
+@@ -0,0 +1,171 @@
++import json
++from types import SimpleNamespace
++from unittest.mock import AsyncMock, MagicMock
++
++from plugins.memory.hindsight import (
++    HindsightMemoryProvider,
++    RECALL_SCHEMA,
++    REFLECT_SCHEMA,
++)
++from plugins.memory.honcho import (
++    CONTEXT_SCHEMA as HONCHO_CONTEXT_SCHEMA,
++    PROFILE_SCHEMA as HONCHO_PROFILE_SCHEMA,
++    REASONING_SCHEMA as HONCHO_REASONING_SCHEMA,
++    SEARCH_SCHEMA as HONCHO_SEARCH_SCHEMA,
++    HonchoMemoryProvider,
++)
++from plugins.memory.mem0 import Mem0MemoryProvider, SEARCH_SCHEMA as MEM0_SEARCH_SCHEMA
++from plugins.memory.supermemory import (
++    PROFILE_SCHEMA,
++    SEARCH_SCHEMA,
++    SupermemoryMemoryProvider,
++)
++
++
++def test_hindsight_seed_uses_stable_id_and_records_success(monkeypatch, tmp_path):
++    receipts = tmp_path / "hindsight.jsonl"
++    monkeypatch.setenv("DOLPHINBENCH_HINDSIGHT_SEED_RECEIPTS", str(receipts))
++    monkeypatch.setenv("DOLPHINBENCH_SEED_ITEM_ID", "session-1:0")
++
++    config_path = tmp_path / "hindsight" / "config.json"
++    config_path.parent.mkdir(parents=True)
++    config_path.write_text(json.dumps({
++        "mode": "cloud",
++        "apiKey": "test-key",
++        "api_url": "http://localhost:9999",
++        "bank_id": "morgan",
++        "memory_mode": "hybrid",
++        "retain_async": False,
++    }))
++    monkeypatch.setattr(
++        "plugins.memory.hindsight.get_hermes_home", lambda: tmp_path
++    )
++    provider = HindsightMemoryProvider()
++    provider.initialize(
++        session_id="hermes-session", hermes_home=str(tmp_path), platform="cli"
++    )
++    client = MagicMock()
++    client.aretain_batch = AsyncMock(return_value=SimpleNamespace())
++    client.aclose = AsyncMock()
++    provider._client = client
++
++    provider.sync_turn("user text", "assistant text", session_id="hermes-session")
++
++    assert client.aretain_batch.call_args.kwargs["document_id"] == "session-1:0"
++    assert client.aretain_batch.call_args.kwargs["retain_async"] is False
++    rows = [json.loads(line) for line in receipts.read_text().splitlines()]
++    assert rows[0]["provider"] == "hindsight"
++    assert rows[0]["seed_item_id"] == "session-1:0"
++
++
++def test_hindsight_read_only_exposes_only_read_tools(monkeypatch):
++    monkeypatch.setenv("DOLPHINBENCH_MEMORY_READ_ONLY", "1")
++    provider = HindsightMemoryProvider()
++    assert provider.get_tool_schemas() == [RECALL_SCHEMA, REFLECT_SCHEMA]
++
++
++class _SupermemoryClient:
++    def __init__(self):
++        self.calls = []
++
++    def ingest_conversation(self, session_id, messages, metadata=None):
++        self.calls.append((session_id, messages, metadata))
++
++
++def test_supermemory_seed_uses_stable_id_once_and_records_success(monkeypatch, tmp_path):
++    receipts = tmp_path / "supermemory.jsonl"
++    monkeypatch.setenv("DOLPHINBENCH_SUPERMEMORY_SEED_RECEIPTS", str(receipts))
++    monkeypatch.setenv("DOLPHINBENCH_SEED_ITEM_ID", "session-2:1")
++
++    provider = SupermemoryMemoryProvider()
++    provider._active = True
++    provider._write_enabled = True
++    provider._session_id = "hermes-session"
++    provider._container_tag = "morgan"
++    provider._client = _SupermemoryClient()
++    messages = [
++        {"role": "user", "content": "user text"},
++        {"role": "assistant", "content": "assistant text"},
++    ]
++
++    provider.on_session_end(messages)
++    provider.on_session_end(messages)
++
++    assert len(provider._client.calls) == 1
++    assert provider._client.calls[0][0] == "session-2:1"
++    rows = [json.loads(line) for line in receipts.read_text().splitlines()]
++    assert rows[0]["provider"] == "supermemory"
++    assert rows[0]["seed_item_id"] == "session-2:1"
++
++
++def test_supermemory_read_only_exposes_only_read_tools(monkeypatch):
++    monkeypatch.setenv("DOLPHINBENCH_MEMORY_READ_ONLY", "1")
++    provider = SupermemoryMemoryProvider()
++    assert provider.get_tool_schemas() == [SEARCH_SCHEMA, PROFILE_SCHEMA]
++
++
++def test_mem0_read_only_exposes_only_search_and_skips_automatic_write(monkeypatch):
++    monkeypatch.setenv("DOLPHINBENCH_MEMORY_READ_ONLY", "1")
++    provider = Mem0MemoryProvider()
++    provider._backend = MagicMock()
++
++    provider.sync_turn("user text", "assistant text")
++
++    assert provider.get_tool_schemas() == [MEM0_SEARCH_SCHEMA]
++    provider._backend.add.assert_not_called()
++
++
++def test_mem0_synchronous_seed_records_provider_event(monkeypatch, tmp_path):
++    receipts = tmp_path / "mem0.jsonl"
++    monkeypatch.setenv("DOLPHINBENCH_MEM0_SYNC_WRITES", "1")
++    monkeypatch.setenv("DOLPHINBENCH_MEM0_SEED_RECEIPTS", str(receipts))
++    monkeypatch.setenv("DOLPHINBENCH_SEED_ITEM_ID", "session-3:0")
++
++    provider = Mem0MemoryProvider()
++    provider._session_id = "hermes-session"
++    provider._mode = "platform"
++    provider._host = ""
++    provider._user_id = "morgan"
++    provider._backend = MagicMock()
++    provider._backend.add.return_value = {
++        "status": "PENDING",
++        "event_id": "event-123",
++    }
++
++    provider.sync_turn("user text", "assistant text")
++
++    kwargs = provider._backend.add.call_args.kwargs
++    assert kwargs["user_id"] == "morgan"
++    assert kwargs["agent_id"] is None
++    assert "Preserve dates" in kwargs["custom_instructions"]
++    rows = [json.loads(line) for line in receipts.read_text().splitlines()]
++    assert rows == [{
++        "agent_id": None,
++        "event_id": "event-123",
++        "event_status": "PENDING",
++        "hermes_session_id": "hermes-session",
++        "operation_kind": "automatic_sync_turn",
++        "provider": "mem0",
++        "receipt_type": "memory_seed_operation",
++        "seed_item_id": "session-3:0",
++        "user_id": "morgan",
++    }]
++
++
++def test_honcho_read_only_exposes_only_read_tools_and_skips_automatic_write(monkeypatch):
++    monkeypatch.setenv("DOLPHINBENCH_MEMORY_READ_ONLY", "1")
++    provider = HonchoMemoryProvider()
++    provider._cron_skipped = False
++    provider._recall_mode = "tools"
++    provider._manager = MagicMock()
++    provider._session_key = "session"
++
++    provider.sync_turn("user text", "assistant text")
++
++    assert provider.get_tool_schemas() == [
++        HONCHO_PROFILE_SCHEMA,
++        HONCHO_SEARCH_SCHEMA,
++        HONCHO_REASONING_SCHEMA,
++        HONCHO_CONTEXT_SCHEMA,
++    ]
++    provider._manager.save.assert_not_called()
+diff --git a/tests/plugins/memory/test_mem0_backend.py b/tests/plugins/memory/test_mem0_backend.py
+index e30903672ed4e8e5d0e494bf2dc7c1e3a64fda4d..2a8c0971374615e10f063daeffa742a446c7b07d 100644
+--- a/tests/plugins/memory/test_mem0_backend.py
++++ b/tests/plugins/memory/test_mem0_backend.py
+@@ -73,6 +73,21 @@ class TestPlatformBackend:
+         # don't surprise older mem0 client versions with an unknown kwarg.
+         assert "metadata" not in call[2]
+ 
++    def test_add_can_omit_agent_id_and_forward_custom_instructions(self):
++        backend, client = self._make()
++        msgs = [{"role": "user", "content": "hi"}]
++        backend.add(
++            msgs,
++            user_id="u1",
++            agent_id=None,
++            infer=True,
++            custom_instructions="Keep exact names.",
++        )
++        kwargs = client.calls[0][2]
++        assert kwargs["user_id"] == "u1"
++        assert "agent_id" not in kwargs
++        assert kwargs["custom_instructions"] == "Keep exact names."
++
+ 
+     def test_update_forwards(self):
+         backend, client = self._make()
+diff --git a/tests/plugins/memory/test_mem0_v3.py b/tests/plugins/memory/test_mem0_v3.py
+index 48d66d480b255f0db2226439a4f21d5c50f9fe92..bd5623ef1a5b939c1e68b2a5eba997cc75ad5280 100644
+--- a/tests/plugins/memory/test_mem0_v3.py
++++ b/tests/plugins/memory/test_mem0_v3.py
+@@ -25,11 +25,20 @@ class FakeBackend:
+         self.captured.append(("get_all", {"filters": filters, "page": page, "page_size": page_size}))
+         return self._all_results
+ 
+-    def add(self, messages, *, user_id, agent_id, infer=False, metadata=None):
++    def add(
++        self, messages, *, user_id, agent_id=None, infer=False, metadata=None,
++        custom_instructions=None,
++    ):
+         self.captured.append((
+             "add",
+             messages,
+-            {"user_id": user_id, "agent_id": agent_id, "infer": infer, "metadata": metadata},
++            {
++                "user_id": user_id,
++                "agent_id": agent_id,
++                "infer": infer,
++                "metadata": metadata,
++                "custom_instructions": custom_instructions,
++            },
+         ))
+         return {"status": "PENDING", "event_id": "evt-test-123"}
+ 
+@@ -56,19 +65,34 @@ class TestMem0V3Tools:
+     def test_search_returns_ids(self, monkeypatch):
+         backend = FakeBackend(search_results=[{"id": "mem-1", "memory": "foo", "score": 0.9}])
+         provider = self._make_provider(monkeypatch, backend)
+-        result = json.loads(provider.handle_tool_call("mem0_search", {"query": "test"}))
+-        assert result["results"][0]["id"] == "mem-1"
++        result = json.loads(provider.handle_tool_call(
++            "search_memories", {"queries": ["test"]}
++        ))
++        assert result["searches"][0]["memories"][0]["id"] == "mem-1"
++
++    def test_search_runs_each_focused_query(self, monkeypatch):
++        backend = FakeBackend(search_results=[{"id": "mem-1", "memory": "foo"}])
++        provider = self._make_provider(monkeypatch, backend)
++        result = json.loads(provider.handle_tool_call(
++            "search_memories", {"queries": ["Morgan preference", "Acme decision"]}
++        ))
++        assert [item["query"] for item in result["searches"]] == [
++            "Morgan preference", "Acme decision",
++        ]
++        assert [call[1] for call in backend.captured] == [
++            "Morgan preference", "Acme decision",
++        ]
+ 
+ 
+     def test_add_uses_content_param(self, monkeypatch):
+         backend = FakeBackend()
+         provider = self._make_provider(monkeypatch, backend)
+-        result = json.loads(provider.handle_tool_call("mem0_add", {"content": "user likes dark mode"}))
++        result = json.loads(provider.handle_tool_call("save_memory", {"content": "user likes dark mode"}))
+         assert len(backend.captured) == 1
+         call = backend.captured[0]
+         assert call[2]["infer"] is False
+         assert call[2]["user_id"] == "u123"
+-        assert call[2]["agent_id"] == "hermes"
++        assert call[2]["agent_id"] is None
+         assert "event_id" in result
+ 
+ 
+@@ -95,7 +119,7 @@ class TestMem0UpdateDelete:
+         backend = FakeBackend()
+         provider = self._make_provider(monkeypatch, backend)
+         result = json.loads(provider.handle_tool_call(
+-            "mem0_update", {"memory_id": "mem-1", "text": "updated fact"}
++            "update_memory", {"memory_id": "mem-1", "text": "updated fact"}
+         ))
+         assert backend.captured[0][1] == "mem-1"
+         assert backend.captured[0][2] == "updated fact"
+@@ -107,7 +131,7 @@ class TestMem0UpdateDelete:
+         backend = FakeBackend()
+         provider = self._make_provider(monkeypatch, backend)
+         result = json.loads(provider.handle_tool_call(
+-            "mem0_delete", {"memory_id": "mem-1"}
++            "delete_memory", {"memory_id": "mem-1"}
+         ))
+         assert backend.captured[0][1] == "mem-1"
+         assert result["result"] == "Memory deleted."
+@@ -142,8 +166,9 @@ class TestMem0V3Internal:
+         assert len(backend.captured) == 1
+         call = backend.captured[0]
+         assert call[2]["user_id"] == "u123"
+-        assert call[2]["agent_id"] == "hermes"
++        assert call[2]["agent_id"] is None
+         assert call[2]["infer"] is True
++        assert "Preserve dates" in call[2]["custom_instructions"]
+ 
+ 
+ class TestMem0Prefetch:
+@@ -173,7 +198,7 @@ class TestMem0Prefetch:
+         assert opts["filters"] == {"user_id": "u123"}
+         assert opts["top_k"] == 10
+         assert opts["rerank"] is False
+-        assert "## Mem0 Memory" in result
++        assert result.startswith("- user prefers dark mode")
+         assert "user prefers dark mode" in result
+ 
+ 
+@@ -246,16 +271,14 @@ class TestMem0V3Config:
+         provider = Mem0MemoryProvider()
+         schemas = provider.get_tool_schemas()
+         names = [s["name"] for s in schemas]
+-        assert names == ["mem0_search", "mem0_add", "mem0_update", "mem0_delete"]
++        assert names == ["search_memories", "save_memory", "update_memory", "delete_memory"]
+ 
+     def test_system_prompt_new_tool_names(self):
+         provider = Mem0MemoryProvider()
+         provider._user_id = "test"
+         block = provider.system_prompt_block()
+-        assert "mem0_search" in block
+-        assert "mem0_add" in block
+-        assert "mem0_update" in block
+-        assert "mem0_delete" in block
++        assert "search_memories" in block
++        assert "session_search" in block
+         assert "mem0_list" not in block
+         assert "mem0_profile" not in block
+         assert "mem0_conclude" not in block
+@@ -390,22 +413,9 @@ class TestCreateBackendRouting:
+         provider = self._provider(monkeypatch, mode="oss", host="http://sh:8888")
+         assert isinstance(provider._create_backend(), OB)
+ 
+-    def test_prompt_label_matches_routing_when_oss_and_host_both_set(self, monkeypatch):
+-        # system_prompt_block must mirror _create_backend precedence: with both
+-        # mode=oss and host set, OSS wins the routing, so the prompt must label
+-        # OSS — not "self-hosted (HTTP API)". Guards the prompt-vs-routing lie.
+-        provider = self._provider(monkeypatch, mode="oss", host="http://sh:8888")
+-        provider._user_id = "test"
+-        block = provider.system_prompt_block()
+-        assert "OSS" in block
+-        assert "HTTP API" not in block
+-
+-
+ class TestSelfHostedConfig:
+     """Config plumbing for self-hosted (MEM0_HOST env + is_available)."""
+ 
+     def test_load_config_reads_mem0_host_env(self, monkeypatch):
+         monkeypatch.setenv("MEM0_HOST", "http://localhost:8888")
+         assert mem0_plugin._load_config()["host"] == "http://localhost:8888"
+-
+-
+diff --git a/tools/memory_tool.py b/tools/memory_tool.py
+index 54dcaa71a623dd4d75b59d213b5063025c6ac6cb..ef7b8a5fbe29ad947fd339662fdf5180b7df634d 100644
+--- a/tools/memory_tool.py
++++ b/tools/memory_tool.py
+@@ -35,6 +35,7 @@ from typing import Dict, Any, List, Optional, Tuple
+ 
+ from utils import atomic_write_text, is_truthy_value
+ from tools.registry import no_cache_check_fn
++from agent.benchmark_memory import memory_is_read_only
+ 
+ # fcntl is Unix-only; on Windows use msvcrt for file locking
+ msvcrt = None
+@@ -1210,6 +1211,8 @@ def check_memory_requirements() -> bool:
+     _memory_surface_flags.set(None)
+     flags = get_builtin_memory_store_flags()
+     _memory_surface_flags.set(flags)
++    if memory_is_read_only("builtin"):
++        return False
+     return flags[0] or flags[1]
+ 
+ 
+@@ -1391,4 +1394,3 @@ registry.register(
+ 
+ 
+ 
+-

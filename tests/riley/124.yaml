@@ -1,0 +1,30 @@
+id: '124'
+narrative_anchor_date: '2028-01-01'
+test: Create a historical planning card for the conditional small-business activation target discussed
+  in 2023. State the target and the event required before it would apply.
+load_bearing_facts:
+- 357
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_conditional_target_card
+      path: result.ok
+      value: true
+      check_id: riley_124_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_conditional_target_card
+      path: args
+      criterion: The card records a historical 65% small-business-tier activation target that would apply
+        only if the sub-50-seat tier shipped in Q3. It does not present the target as current or the shipment
+        as completed.
+      check_id: riley_124_01
+mock_state: {}

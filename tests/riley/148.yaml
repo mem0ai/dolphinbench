@@ -1,0 +1,38 @@
+id: '148'
+narrative_anchor_date: '2028-01-01'
+test: Please create a compact locator card for the archive team covering the February 7, 2023 validated-cut
+  update. Record where the update was posted, who was explicitly included, and why that routing preserved
+  the investigation thread. Keep the card focused on communication routing rather than reconstructing
+  the analysis itself.
+load_bearing_facts:
+- 306
+- 307
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_locator_card
+      path: result.ok
+      value: true
+      check_id: riley_148_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_locator_card
+      path: args
+      criterion: 'The document body functions as a compact communication locator for the February 7, 2023
+        validated-cut update and stays focused on locating and explaining the communication rather than
+        reconstructing the underlying churn analysis.
+
+
+        The body states that the update was posted in #growth-investigations, that Priya was explicitly
+        tagged there, and that this routing was chosen so the thread would stay with the investigation
+        updates. Missing or contradicting any of these three details must fail.'
+      check_id: riley_148_01
+mock_state: {}

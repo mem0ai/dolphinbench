@@ -1,0 +1,57 @@
+id: '197'
+narrative_anchor_date: '2028-01-01'
+test: Create a document titled `January 2028 self-serve operating-model RACI` in the Growth folder. Keep
+  it concise and practical for the review. Name the overall accountable owner rather than giving only
+  a role title, summarize every covered decision area including executive language, and make clear how
+  the two core operating outcomes should be weighted.
+load_bearing_facts:
+- 79
+- 423
+- 412
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_self_serve_raci
+      path: result.ok
+      value: true
+      check_id: riley_197_00
+    - check_id: riley_197_01
+      type: field_equals
+      tool: create_doc
+      action_id: create_self_serve_raci
+      path: args.title
+      value: January 2028 self-serve operating-model RACI
+    - check_id: riley_197_02
+      type: field_equals
+      tool: create_doc
+      action_id: create_self_serve_raci
+      path: args.folder
+      value: Growth
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_self_serve_raci
+      path: args
+      criterion: 'The document clearly names Riley as the overall accountable owner of Helio''s self-serve
+        operating model. It should frame this as overall accountability and must not assign the overall
+        accountability to someone else.
+
+
+        The document concisely covers all of these self-serve operating-model decision areas: eligibility
+        and product constraints; activation and support-load measurement; lifecycle; support boundaries;
+        and executive language. Synonymous wording is acceptable, but none of these areas may be omitted
+        or assigned outside the overall model.
+
+
+        The document identifies activation and support load as the two core operating outcomes and explicitly
+        treats support load as a first-class peer metric beside activation, not as a secondary consideration
+        or footnote.'
+      check_id: riley_197_03
+mock_state: {}

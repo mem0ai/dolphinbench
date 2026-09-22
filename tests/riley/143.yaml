@@ -1,0 +1,58 @@
+id: '143'
+narrative_anchor_date: '2028-01-01'
+test: Create a compact regression-lineage card titled `Helio Start intake regression lineage — 2024-04-23`
+  in the Archive folder. Treat it as a historical baseline. Use every input from the approved public-path
+  admission checklist plus the later connector-access input. Include one admitted case with every input
+  present and one separate non-admitted case for each individual input; do not combine two missing inputs
+  into one case.
+load_bearing_facts:
+- 13
+- 20
+- 21
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_lineage_card
+      path: result.ok
+      value: true
+      check_id: riley_143_00
+    - check_id: riley_143_01
+      type: field_equals
+      tool: create_doc
+      action_id: create_lineage_card
+      path: args.title
+      value: Helio Start intake regression lineage — 2024-04-23
+    - check_id: riley_143_02
+      type: field_equals
+      tool: create_doc
+      action_id: create_lineage_card
+      path: args.folder
+      value: Archive
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_lineage_card
+      path: args
+      criterion: 'The document clearly presents the matrix as the live Helio Start intake baseline on
+        April 23, 2024, and explicitly avoids presenting it as the later or current intake path.
+
+
+        The document contains a compact acceptance-test matrix that (1) has a positive case where every
+        required input is satisfied and the expected result is admitted, and (2) has a separate negative
+        case for each of these high-level inputs: account is under 50, admin proof is present, deployment
+        is simple, first-week integration fit is present, a current entitlement state is present, and
+        billing is supported. Each negative case must show that the applicant is not admitted when that
+        input is absent or unsatisfied. The first-week integration-fit case must reflect the April 23
+        connector-access design: the applicant must definitely be able to authenticate the selected supported
+        connector; a No or Not sure answer remains pending and routes to assistance before admission.
+        Connector access must not be conflated with Helio admin proof. Equivalent concise labels for non-admission,
+        pending, assisted routing, or ineligibility are acceptable where they preserve these outcomes.'
+      check_id: riley_143_03
+mock_state: {}

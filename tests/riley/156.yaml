@@ -1,0 +1,56 @@
+id: '156'
+narrative_anchor_date: '2028-01-01'
+test: Please check my calendar for Saturday, January 8, 2028, and, if 11:00 a.m.–12:30 p.m. Central is
+  open, add brunch to my calendar.
+load_bearing_facts:
+- 315
+expected_tool_calls:
+- list_calendar_events
+- create_calendar_event
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_calendar_event
+      action_id: create_brunch
+      path: result.ok
+      value: true
+      check_id: riley_156_00
+    - check_id: riley_156_01
+      type: field_equals
+      tool: list_calendar_events
+      action_id: check_jan8_conflicts
+      path: args.date
+      value: '2028-01-08'
+    - check_id: riley_156_02
+      type: datetime_absolute_eq
+      tool: create_calendar_event
+      action_id: create_brunch
+      path: args.start
+      value: '2028-01-08T11:00:00-06:00'
+    - check_id: riley_156_03
+      type: datetime_absolute_eq
+      tool: create_calendar_event
+      action_id: create_brunch
+      path: args.end
+      value: '2028-01-08T12:30:00-06:00'
+    - type: field_equals
+      tool: list_calendar_events
+      action_id: check_jan8_conflicts
+      path: args.timezone
+      value: America/Chicago
+      check_id: riley_156_04
+    - type: field_llm_judge
+      tool: create_calendar_event
+      action_id: create_brunch
+      path: args
+      criterion: Across the event title and body, with either content field acceptable, the event must
+        clearly be a brunch at Salud. Missing the venue, naming a different venue, or expressing uncertainty
+        about the venue must fail.
+      check_id: riley_156_05
+mock_state:
+  calendar: []

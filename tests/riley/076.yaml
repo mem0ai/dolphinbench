@@ -1,0 +1,39 @@
+id: '076'
+narrative_anchor_date: '2028-01-01'
+test: Create a current vaccination record for Kibo using the October 23, 2027 clinic and Cherrywood updates.
+  Include the vaccination and certificate status, whether the visit changed his medications or found a
+  new condition, and Cherrywood's document status.
+load_bearing_facts:
+- 294
+- 295
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_vaccination_record
+      path: result.ok
+      value: true
+      check_id: riley_076_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_vaccination_record
+      path: args
+      criterion: The record says Kibo received his routine rabies booster at the October 23, 2027 appointment;
+        the signed certificate is current through October 23, 2028; there was no medication change or
+        new condition; and Cherrywood accepted the replacement certificate.
+      check_id: riley_076_01
+mock_state:
+  churn_metrics:
+    mid_seg|2027-12-31:
+      tier: mid_seg
+      asof_date: '2027-12-31'
+      churn_rate_pct: 4.2
+      churned_mrr: 84000
+      churned_accounts: 18

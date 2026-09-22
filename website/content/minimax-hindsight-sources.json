@@ -1,0 +1,133 @@
+{
+  "morgan": {
+    "run_id": "f7c6eedfe7eb4e8f930c5d26768ea58c-hermes-minimax_minimax-m3-high-hindsight",
+    "source_bundle": {
+      "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/dolphinbench-74cb48b9e2f8fe28-c08ac2624786cf0b.tar.gz/",
+      "sha256": "c08ac2624786cf0b4d2547a39370f7382f85a9254bc158878c3d72215b118d98"
+    },
+    "results": {
+      "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/morgan-minimax-hindsight-results.json.gz/",
+      "sha256": "a8d43a4b4db3d90e5157cc6ec5a26d4ed1d0438c94b273daa69ba036d0071b5a"
+    },
+    "records_archive": {
+      "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/minimax-hindsight-results-and-traces.tar.gz/",
+      "sha256": "9b99ca95f3c76a488d37f23446829f09e777f28ee7562743fe7e6cfd219bca29"
+    },
+    "frozen_profile_archive": "profile-dolphinbench-hindsight-morgan-frozen-94a33a741f4e-0a2c6e08902cd69b.tar.gz",
+    "runtime_provenance": {
+      "hermes": {
+        "git_revision": "b115aeaf34a44a85742e53b3568741f042e34776",
+        "source_root": "/tmp/dolphinbench-job/workspace/external/01-hermes_code",
+        "source_sha256": "48a1baac00436ec11d186b2e251e81d1f6cf217f2bd583654357be4fb5ea9a9c"
+      },
+      "hindsight": {
+        "package": "hindsight-client",
+        "package_version": null,
+        "plugin_git_revision": "b115aeaf34a44a85742e53b3568741f042e34776",
+        "plugin_root": "/tmp/dolphinbench-job/workspace/external/03-hindsight_plugin",
+        "plugin_sha256": "ed63e20dffe9791fabf5cbfa50f88297301f51eaa57fa431a957299e9c56a238"
+      },
+      "mem0": {
+        "package": "mem0ai",
+        "package_version": null,
+        "plugin_git_revision": "b115aeaf34a44a85742e53b3568741f042e34776",
+        "plugin_root": "/tmp/dolphinbench-job/workspace/external/04-mem0_plugin",
+        "plugin_sha256": "62b1cafe03a10c9c23f41a374ec30cd1b55326fe79f79ccece3d134b3d1689b8"
+      }
+    },
+    "ingestion_record": {
+      "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/morgan-minimax-hindsight-ingestion.json.gz/",
+      "sha256": "bbd36af6e0411fbc47d3009c83ee7be9e06fc8a5c7140eab346813d7f7857a7b"
+    }
+  },
+  "alex": {
+    "run_id": "5d3f9129049d4d41bb6b40e6daa8841c-hermes-minimax_minimax-m3-high-hindsight",
+    "source_bundle": {
+      "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/dolphinbench-parallel-e87329b491efdd193f33bf0c.tar.gz/",
+      "sha256": "e87329b491efdd193f33bf0c0ea43d90d9c72e903a8581a47d834e55db964577"
+    },
+    "results": {
+      "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/alex-minimax-hindsight-results.json.gz/",
+      "sha256": "1c50a2f8b7f34ea55d998cf28b3ccd9c5d732a4e761bbf8f1d126d5d98ff3fd4"
+    },
+    "records_archive": {
+      "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/minimax-hindsight-results-and-traces.tar.gz/",
+      "sha256": "9b99ca95f3c76a488d37f23446829f09e777f28ee7562743fe7e6cfd219bca29"
+    },
+    "frozen_profile_archive": "profile-dolphinbench-hindsight-alex-frozen-2d22c49d2920-8e6b3a6cc4780405.tar.gz",
+    "runtime_provenance": {
+      "agent_container": {
+        "backend": "modal-sandbox",
+        "image": "im-WUXDPwWPWtx8Anv1KpnROf"
+      },
+      "hermes": {
+        "git_revision": "b115aeaf34a44a85742e53b3568741f042e34776",
+        "source_root": "/tmp/dolphinbench-job/workspace/external/01-hermes_code",
+        "source_sha256": "22a3a49f06e0acc2db7415b174e337ec4a14490e95f01cdb9ba65d2ef852e132"
+      },
+      "hindsight": {
+        "package": "hindsight-client",
+        "package_version": null,
+        "plugin_git_revision": "b115aeaf34a44a85742e53b3568741f042e34776",
+        "plugin_root": "/tmp/dolphinbench-job/workspace/external/03-hindsight_plugin",
+        "plugin_sha256": "19842651362ead4507515758d3ee8db930d9a524ae04a424a2af118d7da90a0c"
+      },
+      "mem0": {
+        "package": "mem0ai",
+        "package_version": null,
+        "plugin_git_revision": "b115aeaf34a44a85742e53b3568741f042e34776",
+        "plugin_root": "/tmp/dolphinbench-job/workspace/external/04-mem0_plugin",
+        "plugin_sha256": "62b1cafe03a10c9c23f41a374ec30cd1b55326fe79f79ccece3d134b3d1689b8"
+      }
+    },
+    "ingestion_record": {
+      "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/alex-minimax-hindsight-ingestion.json.gz/",
+      "sha256": "531a8135b20d31becbf64b28e14b7e2ffbc53b910b5a6f0204029a3a1a926975"
+    }
+  },
+  "riley": {
+    "run_id": "b714bb9966bb454a827855e7c9ebd539-hermes-minimax_minimax-m3-high-hindsight",
+    "source_bundle": {
+      "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/dolphinbench-parallel-288bbf7cea107e565f0fdbf7.tar.gz/",
+      "sha256": "288bbf7cea107e565f0fdbf7aee96e1785a9813c1251e809858a8533f7e06c38"
+    },
+    "results": {
+      "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/riley-minimax-hindsight-results.json.gz/",
+      "sha256": "05a1bc96a72991824ade99bf158d1fdb2f1b9dfa056b1bf592d1a0c3e513ffe4"
+    },
+    "records_archive": {
+      "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/minimax-hindsight-results-and-traces.tar.gz/",
+      "sha256": "9b99ca95f3c76a488d37f23446829f09e777f28ee7562743fe7e6cfd219bca29"
+    },
+    "frozen_profile_archive": "profile-dolphinbench-hindsight-riley-frozen-17b68a15b81a-96dd2676769564ba.tar.gz",
+    "runtime_provenance": {
+      "agent_container": {
+        "backend": "modal-sandbox",
+        "image": "im-WUXDPwWPWtx8Anv1KpnROf"
+      },
+      "hermes": {
+        "git_revision": "b115aeaf34a44a85742e53b3568741f042e34776",
+        "source_root": "/tmp/dolphinbench-job/workspace/external/01-hermes_code",
+        "source_sha256": "22a3a49f06e0acc2db7415b174e337ec4a14490e95f01cdb9ba65d2ef852e132"
+      },
+      "hindsight": {
+        "package": "hindsight-client",
+        "package_version": null,
+        "plugin_git_revision": "b115aeaf34a44a85742e53b3568741f042e34776",
+        "plugin_root": "/tmp/dolphinbench-job/workspace/external/03-hindsight_plugin",
+        "plugin_sha256": "19842651362ead4507515758d3ee8db930d9a524ae04a424a2af118d7da90a0c"
+      },
+      "mem0": {
+        "package": "mem0ai",
+        "package_version": null,
+        "plugin_git_revision": "b115aeaf34a44a85742e53b3568741f042e34776",
+        "plugin_root": "/tmp/dolphinbench-job/workspace/external/04-mem0_plugin",
+        "plugin_sha256": "62b1cafe03a10c9c23f41a374ec30cd1b55326fe79f79ccece3d134b3d1689b8"
+      }
+    },
+    "ingestion_record": {
+      "url": "https://dolphinbench-review.vercel.app/leaderboard/evidence/riley-minimax-hindsight-ingestion.json.gz/",
+      "sha256": "bd3b94bfc0895caaf8ea35617d497df020d4961db0389f292bbe074f00bbd653"
+    }
+  }
+}

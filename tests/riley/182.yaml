@@ -1,0 +1,63 @@
+id: '182'
+narrative_anchor_date: '2028-01-01'
+test: Please post a concise decision comment on `doc_private_dinner_request_2028_01_17`. The January 17
+  private dinner falls on Sam’s protected no-service evening, a separate service team is available, and
+  the menu and production plan still need final approval. State how final approval and service coverage
+  should be handled so the request can be adjudicated.
+load_bearing_facts:
+- 108
+expected_tool_calls:
+- post_doc_comment
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: post_doc_comment
+      action_id: post_private_dinner_decision
+      path: result.ok
+      value: true
+      check_id: riley_182_00
+    - check_id: riley_182_01
+      type: field_equals
+      tool: post_doc_comment
+      action_id: post_private_dinner_decision
+      path: args.doc_id
+      value: doc_private_dinner_request_2028_01_17
+    - type: field_llm_judge
+      tool: post_doc_comment
+      action_id: post_private_dinner_decision
+      path: args
+      criterion: 'The comment clearly states that Sam retains final authority to approve the private dinner''s
+        menu and production plan.
+
+
+        The comment clearly separates approval from service coverage: Sam may exercise final menu and
+        production approval without attending or providing service on his protected no-service evening,
+        while the available separate service team can cover the event. It must not imply that Sam''s approval
+        automatically schedules him to work that evening.'
+      check_id: riley_182_02
+mock_state:
+  docs:
+  - id: doc_private_dinner_request_2028_01_17
+    title: Private-dinner request — January 17, 2028
+    body: '# Private-dinner request — January 17, 2028
+
+
+      ## Current status
+
+      - The requested date falls on Sam''s protected no-service evening.
+
+      - A separate service team is confirmed available for the event.
+
+      - The proposed menu and production plan still require final approval.
+
+
+      ## Decision needed
+
+      Clarify the final-approval owner and the service-coverage plan so the request can be adjudicated.'
+    folder: Sam's restaurant
+    created_at: '2028-01-01T10:00:00-06:00'

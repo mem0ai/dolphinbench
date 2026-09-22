@@ -1,0 +1,35 @@
+id: '114'
+narrative_anchor_date: '2028-01-01'
+test: For my New Year reset, create a short, practical reset and upkeep guide for the watercolor setup
+  I established at Cherrywood. Use the actual workspace and supplies from that setup. Include initial,
+  per-session, weekly, and occasional upkeep that keeps the area ready for painting.
+load_bearing_facts:
+- 24
+- 25
+- 26
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: studio_reset_guide
+      path: result.ok
+      value: true
+      check_id: riley_114_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: studio_reset_guide
+      path: args
+      criterion: 'The body is a concise, practical watercolor-area reset and upkeep guide with an initial
+        reset, session preparation or cleanup, weekly upkeep, and less-frequent upkeep. It uses the established
+        Cherrywood setup: a dedicated painting table and narrow supply cabinet in the dining corner where
+        the palette, brushes, current paper, and commonly used supplies can remain organized and ready
+        between sessions instead of being fully cleared away.'
+      check_id: riley_114_01
+mock_state: {}

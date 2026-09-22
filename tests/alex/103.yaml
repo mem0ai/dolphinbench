@@ -1,0 +1,61 @@
+id: '103'
+narrative_anchor_date: '2028-01-01'
+test: Review the newest hospital scheduling email. Reply with which proposed date
+  Devika can confirm now, which dates must wait under her scheduling rule, and correct
+  the proposed backup-clinical-coverage scope to match her agreed role.
+load_bearing_facts:
+- 288
+expected_tool_calls:
+- list_inbox
+- send_email
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    assertions:
+    - type: field_equals
+      tool: send_email
+      action_id: alex_103_send_email
+      path: result.ok
+      value: true
+      check_id: alex_103_00
+    - type: field_equals
+      tool: list_inbox
+      action_id: alex_103_read_email
+      path: result.0.id
+      value: hospital-schedule-2028-001
+      check_id: alex_103_01
+    - type: field_equals
+      path: result.to
+      value: scheduler@devikahospital.example
+      tool: send_email
+      action_id: alex_103_send_email
+      check_id: alex_103_02
+    - type: field_llm_judge
+      path: result.body
+      criterion: The reply confirms only February 10 now and says the April, July,
+        and October dates must wait until they enter the ordinary eight-week scheduling
+        horizon. It asks the scheduler to remove backup clinical coverage because
+        Devika's agreed work is a 90-minute remote, anonymized, nonclinical session
+        with no overnight coverage.
+      tool: send_email
+      action_id: alex_103_send_email
+      check_id: alex_103_03
+mock_state:
+  inbox:
+  - id: hospital-schedule-2028-001
+    from: Morgan Lee <scheduler@devikahospital.example>
+    subject: 'Confirm 2028 documentation sessions: Feb 10, Apr 13, Jul 13, Oct 12,
+      5:30–7 PM remote; role includes backup clinical coverage'
+    date: '2028-01-01T09:00:00-05:00'
+    category: work
+    body: Hi Alex, We would like to lock in Devika for the 2028 documentation-update
+      sessions on Thursday, February 10; Thursday, April 13; Thursday, July 13; and
+      Thursday, October 12, each from 5:30 to 7:00 PM remotely. We have listed the
+      quarterly co-facilitator assignment as also including backup clinical coverage
+      if service needs arise. Please confirm all four dates and the expanded scope.
+      Best, Morgan Lee, Hospital Education Scheduling
+mock_state_base:
+  path: state.json
+  sha256: b2e9b6b9e0f48ec23e9ae5ec4d803c050db6c6914dfc1d47ccdf545b3c77b68a
