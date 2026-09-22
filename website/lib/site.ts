@@ -16,3 +16,6 @@ export const mem0Url = 'https://mem0.ai';
 export const paperUrl = 'https://arxiv.org/abs/2609.24971';
 export const discordUrl = 'https://mem0.dev/DiD';
 export const contactEmail = 'dolphinbench@mem0.ai';
+
+// Google Analytics 4 measurement ID. Public by design: it ships in every page's tag.
+export const googleAnalyticsId = 'G-DS880BMQ34';

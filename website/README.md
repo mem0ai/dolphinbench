@@ -242,6 +242,24 @@ with submissions enabled and Cloudflare's official passing test keys:
 It calls Cloudflare's test verification endpoint; it does not upload to Blob or
 call models. Set `PLAYWRIGHT_BASE_URL` to that server when running the browser tests.
 
+## Analytics
+
+Every page carries the Google tag (`gtag.js`) for Google Analytics 4 property
+`G-DS880BMQ34`, mounted from the root layout through `components/Analytics.tsx`.
+The measurement ID is a public identifier and lives in `lib/site.ts`; it is not
+an environment variable, so no deployment step can silently drop the tag.
+
+`/run/receipt/` is the one excluded route. It is authorized by its fragment,
+`gtag` reports the full URL, and the page already suppresses its referrer to keep
+that fragment off the wire. Receipt links are plain anchors, so every visit is a
+full navigation and the tag is never left running from a previous route.
+
+The tag is not gated by environment, so `next dev` and browser-test runs would
+otherwise report from `127.0.0.1`. Exclude them in the property itself, under
+Admin, Data streams, Configure tag settings, Define internal traffic. The browser
+tests block requests to `googletagmanager.com`, so `npm run test:e2e` never
+reports.
+
 ## Routes
 
 | Route | Content |
