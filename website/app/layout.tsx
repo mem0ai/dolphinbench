@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import localFont from 'next/font/local';
 import { JetBrains_Mono } from 'next/font/google';
 import '../styles/globals.css';
+import Analytics from '@/components/Analytics';
 import DolphinMark from '@/components/DolphinMark';
 import Header from '@/components/Header';
 import StructuredData, { organizationSchema, websiteSchema } from '@/components/StructuredData';
@@ -69,6 +70,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${fustat.variable} ${jetbrainsMono.variable}`}>
       <body className="min-h-screen bg-paper font-sans text-ink antialiased">
+        <Analytics />
         <StructuredData data={[websiteSchema(), organizationSchema()]} />
         <Header />
         <main id="main-content">{children}</main>

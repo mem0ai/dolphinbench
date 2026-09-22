@@ -84,6 +84,26 @@ test('inner pages describe themselves and private pages stay out of the index', 
   expect(await meta(page, 'meta[name="robots"]')).toBe('noindex, nofollow');
 });
 
+test('the Google tag loads on public pages and stays off the private receipt link', async ({ page }) => {
+  // next/script injects the tag after hydration, so it lands in the body rather than the head.
+  const tag = page.locator('script[src*="googletagmanager.com/gtag/js"]');
+  const dataLayer = () => page.evaluate(() => (window as { dataLayer?: unknown[] }).dataLayer?.length ?? 0);
+  // Never let a test run report into the property.
+  await page.route('**://*.googletagmanager.com/**', route => route.abort());
+
+  await page.goto('/');
+  await expect(tag).toHaveAttribute('src', /[?&]id=G-DS880BMQ34(&|$)/);
+  await expect.poll(dataLayer).toBeGreaterThan(0);
+  await page.goto('/leaderboard/');
+  await expect(tag).toHaveCount(1);
+
+  // gtag reports the full URL, and the receipt fragment is a capability token.
+  await page.goto('/run/receipt/#00000000-0000-4000-8000-000000000000.' + 'x'.repeat(43));
+  await expect(page.locator('body')).toContainText('Submission receipt');
+  await expect(tag).toHaveCount(0);
+  expect(await dataLayer()).toBe(0);
+});
+
 test('robots, sitemap, and llms.txt are served without a session', async ({ request }) => {
   const robots = await request.get('/robots.txt');
   expect(robots.status()).toBe(200);
