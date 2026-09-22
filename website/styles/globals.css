@@ -67,7 +67,6 @@
   .result-expand[aria-expanded='true'] svg { transform: rotate(180deg); }
   .persona-scores { @apply grid grid-cols-3 gap-4; }
   .persona-scores dd { @apply mt-1 tabular-nums; }
-  .result-evidence { @apply mt-4 flex flex-wrap gap-x-6 gap-y-3; }
   .submission-results-table { min-width: 1040px; table-layout: fixed; }
   .submission-results-table tbody th, .submission-results-table tbody td { overflow-wrap: anywhere; vertical-align: top; }
   .submission-results-table tbody td.text-right { white-space: nowrap; }

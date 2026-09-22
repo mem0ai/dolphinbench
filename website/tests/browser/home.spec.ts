@@ -205,14 +205,17 @@ for (const viewport of [
       path: testInfo.outputPath('leaderboard.png'),
       fullPage: true,
     });
-    await page.getByRole('button', { name: 'Scores and evidence for Mem0, Fixture Luna, Hermes' }).click();
+    await page.getByRole('button', { name: 'Run details for Mem0, Fixture Luna, Hermes' }).click();
     const detail = page.locator('#result-synthetic-mem0');
     await expect(detail).toContainText('110 / 200');
     await expect(detail).toContainText('120 / 200');
     await expect(detail).toContainText('130 / 200');
-    for (const name of ['Alex', 'Morgan', 'Riley', 'Configuration', 'Source bundle', 'Recordings', 'Grades']) {
+    for (const name of ['Alex', 'Morgan', 'Riley', 'View run details']) {
       await expect(detail.getByRole('link', { name, exact: true })).toHaveAttribute('href', /^https:\/\/example.com\/synthetic-only\//);
     }
+    await expect(detail).not.toContainText('Source bundle');
+    await expect(detail).not.toContainText('Recordings');
+    await expect(detail).not.toContainText('Grades');
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 
     await page.unroute(resultUrl);
