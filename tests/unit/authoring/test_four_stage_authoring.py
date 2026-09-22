@@ -290,6 +290,22 @@ class FourStageAuthoringTests(creation_fixture.CreationFixture):
         result = check_review_examples(response=ReviewResponse.model_validate(raw), request=self.review_request(), out=self.root / "examples")
         self.assertFalse(result["passed"])
 
+    def test_individual_check_verdict_distinguishes_skipped_comparisons(self):
+        from authoring.review import individual_check_verdict
+
+        failed = {"ok": False, "reason": "comparison failed"}
+        passed = {"ok": True, "reason": "comparison passed"}
+        skipped = {"ok": False, "reason": "not evaluated: a direct comparison failed for this call"}
+        for comparisons, expected in (
+            ([failed], False), ([passed], True), ([skipped], None),
+            ([failed, skipped], None), ([passed, skipped], True),
+            ([failed, passed], True), ([{"ok": None}], None),
+        ):
+            with self.subTest(comparisons=comparisons):
+                self.assertIs(individual_check_verdict({"ok": False, "call_evaluations": comparisons}), expected)
+        self.assertIs(individual_check_verdict({"ok": False, "call_evaluations": []}), False)
+        self.assertIsNone(individual_check_verdict({}))
+
     def test_grader_service_error_does_not_pass_negative_example(self):
         with self.assertRaisesRegex(RuntimeError, "offline error"):
             check_review_examples(response=ReviewResponse.model_validate(approving_review(before=True)),
@@ -646,6 +662,29 @@ class FourStageAuthoringTests(creation_fixture.CreationFixture):
             any("did not fail a remembered-result check" in reason for reason in evidence["reasons"]),
             evidence,
         )
+
+    def test_clean_certification_rejects_a_skipped_memory_check(self):
+        from authoring.create_tests import _clean_certification_evidence
+
+        manifest = self.create_batch(ScriptedClient(writer(), approving_review(before=True)))
+        completed = manifest["final_review_results"][0]
+        candidate = Path(completed["candidate"])
+        spec = yaml.safe_load(candidate.read_text())
+        gate = json.loads(Path(completed["gate"]).read_text())
+        for shot in gate["result"]["shots"]:
+            if not shot["with_memory"]:
+                shot["tool_calls"] = calls(GOOD, "wrong@example.com")
+                shot["tool_results"] = [{"call_index": 0, **shot["tool_calls"][0], "result": {"sent": True}}]
+                shot["grade"] = grade_tool_trace(shot["tool_calls"], spec["grade"]["config"], spec["test"])
+                shot["passed"] = shot["grade"]["passed"]
+        altered_gate = self.root / "skipped_memory_check.json"
+        dump_json(altered_gate, gate)
+        clean, evidence = _clean_certification_evidence(
+            candidate=candidate, gate=altered_gate, planned_task=self.idea
+        )
+        self.assertFalse(clean)
+        self.assertEqual(evidence["no_memory_failed_remembered_check_ids"], [[], []])
+        self.assertTrue(any("did not fail a remembered-result check" in reason for reason in evidence["reasons"]))
 
     def test_clean_certification_routes_execution_errors_to_final_review(self):
         from authoring.create_tests import _clean_certification_evidence
@@ -1083,8 +1122,15 @@ class FourStageAuthoringTests(creation_fixture.CreationFixture):
         from authoring.review import check_rejection_examples
         raw = self.check_issue()
         raw["issues"][0]["counterexample"]["calls"] = [{"tool": "send_email", "args_json": json.dumps(calls(GOOD, "wrong@example.com")[0]["args"])}]
-        with self.assertRaisesRegex(ReviewPendingError, "disagrees"):
-            check_rejection_examples(response=ReviewResponse.model_validate(raw), request=self.review_request(), out=self.root / "sibling")
+        grader = Mock(side_effect=grade_tool_trace)
+        for _ in range(2):
+            with self.assertRaisesRegex(ReviewPendingError, "disagrees"):
+                check_rejection_examples(response=ReviewResponse.model_validate(raw), request=self.review_request(),
+                                         out=self.root / "sibling", grader=grader)
+        self.assertEqual(grader.call_count, 1)
+        saved = json.loads((self.root / "sibling/issue_0.json").read_text())
+        self.assertIsNone(saved["observed_check_pass"])
+        self.assertFalse(saved["claim_reproduced"])
 
     def test_counterexample_transport_error_is_not_a_defect(self):
         from authoring.review import check_rejection_examples

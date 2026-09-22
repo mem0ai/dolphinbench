@@ -58,6 +58,7 @@ from authoring.propose import (
     validate_working_batch_replacement,
 )
 from authoring.progress import authoring_artifacts, cached_authoring_response, load_progress, save_progress
+from authoring.review import individual_check_verdict
 from authoring.run import (
     _author_new_test_attempt,
     _attempt,
@@ -4861,6 +4862,7 @@ def _clean_certification_evidence(
                     check_id
                     for check_id in remembered_check_ids
                     if detail_by_id[check_id].get("ok") is False
+                    and individual_check_verdict(detail_by_id[check_id]) is False
                 )
                 failed_remembered_by_attempt.append(failed_remembered)
                 if shot.get("passed") is not False or not failed_remembered:

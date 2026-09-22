@@ -301,6 +301,22 @@ def _grading_identity(request: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def individual_check_verdict(detail: dict[str, Any]) -> bool | None:
+    """Return the check's own verdict, or None when a comparison was skipped."""
+    comparisons = detail.get("call_evaluations") or []
+    if not comparisons:
+        verdict = detail.get("ok")
+        return verdict if type(verdict) is bool else None
+    if any(not isinstance(row, dict) or type(row.get("ok")) is not bool for row in comparisons):
+        return None
+    # Saved grades use ok=False for both failed and skipped comparisons.
+    evaluated = [row for row in comparisons
+                 if not str(row.get("reason", "")).startswith("not evaluated:")]
+    if any(row["ok"] for row in evaluated):
+        return True
+    return False if len(evaluated) == len(comparisons) else None
+
+
 def check_rejection_examples(*, response: ReviewResponse, request: dict[str, Any], out: Path,
                              grader: Callable[..., dict[str, Any]] = grade_tool_trace) -> None:
     for index, issue in enumerate(response.issues):
@@ -323,7 +339,7 @@ def check_rejection_examples(*, response: ReviewResponse, request: dict[str, Any
         comparisons = detail.get("call_evaluations") or []
         if any(type(row.get("ok")) is not bool for row in comparisons):
             raise ReviewPendingError("counterexample has incomplete call evaluations")
-        observed = any(row["ok"] for row in comparisons) if comparisons else detail["ok"]
+        observed = individual_check_verdict(detail)
         matches = observed is example.predicted_pass
         dump_json(path, {"input_sha256": _hash(inputs), "inputs": inputs, "grade": grade,
                          "predicted_pass": example.predicted_pass, "required_pass": example.required_pass,
@@ -368,9 +384,8 @@ def check_review_examples(*, response: ReviewResponse, request: dict[str, Any], 
                 detail = by_id.get(check_id) or {}
                 # Same-action failure marks every grouped check false. Ensure
                 # the named remembered check itself rejects the example too.
-                matches = matches and detail.get("ok") is False and not any(
-                    row.get("ok") is True for row in detail.get("call_evaluations") or []
-                )
+                matches = (matches and detail.get("ok") is False
+                           and individual_check_verdict(detail) is False)
         results.append({"case": name, "expected_pass": expected, "grade": grade, "matches_expected": matches})
     result = {"passed": all(row["matches_expected"] for row in results), "cases": results,
               "expected_failed_check_ids": expected_ids}
