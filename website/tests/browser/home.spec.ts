@@ -67,6 +67,8 @@ for (const viewport of [
     await expect(page.locator('main')).not.toContainText(
       'Cost covers token-priced agent inference only',
     );
+    await expect(page.getByRole('link', { name: 'Methodology', exact: true })).toHaveCount(0);
+    await expect(page.getByRole('link', { name: 'Evaluation protocol', exact: true })).toHaveCount(0);
     const headings = await page
       .locator('main h1, main h2, main h3')
       .allTextContents();
@@ -194,7 +196,7 @@ for (const viewport of [
     ).toHaveAttribute('aria-current', 'page');
     await expect(
       page.getByRole('navigation', { name: 'Leaderboard resources' }),
-    ).toContainText('MethodologyEvaluation protocolDataset');
+    ).toHaveText('Dataset →');
     expect(
       await page.evaluate(
         () => document.documentElement.scrollWidth <= innerWidth,

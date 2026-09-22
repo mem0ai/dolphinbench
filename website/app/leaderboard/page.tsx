@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import ResultsExplorer from '@/components/results/ResultsExplorer';
 import Submissions from '@/components/Submissions';
-import { evaluationUrl, methodologyUrl } from '@/lib/site';
 
 export const metadata = {
   title: 'Leaderboard',
@@ -26,8 +25,6 @@ export default function LeaderboardPage() {
         <Submissions mode="public" />
       </section>
       <nav aria-label="Leaderboard resources" className="mt-16 flex flex-wrap gap-7 border-t border-hairline pt-8 text-base font-medium">
-        <a href={methodologyUrl} className="text-link">Methodology</a>
-        <a href={evaluationUrl} className="text-link">Evaluation protocol</a>
         <Link href="/dataset/" className="text-link">
           Dataset <span aria-hidden="true">→</span>
         </Link>

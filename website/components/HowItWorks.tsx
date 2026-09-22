@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { Check } from 'lucide-react';
 import { data, formatDate, number } from '@/lib/data';
 import { datasetFacts, getWorkedExample, numberWord } from '@/lib/example';
-import { evaluationUrl, methodologyUrl } from '@/lib/site';
 
 const capitalize = (word: string) => word.charAt(0).toUpperCase() + word.slice(1);
 
@@ -157,8 +156,6 @@ export default function HowItWorks() {
         answers the same {number(data.tests)} tasks.
       </p>
       <div className="mt-8 flex flex-wrap gap-7 text-base font-medium">
-        <a href={methodologyUrl} className="text-link">Methodology</a>
-        <a href={evaluationUrl} className="text-link">Evaluation protocol</a>
         <Link href="/dataset/" className="text-link">
           Dataset <span aria-hidden="true">→</span>
         </Link>
