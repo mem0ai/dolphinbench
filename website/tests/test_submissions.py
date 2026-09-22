@@ -20,7 +20,7 @@ sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / 'website'))
 from api import submission_validator as worker
 from harness import submission
-from harness import test_submission as fixtures
+from tests.unit.submissions import test_submission as fixtures
 
 
 class ValidatorTests(unittest.TestCase):

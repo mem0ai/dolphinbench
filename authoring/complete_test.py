@@ -11,7 +11,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, model_v
 from authoring.models import ApprovedIdea, ExistingRecord, NewRecord
 from authoring.pipeline import AuthoringValidationError, build_mock_state, tool_has_final_effect
 from graders.explicit import CHECK_TYPES, validate_checks
-from harness.test_spec_schema import TestSpec
+from harness.task_schema import TestSpec
 
 
 class SelectedRecord(BaseModel):

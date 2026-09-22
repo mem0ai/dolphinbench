@@ -72,7 +72,7 @@ from authoring.run import (
 )
 from construction.llm import AzureJsonClient
 from construction.runtime_model_calls import cached_client_complete, request_hash
-from harness.test_spec_schema import TestSpec
+from harness.task_schema import TestSpec
 from harness.dataset import load_test
 from authoring.certify import verify_gate_python
 

@@ -22,7 +22,7 @@ from authoring.context import (
     load_config,
 )
 from authoring.propose import reset_persona_state_after_publish
-from harness.test_spec_schema import TestSpec
+from harness.task_schema import TestSpec
 
 
 ACCEPTED_STATUSES = {

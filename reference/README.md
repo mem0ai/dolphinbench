@@ -4,16 +4,16 @@ This directory contains reference ingestion, evaluation, recovery, and result
 recording code. Reproduce a reported result using its recorded source bundle
 and settings, not a later version of this directory.
 
-The paper covers Hermes Luna, Hermes MiniMax, and Claude Code Sonnet, each with
-Built-In, Mem0, Honcho, Hindsight, and Supermemory. Each configuration has its
-own ingestion and evaluation.
+The paper covers Hermes Luna and Hermes MiniMax with Built-In, Mem0, Honcho,
+Hindsight, and Supermemory, and Claude Code Sonnet with Built-In, Mem0, and
+Honcho. Each configuration has its own ingestion and evaluation.
 
 To evaluate your own harness, use the [integration guide](../docs/DRIVER_CONTRACT.md).
 The reference configurations are examples and reproduction code for the paper.
 
 ## Code ownership
 
-There are 20 implementation files, including the command entrypoint:
+The code is organized by responsibility:
 
 | Files | Responsibility |
 | --- | --- |
@@ -32,10 +32,6 @@ There are 20 implementation files, including the command entrypoint:
 Mem0 uses the harness's official memory plugin and hosted service. Its ingestion
 and recovery logic lives with the corresponding harness; it does not need a
 separate client implementation in this directory.
-
-`source-map.json` maps the earlier files to their consolidated owners and
-records the source snapshots reviewed during cleanup. It is not a provenance
-bundle for a completed benchmark result.
 
 ## Commands
 
@@ -111,7 +107,7 @@ The local container boundary test uses an explicitly selected existing image
 with Python and the MCP SDK and makes no model calls:
 
 ```bash
-DOLPHINBENCH_CONTAINER_TEST_IMAGE=sha256:... python -m unittest reference.tests.test_agent_container
+DOLPHINBENCH_CONTAINER_TEST_IMAGE=sha256:... python -m unittest tests.unit.integrations.test_agent_container
 ```
 
 The explicit Modal check uses temporary compute and fixture app/memory data,
@@ -158,11 +154,11 @@ The regression tests cover history ordering, provider completion checks,
 interrupted writes, checkpoint restoration, evaluation resume, and recording:
 
 ```bash
-python -m unittest discover -s reference/tests -p 'test_*.py'
-python -m unittest discover -s harness -p 'test_*.py'
+python -m unittest discover -s tests/unit/integrations -t . -p 'test_*.py'
+python -m unittest discover -s tests/unit/runner -t . -p 'test_*.py'
 ```
 
 These local checks do not establish a successful paid reproduction. For each
 score reported in the paper, publish the exact source bundle, configuration,
-receipts, traces, grades, and recovery records that produced it. The complete
-result artifacts are not included in this checkout.
+receipts, traces, grades, and recovery records that produced it. Browse the
+[official runs](../results/) for the released records and download links.

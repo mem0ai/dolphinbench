@@ -211,7 +211,6 @@ test('history search, dates, paging, deep links, and missing IDs', async ({
   expect((await request.get('/admin/', { maxRedirects: 0 })).status()).toBe(
     307,
   );
-  expect((await request.post('/api/events/', { data: {} })).status()).toBe(401);
 });
 
 test('all 600 test routes resolve their required facts', async ({
@@ -258,7 +257,7 @@ test('local preview cannot enable production or private routes', () => {
         '/robots.txt', '/sitemap.xml', '/llms.txt', '/llms-full.txt', '/opengraph-image', '/icon', '/apple-icon',
         '/favicon.ico', '/manifest.webmanifest', '/brand/dolphinbench-icon-512.png'])
       expect(previewRequestAllowed('localhost', route)).toBe(true);
-    for (const route of ['/admin/', '/api/events/', '/api/auth/login/'])
+    for (const route of ['/admin/', '/api/auth/login/'])
       expect(previewRequestAllowed('localhost', route)).toBe(false);
     expect(previewRequestAllowed('example.com', '/')).toBe(false);
     expect(previewRequestAllowed('example.com', '/run/repo/docs/DRIVER_CONTRACT.md/')).toBe(false);

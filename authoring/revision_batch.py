@@ -13,7 +13,7 @@ import yaml
 from authoring.revision_execution import read_bound
 from authoring.revision_review import validate_revision_certification
 from harness.durable_json import atomic_json
-from harness.test_spec_schema import TestSpec
+from harness.task_schema import TestSpec
 
 
 def _binding(path: Path) -> dict[str, str]:

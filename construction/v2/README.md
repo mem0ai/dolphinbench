@@ -61,32 +61,10 @@ week. The command pauses before facts, app operations, messages, and checkpoint
 creation. Rerunning the same command and output directory without that flag
 reuses the saved story and continues normally.
 
-## Morgan Status
+## Released histories
 
-Morgan's canonical release corpus is at
-`construction/v2/morgan/release/500k_final/checkpoint/`. Its checkpoint identity
-is `39dedbc65b3aea84919ab6dbac4069bde8c26d23519491f187f2345721f51567`.
-It contains 2,765 sessions, 3,400 user messages, 751 facts, and 500,100
-`o200k_base` user-message tokens. Fact selection and test authoring must use
-this release checkpoint.
-
-Construction was accepted through 2026-09-30 at
-`construction/v2/morgan/quarters/2026_q3_final/checkpoints/2026-07-01_to_2026-09-30/`.
-That source checkpoint's identity is
-`19a27301f63a6dddcc81b2e78008e6b66e7891ea59aaa4a906ba53ce5e65757e`.
-It contains 2,828 sessions, 755 facts, and 510,725 `o200k_base` user-message
-tokens. It is retained as construction provenance and is not a test-authoring
-input.
-
-The accepted Q3 plan, chain, review, and
-finalization receipt are stored under
-`construction/v2/morgan/plans/quarters/2026_q3.json`,
-`construction/v2/morgan/provenance/2026_q3/accepted_chain.json`,
-`construction/v2/morgan/provenance/2026_q3/quarter_review.json`, and
-`construction/v2/morgan/quarters/2026_q3_final/finalization.json`.
-The deterministic release-cutoff receipt is stored at
-`construction/v2/morgan/release/500k_final/finalization.json`.
-
-The old Q1 schedule and rewrite tree remain available for historical
-provenance. They are not active inputs. Only a `*_final` checkpoint may start a
-new quarter.
+The three released checkpoints are listed in the
+[history construction guide](../README.md#release-checkpoints).
+They contain the histories and supporting records used for test authoring.
+Earlier quarter plans and intermediate construction runs are not included in
+this checkout.

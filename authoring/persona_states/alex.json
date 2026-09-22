@@ -7,7 +7,7 @@
   "rejected_test_files": [],
   "release_manifest": {
     "path": "../release_manifests/alex.json",
-    "sha256": "ff3f6b8f157479f65042a82cd316e16826ed12427cba86c24025455ecba3dbd6"
+    "sha256": "3cf54040ad4fb6c52049a410894015e2dbd3a3abae26a59b4801fec6e42ad4ec"
   },
   "version": 1
 }

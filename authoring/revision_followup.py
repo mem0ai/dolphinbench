@@ -20,7 +20,7 @@ from authoring.revision_execution import read_bound, run_once
 from authoring.revision_inputs import load_release_validation_inputs
 from authoring.revision_review import grading_identity, validate_revision_certification
 from harness.durable_json import atomic_json
-from harness.test_spec_schema import TestSpec
+from harness.task_schema import TestSpec
 
 
 def binding(path: Path) -> dict[str, str]:

@@ -7,7 +7,7 @@
   "rejected_test_files": [],
   "release_manifest": {
     "path": "../release_manifests/morgan.json",
-    "sha256": "059f5db43a925ec03b48f8fb667fc79af383b29099c5589a3424d784b8d36d15"
+    "sha256": "78b00f86a8917edefb05c215ff12636703f8a6747ed8f47bf11c8b14fb8e1fe6"
   },
   "version": 1
 }

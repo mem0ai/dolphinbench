@@ -13,7 +13,7 @@ import yaml
 
 from authoring.exact_repairs import object_sha256
 from harness.durable_json import atomic_json as _atomic_json
-from harness.test_spec_schema import TestSpec
+from harness.task_schema import TestSpec
 
 
 def read_bound(path: Path, expected_sha256: str) -> bytes:

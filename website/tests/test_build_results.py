@@ -7,7 +7,7 @@ from zipfile import ZipFile
 from copy import deepcopy
 from unittest.mock import patch
 
-from build_results import SOURCE_HASHES, build, build_complete, project, project_complete, summarize_tests
+from build_results import build_complete, project_complete, summarize_tests
 
 
 class ResultExportTests(unittest.TestCase):
@@ -261,64 +261,6 @@ class ResultExportTests(unittest.TestCase):
         row['test_id'] = '1'
         with self.assertRaisesRegex(ValueError, 'duplicate'):
             summarize_tests(records)
-
-    def fixture(self, directory: Path):
-        summary = {
-            provider: {"total": 200, "passes": passes, "pass_rate": passes / 200}
-            for provider, passes in (("builtin", 82), ("mem0", 138), ("honcho", 126))
-        }
-        records = {"summary.json": summary, "paired_scores.json": {"saved": "verbatim"}}
-        for provider in summary:
-            records[f"{provider}.json"] = {
-                "kind": "canonical_official_results", "persona": "morgan", "provider": provider,
-                "model_id": "test-model", "summary": summary[provider],
-                "test_results": [{"passed": False}],
-            }
-        hashes = {}
-        for name, value in records.items():
-            raw = json.dumps(value).encode()
-            (directory / name).write_bytes(raw)
-            hashes[name] = hashlib.sha256(raw).hexdigest()
-        return records, hashes
-
-    def test_saved_summaries_are_reported_without_reconstructing_scores(self):
-        with tempfile.TemporaryDirectory() as temporary:
-            directory = Path(temporary)
-            records, hashes = self.fixture(directory)
-            with patch('build_results.SOURCE_HASHES', hashes):
-                exported = project(directory)
-            self.assertEqual(exported['summary'], records['summary.json'])
-            self.assertEqual(exported['paired_scores'], records['paired_scores.json'])
-            self.assertNotIn('test_results', exported)
-
-    def test_changed_source_does_not_write_output(self):
-        with tempfile.TemporaryDirectory() as temporary:
-            directory = Path(temporary)
-            _, hashes = self.fixture(directory)
-            (directory / 'honcho.json').write_text('{}')
-            output = directory / 'exported.json'
-            with patch('build_results.SOURCE_HASHES', hashes), self.assertRaisesRegex(ValueError, 'honcho.json'):
-                build(directory, output)
-            self.assertFalse(output.exists())
-
-    def test_inconsistent_metadata_is_rejected(self):
-        with tempfile.TemporaryDirectory() as temporary:
-            directory = Path(temporary)
-            records, hashes = self.fixture(directory)
-            records['mem0.json']['model_id'] = 'different-model'
-            raw = json.dumps(records['mem0.json']).encode()
-            (directory / 'mem0.json').write_bytes(raw)
-            hashes['mem0.json'] = hashlib.sha256(raw).hexdigest()
-            with patch('build_results.SOURCE_HASHES', hashes), self.assertRaisesRegex(ValueError, 'same agent model'):
-                project(directory)
-
-    def test_checked_in_report_binds_the_approved_sources(self):
-        report = json.loads((Path(__file__).resolve().parents[1] / 'content/morgan-results.json').read_text())
-        self.assertEqual(report['source_sha256'], SOURCE_HASHES)
-        for provider, passes in (('builtin', 82), ('mem0', 138), ('honcho', 126)):
-            self.assertEqual(report['summary'][provider]['passes'], passes)
-            self.assertEqual(report['summary'][provider]['total'], 200)
-
 
 if __name__ == '__main__':
     unittest.main()

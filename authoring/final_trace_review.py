@@ -16,7 +16,7 @@ from authoring.models import PlannedTask
 from authoring.prompts import REQUEST_QUALITY_REVIEW_RULES, TEST_REQUIREMENTS_RULES
 from construction.llm import AzureJsonClient
 from construction.runtime_model_calls import cached_client_complete
-from harness.test_spec_schema import TestSpec
+from harness.task_schema import TestSpec
 
 
 FINAL_TRACE_REVIEW_SYSTEM = """Inspect one candidate test and its four saved executions.

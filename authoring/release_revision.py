@@ -13,7 +13,7 @@ import yaml
 
 from authoring.context import ROOT, dump_json, load_checkpoint_context, load_config
 from graders.explicit import validate_checks
-from harness.test_spec_schema import TestSpec
+from harness.task_schema import TestSpec
 from harness.dataset import load_test
 
 

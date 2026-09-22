@@ -44,7 +44,7 @@ from authoring.input_rendering import render_evidence_input, render_planner_inpu
 from construction.llm import AzureJsonClient
 from construction.runtime_model_calls import cached_client_complete
 from harness.environment import call_ledger as _call_ledger
-from harness.test_spec_schema import TestSpec
+from harness.task_schema import TestSpec
 from harness.dataset import load_test
 
 

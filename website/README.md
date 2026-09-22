@@ -20,8 +20,8 @@ Open <http://127.0.0.1:3108>. The preview bypasses account authentication only i
 development, on a loopback hostname, for Home, Leaderboard, Dataset, Run and submit,
 and their data files.
 Admin routes remain protected. Submission APIs authorize uploads through bot
-verification and private receipts, not partner accounts. Preview mode does not record activity.
-It is disabled in production, even if the preview environment flag is set.
+verification and private receipts, not partner accounts. Production ignores the
+preview environment flag.
 
 To display the live site's accepted submissions in the local leaderboard:
 
@@ -101,20 +101,6 @@ URLs. The checked-in official results stay unchanged until publication review.
 `tests/fixtures/complete-results.json` contains synthetic browser-test data only;
 it is not imported by the website or included in the public results download.
 
-The historical `content/morgan-results.json` report remains unchanged. It
-preserves the approved Morgan `summary.json`, `paired_scores.json`, and SHA-256
-hashes of all five source files. It is no longer the public leaderboard input.
-
-To verify or regenerate the report from a checkout containing the canonical set:
-
-```bash
-python3 build_results.py --legacy-morgan --source /path/to/checkout/artifacts/morgan-release-final-20260908/results
-```
-
-The exporter rejects sources that differ from the approved hashes. It never
-reconstructs scores or makes model calls. The checked-in report allows a website
-build without copying the evaluation artifacts into this repository.
-
 ## Data and verification
 
 `build_data.py` verifies every file hash in the root `manifest.json` before
@@ -137,7 +123,7 @@ keep the original candidate hashes, compact-file hashes, and fingerprints of
 the complete evaluated inputs separately.
 
 `scripts/build_run_docs.py` copies only the allowlisted runner instructions and
-examples into `content/run-repo-files.json`. This lets authenticated hosted
+examples into `content/run-repo-files.json`. This lets hosted
 deployments serve those files without access to the parent checkout. Regenerate
 the bundle whenever an allowlisted source changes. `npm run build` regenerates
 both this bundle and the dataset exports before compiling the website.
@@ -168,10 +154,9 @@ Do not commit generated data,
 environment files, or local Vercel configuration.
 
 Deployment requires explicit approval. The application requires a Next.js
-runtime; it is not a static export. Existing account authentication, revocable
-sessions, and activity capture remain backed by Postgres. Configure
-`DATABASE_URL` and `ACTIVITY_HASH_SALT` in the deployment environment. Preserve
-the existing database and accounts. Submissions require the additional table and
+runtime; it is not a static export. Administrator authentication and revocable
+sessions use Postgres. Configure `DATABASE_URL` in the deployment environment.
+Preserve the existing database and accounts. Submissions require the additional table and
 indexes in `submissions.sql`; `npm run db:setup` creates them without replacing
 existing accounts or sessions.
 

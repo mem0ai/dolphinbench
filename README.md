@@ -113,8 +113,9 @@ The paper compares these harness/model combinations:
 | Hermes | MiniMax |
 | Claude Code | Sonnet |
 
-Each combination is paired with **Built-In, Mem0, Honcho, Hindsight, and
-Supermemory**. Each pairing has its own history ingestion and evaluation.
+Both Hermes models are paired with **Built-In, Mem0, Honcho, Hindsight, and
+Supermemory**. Claude Code is paired with **Built-In, Mem0, and Honcho**.
+Each pairing has its own history ingestion and evaluation.
 
 [Reference reproduction](reference/README.md) contains the ingestion,
 evaluation, recovery, and result-recording implementations. The
@@ -142,7 +143,8 @@ approval, generation, verification, and publication.
 | Directory | Contents |
 | --- | --- |
 | `registry/personas/` | Histories, fact annotations, and persona profiles |
-| `tests/` | 600 benchmark test specifications and release checks |
+| `tests/<persona>/` | 600 benchmark test specifications |
+| `tests/unit/` | Software checks for construction, grading, integrations, and submissions |
 | `results/` | Official runs, costs, ingestion records, test conversations, and grades |
 | `mock_mcp/` | Simulated app server, tool definitions, and baseline state |
 | `harness/` | Participant runner, execution records, and submission packaging |
@@ -154,6 +156,15 @@ approval, generation, verification, and publication.
 | `website/` | Dataset browser, results views, and participation instructions |
 | `docs/` | Integration, evaluation, and methodology guides |
 
+## Development checks
+
+Run the offline software checks from the repository root:
+
+```bash
+pip install -r requirements.txt -r reference/requirements.txt jsonschema
+python -m unittest discover -s tests/unit -t .
+```
+
 ## License
 
-TBD.
+[Apache License 2.0](LICENSE).

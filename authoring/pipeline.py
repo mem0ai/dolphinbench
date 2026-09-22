@@ -10,7 +10,7 @@ from typing import Any
 
 from authoring.context import CheckpointContext
 from authoring.models import BlindQueryResponse, DesignResponse, PlannedTask
-from harness.test_spec_schema import TestSpec
+from harness.task_schema import TestSpec
 
 
 NUMERIC_ASSERTIONS = {"field_lte", "field_gte", "field_eq_number"}

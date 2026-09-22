@@ -58,7 +58,7 @@ The prepare command uses your benchmark Python, not the Hermes Python:
 
 ```bash
 python -m harness.runner prepare --config examples/configs/hermes-builtin.yaml
-python -m unittest harness.test_hermes_reference harness.test_harness_connection
+python -m unittest tests.unit.runner.test_hermes_reference tests.unit.runner.test_harness_connection
 ```
 
 Preparation checks the source diff, lockfile, installed runtime versions,

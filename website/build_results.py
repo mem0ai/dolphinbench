@@ -13,14 +13,6 @@ from pathlib import Path
 from urllib.parse import urlsplit
 
 HERE = Path(__file__).resolve().parent
-CANONICAL_DIRECTORY = "artifacts/morgan-release-final-20260908/results"
-SOURCE_HASHES = {
-    "summary.json": "2f806cb246c504c515f829217ab1d2947f08d73927bd47747bbca005b59d9708",
-    "paired_scores.json": "f531b6654e5155487d6e991b04a0b2935f3576f728d95e40531491f5d168ab2c",
-    "builtin.json": "182e9dd2709a429b50c388ac0425c52af2598704465671d02456c3c80409d15c",
-    "mem0.json": "112cb105e911b0ae6041ecace3a0d08072c0acd69856e8e17c65d1c2ed6d7836",
-    "honcho.json": "e040013086fccd1fa7e4cb73f1aafafe3498f26924c387aed7c6522d74c5667d",
-}
 PERSONAS = ("alex", "morgan", "riley")
 
 
@@ -150,54 +142,11 @@ def build_complete(source: Path, output: Path, *, check: bool = False) -> None:
     output.write_text(json.dumps(result, indent=2, allow_nan=False) + "\n")
 
 
-def project(source: Path) -> dict:
-    records = {}
-    for name, expected in SOURCE_HASHES.items():
-        raw = (source / name).read_bytes()
-        if hashlib.sha256(raw).hexdigest() != expected:
-            raise ValueError(f"Not the approved Morgan results: {name}")
-        records[name] = json.loads(raw)
-    models = set()
-    for provider in ("builtin", "mem0", "honcho"):
-        result = records[f"{provider}.json"]
-        if (result["kind"] != "canonical_official_results"
-                or result["persona"] != "morgan"
-                or result["provider"] != provider
-                or result["summary"] != records["summary.json"][provider]):
-            raise ValueError(f"Inconsistent canonical result: {provider}")
-        models.add(result["model_id"])
-    if len(models) != 1:
-        raise ValueError("The comparison requires the same agent model")
-    # Report the saved summaries directly. Never rebuild scores from executions.
-    return {
-        "schema_version": 1,
-        "persona": "morgan",
-        "agent": "Hermes",
-        "model_id": models.pop(),
-        "source_directory": CANONICAL_DIRECTORY,
-        "source_sha256": SOURCE_HASHES,
-        "summary": records["summary.json"],
-        "paired_scores": records["paired_scores.json"],
-    }
-
-
-def build(source: Path, output: Path) -> None:
-    result = project(source)
-    output.parent.mkdir(parents=True, exist_ok=True)
-    output.write_text(json.dumps(result, indent=2, allow_nan=False) + "\n")
-
-
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--source", type=Path)
     parser.add_argument("--out", type=Path)
     parser.add_argument("--check", action="store_true", help="Validate the complete results without writing files")
-    parser.add_argument("--legacy-morgan", action="store_true", help="Export only the preserved historical Morgan report")
     args = parser.parse_args()
-    if args.legacy_morgan:
-        if args.check:
-            parser.error("--check is for complete results")
-        build(args.source or HERE.parent / CANONICAL_DIRECTORY, args.out or HERE / "content/morgan-results.json")
-    else:
-        build_complete(args.source or HERE / "content/official-results.json",
-                       args.out or HERE / "content/official-results.json", check=args.check)
+    build_complete(args.source or HERE / "content/official-results.json",
+                   args.out or HERE / "content/official-results.json", check=args.check)

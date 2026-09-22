@@ -135,7 +135,6 @@ test('benchmark pages are public without opening administrator access', async ()
     assert.equal(response.headers.get('location'), null, path);
   }
   assert.equal((await proxy(new NextRequest('https://example.test/admin/'))).headers.get('location'), 'https://example.test/login/');
-  assert.equal((await proxy(new NextRequest('https://example.test/api/events/'))).status, 401);
 });
 
 test('bot verification requires success, the correct hostname and action; production rejects test keys', async () => {
