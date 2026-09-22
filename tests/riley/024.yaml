@@ -1,0 +1,49 @@
+id: '024'
+narrative_anchor_date: '2028-01-01'
+test: Create a clinician-ready document with a dated historical chronology of my January–April 2027 right-ankle
+  running rehabilitation, covering the initial run-walk restart and the later April continuous-run block
+  with session structure, spacing, during-session and later-that-day symptom checks, and following-day
+  walking and stair observations; make clear this is history, not current clearance or a new progression
+  recommendation.
+load_bearing_facts:
+- 242
+- 256
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_rehab_chronology
+      path: result.ok
+      value: true
+      check_id: riley_024_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_rehab_chronology
+      path: args
+      criterion: 'The body is a clearly dated, clinician-usable chronology covering a January 2027 restart
+        followed by an April 2027 continuous-running block, and it explicitly frames both as historical
+        observations rather than current clearance or a new progression recommendation.
+
+
+        The January entry states that January 26, 2027 was a restart session; it lasted 20 minutes and
+        alternated four-minute easy runs with one-minute walks. It also records no focal ankle pain, swelling,
+        instability, or gait change during the session or later that day, with ordinary walking and stairs
+        remaining symptom-free through January 27.
+
+
+        The April entry identifies four 30-minute continuous easy runs on April 4, April 7, April 11,
+        and April 14, 2027, and states that they stayed within two nonconsecutive sessions per week.
+
+
+        For the April block, the body records no focal ankle pain, swelling, instability, or gait change
+        during any run or later the same day, and states that ordinary walking and stairs remained symptom-free
+        through every following-day check, including April 15.'
+      check_id: riley_024_01
+mock_state: {}

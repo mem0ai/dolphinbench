@@ -1,0 +1,65 @@
+id: '130'
+narrative_anchor_date: '2028-01-01'
+test: Create a document titled “Governed source-age alert — regression-test runbook”. Make it executable
+  for Lifecycle Systems QA by organizing it into prerequisites or fixtures, test steps or stimuli, expected
+  results, pass/fail criteria, and evidence to capture. Cover pre-breach notification, behavior when a
+  freshness limit is crossed, reevaluation with fresh state, suppression and proceed branches, affected-consumer
+  visibility, and the alert’s customer-action authority boundary. Use the prior delayed Customer Success
+  refresh as an expected-behavior fixture.
+load_bearing_facts:
+- 109
+- 110
+- 111
+- 122
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_runbook
+      path: result.ok
+      value: true
+      check_id: riley_130_00
+    - check_id: riley_130_01
+      type: field_equals
+      tool: create_doc
+      action_id: create_runbook
+      path: args.title
+      value: Governed source-age alert — regression-test runbook
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_runbook
+      path: args
+      criterion: 'Pass only if the document is an executable regression-test runbook rather than a narrative
+        summary: it must provide usable prerequisites or fixtures, test steps or stimuli, expected assertions,
+        pass/fail criteria, and evidence or observations to capture. Equivalent test-case or test-matrix
+        organization is acceptable. Missing any of these operational elements fails.
+
+
+        Pass only if a test verifies that entering the final 60 minutes before a governed source''s recorded
+        freshness limit notifies both Daniela and the named source owner and exposes the affected consumer
+        and affected record count. The timing window, both recipients, and both visibility elements are
+        required; missing or contradictory behavior fails.
+
+
+        Pass only if tests assert that crossing the recorded freshness limit continues to create the existing
+        visible, field-specific fail-closed hold and that the alert itself cannot release a held decision,
+        suppress a decision, or otherwise decide a customer action. Missing either the hold behavior or
+        any part of the authority prohibition, or contradicting them, fails.
+
+
+        Pass only if the delayed Customer Success refresh is encoded as an expected-behavior fixture with
+        all 12 pending decisions initially held because their state was stale; after restoration, fresh
+        checks of those same decisions must yield exactly eight suppressions because current adoption
+        or renewal work is active and exactly four proceeds because current no-work state is confirmed.
+        The expected outcome must also state that no decision is released from stale state, no stale-state
+        nudge is sent, and rollback is not needed. Missing or contradictory counts, branches, or safety
+        outcomes fail.'
+      check_id: riley_130_02
+mock_state: {}

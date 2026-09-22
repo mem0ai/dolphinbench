@@ -1,0 +1,98 @@
+id: '121'
+narrative_anchor_date: '2028-01-01'
+test: Please reconcile the Q1 2024 lifecycle contractor engagement we discussed. I restored the relevant
+  invoice and closeout messages to my inbox, and their subject lines contain the available finance coding
+  details. Review those messages and the earlier engagement approval, then create a clear reconciliation
+  worksheet covering the approved envelope, engagement dates, reporting owner, permitted work categories,
+  observed charges, unresolved evidence, and any activity that must not be charged to this engagement.
+  Separate supported, unresolved, and excluded items, and do not treat the approved envelope as proof
+  that it was fully spent.
+load_bearing_facts:
+- 2
+- 1
+- 3
+expected_tool_calls:
+- list_inbox
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_q1_reconciliation
+      path: result.ok
+      value: true
+      check_id: riley_121_00
+    - type: field_equals
+      tool: list_inbox
+      action_id: review_reconciliation_inbox
+      path: args.folder
+      value: inbox
+      check_id: riley_121_01
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_q1_reconciliation
+      path: args
+      criterion: 'The title clearly identifies the document as a Q1 2024 lifecycle contractor reconciliation
+        worksheet or equivalent.
+
+
+        The worksheet states that the governing Q1 Growth envelope was $24,000, the lifecycle QA and operations
+        contractor engagement ran from January 15 through February 23, 2024, and Ines was the responsible
+        reporting/engagement owner.
+
+
+        The worksheet identifies the permitted contractor work as active Customer.io campaign inventory,
+        experiment-setup hygiene, suppression checks, and repeatable preflight work, or faithful equivalent
+        descriptions of all four categories.
+
+
+        The worksheet separately lists invoice HS-204 for $2,600 of Helio Start paid-acquisition setup
+        and clearly says it must not be charged to the Q1 2024 lifecycle contractor envelope. The exclusion
+        must be framed as applying to this Q1 2024 envelope, not as a claim that paid acquisition was
+        permanently or universally unfunded.
+
+
+        The worksheet lists LC-101 for $8,400 and LC-102 for $9,100 as supported paid charges within the
+        permitted lifecycle scope and totals those supported charges as exactly $17,500.
+
+
+        The worksheet records that invoice and receipt evidence for February 17–23 remains outstanding
+        or unresolved.
+
+
+        The worksheet calculates the $6,500 difference between the $24,000 envelope and $17,500 of supported
+        in-scope charges, but labels that difference as not yet evidenced or otherwise unresolved rather
+        than claiming the full envelope was spent or that $6,500 was definitively unused. It must keep
+        the excluded $2,600 acquisition invoice out of the supported lifecycle total.'
+      check_id: riley_121_02
+mock_state:
+  inbox:
+  - id: email_q1_lifecycle_lc101
+    from: billing@northstar-ops.example
+    subject: Invoice LC-101 — Jan 15–Feb 2 lifecycle QA and preflight work — $8,400 — paid
+    date: '2024-02-05T10:12:00-06:00'
+    category: finance
+    folder: inbox
+  - id: email_q1_lifecycle_lc102
+    from: billing@northstar-ops.example
+    subject: Invoice LC-102 — Feb 3–16 lifecycle operations and suppression checks — $9,100 — paid
+    date: '2024-02-19T09:20:00-06:00'
+    category: finance
+    folder: inbox
+  - id: email_q1_lifecycle_closeout_gap
+    from: ines@helio.example
+    subject: Q1 lifecycle contractor closeout — Feb 17–23 invoice and receipt still outstanding
+    date: '2024-02-23T16:40:00-06:00'
+    category: operations
+    folder: inbox
+  - id: email_helio_start_hs204
+    from: billing@acquisition-labs.example
+    subject: Invoice HS-204 — Helio Start paid acquisition setup — $2,600 — uncoded
+    date: '2024-02-20T11:05:00-06:00'
+    category: finance
+    folder: inbox

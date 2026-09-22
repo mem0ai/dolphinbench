@@ -1,0 +1,56 @@
+id: '159'
+narrative_anchor_date: '2028-01-01'
+test: Find the newest collection notice for former Park Slope internet account PS-4817
+  and email the issuer a firm dispute of the $184.72 claim and equipment threat. Include
+  the exact service-termination date and ask for written withdrawal.
+load_bearing_facts:
+- 127
+- 128
+expected_tool_calls:
+- list_inbox
+- send_email
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    assertions:
+    - type: field_equals
+      tool: send_email
+      action_id: alex_159_send_email
+      path: result.ok
+      value: true
+      check_id: alex_159_00
+    - type: field_equals
+      tool: list_inbox
+      action_id: alex_159_read_email
+      path: result.0.id
+      value: msg_collection_ps4817_20271231
+      check_id: alex_159_01
+    - type: field_equals
+      path: result.to
+      value: collections@northstar.example
+      tool: send_email
+      action_id: alex_159_send_email
+      check_id: alex_159_02
+    - type: field_llm_judge
+      path: result.body
+      criterion: The email identifies Park Slope account PS-4817 and $184.72, disputes
+        the collection because that internet connection terminated on September 30,
+        2024, and says there was no equipment-return charge because Alex owns the
+        Arris S33 modem and separate router. It asks for the collection action to
+        be withdrawn in writing without conceding the balance.
+      tool: send_email
+      action_id: alex_159_send_email
+      check_id: alex_159_03
+mock_state:
+  inbox:
+  - id: msg_collection_ps4817_20271231
+    from: collections@northstar.example
+    subject: FINAL COLLECTION NOTICE — Park Slope acct PS-4817 — $184.72 due; current
+      service/equipment suspension pending
+    date: '2027-12-31T09:15:00-05:00'
+    category: billing
+mock_state_base:
+  path: state.json
+  sha256: b2e9b6b9e0f48ec23e9ae5ec4d803c050db6c6914dfc1d47ccdf545b3c77b68a

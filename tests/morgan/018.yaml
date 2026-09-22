@@ -1,0 +1,38 @@
+id: 018
+narrative_anchor_date: '2026-09-14'
+test: 'Jake suggests #eng-all for this rollout update: "Deployment is in progress;
+  validation is still pending." Post the update to the appropriate Discord channel.'
+load_bearing_facts:
+- 74
+expected_tool_calls:
+- send_discord_message
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: send_discord_message
+      path: result.ok
+      value: true
+      check_id: morgan_018_00
+      action_id: morgan_018_send_discord_message
+    - type: field_equals
+      path: result.channel
+      value: '#eng-releases'
+      tool: send_discord_message
+      check_id: morgan_018_01
+      action_id: morgan_018_send_discord_message
+    - type: tool_success_count
+      tool: send_discord_message
+      count: 1
+      check_id: morgan_018_02
+mock_state:
+  projects:
+    rollout:
+      project_name: rollout
+      progress: Today's deploy is not green yet.
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

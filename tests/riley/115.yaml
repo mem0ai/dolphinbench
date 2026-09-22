@@ -1,0 +1,55 @@
+id: '115'
+narrative_anchor_date: '2028-01-01'
+test: Create a concise handling and provenance slip for temporary-index pair 05. Name the depicted people,
+  give the supported date and location, retain the complete evidence chain and unresolved date precision,
+  and state the residue and sleeve handling prohibitions.
+load_bearing_facts:
+- 214
+- 145
+- 146
+- 147
+- 148
+- 149
+- 150
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_pair05_slip
+      path: result.ok
+      value: true
+      check_id: riley_115_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_pair05_slip
+      path: args
+      criterion: 'The title clearly identifies the document as a handling/provenance slip or archive slip
+        for temporary-index pair 05.
+
+
+        The slip identifies the depicted people as Riley Tanaka and Marcus Tanaka and places them in the
+        Buckman apartment courtyard on SE 20th Avenue in Portland in September 1997.
+
+
+        The slip records and retains the provenance chain: the original paper envelope reads “Riley and
+        Marcus — apartment courtyard — September 1997”; its print sequence and corner wear match pair
+        05; Mom confirmed the handwriting is hers; and the family’s September 1997 lease supports the
+        Buckman courtyard location. Missing or contradictory provenance must fail.
+
+
+        The slip explicitly states that the exact day remains unresolved and does not present or encourage
+        a guessed exact date.
+
+
+        The slip gives clear physical-handling instructions that the dry album-paper residue must remain
+        undisturbed and must not be scraped, removed, or restored, and that pair 05 must remain isolated
+        in its archival sleeve.'
+      check_id: riley_115_01
+mock_state: {}

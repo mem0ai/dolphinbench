@@ -1,0 +1,39 @@
+id: '067'
+narrative_anchor_date: '2026-09-14'
+test: Text Nora at +14155550123 with the answer about taking Kibo on a 30-minute Lake
+  Merritt walk tomorrow morning if it is warm and he starts stiff.
+load_bearing_facts:
+- 207
+- 260
+expected_tool_calls:
+- send_sms
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: send_sms
+      path: result.ok
+      value: true
+      check_id: morgan_067_00
+      action_id: morgan_067_send_sms
+    - type: field_equals
+      path: result.to
+      value: '+14155550123'
+      tool: send_sms
+      check_id: morgan_067_01
+      action_id: morgan_067_send_sms
+    - type: field_llm_judge
+      path: result.body
+      criterion: Recommends a short, flat walk rather than 30 minutes when Kibo starts
+        stiff. Keeps warm-morning walks under about 20 minutes unless he is moving
+        comfortably; does not treat that exception as permission to push a stiff dog.
+      tool: send_sms
+      check_id: morgan_067_02
+      action_id: morgan_067_send_sms
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

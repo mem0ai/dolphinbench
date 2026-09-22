@@ -1,0 +1,61 @@
+id: '179'
+narrative_anchor_date: '2028-01-01'
+test: Review the production-method proposal in `doc_private_dinner_roasted_chicken_2028_01_29` and post
+  a concise correction using the approved historical method. Limit the comment to production method; do
+  not change the menu or invent a new sequence.
+load_bearing_facts:
+- 36
+- 48
+expected_tool_calls:
+- post_doc_comment
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: post_doc_comment
+      action_id: production_method_comment
+      path: result.ok
+      value: true
+      check_id: riley_179_00
+    - check_id: riley_179_01
+      type: field_equals
+      tool: post_doc_comment
+      action_id: production_method_comment
+      path: args.doc_id
+      value: doc_private_dinner_roasted_chicken_2028_01_29
+    - type: field_llm_judge
+      tool: post_doc_comment
+      action_id: production_method_comment
+      path: args
+      criterion: The comment must concisely reject or correct the proposed rolling/reordered preparation
+        approach and direct production back to the established tested pre-staging sequence for the roasted
+        chicken. It must not invent a replacement sequence or propose changing the approved menu choice.
+        Missing, accepting, or contradicting the tested pre-staging requirement must fail.
+      check_id: riley_179_02
+mock_state:
+  docs:
+  - id: doc_private_dinner_roasted_chicken_2028_01_29
+    title: January 29 private dinner — roasted-chicken production plan
+    body: '# January 29 private dinner — roasted-chicken production plan
+
+
+      ## Approved menu
+
+      Roasted chicken is the selected entree for this private dinner.
+
+
+      ## Proposed production method
+
+      Use the new continuous-flow production order from the unreviewed service draft instead of the prior
+      method. The draft does not describe the prior method.
+
+
+      ## Review request
+
+      Confirm or correct the proposed production method before service.'
+    folder: Sam's restaurant
+    created_at: '2028-01-01T09:00:00-06:00'

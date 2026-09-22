@@ -1,0 +1,32 @@
+id: '137'
+narrative_anchor_date: '2026-09-14'
+test: Create and save a short historical timeline document recording the date, time,
+  and timezone when the lead firm formally passed on the 2023 B-round pitch.
+load_bearing_facts:
+- 14
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      path: result.ok
+      value: true
+      check_id: morgan_137_00
+      action_id: morgan_137_create_doc
+    - type: field_llm_judge
+      path: result.document.body
+      criterion: Identifies the formal pass as February 16, 2023 at 12:45 PM Pacific,
+        or the equivalent instant. Equivalent date/time formatting is valid; do not
+        attribute the timestamp to a different event.
+      tool: create_doc
+      check_id: morgan_137_01
+      action_id: morgan_137_create_doc
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

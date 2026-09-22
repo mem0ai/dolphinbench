@@ -1,0 +1,42 @@
+id: '025'
+narrative_anchor_date: '2026-09-14'
+test: Email support@scaffold.dev the June 5 Q2-to-date Acme API v2 support assessment,
+  covering whether the old export problem recurred and whether the account needs incident
+  or product escalation.
+load_bearing_facts:
+- 299
+- 300
+- 301
+expected_tool_calls:
+- send_email
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: send_email
+      path: result.ok
+      value: true
+      check_id: morgan_025_00
+      action_id: morgan_025_send_email
+    - type: field_equals
+      path: result.to
+      value: support@scaffold.dev
+      tool: send_email
+      check_id: morgan_025_01
+      action_id: morgan_025_send_email
+    - type: field_llm_judge
+      path: result.body
+      criterion: Reports normal Atlas/API v2 support questions with no large-export
+        timeout recurrence or data-loss report in the June 5 Q2-to-date read. Keeps
+        handling in ordinary support rather than treating the read as a fresh incident,
+        product-priority change, or founder escalation.
+      tool: send_email
+      check_id: morgan_025_02
+      action_id: morgan_025_send_email
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

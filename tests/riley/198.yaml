@@ -1,0 +1,33 @@
+id: '198'
+narrative_anchor_date: '2028-01-01'
+test: The Growth team is proposing a 2028 trial-expiration rescue flow that will decide whether to show
+  customers an in-product prompt, and implementation has not started. Create a short pre-design intake
+  gate in the Growth folder that states the governing prerequisite the proposal must satisfy before design
+  approval. Keep it focused on that prerequisite and do not invent or redefine its field semantics.
+load_bearing_facts:
+- 89
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_pre_design_gate
+      path: result.ok
+      value: true
+      check_id: riley_198_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_pre_design_gate
+      path: args
+      criterion: The document is a short pre-design gate for the proposed Growth lifecycle decision. It
+        explicitly requires use of the established shared state contract before design approval. Generic
+        references to governance, a source of truth, or already-defined field semantics do not satisfy
+        this requirement. It must not invent or redefine the contract's fields.
+      check_id: riley_198_01
+mock_state: {}

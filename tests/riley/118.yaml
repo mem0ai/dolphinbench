@@ -1,0 +1,53 @@
+id: '118'
+narrative_anchor_date: '2028-01-01'
+test: For our five-year internal retrospective, create a citation-ready archive note about the onboarding-trigger
+  result as presented at the formal May 12, 2023 company all-hands. Capture the audience scale, how the
+  result was framed, and the contributors explicitly credited in that presentation. Include a brief source
+  note based on the contemporaneous records, and keep the recognition specific to this all-hands setting
+  rather than presenting it as a universal credit rule.
+load_bearing_facts:
+- 378
+- 379
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_archive_note
+      path: result.ok
+      value: true
+      check_id: riley_118_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_archive_note
+      path: args
+      criterion: 'The title clearly identifies the document as an archive or retrospective note about
+        the May 12, 2023 all-hands presentation.
+
+
+        The body accurately says that the formal May 12, 2023 company all-hands reached the full-company
+        audience of approximately 140 people and presented the onboarding-trigger result within a broader
+        investigation method or framework, with a method-focused rather than dramatic or postmortem framing.
+        Missing or contradictory audience or framing information must fail.
+
+
+        The body states that Owen Pham and Ines Kovac were explicitly credited by name in the May 12 all-hands
+        presentation. Both full names are required, and substitution, omission, or contradiction must
+        fail.
+
+
+        The body makes clear that these contributor credits describe the formal May 12 all-hands presentation
+        setting and does not turn them into a universal credit rule for every communication or use of
+        the framework.
+
+
+        The body includes a brief citation-ready source note grounding the factual account in one or more
+        contemporaneous May 12, 2023 records, without inventing external sources.'
+      check_id: riley_118_01
+mock_state: {}

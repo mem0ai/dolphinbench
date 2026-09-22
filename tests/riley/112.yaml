@@ -1,0 +1,73 @@
+id: '112'
+narrative_anchor_date: '2028-01-01'
+test: Review the newest benefits message in my inbox and create a January reconciliation note. For each
+  topic, first state the existing 2028 baseline, then state exactly what the new message confirms or does
+  not confirm. Cover the plan, coverage period, payroll deductions, cost limits, provider-network result,
+  and employer HSA schedule and conditions.
+load_bearing_facts:
+- 282
+- 283
+- 284
+- 296
+expected_tool_calls:
+- list_inbox
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: reconciliation_doc
+      path: result.ok
+      value: true
+      check_id: riley_112_00
+    - type: field_equals
+      tool: list_inbox
+      action_id: inbox_review
+      path: args.folder
+      value: inbox
+      check_id: riley_112_01
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: reconciliation_doc
+      path: args
+      criterion: 'The document identifies the election baseline as the Helio 2028 Employee-Only HDHP and
+        states that its coverage period is January 1 through December 31, 2028.
+
+
+        The document accurately states the payroll structure: $98 deducted from each of 24 paychecks,
+        totaling $2,352 for the year.
+
+
+        The document accurately states a $2,000 deductible and a $4,000 out-of-pocket maximum.
+
+
+        The document records that the primary-care clinician, physical-therapy clinic, and eye-care clinic
+        were confirmed to be in the final network when the election was made.
+
+
+        The document accurately states that Helio''s employer HSA funding consists of four $250 deposits
+        scheduled for January 15, April 15, July 15, and October 15, 2028, and clearly states that each
+        individual deposit depends on remaining HSA-eligible on its deposit date.
+
+
+        The document clearly distinguishes the new inbox-visible confirmation from the historical election
+        baseline. It reports that the newest benefits message visibly confirms that 2028 medical coverage
+        is now active and treats that as consistent with the expected January 1 start. It also explicitly
+        flags that the message does not itself confirm the specific HDHP election or full coverage period,
+        payroll amounts and paycheck count, deductible and out-of-pocket maximum, provider-network status,
+        or HSA deposit amounts, dates, and eligibility conditions. It must not present those omitted details
+        as newly confirmed by the email, and it should indicate that no actual contradiction is visible
+        from the limited confirmation.'
+      check_id: riley_112_02
+mock_state:
+  inbox:
+  - id: helio-benefits-2028-activation
+    from: Helio Benefits <benefits@helio.example>
+    subject: Your 2028 medical coverage is now active
+    date: '2028-01-01T07:15:00-05:00'
+    category: Benefits

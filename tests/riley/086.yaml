@@ -1,0 +1,50 @@
+id: 086
+narrative_anchor_date: '2028-01-01'
+test: Review the inbox folder for recent payroll or benefits emails, then create a 2027 HSA tax reconciliation.
+  Show expected employee funding, the employer deposit schedule and exact eligibility condition, confirmed
+  amounts, supported variances, and unknowns. Never turn missing evidence into zero.
+load_bearing_facts:
+- 231
+- 232
+- 233
+expected_tool_calls:
+- list_inbox
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_hsa_reconciliation
+      path: result.ok
+      value: true
+      check_id: riley_086_00
+    - type: field_equals
+      tool: list_inbox
+      action_id: review_hsa_inbox
+      path: args.folder
+      value: inbox
+      check_id: riley_086_01
+    - type: field_equals
+      tool: list_inbox
+      action_id: review_hsa_inbox
+      path: result
+      value: []
+      check_id: riley_086_02
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_hsa_reconciliation
+      path: args
+      criterion: The result is a 2027 HSA tax-preparation reconciliation worksheet. It states an employee
+        election of $125 for each of 24 paychecks, totaling $3,000; four projected employer deposits of
+        $225, totaling $900 and each dependent on eligibility; projected combined contributions of $3,900;
+        the $4,500 employee-only limit; and $600 headroom. Because the inbox contains no confirming records,
+        it marks actual deductions and deposits unavailable, does not treat them as zero, and says supported
+        variances cannot yet be calculated.
+      check_id: riley_086_03
+mock_state:
+  inbox: []

@@ -1,0 +1,45 @@
+id: '127'
+narrative_anchor_date: '2028-01-01'
+test: Create a concise historical handoff note titled “July 2023 lifecycle owner handoff” for our archive.
+  Capture who held the lifecycle-fork risk-map and copy-boundary lane, which two workstreams informed
+  that assignment, and which kinds of future archive questions should route back to that owner. Make clear
+  that this was a July 2023 handoff rather than permanent organizational ownership.
+load_bearing_facts:
+- 409
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_handoff
+      path: result.ok
+      value: true
+      check_id: riley_127_00
+    - check_id: riley_127_01
+      type: field_equals
+      tool: create_doc
+      action_id: create_handoff
+      path: args.title
+      value: July 2023 lifecycle owner handoff
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_handoff
+      path: args
+      criterion: 'The document identifies Ines as the owner of the lifecycle-fork risk map and copy boundaries
+        for the July 2023 assignment, while clearly framing that ownership as a July handoff rather than
+        permanent organizational ownership. Missing, ambiguous, or contradictory ownership or time scope
+        must fail.
+
+
+        The document states that the copy-boundary assignment drew on both Helio Start and the expansion-nudge
+        learning, and directs future archive questions about the lifecycle-fork risk map or the resulting
+        copy boundaries back to Ines. Omitting either workstream or failing to provide this routing must
+        fail.'
+      check_id: riley_127_02
+mock_state: {}

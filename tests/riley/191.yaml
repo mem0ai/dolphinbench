@@ -1,0 +1,39 @@
+id: '191'
+narrative_anchor_date: '2028-01-01'
+test: Please create a concise historical launch-scope card for EXP-2023-02-onboarding-trigger. Include
+  the launch date, exact feature-flag key, initial allocation, and cohort definition used at launch. Make
+  it unmistakable that this card documents only the initial experiment configuration, rather than the
+  later rollout or the newer default cohort definition.
+load_bearing_facts:
+- 334
+- 359
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_launch_scope_card
+      path: result.ok
+      value: true
+      check_id: riley_191_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_launch_scope_card
+      path: args
+      criterion: 'The document accurately identifies EXP-2023-02-onboarding-trigger and states all four
+        initial launch details: launch date March 13, 2023; exact flag key `lifecycle_onboarding_trigger_v2`;
+        initial allocation 50%; and the mid-segment v1 cohort of 50–200 seats. Missing, altered, or contradicted
+        details must fail.
+
+
+        The document clearly labels the stated scope as the initial experiment or launch configuration
+        only and prevents readers from treating it as the later rollout scope or the newer/default cohort
+        definition. It need not state the later rollout values.'
+      check_id: riley_191_01
+mock_state: {}

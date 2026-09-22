@@ -1,0 +1,40 @@
+id: '040'
+narrative_anchor_date: '2028-01-01'
+test: Create a neutral archive comparison of Sphere's 2027 individual HDHP and PPO
+  terms and enrollment deadline.
+load_bearing_facts:
+- 225
+- 226
+- 227
+- 228
+- 229
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: alex_040_create_doc
+      path: result.ok
+      value: true
+      check_id: alex_040_00
+    - type: field_llm_judge
+      path: result.document.body
+      criterion: The neutral comparison gives the HDHP as $98 biweekly and $2,548
+        over 26 paychecks, with a $2,300 deductible, 10% post-deductible coinsurance,
+        fully covered preventive care, HSA eligibility, and separate $900 employer
+        HSA funding in four $225 deposits. It gives the PPO as $164 biweekly and $4,264
+        annually, with a $750 deductible, 20% post-deductible coinsurance, fully covered
+        preventive care, and no HSA eligibility. It records the October 23, 2026 5:00
+        PM Eastern deadline without recommending a plan or claiming an election.
+      tool: create_doc
+      action_id: alex_040_create_doc
+      check_id: alex_040_01
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: b2e9b6b9e0f48ec23e9ae5ec4d803c050db6c6914dfc1d47ccdf545b3c77b68a

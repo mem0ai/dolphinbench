@@ -1,0 +1,41 @@
+id: '129'
+narrative_anchor_date: '2028-01-01'
+test: Create a short decision record titled `Expansion Assist second cohort — eligibility integrity decision`
+  for the cohort-governance archive. Explain how the operational capacity allowance related to the locked
+  evidence-complete roster, record the decision on whether eligibility would be relaxed to use the remaining
+  capacity, and make clear how the unused headroom should be interpreted.
+load_bearing_facts:
+- 59
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_eligibility_integrity_record
+      path: result.ok
+      value: true
+      check_id: riley_129_00
+    - check_id: riley_129_01
+      type: field_equals
+      tool: create_doc
+      action_id: create_eligibility_integrity_record
+      path: args.title
+      value: Expansion Assist second cohort — eligibility integrity decision
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_eligibility_integrity_record
+      path: args
+      criterion: The body is a concise decision record that clearly states that the second Expansion Assist
+        cohort had an operational cap of 18 accounts but was locked at 15 evidence-complete candidates;
+        explains that eligibility was not relaxed and marginal records were not added merely to fill the
+        three-account difference; and frames the unused capacity as the result of preserving eligibility
+        integrity rather than as a delivery or execution failure. Missing or contradicting any of these
+        points must fail.
+      check_id: riley_129_02
+mock_state: {}

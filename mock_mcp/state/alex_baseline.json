@@ -1,0 +1,433 @@
+{
+  "calendar": [
+    {
+      "event_id": "evt_hema_1on1_recurring",
+      "title": "Hema 1:1 (recurring Friday morning)",
+      "start": "2026-07-03T09:30:00-04:00",
+      "end": "2026-07-03T10:00:00-04:00",
+      "attendees": ["alex", "hema"],
+      "recurring": "weekly:friday"
+    }
+  ],
+  "inbox": [],
+  "sent_emails": [],
+  "slack_dm_log": [],
+  "docs": [],
+  "pr_comments": [],
+  "internal_docs": [
+    {
+      "doc_id": "doc_postmortem_apr14_outage",
+      "title": "Postmortem: Apr 14 shard-keeper / rollup-service outage",
+      "author": "alex",
+      "created_at": "2026-04-21T09:00:00-04:00",
+      "tags": [
+        "postmortem",
+        "incident",
+        "apr-14",
+        "shard-keeper",
+        "rollup-service"
+      ]
+    },
+    {
+      "doc_id": "doc_lantern_v0_arch",
+      "title": "Lantern v0 architecture",
+      "author": "alex",
+      "created_at": "2026-06-29T09:00:00-04:00",
+      "tags": ["lantern", "v0", "architecture"]
+    }
+  ],
+  "prs": [
+    {
+      "id": "metrics-router#412",
+      "title": "metrics-router: tidy config-loader, prep for OTel cutover finish",
+      "author": "alex",
+      "repo": "metrics-router",
+      "branch": "alex/cfg-loader-tidy",
+      "status": "open",
+      "reviewers": ["nadia"],
+      "assignees": ["alex"],
+      "opened_at": "2026-06-26T14:02:00-04:00",
+      "age_days": 3
+    },
+    {
+      "id": "shard-keeper#188",
+      "title": "shard-keeper: rollback path hardening (lessons from Apr 14)",
+      "author": "alex",
+      "repo": "shard-keeper",
+      "branch": "alex/rollback-hardening",
+      "status": "open",
+      "reviewers": ["nadia", "cyrus"],
+      "assignees": ["alex"],
+      "opened_at": "2026-06-24T11:30:00-04:00",
+      "age_days": 5
+    },
+    {
+      "id": "ingest-edge#221",
+      "title": "ingest-edge: bump OTel collector to 0.91",
+      "author": "wes",
+      "repo": "ingest-edge",
+      "branch": "wes/otel-091",
+      "status": "open",
+      "reviewers": ["alex"],
+      "assignees": ["wes"],
+      "opened_at": "2026-06-27T09:14:00-04:00",
+      "age_days": 2
+    },
+    {
+      "id": "metrics-router#414",
+      "title": "metrics-router: add label-name parity check on push",
+      "author": "nadia",
+      "repo": "metrics-router",
+      "branch": "nadia/label-parity-check",
+      "status": "open",
+      "reviewers": ["alex"],
+      "assignees": ["nadia"],
+      "opened_at": "2026-06-25T16:48:00-04:00",
+      "age_days": 4
+    },
+    {
+      "id": "lantern#3",
+      "title": "lantern: v0 architecture doc — circulating for comment",
+      "author": "alex",
+      "repo": "lantern",
+      "branch": "alex/v0-arch",
+      "status": "open",
+      "reviewers": ["iris", "hema", "theo"],
+      "assignees": ["alex"],
+      "opened_at": "2026-06-29T10:00:00-04:00",
+      "age_days": 0
+    },
+    {
+      "id": "shard-keeper#190",
+      "title": "shard-keeper: small cutover-readiness fix",
+      "author": "cyrus",
+      "repo": "shard-keeper",
+      "branch": "cyrus/cutover-fix",
+      "status": "open",
+      "reviewers": ["alex"],
+      "assignees": ["cyrus"],
+      "opened_at": "2026-06-22T13:00:00-04:00",
+      "age_days": 7
+    }
+  ],
+  "oncall_schedule": [
+    {
+      "team": "infra",
+      "week_of": "2026-06-29",
+      "primary": "alex",
+      "secondary": "yuki",
+      "members": ["alex", "nadia", "hema", "yuki", "wes"],
+      "notes": "post-May-11 composition (Wes replaced Sam)"
+    },
+    {
+      "team": "infra",
+      "week_of": "2026-06-22",
+      "primary": "wes",
+      "secondary": "alex",
+      "members": ["alex", "nadia", "hema", "yuki", "wes"],
+      "notes": "Wes's first solo overnight Jun 17 fell in this rotation"
+    }
+  ],
+  "incidents": [
+    {
+      "incident_id": "INC-2026-04-14-001",
+      "id": "INC-2026-04-14-001",
+      "date": "2026-04-14",
+      "severity": "sev2",
+      "duration_minutes": 348,
+      "services_affected": ["shard-keeper", "rollup-service"],
+      "root_cause": "label-name change shipped to shard-keeper but not propagated to downstream rollup-service consumer",
+      "postmortem_owner": "alex",
+      "status": "closed"
+    },
+    {
+      "incident_id": "INC-2026-04-03-001",
+      "id": "INC-2026-04-03-001",
+      "date": "2026-04-03",
+      "severity": "sev3",
+      "duration_minutes": 240,
+      "services_affected": ["metrics-router"],
+      "root_cause": "OTel collector batch-window canary regression; caught and rolled back same day",
+      "postmortem_owner": "alex",
+      "status": "closed"
+    },
+    {
+      "incident_id": "INC-2026-06-08-001",
+      "id": "INC-2026-06-08-001",
+      "date": "2026-06-08",
+      "severity": "sev3",
+      "duration_minutes": 35,
+      "services_affected": ["metrics-router"],
+      "root_cause": "small canary alert during shard-keeper cutover; Wes handled cleanly",
+      "postmortem_owner": "wes",
+      "status": "closed"
+    }
+  ],
+  "runbooks": [
+    {
+      "id": "rb_shard_keeper_rollback",
+      "service": "shard-keeper",
+      "title": "shard-keeper: rollback procedure (post-Apr-14 hardened path)",
+      "body": "1. Re-push prior label map. 2. Confirm rollup-service consumer is reading. 3. Pre-coordinate with Nadia on label-name parity. 4. NEVER deploy from laptop, even on staging.",
+      "owner": "alex",
+      "backup": "cyrus_team",
+      "created_at": "2026-05-18T16:00:00-04:00",
+      "last_updated": "2026-05-18T16:00:00-04:00"
+    },
+    {
+      "id": "rb_metrics_router_canary",
+      "service": "metrics-router",
+      "title": "metrics-router: canary alert response",
+      "body": "1. Check the OTel collector batch window. 2. Compare p99 vs baseline. 3. Roll back via pipeline if regression confirmed.",
+      "owner": "alex",
+      "backup": "wes",
+      "created_at": "2026-05-18T16:30:00-04:00",
+      "last_updated": "2026-06-08T15:10:00-04:00"
+    },
+    {
+      "id": "rb_ingest_edge_cutover",
+      "service": "ingest-edge",
+      "title": "ingest-edge: cutover playbook",
+      "body": "Reference doc from the Mar 17 prod cutover. Deliberately avoid Friday afternoons (team-wide rule since Apr 24).",
+      "owner": "alex",
+      "backup": "yuki",
+      "created_at": "2026-03-18T09:00:00-04:00",
+      "last_updated": "2026-05-18T16:00:00-04:00"
+    },
+    {
+      "id": "rb_shard_keeper_label_parity",
+      "service": "shard-keeper",
+      "title": "shard-keeper: label-name parity pre-push sync",
+      "body": "Mandatory pre-push sync with Nadia (alerting/dashboards) AND the rollup-service owner (Cyrus team since May 18) before any label-name change reaches prod.",
+      "owner": "alex",
+      "backup": "nadia",
+      "created_at": "2026-05-18T16:45:00-04:00",
+      "last_updated": "2026-05-18T16:45:00-04:00"
+    },
+    {
+      "id": "rb_metrics_router_oncall_handoff",
+      "service": "metrics-router",
+      "title": "metrics-router: on-call handoff checklist",
+      "body": "Active deploys, open incidents, recent canary state, current rotation composition (Alex, Nadia, Hema, Yuki, Wes).",
+      "owner": "alex",
+      "backup": "wes",
+      "created_at": "2026-05-20T10:00:00-04:00",
+      "last_updated": "2026-05-20T10:00:00-04:00"
+    },
+    {
+      "id": "rb_devika_spring_night_blocks",
+      "service": "devika-staffing",
+      "title": "Devika spring night-shift blocks",
+      "body": "Cyrus-maintained timeline.\n\nMar 27 block (first): 10 days, pre-migration-tension.\n\nApr 8 block (second): 14 days, overlapped with the shard-keeper outage week.\n\nJun 9 block (third): 10 days, post-migration-restart.",
+      "owner": "cyrus",
+      "backup": "alex",
+      "created_at": "2026-04-08T09:00:00-04:00",
+      "last_updated": "2026-06-09T09:00:00-04:00"
+    },
+    {
+      "id": "rb_wes_feedback",
+      "service": "onboarding",
+      "title": "Wes feedback / mentoring runbook",
+      "body": "Mentor: Alex. Notes from ramp arc — May 11 staging-deploy walk-through, May 14 deploy-rule correction, Jun 8 Saturday canary assist, Jun 17 first solo overnight.",
+      "owner": "alex",
+      "backup": "cyrus",
+      "created_at": "2026-04-30T09:00:00-04:00",
+      "last_updated": "2026-06-17T09:00:00-04:00"
+    },
+    {
+      "id": "rb_nadia_cross_review_history",
+      "service": "metrics-pipeline",
+      "title": "Nadia cross-review history",
+      "body": "Pre-Apr-24: ad-hoc, no formal cross-review rule. Apr 24: formal cross-review rule established after the shard-keeper outage. May 6: first formal Nadia-Alex cross-review.",
+      "owner": "alex",
+      "backup": "nadia",
+      "created_at": "2026-04-24T09:00:00-04:00",
+      "last_updated": "2026-05-06T09:00:00-04:00"
+    },
+    {
+      "id": "rb_rollup_service_ownership",
+      "service": "rollup-service",
+      "title": "Service identity and ownership",
+      "body": "Pre-May-18: effectively un-owned; informally Alex kept an eye on it (kinda). Post-May-18 audit: Cyrus team owns rollup-service.",
+      "owner": "cyrus_team",
+      "backup": "alex",
+      "created_at": "2026-05-18T16:00:00-04:00",
+      "last_updated": "2026-05-18T16:00:00-04:00"
+    },
+    {
+      "id": "rb_rollup_service_ownership_rationale",
+      "service": "rollup-service",
+      "title": "Ownership and alerting rationale",
+      "body": "Why Cyrus's team owns rollup-service: ownership audit on May 18 assigned it to Cyrus's team, closing the gap exposed by the Apr 14 outage.",
+      "owner": "cyrus_team",
+      "backup": "alex",
+      "created_at": "2026-05-18T16:00:00-04:00",
+      "last_updated": "2026-05-18T16:00:00-04:00"
+    },
+    {
+      "id": "rb_metrics_router_cutover_status",
+      "service": "metrics-router",
+      "title": "Cutover status",
+      "body": "Cutover trajectory: Mar 30 — 60%; Apr 1 — 75%; Apr 7 — 92%; Apr 9 — 95%; Apr 14 — outage paused progress.",
+      "owner": "alex",
+      "backup": "wes",
+      "created_at": "2026-03-30T09:00:00-04:00",
+      "last_updated": "2026-04-14T09:00:00-04:00"
+    },
+    {
+      "id": "rb_shard_keeper_cutover_status",
+      "service": "shard-keeper",
+      "title": "Cutover status",
+      "body": "Restart progress: Jun 2 clean first day; Jun 8 — 50% (after Wes Saturday canary assist); Jun 19 — 75%; Jun 26 — 90%; Jun 29 — ~92%.",
+      "owner": "alex",
+      "backup": "nadia",
+      "created_at": "2026-06-02T09:00:00-04:00",
+      "last_updated": "2026-06-29T09:00:00-04:00"
+    },
+    {
+      "id": "rb_shard_keeper_status_arc",
+      "service": "shard-keeper",
+      "title": "Status arc",
+      "body": "1. not_started (initial). 2. paused_pending_audit (Apr 24 after the outage). 3. migration_in_progress (post-restart). Current: ~92% complete as of Jun 29.",
+      "owner": "alex",
+      "backup": "nadia",
+      "created_at": "2026-04-24T09:00:00-04:00",
+      "last_updated": "2026-06-29T09:00:00-04:00"
+    },
+    {
+      "id": "rb_shard_keeper_apr14_precondition",
+      "service": "shard-keeper",
+      "title": "Apr 14 outage precondition",
+      "body": "Pre-outage state record placeholder.",
+      "owner": "alex",
+      "backup": "nadia",
+      "created_at": "2026-04-14T09:00:00-04:00",
+      "last_updated": "2026-04-14T09:00:00-04:00"
+    },
+    {
+      "id": "rb_shard_keeper_ownership_history",
+      "service": "shard-keeper",
+      "title": "Ownership history",
+      "body": "Pre-May-18: Alex is the informal primary owner; no formal backup was named; Cyrus team helped ad-hoc, but ownership was never formally written down.",
+      "owner": "alex",
+      "backup": "cyrus_team",
+      "created_at": "2026-03-01T09:00:00-04:00",
+      "last_updated": "2026-05-18T09:00:00-04:00"
+    },
+    {
+      "id": "rb_ingest_edge_ownership_history",
+      "service": "ingest-edge",
+      "title": "Ownership history",
+      "body": "Pre-May-18: Alex was primary; Yuki helped ad-hoc but was not formally named as backup. Post-May-18: Alex primary, Yuki formal backup.",
+      "owner": "alex",
+      "backup": "yuki",
+      "created_at": "2026-03-01T09:00:00-04:00",
+      "last_updated": "2026-05-18T09:00:00-04:00"
+    },
+    {
+      "id": "rb_incident_postmortem_standards",
+      "service": "incident-response",
+      "title": "Incident postmortem standards",
+      "body": "Apr 14 postmortem set the bar for Sphere incident docs; that template should be the standard going forward.",
+      "owner": "alex",
+      "backup": "hema",
+      "created_at": "2026-04-30T09:00:00-04:00",
+      "last_updated": "2026-04-30T09:00:00-04:00"
+    },
+    {
+      "id": "rb_communication_after_incidents",
+      "service": "communication-after-incidents",
+      "title": "Communication after incidents",
+      "body": "Post-incident communication practice for Alex: morning-after Apr 15 reset; Jun 15 brunch with Anya — Alex stayed calmer than the morning-after-Apr-15 thanks to post-outage practice.",
+      "owner": "alex",
+      "backup": "anya",
+      "created_at": "2026-04-15T09:00:00-04:00",
+      "last_updated": "2026-06-15T09:00:00-04:00"
+    },
+    {
+      "id": "rb_code_review_process",
+      "service": "code-review",
+      "title": "Code Review Process",
+      "body": "Old (ad-hoc) Alex/Nadia review pattern, pre-Apr-24 cross-review rule; informal sign-offs in DMs.",
+      "owner": "alex",
+      "backup": "nadia",
+      "created_at": "2026-04-01T09:00:00-04:00",
+      "last_updated": "2026-04-24T09:00:00-04:00"
+    },
+    {
+      "id": "rb_oncall_rotation_handoff",
+      "service": "on-call",
+      "title": "Rotation handoff",
+      "body": "Previous roster before the May 11 handoff: Alex, Nadia, Hema, Yuki, Sam. Post-May-11: Wes replaced Sam.",
+      "owner": "alex",
+      "backup": "hema",
+      "created_at": "2026-05-11T09:00:00-04:00",
+      "last_updated": "2026-05-11T09:00:00-04:00"
+    }
+  ],
+  "deploys": [
+    {
+      "deploy_id": "dep_ingest_edge_prod_mar17",
+      "service": "ingest-edge",
+      "version": "v0.42.0",
+      "env": "prod",
+      "status": "completed",
+      "deployed_at": "2026-03-17T10:30:00-04:00"
+    },
+    {
+      "deploy_id": "dep_metrics_router_prod_apr03",
+      "service": "metrics-router",
+      "version": "v0.91.2",
+      "env": "prod",
+      "status": "completed",
+      "deployed_at": "2026-04-03T14:00:00-04:00"
+    },
+    {
+      "deploy_id": "dep_shard_keeper_apr14_config",
+      "service": "shard-keeper",
+      "version": "config-rev-218",
+      "env": "prod",
+      "status": "rolled_back",
+      "deployed_at": "2026-04-14T17:55:00-04:00"
+    },
+    {
+      "deploy_id": "dep_shard_keeper_jun02_restart",
+      "service": "shard-keeper",
+      "version": "v0.55.0",
+      "env": "prod",
+      "status": "completed",
+      "deployed_at": "2026-06-02T10:00:00-04:00"
+    }
+  ],
+  "logs": [],
+  "pr_reviews": [],
+  "pr_merges": [],
+  "incident_escalations": [],
+  "rollbacks": [],
+  "contacts": [
+    {
+      "id": "contact_hema",
+      "name": "Hema",
+      "email": "hema@sphere-test.com",
+      "role": "Engineering manager",
+      "team": "platform",
+      "notes": "Alex's manager — brisk procedural one-liners."
+    },
+    {
+      "id": "contact_theo",
+      "name": "Theo",
+      "email": "theo@sphere-test.com",
+      "role": "CTO",
+      "team": "executive",
+      "notes": "Frames Lantern as Q3 strategic push (formal/exec register)."
+    },
+    {
+      "id": "contact_iris",
+      "name": "Iris Kemper",
+      "email": "iris@sphere-test.com",
+      "role": "Product-engineering UI co-lead",
+      "team": "lantern",
+      "notes": "UI co-lead on Lantern; product-side collaborative framing."
+    }
+  ]
+}

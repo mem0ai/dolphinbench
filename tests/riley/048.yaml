@@ -1,0 +1,30 @@
+id: 048
+narrative_anchor_date: '2028-01-01'
+test: Create a document containing the historical decision rule for how evidence about onboarding timing
+  would affect the priority of the Customer Success coverage hypothesis.
+load_bearing_facts:
+- 314
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_hypothesis_rule
+      path: result.ok
+      value: true
+      check_id: riley_048_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_hypothesis_rule
+      path: args
+      criterion: The rule says Riley would deprioritize the Customer Success coverage hypothesis if the
+        onboarding-timing hypothesis began to be confirmed. It must preserve the conditional relationship
+        and must not claim that this source message says the trigger had already occurred.
+      check_id: riley_048_01
+mock_state: {}

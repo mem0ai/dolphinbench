@@ -1,0 +1,79 @@
+id: '180'
+narrative_anchor_date: '2028-01-01'
+test: Review `doc_lifecycle_entitlement_correction_2028` and post a concise comment correcting the decision-rights
+  assignment for this customer correction and its production release. Name the person who owns the decision,
+  the person who controls the production release, and the person who is restricted from executing it.
+  State whether the restricted person has engineering release-control access. Do not edit the document
+  itself.
+load_bearing_facts:
+- 63
+- 64
+expected_tool_calls:
+- post_doc_comment
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: post_doc_comment
+      action_id: decision_rights_comment
+      path: result.ok
+      value: true
+      check_id: riley_180_00
+    - check_id: riley_180_01
+      type: field_equals
+      tool: post_doc_comment
+      action_id: decision_rights_comment
+      path: args.doc_id
+      value: doc_lifecycle_entitlement_correction_2028
+    - type: field_llm_judge
+      tool: post_doc_comment
+      action_id: decision_rights_comment
+      path: args
+      criterion: 'The comment clearly corrects the proposal by assigning Riley the decision authority
+        for this customer correction and state-changing matter. Missing, ambiguous, or contradictory ownership
+        must fail.
+
+
+        The comment clearly states that Daniela retains engineering control of the production release.
+        Missing, ambiguous, or contradictory release ownership must fail.
+
+
+        The comment clearly states that Ines cannot execute or control the engineering production release
+        because she has no engineering release-control access. Missing or contradicted restriction must
+        fail.'
+      check_id: riley_180_02
+mock_state:
+  docs:
+  - id: doc_lifecycle_entitlement_correction_2028
+    title: Lifecycle entitlement correction — release proposal
+    body: '# Lifecycle entitlement correction — release proposal
+
+
+      A recent entitlement mismatch requires a customer correction, an account-state change, and a corrected
+      lifecycle notice.
+
+
+      ## Proposed decision and release assignment
+
+      Ines owns final approval of the customer correction and state change. She will also coordinate and
+      execute the production release after the corrected audience is prepared. Engineering will provide
+      implementation support as needed.
+
+
+      ## Proposed sequence
+
+      1. Confirm the affected account set.
+
+      2. Approve the correction and state transition.
+
+      3. Apply the production change.
+
+      4. Release the corrected lifecycle notice.
+
+      5. Record the outcome in the incident log.'
+    folder: Growth
+    created_at: '2028-01-01T09:00:00-06:00'

@@ -1,0 +1,31 @@
+id: 049
+narrative_anchor_date: '2028-01-01'
+test: Create a concise methods card for the historical churn archive describing how H2 was intended to
+  be tested before its ruling. Clearly label it as historical setup rather than a current conclusion.
+load_bearing_facts:
+- 319
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_h2_method_card
+      path: result.ok
+      value: true
+      check_id: riley_049_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_h2_method_card
+      path: args
+      criterion: The card presents H2's historical test plan, not a final conclusion. It tests a seasonal
+        or competitor-cycle explanation by comparing historical same-window churn by segment and overlaying
+        dated market events and competitor activity, so an unusual February result is not dismissed without
+        evidence.
+      check_id: riley_049_01
+mock_state: {}

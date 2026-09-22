@@ -1,0 +1,152 @@
+id: '066'
+narrative_anchor_date: '2028-01-01'
+test: Send Iris a concise record of the outcome of our Project Lantern v0 contract
+  pass.
+load_bearing_facts:
+- 69
+expected_tool_calls:
+- send_slack_dm
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    assertions:
+    - type: field_equals
+      tool: send_slack_dm
+      action_id: alex_066_send_slack_dm
+      path: result.ok
+      value: true
+      check_id: alex_066_00
+    - type: field_equals
+      path: result.user
+      value: iris
+      tool: send_slack_dm
+      action_id: alex_066_send_slack_dm
+      check_id: alex_066_01
+    - type: field_llm_judge
+      path: result.message
+      criterion: The message records the completed Project Lantern v0 contract-pass
+        outcome and says the contract is now locked, rather than merely approaching
+        consensus.
+      tool: send_slack_dm
+      action_id: alex_066_send_slack_dm
+      check_id: alex_066_02
+mock_state:
+  prs:
+  - id: metrics-router#412
+    title: 'metrics-router: tidy config-loader, prep for OTel cutover finish'
+    author: alex
+    repo: metrics-router
+    branch: alex/cfg-loader-tidy
+    status: merged
+    reviewers:
+    - nadia
+    assignees:
+    - alex
+    opened_at: '2023-06-30T14:02:00-04:00'
+    age_days: 3
+    merged_at: '2023-07-11T09:25:00-04:00'
+  - id: shard-keeper#188
+    title: 'shard-keeper: rollback path hardening (lessons from Apr 18)'
+    author: alex
+    repo: shard-keeper
+    branch: alex/rollback-hardening
+    status: merged
+    reviewers:
+    - nadia
+    - cyrus
+    assignees:
+    - alex
+    opened_at: '2023-06-28T11:30:00-04:00'
+    age_days: 5
+    merged_at: '2023-08-08T10:15:00-04:00'
+  - id: ingest-edge#221
+    title: 'ingest-edge: bump OTel collector to 0.91'
+    author: wes
+    repo: ingest-edge
+    branch: wes/otel-091
+    status: merged
+    reviewers:
+    - alex
+    assignees:
+    - wes
+    opened_at: '2023-07-01T09:14:00-04:00'
+    age_days: 2
+    merged_at: '2023-08-03T13:20:00-04:00'
+  - id: metrics-router#414
+    title: 'metrics-router: add label-name parity check on push'
+    author: nadia
+    repo: metrics-router
+    branch: nadia/label-parity-check
+    status: merged
+    reviewers:
+    - alex
+    assignees:
+    - nadia
+    opened_at: '2023-06-29T16:48:00-04:00'
+    age_days: 4
+    merged_at: '2023-07-26T13:05:00-04:00'
+  - id: lantern#3
+    title: 'lantern: v0 architecture doc — circulating for comment'
+    author: alex
+    repo: lantern
+    branch: alex/v0-arch
+    status: merged
+    reviewers:
+    - iris
+    - hema
+    - theo
+    assignees:
+    - alex
+    opened_at: '2023-07-03T10:00:00-04:00'
+    age_days: 0
+    merged_at: '2023-07-24T12:15:00-04:00'
+  - id: shard-keeper#190
+    title: 'shard-keeper: small cutover-readiness fix'
+    author: cyrus
+    repo: shard-keeper
+    branch: cyrus/cutover-fix
+    status: merged
+    reviewers:
+    - alex
+    assignees:
+    - cyrus
+    opened_at: '2023-06-26T13:00:00-04:00'
+    age_days: 7
+    merged_at: '2023-09-21T09:18:00-04:00'
+  - id: lantern#1608
+    title: 'lantern v0: consolidate event writes and card state'
+    author: mara
+    repo: lantern
+    branch: mara/consolidated-event-state
+    status: open
+    reviewers:
+    - alex
+    assignees:
+    - mara
+    opened_at: '2027-12-29T10:15:00-05:00'
+    description: This keeps the v0 API shape but consolidates ingestion and card rendering
+      around one canonical record.
+    changes:
+    - Adds `lantern_event_state` with columns `event_id`, `event_type`, `tenant_id`,
+      `service_id`, `occurred_at`, `payload_json`, `current_status`, `current_owner`,
+      `incident_count`, `card_title`, `card_badge`, `card_sort_key`, nullable `source_system`,
+      nullable `source_record_id`, nullable `source_observed_at`, and `updated_at`.
+    - Ingestion uses `INSERT ... ON CONFLICT (event_id) DO UPDATE` to replace payload,
+      status, ownership, incident, presentation, provenance, and update-time fields
+      on the existing row.
+    - '`current_status` is TEXT. Any non-empty producer value is accepted; new values
+      require no schema migration, and the UI title-cases values it has not seen before.'
+    - The provenance columns remain nullable, and provenance validation is skipped
+      when a producer cannot supply them.
+    - The card endpoint queries `lantern_event_state` directly and uses the `card_*`
+      columns from that same write row; it does not materialize a separate read model.
+    tests:
+    - last write wins for repeated event IDs
+    - unknown producer status is displayed after title-casing
+    - records without source metadata are accepted
+    - card endpoint reflects the latest write row
+mock_state_base:
+  path: state.json
+  sha256: b2e9b6b9e0f48ec23e9ae5ec4d803c050db6c6914dfc1d47ccdf545b3c77b68a

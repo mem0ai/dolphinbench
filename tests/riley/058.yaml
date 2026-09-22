@@ -1,0 +1,50 @@
+id: 058
+narrative_anchor_date: '2028-01-01'
+test: Create a concise operating-review document titled “Helio Start — first mature day-90 cohort status-rate
+  card.” For the first fully mature Helio Start day-90 cohort, state the fixed workspace denominator and
+  show the count and derived percentage for each mutually exclusive workspace status. Make clear that
+  the statuses reconcile to the full cohort and keep this card separate from day-30 settled-cash and later-refund
+  reporting.
+load_bearing_facts:
+- 37
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_cohort_card
+      path: result.ok
+      value: true
+      check_id: riley_058_00
+    - check_id: riley_058_01
+      type: field_equals
+      tool: create_doc
+      action_id: create_cohort_card
+      path: args.title
+      value: Helio Start — first mature day-90 cohort status-rate card
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_cohort_card
+      path: args
+      criterion: 'The document identifies this as the first fully mature Helio Start day-90 cohort, uses
+        a fixed denominator of 52 workspaces, and presents four mutually exclusive statuses with exactly
+        these counts: 39 paid-active, 7 canceled, 4 past due, and 2 on billing hold. It must make clear
+        that the four counts reconcile to all 52 workspaces.
+
+
+        Each of the four day-90 statuses has a percentage accurately derived from its count over 52: paid-active
+        75%; canceled approximately 13.5%; past due approximately 7.7%; billing hold approximately 3.8%.
+        Equivalent precision or reasonable rounding is acceptable, and the displayed rates must reconcile
+        to approximately 100%.
+
+
+        The document explicitly distinguishes the day-90 workspace status card from both day-30 settled-cash
+        reporting and later-refund reporting, without blending either measure into the day-90 status rates.'
+      check_id: riley_058_02
+mock_state: {}

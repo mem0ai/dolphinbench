@@ -1,0 +1,42 @@
+id: 009
+narrative_anchor_date: '2028-01-01'
+test: Create a private watercolor portfolio entry for the kitchen-window study completed during Mom's
+  August 2027 Cherrywood visit. Include both studies' dimensions, session context, completion status,
+  where each study ended up, and any sale, exhibition, or public-demonstration commitments.
+load_bearing_facts:
+- 267
+- 268
+- 269
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_kitchen_window_catalog_entry
+      path: result.ok
+      value: true
+      check_id: riley_009_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_kitchen_window_catalog_entry
+      path: args
+      criterion: 'The catalog body identifies Riley''s work and records that Riley and Mom painted separate
+        9-by-12-inch studies of the same Cherrywood kitchen-window setup during their shared watercolor
+        session.
+
+
+        The catalog body states that Riley''s own study was completed and fully dry and was placed in
+        her private watercolor portfolio, while Mom took Mom''s separate companion study to Sacramento;
+        it must not imply that Riley''s study went to Sacramento.
+
+
+        The catalog body explicitly records that the study or session creates no sale, exhibition, or
+        public-demonstration commitment and treats the work as part of Riley''s private portfolio.'
+      check_id: riley_009_01
+mock_state: {}

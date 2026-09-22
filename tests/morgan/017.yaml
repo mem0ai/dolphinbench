@@ -1,0 +1,32 @@
+id: '017'
+narrative_anchor_date: '2026-09-14'
+test: Create a reusable customer-support macro for API v2 JWT nbf errors during token
+  setup.
+load_bearing_facts:
+- 289
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      path: result.ok
+      value: true
+      check_id: morgan_017_00
+      action_id: morgan_017_create_doc
+    - type: field_llm_judge
+      path: result.document.body
+      criterion: Explains the allowance of up to five minutes (300 seconds) of clock
+        skew for JWT nbf values and warns against copying sample timestamps into production
+        tokens. Does not suggest increasing the tolerance beyond five minutes.
+      tool: create_doc
+      check_id: morgan_017_01
+      action_id: morgan_017_create_doc
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

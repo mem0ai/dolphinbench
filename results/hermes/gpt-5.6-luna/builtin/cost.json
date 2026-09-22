@@ -1,0 +1,22 @@
+{
+  "total_usd": 61.482132,
+  "agent_usd": 61.482132,
+  "memory_usd": 0.0,
+  "personas": {
+    "morgan": {
+      "agent_usd": 14.627096,
+      "memory_usd": 0.0,
+      "total_usd": 14.627096
+    },
+    "alex": {
+      "agent_usd": 21.08105,
+      "memory_usd": 0.0,
+      "total_usd": 21.08105
+    },
+    "riley": {
+      "agent_usd": 25.773985,
+      "memory_usd": 0.0,
+      "total_usd": 25.773985
+    }
+  }
+}

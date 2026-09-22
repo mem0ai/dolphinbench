@@ -1,0 +1,4039 @@
+[
+  {
+    "id": 2,
+    "statement": "Morgan Chen gets Blue Bottle when out early enough.",
+    "sources": [
+      {
+        "session_id": "000001",
+        "message_index": 0,
+        "narrative_date": "2023-01-09T08:00:00-08:00"
+      }
+    ],
+    "corrected_id": "000001::message:0::fact:6"
+  },
+  {
+    "id": 322,
+    "statement": "For the rest of the 2026 warm season, Kibo’s walker instructions are stricter: on hot days he should be walked before 10:30 a.m.; if that cool window is missed, the walk should be skipped rather than made up at midday; and when he starts stiff, walks should be short and flat.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2026_08_10_001",
+        "message_index": 0,
+        "narrative_date": "2026-08-10T10:46:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2026_08_10_001::message:0::fact:3"
+  },
+  {
+    "id": 149,
+    "statement": "On October 26, 2023, Morgan Chen requested a reply to Rishi Patel in the current internal team chat instructing support to use https://docs.atlas-test.com/api/v2/graphql-quickstart, avoid the legacy API v1 search result, and treat the issue as a targeted docs/search pinning fix rather than reopening the API migration project; the reply should permit screenshots if they help pin the result ordering but prevent the work from expanding.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2023_10_22_008",
+        "message_index": 0,
+        "narrative_date": "2023-10-26T09:36:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2023_10_22_008::message:0::fact:4"
+  },
+  {
+    "id": 325,
+    "statement": "Morgan Chen and Jamie decided there will be no fall 2026 move from Oakland Unit 3B.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2026_08_31_001",
+        "message_index": 0,
+        "narrative_date": "2026-08-31T08:22:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2026_08_31_001::message:0::fact:1"
+  },
+  {
+    "id": 93,
+    "statement": "Privacy runbook tab 7 requires customer-record copy requests to be fulfilled within 30 calendar days.",
+    "sources": [
+      {
+        "session_id": "000393",
+        "message_index": 0,
+        "narrative_date": "2023-05-01T10:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000393::message:0::fact:0"
+  },
+  {
+    "id": 94,
+    "statement": "Privacy runbook tab 7 requires PII fields in customer-record copies to be masked by default and included only if the customer explicitly opted in to retain them.",
+    "sources": [
+      {
+        "session_id": "000393",
+        "message_index": 0,
+        "narrative_date": "2023-05-01T10:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000393::message:0::fact:1"
+  },
+  {
+    "id": 95,
+    "statement": "Privacy runbook tab 7 requires written confirmation to be logged for every customer-record copy transaction.",
+    "sources": [
+      {
+        "session_id": "000393",
+        "message_index": 0,
+        "narrative_date": "2023-05-01T10:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000393::message:0::fact:2"
+  },
+  {
+    "id": 311,
+    "statement": "During Evergreen Bank’s Q3 2026 current-state/admin review, Devon reinforced that there is no custom admin package, overage cap, department carveout, commercial exception, or Q3 expansion motion.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2026_07_16_002",
+        "message_index": 0,
+        "narrative_date": "2026-07-16T11:35:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2026_07_16_002::message:0::fact:3"
+  },
+  {
+    "id": 312,
+    "statement": "On July 16, 2026, Morgan Chen requested that the Evergreen Bank CRM row be updated immediately with status `q3_2026_admin_review_closed_current_scope` and replacement tags `mercury`, `growth`, `annual-customer`, `evergreen`, `current-state-admin-review-closed`, `granular-sync-operator-logged-input`, and `no-commercial-exception`.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2026_07_16_002",
+        "message_index": 0,
+        "narrative_date": "2026-07-16T11:35:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2026_07_16_002::message:0::fact:4"
+  },
+  {
+    "id": 327,
+    "statement": "Evergreen Bank finished August 2026 with 236 monthly active developers, within one standard Growth overage band.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2026_09_04_001",
+        "message_index": 0,
+        "narrative_date": "2026-09-04T08:38:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2026_09_04_001::message:0::fact:1"
+  },
+  {
+    "id": 331,
+    "statement": "Morgan Chen reported agreement to hold one bounded Q3 operating-posture read on September 18, 2026 with Sofia Alvarez, Devon Hayes, Anna Martinez, Sarah Kim, Jake, and Leo Park, covering Q3 operating evidence, possible changes to fall financing posture, and whether a staffing revisit is supported.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2026_09_08_001",
+        "message_index": 0,
+        "narrative_date": "2026-09-08T08:26:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2026_09_08_001::message:0::fact:1"
+  },
+  {
+    "id": 332,
+    "statement": "The September 18, 2026 Q3 operating-posture read is not a data-room refresh, investor packet, customer-facing Compass decision, or default hiring-reopen meeting.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2026_09_08_001",
+        "message_index": 0,
+        "narrative_date": "2026-09-08T08:26:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2026_09_08_001::message:0::fact:2"
+  },
+  {
+    "id": 304,
+    "statement": "Leo was assigned ownership of Atlas support-contract and platform-seam reads for Q3 2026.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2026_07_02_001",
+        "message_index": 0,
+        "narrative_date": "2026-07-02T11:48:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2026_07_02_001::message:0::fact:5"
+  },
+  {
+    "id": 305,
+    "statement": "Priya was assigned ownership of Mercury setup-copy quality for Q3 2026.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2026_07_02_001",
+        "message_index": 0,
+        "narrative_date": "2026-07-02T11:48:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2026_07_02_001::message:0::fact:6"
+  },
+  {
+    "id": 328,
+    "statement": "AWS closed August 2026 at about $18.9k.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2026_09_04_001",
+        "message_index": 0,
+        "narrative_date": "2026-09-04T08:38:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2026_09_04_001::message:0::fact:2"
+  },
+  {
+    "id": 329,
+    "statement": "Pinecone closed August 2026 at about $4.2k.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2026_09_04_001",
+        "message_index": 0,
+        "narrative_date": "2026-09-04T08:38:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2026_09_04_001::message:0::fact:3"
+  },
+  {
+    "id": 36,
+    "statement": "As of April 7, 2023, finance requires every payment over $5,000 to be flagged and manually reviewed before payment; the rule is non-negotiable.",
+    "sources": [
+      {
+        "session_id": "000289",
+        "message_index": 1,
+        "narrative_date": "2023-04-07T09:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000289::message:1::fact:0"
+  },
+  {
+    "id": 34,
+    "statement": "Morgan Chen requested that Sarah Kim (sarah@atlas-test.com) be CC'd on outside email threads from the start so she can see the full thread.",
+    "sources": [
+      {
+        "session_id": "000286",
+        "message_index": 0,
+        "narrative_date": "2023-04-06T10:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000286::message:0::fact:0"
+  },
+  {
+    "id": 84,
+    "statement": "On April 27, 2023, Morgan Chen requested that tab 4 of the procurement runbook state that contract termination notice must be sent in writing at least 30 days in advance, with no side deals or exceptions because the minimum is non-negotiable.",
+    "sources": [
+      {
+        "session_id": "000383",
+        "message_index": 0,
+        "narrative_date": "2023-04-27T11:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000383::message:0::fact:0"
+  },
+  {
+    "id": 97,
+    "statement": "Morgan Chen says a design review invitation must include the Figma link and a one-paragraph context note from the presenter; if either is missing, push back and do not accept the invitation yet.",
+    "sources": [
+      {
+        "session_id": "000396",
+        "message_index": 0,
+        "narrative_date": "2023-05-02T13:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000396::message:0::fact:1"
+  },
+  {
+    "id": 172,
+    "statement": "On January 23, 2024, Morgan Chen made structured Q&A Scaffold’s default quarterly all-hands template: a short company update, pre-collected questions, live answers only on approved current topics, async or named-owner routing for the rest, and no open-mic block unless Morgan explicitly chooses one for that specific meeting.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2024_01_22_003",
+        "message_index": 0,
+        "narrative_date": "2024-01-23T09:11:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2024_01_22_003::message:0::fact:2"
+  },
+  {
+    "id": 96,
+    "statement": "On May 1, 2023, Morgan Chen requested adding a hard rule to the people-ops runbook requiring principal-level and above candidates to undergo third-party background verification before any offer letter is finalized, with no exceptions for leadership hires; recruiter ops must own the workflow, and it must trigger automatically rather than ad hoc.",
+    "sources": [
+      {
+        "session_id": "000394",
+        "message_index": 0,
+        "narrative_date": "2023-05-01T14:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000394::message:0::fact:0"
+  },
+  {
+    "id": 80,
+    "statement": "Morgan Chen requested that the CRM rule be locked in: only investor, customer, and vendor contacts belong in the CRM; Stanford-crowd and friends-of-friends introductions must not be entered; investors must be tagged `investor`, not `network`.",
+    "sources": [
+      {
+        "session_id": "000379",
+        "message_index": 0,
+        "narrative_date": "2023-04-26T14:30:00-07:00"
+      }
+    ],
+    "corrected_id": "000379::message:0::fact:0"
+  },
+  {
+    "id": 287,
+    "statement": "The board aligned on March 27, 2026 that Scaffold will not force a Series C during the first half of 2026.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2026_03_27_003",
+        "message_index": 0,
+        "narrative_date": "2026-03-27T11:52:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2026_03_27_003::message:0::fact:7"
+  },
+  {
+    "id": 288,
+    "statement": "Scaffold's Q2 2026 priorities should be retention, margin discipline, cleaner standard-term customer work, and owner-lane execution rather than vanity growth.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2026_03_27_003",
+        "message_index": 0,
+        "narrative_date": "2026-03-27T11:52:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2026_03_27_003::message:0::fact:8"
+  },
+  {
+    "id": 289,
+    "statement": "By April 2, 2026, Leo had shipped the approved Atlas/API v2 customer-docs patch following repeated JWT `nbf` clock-skew support cases; the live guidance now explicitly says to allow up to five minutes of clock skew when setting `nbf` and not to copy sample timestamps directly into production tokens.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2026_04_02_001",
+        "message_index": 0,
+        "narrative_date": "2026-04-02T08:44:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2026_04_02_001::message:0::fact:0"
+  },
+  {
+    "id": 74,
+    "statement": "Release notes must be posted only in #eng-releases until the deploy is green; posting them in #eng-all before the deploy is green is prohibited.",
+    "sources": [
+      {
+        "session_id": "000368",
+        "message_index": 0,
+        "narrative_date": "2023-04-25T11:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000368::message:0::fact:0"
+  },
+  {
+    "id": 1,
+    "statement": "Morgan Chen prefers tabs rather than spaces.",
+    "sources": [
+      {
+        "session_id": "000001",
+        "message_index": 0,
+        "narrative_date": "2023-01-09T08:00:00-08:00"
+      }
+    ],
+    "corrected_id": "000001::message:0::fact:5"
+  },
+  {
+    "id": 92,
+    "statement": "Morgan Chen requested adding a locked rule to the offsite booking checklist requiring business-grade internet on-site and direct confirmation from the property operations contact rather than relying on the venue website or marketing PDF.",
+    "sources": [
+      {
+        "session_id": "000390",
+        "message_index": 0,
+        "narrative_date": "2023-04-29T14:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000390::message:0::fact:0"
+  },
+  {
+    "id": 143,
+    "statement": "Morgan Chen requested a narrow response to Rishi Patel clarifying that preserved `X-Scaffold-Signature` and fully lowercased `x-scaffold-signature` are accepted against the same body and workspace, while underscore/env-var-style names are not, without introducing alternate signature locations or broader header normalization.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2023_10_01_009",
+        "message_index": 0,
+        "narrative_date": "2023-10-04T10:07:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2023_10_01_009::message:0::fact:4"
+  },
+  {
+    "id": 48,
+    "statement": "Morgan Chen said that requests for time with Jake must go through Priya, who manages Jake’s calendar, rather than by pinging Jake directly.",
+    "sources": [
+      {
+        "session_id": "000299",
+        "message_index": 1,
+        "narrative_date": "2023-04-10T11:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000299::message:1::fact:0"
+  },
+  {
+    "id": 7,
+    "statement": "Morgan Chen requested that vendor calls not be scheduled on Fridays except for real emergencies.",
+    "sources": [
+      {
+        "session_id": "000091",
+        "message_index": 0,
+        "narrative_date": "2023-01-31T15:30:00-08:00"
+      }
+    ],
+    "corrected_id": "000091::message:0::fact:0"
+  },
+  {
+    "id": 53,
+    "statement": "Finance flags trips over the $2,000 combined flight-and-hotel cap and sends them back to Morgan Chen.",
+    "sources": [
+      {
+        "session_id": "000307",
+        "message_index": 1,
+        "narrative_date": "2023-04-12T14:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000307::message:1::fact:1"
+  },
+  {
+    "id": 299,
+    "statement": "Leo reported no recurrence of Acme’s large-export timeout, no data-loss report, and no renewed request for customer-facing Compass material during the Q2-to-date period.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2026_06_05_001",
+        "message_index": 0,
+        "narrative_date": "2026-06-05T08:22:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2026_06_05_001::message:0::fact:1"
+  },
+  {
+    "id": 300,
+    "statement": "Jake confirmed that the Q2-to-date Acme support read creates no new Atlas product-priority item and should not bring Acme into Mercury scope.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2026_06_05_001",
+        "message_index": 0,
+        "narrative_date": "2026-06-05T08:22:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2026_06_05_001::message:0::fact:2"
+  },
+  {
+    "id": 301,
+    "statement": "Morgan Chen asked that no document be drafted and that the Q2 Acme read be remembered accurately for future evidence and routing checks as normal Atlas/API v2 owner-lane evidence, not as a founder-direct or special-reporting account.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2026_06_05_001",
+        "message_index": 0,
+        "narrative_date": "2026-06-05T08:22:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2026_06_05_001::message:0::fact:3"
+  },
+  {
+    "id": 206,
+    "statement": "On November 8, 2024, Morgan Chen rewrote Kibo’s sitter/walker handoff to require only pre-portioned food and treats previously approved by Morgan or Jamie; samples, substitute treats, and in-the-moment label guessing are prohibited even if an item appears safe.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2024_11_05_002",
+        "message_index": 0,
+        "narrative_date": "2024-11-08T17:36:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2024_11_05_002::message:0::fact:3"
+  },
+  {
+    "id": 284,
+    "statement": "Morgan Chen and Jamie added a foldable ramp and non-slip runner at Kibo's Oakland apartment entrance on the morning of February 18, 2026.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2026_02_18_001",
+        "message_index": 0,
+        "narrative_date": "2026-02-18T08:38:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2026_02_18_001::message:0::fact:0"
+  },
+  {
+    "id": 285,
+    "statement": "Morgan Chen and Jamie instructed Kibo's walker to use the ramp instead of the stairs when the steps are damp or Kibo seems stiff.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2026_02_18_001",
+        "message_index": 0,
+        "narrative_date": "2026-02-18T08:38:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2026_02_18_001::message:0::fact:1"
+  },
+  {
+    "id": 314,
+    "statement": "As of July 23, 2026, Mercury’s supported-source-types documentation and support macro cover Salesforce sandbox setup, NetSuite variant checks, and other source-specific caveats without putting those caveats into product copy.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2026_07_23_001",
+        "message_index": 0,
+        "narrative_date": "2026-07-23T09:10:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2026_07_23_001::message:0::fact:2"
+  },
+  {
+    "id": 271,
+    "statement": "QA confirmed by January 14, 2026 that Mercury’s OAuth-cancel path tells users authorization was canceled before Scaffold connected the source, says no data was synced, and provides a clear `Try again` path when connector context can be preserved; providers that do not preserve connector context fall back to the generic source picker on the first pass.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2026_01_14_002",
+        "message_index": 0,
+        "narrative_date": "2026-01-14T12:52:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2026_01_14_002::message:0::fact:2"
+  },
+  {
+    "id": 183,
+    "statement": "Devon Hayes and HR are to draft the first customer-growth or GTM role description, and Morgan Chen must review it before it is shared beyond the small reset group.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2024_02_26_004",
+        "message_index": 0,
+        "narrative_date": "2024-02-27T09:24:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2024_02_26_004::message:0::fact:23"
+  },
+  {
+    "id": 180,
+    "statement": "On February 23, 2024, Morgan Chen requested a boundary note to Sarah Kim stating that there should be no public funding announcement for now, no Kestrel-written raise narrative, and no external product-proof campaign or roadmap promise; customer and partner conversations may acknowledge Scaffold’s post-Series-B status when relevant, but any future announcement requires separate Morgan Chen and Sarah Kim review plus Northstar coordination.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2024_02_19_009",
+        "message_index": 0,
+        "narrative_date": "2024-02-23T09:18:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2024_02_19_009::message:0::fact:1"
+  },
+  {
+    "id": 86,
+    "statement": "On April 28, 2023, Morgan Chen requested that the deploy rule be put in writing exactly as follows: no pushes to production after 3 p.m. Friday unless the full on-call roster is online; the gate should block such pushes by default; and any exception must go through Morgan.",
+    "sources": [
+      {
+        "session_id": "000385",
+        "message_index": 0,
+        "narrative_date": "2023-04-28T08:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000385::message:0::fact:0"
+  },
+  {
+    "id": 99,
+    "statement": "On May 3, 2023, Morgan Chen requested that written communications about Acme’s NDA claim narrowly state that they disagree the NDA covers the materials Acme identified, that the items were outside the confidentiality scope as drafted, and that all other rights are preserved, without broad argument, speculation about intent, or extra facts.",
+    "sources": [
+      {
+        "session_id": "000400",
+        "message_index": 0,
+        "narrative_date": "2023-05-03T15:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000400::message:0::fact:0"
+  },
+  {
+    "id": 100,
+    "statement": "On May 3, 2023, Morgan Chen requested that if Acme pushes for examples concerning its NDA claim, examples not be provided by email and the discussion instead be handled live.",
+    "sources": [
+      {
+        "session_id": "000400",
+        "message_index": 0,
+        "narrative_date": "2023-05-03T15:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000400::message:0::fact:1"
+  },
+  {
+    "id": 156,
+    "statement": "Morgan Chen requested giving support this customer-safe sentence: “For current API authentication and webhook-related setup, please use our GraphQL API v2 quickstart here: https://docs.atlas-test.com/api/v2/graphql-quickstart; it reflects the current auth/header model we support now.”",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2023_11_19_017",
+        "message_index": 0,
+        "narrative_date": "2023-11-24T10:29:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2023_11_19_017::message:0::fact:4"
+  },
+  {
+    "id": 223,
+    "statement": "By April 22, 2025, Finance had completed the manual review of AWS invoice AWS-2025-03-SCAFFOLD for $6,184.22 and found no duplicate, unexpected-vendor, or variance issue requiring rejection.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2025_04_22_002",
+        "message_index": 0,
+        "narrative_date": "2025-04-22T12:08:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2025_04_22_002::message:0::fact:0"
+  },
+  {
+    "id": 224,
+    "statement": "Morgan Chen requested on April 22, 2025 that payment of AWS invoice AWS-2025-03-SCAFFOLD be processed immediately.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2025_04_22_002",
+        "message_index": 0,
+        "narrative_date": "2025-04-22T12:08:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2025_04_22_002::message:0::fact:2"
+  },
+  {
+    "id": 195,
+    "statement": "As of April 24, 2024, Jake is adopting Leo’s short risk/evidence/readout format for upcoming Mercury support fixes instead of ad hoc launch summaries; the repeatable pre-release check ties claims to verification notes and bars portraying support-polish or invited-member handoff fixes as broader admin-state changes.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2024_04_22_013",
+        "message_index": 0,
+        "narrative_date": "2024-04-24T11:35:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2024_04_22_013::message:0::fact:3"
+  },
+  {
+    "id": 136,
+    "statement": "As of August 29, 2023, new Mercury design-partner and post-launch quotes use a hybrid model rather than treating pricing as a pure-MAU-versus-pure-seat choice: Pilot has a $2,500 monthly platform minimum including up to 50 monthly active developers; Growth has a $7,500 monthly platform minimum including up to 200 monthly active developers; overage costs $1,000 per additional 50 monthly active developers; and enterprise add-ons such as SSO, audit logs, and advanced admin controls are quoted separately only after those features ship. The rationale is to preserve usage-based ramping while providing a cleaner floor for forecasting and procurement conversations.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2023_08_26_005",
+        "message_index": 0,
+        "narrative_date": "2023-08-29T08:58:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2023_08_26_005::message:0::fact:2"
+  },
+  {
+    "id": 69,
+    "statement": "Morgan Chen requested that a recurring calendar block titled “Deep focus block -- no interruptions” be created immediately, starting on 2023-04-21 from 1:00 p.m. to 3:00 p.m. PT.",
+    "sources": [
+      {
+        "session_id": "000349",
+        "message_index": 0,
+        "narrative_date": "2023-04-20T11:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000349::message:0::fact:1"
+  },
+  {
+    "id": 192,
+    "statement": "Morgan Chen and Jamie kept their March 19, 2024 anniversary plan low-key in Oakland.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2024_03_18_003",
+        "message_index": 0,
+        "narrative_date": "2024-03-19T11:52:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2024_03_18_003::message:0::fact:0"
+  },
+  {
+    "id": 193,
+    "statement": "Morgan Chen and Jamie agreed on March 19, 2024 that anniversaries will be protected personal dates by default, with work interrupting only for a production-level emergency or something equally serious.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2024_03_18_003",
+        "message_index": 0,
+        "narrative_date": "2024-03-19T11:52:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2024_03_18_003::message:0::fact:3"
+  },
+  {
+    "id": 85,
+    "statement": "On April 27, 2023, Morgan Chen suggested using weekly cohorts internally with control limits and clear directional-only labeling, while using quarterly cohorts for external reporting, especially investor and board materials.",
+    "sources": [
+      {
+        "session_id": "000384",
+        "message_index": 0,
+        "narrative_date": "2023-04-27T16:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000384::message:0::fact:2"
+  },
+  {
+    "id": 23,
+    "statement": "Morgan Chen and Jamie's anniversary is Sunday, March 19, 2023, and Morgan intends not to postpone or skip it this year.",
+    "sources": [
+      {
+        "session_id": "000230",
+        "message_index": 0,
+        "narrative_date": "2023-03-13T09:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000230::message:0::fact:4"
+  },
+  {
+    "id": 316,
+    "statement": "The completed internal examples cover at-least-once webhook retries and idempotency by event ID, cursor pagination versus fresh polling, and JWT five-minute clock-skew leeway.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2026_08_04_002",
+        "message_index": 0,
+        "narrative_date": "2026-08-04T10:36:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2026_08_04_002::message:0::fact:1"
+  },
+  {
+    "id": 330,
+    "statement": "Morgan Chen requested a concise final-close row for Anna that connects July and August 2026 as stronger operating-durability evidence, limits the framing to standard-term Evergreen usage, monthly vendor hygiene, and normal Acme owner-lane support, and does not present it as a fundraising, hiring, vendor-prepay, or custom-commercial trigger.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2026_09_04_001",
+        "message_index": 0,
+        "narrative_date": "2026-09-04T08:38:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2026_09_04_001::message:0::fact:5"
+  },
+  {
+    "id": 283,
+    "statement": "On February 13, 2026, Morgan Chen tightened the Compass gate: broader board or customer claims require at least 2 nameable non-Evergreen/non-Acme accounts with completed owner actions and dated outcomes, and anonymous or non-nameable rows cannot support repeatability, fundraising, customer-facing product, or staffing claims.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2026_02_13_001",
+        "message_index": 0,
+        "narrative_date": "2026-02-13T10:57:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2026_02_13_001::message:0::fact:6"
+  },
+  {
+    "id": 296,
+    "statement": "For Evergreen, a Compass admin-review prompt helped Sarah prepare the standard usage and admin follow-up before April invoice questions escalated.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2026_05_21_001",
+        "message_index": 0,
+        "narrative_date": "2026-05-21T08:48:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2026_05_21_001::message:0::fact:1"
+  },
+  {
+    "id": 297,
+    "statement": "For Acme, a Compass API/JWT prompt directed support to the updated clock-skew documentation for Acme’s audit file.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2026_05_21_001",
+        "message_index": 0,
+        "narrative_date": "2026-05-21T08:48:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2026_05_21_001::message:0::fact:2"
+  },
+  {
+    "id": 298,
+    "statement": "Morgan requested concise, board-safe language that accurately describes the Q2 Compass owner-action read without presenting it as proof of repeatability, GTM, staffing, fundraising, a customer-facing product, or Atlas sequencing.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2026_05_21_001",
+        "message_index": 0,
+        "narrative_date": "2026-05-21T08:48:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2026_05_21_001::message:0::fact:6"
+  },
+  {
+    "id": 120,
+    "statement": "In Mercury thread C-198 on June 29, 2023, Marcus endorsed the neutral warning circle, rejected the broken-link icon as vendor-specific and too narrow, and said the retry arrow should be used only as an action affordance rather than the main state icon.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2023_06_30_004",
+        "message_index": 0,
+        "narrative_date": "2023-06-30T11:06:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2023_06_30_004::message:0::fact:12"
+  },
+  {
+    "id": 326,
+    "statement": "Morgan requested one warm sentence Maya can use with Mom to preserve the boundary of no posts, no engagement photos in a broad thread, no venue or date questions, and no family scheduling, without making Mom feel scolded.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2026_09_03_004",
+        "message_index": 0,
+        "narrative_date": "2026-09-03T18:18:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2026_09_03_004::message:0::fact:2"
+  },
+  {
+    "id": 306,
+    "statement": "Anna was assigned ownership of evidence quality for the Q3 2026 Mercury/Atlas plan.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2026_07_02_001",
+        "message_index": 0,
+        "narrative_date": "2026-07-02T11:48:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2026_07_02_001::message:0::fact:7"
+  },
+  {
+    "id": 307,
+    "statement": "Sarah was assigned ownership of account-thread evidence for the Q3 2026 Mercury/Atlas plan.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2026_07_02_001",
+        "message_index": 0,
+        "narrative_date": "2026-07-02T11:48:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2026_07_02_001::message:0::fact:8"
+  },
+  {
+    "id": 268,
+    "statement": "Devon will cover commercial and procurement context for Evergreen’s January 6, 2026 current-state/admin-follow-up review.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2025_12_18_001",
+        "message_index": 0,
+        "narrative_date": "2025-12-18T09:58:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2025_12_18_001::message:0::fact:6"
+  },
+  {
+    "id": 270,
+    "statement": "Morgan Chen requested that the existing Evergreen Bank CRM row be updated by setting status to `jan2026_renewal_path_standard_growth_current_state`, next touch date to `2026-01-13`, and trigger condition to `Sarah/Devon carry renewal/procurement follow-up; Morgan only for true founder-level decision or customer-impacting emergency`, while leaving notes and tags unchanged.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2026_01_06_001",
+        "message_index": 0,
+        "narrative_date": "2026-01-06T11:26:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2026_01_06_001::message:0::fact:2"
+  },
+  {
+    "id": 274,
+    "statement": "Evergreen Bank’s February 1, 2026 through January 31, 2027 signed renewal includes quarterly current-state/admin reviews only; it excludes a granular sync-operator commitment, custom admin package, overage cap, department carveout, roadmap appendix, delivery date, and advanced-admin renewal obligation.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2026_01_27_001",
+        "message_index": 0,
+        "narrative_date": "2026-01-27T09:36:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2026_01_27_001::message:0::fact:2"
+  },
+  {
+    "id": 72,
+    "statement": "Kestrel Marketing’s contact is Kara at kara@kestrel-test.com.",
+    "sources": [
+      {
+        "session_id": "000361",
+        "message_index": 0,
+        "narrative_date": "2023-04-23T16:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000361::message:0::fact:2"
+  },
+  {
+    "id": 294,
+    "statement": "As of April 17, 2026, Morgan Chen considered the Atlas/API v2 JWT matter closed for now as documentation and support cleanup, not as Compass proof or a new Atlas sequencing item.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2026_04_17_001",
+        "message_index": 0,
+        "narrative_date": "2026-04-17T08:54:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2026_04_17_001::message:0::fact:3"
+  },
+  {
+    "id": 323,
+    "statement": "At the August 14 Q3 2026 owner-lane read, Sarah reported that source-specific Mercury tickets fell from seven in the two weeks before the supported-source documentation and support-macro update to three in the two weeks after, while first-sync completion did not materially change.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2026_08_14_001",
+        "message_index": 0,
+        "narrative_date": "2026-08-14T12:20:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2026_08_14_001::message:0::fact:1"
+  },
+  {
+    "id": 269,
+    "statement": "Sarah updated the Atlas delayed-webhook support macro by January 2, 2026 with bounded, customer-safe language stating that the December 26 issue was a retry-queue delay with no data loss, the retry concurrency and jitter guardrail is live, support owns normal customer follow-up, and Jake is routed in only if the pattern repeats or becomes product sequencing.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2026_01_02_003",
+        "message_index": 0,
+        "narrative_date": "2026-01-02T12:24:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2026_01_02_003::message:0::fact:5"
+  },
+  {
+    "id": 178,
+    "statement": "On February 22, 2024, Scaffold’s $18M Series B closed with Northstar Ventures as lead investor; the financing closed on the bounded underwriting case rather than a widened growth story.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2024_02_19_006",
+        "message_index": 0,
+        "narrative_date": "2024-02-22T11:16:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2024_02_19_006::message:0::fact:0"
+  },
+  {
+    "id": 141,
+    "statement": "On September 24, 2023, Morgan requested a running/logistics note recording that the Embarcadero run and BART logistics should no longer be treated as protected every day from Oakland; Lake Merritt should be the frictionless local fallback because it works from the apartment without consuming the whole morning, while Embarcadero runs should be kept for SF-office mornings when timing permits.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2023_09_23_001",
+        "message_index": 0,
+        "narrative_date": "2023-09-24T11:18:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2023_09_23_001::message:0::fact:1"
+  },
+  {
+    "id": 104,
+    "statement": "Under Mercury’s May 24, 2023 activation mapping, an account is activated within seven days only if real_source_connected or first_live_sync_completed occurs; sample_import_completed does not count, and invite_sent is supporting onboarding evidence but does not establish activation by itself.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2023_05_19_014",
+        "message_index": 0,
+        "narrative_date": "2023-05-24T13:38:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2023_05_19_014::message:0::fact:4"
+  },
+  {
+    "id": 70,
+    "statement": "As of April 22, 2023, Morgan Chen requires anyone retrieving Morgan's notes from the vector store to use the `mchen-notes-v3` namespace; the old namespaces are stale and their results are not trusted.",
+    "sources": [
+      {
+        "session_id": "000358",
+        "message_index": 0,
+        "narrative_date": "2023-04-22T15:30:00-07:00"
+      }
+    ],
+    "corrected_id": "000358::message:0::fact:0"
+  },
+  {
+    "id": 208,
+    "statement": "Because Jamie’s hospital weeks keep shifting, Morgan Chen and Jamie adopted a flexible household schedule by November 22, 2024: each week they choose one weeknight dinner and one weekend morning as offline household time. Once selected, Scaffold work, investor follow-ups, customer check-ins, and internal catch-ups must route around those blocks unless there is a real incident or equivalent customer-impacting emergency.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2024_11_19_002",
+        "message_index": 0,
+        "narrative_date": "2024-11-22T20:37:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2024_11_19_002::message:0::fact:1"
+  },
+  {
+    "id": 49,
+    "statement": "Morgan Chen reported that the Figma organization and its one seat were obtained and live by April 10, 2023, after about three weeks of procurement discussions with finance.",
+    "sources": [
+      {
+        "session_id": "000300",
+        "message_index": 0,
+        "narrative_date": "2023-04-10T11:30:00-07:00"
+      }
+    ],
+    "corrected_id": "000300::message:0::fact:0"
+  },
+  {
+    "id": 59,
+    "statement": "Morgan Chen tentatively planned to order green curry from Lemongrass again for dinner on April 14, 2023.",
+    "sources": [
+      {
+        "session_id": "000322",
+        "message_index": 0,
+        "narrative_date": "2023-04-14T19:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000322::message:0::fact:1"
+  },
+  {
+    "id": 181,
+    "statement": "Morgan Chen owns board follow-through, operating sequencing, dates, promises, not-yet decisions, and the hiring sequence.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2024_02_26_004",
+        "message_index": 0,
+        "narrative_date": "2024-02-27T09:24:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2024_02_26_004::message:0::fact:10"
+  },
+  {
+    "id": 15,
+    "statement": "Morgan Chen reported that in late 2021, their organization hired Reece as operations director and learned about two months later that Reece had been quietly pushed out of the previous job under terms that had not been disclosed to them.",
+    "sources": [
+      {
+        "session_id": "000155",
+        "message_index": 0,
+        "narrative_date": "2023-02-17T20:45:00-08:00"
+      }
+    ],
+    "corrected_id": "000155::message:0::fact:0"
+  },
+  {
+    "id": 173,
+    "statement": "On February 9, 2024, Rishi proposed this as the final external Pinecone connector wording: “Scaffold’s supported Pinecone connector verification path is header-only: send `X-Scaffold-Workspace` and `X-Scaffold-Signature` on the incoming request and verify the signature against the same raw request body and workspace; preserved `X-Scaffold-Signature` and fully lowercased `x-scaffold-signature` are accepted.”",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2024_02_05_009",
+        "message_index": 0,
+        "narrative_date": "2024-02-09T10:18:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2024_02_05_009::message:0::fact:0"
+  },
+  {
+    "id": 174,
+    "statement": "Morgan requested a final customer-facing Pinecone sentence that retains the narrow header-only contract and the exclusions concerning legacy/API v2 comparisons, Python examples without a concrete failing repro, alternate signature locations, and query fallback.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2024_02_05_009",
+        "message_index": 0,
+        "narrative_date": "2024-02-09T10:18:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2024_02_05_009::message:0::fact:3"
+  },
+  {
+    "id": 245,
+    "statement": "For Mercury’s August 15, 2025 setup-guide copy implementation, the wording changed from “Admins finish setup by connecting the first source or assigning a teammate who can complete the source connection” to “If you were invited as the source owner, you can connect the first source from this step. Admins can still invite teammates and manage workspace settings.”",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2025_08_15_001",
+        "message_index": 1,
+        "narrative_date": "2025-08-15T08:56:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2025_08_15_001::message:1::fact:0"
+  },
+  {
+    "id": 246,
+    "statement": "On August 15, 2025, Priya added a Mercury design annotation identifying the change as source-owner action clarity rather than an admin-permissions change.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2025_08_15_001",
+        "message_index": 1,
+        "narrative_date": "2025-08-15T08:56:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2025_08_15_001::message:1::fact:1"
+  },
+  {
+    "id": 207,
+    "statement": "As of November 19, 2024, Kibo’s interim care plan was shorter, flatter walks when he is stiff and a veterinarian-approved non-poultry joint supplement.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2024_11_19_001",
+        "message_index": 0,
+        "narrative_date": "2024-11-19T16:48:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2024_11_19_001::message:0::fact:3"
+  },
+  {
+    "id": 260,
+    "statement": "Morgan Chen requested a concise house note for Jamie to replace Kibo’s temporary pre-recheck note, retaining his existing food and joint-supplement regimen and directing them to avoid stairs after stiffness or warm or longer walks, use the ramp when practical, and keep warm-morning walks under about 20 minutes unless Kibo is moving comfortably.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2025_10_21_001",
+        "message_index": 0,
+        "narrative_date": "2025-10-21T11:38:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2025_10_21_001::message:0::fact:1"
+  },
+  {
+    "id": 123,
+    "statement": "On July 12, 2023, Morgan Chen requested creation of a short document titled `Mercury release-risk readout — Leo template` with sections for top risks, evidence source, severity/confidence, next verification, and explicit exclusions from abstract platform recommendations.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2023_07_08_007",
+        "message_index": 0,
+        "narrative_date": "2023-07-12T09:34:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2023_07_08_007::message:0::fact:4"
+  },
+  {
+    "id": 73,
+    "statement": "As of April 25, 2023, Morgan Chen concluded that the team watches Loom updates, while written posts tend to receive little engagement.",
+    "sources": [
+      {
+        "session_id": "000367",
+        "message_index": 1,
+        "narrative_date": "2023-04-25T10:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000367::message:1::fact:1"
+  },
+  {
+    "id": 98,
+    "statement": "On May 3, 2023, Morgan Chen requested that offsite team meals default to Tava Kitchen unless dietary needs require otherwise.",
+    "sources": [
+      {
+        "session_id": "000399",
+        "message_index": 0,
+        "narrative_date": "2023-05-03T11:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000399::message:0::fact:0"
+  },
+  {
+    "id": 57,
+    "statement": "On the morning of April 14, 2023, Morgan Chen chose Honeycomb over Datadog because Honeycomb's tracing is better for their use case, particularly for following requests end to end.",
+    "sources": [
+      {
+        "session_id": "000320",
+        "message_index": 0,
+        "narrative_date": "2023-04-14T12:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000320::message:0::fact:0"
+  },
+  {
+    "id": 188,
+    "statement": "Jake characterized the proposed Mercury post-fix live-sync recovery wording work as a narrow trust/support polish task rather than a retry-policy or engine issue.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2024_03_04_003",
+        "message_index": 0,
+        "narrative_date": "2024-03-05T09:14:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2024_03_04_003::message:0::fact:4"
+  },
+  {
+    "id": 191,
+    "statement": "Leo Park says recovered-state wording should be changed only if the copy diff remains tiny and isolated.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2024_03_11_006",
+        "message_index": 0,
+        "narrative_date": "2024-03-14T09:37:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2024_03_11_006::message:0::fact:3"
+  },
+  {
+    "id": 194,
+    "statement": "Priya and Jake completed and closed the Mercury invited-member handoff copy/support-sequence pass, adding a calmer pending-member surface, tighter waiting-on-admin helper text, and source-workspace wording in place of the overloaded first-source label.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2024_04_08_026",
+        "message_index": 0,
+        "narrative_date": "2024-04-11T10:06:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2024_04_08_026::message:0::fact:0"
+  },
+  {
+    "id": 286,
+    "statement": "Morgan and Jamie decided not to pursue buying in Oakland or open an active home search in 2026.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2026_03_24_003",
+        "message_index": 0,
+        "narrative_date": "2026-03-24T18:47:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2026_03_24_003::message:0::fact:4"
+  },
+  {
+    "id": 324,
+    "statement": "On August 31, 2026, Morgan Chen and Jamie accepted the Oakland Unit 3B renewal for October 1, 2026 through September 30, 2027 at $4,620 per month.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2026_08_31_001",
+        "message_index": 0,
+        "narrative_date": "2026-08-31T08:22:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2026_08_31_001::message:0::fact:0"
+  },
+  {
+    "id": 127,
+    "statement": "Two real queued-sync retry attempts support using the retry path operationally but do not support treating it as closed.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2023_07_22_005",
+        "message_index": 0,
+        "narrative_date": "2023-07-24T14:22:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2023_07_22_005::message:0::fact:15"
+  },
+  {
+    "id": 128,
+    "statement": "On July 26, 2023, Leo Park endorsed the Mercury activation surface v0.2 visual direction and recommended leaving queued-sync retry evidence open in the Linear ledger until another clean run is tied to logs, screens, or equivalent proof; Priya endorsed that recommendation.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2023_07_22_010",
+        "message_index": 0,
+        "narrative_date": "2023-07-26T09:49:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2023_07_22_010::message:0::fact:2"
+  },
+  {
+    "id": 189,
+    "statement": "On the March 12, 2024 flight home from Tokyo, Morgan Chen and Jamie agreed that protected dates must be explicitly named and treated as real commitments, with work coverage arranged around them rather than treating the dates as soft placeholders.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2024_03_11_001",
+        "message_index": 0,
+        "narrative_date": "2024-03-12T10:46:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2024_03_11_001::message:0::fact:4"
+  },
+  {
+    "id": 37,
+    "statement": "By April 7, 2023, Morgan Chen had talked with Kenji Nakamura, whom Morgan knew from a neuroscience meetup; Kenji was a senior researcher at Neuralink working on brain-computer-interface decoding algorithms.",
+    "sources": [
+      {
+        "session_id": "000290",
+        "message_index": 0,
+        "narrative_date": "2023-04-07T18:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000290::message:0::fact:0"
+  },
+  {
+    "id": 129,
+    "statement": "Morgan Chen requested a pasteable Figma reply for Mercury activation surface v0.2 that retains the settled failed-sync icon and CTA directions, reports the latest 320px source-unavailable clipping result, preserves the clipping, wrong-action, and state-clarity exceptions for nonblocking copy and icon polish, and routes queued-sync retry proof back to the Linear ledger until another clean logged or captured run closes the evidence gap.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2023_07_22_010",
+        "message_index": 0,
+        "narrative_date": "2023-07-26T09:49:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2023_07_22_010::message:0::fact:3"
+  },
+  {
+    "id": 50,
+    "statement": "On April 11, 2023, Morgan Chen made the Figma file the default place for design review going forward.",
+    "sources": [
+      {
+        "session_id": "000303",
+        "message_index": 1,
+        "narrative_date": "2023-04-11T09:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000303::message:1::fact:0"
+  },
+  {
+    "id": 170,
+    "statement": "Morgan Chen requested a reply in the January 8, 2024 HR thread asking HR to keep the internal record explicit that the 2023 senior-engineer process closed with no signed hire and no active offer artifact left in January, and that any future senior or principal engineering offer must restart from a fresh requisition and the current legal and recruiting checks rather than revive the November 2023 packet.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2024_01_08_001",
+        "message_index": 0,
+        "narrative_date": "2024-01-08T09:32:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2024_01_08_001::message:0::fact:7"
+  },
+  {
+    "id": 138,
+    "statement": "Morgan Chen requested on August 31, 2023 that a short note be posted in #eng-team stating that Mercury pricing bands use monthly active developer usage rather than purchased seats or directory size, Scaffold/internal test users do not count, preview/sample-only activity is separate from activation reporting, Evergreen-facing answers must be budgetary and non-custom, and customer emails must not reopen the MAU-versus-seat debate or invent enterprise exceptions.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2023_08_26_011",
+        "message_index": 0,
+        "narrative_date": "2023-08-31T10:06:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2023_08_26_011::message:0::fact:11"
+  },
+  {
+    "id": 273,
+    "statement": "Evergreen Bank’s signed annual Mercury Growth renewal runs from February 1, 2026 through January 31, 2027 on standard terms: $7,500 per month including up to 200 monthly active developers, plus $1,000 per additional 50 monthly active developers.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2026_01_27_001",
+        "message_index": 0,
+        "narrative_date": "2026-01-27T09:36:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2026_01_27_001::message:0::fact:1"
+  },
+  {
+    "id": 290,
+    "statement": "Evergreen finalized March at 199 monthly active developers, with no overage forecast and no department-cap language.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2026_04_03_001",
+        "message_index": 0,
+        "narrative_date": "2026-04-03T09:07:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2026_04_03_001::message:0::fact:4"
+  },
+  {
+    "id": 302,
+    "statement": "Evergreen Bank finished May with 221 monthly active developers, representing one standard Growth overage band under the existing terms.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2026_06_10_001",
+        "message_index": 0,
+        "narrative_date": "2026-06-10T08:26:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2026_06_10_001::message:0::fact:1"
+  },
+  {
+    "id": 275,
+    "statement": "In the comparable 14-day window, setup sessions abandoned because of OAuth cancellation fell from 41 to 14.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2026_01_29_001",
+        "message_index": 0,
+        "narrative_date": "2026-01-29T08:37:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2026_01_29_001::message:0::fact:1"
+  },
+  {
+    "id": 276,
+    "statement": "In the comparable 14-day window, support tickets fell from 12 to 2.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2026_01_29_001",
+        "message_index": 0,
+        "narrative_date": "2026-01-29T08:37:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2026_01_29_001::message:0::fact:2"
+  },
+  {
+    "id": 277,
+    "statement": "Morgan Chen treats the OAuth-cancel fix results as validated activation-quality work.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2026_01_29_001",
+        "message_index": 0,
+        "narrative_date": "2026-01-29T08:37:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2026_01_29_001::message:0::fact:3"
+  },
+  {
+    "id": 278,
+    "statement": "The remaining visible confusion concerns the empty source list, which generated 11 support questions.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2026_01_29_001",
+        "message_index": 0,
+        "narrative_date": "2026-01-29T08:37:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2026_01_29_001::message:0::fact:5"
+  },
+  {
+    "id": 279,
+    "statement": "Morgan Chen decided that the next Mercury activation-quality focus will be explaining the empty source list.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2026_01_29_001",
+        "message_index": 0,
+        "narrative_date": "2026-01-29T08:37:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2026_01_29_001::message:0::fact:7"
+  },
+  {
+    "id": 91,
+    "statement": "Morgan Chen’s outbound signature line now needs to read exactly `Morgan Chen · Co-Founder & CEO, Scaffold`, rather than just CEO, because the board wants the co-founder framing.",
+    "sources": [
+      {
+        "session_id": "000389",
+        "message_index": 0,
+        "narrative_date": "2023-04-29T09:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000389::message:0::fact:0"
+  },
+  {
+    "id": 261,
+    "statement": "On October 28, 2025, Morgan Chen requested a draft reply from Sarah Kim to Greg Shipman that politely declines a written Compass-style account-health prompt summary for Acme’s renewal packet, uses only ordinary account-thread language about Acme’s own API v2 export fix and the normal support route, and does not imply that Compass is customer-facing or that a new Acme reliability item is open.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2025_10_28_001",
+        "message_index": 0,
+        "narrative_date": "2025-10-28T09:18:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2025_10_28_001::message:0::fact:1"
+  },
+  {
+    "id": 155,
+    "statement": "Morgan Chen requested a DM to Marcus in the current internal team chat thanking him, saying no release note is needed because customer behavior did not change, and proposing to close the AWS non-production log-retention cleanup as narrow cost hygiene unless the budget line jumps again.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2023_11_19_005",
+        "message_index": 0,
+        "narrative_date": "2023-11-20T10:44:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2023_11_19_005::message:0::fact:2"
+  },
+  {
+    "id": 179,
+    "statement": "Sofia Alvarez’s Northstar board seat at Scaffold became effective when the Series B closed on February 22, 2024.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2024_02_19_006",
+        "message_index": 0,
+        "narrative_date": "2024-02-22T11:16:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2024_02_19_006::message:0::fact:1"
+  },
+  {
+    "id": 176,
+    "statement": "The February 14, 2024 Mercury deploy shipped MER-1749, which narrowed the reconcile path so retry status refreshes correctly after timeout recovery without requiring a page reload.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2024_02_12_004",
+        "message_index": 0,
+        "narrative_date": "2024-02-14T10:39:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2024_02_12_004::message:0::fact:5"
+  },
+  {
+    "id": 177,
+    "statement": "The February 14, 2024 Mercury deploy shipped MER-1823, which makes a stale timeout banner clear after a successful retry in the same session.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2024_02_12_004",
+        "message_index": 0,
+        "narrative_date": "2024-02-14T10:39:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2024_02_12_004::message:0::fact:6"
+  },
+  {
+    "id": 175,
+    "statement": "The February 14, 2024 Mercury deploy included no sync-engine, retry-policy, auth/admin-role, SSO, audit-history, admin-versus-billing-owner, or other enterprise-readiness changes.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2024_02_12_004",
+        "message_index": 0,
+        "narrative_date": "2024-02-14T10:39:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2024_02_12_004::message:0::fact:10"
+  },
+  {
+    "id": 199,
+    "statement": "The shipped slice is narrowly scoped to SAML SSO for scoped enterprise accounts, admin-side audit-history events for invite, source, and admin changes, and clearer separation between admins and billing owners; it does not include advanced admin controls or the standalone procurement/security packet.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2024_09_09_006",
+        "message_index": 0,
+        "narrative_date": "2024-09-13T15:28:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2024_09_09_006::message:0::fact:3"
+  },
+  {
+    "id": 200,
+    "statement": "Post-release communications must not make custom Evergreen promises or claim that Mercury is fully enterprise-ready.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2024_09_09_006",
+        "message_index": 0,
+        "narrative_date": "2024-09-13T15:28:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2024_09_09_006::message:0::fact:5"
+  },
+  {
+    "id": 68,
+    "statement": "Starting April 20, 2023, Morgan Chen requested that future drafts use bullets only, omit preambles, and cap each bullet at three lines.",
+    "sources": [
+      {
+        "session_id": "000346",
+        "message_index": 0,
+        "narrative_date": "2023-04-20T10:00:00-07:00"
+      },
+      {
+        "session_id": "000346",
+        "message_index": 1,
+        "narrative_date": "2023-04-20T10:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000346::message:1::fact:1"
+  },
+  {
+    "id": 202,
+    "statement": "Kibo’s Oakland dental follow-up was completed on October 16, 2024.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2024_10_15_001",
+        "message_index": 0,
+        "narrative_date": "2024-10-16T18:12:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2024_10_15_001::message:0::fact:0"
+  },
+  {
+    "id": 203,
+    "statement": "No new dental procedure was scheduled after Kibo’s October 16, 2024 follow-up, and Kibo returned to the normal boring-food, no-poultry care plan.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2024_10_15_001",
+        "message_index": 0,
+        "narrative_date": "2024-10-16T18:12:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2024_10_15_001::message:0::fact:3"
+  },
+  {
+    "id": 165,
+    "statement": "Morgan Chen requested a narrow same-thread SMS to Maya Chen stating that the interruption issue for the East Bay Utilities notice is handled because the payment arrangement was approved before the response date, while explicitly not involving Jamie in errands or any broader paperwork.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2024_01_01_006",
+        "message_index": 0,
+        "narrative_date": "2024-01-03T08:29:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2024_01_01_006::message:0::fact:4"
+  },
+  {
+    "id": 58,
+    "statement": "By 2023-04-14, Morgan Chen reported that the API v2 migration was complete: the API used GraphQL with JWT authentication, all clients had cut over cleanly, and API v1 was shut down on the morning of 2023-04-14.",
+    "sources": [
+      {
+        "session_id": "000321",
+        "message_index": 0,
+        "narrative_date": "2023-04-14T13:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000321::message:0::fact:0"
+  },
+  {
+    "id": 150,
+    "statement": "On November 9, 2023, Marcus reported that the two paid-but-pending Stripe renewals had been reconciled, with no duplicate charges and entitlement states now matching Stripe.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2023_11_05_015",
+        "message_index": 0,
+        "narrative_date": "2023-11-09T13:48:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2023_11_05_015::message:0::fact:0"
+  },
+  {
+    "id": 151,
+    "statement": "Morgan Chen requested a reply to Marcus stating that the thread for the two paid-but-pending renewals can close unless either account reports a billing discrepancy.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2023_11_05_015",
+        "message_index": 0,
+        "narrative_date": "2023-11-09T13:48:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2023_11_05_015::message:0::fact:2"
+  },
+  {
+    "id": 159,
+    "statement": "Morgan Chen requested that Rishi be messaged in the current internal team chat with a safe sentence for either acct_01J7M4QK or acct_01J7MB2T: the downgrade credit state has been reconciled against Stripe, no duplicate credit was issued, and support should let the team know if the customer sees any balance discrepancy.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2023_12_10_012",
+        "message_index": 0,
+        "narrative_date": "2023-12-13T13:07:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2023_12_10_012::message:0::fact:1"
+  },
+  {
+    "id": 166,
+    "statement": "Morgan requested a confirmation SMS be drafted to Jamie stating that the compression-fitting seep was handled under warranty, instructing Jamie to keep the photos and zero-dollar warranty receipt with the corrected December invoice, and confirming that no new paid valve or replacement scope is authorized.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2024_01_01_010",
+        "message_index": 0,
+        "narrative_date": "2024-01-04T12:49:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2024_01_01_010::message:0::fact:5"
+  },
+  {
+    "id": 51,
+    "statement": "As of April 11, 2023, Morgan Chen has basically stopped accepting random investor coffee meetings unless they are really worthwhile.",
+    "sources": [
+      {
+        "session_id": "000306",
+        "message_index": 2,
+        "narrative_date": "2023-04-11T15:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000306::message:2::fact:0"
+  },
+  {
+    "id": 184,
+    "statement": "The short weekly Mercury truth check will focus on support edges, live-sync trust, admin friction, and material product changes.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2024_02_26_004",
+        "message_index": 0,
+        "narrative_date": "2024-02-27T09:24:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2024_02_26_004::message:0::fact:24"
+  },
+  {
+    "id": 185,
+    "statement": "Enterprise-readiness review will operate separately from current Mercury release work so it does not affect every release note.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2024_02_26_004",
+        "message_index": 0,
+        "narrative_date": "2024-02-27T09:24:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2024_02_26_004::message:0::fact:25"
+  },
+  {
+    "id": 130,
+    "statement": "Morgan Chen requested a short, reusable Kibo care note stating the blunt food rule: give Kibo no poultry-based treats or food; chicken meal counts as poultry; and if a label contains chicken, turkey, duck, poultry meal, or similar, skip it and ask Morgan instead of guessing.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2023_07_29_006",
+        "message_index": 0,
+        "narrative_date": "2023-08-01T19:49:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2023_07_29_006::message:0::fact:1"
+  },
+  {
+    "id": 39,
+    "statement": "Morgan Chen wants summaries limited to five bullets.",
+    "sources": [
+      {
+        "session_id": "000292",
+        "message_index": 0,
+        "narrative_date": "2023-04-08T11:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000292::message:0::fact:0"
+  },
+  {
+    "id": 40,
+    "statement": "Morgan Chen requested that each summary bullet be short, with roughly 15 words as a hard cap.",
+    "sources": [
+      {
+        "session_id": "000292",
+        "message_index": 1,
+        "narrative_date": "2023-04-08T11:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000292::message:1::fact:0"
+  },
+  {
+    "id": 41,
+    "statement": "Morgan Chen requested that summaries have no introductory or concluding line, including no “here’s a quick summary” preface.",
+    "sources": [
+      {
+        "session_id": "000292",
+        "message_index": 2,
+        "narrative_date": "2023-04-08T11:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000292::message:2::fact:0"
+  },
+  {
+    "id": 42,
+    "statement": "Morgan Chen wants summaries to contain only bullets and no emoji.",
+    "sources": [
+      {
+        "session_id": "000292",
+        "message_index": 3,
+        "narrative_date": "2023-04-08T11:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000292::message:3::fact:0"
+  },
+  {
+    "id": 54,
+    "statement": "On April 13, 2023, Morgan Chen said that if the payments module comes up again, they need to inspect its rate-limit fix before production because Jake changed something there the previous week, it looked a little off, and Morgan does not want to assume it is fine.",
+    "sources": [
+      {
+        "session_id": "000313",
+        "message_index": 0,
+        "narrative_date": "2023-04-13T10:30:00-07:00"
+      }
+    ],
+    "corrected_id": "000313::message:0::fact:1"
+  },
+  {
+    "id": 38,
+    "statement": "Morgan Chen wrote down Kenji Nakamura’s email address, kenji@neuralink-test.com, without a specific current purpose.",
+    "sources": [
+      {
+        "session_id": "000290",
+        "message_index": 1,
+        "narrative_date": "2023-04-07T18:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000290::message:1::fact:0"
+  },
+  {
+    "id": 119,
+    "statement": "For Mercury’s sync-failed state, Priya required an actionable retry button and help documentation with simplified product-level copy. Marcus required no raw vendor errors, normalized auth/permissions, source-unavailable/timeout, and unknown/retry buckets, plus idempotent retry behavior that prevents duplicate jobs on double-click.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2023_06_16_006",
+        "message_index": 0,
+        "narrative_date": "2023-06-19T17:34:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2023_06_16_006::message:0::fact:7"
+  },
+  {
+    "id": 16,
+    "statement": "Elena Volkov’s main objection to the fundraising round was the retention funnel; she did not believe the company had yet earned the retention shape it was implying.",
+    "sources": [
+      {
+        "session_id": "000161",
+        "message_index": 0,
+        "narrative_date": "2023-02-20T13:00:00-08:00"
+      }
+    ],
+    "corrected_id": "000161::message:0::fact:2"
+  },
+  {
+    "id": 17,
+    "statement": "As of February 20, 2023, Morgan Chen was keeping Elena Volkov in the later bucket.",
+    "sources": [
+      {
+        "session_id": "000161",
+        "message_index": 0,
+        "narrative_date": "2023-02-20T13:00:00-08:00"
+      }
+    ],
+    "corrected_id": "000161::message:0::fact:4"
+  },
+  {
+    "id": 264,
+    "statement": "On December 2, 2025, Devon closed Evergreen Bank’s November 2025 usage read at 223 monthly active developers; Treasury and Risk Operations were active alongside the original department.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2025_12_02_001",
+        "message_index": 0,
+        "narrative_date": "2025-12-02T08:37:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2025_12_02_001::message:0::fact:0"
+  },
+  {
+    "id": 265,
+    "statement": "Devon’s December 2, 2025 billing read classified Evergreen Bank’s November usage as the first standard Growth overage band: $1,000 for the additional 50-monthly-active-developer band above the included 200.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2025_12_02_001",
+        "message_index": 0,
+        "narrative_date": "2025-12-02T08:37:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2025_12_02_001::message:0::fact:1"
+  },
+  {
+    "id": 266,
+    "statement": "Sarah confirmed that procurement will process Evergreen Bank’s November 2025 overage under the Growth terms, with no seat carveout, custom department package, or advanced-admin condition.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2025_12_02_001",
+        "message_index": 0,
+        "narrative_date": "2025-12-02T08:37:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2025_12_02_001::message:0::fact:2"
+  },
+  {
+    "id": 308,
+    "statement": "Evergreen Bank finished June 2026 at 219 monthly active developers, placing it in one standard Growth overage band under the existing terms.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2026_07_06_001",
+        "message_index": 0,
+        "narrative_date": "2026-07-06T08:33:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2026_07_06_001::message:0::fact:1"
+  },
+  {
+    "id": 182,
+    "statement": "The leadership reset adopted the internal line: “more room, same discipline. Defensible story, not a bigger story.”",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2024_02_26_004",
+        "message_index": 0,
+        "narrative_date": "2024-02-27T09:24:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2024_02_26_004::message:0::fact:2"
+  },
+  {
+    "id": 186,
+    "statement": "The reset prohibited using the close to describe Mercury as enterprise-ready now or to reopen every deferred initiative.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2024_02_26_004",
+        "message_index": 0,
+        "narrative_date": "2024-02-27T09:24:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2024_02_26_004::message:0::fact:3"
+  },
+  {
+    "id": 232,
+    "statement": "On May 31, 2025, Morgan Chen requested that the May utility-form issue be recorded as closed in the narrow Morgan/Maya pattern and that Jamie has no paperwork role from it.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2025_05_31_002",
+        "message_index": 1,
+        "narrative_date": "2025-05-31T12:06:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2025_05_31_002::message:1::fact:0"
+  },
+  {
+    "id": 160,
+    "statement": "The December 14, 2023 Mercury hardening deploy put two scoped fixes live: the org-invite admin-setup label changed from “Billing owner” to “Workspace admin,” and the live-sync retry CTA is disabled while a retry is already in flight.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2023_12_10_015",
+        "message_index": 0,
+        "narrative_date": "2023-12-14T10:48:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2023_12_10_015::message:0::fact:1"
+  },
+  {
+    "id": 161,
+    "statement": "Morgan Chen requested a private current-team-chat note to Jake stating that Mercury support wording must not name Evergreen or imply that SSO, audit history, admin-versus-billing-owner separation, broader state reconciliation, or enterprise readiness shipped in the December 14, 2023 deploy.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2023_12_10_015",
+        "message_index": 0,
+        "narrative_date": "2023-12-14T10:48:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2023_12_10_015::message:0::fact:9"
+  },
+  {
+    "id": 63,
+    "statement": "As of April 19, 2023, Anna Rao was a co-founder of Tessl.",
+    "sources": [
+      {
+        "session_id": "000340",
+        "message_index": 0,
+        "narrative_date": "2023-04-19T17:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000340::message:0::fact:1"
+  },
+  {
+    "id": 64,
+    "statement": "As of April 19, 2023, Tessl was developing data tooling for machine-learning pipelines.",
+    "sources": [
+      {
+        "session_id": "000340",
+        "message_index": 0,
+        "narrative_date": "2023-04-19T17:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000340::message:0::fact:2"
+  },
+  {
+    "id": 222,
+    "statement": "On April 21, 2025, Morgan Chen approved saying in Evergreen support notes, if useful, that Mercury’s basic invited-teammate/source-owner cues are verified in the current activation path for setup guidance, source connection, and first live sync; the wording must not include custom admin policy, a granular role editor, advanced admin controls, procurement/security language, or broader Evergreen admin support.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2025_04_21_002",
+        "message_index": 0,
+        "narrative_date": "2025-04-21T14:32:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2025_04_21_002::message:0::fact:1"
+  },
+  {
+    "id": 295,
+    "statement": "Morgan Chen ruled that March cannot create an April offset, department cap, seat-trade carveout, or rolling credit under the standard Growth monthly active developer mechanics.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2026_05_05_001",
+        "message_index": 0,
+        "narrative_date": "2026-05-05T08:36:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2026_05_05_001::message:0::fact:7"
+  },
+  {
+    "id": 242,
+    "statement": "On August 7, 2025, Acme ran the 90-day export in production and it completed, but the follow-up was not done because matching row counts had not yet been confirmed.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2025_08_07_001",
+        "message_index": 0,
+        "narrative_date": "2025-08-07T09:36:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2025_08_07_001::message:0::fact:0"
+  },
+  {
+    "id": 243,
+    "statement": "Sarah reported on August 8, 2025 that Acme supplied row-count output for its August 7 90-day production rerun, and the counts matched the narrower monthly-workaround totals used during replay checks.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2025_08_08_001",
+        "message_index": 1,
+        "narrative_date": "2025-08-08T08:42:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2025_08_08_001::message:1::fact:0"
+  },
+  {
+    "id": 244,
+    "statement": "Sarah reported on August 8, 2025 that Greg was satisfied with support-thread wording stating that Acme’s recurrence was closed and the checks found no data-loss issue.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2025_08_08_001",
+        "message_index": 1,
+        "narrative_date": "2025-08-08T08:42:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2025_08_08_001::message:1::fact:1"
+  },
+  {
+    "id": 233,
+    "statement": "Sarah’s pass reported on June 17, 2025 says the setup-call opener, admin-handoff objection line, and procurement-pause language are usable only for account-thread hygiene when tied to current-state evidence.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2025_06_17_001",
+        "message_index": 1,
+        "narrative_date": "2025-06-17T08:52:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2025_06_17_001::message:1::fact:0"
+  },
+  {
+    "id": 234,
+    "statement": "Sarah’s pass reported on June 17, 2025 classifies these as too thin to reuse as evidence: undated admin-role confusion snippets without a source owner, procurement-pause notes without a customer quote or source, and a post-sync expansion note based only on internal owner interpretation.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2025_06_17_001",
+        "message_index": 1,
+        "narrative_date": "2025-06-17T08:52:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2025_06_17_001::message:1::fact:1"
+  },
+  {
+    "id": 235,
+    "statement": "Sarah’s pass reported on June 17, 2025 says scripts may support internal preparation but do not constitute Compass behavior-change proof.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2025_06_17_001",
+        "message_index": 1,
+        "narrative_date": "2025-06-17T08:52:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2025_06_17_001::message:1::fact:2"
+  },
+  {
+    "id": 131,
+    "statement": "On August 10, 2023, Jake reported that Evergreen Bank’s external access was live on Mercury’s bounded wave-1 path. The live scope was limited to the current Mercury build: Clerk-backed sessions, magic links, organization invites, the corrected activation surface, and preview-only sample data; SSO and deeper admin or security functionality were outside the launch scope.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2023_08_05_005",
+        "message_index": 0,
+        "narrative_date": "2023-08-10T09:43:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2023_08_05_005::message:0::fact:2"
+  },
+  {
+    "id": 209,
+    "statement": "Evergreen’s current-state packet covers shipped SAML SSO, the visible invite/source/admin audit event set, the workspace-admin support path, certificate-rotation operational contacts, and monthly-active-developer usage.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2024_12_10_002",
+        "message_index": 0,
+        "narrative_date": "2024-12-12T16:38:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2024_12_10_002::message:0::fact:2"
+  },
+  {
+    "id": 210,
+    "statement": "Morgan Chen labeled the packet as pilot current-state material only, separate from the broader procurement/security packet and advanced-admin controls.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2024_12_10_002",
+        "message_index": 0,
+        "narrative_date": "2024-12-12T16:38:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2024_12_10_002::message:0::fact:3"
+  },
+  {
+    "id": 134,
+    "statement": "On August 28, 2023, Marcus reported that production traffic and alarms were normal and that he found no customer impact from the AWS cost blip.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2023_08_26_002",
+        "message_index": 0,
+        "narrative_date": "2023-08-28T08:52:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2023_08_26_002::message:0::fact:2"
+  },
+  {
+    "id": 135,
+    "statement": "Morgan requested that Marcus be sent a DM in the current internal team chat confirming approval to delete the non-prod runner immediately and add the narrow non-prod egress guardrail alert, and confirming that the incident is being treated as non-prod only, with production not involved and no architecture or spend-plan work unless the next cost report shows leakage.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2023_08_26_002",
+        "message_index": 0,
+        "narrative_date": "2023-08-28T08:52:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2023_08_26_002::message:0::fact:4"
+  },
+  {
+    "id": 214,
+    "statement": "Kibo’s non-poultry supplement substitute arrived in Oakland that afternoon.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2025_01_22_007",
+        "message_index": 0,
+        "narrative_date": "2025-01-27T16:37:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2025_01_22_007::message:0::fact:0"
+  },
+  {
+    "id": 215,
+    "statement": "The substitute’s label matches the safe option.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2025_01_22_007",
+        "message_index": 0,
+        "narrative_date": "2025-01-27T16:37:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2025_01_22_007::message:0::fact:1"
+  },
+  {
+    "id": 216,
+    "statement": "Kibo’s refill scramble is closed, with care limited to no-poultry options and no use of the dental chews.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2025_01_22_007",
+        "message_index": 0,
+        "narrative_date": "2025-01-27T16:37:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2025_01_22_007::message:0::fact:3"
+  },
+  {
+    "id": 20,
+    "statement": "By March 1, 2023, Morgan Chen had evaluated Drift Capital over four discovery calls, decided to pass because the board-observer language was too grabby, the IP carve-outs became weird, and Morgan did not want a tranche tied to MAU, and logged Drift Capital as evaluated and passed because it was not a fit.",
+    "sources": [
+      {
+        "session_id": "000193",
+        "message_index": 0,
+        "narrative_date": "2023-03-01T19:30:00-08:00"
+      }
+    ],
+    "corrected_id": "000193::message:0::fact:0"
+  },
+  {
+    "id": 303,
+    "statement": "Jake was assigned ownership of Mercury sequencing for Q3 2026.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2026_07_02_001",
+        "message_index": 0,
+        "narrative_date": "2026-07-02T11:48:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2026_07_02_001::message:0::fact:4"
+  },
+  {
+    "id": 18,
+    "statement": "Morgan Chen said the team treated the Q3 2022 weekend incident as random bad luck because its blast radius was small and it occurred at a lucky time.",
+    "sources": [
+      {
+        "session_id": "000170",
+        "message_index": 0,
+        "narrative_date": "2023-02-22T20:00:00-08:00"
+      }
+    ],
+    "corrected_id": "000170::message:0::fact:1"
+  },
+  {
+    "id": 78,
+    "statement": "Morgan Chen said the Q3 2022 incident was less severe than the March outage but involved the same late-deploy coverage problem.",
+    "sources": [
+      {
+        "session_id": "000375",
+        "message_index": 0,
+        "narrative_date": "2023-04-26T08:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000375::message:0::fact:1"
+  },
+  {
+    "id": 79,
+    "statement": "Morgan Chen said the team absorbed the Q3 2022 incident, moved on without documenting the rule, and should have written it down.",
+    "sources": [
+      {
+        "session_id": "000375",
+        "message_index": 0,
+        "narrative_date": "2023-04-26T08:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000375::message:0::fact:2"
+  },
+  {
+    "id": 81,
+    "statement": "On April 26, 2023, Morgan Chen said they tend to delete overly detailed SMS messages to Mom because mentioning late nights or stress triggers worried responses that Morgan then has to manage.",
+    "sources": [
+      {
+        "session_id": "000380",
+        "message_index": 0,
+        "narrative_date": "2023-04-26T20:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000380::message:0::fact:0"
+  },
+  {
+    "id": 82,
+    "statement": "Morgan Chen finds it easier to text Mom about the apartment, Kibo, or dinner and limit work updates to a brief assurance such as “busy, all good.”",
+    "sources": [
+      {
+        "session_id": "000380",
+        "message_index": 0,
+        "narrative_date": "2023-04-26T20:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000380::message:0::fact:1"
+  },
+  {
+    "id": 145,
+    "statement": "By October 17, 2023, Marcus had posted an auth-rewrite completion note reporting that API v2 was at 100%, with no elevated 401s, no use of the rollback flag, and no customer action needed.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2023_10_15_005",
+        "message_index": 0,
+        "narrative_date": "2023-10-17T14:16:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2023_10_15_005::message:0::fact:0"
+  },
+  {
+    "id": 10,
+    "statement": "Morgan Chen planned to have one coffee around 8:30 a.m. and another around 1 p.m. on February 8, 2023, with no more than two cups because exceeding two cups makes Morgan feel fake-productive and talk too fast.",
+    "sources": [
+      {
+        "session_id": "000114",
+        "message_index": 0,
+        "narrative_date": "2023-02-08T08:30:00-08:00"
+      }
+    ],
+    "corrected_id": "000114::message:0::fact:2"
+  },
+  {
+    "id": 218,
+    "statement": "The workspace-admin support path is the first-line support route.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2025_04_01_001",
+        "message_index": 0,
+        "narrative_date": "2025-04-01T11:47:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2025_04_01_001::message:0::fact:7"
+  },
+  {
+    "id": 219,
+    "statement": "Leo owns SAML and platform issues.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2025_04_01_001",
+        "message_index": 0,
+        "narrative_date": "2025-04-01T11:47:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2025_04_01_001::message:0::fact:8"
+  },
+  {
+    "id": 220,
+    "statement": "Sarah and Leo reported in the April 3, 2025 Evergreen Bank closeout that the SAML certificate rotation was completed.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2025_04_03_002",
+        "message_index": 0,
+        "narrative_date": "2025-04-03T13:36:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2025_04_03_002::message:0::fact:0"
+  },
+  {
+    "id": 221,
+    "statement": "Sarah and Leo reported that Evergreen Bank’s existing-admin and workspace-admin SAML logins both passed after the certificate rotation.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2025_04_03_002",
+        "message_index": 0,
+        "narrative_date": "2025-04-03T13:36:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2025_04_03_002::message:0::fact:1"
+  },
+  {
+    "id": 213,
+    "statement": "During the January 21, 2025 Compass session, Jake said the post-first-live-sync expansion prompt must not fire until the first live sync is actually live and teammate-invite/admin-role basics are visible.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2025_01_22_001",
+        "message_index": 0,
+        "narrative_date": "2025-01-22T09:18:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2025_01_22_001::message:0::fact:9"
+  },
+  {
+    "id": 262,
+    "statement": "Morgan Chen requested an internal October Compass closeout note for Anna Martinez, Sarah Kim, Jake, and Leo Park that includes Anna’s 31-row tally, states that Compass is relaunched internally for the owner group, limits its scope to renewal-risk/admin-friction owner actions, post-first-live-sync expansion prompts, and admin-workflow evidence, and explicitly says it is not customer-facing product, GTM proof, staffing proof, or fundraising narrative.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2025_10_31_001",
+        "message_index": 0,
+        "narrative_date": "2025-10-31T15:36:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2025_10_31_001::message:0::fact:2"
+  },
+  {
+    "id": 333,
+    "statement": "Morgan Chen does not want to start a financing process or imply that the September 18 read is market-warming.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2026_09_11_003",
+        "message_index": 0,
+        "narrative_date": "2026-09-11T14:36:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2026_09_11_003::message:0::fact:1"
+  },
+  {
+    "id": 334,
+    "statement": "Morgan Chen requested that the Northstar Ventures CRM row be updated to keep Northstar warm for later, after the September 18 read, with no active process, data-room touch, or diligence slot unless Morgan decides to re-engage.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2026_09_11_003",
+        "message_index": 0,
+        "narrative_date": "2026-09-11T14:36:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2026_09_11_003::message:0::fact:2"
+  },
+  {
+    "id": 66,
+    "statement": "On April 20, 2023, Morgan Chen said the latest status update was too long and requested that future status updates contain only highlights in 3–4 bullets maximum.",
+    "sources": [
+      {
+        "session_id": "000345",
+        "message_index": 0,
+        "narrative_date": "2023-04-20T09:30:00-07:00"
+      }
+    ],
+    "corrected_id": "000345::message:0::fact:0"
+  },
+  {
+    "id": 67,
+    "statement": "Morgan Chen wants detailed explanations reserved for code-related content.",
+    "sources": [
+      {
+        "session_id": "000345",
+        "message_index": 1,
+        "narrative_date": "2023-04-20T09:30:00-07:00"
+      }
+    ],
+    "corrected_id": "000345::message:1::fact:0"
+  },
+  {
+    "id": 52,
+    "statement": "Morgan Chen clarified that the $2,000 trip cap applies to flight and hotel combined, not to each expense separately.",
+    "sources": [
+      {
+        "session_id": "000307",
+        "message_index": 1,
+        "narrative_date": "2023-04-12T14:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000307::message:1::fact:0"
+  },
+  {
+    "id": 259,
+    "statement": "On October 14, 2025, Morgan Chen requested a short internal routing note that acknowledges the three successful routine Acme API v2 export runs, directs future export questions through normal support/product routing unless there is a fresh failing range, and avoids implying that a new product-priority item is open.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2025_10_14_001",
+        "message_index": 2,
+        "narrative_date": "2025-10-14T11:18:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2025_10_14_001::message:2::fact:1"
+  },
+  {
+    "id": 236,
+    "statement": "Nadia Singh’s final day is June 20, 2025.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2025_06_20_001",
+        "message_index": 0,
+        "narrative_date": "2025-06-20T11:24:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2025_06_20_001::message:0::fact:1"
+  },
+  {
+    "id": 4,
+    "statement": "After the January 18 session with Devon Hayes, Morgan Chen concluded that the B-round deck should open with one line combining net new ARR, expansion, and payback—not abstract growth, pipeline, or logo count—so unit economics are part of the main story rather than an appendix.",
+    "sources": [
+      {
+        "session_id": "000040",
+        "message_index": 0,
+        "narrative_date": "2023-01-18T13:00:00-08:00"
+      }
+    ],
+    "corrected_id": "000040::message:0::fact:0"
+  },
+  {
+    "id": 204,
+    "statement": "Kestrel’s Mercury maintenance pass went live after Sarah’s review, with the public page claiming only the shipped scoped SAML SSO, admin-audit visibility, and clearer admin-role separation, all in generic product language.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2024_10_22_003",
+        "message_index": 0,
+        "narrative_date": "2024-10-25T15:47:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2024_10_22_003::message:0::fact:0"
+  },
+  {
+    "id": 205,
+    "statement": "Kara confirmed that Evergreen-specific content, customer-proof material, funding-related language, and broader enterprise-readiness claims are excluded from the live Mercury maintenance update and are on the separate Scaffold review path.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2024_10_22_003",
+        "message_index": 0,
+        "narrative_date": "2024-10-25T15:47:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2024_10_22_003::message:0::fact:1"
+  },
+  {
+    "id": 198,
+    "statement": "Under the August 23, 2024 boundary reset, asks resembling custom scope, feature-date promises, or priority-account exceptions must go through Morgan Chen or Devon Hayes and the relevant product owner before anyone uses them in customer follow-up.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2024_08_19_005",
+        "message_index": 0,
+        "narrative_date": "2024-08-23T16:26:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2024_08_19_005::message:0::fact:4"
+  },
+  {
+    "id": 217,
+    "statement": "Morgan Chen requested setting the Evergreen Bank CRM notes exactly to the supplied annual-conversion text covering the February 1, 2025 through January 31, 2026 term, standard Growth pricing, January closeout validations, Sarah Kim’s customer-thread ownership, Devon Hayes’s commercial/procurement framing, Nadia Singh’s customer-growth pattern capture, and product-request routing through the standard Mercury roadmap.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2025_01_31_001",
+        "message_index": 0,
+        "narrative_date": "2025-01-31T09:58:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2025_01_31_001::message:0::fact:5"
+  },
+  {
+    "id": 310,
+    "statement": "Evergreen Bank’s admin team accepted the shipped SAML login, visible invite/source/admin audit lookup, workspace-admin support path, and June standard Growth usage explanation for its internal memo during the Q3 2026 current-state/admin review.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2026_07_16_002",
+        "message_index": 0,
+        "narrative_date": "2026-07-16T11:35:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2026_07_16_002::message:0::fact:1"
+  },
+  {
+    "id": 258,
+    "statement": "Leo reported that source_freshness_warning renders as caveat text rather than rejection in the live Compass Q4 2025 queue.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2025_10_02_001",
+        "message_index": 1,
+        "narrative_date": "2025-10-02T12:22:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2025_10_02_001::message:1::fact:1"
+  },
+  {
+    "id": 14,
+    "statement": "Morgan Chen received the lead firm's formal pass email at 12:45 p.m. on February 16, 2023.",
+    "sources": [
+      {
+        "session_id": "000148",
+        "message_index": 0,
+        "narrative_date": "2023-02-16T12:45:00-08:00"
+      }
+    ],
+    "corrected_id": "000148::message:0::fact:0"
+  },
+  {
+    "id": 83,
+    "statement": "The Pinecone-side contact for the integration is integrations@pinecone-test.com.",
+    "sources": [
+      {
+        "session_id": "000381",
+        "message_index": 1,
+        "narrative_date": "2023-04-27T10:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000381::message:1::fact:1"
+  },
+  {
+    "id": 237,
+    "statement": "For Scaffold’s July 1–31, 2025 owner split, Leo owns platform seams and Atlas first technical reads.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2025_06_30_001",
+        "message_index": 1,
+        "narrative_date": "2025-06-30T08:23:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2025_06_30_001::message:1::fact:1"
+  },
+  {
+    "id": 238,
+    "statement": "For Scaffold’s July 1–31, 2025 owner split, Priya owns activation and onboarding quality.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2025_06_30_001",
+        "message_index": 1,
+        "narrative_date": "2025-06-30T08:23:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2025_06_30_001::message:1::fact:2"
+  },
+  {
+    "id": 239,
+    "statement": "For Scaffold’s July 1–31, 2025 owner split, Sarah owns Evergreen customer-thread continuity.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2025_06_30_001",
+        "message_index": 1,
+        "narrative_date": "2025-06-30T08:23:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2025_06_30_001::message:1::fact:4"
+  },
+  {
+    "id": 240,
+    "statement": "For Scaffold’s July 1–31, 2025 owner split, Morgan Chen owns the board and customer narrative without using Devon as the default second brain.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2025_06_30_001",
+        "message_index": 1,
+        "narrative_date": "2025-06-30T08:23:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2025_06_30_001::message:1::fact:5"
+  },
+  {
+    "id": 241,
+    "statement": "The July 30 final Devon re-entry agreement has Devon return to day-to-day Scaffold work in the first full August workweek, with his lane limited to commercial/procurement context and true cofounder judgment calls; he will not be the default second brain for board cleanup, customer narrative, or every ambiguous owner question.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2025_07_30_001",
+        "message_index": 1,
+        "narrative_date": "2025-07-30T11:38:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2025_07_30_001::message:1::fact:0"
+  },
+  {
+    "id": 254,
+    "statement": "On September 30, 2025, Devon asked whether he should retake more board/customer cleanup and loose-owner questions; the Q4 decision was no—the July-pause coverage model becomes Scaffold’s durable Q4 operating model rather than reverting to the pre-July founder pattern, with the goal of reducing dependence on Morgan and Devon as the only people holding the operating system together.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2025_09_30_001",
+        "message_index": 1,
+        "narrative_date": "2025-09-30T10:18:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2025_09_30_001::message:1::fact:0"
+  },
+  {
+    "id": 255,
+    "statement": "For Q4 2025, Jake owns Mercury operating work, broadening his previously specified sequencing lane.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2025_09_30_001",
+        "message_index": 1,
+        "narrative_date": "2025-09-30T10:18:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2025_09_30_001::message:1::fact:1"
+  },
+  {
+    "id": 256,
+    "statement": "For Q4 2025, Anna’s lane adds general evidence quality and Compass caveats.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2025_09_30_001",
+        "message_index": 1,
+        "narrative_date": "2025-09-30T10:18:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2025_09_30_001::message:1::fact:2"
+  },
+  {
+    "id": 257,
+    "statement": "For Q4 2025, loose owner questions route first to the named owner.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2025_09_30_001",
+        "message_index": 1,
+        "narrative_date": "2025-09-30T10:18:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2025_09_30_001::message:1::fact:4"
+  },
+  {
+    "id": 291,
+    "statement": "Morgan Chen requested a final Mercury activation-notes paragraph containing the actual two-week results and explicitly preserving the work’s docs-discovery and support-deflection classification, the boundary against activation-lift claims, and the separation of invite-link status and admin-role work from the release story.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2026_04_07_001",
+        "message_index": 0,
+        "narrative_date": "2026-04-07T09:42:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2026_04_07_001::message:0::fact:2"
+  },
+  {
+    "id": 87,
+    "statement": "On April 28, 2023, Morgan Chen described the all-hands as rough and reported that the room was silent throughout the first half hour of the IMP-C Q&A.",
+    "sources": [
+      {
+        "session_id": "000386",
+        "message_index": 0,
+        "narrative_date": "2023-04-28T11:15:00-07:00"
+      }
+    ],
+    "corrected_id": "000386::message:0::fact:0"
+  },
+  {
+    "id": 88,
+    "statement": "On April 28, 2023, Morgan Chen reported that the IMP-C Q&A was abandoned halfway through and changed to a demo-day format with a five-minute show-and-tell from each team.",
+    "sources": [
+      {
+        "session_id": "000386",
+        "message_index": 0,
+        "narrative_date": "2023-04-28T11:15:00-07:00"
+      }
+    ],
+    "corrected_id": "000386::message:0::fact:1"
+  },
+  {
+    "id": 89,
+    "statement": "On April 28, 2023, Morgan Chen reported that the demo-day-style team show-and-tell got people talking.",
+    "sources": [
+      {
+        "session_id": "000386",
+        "message_index": 0,
+        "narrative_date": "2023-04-28T11:15:00-07:00"
+      }
+    ],
+    "corrected_id": "000386::message:0::fact:2"
+  },
+  {
+    "id": 65,
+    "statement": "Morgan Chen came away from the April 19, 2023 meeting thinking Anna Rao was very sharp and shipping quickly rather than merely talking about it; the meeting stuck with him.",
+    "sources": [
+      {
+        "session_id": "000340",
+        "message_index": 0,
+        "narrative_date": "2023-04-19T17:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000340::message:0::fact:4"
+  },
+  {
+    "id": 105,
+    "statement": "Morgan Chen requested that HR now be sent the final wording for Priya’s title, effective date, and internal Mercury activation/onboarding UX ownership note.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2023_05_26_011",
+        "message_index": 0,
+        "narrative_date": "2023-05-31T10:18:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2023_05_26_011::message:0::fact:1"
+  },
+  {
+    "id": 106,
+    "statement": "Morgan Chen requested a short internal record titled `Priya — Senior Product Designer / Mercury UX ownership` that includes Priya’s effective date, title, formal Mercury activation/onboarding UX ownership through launch, and rationale based on onboarding polish, activation clarity, and the Mercury UX decisions the team relies on her to make.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2023_05_26_011",
+        "message_index": 0,
+        "narrative_date": "2023-05-31T10:18:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2023_05_26_011::message:0::fact:2"
+  },
+  {
+    "id": 107,
+    "statement": "Morgan Chen requested that Jake be sent only Priya’s Mercury launch-work ownership update, without a broader announcement or ceremony.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2023_05_26_011",
+        "message_index": 0,
+        "narrative_date": "2023-05-31T10:18:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2023_05_26_011::message:0::fact:3"
+  },
+  {
+    "id": 21,
+    "statement": "On Mar. 2, 2023, Morgan Chen agreed that sharper retention analysis is a Q2 2023 deliverable: a real month-12 cohort-by-cohort cut and a version excluding one oversized early customer.",
+    "sources": [
+      {
+        "session_id": "000195",
+        "message_index": 0,
+        "narrative_date": "2023-03-02T13:30:00-08:00"
+      }
+    ],
+    "corrected_id": "000195::message:0::fact:1"
+  },
+  {
+    "id": 22,
+    "statement": "Morgan Chen plans to have Devon Hayes pull the retention cuts directly from the warehouse instead of using another CSV export because Morgan no longer trusts the hand-shaped sheet.",
+    "sources": [
+      {
+        "session_id": "000195",
+        "message_index": 0,
+        "narrative_date": "2023-03-02T13:30:00-08:00"
+      }
+    ],
+    "corrected_id": "000195::message:0::fact:3"
+  },
+  {
+    "id": 152,
+    "statement": "Anna’s cohort view counts activation within seven days when a real source is connected or a first live sync is completed within seven days; sample import and preview usage are excluded, and an invite being sent is supporting activity only.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2023_11_12_002",
+        "message_index": 0,
+        "narrative_date": "2023-11-13T10:14:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2023_11_12_002::message:0::fact:1"
+  },
+  {
+    "id": 153,
+    "statement": "The October cohort rows cover completed seven-day windows and do not provide a full 30-day expansion read for late-October cohorts.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2023_11_12_002",
+        "message_index": 0,
+        "narrative_date": "2023-11-13T10:14:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2023_11_12_002::message:0::fact:2"
+  },
+  {
+    "id": 154,
+    "statement": "The October 2023 cohort had 27 accounts; 19 of 27 activated (70%) and 16 of 27 completed a first live sync (59%); this was the best current activation read, but expansion beyond initial admins remained uneven and unsolved.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2023_11_12_002",
+        "message_index": 0,
+        "narrative_date": "2023-11-13T10:14:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2023_11_12_002::message:0::fact:6"
+  },
+  {
+    "id": 146,
+    "statement": "By October 17, 2023, Morgan Chen relayed Marcus’s report that the four stuck Stripe renewals had been replayed safely with no duplicate charges.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2023_10_15_006",
+        "message_index": 0,
+        "narrative_date": "2023-10-17T15:34:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2023_10_15_006::message:0::fact:0"
+  },
+  {
+    "id": 147,
+    "statement": "Morgan Chen requested on October 17, 2023, that Marcus be told the Stripe renewal remediation thread can close unless a customer reports a duplicate charge.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2023_10_15_006",
+        "message_index": 0,
+        "narrative_date": "2023-10-17T15:34:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2023_10_15_006::message:0::fact:3"
+  },
+  {
+    "id": 124,
+    "statement": "On July 24, 2023, Leo Park created the `MER-1279 Mercury launch-readiness ledger` with the columns `risk`, `evidence source`, `owner`, `verification needed`, and `weekly decision`.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2023_07_22_002",
+        "message_index": 0,
+        "narrative_date": "2023-07-24T09:44:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2023_07_22_002::message:0::fact:2"
+  },
+  {
+    "id": 125,
+    "statement": "MER-1279 rows needing Mercury design context are to link to the relevant Figma frame or comment instead of duplicating design decisions in the ledger.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2023_07_22_002",
+        "message_index": 0,
+        "narrative_date": "2023-07-24T09:44:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2023_07_22_002::message:0::fact:7"
+  },
+  {
+    "id": 126,
+    "statement": "On July 24, 2023, Leo Park asked contributors to add evidence links to MER-1279 rows for launch-relevant updates instead of posting standalone chat summaries.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2023_07_22_002",
+        "message_index": 0,
+        "narrative_date": "2023-07-24T09:44:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2023_07_22_002::message:0::fact:8"
+  },
+  {
+    "id": 30,
+    "statement": "On March 15 at 9 p.m. during the outage, Morgan Chen documented the reproduction path: a request on the new path encountered a cache miss, fell through to the old entitlement check, retried against the worker pool, and piled up there.",
+    "sources": [
+      {
+        "session_id": "000244",
+        "message_index": 0,
+        "narrative_date": "2023-03-15T21:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000244::message:0::fact:0"
+  },
+  {
+    "id": 31,
+    "statement": "Morgan Chen reported that the ten-line change had an asymmetric blast radius: only some tenants reached the bad branch, where one request fanned out into roughly 6–8 internal calls, causing dashboards to look half-normal for too long.",
+    "sources": [
+      {
+        "session_id": "000244",
+        "message_index": 0,
+        "narrative_date": "2023-03-15T21:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000244::message:0::fact:1"
+  },
+  {
+    "id": 201,
+    "statement": "By October 4, 2024, Sofia had accepted the three-signal frame—Evergreen paid-pilot adoption, renewal/expansion evidence, and Nadia’s account-source quality—as the board lens and complete board-facing watchlist for Q4.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2024_10_01_006",
+        "message_index": 0,
+        "narrative_date": "2024-10-04T16:09:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2024_10_01_006::message:0::fact:1"
+  },
+  {
+    "id": 229,
+    "statement": "On May 21, 2025, Leo reported that a smaller Acme API v2 replay scoped to account-health and recent renewal-risk rows completed, with no evidence of corrupt exported data.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2025_05_21_001",
+        "message_index": 1,
+        "narrative_date": "2025-05-21T10:18:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2025_05_21_001::message:1::fact:1"
+  },
+  {
+    "id": 230,
+    "statement": "On May 22, 2025, Morgan Chen requested that Sarah be told to recommend Acme proceed with the narrower replay for the renewal-risk review, avoid retrying the full export that day, describe the full export-path timeout as a bounded Atlas/API v2 follow-up, and keep the wording date-free and support-owned.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2025_05_22_001",
+        "message_index": 1,
+        "narrative_date": "2025-05-22T08:42:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2025_05_22_001::message:1::fact:0"
+  },
+  {
+    "id": 231,
+    "statement": "On May 22, 2025, Leo reported no customer-visible data loss from Acme’s export issue.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2025_05_22_001",
+        "message_index": 2,
+        "narrative_date": "2025-05-22T08:42:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2025_05_22_001::message:2::fact:3"
+  },
+  {
+    "id": 90,
+    "statement": "On April 28, 2023, Morgan Chen concluded that they should instead have used one batch covering the previous 30 days and summarized api-gateway, auth-svc, billing-svc, inventory-svc, notifications-svc, payments-svc, search-svc, and recommendations-svc.",
+    "sources": [
+      {
+        "session_id": "000388",
+        "message_index": 0,
+        "narrative_date": "2023-04-28T17:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000388::message:0::fact:1"
+  },
+  {
+    "id": 144,
+    "statement": "On October 9, 2023, Morgan decided to simplify the onboarding repository-connection prompt to the headline “Connect your first repo” and support line “Finish setup now or come back later from workspace settings.”",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2023_10_08_003",
+        "message_index": 0,
+        "narrative_date": "2023-10-09T09:37:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2023_10_08_003::message:0::fact:8"
+  },
+  {
+    "id": 171,
+    "statement": "Morgan requested a private internal-chat note telling Priya she may close the remaining onboarding-flow Figma monitoring comments and return monitoring to normal support and product metrics; the note should retain the shipped-headline and support-only teammate-invite-clarification terms and state that new product-copy work requires a real regression in metrics or support volume.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2024_01_15_009",
+        "message_index": 0,
+        "narrative_date": "2024-01-19T09:22:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2024_01_15_009::message:0::fact:1"
+  },
+  {
+    "id": 309,
+    "statement": "Morgan Chen reported on July 9, 2026 that she approved a narrow contractor-channel extension through August 7, 2026 solely for a short QA pass on Mercury supported-source documentation and support-macro examples.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2026_07_09_001",
+        "message_index": 0,
+        "narrative_date": "2026-07-09T11:44:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2026_07_09_001::message:0::fact:2"
+  },
+  {
+    "id": 313,
+    "statement": "Jake, Priya, and Sarah finished the Q3 Mercury source-caveat cleanup on July 23, 2026.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2026_07_23_001",
+        "message_index": 0,
+        "narrative_date": "2026-07-23T09:10:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2026_07_23_001::message:0::fact:0"
+  },
+  {
+    "id": 315,
+    "statement": "The Mercury contractor documentation and support QA work was completed by July 23, 2026.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2026_07_23_001",
+        "message_index": 0,
+        "narrative_date": "2026-07-23T09:10:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2026_07_23_001::message:0::fact:4"
+  },
+  {
+    "id": 212,
+    "statement": "Morgan Chen requested a compact Tuesday working-session agenda for Anna, Nadia, Jake, Leo, and Sarah covering, for each Project Compass v0.1 signal, what action it should trigger, who sees it, what evidence and caveat accompany it, what account-note and source quality must be true, what is explicitly not being built, and the boundaries of no board dashboard and no new hiring lane.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2025_01_15_008",
+        "message_index": 0,
+        "narrative_date": "2025-01-20T12:14:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2025_01_15_008::message:0::fact:0"
+  },
+  {
+    "id": 263,
+    "statement": "Morgan Chen requested a crisp internal reply to Devon and Sarah about the October 2025 Mercury hybrid-pricing usage rollup that accepts the October MAU read, says standard hybrid terms remain unchanged for now, notes that Evergreen finished October at 196 monthly active developers within the Growth plan’s included 200 and that Acme was at 82 with no seat-versus-usage dispute, and asks them to monitor Evergreen’s November usage before any commercial discussion, without reopening custom-pricing debate merely because Evergreen is near the threshold.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2025_11_05_001",
+        "message_index": 0,
+        "narrative_date": "2025-11-05T09:42:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2025_11_05_001::message:0::fact:0"
+  },
+  {
+    "id": 267,
+    "statement": "The Pinecone integration is billed on monthly usage, not as a 2026 annual reserved-capacity prepayment.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2025_12_04_003",
+        "message_index": 0,
+        "narrative_date": "2025-12-04T12:03:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2025_12_04_003::message:0::fact:1"
+  },
+  {
+    "id": 280,
+    "statement": "Evergreen ended January at 241 monthly active developers, and the standard renewed Growth overage band applies with no custom cap or department carveout.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2026_02_06_001",
+        "message_index": 0,
+        "narrative_date": "2026-02-06T08:54:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2026_02_06_001::message:0::fact:1"
+  },
+  {
+    "id": 281,
+    "statement": "January AWS spend was below the December support-spike run rate.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2026_02_06_001",
+        "message_index": 0,
+        "narrative_date": "2026-02-06T08:54:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2026_02_06_001::message:0::fact:2"
+  },
+  {
+    "id": 282,
+    "statement": "Morgan Chen decided that the Q1 board file should emphasize standard-term retention, margin discipline, and owner-lane durability rather than a new growth-at-any-cost story.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2026_02_06_001",
+        "message_index": 0,
+        "narrative_date": "2026-02-06T08:54:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2026_02_06_001::message:0::fact:3"
+  },
+  {
+    "id": 187,
+    "statement": "Morgan Chen requested draft wording for a response to HR and Devon Hayes that keeps the customer-growth search centered on turning design-partner learning into a repeatable customer-growth motion, rather than a generic enterprise-sales VP brief or permission for bespoke product promises.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2024_03_04_002",
+        "message_index": 0,
+        "narrative_date": "2024-03-04T10:18:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2024_03_04_002::message:0::fact:1"
+  },
+  {
+    "id": 25,
+    "statement": "On March 13, Morgan Chen outlined three small, finishable workstreams for Q3 2023: retention instrumentation and cleanup, the account expansion path, and admin pain points recurring in customer calls.",
+    "sources": [
+      {
+        "session_id": "000232",
+        "message_index": 0,
+        "narrative_date": "2023-03-13T12:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000232::message:0::fact:0"
+  },
+  {
+    "id": 26,
+    "statement": "Morgan Chen proposed that Jake run the weekly cadence and keep cuts moving across the Q3 2023 workstreams.",
+    "sources": [
+      {
+        "session_id": "000232",
+        "message_index": 0,
+        "narrative_date": "2023-03-13T12:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000232::message:0::fact:1"
+  },
+  {
+    "id": 168,
+    "statement": "The pack’s first-admin example has the first admin receive access to the Mercury organization, enter through the current magic-link flow, land in that organization’s setup experience, optionally see preview or sample data only as bounded non-activating context, connect a real source, and proceed to first live sync without an SSO/SAML step.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2024_01_01_014",
+        "message_index": 0,
+        "narrative_date": "2024-01-05T09:46:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2024_01_01_014::message:0::fact:3"
+  },
+  {
+    "id": 169,
+    "statement": "The final pack states that Mercury does not provide standalone admin-side audit history for invite or resend actions, role or permission changes, source connection or disconnection, or related administrative configuration changes.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2024_01_01_014",
+        "message_index": 0,
+        "narrative_date": "2024-01-05T09:46:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2024_01_01_014::message:0::fact:8"
+  },
+  {
+    "id": 167,
+    "statement": "Morgan Chen asked the recipients to reply to Sarah Kim in the Evergreen thread confirming that the final concrete examples pack should be sent to Evergreen now, kept limited to present-state and circulate-now material, and accompanied by a statement that the fuller standalone procurement/security packet remains later enterprise-readiness work.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2024_01_01_014",
+        "message_index": 0,
+        "narrative_date": "2024-01-05T09:46:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2024_01_01_014::message:0::fact:12"
+  },
+  {
+    "id": 163,
+    "statement": "For the requested HR reply package, Morgan Chen asked for a Honeycomb line covering Dec. 23, 2023 through Jan. 1, 2024 that retains the existing thresholds, pages the named on-call owner first, involves Morgan only for confirmed customer impact or when that path cannot reach anyone, and rolls a quiet week’s alerts into Monday’s digest.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2023_12_17_010",
+        "message_index": 0,
+        "narrative_date": "2023-12-20T16:43:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2023_12_17_010::message:0::fact:17"
+  },
+  {
+    "id": 27,
+    "statement": "On March 15, 2023, Morgan Chen said the Wednesday deploy was expected to merge at about 4:50 p.m. if nothing unusual arose.",
+    "sources": [
+      {
+        "session_id": "000242",
+        "message_index": 0,
+        "narrative_date": "2023-03-15T16:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000242::message:0::fact:0"
+  },
+  {
+    "id": 28,
+    "statement": "Morgan Chen described the March 15, 2023 deploy as a routine ten-line deploy on the release schedule.",
+    "sources": [
+      {
+        "session_id": "000242",
+        "message_index": 0,
+        "narrative_date": "2023-03-15T16:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000242::message:0::fact:1"
+  },
+  {
+    "id": 29,
+    "statement": "During the March 15, 2023 production incident, Devon began investigating the logs.",
+    "sources": [
+      {
+        "session_id": "000243",
+        "message_index": 0,
+        "narrative_date": "2023-03-15T17:30:00-07:00"
+      }
+    ],
+    "corrected_id": "000243::message:0::fact:2"
+  },
+  {
+    "id": 61,
+    "statement": "On April 18, 2023, Jordan ran the all-hands demo and personally delivered the live walkthrough smoothly; Morgan Chen said Jordan nailed it.",
+    "sources": [
+      {
+        "session_id": "000336",
+        "message_index": 0,
+        "narrative_date": "2023-04-18T17:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000336::message:0::fact:0"
+  },
+  {
+    "id": 62,
+    "statement": "The team was highly engaged during Jordan’s April 18, 2023 all-hands demo.",
+    "sources": [
+      {
+        "session_id": "000336",
+        "message_index": 0,
+        "narrative_date": "2023-04-18T17:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000336::message:0::fact:1"
+  },
+  {
+    "id": 24,
+    "statement": "Anna Martinez started at Scaffold on March 13, 2023 as retention-data lead, reporting to Devon.",
+    "sources": [
+      {
+        "session_id": "000231",
+        "message_index": 0,
+        "narrative_date": "2023-03-13T11:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000231::message:0::fact:0"
+  },
+  {
+    "id": 102,
+    "statement": "Morgan Chen’s May 4 Friday-wrap notes report that launch work is being tightened before the broader investor story is reopened.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2023_05_05_001",
+        "message_index": 0,
+        "narrative_date": "2023-05-05T08:22:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2023_05_05_001::message:0::fact:3"
+  },
+  {
+    "id": 103,
+    "statement": "On May 5, 2023, Morgan Chen requested a short handoff to Devon Hayes and Jake stating that Jake’s weekly is where Anna’s retention work, activation blockers, and admin blockers are handled, and that no investor material should be routed to Jake because the weekly is for product and operating work only.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2023_05_05_003",
+        "message_index": 0,
+        "narrative_date": "2023-05-05T10:18:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2023_05_05_003::message:0::fact:2"
+  },
+  {
+    "id": 110,
+    "statement": "In Clerk sandbox testing, Rishi quickly got middleware and a server-side session check working, and the normal session path was straightforward.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2023_06_02_017",
+        "message_index": 0,
+        "narrative_date": "2023-06-07T08:43:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2023_06_02_017::message:0::fact:2"
+  },
+  {
+    "id": 111,
+    "statement": "Auth0’s session flow worked in the sandbox but required additional setup and provides controls for unusual policies or tenant-specific behavior.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2023_06_02_017",
+        "message_index": 0,
+        "narrative_date": "2023-06-07T08:43:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2023_06_02_017::message:0::fact:3"
+  },
+  {
+    "id": 108,
+    "statement": "Potential early needs for deeper admin controls, domain or identity-provider management, or enterprise SSO behavior are key provider-selection considerations.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2023_06_02_017",
+        "message_index": 0,
+        "narrative_date": "2023-06-07T08:43:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2023_06_02_017::message:0::fact:11"
+  },
+  {
+    "id": 109,
+    "statement": "Anyone validating Clerk or Auth0 on staging must use the standard deployment pipeline, with no one-off shortcuts for authentication testing.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2023_06_02_017",
+        "message_index": 0,
+        "narrative_date": "2023-06-07T08:43:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2023_06_02_017::message:0::fact:15"
+  },
+  {
+    "id": 112,
+    "statement": "The existing-user versus new-user organization-invite acceptance flow is not yet clean, and the landing and organization-context behavior after acceptance still needs work.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2023_06_02_022",
+        "message_index": 0,
+        "narrative_date": "2023-06-08T11:23:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2023_06_02_022::message:0::fact:3"
+  },
+  {
+    "id": 113,
+    "statement": "The team does not yet know how much administrative functionality would need to be built around the auth provider.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2023_06_02_022",
+        "message_index": 0,
+        "narrative_date": "2023-06-08T11:23:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2023_06_02_022::message:0::fact:4"
+  },
+  {
+    "id": 114,
+    "statement": "Any production discussion requires a clean staging pass for the session path, magic links, and organization invites.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2023_06_02_022",
+        "message_index": 0,
+        "narrative_date": "2023-06-08T11:23:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2023_06_02_022::message:0::fact:7"
+  },
+  {
+    "id": 115,
+    "statement": "Morgan requested that the pre-read be updated into an internal open-questions note for Friday’s decision window, with the provider baseline and deploy/production decision left unsettled and the staging-discipline checks included.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2023_06_02_022",
+        "message_index": 0,
+        "narrative_date": "2023-06-08T11:23:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2023_06_02_022::message:0::fact:8"
+  },
+  {
+    "id": 122,
+    "statement": "Morgan Chen specified that Leo Park’s first useful Mercury output should be an evidence-grounded release-risk readout rather than abstract platform recommendations or a rewrite plan, and that internal working documents, blockers, and owners should take priority over investor-style packaging.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2023_07_08_001",
+        "message_index": 0,
+        "narrative_date": "2023-07-10T11:36:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2023_07_08_001::message:0::fact:2"
+  },
+  {
+    "id": 121,
+    "statement": "Morgan Chen requested an onboarding brief titled “Leo Park — Mercury first-month ramp,” anchored on Mercury release discipline, platform seams, and launch readiness and including Jake’s weekly/blockers walkthrough, Priya’s Figma source-of-truth path, and Marcus’s release-readiness/thin-evidence handoff.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2023_07_08_001",
+        "message_index": 0,
+        "narrative_date": "2023-07-10T11:36:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2023_07_08_001::message:0::fact:15"
+  },
+  {
+    "id": 132,
+    "statement": "On August 17, 2023, Morgan Chen stated conditional support for the Mercury v0.2 copy-only clarification only if the current release-readiness reviewers confirm that it adds no risk.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2023_08_12_004",
+        "message_index": 0,
+        "narrative_date": "2023-08-17T10:24:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2023_08_12_004::message:0::fact:7"
+  },
+  {
+    "id": 133,
+    "statement": "Morgan Chen requested a pasteable but unposted Figma reply about the Mercury v0.2 preview-state clarification that includes the release-readiness condition, the metric-definition, CTA, and state-structure boundaries, and the exclusion of work larger than copy polish.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2023_08_12_004",
+        "message_index": 0,
+        "narrative_date": "2023-08-17T10:24:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2023_08_12_004::message:0::fact:8"
+  },
+  {
+    "id": 196,
+    "statement": "In the first customer-growth read reported May 10, 2024, Nadia classified Mercury/Evergreen learning into activation friction, admin handoff and role confusion, procurement/security packaging, expansion stalls after first live sync, and true product gaps.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2024_05_06_023",
+        "message_index": 0,
+        "narrative_date": "2024-05-10T12:18:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2024_05_06_023::message:0::fact:2"
+  },
+  {
+    "id": 197,
+    "statement": "The group retained a rule that every customer-growth signal bucket must have an owner route attached, to prevent customer-growth from becoming a catch-all for uncomfortable customer issues.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2024_05_06_023",
+        "message_index": 0,
+        "narrative_date": "2024-05-10T12:18:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2024_05_06_023::message:0::fact:3"
+  },
+  {
+    "id": 142,
+    "statement": "Morgan Chen requested a concise release note in #eng-releases only, not #eng-all, stating that the API v2 auth refresh retry fix is live and requires no customer action.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2023_10_01_007",
+        "message_index": 0,
+        "narrative_date": "2023-10-03T14:38:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2023_10_01_007::message:0::fact:1"
+  },
+  {
+    "id": 139,
+    "statement": "In Morgan Chen’s September 21, 2023 message, Marcus reported that the expired-magic-link helper-text patch was green.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2023_09_16_008",
+        "message_index": 0,
+        "narrative_date": "2023-09-21T14:37:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2023_09_16_008::message:0::fact:0"
+  },
+  {
+    "id": 140,
+    "statement": "Morgan Chen requested a short release note about the expired-magic-link helper-text patch be posted only to #eng-releases, not #eng-all, stating that the change clarifies retry guidance for expired magic links, does not change the activation definition, and does not expand auth-provider, SSO, admin, or procurement scope.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2023_09_16_008",
+        "message_index": 0,
+        "narrative_date": "2023-09-21T14:37:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2023_09_16_008::message:0::fact:2"
+  },
+  {
+    "id": 19,
+    "statement": "Morgan Chen changed the core framing for Scaffold’s March 2, 2023 deck: product and team execution met their commitments, while the fundraising miss resulted from timing, buyers freezing, and unusual budget conditions rather than an execution failure.",
+    "sources": [
+      {
+        "session_id": "000189",
+        "message_index": 0,
+        "narrative_date": "2023-03-01T10:00:00-08:00"
+      }
+    ],
+    "corrected_id": "000189::message:0::fact:0"
+  },
+  {
+    "id": 13,
+    "statement": "By February 15, 2023, after an unidentified man again pushed to replace the retention wording with “stabilized,” Morgan Chen kept the wording that retention had “flattened after the onboarding fixes.”",
+    "sources": [
+      {
+        "session_id": "000146",
+        "message_index": 0,
+        "narrative_date": "2023-02-15T16:00:00-08:00"
+      }
+    ],
+    "corrected_id": "000146::message:0::fact:0"
+  },
+  {
+    "id": 8,
+    "statement": "Morgan Chen is leaning toward a tighter fundraising-deck metrics section covering net new ARR, retention shape, expansion by cohort, and one customer slide using actual customer names rather than anonymous logos.",
+    "sources": [
+      {
+        "session_id": "000096",
+        "message_index": 0,
+        "narrative_date": "2023-02-03T10:00:00-08:00"
+      }
+    ],
+    "corrected_id": "000096::message:0::fact:5"
+  },
+  {
+    "id": 9,
+    "statement": "For the February 6, 2023 opener, Morgan Chen wanted the first five minutes kept tight and wanted to avoid roadmap discussion unless the audience steered the conversation there.",
+    "sources": [
+      {
+        "session_id": "000104",
+        "message_index": 0,
+        "narrative_date": "2023-02-06T08:00:00-08:00"
+      }
+    ],
+    "corrected_id": "000104::message:0::fact:2"
+  },
+  {
+    "id": 190,
+    "statement": "On March 13, 2024, Morgan Chen requested a screen-debrief template for use after early customer-growth candidate calls that compares repeatable enterprise adoption, judgment about not promising product, ability to work without a mature sales organization, technical-buyer comfort, and stage fit, while excluding final candidate-decision language and providing a clean comparison of the slate.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2024_03_11_004",
+        "message_index": 0,
+        "narrative_date": "2024-03-13T11:22:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2024_03_11_004::message:0::fact:1"
+  },
+  {
+    "id": 55,
+    "statement": "Morgan Chen spun up a production database read replica in us-west-2 last week so read traffic can be routed there.",
+    "sources": [
+      {
+        "session_id": "000316",
+        "message_index": 0,
+        "narrative_date": "2023-04-13T15:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000316::message:0::fact:0"
+  },
+  {
+    "id": 56,
+    "statement": "Production database writes continue to go to us-east-1.",
+    "sources": [
+      {
+        "session_id": "000316",
+        "message_index": 0,
+        "narrative_date": "2023-04-13T15:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000316::message:0::fact:1"
+  },
+  {
+    "id": 3,
+    "statement": "Morgan Chen wanted the January 10, 2023 Q1 all-hands message to be plain: a February Series B if it comes together, Q3 as the real push, no unusual hiring before then, and likely an acknowledgment that the company shipped a lot in Q4 without pretending the work felt clean.",
+    "sources": [
+      {
+        "session_id": "000002",
+        "message_index": 0,
+        "narrative_date": "2023-01-10T08:30:00-08:00"
+      }
+    ],
+    "corrected_id": "000002::message:0::fact:1"
+  },
+  {
+    "id": 5,
+    "statement": "As of January 20, 2023, Marcus was thinking more deeply than requested about the on-call rotation and had notes on handoff gaps and a recurring pager mistake around 2 a.m.",
+    "sources": [
+      {
+        "session_id": "000052",
+        "message_index": 0,
+        "narrative_date": "2023-01-20T15:00:00-08:00"
+      }
+    ],
+    "corrected_id": "000052::message:0::fact:1"
+  },
+  {
+    "id": 6,
+    "statement": "On January 20, 2023, Morgan Chen said Marcus was settling in well.",
+    "sources": [
+      {
+        "session_id": "000052",
+        "message_index": 0,
+        "narrative_date": "2023-01-20T15:00:00-08:00"
+      }
+    ],
+    "corrected_id": "000052::message:0::fact:2"
+  },
+  {
+    "id": 11,
+    "statement": "Morgan Chen said on February 13, 2023 that the retention analysis needs to distinguish genuine product improvement from segmentation artifacts and poor instrumentation across Stripe and app events.",
+    "sources": [
+      {
+        "session_id": "000136",
+        "message_index": 0,
+        "narrative_date": "2023-02-13T14:00:00-08:00"
+      }
+    ],
+    "corrected_id": "000136::message:0::fact:4"
+  },
+  {
+    "id": 12,
+    "statement": "Morgan Chen was leaning toward pulling raw cohort cuts on the night of February 13, 2023 and stopping efforts to polish the retention slide, reasoning that deck polish is useless if the result cannot be explained plainly in the room.",
+    "sources": [
+      {
+        "session_id": "000136",
+        "message_index": 0,
+        "narrative_date": "2023-02-13T14:00:00-08:00"
+      }
+    ],
+    "corrected_id": "000136::message:0::fact:5"
+  },
+  {
+    "id": 101,
+    "statement": "Morgan Chen requested that the May 5, 2023 Friday wrap use team, customers, investors, and legal/ops sections: the team section should say the standing-rules pass shipped and the agent workflow is in use; customers should cover only product movement and open blockers, without spin; investors should mention the deferred deck and say launch work is being tightened first rather than reopening the broader story; and legal/ops should appear only if an actual decision is needed.",
+    "sources": [
+      {
+        "session_id": "000401",
+        "message_index": 0,
+        "narrative_date": "2023-05-04T08:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000401::message:0::fact:0"
+  },
+  {
+    "id": 35,
+    "statement": "On April 6, 2023, Morgan Chen reported that API v1 was connected to the new billing setup, with the /charges and /refunds endpoints wired using the basic-auth token created the previous sprint.",
+    "sources": [
+      {
+        "session_id": "000288",
+        "message_index": 0,
+        "narrative_date": "2023-04-06T15:30:00-07:00"
+      }
+    ],
+    "corrected_id": "000288::message:0::fact:0"
+  },
+  {
+    "id": 43,
+    "statement": "Morgan Chen added POST /v1/webhooks for inbound events.",
+    "sources": [
+      {
+        "session_id": "000294",
+        "message_index": 0,
+        "narrative_date": "2023-04-08T14:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000294::message:0::fact:0"
+  },
+  {
+    "id": 44,
+    "statement": "POST /v1/webhooks uses the same basic authentication setup as the rest of the API.",
+    "sources": [
+      {
+        "session_id": "000294",
+        "message_index": 0,
+        "narrative_date": "2023-04-08T14:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000294::message:0::fact:1"
+  },
+  {
+    "id": 45,
+    "statement": "As of April 9, 2023, Morgan Chen was calling the Q3 release Project Mercury and defined it as a self-serve customer path from workspace creation through first-source connection, first live sync, teammate invitations, and admin setup without hand-holding.",
+    "sources": [
+      {
+        "session_id": "000296",
+        "message_index": 1,
+        "narrative_date": "2023-04-09T15:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000296::message:1::fact:0"
+  },
+  {
+    "id": 46,
+    "statement": "Morgan Chen said that having Jake run engineering for Project Mercury helps.",
+    "sources": [
+      {
+        "session_id": "000296",
+        "message_index": 2,
+        "narrative_date": "2023-04-09T15:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000296::message:2::fact:0"
+  },
+  {
+    "id": 32,
+    "statement": "During the March 22, 2023 call, Greg Shipman directly took ownership of Acme’s ETA misses and said Q2 would be tighter on Acme’s side.",
+    "sources": [
+      {
+        "session_id": "000272",
+        "message_index": 0,
+        "narrative_date": "2023-03-22T11:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000272::message:0::fact:1"
+  },
+  {
+    "id": 33,
+    "statement": "Morgan Chen said on March 22, 2023 that they were about 60% convinced by Greg Shipman’s assurances about Acme’s Q2 performance.",
+    "sources": [
+      {
+        "session_id": "000272",
+        "message_index": 0,
+        "narrative_date": "2023-03-22T11:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000272::message:0::fact:2"
+  },
+  {
+    "id": 157,
+    "statement": "For December board preparation, screenshot cleanup, appendix wording, and extra board-facing explanations should remain Morgan Chen, Devon Hayes, and Anna Martinez’s work and should not jump the queue unless they directly improve actual product evidence.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2023_11_26_016",
+        "message_index": 0,
+        "narrative_date": "2023-12-01T15:57:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2023_11_26_016::message:0::fact:1"
+  },
+  {
+    "id": 158,
+    "statement": "Morgan Chen requested a private cleaned-up note to Devon Hayes in the current internal team chat stating that product owners should focus on Mercury hardening and API v2 support cleanup, onboarding is monitoring, Evergreen enterprise-readiness scoping is not yet sprint scope, and Northstar and board materials remain with Morgan Chen, Devon Hayes, and Anna Martinez rather than becoming broad investor-packaging work for engineering.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2023_11_26_016",
+        "message_index": 0,
+        "narrative_date": "2023-12-01T15:57:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2023_11_26_016::message:0::fact:3"
+  },
+  {
+    "id": 75,
+    "statement": "On April 25, 2023, Morgan Chen locked in Clerk for v1 of the auth rewrite, accepting the hosted dependency rather than building authentication infrastructure in-house; the choice may be revisited if Clerk becomes problematic later.",
+    "sources": [
+      {
+        "session_id": "000370",
+        "message_index": 2,
+        "narrative_date": "2023-04-25T14:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000370::message:2::fact:0"
+  },
+  {
+    "id": 148,
+    "statement": "Morgan requested a DM to Marcus instructing him to remove the two staging-only Clerk toggles after confirming there are no production references, leave the rollback flag in place until Friday, 2023-11-03, and skip a release note because customer behavior did not change.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2023_10_22_007",
+        "message_index": 0,
+        "narrative_date": "2023-10-25T15:08:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2023_10_22_007::message:0::fact:1"
+  },
+  {
+    "id": 162,
+    "statement": "Morgan Chen requested an internal email reply to Devon Hayes stating that Mercury hardening follow-through and API v2 support cleanup may close only when evidence already exists, onboarding is to remain in monitoring, no fresh investor-packaging requests should go to product owners, and non-customer-impacting work must wait until January.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2023_12_17_006",
+        "message_index": 0,
+        "narrative_date": "2023-12-19T09:03:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2023_12_17_006::message:0::fact:9"
+  },
+  {
+    "id": 71,
+    "statement": "On April 23, 2023, Morgan Chen reported that Kestrel Marketing was the third contractor that month whose deliverables were all slipping, following the same pattern as Acme and Blueline but taking longer to become apparent.",
+    "sources": [
+      {
+        "session_id": "000361",
+        "message_index": 0,
+        "narrative_date": "2023-04-23T16:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000361::message:0::fact:0"
+  },
+  {
+    "id": 225,
+    "statement": "Anna assessed the Project Compass April 2025 prompts as usable for an operating review if each carries its definition, evidence source, date, and caveat, but not as clean customer-facing proof.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2025_04_22_003",
+        "message_index": 0,
+        "narrative_date": "2025-04-22T16:47:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2025_04_22_003::message:0::fact:3"
+  },
+  {
+    "id": 226,
+    "statement": "Two Acme notes in the April 23, 2025 Compass evidence are too thin because their owner/source and date are unclear; Sarah Kim said to exclude or caveat them.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2025_04_23_001",
+        "message_index": 0,
+        "narrative_date": "2025-04-23T09:34:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2025_04_23_001::message:0::fact:5"
+  },
+  {
+    "id": 227,
+    "statement": "Leo’s final seam note for the April 25 prompt review reported that the renewal-risk/admin-friction prompt’s source-recency handling is now adequate for continued owner-group use.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2025_04_24_002",
+        "message_index": 0,
+        "narrative_date": "2025-04-24T15:37:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2025_04_24_002::message:0::fact:0"
+  },
+  {
+    "id": 228,
+    "statement": "Leo’s final seam note for the April 25 prompt review said the renewal-risk/admin-friction and post-first-live-sync prompts do not justify a dashboard-style surface.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2025_04_24_002",
+        "message_index": 0,
+        "narrative_date": "2025-04-24T15:37:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2025_04_24_002::message:0::fact:2"
+  },
+  {
+    "id": 317,
+    "statement": "Evergreen Bank finished July at 228 monthly active developers, within one standard Growth overage band.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2026_08_06_001",
+        "message_index": 0,
+        "narrative_date": "2026-08-06T08:33:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2026_08_06_001::message:0::fact:1"
+  },
+  {
+    "id": 318,
+    "statement": "AWS closed July at about $19.5k.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2026_08_06_001",
+        "message_index": 0,
+        "narrative_date": "2026-08-06T08:33:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2026_08_06_001::message:0::fact:2"
+  },
+  {
+    "id": 319,
+    "statement": "Pinecone closed July at about $4.1k with no replay spike.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2026_08_06_001",
+        "message_index": 0,
+        "narrative_date": "2026-08-06T08:33:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2026_08_06_001::message:0::fact:3"
+  },
+  {
+    "id": 320,
+    "statement": "Devon and Anna found no contract change, prepaid-capacity need, vendor-risk issue, or custom commercial exception in the July close.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2026_08_06_001",
+        "message_index": 0,
+        "narrative_date": "2026-08-06T08:33:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2026_08_06_001::message:0::fact:4"
+  },
+  {
+    "id": 321,
+    "statement": "Morgan Chen requested that the updated slide make clear that July supports standard usage and monthly vendor hygiene, not market-warming, an expansion package, or headcount reopening.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2026_08_06_001",
+        "message_index": 0,
+        "narrative_date": "2026-08-06T08:33:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2026_08_06_001::message:0::fact:6"
+  },
+  {
+    "id": 247,
+    "statement": "Sarah Kim’s September 19 Evergreen treasury closeout reported that workspace setup was completed for EB Treasury Ops.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2025_09_19_001",
+        "message_index": 1,
+        "narrative_date": "2025-09-19T08:48:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2025_09_19_001::message:1::fact:0"
+  },
+  {
+    "id": 248,
+    "statement": "Sarah Kim’s September 19 Evergreen treasury closeout reported that treasury_reporting_sandbox connected successfully after the source-side allowlist propagated.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2025_09_19_001",
+        "message_index": 1,
+        "narrative_date": "2025-09-19T08:48:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2025_09_19_001::message:1::fact:2"
+  },
+  {
+    "id": 249,
+    "statement": "Sarah Kim’s September 19 Evergreen treasury closeout reported that the first live sync completed at 7:58 PT; the team checked its workspace status and saw the first synced records.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2025_09_19_001",
+        "message_index": 1,
+        "narrative_date": "2025-09-19T08:48:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2025_09_19_001::message:1::fact:3"
+  },
+  {
+    "id": 250,
+    "statement": "Sarah Kim’s September 19 Evergreen treasury closeout reported that Evergreen’s login path worked for participants without requiring SSO changes.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2025_09_19_001",
+        "message_index": 1,
+        "narrative_date": "2025-09-19T08:48:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2025_09_19_001::message:1::fact:4"
+  },
+  {
+    "id": 251,
+    "statement": "Sarah Kim’s September 19 Evergreen treasury closeout reported that no custom admin policy was used during the walkthrough.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2025_09_19_001",
+        "message_index": 1,
+        "narrative_date": "2025-09-19T08:48:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2025_09_19_001::message:1::fact:5"
+  },
+  {
+    "id": 252,
+    "statement": "During the September 19 Evergreen treasury closeout, an Evergreen administrator again asked about a granular role editor for a sync operator without billing or audit access, and Sarah Kim logged it as an advanced-admin follow-up.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2025_09_19_001",
+        "message_index": 1,
+        "narrative_date": "2025-09-19T08:48:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2025_09_19_001::message:1::fact:7"
+  },
+  {
+    "id": 253,
+    "statement": "Morgan Chen requested that the Evergreen account record be updated for the September 19 closeout to classify the result as a second internal-department current-flow success under the annual account, characterize it as stronger than the May read but account-specific, and include the existing boundaries for advanced-admin commitments, SSO changes, custom admin policy, procurement/security add-ons, and granular-role-editor follow-up.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2025_09_19_001",
+        "message_index": 2,
+        "narrative_date": "2025-09-19T08:48:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2025_09_19_001::message:2::fact:0"
+  },
+  {
+    "id": 164,
+    "statement": "Morgan requested a text to Maya saying that Morgan can help Mom with one specific question after the 2023 Christmas holiday if Maya sends the exact form first, that Jamie is excluded from the plan, and that the quiet week after Christmas is not a paperwork block.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2023_12_17_013",
+        "message_index": 0,
+        "narrative_date": "2023-12-21T17:31:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2023_12_17_013::message:0::fact:0"
+  },
+  {
+    "id": 292,
+    "statement": "Evergreen Bank accepted shipped SAML login, visible invite/source/admin audit lookup, workspace-admin support, and the March usage read as valid current-state review material during its first included 2026 review.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2026_04_16_002",
+        "message_index": 0,
+        "narrative_date": "2026-04-16T11:18:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2026_04_16_002::message:0::fact:1"
+  },
+  {
+    "id": 293,
+    "statement": "During Evergreen Bank’s first included 2026 review, Evergreen asked whether granular sync-operator work could be described as expected in Q3 for its internal admin memo; Devon excluded that characterization from the result and described the work as later advanced-admin research with no date, package, renewal, procurement-security, overage-cap, or custom-admin commitment.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2026_04_16_002",
+        "message_index": 0,
+        "narrative_date": "2026-04-16T11:18:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2026_04_16_002::message:0::fact:2"
+  },
+  {
+    "id": 60,
+    "statement": "Sarah is coordinating the retreat this year.",
+    "sources": [
+      {
+        "session_id": "000325",
+        "message_index": 3,
+        "narrative_date": "2023-04-15T14:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000325::message:3::fact:1"
+  },
+  {
+    "id": 137,
+    "statement": "Morgan Chen requested that HR be kept as the budget owner.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2023_08_26_006",
+        "message_index": 0,
+        "narrative_date": "2023-08-29T09:29:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2023_08_26_006::message:0::fact:5"
+  },
+  {
+    "id": 76,
+    "statement": "On April 25, 2023, Sarah at Founders Fund urged that the offsite be limited to one day, remain product-deep, exclude team-building, and focus mostly on Mercury and the retention story.",
+    "sources": [
+      {
+        "session_id": "000373",
+        "message_index": 0,
+        "narrative_date": "2023-04-25T17:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000373::message:0::fact:0"
+  },
+  {
+    "id": 77,
+    "statement": "On April 25, 2023, Morgan Chen agreed to a one-day offsite but pushed back against making the entire offsite investor-facing or a themed board deck.",
+    "sources": [
+      {
+        "session_id": "000373",
+        "message_index": 0,
+        "narrative_date": "2023-04-25T17:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000373::message:0::fact:1"
+  },
+  {
+    "id": 47,
+    "statement": "Morgan Chen requested a skimmable auth comparison of Clerk, Auth0, and custom auth, with exactly three bullets per option covering what it is, its upsides, and its biggest worry, rather than a memo.",
+    "sources": [
+      {
+        "session_id": "000298",
+        "message_index": 0,
+        "narrative_date": "2023-04-09T16:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000298::message:0::fact:0"
+  },
+  {
+    "id": 272,
+    "statement": "Morgan Chen requested an immediate update to the Northstar Ventures CRM row to classify the relationship as warm but not an active financing track, set the status to `warm_later_bounded_operating_update_no_process`, set the trigger condition to `new operating substance beyond recycled Q4/Evergreen/Compass evidence`, and note that the January 15 touch was operating-only with no data room, market-warming list, investor packet, or financing process.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2026_01_15_002",
+        "message_index": 0,
+        "narrative_date": "2026-01-15T11:52:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2026_01_15_002::message:0::fact:4"
+  },
+  {
+    "id": 117,
+    "statement": "During the June 13, 2023 Mercury review, Priya walked through the activation and onboarding frames and repeatedly used the Figma file as the source of truth for flow decisions.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2023_06_09_012",
+        "message_index": 0,
+        "narrative_date": "2023-06-13T14:04:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2023_06_09_012::message:0::fact:2"
+  },
+  {
+    "id": 118,
+    "statement": "The June 13, 2023 Mercury review decided that Figma is the canonical place for activation and onboarding flow decisions, while release-readiness concerns belong in the implementation checklist and release review rather than Figma comments; a checklist item requiring a design change must link to the exact Figma frame and reopen only that decision, and the issue must not be adjudicated in Discord side threads.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2023_06_09_012",
+        "message_index": 0,
+        "narrative_date": "2023-06-13T14:04:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2023_06_09_012::message:0::fact:8"
+  },
+  {
+    "id": 116,
+    "statement": "Marcus was assigned to send a cleaned Mercury implementation checklist containing owners and blockers for the dogfood build after the June 13, 2023 review.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2023_06_09_012",
+        "message_index": 0,
+        "narrative_date": "2023-06-13T14:04:00-07:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2023_06_09_012::message:0::fact:10"
+  },
+  {
+    "id": 211,
+    "statement": "Morgan Chen requested that Jake be sent a Slack message saying Leo may do a lightweight first read on Compass seams without shifting January’s focus from Mercury activation—workspace to first source to first live sync, plus teammate-invite and admin-role basics; Compass v0.1 seam work should be limited to testing renewal/admin-friction evidence and the post-sync expansion prompt, and any drift toward a dashboard or platform build should be brought back to Morgan.",
+    "sources": [
+      {
+        "session_id": "extension_morgan_2025_01_15_005",
+        "message_index": 0,
+        "narrative_date": "2025-01-17T14:18:00-08:00"
+      }
+    ],
+    "corrected_id": "extension_morgan_2025_01_15_005::message:0::fact:0"
+  },
+  {
+    "id": 335,
+    "statement": "Morgan Chen requested that each trip be kept under $2,000 total.",
+    "sources": [
+      {
+        "session_id": "000307",
+        "message_index": 0,
+        "narrative_date": "2023-04-12T14:00:00-07:00"
+      }
+    ],
+    "corrected_id": "000307::message:0::fact:1"
+  },
+  {
+    "id": 336,
+    "statement": "The user is Morgan Chen.",
+    "sources": [
+      {
+        "session_id": "000001",
+        "message_index": 0,
+        "narrative_date": "2023-01-09T08:00:00-08:00"
+      }
+    ],
+    "corrected_id": "000001::message:0::fact:identity"
+  }
+]

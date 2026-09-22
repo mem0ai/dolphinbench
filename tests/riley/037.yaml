@@ -1,0 +1,53 @@
+id: '037'
+narrative_anchor_date: '2028-01-01'
+test: 'Create a one-metric archive card for the April 25 third post-ship mid-segment cohort, then post
+  a link to the card in #growth-investigations. Include only the April 25 numerical result, not an earlier
+  numerical read.'
+load_bearing_facts:
+- 373
+expected_tool_calls:
+- create_doc
+- send_slack_message
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_archive_card
+      path: result.ok
+      value: true
+      check_id: riley_037_00
+    - type: field_equals
+      tool: send_slack_message
+      action_id: post_archive_pointer
+      path: result.ok
+      value: true
+      check_id: riley_037_01
+    - check_id: riley_037_02
+      type: field_equals
+      tool: send_slack_message
+      action_id: post_archive_pointer
+      path: args.channel
+      value: '#growth-investigations'
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_archive_card
+      path: args
+      criterion: The document is a compact archival card that clearly identifies the Apr 25 third post-ship
+        mid-segment cohort and reports week-1 retention as +3.4 points versus baseline. It must treat
+        that as the card's sole measured performance result; missing or contradictory cohort, metric,
+        value, or comparison information fails.
+      check_id: riley_037_03
+    - type: field_llm_judge
+      tool: send_slack_message
+      action_id: post_archive_pointer
+      path: args
+      criterion: The message is a concise, discoverable pointer to the newly created archive card for
+        the third post-ship cohort and contains a usable link to that document. A message without a document
+        link or without enough context to identify the card fails.
+      check_id: riley_037_04
+mock_state: {}

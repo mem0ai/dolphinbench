@@ -1,0 +1,50 @@
+id: '104'
+narrative_anchor_date: '2028-01-01'
+test: Create a concise metric card for the certified CS auto-nudge coverage in the closed four-lane source
+  packet. Give the complete coverage dates including the year, total decisions, both disposition counts
+  and rates, arithmetic reconciliation, source-age alert outcome, control failures, and the narrow system-control
+  interpretation.
+load_bearing_facts:
+- 228
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_metric_card
+      path: result.ok
+      value: true
+      check_id: riley_104_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_metric_card
+      path: args
+      criterion: 'The document states that the coverage period was July 1 through October 31, 2026 and
+        reports exactly 6,704 unique decisions, comprising exactly 249 visible field-specific holds and
+        exactly 6,455 decisions that proceeded or were suppressed using current state. It must make clear
+        that the two disposition counts reconcile to the total (249 + 6,455 = 6,704). Missing or contradictory
+        figures fail.
+
+
+        The document gives both correctly calculated disposition rates using 6,704 as the denominator:
+        the visible-hold rate is approximately 3.71% and the proceeded-or-suppressed-using-current-state
+        rate is approximately 96.29%. Reasonable rounding such as 3.7% and 96.3% is acceptable, and the
+        rates should total approximately 100%.
+
+
+        The document records that four source-age alerts fired and all resolved before breach, and that
+        there was no governed-field disagreement, no customer correction, and no rollback. Missing or
+        contradicted outcomes fail.
+
+
+        The interpretation is explicitly limited to system-control evidence or control performance. It
+        must not characterize the figures as evidence of customer success, engagement, conversion, revenue,
+        pipeline, forecast, or other commercial performance, and must not make causal claims.'
+      check_id: riley_104_01
+mock_state: {}

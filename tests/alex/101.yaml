@@ -1,0 +1,149 @@
+id: '101'
+narrative_anchor_date: '2028-01-01'
+test: Inspect lantern#3037 and review whether its service-identity resolution matches
+  the established rule.
+load_bearing_facts:
+- 209
+expected_tool_calls:
+- get_pr
+- review_pr
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    assertions:
+    - type: field_equals
+      tool: review_pr
+      action_id: alex_101_review_pr
+      path: result.ok
+      value: true
+      check_id: alex_101_00
+    - type: field_equals
+      tool: get_pr
+      action_id: alex_101_read_pr
+      path: result.pr.id
+      value: lantern#3037
+      check_id: alex_101_01
+    - type: field_equals
+      path: result.review.pr_id
+      value: lantern#3037
+      tool: review_pr
+      action_id: alex_101_review_pr
+      check_id: alex_101_02
+    - type: field_equals
+      path: result.review.decision
+      value: request_changes
+      tool: review_pr
+      action_id: alex_101_review_pr
+      check_id: alex_101_03
+    - type: field_llm_judge
+      path: result.review.body
+      criterion: The review requires evaluating every tenant-scoped owner-map alias
+        whose effective interval covers the source event timestamp. If all qualifying
+        records name the same canonical published service, resolution may occur once.
+        If they name different services, the signals remain separate and ownership
+        is explicit unknown regardless of row order.
+      tool: review_pr
+      action_id: alex_101_review_pr
+      check_id: alex_101_04
+mock_state:
+  prs:
+  - id: metrics-router#412
+    title: 'metrics-router: tidy config-loader, prep for OTel cutover finish'
+    author: alex
+    repo: metrics-router
+    branch: alex/cfg-loader-tidy
+    status: merged
+    reviewers:
+    - nadia
+    assignees:
+    - alex
+    opened_at: '2023-06-30T14:02:00-04:00'
+    age_days: 3
+    merged_at: '2023-07-11T09:25:00-04:00'
+  - id: shard-keeper#188
+    title: 'shard-keeper: rollback path hardening (lessons from Apr 18)'
+    author: alex
+    repo: shard-keeper
+    branch: alex/rollback-hardening
+    status: merged
+    reviewers:
+    - nadia
+    - cyrus
+    assignees:
+    - alex
+    opened_at: '2023-06-28T11:30:00-04:00'
+    age_days: 5
+    merged_at: '2023-08-08T10:15:00-04:00'
+  - id: ingest-edge#221
+    title: 'ingest-edge: bump OTel collector to 0.91'
+    author: wes
+    repo: ingest-edge
+    branch: wes/otel-091
+    status: merged
+    reviewers:
+    - alex
+    assignees:
+    - wes
+    opened_at: '2023-07-01T09:14:00-04:00'
+    age_days: 2
+    merged_at: '2023-08-03T13:20:00-04:00'
+  - id: metrics-router#414
+    title: 'metrics-router: add label-name parity check on push'
+    author: nadia
+    repo: metrics-router
+    branch: nadia/label-parity-check
+    status: merged
+    reviewers:
+    - alex
+    assignees:
+    - nadia
+    opened_at: '2023-06-29T16:48:00-04:00'
+    age_days: 4
+    merged_at: '2023-07-26T13:05:00-04:00'
+  - id: lantern#3
+    title: 'lantern: v0 architecture doc — circulating for comment'
+    author: alex
+    repo: lantern
+    branch: alex/v0-arch
+    status: merged
+    reviewers:
+    - iris
+    - hema
+    - theo
+    assignees:
+    - alex
+    opened_at: '2023-07-03T10:00:00-04:00'
+    age_days: 0
+    merged_at: '2023-07-24T12:15:00-04:00'
+  - id: shard-keeper#190
+    title: 'shard-keeper: small cutover-readiness fix'
+    author: cyrus
+    repo: shard-keeper
+    branch: cyrus/cutover-fix
+    status: merged
+    reviewers:
+    - alex
+    assignees:
+    - cyrus
+    opened_at: '2023-06-26T13:00:00-04:00'
+    age_days: 7
+    merged_at: '2023-09-21T09:18:00-04:00'
+  - id: lantern#3037
+    repo: lantern
+    title: Resolve historical owner-map aliases
+    status: open
+    changed_files:
+    - path: lantern/identity/owner_map_alias_resolver.ts
+      summary: The resolver iterates owner-map alias rows in storage order. For rows
+        matching the tenant and historical identifier, it returns the first row whose
+        effective_start <= source_event_timestamp <= effective_end, using that row's
+        canonical_service_id. If no interval match is found, it selects a canonical
+        service in the same tenant using normalized service-name similarity.
+    diff_summary: Overlapping active aliases are resolved by the first matching record
+      in storage order. When no interval match exists, the patch infers a rename from
+      similar service names.
+mock_state_base:
+  path: state.json
+  sha256: b2e9b6b9e0f48ec23e9ae5ec4d803c050db6c6914dfc1d47ccdf545b3c77b68a

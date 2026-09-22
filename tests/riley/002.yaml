@@ -1,0 +1,68 @@
+id: '002'
+narrative_anchor_date: '2028-01-01'
+test: Create a concise document titled `Cherrywood electricity plan — current term` with the active fixed-plan
+  dates, energy rate, monthly plan-fee treatment, and early-termination charge. Then check my calendar
+  and add a 9:00–9:10 a.m. Central reminder exactly 30 days before the term expires, with a note to compare
+  renewal options before rollover and avoid ending the current plan early.
+load_bearing_facts:
+- 266
+expected_tool_calls:
+- create_doc
+- list_calendar_events
+- create_calendar_event
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: plan_reference
+      path: result.ok
+      value: true
+      check_id: riley_002_00
+    - type: field_equals
+      tool: create_calendar_event
+      action_id: renewal_reminder
+      path: result.ok
+      value: true
+      check_id: riley_002_01
+    - check_id: riley_002_02
+      type: field_equals
+      tool: list_calendar_events
+      action_id: renewal_calendar_lookup
+      path: args.date
+      value: '2028-07-13'
+    - check_id: riley_002_03
+      type: date_on
+      tool: create_calendar_event
+      action_id: renewal_reminder
+      path: args.start
+      value: '2028-07-13'
+    - type: field_equals
+      tool: list_calendar_events
+      action_id: renewal_calendar_lookup
+      path: args.timezone
+      value: America/Chicago
+      check_id: riley_002_04
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: plan_reference
+      path: args
+      criterion: The body is a concise household reference for Cherrywood's active/current fixed electricity
+        plan and clearly states that it runs from August 13, 2027 through August 12, 2028 at 14.5 cents
+        per kWh, has no monthly plan fee, and carries a $150 early-termination charge. Equivalent wording
+        and symbols are acceptable.
+      check_id: riley_002_05
+    - type: field_llm_judge
+      tool: create_calendar_event
+      action_id: renewal_reminder
+      path: args
+      criterion: The reminder notes instruct Riley to compare Cherrywood electricity renewal options before
+        the current fixed term ends or rolls over and to avoid ending the plan early. Equivalent wording
+        is acceptable.
+      check_id: riley_002_06
+mock_state:
+  calendar: []

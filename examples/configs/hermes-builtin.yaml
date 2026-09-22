@@ -1,0 +1,9 @@
+release: ../..
+output: ../../tmp/hermes-builtin-reference
+adapter: harness.adapters.hermes:HermesAdapter
+options:
+  reference: hermes-builtin-luna
+  source_env: DOLPHINBENCH_HERMES_SOURCE
+  python_env: DOLPHINBENCH_HERMES_PYTHON
+  app_python_env: DOLPHINBENCH_APP_PYTHON
+  base_url_env: AZURE_OPENAI_BASE_URL

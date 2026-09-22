@@ -1,0 +1,55 @@
+id: '134'
+narrative_anchor_date: '2028-01-01'
+test: Create a compact, self-contained QA training case from the June 12 Q2 board-evidence source-completeness
+  packet. Show that source completeness and claim readiness are separate judgments, identify the sections
+  that passed source-completeness review, explain the maturity-dependent exception including its cohort
+  type and size and available leading read, and state the limits of what the packet decided. Title the
+  document `Board-source QA case — Q2 source completeness vs claim readiness`.
+load_bearing_facts:
+- 204
+- 202
+- 203
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: qa_case_doc
+      path: result.ok
+      value: true
+      check_id: riley_134_00
+    - check_id: riley_134_01
+      type: field_equals
+      tool: create_doc
+      action_id: qa_case_doc
+      path: args.title
+      value: Board-source QA case — Q2 source completeness vs claim readiness
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: qa_case_doc
+      path: args
+      criterion: 'The document identifies Expansion Assist, pricing-page path quality, and CS auto-nudge
+        as the three source-complete sections, and conveys that each had its required source owner, denominator
+        or exact coverage fields, measurement limits, exclusions, and reliability-evidence location, with
+        no required source field missing. Missing any section or materially misstating why it was source-complete
+        must fail.
+
+
+        The document states that Helio Start had a fixed paid cohort of exactly 50 workspaces and a complete
+        leading read of exactly 39 of 50 reaching first integration by day 7, while its mature customer-outcome
+        row remained incomplete because all 50 did not yet have complete day-90 windows. It must not portray
+        the day-7 result as a mature outcome.
+
+
+        The document clearly teaches that source completeness and claim or board readiness are separate
+        judgments, and states that the June 12 packet itself made no claim, closed no lane, and made no
+        board-readiness decision. Any assertion that the packet approved a claim, closed a lane, or declared
+        board readiness must fail.'
+      check_id: riley_134_02
+mock_state: {}

@@ -1,0 +1,40 @@
+id: '132'
+narrative_anchor_date: '2028-01-01'
+test: Create a historical design card for the approved 2026 Helio Start paid-search pilot. Record the
+  acquisition type, duration, budget and closure cap, launch gate, stop and pause rules, and which measures
+  required complete outcome windows.
+load_bearing_facts:
+- 186
+- 187
+- 188
+- 189
+- 190
+- 191
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_pilot_design_card
+      path: result.ok
+      value: true
+      check_id: riley_132_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_pilot_design_card
+      path: args
+      criterion: The card records the approved six-week high-intent paid-search pilot with a maximum $15,000
+        budget and closure at the earlier of $15,000 spent or 50 admissions. Budget approval was not launch
+        approval; paid traffic remained blocked until attribution could reconcile through admission and
+        assisted routing. The pilot stops if an unsupported applicant is admitted, pauses if routing or
+        instrumentation prevents reconciliation, and after 20 admissions pauses if more than 10% exceed
+        90 support minutes. Day-7 first integration is only an early indicator; paid-active status, refund-adjusted
+        collected cash, and account-level support effort require complete outcome windows.
+      check_id: riley_132_01
+mock_state: {}

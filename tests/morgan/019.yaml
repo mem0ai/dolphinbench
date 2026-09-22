@@ -1,0 +1,42 @@
+id: 019
+narrative_anchor_date: '2026-09-14'
+test: Post a review comment on scaffold/web#1842 telling the author which indentation
+  style to use before merge.
+load_bearing_facts:
+- 1
+expected_tool_calls:
+- post_pr_comment
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: post_pr_comment
+      path: result.ok
+      value: true
+      check_id: morgan_019_00
+      action_id: morgan_019_post_pr_comment
+    - type: field_equals
+      path: result.comment.pr_id
+      value: scaffold/web#1842
+      tool: post_pr_comment
+      check_id: morgan_019_01
+      action_id: morgan_019_post_pr_comment
+    - type: field_llm_judge
+      path: result.comment.body
+      criterion: Tells the author to use tabs rather than spaces for indentation.
+        Quoting tabs only to reject them fails.
+      tool: post_pr_comment
+      check_id: morgan_019_02
+      action_id: morgan_019_post_pr_comment
+mock_state:
+  open_prs:
+  - id: scaffold/web#1842
+    repo: scaffold/web
+    number: 1842
+    status: open
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

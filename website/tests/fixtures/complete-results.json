@@ -1,0 +1,212 @@
+{
+  "schema_version": 2,
+  "configurations": [
+    {
+      "id": "synthetic-mem0",
+      "memory": {
+        "id": "mem0",
+        "name": "Mem0"
+      },
+      "model": {
+        "id": "luna",
+        "name": "Fixture Luna",
+        "provider": "OpenAI"
+      },
+      "harness": {
+        "id": "hermes",
+        "name": "Hermes"
+      },
+      "personas": {
+        "alex": {
+          "total": 200,
+          "passes": 110,
+          "source": {
+            "url": "https://example.com/synthetic-only/mem0/alex/summary.json",
+            "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        },
+        "morgan": {
+          "total": 200,
+          "passes": 120,
+          "source": {
+            "url": "https://example.com/synthetic-only/mem0/morgan/summary.json",
+            "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        },
+        "riley": {
+          "total": 200,
+          "passes": 130,
+          "source": {
+            "url": "https://example.com/synthetic-only/mem0/riley/summary.json",
+            "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        }
+      },
+      "evidence": {
+        "configuration": {
+          "url": "https://example.com/synthetic-only/mem0/configuration",
+          "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "source": {
+          "url": "https://example.com/synthetic-only/mem0/source",
+          "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "recordings": {
+          "url": "https://example.com/synthetic-only/mem0/recordings",
+          "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "grades": {
+          "url": "https://example.com/synthetic-only/mem0/grades",
+          "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      },
+      "total": 600,
+      "passes": 360,
+      "pass_rate": 0.6,
+      "total_cost_usd_test_calls": 3,
+      "total_cost_usd": 30,
+      "total_cost_scope": "Fixture ingestion and testing costs.",
+      "median_latency_seconds": 10,
+      "p95_latency_seconds": 20,
+      "agent_inference_cost_scope": "Synthetic test fixture. Not benchmark measurements."
+    },
+    {
+      "id": "synthetic-honcho",
+      "memory": {
+        "id": "honcho",
+        "name": "Honcho"
+      },
+      "model": {
+        "id": "minimax",
+        "name": "Fixture MiniMax",
+        "provider": "MiniMax"
+      },
+      "harness": {
+        "id": "hermes",
+        "name": "Hermes"
+      },
+      "personas": {
+        "alex": {
+          "total": 200,
+          "passes": 90,
+          "source": {
+            "url": "https://example.com/synthetic-only/honcho/alex/summary.json",
+            "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        },
+        "morgan": {
+          "total": 200,
+          "passes": 100,
+          "source": {
+            "url": "https://example.com/synthetic-only/honcho/morgan/summary.json",
+            "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        },
+        "riley": {
+          "total": 200,
+          "passes": 110,
+          "source": {
+            "url": "https://example.com/synthetic-only/honcho/riley/summary.json",
+            "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        }
+      },
+      "evidence": {
+        "configuration": {
+          "url": "https://example.com/synthetic-only/honcho/configuration",
+          "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "source": {
+          "url": "https://example.com/synthetic-only/honcho/source",
+          "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "recordings": {
+          "url": "https://example.com/synthetic-only/honcho/recordings",
+          "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "grades": {
+          "url": "https://example.com/synthetic-only/honcho/grades",
+          "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      },
+      "total": 600,
+      "passes": 300,
+      "pass_rate": 0.5,
+      "total_cost_usd_test_calls": 6,
+      "total_cost_usd": 60,
+      "total_cost_scope": "Fixture ingestion and testing costs.",
+      "median_latency_seconds": 20,
+      "p95_latency_seconds": 40,
+      "agent_inference_cost_scope": "Synthetic test fixture. Not benchmark measurements."
+    },
+    {
+      "id": "synthetic-builtin",
+      "memory": {
+        "id": "builtin",
+        "name": "Built-in"
+      },
+      "model": {
+        "id": "sonnet",
+        "name": "Fixture Sonnet",
+        "provider": "Anthropic"
+      },
+      "harness": {
+        "id": "claude-code",
+        "name": "Claude Code"
+      },
+      "personas": {
+        "alex": {
+          "total": 200,
+          "passes": 70,
+          "source": {
+            "url": "https://example.com/synthetic-only/builtin/alex/summary.json",
+            "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        },
+        "morgan": {
+          "total": 200,
+          "passes": 80,
+          "source": {
+            "url": "https://example.com/synthetic-only/builtin/morgan/summary.json",
+            "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        },
+        "riley": {
+          "total": 200,
+          "passes": 90,
+          "source": {
+            "url": "https://example.com/synthetic-only/builtin/riley/summary.json",
+            "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        }
+      },
+      "evidence": {
+        "configuration": {
+          "url": "https://example.com/synthetic-only/builtin/configuration",
+          "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "source": {
+          "url": "https://example.com/synthetic-only/builtin/source",
+          "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "recordings": {
+          "url": "https://example.com/synthetic-only/builtin/recordings",
+          "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "grades": {
+          "url": "https://example.com/synthetic-only/builtin/grades",
+          "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      },
+      "total": 600,
+      "passes": 240,
+      "pass_rate": 0.4,
+      "total_cost_usd_test_calls": 9,
+      "total_cost_usd": 90,
+      "total_cost_scope": "Fixture ingestion and testing costs.",
+      "median_latency_seconds": 30,
+      "p95_latency_seconds": 60,
+      "agent_inference_cost_scope": "Synthetic test fixture. Not benchmark measurements."
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+id: 098
+narrative_anchor_date: '2028-01-01'
+test: Create a facilitator-ready document titled `Lifecycle Systems missing-certification tabletop`. Use
+  the January sanitized campaign snapshot as the case. Include a short scenario, decision prompts, and
+  an answer key covering the missing certification, what Owen did, who performed the exception review,
+  and who retained responsibility for later closure. Name the people; do not replace a person's name with
+  `the requester`, `the lead`, or another role label. Keep exception review separate from routine ownership.
+load_bearing_facts:
+- 234
+- 235
+- 236
+- 237
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_tabletop
+      path: result.ok
+      value: true
+      check_id: riley_098_00
+    - type: field_equals
+      tool: create_doc
+      action_id: create_tabletop
+      path: args.title
+      value: Lifecycle Systems missing-certification tabletop
+      check_id: riley_098_01
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_tabletop
+      path: args
+      criterion: The document is a facilitator-ready tabletop with a scenario, decision prompts, and an
+        answer key. It says the upstream year-end export lacked required owner certification, so the January
+        sanitized campaign snapshot remained visibly incomplete. Owen identified the certified export
+        as the blocking input, did not substitute stale data or waive certification, and escalated the
+        packet to Riley. Riley performed only the required exception review and did not take over routine
+        preparation. Owen remained responsible for later closure or for explicitly leaving the packet
+        incomplete.
+      check_id: riley_098_02
+mock_state: {}

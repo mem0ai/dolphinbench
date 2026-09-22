@@ -1,0 +1,35 @@
+id: '015'
+narrative_anchor_date: '2026-09-14'
+test: Add the appropriate CRM contacts from dinner. Lina Torres at BrightBank procurement
+  requested a Q4 integration check-in; Casey Wu from the Stanford founder table offered
+  a friend-of-friend introduction.
+load_bearing_facts:
+- 80
+expected_tool_calls:
+- add_crm_row
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: add_crm_row
+      path: result.ok
+      value: true
+      check_id: morgan_015_00
+      action_id: morgan_015_add_crm_row
+    - type: field_equals
+      path: result.row.name
+      value: Lina Torres
+      tool: add_crm_row
+      check_id: morgan_015_01
+      action_id: morgan_015_add_crm_row
+    - type: tool_success_count
+      tool: add_crm_row
+      count: 1
+      check_id: morgan_015_02
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

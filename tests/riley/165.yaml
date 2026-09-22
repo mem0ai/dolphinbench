@@ -1,0 +1,34 @@
+id: '165'
+narrative_anchor_date: '2028-01-01'
+test: 'Create a historical scoping card for the original sub-50-seat tier work. State who committed to
+  deliver the scoping document, the delivery date, and the intended order of the work areas it would cover.
+  Use the person''s name rather than `the first-person speaker` or another role label. Preserve the source
+  sentence''s roles: the speaker made the commitment to Marcus, not the other way around.'
+load_bearing_facts:
+- 380
+- 381
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_scoping_card
+      path: result.ok
+      value: true
+      check_id: riley_165_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_scoping_card
+      path: args
+      criterion: The card says Riley committed to deliver the sub-50-seat tier scoping document by May
+        26, 2023. It says the work would start with seat caps, then cover feature fences and handoff failures
+        involving billing, workspace limits, permissions, import and migration, and eligibility for human
+        help.
+      check_id: riley_165_01
+mock_state: {}

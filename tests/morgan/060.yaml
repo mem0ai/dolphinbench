@@ -1,0 +1,33 @@
+id: '060'
+narrative_anchor_date: '2026-09-14'
+test: Create our selected household dinner hold for September 16, 6:30-8:30 PM Pacific,
+  at home in Oakland. Add notes for anyone triaging work conflicts against it.
+load_bearing_facts:
+- 208
+expected_tool_calls:
+- create_calendar_event
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: create_calendar_event
+      path: result.ok
+      value: true
+      check_id: morgan_060_00
+      action_id: morgan_060_create_calendar_event
+    - type: field_llm_judge
+      path: result.event.body
+      criterion: Marks the selected block as offline household time. Says routine
+        Scaffold work, investor follow-ups, customer check-ins, and internal catch-ups
+        must be scheduled around it. Allows an override only for a real incident or
+        an equivalent customer-impacting emergency.
+      tool: create_calendar_event
+      check_id: morgan_060_01
+      action_id: morgan_060_create_calendar_event
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

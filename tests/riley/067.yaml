@@ -1,0 +1,59 @@
+id: '067'
+narrative_anchor_date: '2028-01-01'
+test: Create a reusable document titled `Quarterly board evidence readiness template — 2028` for the next
+  quarterly board evidence cycle. Make it a practical four-lane row template with a clear gate that prevents
+  incomplete evidence from being marked ready.
+load_bearing_facts:
+- 166
+- 167
+- 168
+- 169
+- 170
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_readiness_template
+      path: result.ok
+      value: true
+      check_id: riley_067_00
+    - check_id: riley_067_01
+      type: field_equals
+      tool: create_doc
+      action_id: create_readiness_template
+      path: args.title
+      value: Quarterly board evidence readiness template — 2028
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_readiness_template
+      path: args
+      criterion: 'The document must provide reusable rows or sections with an independent readiness status
+        for each of exactly these four evidence lanes: Helio Start, Expansion Assist, pricing-page path
+        quality, and CS auto-nudge system controls. Missing or merged lanes fail.
+
+
+        The template must distinguish customer-outcome evidence from continuous-control evidence. A customer-outcome
+        row must require a denominator, cohort dates, and a complete predeclared outcome window. A continuous-control
+        row must instead require exact coverage dates and must set or instruct the outcome-window field
+        to read exactly `not applicable — continuous control coverage`. Missing either treatment or allowing
+        the continuous-control wording to be replaced by a customer-outcome window fails.
+
+
+        Every lane''s reusable row must require all of the following: measurement limits; exclusions;
+        source owner; source evidence or release-reliability evidence; revenue treatment; forecast treatment;
+        and final claim owner. Revenue and forecast may be captured together only if both treatments are
+        explicitly covered. Shared instructions are acceptable only if they clearly apply to every row.
+
+
+        The template must state and operationalize a binary readiness rule: if any required input for
+        a row is missing, that row remains `not board-ready`. It must not permit partial, provisional,
+        or otherwise positive board-ready status when a required field is absent.'
+      check_id: riley_067_02
+mock_state: {}

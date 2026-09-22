@@ -1,0 +1,48 @@
+id: '072'
+narrative_anchor_date: '2026-09-14'
+test: On scaffold/mercury#4017, post a review comment deciding whether to include
+  the recovered-state wording change and how to describe it in the release.
+load_bearing_facts:
+- 188
+- 191
+- 194
+expected_tool_calls:
+- post_pr_comment
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: post_pr_comment
+      path: result.ok
+      value: true
+      check_id: morgan_072_00
+      action_id: morgan_072_post_pr_comment
+    - type: field_equals
+      path: result.comment.pr_id
+      value: scaffold/mercury#4017
+      tool: post_pr_comment
+      check_id: morgan_072_01
+      action_id: morgan_072_post_pr_comment
+    - type: field_llm_judge
+      path: result.comment.body
+      criterion: States that the recovered-state wording change may be included only
+        while its copy diff stays tiny and isolated. Describes it as support-explanation
+        polish, not a platform/state fix or expanded release. Advice only about whether
+        to write a standalone release note does not answer whether to include the
+        change. The inclusion condition must appear in the comment itself. Do not
+        reopen the completed invited-member work; no historical recap is required.
+      tool: post_pr_comment
+      check_id: morgan_072_02
+      action_id: morgan_072_post_pr_comment
+mock_state:
+  open_prs:
+  - id: scaffold/mercury#4017
+    repo: scaffold/mercury
+    number: 4017
+    status: open
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

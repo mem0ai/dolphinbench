@@ -1,0 +1,67 @@
+id: '147'
+narrative_anchor_date: '2028-01-01'
+test: For experiment EXP-2023-02-onboarding-trigger, fill only the missing learning-carryforward field.
+  State the second cohort's result, the decision it caused, who made that decision, the planned rollout
+  date and percentage, who was preparing it, and whose checks could stop it. Do not change status, result,
+  or landed date.
+load_bearing_facts:
+- 352
+- 353
+expected_tool_calls:
+- update_experiment
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: update_experiment
+      action_id: backfill_learning
+      path: result.ok
+      value: true
+      check_id: riley_147_00
+    - type: field_equals
+      tool: update_experiment
+      action_id: backfill_learning
+      path: args.experiment_id
+      value: EXP-2023-02-onboarding-trigger
+      check_id: riley_147_01
+    - type: field_absent_or_empty
+      tool: update_experiment
+      action_id: backfill_learning
+      path: args.status
+      check_id: riley_147_02
+    - type: field_absent_or_empty
+      tool: update_experiment
+      action_id: backfill_learning
+      path: args.result
+      check_id: riley_147_03
+    - type: field_absent_or_empty
+      tool: update_experiment
+      action_id: backfill_learning
+      path: args.landed_at
+      check_id: riley_147_04
+    - type: field_llm_judge
+      tool: update_experiment
+      action_id: backfill_learning
+      path: args
+      criterion: Riley called the experiment successful after the second cohort cleared. Riley and Ines
+        planned a 100% rollout for April 10, 2023 unless Owen's pull showed sample-ratio mismatch, signup-source
+        mix problems, or unusual country or device skew.
+      check_id: riley_147_05
+mock_state:
+  experiments:
+  - experiment_id: EXP-2023-02-onboarding-trigger
+    name: EXP-2023-02-onboarding-trigger
+    hypothesis: week-1 retention moves at least +2 pts if the email lands when they have actually crossed
+      the first-use threshold, not while they are still half-dead in setup.
+    metric_of_record: week-1 retention
+    cohort_scope: mid-seg only
+    flag_id: lifecycle_onboarding_trigger_v2
+    status: shipped
+    designed_at: '2023-03-01'
+    created_at: '2023-03-01T14:00:00-06:00'
+    updated_at: '2023-04-10T10:00:00-05:00'
+    landed_at: '2023-04-10'

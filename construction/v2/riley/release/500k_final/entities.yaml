@@ -1,0 +1,1107 @@
+version: 1
+persona: riley
+entities:
+- id: riley
+  name: Riley Tanaka
+  kind: person
+  aliases:
+  - Riley
+  - Riley Tanaka
+  introduced_in: riley_000001
+  reason: Central person whose work and personal routines are the subject of the protected facts.
+- id: sam
+  name: Sam Okonkwo
+  kind: person
+  aliases:
+  - Sam
+  - Sam Okonkwo
+  introduced_in: riley_000002
+  reason: Protected facts repeatedly refer to Riley's partner and his restaurant schedule.
+- id: kibo
+  name: Kibo
+  kind: pet
+  aliases:
+  - Kibo
+  introduced_in: riley_000001
+  reason: Recurring pet in Riley's home context.
+- id: helio
+  name: Helio
+  kind: organization
+  aliases:
+  - Helio
+  introduced_in: riley_000004
+  reason: Riley's employer and the organization for the company, team, and experiment facts.
+- id: sam_restaurant
+  name: Sam's restaurant
+  kind: organization
+  aliases:
+  - Sam's restaurant
+  - Sam's spot
+  - Sam's place
+  - Hyde Park place
+  introduced_in: riley_000002
+  reason: Recurring workplace for Sam and setting for several protected personal events.
+- id: priya
+  name: Priya Devarajan
+  kind: person
+  aliases:
+  - Priya
+  - Priya Devarajan
+  introduced_in: riley_000006
+  reason: Riley's manager and reviewer in many protected work decisions.
+- id: owen
+  name: Owen Pham
+  kind: person
+  aliases:
+  - Owen
+  - Owen Pham
+  introduced_in: riley_000004
+  reason: Riley's analyst and direct report in protected cohort-cut and experiment facts.
+- id: ines
+  name: Ines Kovac
+  kind: person
+  aliases:
+  - Ines
+  - Ines Kovac
+  introduced_in: riley_000005
+  reason: Riley's lifecycle-email specialist and direct report in protected QA and lifecycle facts.
+- id: marcus_vail
+  name: Marcus Vail
+  kind: person
+  aliases:
+  - Marcus Vail
+  introduced_in: riley_000004
+  reason: Helio CRO whose work-context references must stay distinct from Riley's brother.
+- id: marcus_tanaka
+  name: Marcus Tanaka
+  kind: person
+  aliases:
+  - Marcus Tanaka
+  - brother Marcus Tanaka
+  - brother Marcus
+  introduced_in: riley_000019
+  reason: Riley's brother, repeatedly disambiguated from Marcus Vail.
+- id: tomas
+  name: Tomás Vega
+  kind: person
+  aliases:
+  - Tomas Vega
+  - Tomás Vega
+  - Tomas
+  - Tom Vega
+  introduced_in: riley_000006
+  reason: Helio CEO and audience for protected one-line and strategic updates.
+- id: daniela
+  name: Daniela Schultz
+  kind: person
+  aliases:
+  - Daniela
+  - Daniela Schultz
+  introduced_in: riley_000006
+  reason: Helio CTO and engineering-side owner referenced in protected experiment and outage facts.
+- id: mom
+  name: Mom
+  kind: person
+  aliases:
+  - Mom
+  - Riley's mom
+  introduced_in: riley_000199
+  reason: Riley's mother is central to the Memorial Day visit and watercolor background facts.
+- id: danielas_team
+  name: Daniela's team
+  kind: team
+  aliases:
+  - Daniela's team
+  - same group
+  - Daniela's side
+  introduced_in: riley_000021
+  reason: Protected facts assign experiment plumbing and CS auto-nudge ownership to this team.
+- id: customer_success
+  name: Customer Success
+  kind: team
+  aliases:
+  - CS
+  introduced_in: riley_000015
+  reason: Protected facts refer to CS coverage, CSM load, and CS-side outage behavior.
+- id: growth_team
+  name: growth team
+  kind: team
+  aliases: []
+  introduced_in: riley_000011
+  reason: Needed to distinguish general team updates from investigation-channel updates.
+- id: midseg_churn_investigation
+  name: mid-segment churn investigation
+  kind: project
+  aliases:
+  - mid-segment churn investigation
+  - mid-seg churn investigation
+  - churn investigation
+  - mid-seg churn spike
+  introduced_in: riley_000006
+  reason: Main investigation project behind many protected facts.
+- id: investigation_doc
+  name: Mid-seg churn spike -- Feb 2023 investigation
+  kind: document
+  aliases:
+  - Mid-seg churn spike -- Feb 2023 investigation
+  - Notion doc
+  - hypothesis doc
+  introduced_in: riley_000009
+  reason: Main living investigation document referenced across protected facts.
+- id: hypothesis_stack
+  name: numbered hypothesis stack
+  kind: other
+  aliases:
+  - hypothesis stack
+  - hypothesis list
+  - numbered buckets
+  - numbered hypotheses
+  introduced_in: riley_000010
+  reason: Protected facts depend on the ordered H1-H4 investigation framework.
+- id: h1_pricing_artifact
+  name: H1 pricing artifact
+  kind: other
+  aliases:
+  - H1
+  - h1
+  - pricing artifact
+  - pricing-artifact hypothesis
+  introduced_in: riley_000015
+  reason: Distinct numbered hypothesis with protected ruling facts.
+- id: h2_competitor_cycle
+  name: H2 competitor cycle
+  kind: other
+  aliases:
+  - H2
+  - h2
+  - competitor cycle
+  - seasonal / competitor-cycle hypothesis
+  - competitor-cycle
+  introduced_in: riley_000015
+  reason: Distinct numbered hypothesis with protected setup and ruling facts.
+- id: h3_onboarding_timing
+  name: H3 onboarding timing
+  kind: other
+  aliases:
+  - H3
+  - h3
+  - onboarding timing
+  - onboarding-timing
+  introduced_in: riley_000015
+  reason: Distinct numbered hypothesis later confirmed by onboarding-trigger work.
+- id: h4_cs_coverage
+  name: H4 CS coverage gap
+  kind: other
+  aliases:
+  - H4
+  - h4
+  - CS coverage gap
+  - CS coverage
+  introduced_in: riley_000015
+  reason: Distinct numbered hypothesis whose status depends on H3.
+- id: pricing_page_experiment
+  name: EXP-2023-02-pricing-page
+  kind: project
+  aliases:
+  - EXP-2023-02-pricing-page
+  - pricing-page experiment
+  - pricing-page test
+  - pricing-page rev
+  - pricing rev
+  - pricing-page thing
+  introduced_in: riley_000004
+  reason: Named experiment with protected design, launch, rollback, and postmortem facts.
+- id: pricing_page_flag
+  name: pricing_page_2023q2_rev
+  kind: other
+  aliases:
+  - pricing_page_2023q2_rev
+  - PostHog flag `pricing_page_2023q2_rev`
+  introduced_in: riley_000061
+  reason: Feature flag whose rollout state is protected.
+- id: pricing_page
+  name: pricing page
+  kind: product
+  aliases:
+  - pricing page
+  - pricing-page
+  introduced_in: riley_000004
+  reason: Page under test and subject of protected concurrent-change rule.
+- id: signup_form_layout_change
+  name: signup-form layout change
+  kind: other
+  aliases:
+  - signup-form layout change
+  - signup form layout change
+  - form-layout change
+  - Mar 2 signup-form layout change
+  introduced_in: riley_000063
+  reason: Named confounder in protected pricing-page experiment facts.
+- id: pricing_page_postmortem
+  name: pricing-page experiment postmortem
+  kind: document
+  aliases:
+  - postmortem doc
+  - pricing-page postmortem doc
+  - pricing-page postmortem
+  introduced_in: riley_000115
+  reason: Protected facts describe this document's contents and circulation.
+- id: flag_analysis_csv
+  name: flag-analysis CSV
+  kind: document
+  aliases:
+  - flag-analysis CSV
+  - full flag-analysis CSV
+  - full flag/segment cut
+  introduced_in: riley_000118
+  reason: Protected facts refer to the technical attachment sent to Daniela.
+- id: concurrent_change_rule
+  name: no concurrent layout/UI changes during pricing experiments rule
+  kind: routine
+  aliases:
+  - no concurrent layout changes during pricing experiments
+  - no other layout/UI changes on that page
+  - hard rule
+  introduced_in: riley_000134
+  reason: Protected facts preserve this experiment-governance rule.
+- id: onboarding_trigger_experiment
+  name: EXP-2023-02-onboarding-trigger
+  kind: project
+  aliases:
+  - EXP-2023-02-onboarding-trigger
+  - onboarding-trigger experiment
+  - onboarding-trigger A/B
+  - onboarding trigger A/B
+  - onboarding-trigger thing
+  introduced_in: riley_000065
+  reason: Named experiment central to protected churn-resolution facts.
+- id: onboarding_trigger_flag
+  name: lifecycle_onboarding_trigger_v2
+  kind: other
+  aliases:
+  - lifecycle_onboarding_trigger_v2
+  - PostHog flag `lifecycle_onboarding_trigger_v2`
+  introduced_in: riley_000067
+  reason: Feature flag whose experiment and rollout state are protected.
+- id: lifecycle_email_program
+  name: onboarding/lifecycle email program
+  kind: service
+  aliases:
+  - onboarding email program
+  - lifecycle setup
+  - lifecycle email program
+  - email program
+  introduced_in: riley_000014
+  reason: Protected facts discuss QA and trigger changes on this program.
+- id: day7_email
+  name: See how teams use Helio
+  kind: document
+  aliases:
+  - See how teams use Helio
+  - day-7 email
+  - day-7 touch
+  introduced_in: riley_000053
+  reason: Specific onboarding email whose timing is central to protected facts.
+- id: cs_auto_nudge_system
+  name: CS auto-onboarding-nudge system
+  kind: service
+  aliases:
+  - CS auto-onboarding-nudge system
+  - CS auto-onboarding-nudge thing
+  - CS auto-onboarding-nudge job
+  - CS auto-nudge
+  introduced_in: riley_000021
+  reason: System named in protected ownership and outage-root-cause facts.
+- id: cs_nudge_outage
+  name: CS auto-onboarding-nudge outage on Apr 15-12
+  kind: event
+  aliases:
+  - CS auto-onboarding-nudge outage
+  - CS auto-nudge outage
+  - outage
+  - Apr 15-12
+  introduced_in: riley_000186
+  reason: Protected facts use this event to explain the post-ship dip.
+- id: first_post_ship_cohort
+  name: first post-ship cohort
+  kind: other
+  aliases:
+  - first post-ship cohort
+  - Apr 10 cohort
+  introduced_in: riley_000148
+  reason: Protected facts compare later cohorts against this cohort.
+- id: second_post_ship_cohort
+  name: second post-ship cohort
+  kind: other
+  aliases:
+  - second post-ship cohort
+  - cohort 2
+  - ugly cohort
+  - Apr 17 batch
+  introduced_in: riley_000172
+  reason: Protected facts describe this cohort's dip and diagnosis.
+- id: third_post_ship_cohort
+  name: third post-ship cohort
+  kind: other
+  aliases:
+  - third post-ship cohort
+  - cohort 3
+  - third post-ship cut
+  introduced_in: riley_000172
+  reason: Protected facts use this cohort to support the final trend framing.
+- id: apr6_onboarding_rollout
+  name: Apr 10 onboarding-trigger rollout
+  kind: event
+  aliases:
+  - Apr 10 rollout
+  - Apr 10 100% rollout
+  - Apr 10 ship
+  - full rollout
+  introduced_in: riley_000147
+  reason: Protected facts distinguish planned and completed rollout states.
+- id: activation_def_v1
+  name: activation definition v1
+  kind: other
+  aliases:
+  - first integration in 14 days
+  introduced_in: riley_000099
+  reason: Versioned activation definition kept for historical comparisons.
+- id: activation_def_v2
+  name: activation definition v2
+  kind: other
+  aliases:
+  - activation definition v2
+  - first integration + logged in twice in 14 days
+  introduced_in: riley_000097
+  reason: Versioned activation definition with protected criteria and history.
+- id: activation_def_v3
+  name: activation definition v3
+  kind: other
+  aliases:
+  - activation definition v3
+  - v3
+  - integration-first
+  introduced_in: riley_000097
+  reason: Newer activation definition shipped in protected facts.
+- id: activation_target
+  name: activation target
+  kind: other
+  aliases:
+  - activation target
+  - Q1 activation target
+  - 60% activation target
+  introduced_in: riley_000043
+  reason: Protected facts preserve the target definition and later Q2 handling.
+- id: midseg_def_v1
+  name: mid-seg v1
+  kind: other
+  aliases:
+  - v1 definition
+  - 50-200 seats
+  - old 50-200 cut
+  - old v1 definition
+  introduced_in: riley_000009
+  reason: Historical mid-segment cohort definition used in protected comparisons.
+- id: midseg_def_v2
+  name: mid-seg v2
+  kind: other
+  aliases:
+  - mid-seg v2
+  - 75-200 seats
+  - 75-200 seat paid accounts
+  - new default
+  introduced_in: riley_000184
+  reason: New default mid-segment cohort definition in protected facts.
+- id: first_significance_rule
+  name: first significance does not ship rule
+  kind: routine
+  aliases:
+  - first sig doesn't ship
+  - first significance does not ship
+  - wait a stabilization cohort
+  - stabilization cohort
+  introduced_in: riley_000128
+  reason: Protected facts use this as Riley's experiment rollout rule.
+- id: owen_weekly_cuts
+  name: Owen's weekly cohort cuts
+  kind: routine
+  aliases:
+  - weekly cohort cuts
+  - weekly cuts
+  - Owen's weekly cohort cut
+  introduced_in: riley_000078
+  reason: Protected facts assign recurring experiment readouts to Owen.
+- id: expansion_nudge_experiment
+  name: EXP-2023-05-expansion-nudge
+  kind: project
+  aliases:
+  - EXP-2023-05-expansion-nudge
+  - expansion-nudge experiment
+  - expansion nudge
+  - expansion-nudge run
+  - expansion thing
+  introduced_in: riley_000222
+  reason: Named experiment with protected design, launch, ownership, and first-cut facts.
+- id: expansion_nudge_flag
+  name: expansion_nudge_60d_v1
+  kind: other
+  aliases:
+  - expansion_nudge_60d_v1
+  - PostHog flag `expansion_nudge_60d_v1`
+  introduced_in: riley_000256
+  reason: Feature flag for the protected expansion-nudge experiment.
+- id: small_business_tier
+  name: sub-50-seat tier
+  kind: project
+  aliases:
+  - sub-50-seat tier
+  - sub-50 seat thing
+  - small-business tier
+  - small-business-tier
+  - small-biz tier
+  - SMB
+  introduced_in: riley_000152
+  reason: Protected facts describe this initiative's scoping, recommendation, and pre-discovery.
+- id: small_business_scoping_doc
+  name: small-business-tier scoping doc
+  kind: document
+  aliases:
+  - small-business-tier scoping doc
+  - scoping doc
+  - small-business-tier doc
+  - small-biz tier doc
+  introduced_in: riley_000230
+  reason: Protected facts describe Riley's scoping commitment and document contents.
+- id: sub50_pre_discovery
+  name: sub-50-seat pre-discovery phase
+  kind: project
+  aliases:
+  - pre-discovery phase
+  - June discovery
+  - small-business-tier discovery
+  introduced_in: riley_000263
+  reason: Protected facts state that this phase was approved and assigned.
+- id: institutional_churn_doc
+  name: Mid-segment churn investigation Feb-Apr 2023 -- what we learned
+  kind: document
+  aliases:
+  - Mid-segment churn investigation Feb-Apr 2023 -- what we learned
+  - institutional doc
+  - institutional-knowledge doc
+  - all-hands doc
+  - canonical ref
+  introduced_in: riley_000174
+  reason: Final institutional writeup and canonical framework reference in protected facts.
+- id: may8_allhands
+  name: May 12 all-hands
+  kind: event
+  aliases:
+  - May 12 all-hands
+  - all-hands
+  introduced_in: riley_000212
+  reason: Protected facts describe Riley's company-wide presentation and framework adoption.
+- id: allhands_deck
+  name: all-hands deck
+  kind: document
+  aliases:
+  - all-hands deck
+  - deck version
+  - title slide
+  introduced_in: riley_000229
+  reason: Document version distinguished from the canonical institutional writeup.
+- id: may22_sb_meeting
+  name: May 26 sub-50-seat tier meeting
+  kind: event
+  aliases:
+  - May 26 meeting
+  - sub-50-seat tier meeting
+  - small-business-tier discovery meeting
+  introduced_in: riley_000263
+  reason: Protected facts describe the recommendation and decision made in this meeting.
+- id: sunday_watercolor
+  name: Sunday watercolor routine
+  kind: routine
+  aliases:
+  - Sunday watercolor
+  - usual Sunday block
+  - watercolor routine
+  - watercolor
+  introduced_in: riley_000002
+  reason: Protected facts preserve this recurring personal routine.
+- id: bike_commute
+  name: bike commute routine
+  kind: routine
+  aliases:
+  - bike commute
+  - biking in
+  - Holly -> 2nd & Brazos ride
+  - Tue/Thu/Fri default
+  introduced_in: riley_000004
+  reason: Protected facts specify Riley's recurring commute pattern.
+- id: owen_1on1
+  name: Owen Pham weekly 1:1
+  kind: routine
+  aliases:
+  - Owen Pham Tuesdays 11am
+  - Owen 1:1
+  introduced_in: riley_000005
+  reason: Protected facts establish this standing direct-report meeting.
+- id: ines_1on1
+  name: Ines Kovac weekly 1:1
+  kind: routine
+  aliases:
+  - Ines Kovac Wednesdays 2pm
+  - Ines 1:1
+  introduced_in: riley_000005
+  reason: Protected facts establish this standing direct-report meeting.
+- id: priya_1on1
+  name: Priya 1:1
+  kind: routine
+  aliases:
+  - Priya 1:1
+  - 1:1 with Priya
+  introduced_in: riley_000006
+  reason: Recurring manager meeting referenced in protected decisions.
+- id: salud_brunch
+  name: brunch at Salud
+  kind: routine
+  aliases:
+  - brunch
+  - solo-Saturday move
+  - brunch at Salud
+  introduced_in: riley_000024
+  reason: Protected facts define Riley's default unnamed brunch reference.
+- id: book_club
+  name: book club
+  kind: routine
+  aliases:
+  - book club
+  - book-club group
+  - same little group
+  introduced_in: riley_000026
+  reason: Recurring personal routine linked to protected book-club and framing facts.
+- id: feb10_bookclub
+  name: Feb 14 book-club session
+  kind: event
+  aliases:
+  - first book-club session
+  - first time this one's shown up here
+  introduced_in: riley_000037
+  reason: Protected facts identify this first referenced book-club meeting.
+- id: friday_marcus_call
+  name: Friday Marcus call
+  kind: routine
+  aliases:
+  - Friday Marcus call
+  - weekly Marcus Tanaka call
+  - Friday brother call
+  - brother call
+  introduced_in: riley_000046
+  reason: Protected facts disambiguate this recurring call from work-Marcus contexts.
+- id: mom_memorial_visit
+  name: Mom's Memorial Day weekend visit
+  kind: event
+  aliases:
+  - Memorial Day weekend visit
+  - May 27-26 in Austin
+  introduced_in: riley_000199
+  reason: Protected facts track the plan, visit, dinner, and airport drop-off.
+- id: marcus_austin_visit
+  name: Marcus Tanaka's Austin visit
+  kind: event
+  aliases:
+  - Austin visit
+  - Apr 1-29
+  - first time down here this year
+  introduced_in: riley_000141
+  reason: Protected facts describe Riley's brother's visit and activities.
+- id: feb27_weekday_dinner
+  name: Mar 3 weekday dinner with Sam
+  kind: event
+  aliases:
+  - first weekday dinner together
+  - first weekday dinner together in like 3 weeks
+  introduced_in: riley_000069
+  reason: Protected fact preserves this specific personal event.
+- id: restaurant_deep_clean
+  name: restaurant kitchen deep clean
+  kind: event
+  aliases:
+  - deep clean
+  - kitchen's shut for a deep clean
+  introduced_in: riley_000069
+  reason: Protected fact explains why Sam was home early on Mar 3.
+- id: pricing_rollback
+  name: pricing-page rollback
+  kind: event
+  aliases:
+  - rollback
+  - pricing-page rollback
+  - rolled back
+  introduced_in: riley_000071
+  reason: Protected facts describe the decision, execution, and communications around the rollback.
+- id: mar18_team_slack_note
+  name: Mar 22 team Slack note
+  kind: document
+  aliases:
+  - team note
+  - team Slack note
+  - warm team Slack note
+  introduced_in: riley_000119
+  reason: Protected facts describe this specific team-facing message and credits.
+- id: feb5_staff_sync
+  name: Feb 9 staff sync
+  kind: event
+  aliases:
+  - staff sync
+  - Feb 9 staff sync
+  introduced_in: riley_000017
+  reason: Protected facts record the sequencing decision made in this meeting.
+- id: mar4_email_qa_discussion
+  name: Mar 8 onboarding-trigger email/template QA discussion
+  kind: event
+  aliases:
+  - template QA mechanics
+  - onboarding-trigger email/template QA
+  - email/template QA discussion
+  introduced_in: riley_000081
+  reason: Protected fact preserves the QA-pass decision and outcome.
+- id: may30_close_snapshot
+  name: Jun 3 Saturday close snapshot
+  kind: event
+  aliases:
+  - corpus close
+  introduced_in: riley_000279
+  reason: Protected fact summarizes corpus-close state on that date.
+- id: posthog
+  name: PostHog
+  kind: tool
+  aliases:
+  - PostHog
+  introduced_in: riley_000061
+  reason: Tool used for protected feature-flag and experiment facts.
+- id: notion
+  name: Notion
+  kind: tool
+  aliases:
+  - Notion
+  introduced_in: riley_000010
+  reason: Tool that hosts the investigation document.
+- id: slack
+  name: Slack
+  kind: service
+  aliases:
+  - Slack
+  introduced_in: riley_000011
+  reason: Service for protected channel and update facts.
+- id: customer_io
+  name: Customer.io
+  kind: tool
+  aliases:
+  - customer.io
+  - Customer.io
+  introduced_in: riley_000152
+  reason: Tool referenced for lifecycle email branches.
+- id: mixpanel
+  name: Mixpanel
+  kind: tool
+  aliases:
+  - Mixpanel
+  introduced_in: riley_000196
+  reason: Analytics tool referenced in protected institutional-doc review context.
+- id: looker
+  name: Looker
+  kind: tool
+  aliases:
+  - Looker
+  introduced_in: riley_000188
+  reason: Analytics tool used in protected cohort-definition and doc contexts.
+- id: warehouse
+  name: warehouse/query layer
+  kind: tool
+  aliases:
+  - warehouse
+  - query layer
+  - warehouse/query layer
+  introduced_in: riley_000096
+  reason: Data layer where protected versioned definitions remain queryable.
+- id: growth_investigations_channel
+  name: '#growth-investigations'
+  kind: channel
+  aliases:
+  - '#growth-investigations'
+  introduced_in: riley_000011
+  reason: Protected facts repeatedly specify this as the investigation-update channel.
+- id: growth_team_channel
+  name: '#growth-team'
+  kind: channel
+  aliases:
+  - '#growth-team'
+  introduced_in: riley_000011
+  reason: 'Protected facts contrast this channel with #growth-investigations.'
+- id: salud
+  name: Salud
+  kind: place
+  aliases:
+  - Salud
+  introduced_in: riley_000024
+  reason: Recurring brunch place and protected default brunch referent.
+- id: brixton
+  name: The Brixton
+  kind: place
+  aliases:
+  - The Brixton
+  - Brixton
+  introduced_in: riley_000026
+  reason: Recurring book-club venue in protected facts.
+- id: holly
+  name: Holly
+  kind: place
+  aliases:
+  - Holly
+  introduced_in: riley_000023
+  reason: Starting neighborhood for protected commute facts.
+- id: second_brazos
+  name: 2nd & Brazos
+  kind: place
+  aliases:
+  - 2nd & Brazos
+  - 2nd and Brazos
+  introduced_in: riley_000023
+  reason: Downtown endpoint for protected commute facts.
+- id: austin
+  name: Austin
+  kind: place
+  aliases:
+  - Austin
+  introduced_in: riley_000064
+  reason: City for protected family visits and work/home context.
+- id: hyde_park
+  name: Hyde Park
+  kind: place
+  aliases:
+  - Hyde Park
+  introduced_in: riley_000003
+  reason: Neighborhood associated with Sam's restaurant.
+- id: portland
+  name: Portland
+  kind: place
+  aliases:
+  - Portland
+  introduced_in: riley_000019
+  reason: Location used to identify Marcus Tanaka.
+- id: sacramento
+  name: Sacramento
+  kind: place
+  aliases:
+  - Sacramento
+  introduced_in: riley_000199
+  reason: Location used to identify Riley's mom.
+- id: south_congress
+  name: South Congress
+  kind: place
+  aliases:
+  - South Congress
+  introduced_in: riley_000141
+  reason: Place in Marcus Tanaka's Austin visit plan and visit facts.
+- id: veracruz
+  name: Veracruz
+  kind: place
+  aliases:
+  - Veracruz
+  - Veracruz tacos
+  introduced_in: riley_000141
+  reason: Lunch location in protected Marcus Tanaka visit facts.
+- id: lady_bird_lake
+  name: Lady Bird Lake
+  kind: place
+  aliases:
+  - Lady Bird Lake
+  - Lady Bird
+  introduced_in: riley_000070
+  reason: Repeated Austin walk location, including the mom-visit adjustment.
+- id: aus_airport
+  name: AUS
+  kind: place
+  aliases:
+  - AUS
+  - airport
+  introduced_in: riley_000266
+  reason: Protected fact identifies where Riley dropped off her mom.
+- id: h1_ruling_one_pager
+  name: H1 ruling one-pager
+  kind: document
+  aliases: []
+  introduced_in: riley_000039
+  reason: Owen's document records the H1 pricing-artifact ruling.
+- id: h2_ruling_one_pager
+  name: H2 ruling one-pager
+  kind: document
+  aliases: []
+  introduced_in: riley_000051
+  reason: Owen's document records the H2 competitor-cycle ruling.
+- id: morning_lake_run
+  name: morning lake-trail run
+  kind: routine
+  aliases:
+  - usual ~3 miles
+  introduced_in: riley_000001
+  reason: Riley repeatedly returns to the same morning running routine.
+- id: sam_menu_rotation
+  name: Sam's menu rotation
+  kind: project
+  aliases:
+  - menu rotation prep
+  - menu rotation
+  - new menu
+  introduced_in: riley_000002
+  reason: The preparation, close, and launch form one recurring state-changing thread.
+- id: city_planner_novel
+  name: city-planner novel
+  kind: document
+  aliases:
+  - city-planner novel
+  introduced_in: riley_000037
+  reason: The same book recurs and supplies the protected complex-systems framing.
+- id: entry_customer_tier
+  name: entry customer tier
+  kind: other
+  aliases: []
+  introduced_in: riley_000032
+  reason: Protected churn facts assign entry its own measured value and comparison.
+- id: standard_customer_tier
+  name: standard customer tier
+  kind: other
+  aliases: []
+  introduced_in: riley_000032
+  reason: Protected churn facts assign standard its own measured value and comparison.
+- id: plus_customer_tier
+  name: plus customer tier
+  kind: other
+  aliases: []
+  introduced_in: riley_000032
+  reason: Protected churn and rollout facts assign plus distinct values and inclusion.
+- id: starter_customer_tier
+  name: starter customer tier
+  kind: other
+  aliases: []
+  introduced_in: riley_000061
+  reason: Protected experiment facts distinguish starter targeting and exclusion.
+- id: growth_customer_tier
+  name: growth customer tier
+  kind: other
+  aliases: []
+  introduced_in: riley_000061
+  reason: Protected experiment facts distinguish growth targeting and rollout inclusion.
+- id: seat_band_50_75
+  name: 50-75-seat account band
+  kind: other
+  aliases:
+  - 50-75 seat band
+  - 50-75-seat accounts
+  introduced_in: riley_000153
+  reason: This band is repeatedly measured and later removed from the default mid-segment definition.
+- id: segment_classification_job
+  name: segment classification job
+  kind: service
+  aliases:
+  - segment job
+  introduced_in: riley_000189
+  reason: Its 50-75-seat classification adds read noise distinct from the outage.
+- id: segment_membership_cache
+  name: segment membership cache
+  kind: service
+  aliases:
+  - stale membership
+  - cache window
+  - stale cached segment membership
+  introduced_in: riley_000189
+  reason: Stale cached membership timing adds read noise distinct from the outage.
+- id: lifecycle_email_qa_practice
+  name: risk-based lifecycle-email QA practice
+  kind: routine
+  aliases:
+  - bigger QA loop
+  - lighter touch
+  introduced_in: riley_000014
+  reason: Riley and Ines repeatedly apply a standing risk-based choice about QA depth.
+- id: apr17_staff_meeting
+  name: April 21 staff meeting
+  kind: event
+  aliases:
+  - Apr 21 staff meeting
+  introduced_in: riley_000193
+  reason: Protected facts 92 and 93 concern this dated meeting rather than the February staff sync.
+- id: investigation_framework
+  name: investigation framework
+  kind: other
+  aliases:
+  - investigation framework
+  introduced_in: riley_000212
+  reason: The reusable method is distinct from the document and all-hands deck that communicate it.
+- id: self_serve_operating_model
+  name: Self-serve operating model
+  kind: project
+  aliases: []
+  introduced_in: riley_000286
+  reason: 'The cross-functional operating model for making the sub-50-seat motion safe: eligibility rules,
+    refusal boundaries, instrumentation, pricing-page constraints, lifecycle forks, support limits, and
+    measurement.'
+- id: helio_start
+  name: Helio Start
+  kind: product
+  aliases: []
+  introduced_in: riley_000306
+  reason: The working customer-facing name for Helio's guarded sub-50-seat self-serve product motion,
+    kept tied to eligibility and instrumentation gates rather than treated as a simple discount plan.
+- id: expansion_assist_program
+  name: Expansion Assist
+  kind: project
+  aliases: []
+  introduced_in: riley_000351
+  reason: The behavior-based retained-mid-segment expansion concept that grows out of the limited day-60
+    expansion-nudge read, focused on prompting only accounts whose usage shows real upgrade readiness.
+- id: cherrywood_house
+  name: Cherrywood house
+  kind: place
+  aliases: []
+  introduced_in: extension_riley_2024_02_29_001
+  reason: The two-bedroom Cherrywood rental Riley and Sam choose as their next Austin home because it
+    offers better separation among work, rest, painting, and life with Kibo while remaining workable for
+    both commutes.
+- id: lifecycle_systems_team
+  name: Lifecycle Systems team
+  kind: team
+  aliases: []
+  introduced_in: extension_riley_2025_01_24_004
+  reason: The Helio function led by Riley that governs lifecycle decisioning, shared account-state semantics,
+    experiment safeguards, segmentation, and measurement across self-serve and retained-account motions.
+- id: maya_shah
+  name: Maya Shah
+  kind: person
+  aliases: []
+  introduced_in: extension_riley_2025_10_01_001
+  reason: The half-time Lifecycle Systems operations contractor who prepares campaign inventories, audit
+    materials, and owner handoff inputs without production access or approval authority.
+- id: lone_star_companion_insurance_company
+  name: Lone Star Companion Insurance Company
+  kind: organization
+  aliases: []
+  introduced_in: extension_riley_2025_10_03_001
+  reason: The exact insurance carrier underwriting Kibo's renewed coverage.
+- id: companioncare_plus_accident_illness_policy
+  name: CompanionCare Plus Accident and Illness Policy
+  kind: service
+  aliases: []
+  introduced_in: extension_riley_2025_10_03_001
+  reason: The exact policy Riley and Sam select for Kibo's November 1, 2025 through October 31, 2026 policy
+    year.
+- id: q4_pricing_path_clarity_test
+  name: Q4 Pricing Path Clarity Test
+  kind: project
+  aliases: []
+  introduced_in: extension_riley_2025_10_10_001
+  reason: A controlled organic-traffic pricing-page test of clearer separation between the bounded Helio
+    Start path and assisted paths, governed by the no-concurrent-layout-change rule.
+- id: mom_2026_prescription_drug_plan
+  name: Mom's selected 2026 prescription-drug plan
+  kind: service
+  aliases: []
+  introduced_in: extension_riley_2025_11_11_001
+  reason: The specific prescription-drug plan Mom renews for the 2026 coverage year.
+- id: mom_regular_generics
+  name: Mom's two regular generic medications
+  kind: product
+  aliases: []
+  introduced_in: extension_riley_2025_11_11_001
+  reason: The pair of regular generic medications whose tier and preferred-pharmacy copay Riley and Mom
+    verify under the selected plan.
+- id: mom_occasional_inhaler
+  name: Mom's occasional inhaler
+  kind: product
+  aliases: []
+  introduced_in: extension_riley_2025_11_11_001
+  reason: The occasional inhaler whose coverage and preferred-pharmacy copay Riley and Mom verify under
+    the selected plan.
+- id: golden_state_prescription_insurance_company
+  name: Golden State Prescription Insurance Company
+  kind: organization
+  aliases: []
+  introduced_in: extension_riley_2025_11_11_001
+  reason: The exact carrier providing Mom's selected 2026 prescription-drug plan.
+- id: golden_state_rx_saver_2026_pdp
+  name: Golden State Rx Saver (PDP)
+  kind: service
+  aliases: []
+  introduced_in: extension_riley_2025_11_11_001
+  reason: The exact prescription-drug plan Mom renews for January 1 through December 31, 2026.
+- id: lisinopril_10mg_tablet
+  name: lisinopril 10 mg tablet
+  kind: product
+  aliases: []
+  introduced_in: extension_riley_2025_11_11_001
+  reason: One of Mom's two regular generic medications whose tier and preferred-pharmacy copay are verified.
+- id: atorvastatin_20mg_tablet
+  name: atorvastatin 20 mg tablet
+  kind: product
+  aliases: []
+  introduced_in: extension_riley_2025_11_11_001
+  reason: One of Mom's two regular generic medications whose tier and preferred-pharmacy copay are verified.
+- id: ventolin_hfa_90mcg_inhaler
+  name: Ventolin HFA 90 mcg/actuation inhaler
+  kind: product
+  aliases: []
+  introduced_in: extension_riley_2025_11_11_001
+  reason: Mom's occasional inhaler whose coverage and preferred-pharmacy copay are verified.
+- id: river_park_community_pharmacy
+  name: River Park Community Pharmacy
+  kind: organization
+  aliases: []
+  introduced_in: extension_riley_2025_11_11_001
+  reason: Mom's named preferred Sacramento pharmacy whose network status is verified for the selected
+    plan.
+- id: ordinary_light_watercolor
+  name: Ordinary Light
+  kind: artwork
+  aliases: []
+  introduced_in: extension_riley_2026_04_05_001
+  reason: Riley's finished 9-by-12-inch limited-palette watercolor from the February 2026 painting afternoon
+    with Mom.
+- id: portland_1997_apartment
+  name: Buckman apartment courtyard on SE 20th Avenue
+  kind: place
+  aliases: []
+  introduced_in: extension_riley_2026_07_20_001
+  reason: The Portland apartment courtyard where the September 1997 family photographs of Riley and Marcus
+    Tanaka were taken.
+- id: incomplete_setup_reminder
+  name: Incomplete-setup in-product reminder
+  kind: product
+  aliases: []
+  introduced_in: extension_riley_2027_10_01_003
+  reason: The Growth reminder that may display when workspace setup remains incomplete, subject to fresh
+    governed-state evaluation, fail-closed handling, and active-Customer-Success suppression.
+- id: helio_2028_employee_only_hdhp
+  name: Helio 2028 Employee-Only HDHP
+  kind: service
+  aliases: []
+  introduced_in: extension_riley_2027_10_05_001
+  reason: Helio's employee-only high-deductible medical option for the 2028 plan year.
+- id: helio_2028_employee_only_ppo
+  name: Helio 2028 Employee-Only PPO
+  kind: service
+  aliases: []
+  introduced_in: extension_riley_2027_10_05_001
+  reason: Helio's employee-only PPO medical option for the 2028 plan year.
+- id: pacific_choice_rx_standard_2028
+  name: Pacific Choice Rx Standard (PDP) 2028
+  kind: service
+  aliases: []
+  introduced_in: extension_riley_2027_10_09_001
+  reason: The first competing 2028 prescription-drug option Mom compares with Golden State Rx Saver.
+- id: sacramento_community_rx_2028
+  name: Sacramento Community Rx (PDP) 2028
+  kind: service
+  aliases: []
+  introduced_in: extension_riley_2027_10_09_001
+  reason: The second competing 2028 prescription-drug option Mom compares and ultimately selects.

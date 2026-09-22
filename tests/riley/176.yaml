@@ -1,0 +1,65 @@
+id: '176'
+narrative_anchor_date: '2028-01-01'
+test: Create a document titled `Owen — sanitized campaign snapshot performance entry` in the `People`
+  folder. Date the entry to the completed snapshot run and write a concise, evidence-based performance
+  note covering Owen’s execution, the inventory denominator, status-and-owner completeness, the independent
+  owner-change validation, and the scope of my review. Keep the distinction between preparation, validation,
+  and review explicit.
+load_bearing_facts:
+- 205
+- 208
+- 206
+- 207
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_performance_entry
+      path: result.ok
+      value: true
+      check_id: riley_176_00
+    - check_id: riley_176_01
+      type: field_equals
+      tool: create_doc
+      action_id: create_performance_entry
+      path: args.title
+      value: Owen — sanitized campaign snapshot performance entry
+    - check_id: riley_176_02
+      type: field_equals
+      tool: create_doc
+      action_id: create_performance_entry
+      path: args.folder
+      value: People
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_performance_entry
+      path: args
+      criterion: 'The performance entry is dated July 2, 2026 and states that Owen independently completed
+        the monthly sanitized campaign snapshot on the established second-business-day cadence after taking
+        over preparation. Missing or contradicting the date, independence, completion, or cadence must
+        fail.
+
+
+        The entry states that the completed snapshot contained 135 unique campaigns and that every campaign
+        had both a current-or-archived status and an assigned owner. Any different denominator or incomplete
+        coverage must fail.
+
+
+        The entry states that Ines independently checked two owner changes against the underlying lifecycle
+        records and verified both. Missing the validator, the count, the underlying-record check, or the
+        successful result must fail.
+
+
+        The entry clearly distinguishes Riley''s role from Owen''s preparation and Ines''s validation
+        by stating that Riley reviewed only Owen''s exception summary and did not reconcile the snapshot
+        line by line. Any claim that Riley performed the preparation, owner-change validation, or line-by-line
+        reconciliation must fail.'
+      check_id: riley_176_03
+mock_state: {}

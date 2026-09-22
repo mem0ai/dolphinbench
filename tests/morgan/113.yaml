@@ -1,0 +1,42 @@
+id: '113'
+narrative_anchor_date: '2026-09-14'
+test: Email sarah@atlas-test.com how to use Nadia's setup-call opener, admin-handoff
+  line, and undated admin-role confusion snippet in account work.
+load_bearing_facts:
+- 233
+- 234
+- 235
+expected_tool_calls:
+- send_email
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: send_email
+      path: result.ok
+      value: true
+      check_id: morgan_113_00
+      action_id: morgan_113_send_email
+    - type: field_equals
+      path: result.to
+      value: sarah@atlas-test.com
+      tool: send_email
+      check_id: morgan_113_01
+      action_id: morgan_113_send_email
+    - type: field_llm_judge
+      path: result.body
+      criterion: Allows Nadia's opener and admin-handoff line only for account-thread
+        hygiene tied to current-state evidence. Rejects the undated/source-thin admin-role
+        snippet as account evidence or Compass behavior-change proof. It may suggest
+        internal preparation, but need not instruct Sarah to retain or use the snippet.
+        Treating the snippet as reliable customer evidence fails.
+      tool: send_email
+      check_id: morgan_113_02
+      action_id: morgan_113_send_email
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

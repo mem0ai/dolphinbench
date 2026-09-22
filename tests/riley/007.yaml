@@ -1,0 +1,38 @@
+id: '007'
+narrative_anchor_date: '2028-01-01'
+test: Create a current authority reference for routine CS auto-nudge messaging-state reviews. State when
+  Ines may close a review and own routine operator guidance without line-by-line approval, what must be
+  escalated, and which work remains outside this authority.
+load_bearing_facts:
+- 133
+- 134
+- 135
+- 136
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_authority_reference
+      path: result.ok
+      value: true
+      check_id: riley_007_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_authority_reference
+      path: args
+      criterion: The reference says Ines may independently close routine CS auto-nudge messaging-state
+        reviews and own routine operator guidance without Riley's line-by-line approval only when all
+        five governed fields keep their established meanings and current consistent state, the messaging
+        and nudge views agree, and no customer correction, incident stop, state change, ambiguity, exception-heavy
+        matter, or disputed meaning exists. Any such issue goes to Riley. This authority does not extend
+        to Helio Start, Expansion Assist, or lifecycle preflight and does not change Ines's lifecycle-send
+        release limits.
+      check_id: riley_007_01
+mock_state: {}

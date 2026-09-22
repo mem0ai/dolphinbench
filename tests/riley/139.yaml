@@ -1,0 +1,56 @@
+id: '139'
+narrative_anchor_date: '2028-01-01'
+test: Please append a compact calibration example to document ID `doc_1832457600001`. Use the March 8
+  onboarding-trigger launch example and record the actual QA-pass disagreement, the review depth that
+  was approved, how the disagreement and execution went interpersonally, and whether shipment had any
+  send or template-rendering failures. Preserve the existing document content.
+load_bearing_facts:
+- 331
+- 332
+- 333
+expected_tool_calls:
+- update_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: update_doc
+      action_id: append_calibration_example
+      path: result.ok
+      value: true
+      check_id: riley_139_00
+    - type: field_equals
+      tool: update_doc
+      action_id: append_calibration_example
+      path: args.doc_id
+      value: doc_1832457600001
+      check_id: riley_139_01
+    - type: field_equals
+      tool: update_doc
+      action_id: append_calibration_example
+      path: args.mode
+      value: append
+      check_id: riley_139_02
+    - type: field_llm_judge
+      tool: update_doc
+      action_id: append_calibration_example
+      path: args
+      criterion: The appended text says Ines wanted three QA passes and two were approved because of different
+        risk tolerances. It says Ines completed QA of the subject, body, fallbacks, and event mapping
+        before enablement, and the email shipped without send or template-rendering failures.
+      check_id: riley_139_03
+mock_state:
+  docs:
+  - id: doc_1832457600001
+    title: Lifecycle QA training — calibration examples
+    body: '# Lifecycle QA training — calibration examples
+
+
+      Use concrete historical examples to calibrate review depth, execution expectations, and post-ship
+      quality checks.'
+    folder: Team
+    created_at: '2027-12-20T10:00:00-06:00'

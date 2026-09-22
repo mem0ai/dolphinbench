@@ -1,0 +1,1756 @@
+{
+  "manifest": {
+    "persona_id": "riley",
+    "baseline_state": "state/riley_baseline.json",
+    "tools": [
+      "list_calendar_events",
+      "create_calendar_event",
+      "update_calendar_event",
+      "list_inbox",
+      "send_email",
+      "send_sms",
+      "send_slack_message",
+      "send_slack_dm",
+      "create_doc",
+      "update_doc",
+      "post_doc_comment",
+      "list_feature_flags",
+      "get_feature_flag",
+      "update_feature_flag",
+      "query_event_funnel",
+      "query_retention_cohort",
+      "query_user_path",
+      "list_subscriptions",
+      "get_subscription",
+      "list_stripe_invoices",
+      "get_customer",
+      "list_recent_churn",
+      "get_mrr_metrics",
+      "get_churn_metrics",
+      "get_arr_segments",
+      "create_experiment",
+      "update_experiment",
+      "query_experiment_results",
+      "create_growth_brief",
+      "update_growth_brief"
+    ]
+  },
+  "tests": {
+    "001": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "002": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc",
+          "list_calendar_events",
+          "create_calendar_event"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "003": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "004": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "005": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "006": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "007": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "008": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "009": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "010": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "011": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "012": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "013": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "014": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "015": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc",
+          "send_sms"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "016": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc",
+          "send_slack_dm"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "017": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "018": {
+      "tool_config": {
+        "active_tools": [
+          "create_growth_brief"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "019": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "020": {
+      "tool_config": {
+        "active_tools": [
+          "create_calendar_event"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "021": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "022": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "023": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "024": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "025": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "026": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "027": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "028": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "029": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "030": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "031": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "032": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "033": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "034": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "035": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "036": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "037": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc",
+          "send_slack_message"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "038": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "039": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "040": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "041": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "042": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "043": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "044": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "045": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "046": {
+      "tool_config": {
+        "active_tools": [
+          "list_inbox",
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "047": {
+      "tool_config": {
+        "active_tools": [
+          "send_slack_message"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "048": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "049": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "050": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "051": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "052": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "053": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "054": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "055": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "056": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "057": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "058": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "059": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "060": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "061": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "062": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "063": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "064": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "065": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "066": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "067": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "068": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "069": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "070": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc",
+          "send_slack_message"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "071": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "072": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "073": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "074": {
+      "tool_config": {
+        "active_tools": [
+          "send_slack_dm"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "075": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "076": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "077": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "078": {
+      "tool_config": {
+        "active_tools": [
+          "query_experiment_results",
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "079": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "080": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "081": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "082": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "083": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "084": {
+      "tool_config": {
+        "active_tools": [
+          "send_slack_dm"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "085": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "086": {
+      "tool_config": {
+        "active_tools": [
+          "list_inbox",
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "087": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "088": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "089": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "090": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "091": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "092": {
+      "tool_config": {
+        "active_tools": [
+          "list_calendar_events",
+          "create_calendar_event"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "093": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc",
+          "send_slack_dm"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "094": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "095": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc",
+          "send_sms"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "096": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc",
+          "send_email"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "097": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "098": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "099": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc",
+          "send_sms"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "100": {
+      "tool_config": {
+        "active_tools": [
+          "send_slack_dm"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "101": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "102": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "103": {
+      "tool_config": {
+        "active_tools": [
+          "post_doc_comment"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "104": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "105": {
+      "tool_config": {
+        "active_tools": [
+          "send_slack_dm"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "106": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "107": {
+      "tool_config": {
+        "active_tools": [
+          "post_doc_comment"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "108": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "109": {
+      "tool_config": {
+        "active_tools": [
+          "send_slack_message"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "110": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "111": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "112": {
+      "tool_config": {
+        "active_tools": [
+          "list_inbox",
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "113": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "114": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "115": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "116": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "117": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "118": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "119": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "120": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "121": {
+      "tool_config": {
+        "active_tools": [
+          "list_inbox",
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "122": {
+      "tool_config": {
+        "active_tools": [
+          "send_slack_dm",
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "123": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc",
+          "send_slack_dm"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "124": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "125": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "126": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc",
+          "send_slack_dm"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "127": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "128": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "129": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "130": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "131": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc",
+          "list_calendar_events",
+          "create_calendar_event"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "132": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "133": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "134": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "135": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "136": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "137": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc",
+          "list_calendar_events",
+          "create_calendar_event"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "138": {
+      "tool_config": {
+        "active_tools": [
+          "post_doc_comment"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "139": {
+      "tool_config": {
+        "active_tools": [
+          "update_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "140": {
+      "tool_config": {
+        "active_tools": [
+          "post_doc_comment"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "141": {
+      "tool_config": {
+        "active_tools": [
+          "post_doc_comment"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "142": {
+      "tool_config": {
+        "active_tools": [
+          "post_doc_comment"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "143": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "144": {
+      "tool_config": {
+        "active_tools": [
+          "post_doc_comment"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "145": {
+      "tool_config": {
+        "active_tools": [
+          "post_doc_comment"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "146": {
+      "tool_config": {
+        "active_tools": [
+          "update_experiment"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "147": {
+      "tool_config": {
+        "active_tools": [
+          "update_experiment"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "148": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "149": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "150": {
+      "tool_config": {
+        "active_tools": [
+          "list_calendar_events",
+          "create_calendar_event"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "151": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "152": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc",
+          "send_email"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "153": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "154": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "155": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "156": {
+      "tool_config": {
+        "active_tools": [
+          "list_calendar_events",
+          "create_calendar_event"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "157": {
+      "tool_config": {
+        "active_tools": [
+          "send_slack_dm"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "158": {
+      "tool_config": {
+        "active_tools": [
+          "post_doc_comment"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "159": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "160": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "161": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "162": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "163": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "164": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "165": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "166": {
+      "tool_config": {
+        "active_tools": [
+          "list_calendar_events",
+          "create_calendar_event"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "167": {
+      "tool_config": {
+        "active_tools": [
+          "post_doc_comment"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "168": {
+      "tool_config": {
+        "active_tools": [
+          "query_experiment_results",
+          "get_feature_flag",
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "169": {
+      "tool_config": {
+        "active_tools": [
+          "send_slack_dm"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "170": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "171": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "172": {
+      "tool_config": {
+        "active_tools": [
+          "post_doc_comment"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "173": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "174": {
+      "tool_config": {
+        "active_tools": [
+          "post_doc_comment"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "175": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "176": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "177": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "178": {
+      "tool_config": {
+        "active_tools": [
+          "send_slack_dm"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "179": {
+      "tool_config": {
+        "active_tools": [
+          "post_doc_comment"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "180": {
+      "tool_config": {
+        "active_tools": [
+          "post_doc_comment"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "181": {
+      "tool_config": {
+        "active_tools": [
+          "list_calendar_events",
+          "create_calendar_event"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "182": {
+      "tool_config": {
+        "active_tools": [
+          "post_doc_comment"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "183": {
+      "tool_config": {
+        "active_tools": [
+          "list_calendar_events",
+          "create_calendar_event"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "184": {
+      "tool_config": {
+        "active_tools": [
+          "post_doc_comment"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "185": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "186": {
+      "tool_config": {
+        "active_tools": [
+          "send_slack_message"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "187": {
+      "tool_config": {
+        "active_tools": [
+          "post_doc_comment"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "188": {
+      "tool_config": {
+        "active_tools": [
+          "post_doc_comment"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "189": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "190": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "191": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "192": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "193": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "194": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "195": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "196": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc",
+          "send_sms"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "197": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "198": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "199": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    },
+    "200": {
+      "tool_config": {
+        "active_tools": [
+          "create_doc"
+        ]
+      },
+      "workspace": "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff"
+    }
+  },
+  "workspaces": {
+    "29fb68534f04cb87297c8ddcda6244730308851435f83daf26be17fdbf3cc1ff": {
+      "users": [
+        {
+          "key": "daniela",
+          "name": "Daniela Schultz"
+        },
+        {
+          "key": "ines",
+          "name": "Ines Kovac"
+        },
+        {
+          "key": "marcus_tanaka",
+          "name": "Marcus Tanaka"
+        },
+        {
+          "key": "marcus_vail",
+          "name": "Marcus Vail"
+        },
+        {
+          "key": "maya",
+          "name": "Maya Shah"
+        },
+        {
+          "key": "mom",
+          "name": "Mom"
+        },
+        {
+          "key": "owen",
+          "name": "Owen Pham"
+        },
+        {
+          "key": "priya",
+          "name": "Priya Devarajan"
+        },
+        {
+          "key": "riley",
+          "name": "Riley Tanaka"
+        },
+        {
+          "key": "sam",
+          "name": "Sam Okonkwo"
+        },
+        {
+          "key": "tomas",
+          "name": "Tomás Vega"
+        }
+      ],
+      "channels": [
+        {
+          "key": "#growth-investigations"
+        },
+        {
+          "key": "#growth-team"
+        },
+        {
+          "key": "#helio-start-ops"
+        }
+      ],
+      "contacts": [
+        {
+          "name": "Riley Tanaka",
+          "email": "riley@helio.example"
+        },
+        {
+          "name": "Sam Okonkwo",
+          "email": "sam@hydeparkrestaurant.example",
+          "phone": "+13125550101"
+        },
+        {
+          "name": "Priya Devarajan",
+          "email": "priya@helio.example"
+        },
+        {
+          "name": "Mom",
+          "phone": "+15125550102"
+        },
+        {
+          "name": "Marcus Tanaka",
+          "phone": "+15125550103"
+        }
+      ]
+    }
+  }
+}

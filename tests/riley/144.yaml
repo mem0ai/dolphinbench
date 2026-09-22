@@ -1,0 +1,64 @@
+id: '144'
+narrative_anchor_date: '2028-01-01'
+test: Please post a correction comment on the board-evidence training answer key at document ID `doc_board_evidence_training_answer_key_2028`.
+  For the March 16, 2026 source lock, correct the lane-level readiness result, identify the specific input
+  that blocked any lane that did not pass, and state how unsupported revenue or forecast claims should
+  be treated. Keep this as a correction to that historical source-lock answer rather than a reassessment
+  using later evidence.
+load_bearing_facts:
+- 173
+- 174
+- 175
+- 176
+- 177
+expected_tool_calls:
+- post_doc_comment
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: post_doc_comment
+      action_id: post_answer_key_correction
+      path: result.ok
+      value: true
+      check_id: riley_144_00
+    - check_id: riley_144_01
+      type: field_equals
+      tool: post_doc_comment
+      action_id: post_answer_key_correction
+      path: args.doc_id
+      value: doc_board_evidence_training_answer_key_2028
+    - type: field_llm_judge
+      tool: post_doc_comment
+      action_id: post_answer_key_correction
+      path: args
+      criterion: 'The comment must clearly correct the historical March 16, 2026 source-lock answer by
+        stating that Expansion Assist, pricing-page path quality, and CS auto-nudge/system controls were
+        board-ready, while Helio Start remained a separate lane and was not board-ready. Missing or contradictory
+        lane status must fail.
+
+
+        The comment must identify the blocking omission as the missing exact cohort dates—start and end
+        dates—for both sets of admitted Helio Start workspaces with complete day-90 windows. A generic
+        reference to incomplete data is insufficient.
+
+
+        The comment must state that revenue or forecast treatment unsupported by the exact locked inputs
+        is excluded and must not enter the board operating section. Any assertion that such unsupported
+        claims receive credit must fail.'
+      check_id: riley_144_02
+mock_state:
+  docs:
+  - id: doc_board_evidence_training_answer_key_2028
+    title: Board-evidence training answer key — March 16, 2026 source lock
+    body: '# Answer key
+
+
+      At the March 16, 2026 source lock, all four evidence lanes were board-ready for the Q1 operating-evidence
+      section.'
+    folder: Training
+    created_at: '2028-01-01T09:00:00-06:00'

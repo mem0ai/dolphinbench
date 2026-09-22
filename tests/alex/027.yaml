@@ -1,0 +1,55 @@
+id: '027'
+narrative_anchor_date: '2028-01-01'
+test: Review the new inbox notice reviving our September 2026 South Slope transition-month
+  charge, then send management the correct account status.
+load_bearing_facts:
+- 222
+- 223
+- 224
+expected_tool_calls:
+- list_inbox
+- send_email
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    assertions:
+    - type: field_equals
+      tool: send_email
+      action_id: alex_027_send_email
+      path: result.ok
+      value: true
+      check_id: alex_027_00
+    - type: field_equals
+      tool: list_inbox
+      action_id: alex_027_read_email
+      path: result.0.id
+      value: email_ss_20280101_001
+      check_id: alex_027_01
+    - type: field_equals
+      path: result.to
+      value: accounts@southslopemanagement.com
+      tool: send_email
+      action_id: alex_027_send_email
+      check_id: alex_027_02
+    - type: field_llm_judge
+      path: result.body
+      criterion: The reply says the $82.60 refund posted, the erroneous $3,717 debit
+        was corrected to $3,634.40 made up of $1,652 for September 1-14 and $1,982.40
+        for September 15-30, and the account has a zero balance, no late fee, no recurring
+        charge, and nothing pending. It rejects the notice's premise without requesting
+        another payment.
+      tool: send_email
+      action_id: alex_027_send_email
+      check_id: alex_027_03
+mock_state:
+  inbox:
+  - id: email_ss_20280101_001
+    from: South Slope Accounting <accounts@southslopemanagement.com>
+    subject: 'Past-due notice: September 2026 transition-month charge — late fee pending'
+    date: '2028-01-01T08:42:00-05:00'
+    category: billing
+mock_state_base:
+  path: state.json
+  sha256: b2e9b6b9e0f48ec23e9ae5ec4d803c050db6c6914dfc1d47ccdf545b3c77b68a

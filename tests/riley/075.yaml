@@ -1,0 +1,49 @@
+id: '075'
+narrative_anchor_date: '2028-01-01'
+test: Please create a 2028 monthly prescription-cost ledger for Mom using the selected coverage and preferred-pharmacy
+  terms we already have. Set it up for January through December, seed the recurring plan cost and medication
+  cost rules, and include practical fields for recording actual fills, amounts paid, deductible amounts
+  applied, the running deductible total, and monthly totals. Leave actual-fill entries blank unless a
+  fill is already known.
+load_bearing_facts:
+- 287
+- 288
+- 286
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_prescription_ledger
+      path: result.ok
+      value: true
+      check_id: riley_075_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_prescription_ledger
+      path: args
+      criterion: 'The document is a usable monthly prescription-cost ledger covering every month from
+        January through December 2028. It provides fields or equivalent spaces to record actual fills,
+        including fill information and actual amount paid, deductible amount applied, a running/cumulative
+        deductible total, and monthly totals. Actual-fill entries remain blank or are clearly placeholders;
+        the document must not claim that any fill has already occurred.
+
+
+        The ledger clearly identifies Sacramento Community Rx (PDP) 2028 as Mom''s plan, seeds or clearly
+        states the recurring premium of $40.60 per month, states the $545 annual drug deductible, and
+        identifies River Park Community Pharmacy as in-network preferred. Missing or contradictory plan
+        terms fail.
+
+
+        The ledger''s reference or planned-cost information correctly distinguishes the medication rules
+        at the preferred pharmacy: lisinopril 10 mg has a $1 copay, atorvastatin 20 mg has a $1 copay,
+        and Ventolin has a $45 copay only after the deductible. It must not present Ventolin as an unconditional
+        $45 copay before the deductible. Missing or contradictory treatment fails.'
+      check_id: riley_075_01
+mock_state: {}

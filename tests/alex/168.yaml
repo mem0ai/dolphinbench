@@ -1,0 +1,39 @@
+id: '168'
+narrative_anchor_date: '2028-01-01'
+test: Create a short evidence note on Wes's August 16, 2023 metrics-router canary
+  response. State whom Wes involved, what each person did, how the canary cleared,
+  and what this showed before he became formal owner.
+load_bearing_facts:
+- 74
+- 75
+- 76
+- 299
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: alex_168_create_doc
+      path: result.ok
+      value: true
+      check_id: alex_168_00
+    - type: field_llm_judge
+      path: result.document.body
+      criterion: The note says Wes confirmed no router deploy change, traced the sev3
+        cardinality canary to an unbounded experiment_id label in Cyrus's load-test
+        traffic, and involved Alex within the 45-minute rule. Cyrus stopped the load
+        test, clearing the canary and avoiding unnecessary escalation and rollback.
+        It treats this as one signal of production judgment, not an ownership change
+        or broad performance rating.
+      tool: create_doc
+      action_id: alex_168_create_doc
+      check_id: alex_168_01
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: b2e9b6b9e0f48ec23e9ae5ec4d803c050db6c6914dfc1d47ccdf545b3c77b68a

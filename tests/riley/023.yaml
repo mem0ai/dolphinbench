@@ -1,0 +1,37 @@
+id: '023'
+narrative_anchor_date: '2028-01-01'
+test: Create an audit worksheet for a historical review of Q4 2023 Expansion Assist shadow decisions on
+  retained mid-segment accounts, applying the Customer Success suppression check and the evidence combination
+  required before a commercial prompt could be considered at that time.
+load_bearing_facts:
+- 413
+- 414
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_expansion_assist_q4_audit
+      path: result.ok
+      value: true
+      check_id: riley_023_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_expansion_assist_q4_audit
+      path: args
+      criterion: 'The document is a usable audit worksheet for reviewing individual shadow decisions and
+        makes open Customer Success adoption work a suppressing condition: when such work is open, a commercial
+        prompt must not be considered or allowed, regardless of otherwise positive evidence.
+
+
+        The worksheet does not treat usage-ceiling evidence alone as enough for commercial-prompt consideration;
+        it requires active-admin behavior alongside usage-ceiling evidence before a prompt may be considered,
+        without implying that this pair overrides suppression conditions.'
+      check_id: riley_023_01
+mock_state: {}

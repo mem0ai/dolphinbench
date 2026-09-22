@@ -1,0 +1,18 @@
+FROM debian@sha256:5ae3c39ebd15e229dcedd5cee596b2497182493d41ff162e824ba13fc1b2b867
+
+ARG SUPERMEMORY_URL=https://github.com/supermemoryai/supermemory/releases/download/server-v0.0.8/supermemory-server-linux-x64
+ARG SUPERMEMORY_SHA256=87f32433d0179be80bb9d8a1bafbac65af4128324342a27ecb8bd1a77b5506f3
+
+RUN apt-get update \
+    && apt-get install --yes --no-install-recommends ca-certificates curl \
+    && rm -rf /var/lib/apt/lists/* \
+    && curl --fail --location --silent --show-error "$SUPERMEMORY_URL" --output /tmp/supermemory-server \
+    && echo "$SUPERMEMORY_SHA256  /tmp/supermemory-server" | sha256sum --check \
+    && install --mode=0755 /tmp/supermemory-server /usr/local/bin/supermemory-server \
+    && rm /tmp/supermemory-server
+
+ENV SUPERMEMORY_DATA_DIR=/var/lib/supermemory
+ENV SUPERMEMORY_PORT=6767
+
+EXPOSE 6767
+ENTRYPOINT ["/usr/local/bin/supermemory-server"]

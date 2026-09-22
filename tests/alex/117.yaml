@@ -1,0 +1,38 @@
+id: '117'
+narrative_anchor_date: '2028-01-01'
+test: Create a short November 12, 2026 Lantern evidence note. Include the exact fixture
+  and case counts, what the corrected build proved, where it was allowed to run, and
+  which named customer paths remained excluded.
+load_bearing_facts:
+- 233
+- 234
+- 235
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: alex_117_create_doc
+      path: result.ok
+      value: true
+      check_id: alex_117_00
+    - type: field_llm_judge
+      path: result.document.body
+      criterion: The note says 120 fixture runs preserved separate owner-map and Cardinality
+        Guardrails references in all 24 dual-authority cases and both insertion orders,
+        while 12 stale or missing records rendered explicit unknown and 8 denied requests
+        made zero adapter calls. It says the build was admitted only to bounded internal
+        shadow for Infra and Product Engineering, with the integration still absent
+        from Harbor Health and Mosaic Commerce.
+      tool: create_doc
+      action_id: alex_117_create_doc
+      check_id: alex_117_01
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: b2e9b6b9e0f48ec23e9ae5ec4d803c050db6c6914dfc1d47ccdf545b3c77b68a

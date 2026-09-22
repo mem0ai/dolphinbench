@@ -1,0 +1,154 @@
+id: '181'
+narrative_anchor_date: '2028-01-01'
+test: Inspect sdk-rust#2088 and review it against the current oversized-batch contract.
+load_bearing_facts:
+- 145
+- 146
+expected_tool_calls:
+- get_pr
+- review_pr
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    assertions:
+    - type: field_equals
+      tool: review_pr
+      action_id: alex_181_review_pr
+      path: result.ok
+      value: true
+      check_id: alex_181_00
+    - type: field_equals
+      tool: get_pr
+      action_id: alex_181_read_pr
+      path: result.pr.id
+      value: sdk-rust#2088
+      check_id: alex_181_01
+    - type: field_equals
+      path: result.review.pr_id
+      value: sdk-rust#2088
+      tool: review_pr
+      action_id: alex_181_review_pr
+      check_id: alex_181_02
+    - type: field_equals
+      path: result.review.decision
+      value: request_changes
+      tool: review_pr
+      action_id: alex_181_review_pr
+      check_id: alex_181_03
+    - type: field_llm_judge
+      path: result.review.body
+      criterion: The review requires the SDK to reject batches above 8,000 points
+        before transmission and tell callers to split them. Ingest-edge remains a
+        backstop for older or nonconforming clients and must reject the whole oversized
+        batch with HTTP 413, zero accepted points, rejected points equal to the submitted
+        count, and oversized_batch as the reason. It rejects partial acceptance.
+      tool: review_pr
+      action_id: alex_181_review_pr
+      check_id: alex_181_04
+mock_state:
+  prs:
+  - id: metrics-router#412
+    title: 'metrics-router: tidy config-loader, prep for OTel cutover finish'
+    author: alex
+    repo: metrics-router
+    branch: alex/cfg-loader-tidy
+    status: merged
+    reviewers:
+    - nadia
+    assignees:
+    - alex
+    opened_at: '2023-06-30T14:02:00-04:00'
+    age_days: 3
+    merged_at: '2023-07-11T09:25:00-04:00'
+  - id: shard-keeper#188
+    title: 'shard-keeper: rollback path hardening (lessons from Apr 18)'
+    author: alex
+    repo: shard-keeper
+    branch: alex/rollback-hardening
+    status: merged
+    reviewers:
+    - nadia
+    - cyrus
+    assignees:
+    - alex
+    opened_at: '2023-06-28T11:30:00-04:00'
+    age_days: 5
+    merged_at: '2023-08-08T10:15:00-04:00'
+  - id: ingest-edge#221
+    title: 'ingest-edge: bump OTel collector to 0.91'
+    author: wes
+    repo: ingest-edge
+    branch: wes/otel-091
+    status: merged
+    reviewers:
+    - alex
+    assignees:
+    - wes
+    opened_at: '2023-07-01T09:14:00-04:00'
+    age_days: 2
+    merged_at: '2023-08-03T13:20:00-04:00'
+  - id: metrics-router#414
+    title: 'metrics-router: add label-name parity check on push'
+    author: nadia
+    repo: metrics-router
+    branch: nadia/label-parity-check
+    status: merged
+    reviewers:
+    - alex
+    assignees:
+    - nadia
+    opened_at: '2023-06-29T16:48:00-04:00'
+    age_days: 4
+    merged_at: '2023-07-26T13:05:00-04:00'
+  - id: lantern#3
+    title: 'lantern: v0 architecture doc — circulating for comment'
+    author: alex
+    repo: lantern
+    branch: alex/v0-arch
+    status: merged
+    reviewers:
+    - iris
+    - hema
+    - theo
+    assignees:
+    - alex
+    opened_at: '2023-07-03T10:00:00-04:00'
+    age_days: 0
+    merged_at: '2023-07-24T12:15:00-04:00'
+  - id: shard-keeper#190
+    title: 'shard-keeper: small cutover-readiness fix'
+    author: cyrus
+    repo: shard-keeper
+    branch: cyrus/cutover-fix
+    status: merged
+    reviewers:
+    - alex
+    assignees:
+    - cyrus
+    opened_at: '2023-06-26T13:00:00-04:00'
+    age_days: 7
+    merged_at: '2023-09-21T09:18:00-04:00'
+  - id: sdk-rust#2088
+    title: Allow ingest-edge to partially accept oversized metric batches
+    author: mira
+    repo: sdk-rust
+    branch: mira/partial-oversized-batches
+    status: open
+    reviewers:
+    - alex
+    assignees:
+    - mira
+    opened_at: '2027-12-29T14:20:00-05:00'
+    description: Removes the SDK's 8,000-point validation so callers can submit larger
+      batches. The implementation expects ingest-edge to keep the prefix that fits,
+      report accepted_points and rejected_points in a 413 response, and lets the caller
+      retry the rejected suffix.
+    diff_summary: Deletes the MAX_POINTS_PER_BATCH preflight error from batch validation;
+      sends the full batch over the network; adds parsing for accepted_points and
+      rejected_points on HTTP 413; updates caller documentation to say that ingest-edge
+      accepts the first 8,000 points and rejects only the remainder.
+mock_state_base:
+  path: state.json
+  sha256: b2e9b6b9e0f48ec23e9ae5ec4d803c050db6c6914dfc1d47ccdf545b3c77b68a

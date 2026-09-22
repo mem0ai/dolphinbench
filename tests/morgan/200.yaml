@@ -1,0 +1,33 @@
+id: '200'
+narrative_anchor_date: '2026-09-14'
+test: Create an archive note on Leo's approved involvement in the January 2025 Compass
+  v0.1 work and when its scope had to return to me for review.
+load_bearing_facts:
+- 211
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      path: result.ok
+      value: true
+      check_id: morgan_200_00
+      action_id: morgan_200_create_doc
+    - type: field_llm_judge
+      path: result.document.body
+      criterion: Limits Leo to a lightweight platform/data review sufficient to test
+        renewal/admin-friction evidence and post-sync expansion prompts, while Mercury
+        activation remains the priority. Returns a dashboard/platform build proposal
+        to Morgan rather than treating it as approved execution ownership.
+      tool: create_doc
+      check_id: morgan_200_01
+      action_id: morgan_200_create_doc
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

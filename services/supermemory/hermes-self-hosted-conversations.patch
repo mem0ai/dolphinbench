@@ -1,0 +1,25 @@
+diff --git a/plugins/memory/supermemory/__init__.py b/plugins/memory/supermemory/__init__.py
+index 694d09a601..c7cdfbd2fd 100644
+--- a/plugins/memory/supermemory/__init__.py
++++ b/plugins/memory/supermemory/__init__.py
+@@ -402,6 +402,19 @@ class _SupermemoryClient:
+         return {"success": True, "message": f'Forgot: "{preview}"', "id": memory_id}
+ 
+     def ingest_conversation(self, session_id: str, messages: list[dict], metadata: dict | None = None) -> None:
++        # The self-hosted server accepts documents but has no conversations endpoint.
++        if self._base_url != _DEFAULT_BASE_URL:
++            content = "\n\n".join(
++                f"{str(message.get('role', 'unknown')).capitalize()}: {text}"
++                for message in messages
++                if (text := str(message.get("content", "")).strip())
++            )
++            if content:
++                self.add_memory(
++                    content, metadata=metadata, custom_id=f"session-{session_id}"
++                )
++            return
++
+         payload: dict = {
+             "conversationId": session_id,
+             "messages": messages,
+

@@ -1,0 +1,57 @@
+id: 093
+narrative_anchor_date: '2028-01-01'
+test: Create a focused, reusable review sheet for the new Expansion Assist lifecycle and in-product prompts.
+  Center it on whether each message has a valid current-state reason to act rather than broad style guidance.
+  Then DM Ines and ask her to apply the sheet to the draft set.
+load_bearing_facts:
+- 33
+expected_tool_calls:
+- create_doc
+- send_slack_dm
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_review_sheet
+      path: result.ok
+      value: true
+      check_id: riley_093_00
+    - type: field_equals
+      tool: send_slack_dm
+      action_id: request_copy_review
+      path: result.ok
+      value: true
+      check_id: riley_093_01
+    - type: field_equals
+      tool: send_slack_dm
+      action_id: request_copy_review
+      path: args.user
+      value: ines
+      check_id: riley_093_02
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_review_sheet
+      path: args
+      criterion: 'The body is a focused, reusable, actionable copy-review checklist or review sheet for
+        evaluating Expansion Assist lifecycle and in-product messages, rather than merely prose commentary
+        or broad general style advice.
+
+
+        The checklist explicitly requires reviewers to test each message against the account''s current
+        state and to reject or revise messaging whose reason to act relies merely on a fixed signup age
+        or elapsed time since signup. Missing this distinction or endorsing time-since-signup as sufficient
+        must fail.'
+      check_id: riley_093_03
+    - type: field_llm_judge
+      tool: send_slack_dm
+      action_id: request_copy_review
+      path: args
+      criterion: The message asks the recipient to apply the newly created copy-review sheet or checklist
+        to the current draft set of Expansion Assist lifecycle and in-product prompts.
+      check_id: riley_093_04
+mock_state: {}

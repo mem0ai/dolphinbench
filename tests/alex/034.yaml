@@ -1,0 +1,193 @@
+id: '034'
+narrative_anchor_date: '2028-01-01'
+test: Inspect lantern#1688 and review its handling of stale, missing, and widely separated
+  sources in combined customer explanations.
+load_bearing_facts:
+- 150
+expected_tool_calls:
+- get_pr
+- review_pr
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    assertions:
+    - type: field_equals
+      tool: review_pr
+      action_id: alex_034_review_pr
+      path: result.ok
+      value: true
+      check_id: alex_034_00
+    - type: field_equals
+      tool: get_pr
+      action_id: alex_034_read_pr
+      path: result.pr.id
+      value: lantern#1688
+      check_id: alex_034_01
+    - type: field_equals
+      path: result.review.pr_id
+      value: lantern#1688
+      tool: review_pr
+      action_id: alex_034_review_pr
+      check_id: alex_034_02
+    - type: field_equals
+      path: result.review.decision
+      value: request_changes
+      tool: review_pr
+      action_id: alex_034_review_pr
+      check_id: alex_034_03
+    - type: field_llm_judge
+      path: result.review.body
+      criterion: The review requires stale or missing inputs to render as explicit
+        unknown without a combined explanation. Valid sources more than 24 hours apart
+        must be displayed separately with their source times and must not be described
+        as contemporaneous or causally connected.
+      tool: review_pr
+      action_id: alex_034_review_pr
+      check_id: alex_034_04
+mock_state:
+  prs:
+  - id: metrics-router#412
+    title: 'metrics-router: tidy config-loader, prep for OTel cutover finish'
+    author: alex
+    repo: metrics-router
+    branch: alex/cfg-loader-tidy
+    status: merged
+    reviewers:
+    - nadia
+    assignees:
+    - alex
+    opened_at: '2023-06-30T14:02:00-04:00'
+    age_days: 3
+    merged_at: '2023-07-11T09:25:00-04:00'
+  - id: shard-keeper#188
+    title: 'shard-keeper: rollback path hardening (lessons from Apr 18)'
+    author: alex
+    repo: shard-keeper
+    branch: alex/rollback-hardening
+    status: merged
+    reviewers:
+    - nadia
+    - cyrus
+    assignees:
+    - alex
+    opened_at: '2023-06-28T11:30:00-04:00'
+    age_days: 5
+    merged_at: '2023-08-08T10:15:00-04:00'
+  - id: ingest-edge#221
+    title: 'ingest-edge: bump OTel collector to 0.91'
+    author: wes
+    repo: ingest-edge
+    branch: wes/otel-091
+    status: merged
+    reviewers:
+    - alex
+    assignees:
+    - wes
+    opened_at: '2023-07-01T09:14:00-04:00'
+    age_days: 2
+    merged_at: '2023-08-03T13:20:00-04:00'
+  - id: metrics-router#414
+    title: 'metrics-router: add label-name parity check on push'
+    author: nadia
+    repo: metrics-router
+    branch: nadia/label-parity-check
+    status: merged
+    reviewers:
+    - alex
+    assignees:
+    - nadia
+    opened_at: '2023-06-29T16:48:00-04:00'
+    age_days: 4
+    merged_at: '2023-07-26T13:05:00-04:00'
+  - id: lantern#3
+    title: 'lantern: v0 architecture doc — circulating for comment'
+    author: alex
+    repo: lantern
+    branch: alex/v0-arch
+    status: merged
+    reviewers:
+    - iris
+    - hema
+    - theo
+    assignees:
+    - alex
+    opened_at: '2023-07-03T10:00:00-04:00'
+    age_days: 0
+    merged_at: '2023-07-24T12:15:00-04:00'
+  - id: shard-keeper#190
+    title: 'shard-keeper: small cutover-readiness fix'
+    author: cyrus
+    repo: shard-keeper
+    branch: cyrus/cutover-fix
+    status: merged
+    reviewers:
+    - alex
+    assignees:
+    - cyrus
+    opened_at: '2023-06-26T13:00:00-04:00'
+    age_days: 7
+    merged_at: '2023-09-21T09:18:00-04:00'
+  - id: lantern#1688
+    title: 'lantern: assemble customer explanations from available service signals'
+    author: product-engineering
+    repo: lantern
+    branch: product/explanation-fragment-assembly
+    status: open
+    reviewers:
+    - alex
+    assignees:
+    - product-engineering
+    opened_at: '2027-12-20T10:15:00-05:00'
+    description: Refactors the customer-preview explanation builder so independently
+      usable deploy, ownership, and incident-load fragments can be composed without
+      waiting for every adapter result.
+    change_summary:
+    - Lookup grouping remains keyed by tenant_id and published_service_id.
+    - Each contributing adapter result must independently pass its existing freshness
+      check and include provenance_source and source_timestamp.
+    - When all three fragments pass those checks, buildExplanation emits one combined
+      paragraph without comparing source timestamps across signal families.
+    - When a family is stale or missing, its fragment is omitted; the remaining fragments
+      are still composed into a partial explanation with a short availability clause.
+    fixtures:
+    - name: all_sources_fresh
+      tenant_id: harbor-health
+      published_service_id: claims-ingest
+      signals:
+        deploy:
+          freshness: pass
+          provenance_source: deploy-log-hh
+          source_timestamp: '2027-12-18T08:00:00Z'
+        ownership:
+          freshness: pass
+          provenance_source: owner-map-hh
+          source_timestamp: '2027-12-19T10:30:00Z'
+        incident_load:
+          freshness: pass
+          provenance_source: incident-summary-hh
+          source_timestamp: '2027-12-19T12:15:00Z'
+      rendered_output: A recent deploy movement coincided with elevated incident load
+        under the published Claims Ingest ownership.
+    - name: ownership_stale
+      tenant_id: mosaic-commerce
+      published_service_id: catalog-sync
+      signals:
+        deploy:
+          freshness: pass
+          provenance_source: deploy-log-mc
+          source_timestamp: '2027-12-20T09:00:00Z'
+        ownership:
+          freshness: stale
+          provenance_source: owner-map-mc
+          source_timestamp: '2027-12-15T09:00:00Z'
+        incident_load:
+          freshness: pass
+          provenance_source: incident-summary-mc
+          source_timestamp: '2027-12-20T09:30:00Z'
+      rendered_output: Deploy movement and elevated incident load describe the current
+        service picture; ownership details are delayed.
+mock_state_base:
+  path: state.json
+  sha256: b2e9b6b9e0f48ec23e9ae5ec4d803c050db6c6914dfc1d47ccdf545b3c77b68a

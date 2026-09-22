@@ -1,0 +1,9 @@
+version: 1
+persona: riley
+checkpoint: construction/v2/riley/release/500k_final
+evaluation_date: '2028-01-01'
+planner_model: gpt-5.6-sol
+designer_model: gpt-5.6-sol
+query_model: gpt-5.4
+persona_state: authoring/persona_states/riley.json
+rejected_fact_ids: []

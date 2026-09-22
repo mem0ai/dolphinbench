@@ -1,0 +1,59 @@
+id: '152'
+narrative_anchor_date: '2028-01-01'
+test: Create a short evidence note for Priya using Owen's first completed packet under delegated routine
+  source closure. Include the completion date, delegation date, the conditions Owen satisfied, and the
+  name of the exception owner who received the summary without taking over line-by-line review. Use the
+  user's name established in the earlier self-review message instead of a role label. Keep the conclusion
+  limited to routine closure, then email Priya the link.
+load_bearing_facts:
+- 225
+- 229
+expected_tool_calls:
+- create_doc
+- send_email
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: send_email
+      action_id: email_priya_note
+      path: result.ok
+      value: true
+      check_id: riley_152_00
+    - type: field_equals
+      tool: create_doc
+      action_id: owen_evidence_note
+      path: result.ok
+      value: true
+      check_id: riley_152_01
+    - type: field_equals
+      tool: send_email
+      action_id: email_priya_note
+      path: args.to
+      value: priya@helio.example
+      check_id: riley_152_02
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: owen_evidence_note
+      path: args
+      criterion: The note concerns Owen's first completed packet under delegated routine source closure.
+        It gives the November 6, 2026 completion date and September 24, 2026 delegation date. It says
+        Owen independently reconciled the sources, confirmed every required field was present, confirmed
+        established definitions were unchanged, confirmed every named owner certified their section, and
+        found no cross-surface discrepancy. It names Riley as the person who received Owen's summary without
+        performing a line-by-line source review. It limits the conclusion to routine source closure and
+        does not transfer causal, revenue, forecast, board-readiness, or executive-language authority
+        to Owen.
+      check_id: riley_152_03
+    - type: field_llm_judge
+      tool: send_email
+      action_id: email_priya_note
+      path: args
+      criterion: The email contains a usable link to the newly created evidence note and identifies it
+        as evidence about Owen's routine source closure.
+      check_id: riley_152_04
+mock_state: {}

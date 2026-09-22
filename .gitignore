@@ -1,0 +1,59 @@
+# Runtime artifacts and private profiles are not release inputs.
+artifacts/
+runs/
+profiles/
+results/*
+# ...except chart PNGs we ship for README / reports.
+!results/README.md
+!results/hermes/
+!results/hermes/**
+!results/claude-code/
+!results/claude-code/**
+!results/charts/
+!results/charts/**
+logs/
+trace_viewer/
+debug_viewer/bundle.json
+tmp/
+
+# Runtime mock MCP state
+mock_mcp/calls.jsonl
+mock_mcp/calls.startup.log
+mock_mcp/state.json
+pricing/anomalies.log
+pricing/[0-9][0-9][0-9][0-9]-*.json
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# Backups
+*.bak
+simulation/life_sim.yaml.pre-gen-backup
+simulation/life_sim.yaml.new
+
+# Environment
+.env
+.env.local
+.env.*
+!.env.example
+
+# IDE / OS
+.DS_Store
+.vscode/
+.idea/
+.generator_cache/
+construction/staging/*/cache/
+construction/samples/*/cache/
+construction/v2/*/work/
+
+# Retired standalone visualizer output.
+viz/
+registry/personas/*/*.bak.yaml
+.vercel

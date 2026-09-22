@@ -1,0 +1,45 @@
+id: '043'
+narrative_anchor_date: '2026-09-14'
+test: Replace slide 8 of Q3_2026_Operating_Evidence_Working with my conclusion from
+  the July-August close for the September operating review.
+load_bearing_facts:
+- 330
+expected_tool_calls:
+- update_deck_slide
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: update_deck_slide
+      path: result.ok
+      value: true
+      check_id: morgan_043_00
+      action_id: morgan_043_update_deck_slide
+    - type: field_equals
+      path: result.deck
+      value: Q3_2026_Operating_Evidence_Working
+      tool: update_deck_slide
+      check_id: morgan_043_01
+      action_id: morgan_043_update_deck_slide
+    - type: field_eq_number
+      path: result.slide.number
+      value: 8
+      tool: update_deck_slide
+      check_id: morgan_043_02
+      action_id: morgan_043_update_deck_slide
+    - type: field_llm_judge
+      path: result.slide.content
+      criterion: Treats July and August together as stronger operating-durability
+        evidence, not a trigger for fundraising or reopening hiring. Preserves that
+        positive durability conclusion without turning it into financing readiness
+        or a staffing authorization. Repeating all account and vendor figures is unnecessary.
+      tool: update_deck_slide
+      check_id: morgan_043_03
+      action_id: morgan_043_update_deck_slide
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

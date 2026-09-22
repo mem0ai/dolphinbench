@@ -1,0 +1,77 @@
+id: '137'
+narrative_anchor_date: '2028-01-01'
+test: Please create a durable maintenance entry for the Cherrywood workroom smoke detector using the completed
+  service history, including the unit serviced, replacement and test results, service-record status, and
+  the related fault findings. Then check my calendar for July 9, 2028. If 9:00 a.m. Central is clear,
+  add a 15-minute routine anniversary inspection reminder for the workroom detector. Keep the reminder
+  routine and do not imply there is a current unresolved defect.
+load_bearing_facts:
+- 262
+- 261
+expected_tool_calls:
+- create_doc
+- list_calendar_events
+- create_calendar_event
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_maintenance_record
+      path: result.ok
+      value: true
+      check_id: riley_137_00
+    - type: field_equals
+      tool: create_calendar_event
+      action_id: create_anniversary_reminder
+      path: result.ok
+      value: true
+      check_id: riley_137_01
+    - check_id: riley_137_02
+      type: field_equals
+      tool: list_calendar_events
+      action_id: check_anniversary_availability
+      path: args.date
+      value: '2028-07-09'
+    - check_id: riley_137_03
+      type: datetime_absolute_eq
+      tool: create_calendar_event
+      action_id: create_anniversary_reminder
+      path: args.start
+      value: '2028-07-09T09:00:00-05:00'
+    - check_id: riley_137_04
+      type: datetime_absolute_eq
+      tool: create_calendar_event
+      action_id: create_anniversary_reminder
+      path: args.end
+      value: '2028-07-09T09:15:00-05:00'
+    - type: field_equals
+      tool: list_calendar_events
+      action_id: check_anniversary_availability
+      path: args.timezone
+      value: America/Chicago
+      check_id: riley_137_05
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_maintenance_record
+      path: args
+      criterion: The document body must state that the Cherrywood workroom smoke detector was replaced
+        on July 9, 2027; the installed unit successfully passed both alarm and power tests; a dated service
+        record identifying the workroom unit as replaced was issued; and no wiring, ceiling, moisture,
+        or adjacent-equipment fault was found. Missing or contradictory service status, test results,
+        or fault findings must fail.
+      check_id: riley_137_06
+    - type: field_llm_judge
+      tool: create_calendar_event
+      action_id: create_anniversary_reminder
+      path: args
+      criterion: Across the event title and body, with either content field acceptable, the event must
+        clearly be a routine anniversary inspection reminder for the Cherrywood workroom smoke detector
+        and must not claim or imply that the detector currently has an unresolved defect.
+      check_id: riley_137_07
+mock_state:
+  calendar: []

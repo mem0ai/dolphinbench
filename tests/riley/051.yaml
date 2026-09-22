@@ -1,0 +1,40 @@
+id: '051'
+narrative_anchor_date: '2028-01-01'
+test: I'm cleaning up the Q2 planning archive. Create a concise activation-target note dated April 5,
+  2023 that clearly separates the target that remained active for Q2 from the higher small-business-tier
+  planning target and the condition that would have triggered it. Make it explicit which number should
+  remain on the Q2 deck, and do not present the future scenario as an already-approved current target.
+load_bearing_facts:
+- 356
+- 357
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_activation_target_note
+      path: result.ok
+      value: true
+      check_id: riley_051_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_activation_target_note
+      path: args
+      criterion: 'Across the title or body, the note is clearly dated April 5, 2023.
+
+
+        The document clearly states that the Q2 activation target remained unchanged at 60% and that 60%
+        is the number that should remain on the Q2 deck.
+
+
+        The document clearly states that 65% was only a conditional small-business-tier planning target,
+        applicable if the sub-50-seat tier actually shipped in Q3, and distinguishes it from the current
+        Q2 target rather than presenting it as already approved or active.'
+      check_id: riley_051_01
+mock_state: {}

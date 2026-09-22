@@ -1,0 +1,44 @@
+id: 088
+narrative_anchor_date: '2026-09-14'
+test: Email support@scaffold.dev a customer-safe description of what the February
+  14, 2024 Mercury timeout-recovery deploy changed, distinguishing the UI fixes from
+  underlying system changes.
+load_bearing_facts:
+- 176
+- 177
+- 175
+expected_tool_calls:
+- send_email
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: send_email
+      path: result.ok
+      value: true
+      check_id: morgan_088_00
+      action_id: morgan_088_send_email
+    - type: field_equals
+      path: result.to
+      value: support@scaffold.dev
+      tool: send_email
+      check_id: morgan_088_01
+      action_id: morgan_088_send_email
+    - type: field_llm_judge
+      path: result.body
+      criterion: Describes retry status refreshing after timeout recovery without
+        a page reload and stale timeout messaging clearing after successful retry
+        in the same session. Keeps these scoped UI fixes separate from sync-engine,
+        retry-policy, auth/admin-role or enterprise-readiness changes. Internal ticket
+        IDs are optional in customer-safe wording; if given, MER-1749 is status refresh
+        and MER-1823 is clearing stale messaging.
+      tool: send_email
+      check_id: morgan_088_02
+      action_id: morgan_088_send_email
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

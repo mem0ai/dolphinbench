@@ -1,0 +1,933 @@
+version: 1
+persona: alex
+entities:
+- id: alex
+  name: Alex Valdez
+  kind: person
+  aliases:
+  - Alex
+  introduced_in: alex_000001
+  reason: Central user/person for the supplied Alex sessions and protected facts; pronoun aliases were
+    removed.
+- id: devika
+  name: Devika
+  kind: person
+  aliases: []
+  introduced_in: alex_000002
+  reason: Recurring partner in home, schedule, and support threads.
+- id: anya
+  name: Anya
+  kind: person
+  aliases: []
+  introduced_in: alex_000011
+  reason: Recurring younger-sister relationship and layoff/support thread.
+- id: hema
+  name: Hema
+  kind: person
+  aliases: []
+  introduced_in: alex_000003
+  reason: Recurring management contact for migration, incidents, 1:1s, and Lantern.
+- id: nadia
+  name: Nadia
+  kind: person
+  aliases: []
+  introduced_in: alex_000006
+  reason: Recurring engineering collaborator on label parity, PR review, alerting, and outage follow-up.
+- id: cyrus
+  name: Cyrus Ahmadi
+  kind: person
+  aliases:
+  - Cyrus
+  introduced_in: alex_000008
+  reason: Recurring peer/back-channel friend and data-platform collaborator.
+- id: kibo
+  name: Kibo
+  kind: pet
+  aliases: []
+  introduced_in: alex_000018
+  reason: Recurring dog/pet in home and walk scenes.
+- id: ren
+  name: Ren
+  kind: person
+  aliases: []
+  introduced_in: alex_000017
+  reason: Recurring bouldering partner tied to the V5 thread.
+- id: diego
+  name: Diego
+  kind: person
+  aliases: []
+  introduced_in: alex_000050
+  reason: Recurring pickup-soccer organizer/check-in person.
+- id: yuki
+  name: Yuki
+  kind: person
+  aliases: []
+  introduced_in: alex_000059
+  reason: Recurring backup owner in service/runbook ownership threads.
+- id: sam
+  name: Sam
+  kind: person
+  aliases: []
+  introduced_in: alex_000067
+  reason: Infra on-call rotation member before Wes replaced him.
+- id: wes
+  name: Wes Tanaka
+  kind: person
+  aliases:
+  - Wes
+  - the kid
+  introduced_in: alex_000147
+  reason: Recurring newer engineer/on-call onboarding and growth thread.
+- id: theo
+  name: Theo
+  kind: person
+  aliases: []
+  introduced_in: alex_000134
+  reason: Recurring CTO/management-chain figure and Lantern sponsor.
+- id: iris
+  name: Iris Kemper
+  kind: person
+  aliases:
+  - Iris
+  introduced_in: alex_000188
+  reason: Recurring Product Engineering counterpart and Lantern UI co-lead.
+- id: roman
+  name: Roman
+  kind: person
+  aliases: []
+  introduced_in: alex_000211
+  reason: Rollup-service owner in the shard-keeper restart/parity-sync thread.
+- id: alex_anya_mom
+  name: Alex and Anya's mom
+  kind: person
+  aliases:
+  - mom
+  introduced_in: alex_000081
+  reason: Recurring family reference through Anya's messages.
+- id: sphere
+  name: Sphere
+  kind: organization
+  aliases: []
+  introduced_in: alex_000135
+  reason: Recurring workplace organization for the infra, incident, audit, and Lantern threads.
+- id: anya_agency
+  name: Anya's agency
+  kind: organization
+  aliases:
+  - the agency
+  - creative agency
+  introduced_in: alex_000032
+  reason: Recurring organization in Anya's design-job and layoff thread.
+- id: devika_hospital
+  name: Devika's Manhattan hospital
+  kind: organization
+  aliases:
+  - the hospital
+  introduced_in: alex_000014
+  reason: Recurring workplace context for Devika's resident schedule.
+- id: infra_team
+  name: Infra team
+  kind: team
+  aliases:
+  - infra
+  - infra/platform team
+  introduced_in: alex_000004
+  reason: Recurring team context for syncs, on-call, audits, deploy rules, and incidents.
+- id: data_platform_team
+  name: Data platform team
+  kind: team
+  aliases:
+  - Cyrus's team
+  - Cyrus team
+  - Cyrus's data platform team
+  - Cyrus's side
+  introduced_in: alex_000053
+  reason: Recurring adjacent team for Cyrus, Roman, throughput, and rollup-service ownership.
+- id: product_engineering
+  name: Product Engineering
+  kind: team
+  aliases:
+  - product eng
+  introduced_in: alex_000188
+  reason: Recurring team context for Iris and Lantern UI work.
+- id: infra_on_call_rotation
+  name: Infra on-call rotation
+  kind: team
+  aliases:
+  - on-call rotation
+  - rotation
+  introduced_in: alex_000067
+  reason: Recurring roster/process entity for Alex, Wes, and incident escalation.
+- id: metrics_pipeline
+  name: Metrics pipeline
+  kind: service
+  aliases:
+  - internal metrics pipeline
+  introduced_in: alex_000003
+  reason: Recurring system grouping Alex's owned services and migration work.
+- id: metrics_pipeline_migration
+  name: Metrics pipeline migration
+  kind: project
+  aliases:
+  - migration
+  introduced_in: alex_000002
+  reason: Load-bearing recurring project spanning router, edge, shard-keeper, audit pause, and restart.
+- id: metrics_router
+  name: metrics-router
+  kind: service
+  aliases:
+  - router
+  introduced_in: alex_000003
+  reason: Recurring owned Go service in migration, cutover, canary, and Wes onboarding threads.
+- id: ingest_edge
+  name: ingest-edge
+  kind: service
+  aliases:
+  - edge
+  introduced_in: alex_000003
+  reason: Recurring owned service with staging/prod cutover and runbook ownership threads.
+- id: shard_keeper
+  name: shard-keeper
+  kind: service
+  aliases:
+  - keeper
+  introduced_in: alex_000003
+  reason: Recurring owned Python service central to label-map, outage, audit, restart, and close-out threads.
+- id: legacy_aggregator
+  name: legacy-aggregator
+  kind: service
+  aliases:
+  - legacy aggregator
+  introduced_in: alex_000003
+  reason: Recurring legacy service being migrated away from.
+- id: rollup_service
+  name: rollup-service
+  kind: service
+  aliases:
+  - downstream rollup-service consumer
+  introduced_in: alex_000095
+  reason: Recurring downstream consumer and ownership-disambiguation service.
+- id: metric_rollup
+  name: metric-rollup
+  kind: service
+  aliases:
+  - old metric-rollup
+  introduced_in: alex_000145
+  reason: Recurring deprecated service that must stay distinct from rollup-service.
+- id: alerting_dashboards
+  name: Alerting/dashboards
+  kind: service
+  aliases:
+  - dashboards
+  - alert defs
+  - alerting
+  introduced_in: alex_000007
+  reason: Recurring ownership and label-parity surface touched by Nadia.
+- id: otel_collector
+  name: OTel collector
+  kind: tool
+  aliases:
+  - OTel
+  introduced_in: alex_000028
+  reason: Recurring migration target and metrics-router batch-window tuning component.
+- id: prometheus
+  name: Prometheus
+  kind: tool
+  aliases: []
+  introduced_in: alex_000028
+  reason: Recurring observability stack component in migration checks.
+- id: deploy_pipeline
+  name: Deploy pipeline
+  kind: tool
+  aliases:
+  - the pipeline
+  introduced_in: alex_000175
+  reason: Recurring approved deploy path contrasted with laptop deploys.
+- id: canary_system
+  name: Canary system
+  kind: tool
+  aliases:
+  - canary
+  - canary alert
+  introduced_in: alex_000076
+  reason: Recurring deploy-safety and alerting mechanism in cutover and Wes onboarding threads.
+- id: figma
+  name: Figma
+  kind: tool
+  aliases: []
+  introduced_in: alex_000011
+  reason: Recurring design/UI tool referenced through Anya and Iris/Lantern.
+- id: go
+  name: Go
+  kind: tool
+  aliases: []
+  introduced_in: alex_000019
+  reason: Implementation language for metrics-router conventions protected by the Go-code style fact.
+- id: python
+  name: Python
+  kind: tool
+  aliases: []
+  introduced_in: alex_000008
+  reason: Implementation-language identifier for shard-keeper.
+- id: slack
+  name: Slack
+  kind: tool
+  aliases: []
+  introduced_in: alex_000008
+  reason: Recurring workplace messaging context for DMs and back-channel communication; first identified
+    in the Mar 7 Slack DM with Cyrus.
+- id: park_slope
+  name: Park Slope
+  kind: place
+  aliases: []
+  introduced_in: alex_000001
+  reason: Recurring neighborhood context for home and coffee routines.
+- id: seventh_avenue
+  name: 7th Avenue
+  kind: place
+  aliases:
+  - 7th
+  - 7th Ave
+  - 7th-Ave
+  introduced_in: alex_000001
+  reason: Recurring block/location anchor for cafe and bagel routines.
+- id: seventh_ave_cafe
+  name: 7th Avenue cortado cafe
+  kind: place
+  aliases:
+  - the 7th Avenue spot
+  - same cafe
+  - cortado place
+  - Sunday cafe
+  introduced_in: alex_000001
+  reason: Recurring cafe location for the Sunday cortado/crossword routine.
+- id: seventh_ave_bagel_place
+  name: 7th Avenue bagel place
+  kind: place
+  aliases:
+  - bagel place
+  - 7th bagel place
+  introduced_in: alex_000001
+  reason: Recurring bagel/coffee location and geographic reference point.
+- id: alex_devika_apartment
+  name: Alex and Devika's apartment
+  kind: place
+  aliases:
+  - home
+  - the apartment
+  introduced_in: alex_000002
+  reason: Recurring domestic setting with Devika, Kibo, meals, and night-block rhythm.
+- id: bouldering_gym
+  name: Bouldering gym
+  kind: place
+  aliases:
+  - the gym
+  introduced_in: alex_000017
+  reason: Recurring location for Ren, bouldering, and the V5 thread.
+- id: prospect_park
+  name: Prospect Park
+  kind: place
+  aliases: []
+  introduced_in: alex_000073
+  reason: Recurring running and walking place.
+- id: brooklyn_diner
+  name: Anya's Brooklyn diner
+  kind: place
+  aliases:
+  - Brooklyn diner
+  - the diner
+  - that diner place
+  introduced_in: alex_000032
+  reason: Recurring Anya brunch/design-job settling-in location.
+- id: lunch_truck_corner
+  name: Lunch truck on the corner
+  kind: place
+  aliases:
+  - lunch truck
+  introduced_in: alex_000045
+  reason: Recurring casual lunch location.
+- id: sphere_office
+  name: Sphere office
+  kind: place
+  aliases:
+  - office
+  - near Sphere
+  introduced_in: alex_000142
+  reason: Recurring workplace location for meetings and workdays.
+- id: sunday_cortado_crossword
+  name: Sunday cortado/crossword routine
+  kind: routine
+  aliases:
+  - cortado thing
+  - Sunday thing
+  - same Sunday setup
+  introduced_in: alex_000001
+  reason: Recurring personal Sunday cafe-and-crossword routine protected by existing facts.
+- id: evening_wrap_status_note
+  name: Evening-wrap status note routine
+  kind: routine
+  aliases:
+  - EOD note
+  - evening wrap
+  - short status note
+  introduced_in: alex_000002
+  reason: Recurring personal status-note format protected by existing facts.
+- id: devika_night_shift_blocks
+  name: Devika night-shift blocks
+  kind: routine
+  aliases:
+  - night blocks
+  - night-shift block
+  - night-shift week blocks
+  introduced_in: alex_000014
+  reason: Recurring home/schedule rhythm for Devika and Alex.
+- id: bouldering_with_ren
+  name: Bouldering with Ren
+  kind: routine
+  aliases:
+  - Tuesday/Thursday bouldering
+  introduced_in: alex_000017
+  reason: Recurring climbing routine and V5 context.
+- id: sunday_pickup_soccer
+  name: Diego's pickup soccer group
+  kind: routine
+  aliases:
+  - Sunday pickup soccer
+  - Diego's run
+  introduced_in: alex_000050
+  reason: Recurring soccer/social routine.
+- id: hema_1on1
+  name: Hema 1:1
+  kind: routine
+  aliases:
+  - Hema one-on-one
+  - manager 1:1
+  introduced_in: alex_000066
+  reason: Recurring manager-style meeting used for migration, outage, Wes, and Lantern updates.
+- id: prospect_park_runs
+  name: Prospect Park runs
+  kind: routine
+  aliases:
+  - morning run
+  - Prospect Park loop
+  introduced_in: alex_000073
+  reason: Recurring recovery/fitness routine.
+- id: anya_brunch_checkins
+  name: Anya brunch check-ins
+  kind: routine
+  aliases:
+  - brunch with Anya
+  - Anya brunch
+  introduced_in: alex_000016
+  reason: Recurring sibling check-in routine.
+- id: nadia_cross_reviews
+  name: Nadia cross-reviews
+  kind: routine
+  aliases:
+  - cross-review with Nadia
+  - Nadia PR reviews
+  introduced_in: alex_000135
+  reason: Recurring post-outage review pattern with Nadia, first announced as part of the Apr 28 review
+    follow-up.
+- id: team_cutover_update_routine
+  name: Team-channel cutover update routine
+  kind: routine
+  aliases:
+  - team-channel cutover note
+  - team status update
+  introduced_in: alex_000040
+  reason: Recurring audience-specific update pattern protected by existing facts.
+- id: secondary_45_min_rule
+  name: 45-minute secondary escalation rule
+  kind: routine
+  aliases:
+  - page-secondary-within-45-minutes rule
+  - 45-min rule
+  introduced_in: alex_000135
+  reason: Recurring post-incident escalation rule.
+- id: shard_keeper_pre_push_sync_rule
+  name: Shard-keeper pre-push sync rule
+  kind: routine
+  aliases:
+  - pre-push sync rule
+  introduced_in: alex_000184
+  reason: Recurring post-audit rule for shard-keeper config pushes.
+- id: hema_prep_notes
+  name: Hema 1:1 prep notes
+  kind: document
+  aliases:
+  - Hema 1:1 agenda
+  - short bullet-point notes
+  introduced_in: alex_000177
+  reason: Recurring concise prep-note format for Hema meetings.
+- id: metrics_router_cutover_doc
+  name: metrics-router cutover doc
+  kind: document
+  aliases:
+  - router cutover doc
+  introduced_in: alex_000005
+  reason: Recurring document containing the metrics-router rollout plan.
+- id: label_name_parity_doc
+  name: Label-name parity doc
+  kind: document
+  aliases:
+  - parity doc
+  introduced_in: alex_000030
+  reason: Recurring document for Nadia's label-name parity sign-off.
+- id: shard_keeper_touch_matrix
+  name: shard-keeper touch matrix
+  kind: document
+  aliases:
+  - migration touch-points doc
+  - touch matrix
+  introduced_in: alex_000031
+  reason: Recurring shard-keeper label-map migration planning document.
+- id: ingest_edge_runbook
+  name: ingest-edge runbook page
+  kind: document
+  aliases:
+  - ingest-edge runbook
+  introduced_in: alex_000044
+  reason: Recurring runbook page in ownership and audit work.
+- id: postmortem_doc
+  name: Apr 18 postmortem doc
+  kind: document
+  aliases:
+  - postmortem doc
+  - incident postmortem
+  introduced_in: alex_000112
+  reason: Recurring incident document after the Apr 18 outage.
+- id: technical_lessons_section
+  name: Technical-lessons section
+  kind: document
+  aliases:
+  - technical lessons doc
+  - postmortem followup
+  introduced_in: alex_000146
+  reason: Recurring follow-up document/section for Apr 18 outage lessons.
+- id: runbook_audit_one_pagers
+  name: Runbook-audit one-pagers
+  kind: document
+  aliases:
+  - service one-pagers
+  introduced_in: alex_000157
+  reason: Recurring audit document set for primary/backup ownership.
+- id: shard_keeper_runbook
+  name: shard-keeper runbook
+  kind: document
+  aliases: []
+  introduced_in: alex_000156
+  reason: Recurring runbook rewritten during the audit and restart prep.
+- id: rotation_runbook
+  name: Rotation runbook
+  kind: document
+  aliases:
+  - on-call rotation runbook
+  - rotation onboarding doc
+  introduced_in: alex_000164
+  reason: Recurring on-call onboarding document for Wes and post-outage rules.
+- id: owner_map
+  name: Owner map
+  kind: document
+  aliases:
+  - ownership map
+  introduced_in: alex_000183
+  reason: Recurring ownership record first identified in the May 22 planning session before being locked
+    in the audit results.
+- id: canary_safe_env_doc
+  name: Canary-safe environments doc
+  kind: document
+  aliases:
+  - canary-safe env doc
+  introduced_in: alex_000176
+  reason: Named missing document created by Wes's deploy-safety question.
+- id: lantern_arch_doc
+  name: Lantern v0 architecture doc
+  kind: document
+  aliases:
+  - Lantern architecture doc
+  - v0 architecture doc
+  introduced_in: alex_000264
+  reason: Recurring Lantern design document under review.
+- id: lantern_ui_sketch
+  name: Lantern v0 UI sketch
+  kind: document
+  aliases:
+  - v0 UI sketch
+  - Figma sketch
+  introduced_in: alex_000233
+  reason: Recurring UI-side design artifact from Iris.
+- id: team_channel
+  name: Team channel
+  kind: channel
+  aliases:
+  - team-channel
+  introduced_in: alex_000040
+  reason: Recurring channel for migration, cutover, and status updates.
+- id: cyrus_dm_thread
+  name: Cyrus DM thread
+  kind: channel
+  aliases:
+  - Cyrus DM
+  - Slack back-channel
+  introduced_in: alex_000008
+  reason: Recurring private back-channel between Alex and Cyrus.
+- id: infra_channel
+  name: '#infra'
+  kind: channel
+  aliases:
+  - infra channel
+  introduced_in: alex_000186
+  reason: Recurring team channel for service-name disambiguation and questions.
+- id: migration_kickoff
+  name: Mar 7 migration kickoff sync
+  kind: event
+  aliases:
+  - migration kickoff
+  introduced_in: alex_000004
+  reason: Stable migration kickoff event first planned before it happened, then used to fix migration
+    order and label-parity expectations.
+- id: q4_2021_prior_outage
+  name: Q4 2021 prior-job outage
+  kind: event
+  aliases:
+  - Q4 2021 outage
+  introduced_in: alex_000015
+  reason: Named background event tied to Alex's Friday deploy avoidance.
+- id: ingest_edge_staging_shadow
+  name: ingest-edge staging shadow run
+  kind: event
+  aliases:
+  - 48h shadow run
+  - staging shadow
+  introduced_in: alex_000021
+  reason: Stable ingest-edge validation milestone.
+- id: ingest_edge_prod_cutover
+  name: ingest-edge production cutover
+  kind: event
+  aliases:
+  - ingest-edge prod cutover
+  introduced_in: alex_000038
+  reason: Stable mid-March production cutover milestone.
+- id: metrics_router_apr3_canary
+  name: Apr 7 metrics-router canary event
+  kind: event
+  aliases:
+  - Apr 7 canary
+  - metrics-router canary catch
+  introduced_in: alex_000076
+  reason: Stable canary/rollback event in the metrics-router rollout.
+- id: apr14_outage
+  name: Apr 18 shard-keeper outage
+  kind: event
+  aliases:
+  - INC-2023-04-18-001
+  - Apr 18 outage
+  - shard-keeper incident
+  introduced_in: alex_000103
+  reason: Major recurring incident event across postmortem, rules, audit, and restart.
+- id: apr24_incident_review
+  name: Apr 28 incident review
+  kind: event
+  aliases:
+  - incident review meeting
+  introduced_in: alex_000125
+  reason: Stable review event that created the post-outage operating rules, first identified during prep
+    before the meeting happened.
+- id: runbook_ownership_audit
+  name: Runbook-ownership audit
+  kind: project
+  aliases:
+  - runbook audit
+  - ownership audit
+  introduced_in: alex_000135
+  reason: Recurring post-incident audit project culminating in locked owners.
+- id: may4_audit_kickoff
+  name: May 8 runbook-audit kickoff
+  kind: event
+  aliases:
+  - audit kickoff
+  introduced_in: alex_000144
+  reason: Stable kickoff event for the ownership audit, first mentioned when rooms were booked for the
+    May 8 kickoff.
+- id: may18_audit_results
+  name: May 22 audit results
+  kind: event
+  aliases:
+  - audit results meeting
+  introduced_in: alex_000144
+  reason: Stable event that locked service owners and follow-ups, first identified in the same-day planning
+    session.
+- id: may11_wes_handoff
+  name: May 15 Wes on-call handoff
+  kind: event
+  aliases:
+  - Wes rotation handoff
+  - Wes joins the rotation
+  introduced_in: alex_000147
+  reason: Stable onboarding/rotation-change event, first identified when Wes was described as joining
+    the rotation in two weeks.
+- id: shard_keeper_rollback_fix
+  name: shard-keeper rollback-path fix
+  kind: project
+  aliases:
+  - rollback follow-up ticket
+  - rollback-path ticket
+  introduced_in: alex_000185
+  reason: Recurring post-audit blocker/fix before shard-keeper restart.
+- id: jun1_pre_restart_sync
+  name: Jun 5 pre-restart sync
+  kind: event
+  aliases:
+  - pre-push sync
+  - pre-restart sync
+  introduced_in: alex_000203
+  reason: Stable sync before shard-keeper restart with label parity sign-off, first planned before it
+    happened.
+- id: jun2_shard_keeper_restart
+  name: Jun 6 shard-keeper migration restart
+  kind: event
+  aliases:
+  - shard-keeper restart
+  - restart day
+  introduced_in: alex_000203
+  reason: Stable resumed cutover event after the audit pause, first identified when Alex planned to lock
+    the June 6 restart date.
+- id: jun8_metrics_router_canary
+  name: Jun 12 metrics-router canary alert
+  kind: event
+  aliases:
+  - Jun 12 canary assist
+  - sev3 canary alert
+  introduced_in: alex_000226
+  reason: Stable Wes-handled canary event during shard-keeper cutover.
+- id: jun17_wes_first_solo
+  name: Wes's first solo on-call shift
+  kind: event
+  aliases:
+  - Jun 21 first solo
+  - first real solo overnight
+  introduced_in: alex_000248
+  reason: Stable Wes growth/on-call event.
+- id: anya_layoff_event
+  name: Anya's agency layoffs
+  kind: event
+  aliases:
+  - June layoffs
+  - Jun 26 cuts
+  - Q2 cuts
+  introduced_in: alex_000083
+  reason: Recurring Anya support thread around rumored, confirmed, then actual layoffs.
+- id: project_lantern
+  name: Project Lantern
+  kind: project
+  aliases:
+  - Lantern
+  - Lantern v0
+  introduced_in: alex_000202
+  reason: Recurring cross-team observability/UI project.
+- id: lantern_kickoff
+  name: Jun 16 Lantern kickoff
+  kind: event
+  aliases:
+  - Lantern kickoff
+  introduced_in: alex_000235
+  reason: Stable event establishing Lantern's initial project shape, first identified in the same-day
+    kickoff planning session.
+- id: metrics_router_cutover
+  name: metrics-router cutover
+  kind: project
+  aliases:
+  - router rollout
+  - metrics-router rollout
+  introduced_in: alex_000005
+  reason: Recurring phased rollout project within the migration.
+- id: shard_keeper_migration
+  name: shard-keeper migration
+  kind: project
+  aliases:
+  - shard-keeper cutover
+  introduced_in: alex_000007
+  reason: Recurring migration stream paused after the outage and resumed in June.
+- id: metrics_router_config_loader_cleanup
+  name: metrics-router config-loader cleanup
+  kind: project
+  aliases:
+  - config-loader cleanup
+  introduced_in: alex_000003
+  reason: Recurring early metrics-router cleanup work and PR/test context.
+- id: label_name_parity_work
+  name: Label-name parity work
+  kind: project
+  aliases:
+  - label-name change
+  - label rename
+  - label-name parity
+  introduced_in: alex_000007
+  reason: Recurring cross-service label compatibility thread central to cutover and outage history.
+- id: data_platform_regression
+  name: Data-platform throughput regression
+  kind: project
+  aliases:
+  - throughput regression
+  introduced_in: alex_000013
+  reason: Recurring Cyrus-driven technical thread ending in PR review.
+- id: label_map
+  name: label_map
+  kind: other
+  aliases:
+  - label map
+  introduced_in: alex_000031
+  reason: Recurring data-shape/read-surface concept in shard-keeper migration planning.
+- id: v5_boulder_problem
+  name: V5 boulder problem
+  kind: other
+  aliases:
+  - V5
+  - V5 project
+  introduced_in: alex_000017
+  reason: Recurring bouldering goal/motif with Ren.
+- id: alex_friday_prod_deploy_avoidance
+  name: Alex's Friday production-deploy avoidance
+  kind: routine
+  aliases:
+  - no prod deploys
+  - No Friday
+  - keep Friday off the calendar
+  introduced_in: alex_000015
+  reason: Alex's personal pre-Apr 28 deploy-timing practice must stay distinct from Sphere's later team-wide
+    policy.
+- id: sphere_no_friday_afternoon_prod_deploy_policy
+  name: Sphere no-Friday-afternoon production-deploy policy
+  kind: routine
+  aliases:
+  - no Friday-afternoon prod deploys
+  - no-Friday-afternoon-deploys
+  - no Friday-afternoon production deploys team-wide
+  introduced_in: alex_000135
+  reason: Team-wide post-incident deploy policy created at the Apr 28 incident review, distinct from Alex's
+    earlier personal practice.
+- id: large_drip_after_outage
+  name: large drip after the Apr 18 outage
+  kind: routine
+  aliases:
+  - large drip
+  introduced_in: alex_000110
+  reason: Temporary post-outage coffee routine, distinct from the recurring Sunday cortado/crossword routine
+    and ending when Alex returned to cortados.
+- id: nadia_alerting_label_map_pr
+  name: Nadia's alerting label-map PR
+  kind: document
+  aliases:
+  - alerting label-map PR
+  introduced_in: alex_000059
+  reason: Specific PR needing review, distinct from the label-name parity document and broader label-name
+    parity work.
+- id: pre_lantern_observability_sketch
+  name: pre-Lantern observability sketch
+  kind: document
+  aliases:
+  - pre-Lantern observability sketch
+  - observability sketch
+  - v0 architecture sketch from the whiteboard
+  - v0 architecture sketch
+  introduced_in: alex_000202
+  reason: Alex's early Lantern architecture/observability sketch, distinct from Iris's UI sketch and the
+    later Lantern v0 architecture doc.
+- id: devika_third_night_shift_block
+  name: Devika's third night-shift block
+  kind: event
+  aliases:
+  - third night-shift block
+  - third night-block
+  - third-block
+  introduced_in: alex_000229
+  reason: Specific 10-day night-shift block protected by the Jun 24 fact, distinct from Devika's general
+    recurring night-shift-block routine.
+- id: apr11_pre_shard_keeper_sync
+  name: Apr 15 pre-shard-keeper sync
+  kind: event
+  aliases:
+  - pre-shard-keeper sync
+  - pre shard-keeper sync
+  - pre-shard-keeper-touch sync
+  introduced_in: alex_000092
+  reason: Specific Nadia sync where label-name approval was discussed before the shard-keeper config push.
+- id: apr14_shard_keeper_config_push
+  name: Apr 18 shard-keeper config push
+  kind: event
+  aliases:
+  - Apr 18 prod push
+  - shard-keeper config push
+  - config push
+  introduced_in: alex_000096
+  reason: Specific scheduled and completed config-push event that initially looked green before the later
+    Apr 18 outage.
+- id: north_pier_studio
+  name: North Pier Studio
+  kind: organization
+  aliases: []
+  introduced_in: alex_000309
+  reason: A smaller design studio that enters Anya's job-search thread as a serious lead focused on product
+    design systems rather than agency pitch churn.
+- id: cardinality_guardrails
+  name: Cardinality Guardrails
+  kind: project
+  aliases: []
+  introduced_in: alex_000559
+  reason: A Sphere reliability and cost-control project Alex leads after the migration, turning label-cardinality,
+    alert-source, and cross-service parity lessons into durable metrics-pipeline controls.
+- id: lantern_customer_preview
+  name: Lantern customer preview
+  kind: product
+  aliases: []
+  introduced_in: extension_alex_2024_05_06_001
+  reason: A bounded customer-facing extension of Lantern that exposes provenance-backed service and operational
+    state without raw internal discussion or employee-performance inference.
+- id: south_slope_apartment
+  name: South Slope apartment
+  kind: place
+  aliases: []
+  introduced_in: extension_alex_2024_09_02_002
+  reason: The larger, dog-friendly Brooklyn apartment Alex and Devika select as their next home because
+    it provides a real second room and a workable hospital commute.
+- id: harbor_health_customer_account
+  name: Harbor Health customer account
+  kind: account
+  aliases: []
+  introduced_in: extension_alex_2025_02_12_001
+  reason: One of the two specifically identified customer accounts selected and authorized for the bounded
+    Lantern pilot.
+- id: mosaic_commerce_customer_account
+  name: Mosaic Commerce customer account
+  kind: account
+  aliases: []
+  introduced_in: extension_alex_2025_02_12_001
+  reason: One of the two specifically identified customer accounts selected and authorized for the bounded
+    Lantern pilot.
+- id: manhattan_city_clerk_office
+  name: Manhattan City Clerk Marriage Bureau
+  kind: place
+  aliases: []
+  introduced_in: extension_alex_2025_08_11_001
+  reason: The New York City office where Alex and Devika book their civil ceremony.
+- id: lantern_incident_load_provenance_schema_lilp_1
+  name: Lantern Incident-Load Provenance Schema LILP-1
+  kind: document
+  aliases: []
+  introduced_in: extension_alex_2026_04_01_001
+  reason: The named provenance schema required for the incident-load shared-registration migration; it
+    requires a tenant-scoped provenance source identifier.
+- id: lantern_preview_safety_check_lps_001
+  name: Lantern Preview Safety Check LPS-001
+  kind: other
+  aliases: []
+  introduced_in: extension_alex_2026_04_01_001
+  reason: The identified customer-preview safety check affected by the incident-load shared-registration
+    migration.
+- id: beacon_house_hotel
+  name: Beacon House Hotel
+  kind: place
+  aliases: []
+  introduced_in: extension_alex_2027_02_24_001
+  reason: The dog-friendly Beacon hotel Alex and Devika reserve for their April 23–25 trip with Kibo.

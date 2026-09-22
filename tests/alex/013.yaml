@@ -1,0 +1,53 @@
+id: '013'
+narrative_anchor_date: '2028-01-01'
+test: Find the inbox question about Wes's first Q1 2027 metrics-router control-and-evidence
+  inventory and tell the sender whether it is still open.
+load_bearing_facts:
+- 241
+- 248
+expected_tool_calls:
+- list_inbox
+- send_email
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    assertions:
+    - type: field_equals
+      tool: send_email
+      action_id: alex_013_send_email
+      path: result.ok
+      value: true
+      check_id: alex_013_00
+    - type: field_equals
+      tool: list_inbox
+      action_id: alex_013_read_email
+      path: result.0.id
+      value: msg-archival-wes-q1-status
+      check_id: alex_013_01
+    - type: field_equals
+      path: result.to
+      value: records-ops@example.com
+      tool: send_email
+      action_id: alex_013_send_email
+      check_id: alex_013_02
+    - type: field_llm_judge
+      path: result.body
+      criterion: The reply says Wes's first Q1 2027 metrics-router control-and-evidence
+        inventory was one of the deliverables Hema accepted as complete, so it is
+        not still open. It does not invent more work.
+      tool: send_email
+      action_id: alex_013_send_email
+      check_id: alex_013_03
+mock_state:
+  inbox:
+  - id: msg-archival-wes-q1-status
+    from: records-ops@example.com
+    subject: 'Archival checklist: is Wes''s first Q1 2027 metrics-router inventory
+      still open?'
+    date: '2027-12-31T16:20:00-05:00'
+    category: operations
+mock_state_base:
+  path: state.json
+  sha256: b2e9b6b9e0f48ec23e9ae5ec4d803c050db6c6914dfc1d47ccdf545b3c77b68a

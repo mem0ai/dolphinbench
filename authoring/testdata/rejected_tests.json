@@ -1,0 +1,13 @@
+{
+  "rejected_tests": [
+    {
+      "test_id": 121,
+      "candidate_plan": {
+        "task_description": "Send a current investor update."
+      },
+      "failure_reason": "The proposed request revealed the remembered answer.",
+      "candidate_plan_path": "/test-fixture/candidate_plan.json",
+      "failure_manifest_path": "/test-fixture/manifest.json"
+    }
+  ]
+}

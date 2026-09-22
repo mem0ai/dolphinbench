@@ -1,0 +1,39 @@
+id: '164'
+narrative_anchor_date: '2028-01-01'
+test: Create a short historical closeout note for the March 10 to April 8, 2025 Lantern
+  pilot, including its outcome counts, customer use, and unresolved request.
+load_bearing_facts:
+- 156
+- 157
+- 158
+- 159
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: alex_164_create_doc
+      path: result.ok
+      value: true
+      check_id: alex_164_00
+    - type: field_llm_judge
+      path: result.document.body
+      criterion: 'The note reports 326 customer sessions and 61 explanation requests:
+        39 eligible combined renders, 14 valid requests more than 24 hours apart kept
+        separate, and 8 stale or missing requests rendered explicit unknown, with
+        no eligible renderer failure or automatic-stop condition. It says Harbor Health
+        used published ownership for two release follow-ups, Mosaic Commerce requested
+        cost context outside the contract, and both accounts requested continuation.
+        It treats this as historical pilot evidence rather than current authorization.'
+      tool: create_doc
+      action_id: alex_164_create_doc
+      check_id: alex_164_01
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: b2e9b6b9e0f48ec23e9ae5ec4d803c050db6c6914dfc1d47ccdf545b3c77b68a

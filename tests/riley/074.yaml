@@ -1,0 +1,48 @@
+id: '074'
+narrative_anchor_date: '2028-01-01'
+test: Please send Owen a concise Slack DM about the handoff for my first quarterly evidence audit of 2028.
+  Ask him to alert me at the appropriate point and include the audit scope he should expect.
+load_bearing_facts:
+- 230
+expected_tool_calls:
+- send_slack_dm
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: send_slack_dm
+      action_id: dm_owen_2028_q1_audit_handoff
+      path: result.ok
+      value: true
+      check_id: riley_074_00
+    - type: field_equals
+      tool: send_slack_dm
+      action_id: dm_owen_2028_q1_audit_handoff
+      path: args.user
+      value: owen
+      check_id: riley_074_01
+    - type: field_llm_judge
+      tool: send_slack_dm
+      action_id: dm_owen_2028_q1_audit_handoff
+      path: args
+      criterion: 'The message asks Owen to alert Riley only after he has closed the relevant routine packet
+        for her first quarterly evidence audit of 2028. It is acceptable to call this a monthly or routine
+        packet and unnecessary to label the packet itself as quarterly or four-lane, provided the audit
+        handoff is clearly post-closure; a request to begin or notify before closure fails.
+
+
+        In the same post-closure audit context, the message states that Riley will select one lane and
+        independently recheck it. This passes without explicitly calling the packet four-lane. It fails
+        if every lane is to be audited, if Owen rather than Riley selects the lane, or if the recheck
+        is not independent.
+
+
+        The expected recheck scope names all of these categories: denominator or coverage dates (either
+        alternative is acceptable), outcome window, exclusions, reliability evidence, revenue treatment,
+        and forecast treatment. Missing or contradicting any category fails.'
+      check_id: riley_074_02
+mock_state: {}

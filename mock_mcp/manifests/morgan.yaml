@@ -1,0 +1,42 @@
+persona_id: morgan
+baseline_state: state/morgan_baseline.json
+tools:
+  - list_calendar_events
+  - create_calendar_event
+  - update_calendar_event
+  - list_inbox
+  - send_email
+  - archive_email
+  - delete_email
+  - send_sms
+  - add_crm_row
+  - get_stock_data
+  - send_discord_message
+  - send_slack_message
+  - send_slack_dm
+  - send_discord_dm
+  - process_payment
+  - flag_for_review
+  - place_order
+  - check_project_status
+  - search_venues
+  - book_flight
+  - batch_dedup
+  - embeddings_encode
+  - vector_search
+  - gh_pr_create
+  - metrics_fetch
+  - metrics_fetch_batch
+  - shell_run
+  - internal_search_v1_legacy
+  - internal_search_v2
+  - deploy_via_kubectl
+  - deploy_via_pipeline
+  - list_open_prs
+  - list_invoices
+  - update_deck_slide
+  - create_doc
+  - book_hotel
+  - post_pr_comment
+  - update_crm_row
+  - update_headcount_plan

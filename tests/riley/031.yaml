@@ -1,0 +1,34 @@
+id: '031'
+narrative_anchor_date: '2028-01-01'
+test: Please create a brief legal-administration closure note for my 2025 jury-service matter so an old
+  summons cannot be mistaken for an outstanding obligation; record the court’s final status and clearly
+  state whether any appearance, reminder, or follow-up remains due.
+load_bearing_facts:
+- 93
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_jury_closure_note
+      path: result.ok
+      value: true
+      check_id: riley_031_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_jury_closure_note
+      path: args
+      criterion: The body is a brief legal-administration closure note for Riley's jury-service matter.
+        It accurately records that the court's recorded status released Riley's summoned panel and directed
+        Riley not to appear on April 8, 2025, and it explicitly states that the matter is resolved with
+        no appearance, reminder, or follow-up action remaining due. Equivalent wording and first-person
+        phrasing are acceptable, but the note must not contain contradictory language treating the obligation
+        as pending or advising another court check.
+      check_id: riley_031_01
+mock_state: {}

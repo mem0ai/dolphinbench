@@ -1,0 +1,44 @@
+id: 093
+narrative_anchor_date: '2026-09-14'
+test: Post a review comment on scaffold/integrations#4120 correcting the current API
+  and authentication guidance pasted from an old integration guide.
+load_bearing_facts:
+- 58
+expected_tool_calls:
+- post_pr_comment
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: post_pr_comment
+      path: result.ok
+      value: true
+      check_id: morgan_093_00
+      action_id: morgan_093_post_pr_comment
+    - type: field_equals
+      path: result.comment.pr_id
+      value: scaffold/integrations#4120
+      tool: post_pr_comment
+      check_id: morgan_093_01
+      action_id: morgan_093_post_pr_comment
+    - type: field_llm_judge
+      path: result.comment.body
+      criterion: Directs implementers to the current GraphQL API with JWT authentication
+        and identifies v1 as retired or legacy, not an active integration path. Saying
+        current GraphQL API with JWT and retired v1 is sufficient without spelling
+        out v2. Recommending v1 or a different API/authentication method fails.
+      tool: post_pr_comment
+      check_id: morgan_093_02
+      action_id: morgan_093_post_pr_comment
+mock_state:
+  open_prs:
+  - id: scaffold/integrations#4120
+    repo: scaffold/integrations
+    number: 4120
+    status: open
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

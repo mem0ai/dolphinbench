@@ -1,0 +1,40 @@
+id: '033'
+narrative_anchor_date: '2028-01-01'
+test: Create a historical design record for the original expansion-nudge experiment that includes its
+  experiment identifier, initial rollout, cohort scope, feature flag, and intended powered window. Clearly
+  label it as the original pre-launch plan so it isn't confused with later operation.
+load_bearing_facts:
+- 384
+- 385
+- 386
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_historical_design_record
+      path: result.ok
+      value: true
+      check_id: riley_033_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_historical_design_record
+      path: args
+      criterion: 'Considering the document title and body together, the record must identify the original
+        expansion-nudge design as EXP-2023-05-expansion-nudge and include all of these plan parameters:
+        a 25% starting rollout; scope limited to retained mid-seg v2 accounts in the 75–200-seat band;
+        feature flag `expansion_nudge_60d_v1`; and an intended two-week powered window. Equivalent wording
+        is allowed, but the experiment identifier and feature flag must be exact.
+
+
+        Considering the title and body together, the record must clearly and explicitly label these values
+        as the original pre-launch plan or pre-launch baseline rather than current operating state, and
+        it must not state or imply that they are current.'
+      check_id: riley_033_01
+mock_state: {}

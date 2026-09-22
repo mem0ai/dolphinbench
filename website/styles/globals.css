@@ -1,0 +1,362 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  body {
+    @apply bg-paper text-ink;
+  }
+  ::selection {
+    background: #cbb2ff;
+    color: #0a0a0a;
+  }
+  input::placeholder {
+    color: #a8a39a;
+  }
+  input:focus,
+  select:focus,
+  textarea:focus {
+    outline: none;
+    border-color: #0a0a0a;
+  }
+  :focus-visible {
+    outline: 2px solid #0a0a0a;
+    outline-offset: 2px;
+  }
+  select {
+    appearance: none;
+    -webkit-appearance: none;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+}
+
+@layer components {
+  .run-document {
+    @apply min-w-0 text-base leading-7 text-ink;
+    overflow-wrap: anywhere;
+  }
+  .run-document h2 { @apply mb-4 mt-9 text-2xl font-semibold; }
+  .run-document h3 { @apply mb-3 mt-6 text-lg font-semibold; }
+  .run-document p { @apply my-4; }
+  .run-document ul { @apply my-4 list-disc space-y-2 pl-6; }
+  .run-document ol { @apply my-4 list-decimal space-y-2 pl-6; }
+  .run-document a { @apply text-link; }
+  .run-document pre { @apply my-5 overflow-auto rounded-md border border-hairline bg-sand p-4 text-sm leading-6; }
+  .run-document pre code { white-space: pre-wrap; overflow-wrap: anywhere; }
+  .run-document :not(pre) > code { @apply inline-code; }
+  .run-document .document-table { @apply my-5 overflow-x-auto; }
+  .run-document table { @apply w-full border-collapse text-left text-sm; }
+  .run-document th, .run-document td { @apply border-b border-hairline p-3 align-top; }
+  .result-expand { @apply inline-flex h-8 w-8 shrink-0 items-center justify-center rounded text-muted hover:bg-sand hover:text-ink; }
+  .result-expand[aria-expanded='true'] svg { transform: rotate(180deg); }
+  .persona-scores { @apply grid grid-cols-3 gap-4; }
+  .persona-scores dd { @apply mt-1 tabular-nums; }
+  .result-evidence { @apply mt-4 flex flex-wrap gap-x-6 gap-y-3; }
+  .submission-results-table { min-width: 1040px; table-layout: fixed; }
+  .submission-results-table tbody th, .submission-results-table tbody td { overflow-wrap: anywhere; vertical-align: top; }
+  .submission-results-table tbody td.text-right { white-space: nowrap; }
+  .submission-accuracy strong, .submission-accuracy small { display: block; }
+  .submission-accuracy small { @apply text-xs text-muted; }
+  .container-x {
+    @apply mx-auto w-full max-w-[1120px] px-5 sm:px-8;
+  }
+  .page-title {
+    font-size: clamp(40px, 5vw, 64px);
+    @apply font-semibold leading-none tracking-[-0.035em];
+  }
+  .section-title {
+    font-size: clamp(34px, 4.2vw, 56px);
+    @apply font-semibold leading-[1.02] tracking-[-0.035em];
+  }
+  .eyebrow {
+    @apply font-mono text-xs text-muted;
+  }
+  .text-link {
+    @apply border-b border-ink/30 pb-px font-medium transition-colors hover:border-ink;
+  }
+  .stretched-link::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+  .pill-button {
+    @apply inline-flex items-center gap-2.5 rounded-full bg-ink px-[22px] py-[13px] text-base font-medium text-paper transition-colors hover:bg-hover-ink;
+  }
+  .marker {
+    background: linear-gradient(transparent 62%, #cbb2ff 62%, #cbb2ff 92%, transparent 92%);
+  }
+  .field {
+    @apply h-[38px] rounded-md border border-control bg-paper px-3 text-sm text-ink;
+  }
+  select.field {
+    padding-right: 30px;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'><path d='M2 4l4 4 4-4' fill='none' stroke='%230A0A0A' stroke-width='1.5'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+  }
+  .segmented {
+    @apply inline-flex flex-wrap overflow-hidden rounded-md border border-control text-sm;
+  }
+  .segmented > button {
+    @apply inline-flex items-center gap-1.5 bg-paper px-3.5 py-2 text-ink transition-colors hover:bg-sand;
+  }
+  .segmented > button + button {
+    @apply border-l border-control;
+  }
+  .segmented > button[aria-pressed='true'] {
+    @apply bg-ink text-paper hover:bg-ink;
+  }
+  .code-block {
+    @apply overflow-hidden rounded-md border border-hairline bg-sand;
+  }
+  /* pre.code-block (bare <pre> form) intentionally overrides .code-block's
+     overflow: hidden by specificity, so the block can scroll horizontally. */
+  .code-block pre,
+  pre.code-block {
+    @apply overflow-x-auto px-4 py-3.5 font-mono text-sm leading-[1.75];
+  }
+  .inline-code {
+    @apply rounded bg-sand px-1.5 py-px font-mono text-[0.9em];
+  }
+  .stat-label {
+    @apply text-sm text-muted;
+  }
+  .stat-value {
+    @apply text-3xl font-semibold tracking-[-0.025em];
+  }
+  details.section > summary,
+  .details-plain > summary {
+    @apply cursor-pointer list-none text-sm text-muted hover:text-ink;
+  }
+  details.section > summary::-webkit-details-marker,
+  .details-plain > summary::-webkit-details-marker {
+    display: none;
+  }
+  .run-page {
+    @apply container-x pb-28 pt-4 sm:pt-20;
+  }
+  .run-header {
+    @apply mb-5 max-w-[720px] sm:mb-[72px];
+  }
+  .run-header p {
+    @apply mb-2 text-base sm:text-lg;
+  }
+  .run-layout {
+    @apply grid items-start gap-x-16 gap-y-6 lg:grid-cols-[220px_minmax(0,1fr)];
+  }
+  .run-contents {
+    @apply lg:sticky lg:top-[84px];
+  }
+  .run-contents ol {
+    /* No `flex` here: it would set display:flex with higher specificity than
+       the element's own `hidden` utility, defeating `hidden lg:flex`. */
+    @apply flex-col border-t border-ink;
+  }
+  .run-contents a {
+    @apply grid grid-cols-[28px_1fr] gap-2 border-b border-hairline py-2.5 text-sm text-muted transition-colors hover:text-ink;
+  }
+  .run-contents a span {
+    @apply font-mono text-[11px];
+  }
+  .run-section {
+    @apply grid scroll-mt-[120px] gap-x-4 gap-y-2 border-t border-hairline py-8 sm:scroll-mt-20 sm:grid-cols-[64px_minmax(0,1fr)] sm:py-10;
+  }
+  .run-section > .run-number {
+    @apply eyebrow pt-1.5 text-sm;
+  }
+  .run-section h2 {
+    @apply mb-3.5 text-2xl font-semibold tracking-[-0.02em];
+  }
+  .run-guide p {
+    @apply my-4 max-w-[38em] text-md leading-[1.6];
+  }
+  .run-guide h3 {
+    @apply mb-3 mt-6 text-md font-semibold;
+  }
+  .run-guide h4 {
+    @apply mb-2 mt-5 text-sm font-semibold;
+  }
+  .run-guide a {
+    @apply text-link;
+  }
+  .run-guide code {
+    @apply inline-code break-words;
+    overflow-wrap: anywhere;
+  }
+  .run-code-block {
+    @apply code-block my-4 min-w-0 max-w-full;
+  }
+  .run-code-block pre code {
+    @apply bg-transparent p-0;
+  }
+  .run-code {
+    @apply max-w-full;
+  }
+  .run-code code {
+    @apply whitespace-pre-wrap;
+    overflow-wrap: anywhere;
+  }
+  .run-fields {
+    @apply my-5 divide-y divide-hairline border-y border-hairline;
+  }
+  .run-fields > div {
+    @apply py-3;
+  }
+  .run-fields dt {
+    @apply text-sm font-medium;
+  }
+  .run-fields dd {
+    @apply mt-1 text-sm leading-relaxed text-muted;
+  }
+  .run-files {
+    @apply my-4 space-y-3 text-sm;
+  }
+  .run-files > div {
+    @apply grid gap-1 sm:grid-cols-[65px_minmax(0,1fr)] sm:gap-3;
+  }
+  .run-files dt {
+    @apply text-muted;
+  }
+  .run-files dd {
+    @apply min-w-0;
+  }
+  .run-list {
+    @apply my-4 list-disc space-y-2 pl-5 text-md leading-relaxed;
+  }
+  .run-steps {
+    @apply my-5 list-decimal space-y-3 pl-5 text-md leading-relaxed;
+  }
+  .run-steps li {
+    @apply pl-1;
+  }
+  .run-details {
+    @apply my-4 border-y border-hairline py-4;
+  }
+  .run-details summary {
+    @apply cursor-pointer text-sm font-medium text-ink;
+  }
+  .results-table {
+    @apply w-full min-w-[720px] border-collapse text-base;
+  }
+  .results-table th,
+  .results-table td {
+    @apply px-2 first:pl-0 last:pr-0;
+  }
+  .results-table thead th {
+    @apply border-b border-ink pb-2.5 text-left text-xs font-normal text-muted;
+  }
+  .results-table thead th button {
+    @apply inline-flex gap-1.5 text-muted transition-colors hover:text-ink;
+  }
+  .results-table thead th.text-right button {
+    @apply flex w-full flex-row-reverse;
+  }
+  .results-table .text-right { text-align: right; }
+  .results-table thead th[aria-sort='ascending'] button,
+  .results-table thead th[aria-sort='descending'] button {
+    @apply text-ink;
+  }
+  .results-table tbody th,
+  .results-table tbody td {
+    @apply border-b border-hairline py-5 text-left align-middle;
+  }
+  .results-table tbody tr.is-active th,
+  .results-table tbody tr.is-active td {
+    @apply bg-sand;
+  }
+  .chart-marker:focus:not(:focus-visible) {
+    outline: none;
+  }
+  .chart-tooltip {
+    @apply pointer-events-none absolute z-10 w-60 overflow-y-auto rounded-md bg-ink px-3 py-2.5 text-xs leading-normal text-paper;
+    max-width: calc(100% - 16px);
+    overflow-wrap: anywhere;
+    max-height: calc(100% - 24px);
+    box-shadow: 0 8px 24px rgba(10, 10, 10, 0.18);
+  }
+  .page {
+    @apply container-x pb-24 pt-10 sm:pt-14;
+  }
+  .section {
+    @apply border-t border-hairline py-8;
+  }
+  .command {
+    @apply inline-flex h-[38px] items-center gap-2 rounded-md border border-control bg-paper px-3.5 text-sm text-ink transition-colors hover:bg-sand;
+  }
+  .source-text {
+    @apply whitespace-pre-wrap break-words leading-[1.6];
+  }
+  .sub-nav {
+    @apply flex gap-6 border-b border-hairline text-sm;
+  }
+  .sub-nav a {
+    @apply border-b-[1.5px] pb-3 transition-colors;
+  }
+  .sub-nav a[aria-current='page'] {
+    @apply border-ink font-medium text-ink;
+  }
+  .sub-nav a:not([aria-current='page']) {
+    @apply border-transparent text-muted hover:text-ink;
+  }
+}
+
+/* highlight.js tokens. Kept outside @layer so Tailwind never drops them: the
+   class names only ever appear in highlighter output, not in source files. */
+.hljs-keyword { color: #7a3fa0; }
+.hljs-string { color: #17644f; }
+.hljs-comment { color: #667085; }
+.hljs-title, .hljs-built_in, .hljs-attr { color: #265caa; }
+.hljs-number, .hljs-literal { color: #9a530b; }
+.hljs-params { color: #6e6a62; }
+
+details > summary {
+  cursor: pointer;
+}
+[id^='message-'] {
+  scroll-margin-top: 80px;
+}
+#results,
+#example,
+#evaluation {
+  scroll-margin-top: 112px;
+}
+input,
+select {
+  max-width: 100%;
+}
+main {
+  min-height: calc(100vh - 180px);
+}
+
+/* Subtle scrollbar for dense dataset pages. */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(10, 10, 10, 0.2);
+  border-radius: 6px;
+  border: 2px solid #fff;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(10, 10, 10, 0.32);
+}

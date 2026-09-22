@@ -1,0 +1,62 @@
+id: '116'
+narrative_anchor_date: '2028-01-01'
+test: 'Route the two open Lantern internal-platform questions to their current owners
+  in separate Slack DMs: which usage components belong in cost semantics, and which
+  metrics-router operating limit and supporting evidence apply. State my own role
+  boundary in both messages.'
+load_bearing_facts:
+- 210
+- 211
+- 212
+- 219
+expected_tool_calls:
+- send_slack_dm
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    assertions:
+    - type: field_equals
+      tool: send_slack_dm
+      action_id: route_guardrails_cost
+      path: result.ok
+      value: true
+      check_id: alex_116_00
+    - type: field_equals
+      tool: send_slack_dm
+      action_id: route_metrics_evidence
+      path: result.ok
+      value: true
+      check_id: alex_116_01
+    - type: field_equals
+      action_id: route_guardrails_cost
+      path: result.user
+      value: cyrus
+      tool: send_slack_dm
+      check_id: alex_116_02
+    - type: field_llm_judge
+      action_id: route_guardrails_cost
+      path: result.message
+      criterion: The DM asks Cyrus which usage components are included in the Cardinality
+        Guardrails cost semantics, while saying Alex is not taking that ownership.
+      tool: send_slack_dm
+      check_id: alex_116_03
+    - type: field_equals
+      action_id: route_metrics_evidence
+      path: result.user
+      value: wes
+      tool: send_slack_dm
+      check_id: alex_116_04
+    - type: field_llm_judge
+      action_id: route_metrics_evidence
+      path: result.message
+      criterion: The DM asks Wes which metrics-router operating-limit mapping applies
+        and what operating evidence supports it, while saying Alex is not taking that
+        ownership.
+      tool: send_slack_dm
+      check_id: alex_116_05
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: b2e9b6b9e0f48ec23e9ae5ec4d803c050db6c6914dfc1d47ccdf545b3c77b68a

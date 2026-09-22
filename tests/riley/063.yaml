@@ -1,0 +1,37 @@
+id: '063'
+narrative_anchor_date: '2028-01-01'
+test: Create a concise household-facing reference for the scheduling requirements Sam plans to include
+  in his restaurant counteroffer. Summarize the proposed protections clearly enough to use for household
+  planning and the counteroffer conversation. Make clear that the counteroffer has not been sent or accepted.
+  Do not identify the proposed protected weekday; direct readers to the current rota records for that
+  detail.
+load_bearing_facts:
+- 83
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_schedule_rights_reference
+      path: result.ok
+      value: true
+      check_id: riley_063_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_schedule_rights_reference
+      path: args
+      criterion: The document presents these as requirements Sam plans to include in a counteroffer that
+        has not been sent or accepted. The proposed requirements are one fixed no-service evening every
+        week, at least three weeks' notice for the ordinary rota, and no default private-event coverage
+        on the proposed protected evening. The document does not identify Sunday or any other weekday
+        as the proposed no-service evening and tells readers to confirm that detail from current rota
+        records. Mentioning Sunday only as a separate watercolor commitment is acceptable. The title describes
+        proposed counteroffer requirements rather than established scheduling rights.
+      check_id: riley_063_01
+mock_state: {}

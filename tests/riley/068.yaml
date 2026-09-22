@@ -1,0 +1,68 @@
+id: 068
+narrative_anchor_date: '2028-01-01'
+test: Create a compact evidence-trajectory memo titled `Expansion nudge evidence trajectory — 2028 planning`
+  in the Growth folder. Trace the experiment from design through the first weekly observation to the final
+  conclusion. Include the early sample limitation, what the team decided to do after that read and for
+  how long, and the final rollout boundary.
+load_bearing_facts:
+- 384
+- 385
+- 386
+- 392
+- 393
+- 405
+- 406
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_trajectory_memo
+      path: result.ok
+      value: true
+      check_id: riley_068_00
+    - check_id: riley_068_01
+      type: field_equals
+      tool: create_doc
+      action_id: create_trajectory_memo
+      path: args.title
+      value: Expansion nudge evidence trajectory — 2028 planning
+    - check_id: riley_068_02
+      type: field_equals
+      tool: create_doc
+      action_id: create_trajectory_memo
+      path: args.folder
+      value: Growth
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_trajectory_memo
+      path: args
+      criterion: 'The memo accurately states the original EXP-2023-05-expansion-nudge design: a day-60
+        in-product prompt for retained mid-seg v2 accounts in the 75–200-seat band; expansion MRR per
+        account as the metric; a target of at least +$8 per account; an initial 25% rollout; and a two-week
+        powered window. Missing or contradicting any of these elements fails.
+
+
+        The memo accurately describes the June 1 first weekly read as treatment ahead by roughly +$4 expansion
+        MRR per account versus control with only n=92, explicitly characterizes it as too early and underpowered
+        for action, and notes that the plan was to wait for two more weeks of data. Missing or contradicting
+        this sample limitation or decision fails.
+
+
+        The memo states the final experiment conclusion: aggregate lift settled below the +$8 expansion
+        MRR per-account bar, the result was inconclusive, and EXP-2023-05-expansion-nudge should not become
+        a blanket rollout or be treated as the retained-mid expansion answer. Missing or contradicting
+        the no-blanket-rollout boundary fails.
+
+
+        The memo clearly and unmistakably separates the roughly +$4 first-week observation as interim
+        directional evidence from the later inconclusive, no-blanket-rollout conclusion; it must not present
+        the early read as sufficient evidence for broad rollout.'
+      check_id: riley_068_03
+mock_state: {}

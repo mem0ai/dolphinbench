@@ -1,0 +1,13 @@
+{
+  "approved_plans": [],
+  "batches": [],
+  "checkpoint_identity": "311d38bb5f40ec8cfa8e79dedddd5343a5490f262371ff7981ad170c46284b80",
+  "evaluation_date": "2026-09-14",
+  "persona": "morgan",
+  "rejected_test_files": [],
+  "release_manifest": {
+    "path": "../release_manifests/morgan.json",
+    "sha256": "78b00f86a8917edefb05c215ff12636703f8a6747ed8f47bf11c8b14fb8e1fe6"
+  },
+  "version": 1
+}

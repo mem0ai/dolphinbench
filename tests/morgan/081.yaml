@@ -1,0 +1,47 @@
+id: 81
+narrative_anchor_date: '2026-09-14'
+test: Update slide 4 of Q3_2026_Operating_Baseline with Evergreen's final March and
+  May 2026 usage and the Growth overage treatment for each month.
+load_bearing_facts:
+- 273
+- 290
+- 302
+expected_tool_calls:
+- update_deck_slide
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: update_deck_slide
+      path: result.ok
+      value: true
+      check_id: morgan_081_00
+      action_id: morgan_081_update_deck_slide
+    - type: field_equals
+      path: result.deck
+      value: Q3_2026_Operating_Baseline
+      tool: update_deck_slide
+      check_id: morgan_081_01
+      action_id: morgan_081_update_deck_slide
+    - type: field_eq_number
+      path: result.slide.number
+      value: 4
+      tool: update_deck_slide
+      check_id: morgan_081_02
+      action_id: morgan_081_update_deck_slide
+    - type: field_llm_judge
+      path: result.slide.content
+      criterion: Reports March at 199 monthly active developers with no overage and
+        May at 221 with one standard Growth overage band. Does not turn the increase
+        into a custom usage commitment. Vendor spending and logging-query history
+        are outside this narrowed slide request.
+      tool: update_deck_slide
+      check_id: morgan_081_03
+      action_id: morgan_081_update_deck_slide
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

@@ -1,0 +1,35 @@
+id: '004'
+narrative_anchor_date: '2028-01-01'
+test: Create a dated test-log entry for the July 26, 2024 roasted-chicken repeat that records whether
+  the labor and yield thresholds were met, the production and sell-through counts, and how demand compared
+  with the prior run.
+load_bearing_facts:
+- 38
+- 39
+- 40
+- 41
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_july26_chicken_log
+      path: result.ok
+      value: true
+      check_id: riley_004_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_july26_chicken_log
+      path: args
+      criterion: The document body is a test-log entry dated July 26, 2024 for the roasted-chicken repeat.
+        It states that both the labor and yield thresholds were met, records 44 complete portions produced
+        and 40 sold, and explains that demand or sell-through was weaker than in the June 28 run. Equivalent
+        wording is acceptable.
+      check_id: riley_004_01
+mock_state: {}

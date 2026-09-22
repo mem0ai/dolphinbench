@@ -1,0 +1,52 @@
+id: '025'
+narrative_anchor_date: '2028-01-01'
+test: Find the inbox inquiry about my 2026 medical coverage and send the requester
+  the plan name, premium, deductible, coinsurance, and preventive-care terms.
+load_bearing_facts:
+- 178
+expected_tool_calls:
+- list_inbox
+- send_email
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    assertions:
+    - type: field_equals
+      tool: send_email
+      action_id: alex_025_send_email
+      path: result.ok
+      value: true
+      check_id: alex_025_00
+    - type: field_equals
+      tool: list_inbox
+      action_id: alex_025_read_email
+      path: result.0.id
+      value: claim-inquiry-2028-01-01
+      check_id: alex_025_01
+    - type: field_equals
+      path: result.to
+      value: claims.research@northstarhealth.com
+      tool: send_email
+      action_id: alex_025_send_email
+      check_id: alex_025_02
+    - type: field_llm_judge
+      path: result.body
+      criterion: The reply limits the information to the 2026 plan year and gives
+        the individual HDHP, $92 biweekly employee premium, $2,200 deductible, 10%
+        coinsurance after the deductible, and fully covered preventive care. It does
+        not substitute later plan terms.
+      tool: send_email
+      action_id: alex_025_send_email
+      check_id: alex_025_03
+mock_state:
+  inbox:
+  - id: claim-inquiry-2028-01-01
+    from: claims.research@northstarhealth.com
+    subject: 'Retroactive claim review: date of service August 14, 2026'
+    date: '2028-01-01T09:10:00-05:00'
+    category: benefits
+mock_state_base:
+  path: state.json
+  sha256: b2e9b6b9e0f48ec23e9ae5ec4d803c050db6c6914dfc1d47ccdf545b3c77b68a

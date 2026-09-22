@@ -1,0 +1,41 @@
+id: '188'
+narrative_anchor_date: '2028-01-01'
+test: 'DM workspace user mira-pe with who handles the ordinary Lantern admission of
+  #risk-release-review and the exact exceptions that would require my review. The
+  packet is complete and reports no exception.'
+load_bearing_facts:
+- 104
+- 105
+expected_tool_calls:
+- send_slack_dm
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    assertions:
+    - type: field_equals
+      tool: send_slack_dm
+      action_id: alex_188_send_slack_dm
+      path: result.ok
+      value: true
+      check_id: alex_188_00
+    - type: field_equals
+      path: result.user
+      value: mira-pe
+      tool: send_slack_dm
+      action_id: alex_188_send_slack_dm
+      check_id: alex_188_01
+    - type: field_llm_judge
+      path: result.message
+      criterion: The DM says Iris handles the ordinary room-admission decision and
+        Alex is involved only for a data-contract, failure-mode, or provenance exception.
+        Because the packet is complete and reports none, it does not route this decision
+        to Alex.
+      tool: send_slack_dm
+      action_id: alex_188_send_slack_dm
+      check_id: alex_188_02
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: b2e9b6b9e0f48ec23e9ae5ec4d803c050db6c6914dfc1d47ccdf545b3c77b68a

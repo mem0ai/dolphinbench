@@ -1,0 +1,48 @@
+id: '011'
+narrative_anchor_date: '2026-09-14'
+test: Send Kara at kara@kestrel-test.com written notice ending the contractor arrangement
+  on the earliest permitted date, and include the required external-email copy recipient.
+  Today is September 14, 2026.
+load_bearing_facts:
+- 34
+- 84
+expected_tool_calls:
+- send_email
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: send_email
+      path: result.ok
+      value: true
+      check_id: morgan_011_00
+      action_id: morgan_011_send_email
+    - type: field_equals
+      path: result.to
+      value: kara@kestrel-test.com
+      tool: send_email
+      check_id: morgan_011_01
+      action_id: morgan_011_send_email
+    - type: field_list_includes
+      path: result.cc
+      values:
+      - sarah@atlas-test.com
+      tool: send_email
+      check_id: morgan_011_02
+      action_id: morgan_011_send_email
+    - type: field_llm_judge
+      path: result.body
+      criterion: Gives written notice making the Kestrel arrangement end October 14,
+        2026, or unambiguously 30 days after this September 14 notice. A different
+        effective date or immediate termination fails. No recital of the old dispute
+        is required.
+      tool: send_email
+      check_id: morgan_011_03
+      action_id: morgan_011_send_email
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

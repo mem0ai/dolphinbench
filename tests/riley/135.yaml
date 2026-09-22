@@ -1,0 +1,57 @@
+id: '135'
+narrative_anchor_date: '2028-01-01'
+test: Please create a compact historical adjudication worksheet for the controlled-intake archive to train
+  reviewers on identity and state handling. Use a decision-matrix format with sample rows for exact-domain
+  proof, a legitimate parent-company or IT-managed domain mismatch, an agency identity, and missing current-state
+  data. Include the routing or adjudication result for each row and the final entitlement and support-state
+  validation checks. Clearly label the worksheet’s scope so reviewers do not treat this historical controlled-intake
+  matrix as universal guidance for every later Helio Start flow.
+load_bearing_facts:
+- 4
+- 5
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_intake_matrix
+      path: result.ok
+      value: true
+      check_id: riley_135_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_intake_matrix
+      path: args
+      criterion: 'The document contains a clearly identifiable decision-matrix sample row for exact-domain
+        admin proof and states that this identity-evidence tier passes automatically. The row may and
+        should still remain subject to final entitlement-state, support-state, and any other controlled-intake
+        validations before completed admission; those downstream checks do not negate automatic passage
+        of the identity-evidence tier.
+
+
+        The document contains a clearly identifiable decision-matrix sample row for a legitimate parent-company
+        or IT-managed domain mismatch, and it states that the applicant may pass only after corroborating
+        admin evidence is provided—not through unsupported self-attestation.
+
+
+        The document contains a clearly identifiable decision-matrix sample row for an agency identity
+        and routes that case to Customer Success rather than allowing it to pass through self-attestation.
+
+
+        The document includes a sample row with missing current-state data that cannot receive a completed
+        or passing final adjudication until corrected, and it gives final validation checks requiring
+        exactly one current entitlement state and exactly one current support state for every applicant,
+        with blank, duplicate, or merged state results not accepted.
+
+
+        The document explicitly identifies the matrix as historical guidance for the Helio Start controlled-intake
+        process or controlled batch and warns that it is not universal guidance for every later Helio
+        Start flow.'
+      check_id: riley_135_01
+mock_state: {}

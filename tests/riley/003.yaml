@@ -1,0 +1,32 @@
+id: '003'
+narrative_anchor_date: '2028-01-01'
+test: Create a current registration record for Kibo. Include the issuing authority's effective dates,
+  the matching Cherrywood property-file status, and whether any duplicate packet or additional document
+  is still required.
+load_bearing_facts:
+- 259
+- 260
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_registration_record
+      path: result.ok
+      value: true
+      check_id: riley_003_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_registration_record
+      path: args
+      criterion: The record says Kibo's registration was issued for June 16, 2027 through June 15, 2028,
+        no duplicate packet or additional document is required, and Cherrywood marks the property-file
+        registration current through June 15, 2028.
+      check_id: riley_003_01
+mock_state: {}

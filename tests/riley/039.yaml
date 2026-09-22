@@ -1,0 +1,33 @@
+id: 039
+narrative_anchor_date: '2028-01-01'
+test: Create an archive note dated April 17, 2023, explaining the temporary second-post-ship cohort dip,
+  the outage duration, and the system's condition after the incident. Do not include an exact outage start
+  or end date.
+load_bearing_facts:
+- 367
+- 368
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_outage_note
+      path: result.ok
+      value: true
+      check_id: riley_039_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_outage_note
+      path: args
+      criterion: The note is dated April 17, 2023. It says an approximately 36-hour CS auto-onboarding-nudge
+        outage caused the second-post-ship cohort dip; the dip was a one-time artifact rather than an
+        effect of the onboarding-trigger A/B; and the system returned to service. It does not state an
+        exact outage start or end date.
+      check_id: riley_039_01
+mock_state: {}

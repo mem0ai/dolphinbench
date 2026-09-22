@@ -1,0 +1,50 @@
+id: '101'
+narrative_anchor_date: '2028-01-01'
+test: Create a January 2028 personal-practice log for my established weekly routine. Use the routine's
+  established day of the week and create a separate dated entry for every occurrence of that day in January.
+  Include fields for subject, materials, technique notes, completion, and storage. Make sure the setup
+  fits the current household cadence. Save it as a document.
+load_bearing_facts:
+- 25
+- 26
+- 49
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_jan28_practice_log
+      path: result.ok
+      value: true
+      check_id: riley_101_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_jan28_practice_log
+      path: args
+      criterion: 'The document contains a distinct weekly practice-log entry for every Sunday in January
+        2028: January 2, 9, 16, 23, and 30, 2028. It must not substitute other weekly dates or omit any
+        of these five dates.
+
+
+        The document clearly identifies the logged personal practice as watercolor painting. Mentioning
+        watercolor anywhere in the document body is sufficient; it need not be repeated in every entry.
+
+
+        Each of the five dated weekly entries provides usable fields or prompts for all of the following:
+        subject, materials, technique notes, completion status, and storage or storage location.
+
+
+        The document frames the Sunday watercolor entries as a flexible, separate personal practice rather
+        than protected or mandatory appointments. Equivalent wording passes if it conveys that Sunday
+        or the painting practice remains flexible and keeps watercolor separate from household shared-time,
+        relationship-maintenance, make-up-time, or work obligations; an explicit reference to restaurant
+        needs is not required. Contradictory framing that makes the Sunday entries mandatory, protected
+        restaurant-free time, or shared-time obligations must fail.'
+      check_id: riley_101_01
+mock_state: {}

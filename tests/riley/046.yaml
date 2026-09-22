@@ -1,0 +1,48 @@
+id: '046'
+narrative_anchor_date: '2028-01-01'
+test: For year-end household finance cleanup, review the inbox folder for the supplier's written resolution
+  or credit confirmation regarding the resolved Cherrywood electricity fee dispute. Create a concise note
+  that separately records the established resolution and consequences and whether a matching inbox document
+  is currently visible. If the confirming message is not visible, mark only the documentary match as pending;
+  do not reopen the resolved dispute.
+load_bearing_facts:
+- 251
+expected_tool_calls:
+- list_inbox
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: documentary_match_note
+      path: result.ok
+      value: true
+      check_id: riley_046_00
+    - check_id: riley_046_01
+      type: field_equals
+      tool: list_inbox
+      action_id: inbox_review
+      path: args.folder
+      value: inbox
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: documentary_match_note
+      path: args
+      criterion: 'The note states that no supplier resolution or credit confirmation was visible in the
+        inbox, so documentary matching remains pending. It must also make clear that this documentary
+        gap does not reopen, re-escalate, or undo the already resolved dispute.
+
+
+        The note accurately records all of these established facts, while distinguishing them from the
+        still-pending inbox documentary match: the disputed $9.95 plan service fee was an incorrect billing-code
+        charge and was removed; a $9.95 account credit was posted against the next statement; the March
+        26 automatic payment did not waive the dispute; and the charge caused neither a late fee nor a
+        collection consequence. Missing or contradictory treatment of any element fails.'
+      check_id: riley_046_02
+mock_state:
+  inbox: []

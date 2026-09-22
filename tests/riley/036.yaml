@@ -1,0 +1,37 @@
+id: '036'
+narrative_anchor_date: '2028-01-01'
+test: Create a short document titled `April 2023 onboarding and mid-segment analysis — data-quality erratum`
+  so future readers do not reuse the stale cohort logic; include the corrected cohort boundary and both
+  the classification and timing issues that made the original read noisier.
+load_bearing_facts:
+- 369
+- 370
+- 371
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_erratum
+      path: result.ok
+      value: true
+      check_id: riley_036_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_erratum
+      path: args
+      criterion: 'The document is clearly an erratum for the April 2023 onboarding and mid-segment analysis
+        and states that the corrected/default mid-segment boundary is 75–200 seats rather than the stale
+        logic that included 50–75-seat accounts. It records both data-quality issues: the segment job
+        misclassified 50–75-seat accounts as mid-segment, muddying or corrupting the denominator, and
+        the onboarding send read stale segment membership from a cache window, adding timing noise. Equivalent
+        wording is acceptable, but the corrected boundary, both issues, and their relationship to the
+        noisy read must all be present.'
+      check_id: riley_036_01
+mock_state: {}

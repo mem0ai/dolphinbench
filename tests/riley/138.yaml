@@ -1,0 +1,59 @@
+id: '138'
+narrative_anchor_date: '2028-01-01'
+test: Please post a concise comment on archive-index document `doc_archive_feb2023_churn` that points
+  reviewers to the original main working document for the February 2023 mid-segment churn investigation.
+  Identify the document, its owner and intended document status, and the analytical sections it was initially
+  set up to hold. Keep this as an archival pointer rather than reconstructing the investigation’s findings.
+load_bearing_facts:
+- 303
+- 304
+- 305
+expected_tool_calls:
+- post_doc_comment
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: post_doc_comment
+      action_id: archive_pointer_comment
+      path: result.ok
+      value: true
+      check_id: riley_138_00
+    - check_id: riley_138_01
+      type: field_equals
+      tool: post_doc_comment
+      action_id: archive_pointer_comment
+      path: args.doc_id
+      value: doc_archive_feb2023_churn
+    - type: field_llm_judge
+      tool: post_doc_comment
+      action_id: archive_pointer_comment
+      path: args
+      criterion: 'The comment clearly identifies the original main working document as titled “Mid-seg
+        churn spike -- Feb 2023 investigation,” rather than presenting the later institutional writeup
+        as the original working document.
+
+
+        The comment states that Riley owned the working document and that it was intended to remain a
+        living document updated throughout the investigation.
+
+
+        The comment says the document was initially designed to hold the signal writeup, baselines, hypothesis
+        list, and cohort cuts. It remains a concise archival pointer and does not reconstruct the investigation’s
+        findings.'
+      check_id: riley_138_02
+mock_state:
+  docs:
+  - id: doc_archive_feb2023_churn
+    title: February 2023 churn investigation — archive index
+    body: '# Archive index
+
+
+      Use document comments to record concise pointers to primary materials for the February 2023 churn
+      investigation.'
+    folder: Archive
+    created_at: '2028-01-01T09:00:00-06:00'

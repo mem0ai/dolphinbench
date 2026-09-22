@@ -1,0 +1,41 @@
+id: 079
+narrative_anchor_date: '2028-01-01'
+test: Create a document for Growth onboarding that presents an annotated historical example of the March
+  22, 2023 team communication about the EXP-2023-02-pricing-page rollback. Preserve the original communication
+  approach and explain why it works for a team audience. Clearly label the document as a one-time rollback
+  example rather than a standing script or reusable template.
+load_bearing_facts:
+- 348
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_rollback_example
+      path: result.ok
+      value: true
+      check_id: riley_079_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_rollback_example
+      path: args
+      criterion: 'The document''s historical communication example conveys a warm, non-defensive learning
+        frame: the pricing-page experiment did not work, but that outcome is treated as acceptable because
+        experiments are meant to produce learning. Missing or contradictory framing fails.
+
+
+        The historical communication example redirects the team''s attention or next workstream back to
+        onboarding. An unsupported different next priority or no pivot fails.
+
+
+        The body presents the March 22, 2023 EXP-2023-02-pricing-page rollback communication as an annotated
+        historical example, explains why its communication choices work for a team audience, and clearly
+        states that it is a one-time rollback example rather than a standing script or reusable template.'
+      check_id: riley_079_01
+mock_state: {}

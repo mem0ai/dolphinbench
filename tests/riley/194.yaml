@@ -1,0 +1,34 @@
+id: '194'
+narrative_anchor_date: '2028-01-01'
+test: Create a current wallet note for my retained card. Use the date of the source message as the posting
+  date, and record the retention-credit amount and qualifying spend, the fulfilled offer period, and the
+  card terms that still apply.
+load_bearing_facts:
+- 263
+- 264
+- 265
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_wallet_note
+      path: result.ok
+      value: true
+      check_id: riley_194_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_wallet_note
+      path: args
+      criterion: The note says the issuer posted the promised $60 statement credit on July 16, 2027 after
+        $504.06 in qualifying net purchases, fulfilling the June 1-August 31 retention offer; Riley kept
+        the card through the credit posting and continues to hold it; and the card has no annual fee and
+        no annual travel credit.
+      check_id: riley_194_01
+mock_state: {}

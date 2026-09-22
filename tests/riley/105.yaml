@@ -1,0 +1,47 @@
+id: '105'
+narrative_anchor_date: '2028-01-01'
+test: For the 2027 annual forecast archive reconciliation, send Marcus Vail a concise Slack DM with the
+  status of the fixed Q2 2027 Helio Start paid-test cohort. Include the certified mature cohort evidence
+  and clearly separate what may be described from revenue credit, causal acquisition interpretation, and
+  forecast treatment.
+load_bearing_facts:
+- 270
+- 271
+- 272
+- 273
+- 276
+- 277
+- 278
+expected_tool_calls:
+- send_slack_dm
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: send_slack_dm
+      action_id: send_marcus_q2_status
+      path: result.ok
+      value: true
+      check_id: riley_105_00
+    - type: field_equals
+      tool: send_slack_dm
+      action_id: send_marcus_q2_status
+      path: args.user
+      value: marcus_vail
+      check_id: riley_105_01
+    - type: field_llm_judge
+      tool: send_slack_dm
+      action_id: send_marcus_q2_status
+      path: args
+      criterion: 'The message identifies the fixed 25-workspace Q2 2027 Helio Start cohort and states
+        the permitted descriptive mature evidence: 18 paid-active workspaces, $27,860 in refund-adjusted
+        collected cash, support effort of 33 minutes at the median and 116 minutes at the 90th percentile,
+        and five of 25 workspaces above 90 support minutes. It keeps the $27,860 labeled as refund-adjusted
+        collected cash, gives it no revenue credit, treats the evidence as descriptive rather than causal
+        acquisition evidence, and gives the cohort no forecast credit.'
+      check_id: riley_105_02
+mock_state: {}

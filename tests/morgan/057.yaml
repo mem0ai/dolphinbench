@@ -1,0 +1,31 @@
+id: '057'
+narrative_anchor_date: '2026-09-14'
+test: Create a personal calendar event for a 30-minute run tomorrow at 7 AM Pacific
+  while I'm working from Oakland. Include the route.
+load_bearing_facts:
+- 141
+expected_tool_calls:
+- create_calendar_event
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: create_calendar_event
+      path: result.ok
+      value: true
+      check_id: morgan_057_00
+      action_id: morgan_057_create_calendar_event
+    - type: field_llm_judge
+      path: result.event
+      criterion: Selects Lake Merritt as the running route; Merritt loop is equivalent.
+        Mentioning it only as an avoided alternative is insufficient.
+      tool: create_calendar_event
+      check_id: morgan_057_01
+      action_id: morgan_057_create_calendar_event
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

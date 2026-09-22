@@ -1,0 +1,47 @@
+id: '147'
+narrative_anchor_date: '2026-09-14'
+test: On scaffold/evidence#2741, review the import that changes MER-1279's historical
+  columns and copies Figma decisions into ledger notes. Explain the correct structure
+  and evidence handling.
+load_bearing_facts:
+- 124
+- 125
+- 126
+expected_tool_calls:
+- post_pr_comment
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: post_pr_comment
+      path: result.ok
+      value: true
+      check_id: morgan_147_00
+      action_id: morgan_147_post_pr_comment
+    - type: field_equals
+      path: result.comment.pr_id
+      value: scaffold/evidence#2741
+      tool: post_pr_comment
+      check_id: morgan_147_01
+      action_id: morgan_147_post_pr_comment
+    - type: field_llm_judge
+      path: result.comment.body
+      criterion: Preserves risk, evidence source, owner, verification needed, and
+        weekly decision columns. Puts launch evidence links on corresponding ledger
+        rows and links the relevant Figma frame/comment rather than duplicating design
+        decisions. Incidental non-decision context is allowed.
+      tool: post_pr_comment
+      check_id: morgan_147_02
+      action_id: morgan_147_post_pr_comment
+mock_state:
+  open_prs:
+  - id: scaffold/evidence#2741
+    repo: scaffold/evidence
+    number: 2741
+    status: open
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

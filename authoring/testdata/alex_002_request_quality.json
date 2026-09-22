@@ -1,0 +1,11 @@
+{
+  "source": "tmp/authoring/alex_initial_five_20260905_v1/situation_raw_response.json proposal 2; tmp/authoring/alex_002_acceptance_recovery_20260905_v1/accepted_batch/candidates/002.yaml",
+  "purpose": "Historical wording and scope regression. Local tests supply a rejection to test enforcement and routing; they do not prove that a model detects the problem.",
+  "user_request": "Hema wants a concise closeout record for the Q4 2027 asynchronous cross-service exception-intake cycle. Please create a document titled \u201cQ4 2027 asynchronous exception-intake closeout.\u201d Account for the full intake sample with routed and returned totals, the routed breakdown by exception class, and the returned breakdown by reason. Also state the current front-door screening requirements and return behavior, summarize what reached Alex and whether the required evidence and closure fields were retained, say whether routine implementation or release approval entered Alex\u2019s lane, and document the current division of triage and implementation, release, and rollback authority.",
+  "work_items": [
+    {"work_item_id": "2.1", "work": "Create a document reporting the total intake sample, the routed and returned totals, the routed breakdown by exception class, and the returned breakdown by return reason."},
+    {"work_item_id": "2.2", "work": "State the current front-door screening requirements, including the affected component, mapped implementation or release owner, exactly one allowed exception class, and a concrete observed failed or at-risk condition."},
+    {"work_item_id": "2.3", "work": "Report how many routed requests reached Alex and their exception-class breakdown, whether those reviews retained the required evidence and closure fields, and whether routine implementation or release approval entered Alex's lane."},
+    {"work_item_id": "2.4", "work": "Record that Nadia remains responsible for triage while mapped owners retain implementation, release, and rollback decisions."}
+  ]
+}

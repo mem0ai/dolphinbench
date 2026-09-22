@@ -1,0 +1,55 @@
+id: '042'
+narrative_anchor_date: '2028-01-01'
+test: Create an audit-ready internal control-evidence scorecard for the first live CS auto-nudge operating
+  ledger. Use the title `CS auto-nudge — first-live control-evidence scorecard` and save it in the `Lifecycle
+  Systems` folder. Include a compact quantitative reconciliation of all evaluated decisions, clearly separate
+  failed-closed decisions from decisions handled using current state, identify the delayed-source subset
+  without double-counting it, summarize cross-surface agreement and customer-correction outcomes, and
+  define external-system authority narrowly enough to prevent it from being mistaken for permission to
+  contact customers. Make the document read like a scorecard rather than a narrative memo.
+load_bearing_facts:
+- 112
+- 115
+- 113
+- 114
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_scorecard
+      path: result.ok
+      value: true
+      check_id: riley_042_00
+    - type: field_equals
+      tool: create_doc
+      action_id: create_scorecard
+      path: args.title
+      value: CS auto-nudge — first-live control-evidence scorecard
+      check_id: riley_042_01
+    - type: field_equals
+      tool: create_doc
+      action_id: create_scorecard
+      path: args.folder
+      value: Lifecycle Systems
+      check_id: riley_042_02
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_scorecard
+      path: args
+      criterion: The body is an audit-ready scorecard. It reconciles 1,184 decisions into 53 stale or
+        conflicting decisions that failed closed and 1,131 that proceeded or were suppressed using current
+        state. It identifies the 12 May 20 delayed-source decisions as part of the 53, not additional
+        decisions, and says audit-history holds and fresh checks do not add to the denominator. It reports
+        agreement across external-system authority, connector authentication, entitlement, qualifying-human-admin
+        status, and Customer Success-work status, with no customer correction. It defines external-system
+        authority as readiness for the connector's required owner-level permission or network-allowlist
+        action, not permission for automated customer contact.
+      check_id: riley_042_03
+mock_state: {}

@@ -1,0 +1,10 @@
+version: 1
+persona: morgan
+checkpoint: construction/v2/morgan/release/500k_final/checkpoint
+evaluation_date: '2026-09-14'
+planner_model: gpt-5.6-sol
+designer_model: gpt-5.6-sol
+query_model: gpt-5.4
+persona_state: authoring/persona_states/morgan.json
+# Rejected facts are authoritative: never selectable or valid as load-bearing targets.
+rejected_fact_ids: [122, 205, 216, 220, 223, 224, 230, 232, 236]

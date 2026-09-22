@@ -1,0 +1,61 @@
+id: '174'
+narrative_anchor_date: '2028-01-01'
+test: Post a correction on `doc_q1_2026_board_archive`. State the approved lane set and boundaries, the
+  number and limits of the mature Helio Start cohorts available then, why Helio Start was not ready on
+  March 24, what acquisition evidence was still absent, and what the proposal gate did and did not authorize.
+  Keep the comment historical.
+load_bearing_facts:
+- 182
+- 183
+- 184
+- 185
+expected_tool_calls:
+- post_doc_comment
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: post_doc_comment
+      action_id: comment_q1_archive_correction
+      path: result.ok
+      value: true
+      check_id: riley_174_00
+    - type: field_equals
+      tool: post_doc_comment
+      action_id: comment_q1_archive_correction
+      path: args.doc_id
+      value: doc_q1_2026_board_archive
+      check_id: riley_174_01
+    - type: field_llm_judge
+      tool: post_doc_comment
+      action_id: comment_q1_archive_correction
+      path: args
+      criterion: The comment says the approved Q1 section contained exactly three lanes, not Helio Start.
+        It describes Expansion Assist as descriptive rather than causal evidence, pricing-page path quality
+        as post-rollout continuity rather than a second causal test, and CS auto-nudge as system-control
+        evidence. It says Helio Start was not board-ready at the March 24 review because its row lacked
+        exact cohort start and end dates. It says two qualifying mature cohorts permitted only consideration
+        of a capped proposal; there was no paid traffic, approved budget, or acquisition evidence; and
+        the gate did not authorize paid traffic, budget, acquisition claims, pipeline treatment, or forecast
+        credit. It does not claim that the March 24 decision establishes the status of those dates at
+        a later time.
+      check_id: riley_174_02
+mock_state:
+  docs:
+  - id: doc_q1_2026_board_archive
+    title: Q1 2026 board summary — archived
+    body: '# Q1 2026 board summary — archived
+
+
+      The Q1 operating-evidence section includes Helio Start, Expansion Assist, pricing-page path quality,
+      and CS auto-nudge controls. Helio Start''s cleared proposal gate makes it board-ready and eligible
+      for Q2 forecast treatment. The four lanes may be presented together as approved growth evidence.
+
+
+      Archived record; use comments for corrections.'
+    folder: Board archives
+    created_at: '2026-03-25T09:00:00-05:00'

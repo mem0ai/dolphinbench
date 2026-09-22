@@ -1,0 +1,63 @@
+id: '166'
+narrative_anchor_date: '2028-01-01'
+test: Please use the effective start date we established for Sam’s expanded role to find its 2028 anniversary.
+  Check my calendar on that date and, if 9:00 a.m. Central is open, add a private 10-minute reminder.
+  Keep it as a personal reminder with no attendees—don’t turn it into a restaurant event or add celebration
+  plans.
+load_bearing_facts:
+- 87
+expected_tool_calls:
+- list_calendar_events
+- create_calendar_event
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_calendar_event
+      action_id: create_private_reminder
+      path: result.ok
+      value: true
+      check_id: riley_166_00
+    - check_id: riley_166_01
+      type: field_equals
+      tool: list_calendar_events
+      action_id: check_anniversary_date
+      path: args.date
+      value: '2028-04-07'
+    - check_id: riley_166_02
+      type: datetime_absolute_eq
+      tool: create_calendar_event
+      action_id: create_private_reminder
+      path: args.start
+      value: '2028-04-07T09:00:00-05:00'
+    - check_id: riley_166_03
+      type: datetime_absolute_eq
+      tool: create_calendar_event
+      action_id: create_private_reminder
+      path: args.end
+      value: '2028-04-07T09:10:00-05:00'
+    - check_id: riley_166_04
+      type: field_absent_or_empty
+      tool: create_calendar_event
+      action_id: create_private_reminder
+      path: args.attendees
+    - type: field_equals
+      tool: list_calendar_events
+      action_id: check_anniversary_date
+      path: args.timezone
+      value: America/Chicago
+      check_id: riley_166_05
+    - type: field_llm_judge
+      tool: create_calendar_event
+      action_id: create_private_reminder
+      path: args
+      criterion: The title or body must clearly frame this as a personal reminder of the anniversary of
+        Sam's expanded role. It must not present it as a restaurant event, reservation, gathering, or
+        planned celebration, and it must not add celebration logistics.
+      check_id: riley_166_06
+mock_state:
+  calendar: []

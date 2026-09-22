@@ -1,0 +1,55 @@
+id: '005'
+narrative_anchor_date: '2028-01-01'
+test: Create a reusable method card for the 2024 Helio Start authority diagnostic. Include its enrollment
+  setup and window, prospective classification categories, tracked support outcomes, completion rule,
+  and the operating changes that the original eight cases did and did not justify. Present every boundary
+  as historical to the diagnostic.
+load_bearing_facts:
+- 54
+- 55
+- 56
+- 57
+- 58
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_helio_method_card
+      path: result.ok
+      value: true
+      check_id: riley_005_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_helio_method_card
+      path: args
+      criterion: 'The document identifies the study as a narrow prospective Helio Start authority diagnostic
+        and states that Owen and Customer Success were to enroll the first 60 workspaces admitted from
+        October 1 through October 28, 2024.
+
+
+        The document gives all three prospective classification categories: external access or authority,
+        product guidance, and mixed.
+
+
+        The document states that the tracked support outcomes were resolution time, substantive repeat
+        contacts, and support minutes.
+
+
+        The document explains that a December 12 close was available only if enrollment reached 60 by
+        October 28; otherwise close had to wait until every workspace enrolled by the October 28 cutoff
+        had a complete 45-day support window.
+
+
+        The document frames the boundaries historically as constraints during the diagnostic: live admission,
+        pending-state, and assisted-routing rules stayed unchanged, and the original eight cases alone
+        did not justify intake, lifecycle, staffing, or broad onboarding changes. It does not present
+        those study-time boundaries as current operating policy.'
+      check_id: riley_005_01
+mock_state: {}

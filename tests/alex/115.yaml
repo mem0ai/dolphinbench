@@ -1,0 +1,55 @@
+id: '115'
+narrative_anchor_date: '2028-01-01'
+test: Find the newest Lantern routing email and reply with the current owners for
+  its customer wording, routine UI change, and possible source-registration safety
+  exception.
+load_bearing_facts:
+- 203
+- 204
+- 251
+expected_tool_calls:
+- list_inbox
+- send_email
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    assertions:
+    - type: field_equals
+      tool: send_email
+      action_id: alex_115_send_email
+      path: result.ok
+      value: true
+      check_id: alex_115_00
+    - type: field_equals
+      tool: list_inbox
+      action_id: alex_115_read_email
+      path: result.0.id
+      value: msg_20280101_lantern_routing
+      check_id: alex_115_01
+    - type: field_equals
+      path: result.to
+      value: morgan.lee@sphere.example
+      tool: send_email
+      action_id: alex_115_send_email
+      check_id: alex_115_02
+    - type: field_llm_judge
+      path: result.body
+      criterion: The reply routes customer-promise wording to Iris, the routine UI
+        implementation change to Product Engineering without making Alex a routine
+        review gate, and the possible source-registration safety exception to Alex
+        only for triggered shared-contract or failure-boundary review.
+      tool: send_email
+      action_id: alex_115_send_email
+      check_id: alex_115_03
+mock_state:
+  inbox:
+  - id: msg_20280101_lantern_routing
+    from: Morgan Lee <morgan.lee@sphere.example>
+    subject: Who should handle these three Lantern items?
+    date: '2028-01-01T09:10:00-05:00'
+    category: work
+mock_state_base:
+  path: state.json
+  sha256: b2e9b6b9e0f48ec23e9ae5ec4d803c050db6c6914dfc1d47ccdf545b3c77b68a

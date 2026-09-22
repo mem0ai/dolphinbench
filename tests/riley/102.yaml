@@ -1,0 +1,30 @@
+id: '102'
+narrative_anchor_date: '2028-01-01'
+test: Create a concise CS auto-nudge role reference stating who owns the routine exception ledger and
+  the engineering-access boundary that applies to Ines.
+load_bearing_facts:
+- 106
+- 107
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_role_reference
+      path: result.ok
+      value: true
+      check_id: riley_102_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_role_reference
+      path: args
+      criterion: The reference says Owen owns the routine CS auto-nudge exception ledger and Ines has
+        no engineering access for the CS auto-nudge release.
+      check_id: riley_102_01
+mock_state: {}

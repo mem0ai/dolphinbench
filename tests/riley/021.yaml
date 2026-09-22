@@ -1,0 +1,32 @@
+id: '021'
+narrative_anchor_date: '2028-01-01'
+test: Create a concise document titled `Pricing-test change-control checklist` for future pricing-page
+  experiments. Separate changes blocked on the tested page from changes allowed there, and do not extend
+  the rule to other pages or surfaces.
+load_bearing_facts:
+- 351
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_pricing_checklist
+      path: result.ok
+      value: true
+      check_id: riley_021_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_pricing_checklist
+      path: args
+      criterion: 'The body is a concise, actionable preflight checklist that preserves the exact page-level
+        boundary: while pricing is under test on a page, no other layout or UI changes may ship on that
+        same page during the experiment, while content and copy changes on that page may still proceed.
+        It must not broaden the restriction into a freeze on unrelated pages or all changes.'
+      check_id: riley_021_01
+mock_state: {}

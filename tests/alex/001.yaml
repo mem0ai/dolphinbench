@@ -1,0 +1,49 @@
+id: '001'
+narrative_anchor_date: '2028-01-01'
+test: Send Hema the concise final closeout for the October 1 through December 10 asynchronous
+  exception-intake sample.
+load_bearing_facts:
+- 290
+- 291
+- 292
+- 293
+- 294
+- 295
+expected_tool_calls:
+- send_slack_dm
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    assertions:
+    - type: field_equals
+      tool: send_slack_dm
+      action_id: alex_001_send_slack_dm
+      path: result.ok
+      value: true
+      check_id: alex_001_00
+    - type: field_equals
+      path: result.user
+      value: hema
+      tool: send_slack_dm
+      action_id: alex_001_send_slack_dm
+      check_id: alex_001_01
+    - type: field_llm_judge
+      path: result.message
+      criterion: The message accurately closes out the 61-request sample. It gives
+        the 42 routed requests and their 19 failure_mode, 10 invariant, seven provenance,
+        four ownership, and two escalation breakdown; the 19 returned requests and
+        their eight placeholder-only, six multiple-class, and five ordinary-work breakdown;
+        and the eight requests that reached Alex, including their four invariant,
+        three provenance, and one cross-service failure_mode breakdown. It also says
+        those eight retained the required evidence and closure, no routine implementation
+        or release approval entered Alex's review lane, and mapped owners made implementation,
+        release, and rollback decisions.
+      tool: send_slack_dm
+      action_id: alex_001_send_slack_dm
+      check_id: alex_001_02
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: b2e9b6b9e0f48ec23e9ae5ec4d803c050db6c6914dfc1d47ccdf545b3c77b68a

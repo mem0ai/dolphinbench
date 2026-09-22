@@ -1,0 +1,48 @@
+id: '152'
+narrative_anchor_date: '2026-09-14'
+test: On scaffold/onboarding#3598, review a post-invite empty-state headline change
+  and a new teammate-invite tooltip. There is no new metric or support-volume regression.
+  Say what should ship and when to reconsider.
+load_bearing_facts:
+- 144
+- 171
+expected_tool_calls:
+- post_pr_comment
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: post_pr_comment
+      path: result.ok
+      value: true
+      check_id: morgan_152_00
+      action_id: morgan_152_post_pr_comment
+    - type: field_equals
+      path: result.comment.pr_id
+      value: scaffold/onboarding#3598
+      tool: post_pr_comment
+      check_id: morgan_152_01
+      action_id: morgan_152_post_pr_comment
+    - type: field_llm_judge
+      path: result.comment.body
+      criterion: Keeps the headline Connect your first repo and teammate-invite clarification
+        support-only, without the proposed new product tooltip. Reconsiders product-copy
+        work only on evidence of a real metric or support-volume regression. Equivalent
+        wording such as meaningful regression is valid by itself. Reject an additional
+        required numerical threshold, waiting period, or approval, and reject reopening
+        merely for wording preference without regression evidence.
+      tool: post_pr_comment
+      check_id: morgan_152_02
+      action_id: morgan_152_post_pr_comment
+mock_state:
+  open_prs:
+  - id: scaffold/onboarding#3598
+    repo: scaffold/onboarding
+    number: 3598
+    status: open
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

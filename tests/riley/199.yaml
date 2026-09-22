@@ -1,0 +1,59 @@
+id: '199'
+narrative_anchor_date: '2028-01-01'
+test: Create a focused document titled `2026 Helio Start paid-pilot high-support case review`. Review
+  all seven mature cases from the 2026 paid pilot that exceeded 90 support minutes, clearly distinguish
+  external owner-permission or network-allowlist coordination from ordinary integration troubleshooting,
+  state which causes were ruled out across all seven cases, and explain what the findings mean for admission
+  correctness and operational follow-up. Keep it claims-safe and concise.
+load_bearing_facts:
+- 220
+- 221
+- 222
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_case_review
+      path: result.ok
+      value: true
+      check_id: riley_199_00
+    - check_id: riley_199_01
+      type: field_equals
+      tool: create_doc
+      action_id: create_case_review
+      path: args.title
+      value: 2026 Helio Start paid-pilot high-support case review
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_case_review
+      path: args
+      criterion: 'The document clearly says that all seven paid-pilot workspaces exceeding 90 support
+        minutes were reviewed, with five requiring a supported owner-level permission or network-allowlist
+        action after admission and two requiring ordinary integration troubleshooting. Missing or contradictory
+        counts or categories must fail.
+
+
+        The document states that the review found none of the seven cases involved billing, an unsupported
+        admission, stale state, or conflicting state. Any assertion that one of these causes occurred
+        must fail.
+
+
+        The document explains that in every one of the five authority-action cases, external-authority
+        status was current and verified yes at admission; therefore the external-authority meaning and
+        admission decisions remained correct. It identifies setup sequencing—not eligibility—as the gap
+        and directs follow-up toward setup sequencing or coordination while preserving the decision not
+        to change eligibility. Missing or contradictory meaning must fail.
+
+
+        The document treats the high-support case findings as descriptive and does not claim or imply
+        that they prove causal acquisition performance, improved activation, reduced support demand or
+        support-effort improvement, or scalability. Any such causal or improvement claim must fail.'
+      check_id: riley_199_02
+mock_state: {}

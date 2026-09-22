@@ -1,0 +1,42 @@
+id: 008
+narrative_anchor_date: '2028-01-01'
+test: Create a concise, claim-safe outcome memo for the Q4 Pricing Path Clarity Test. State whether the
+  predeclared path-quality threshold and each guardrail passed, the rollout the result supports, the boundaries
+  that remain unchanged, and the commercial conclusions the result does not establish.
+load_bearing_facts:
+- 157
+- 158
+- 159
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_claim_safe_memo
+      path: result.ok
+      value: true
+      check_id: riley_008_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_claim_safe_memo
+      path: args
+      criterion: 'The memo states that the stabilized test result cleared the predeclared path-quality
+        threshold and both guardrails and supports adopting the treatment for organic pricing-page traffic,
+        framing the measured benefit as fewer unsupported self-serve starts or improved path quality rather
+        than commercial performance.
+
+
+        The memo clearly states that admission and acquisition boundaries remain unchanged and does not
+        imply that the experiment broadened admission rules or acquisition access.
+
+
+        The memo explicitly says the result does not establish paid-acquisition economics, pipeline impact,
+        forecast credit, revenue lift, or any change to Helio Start eligibility.'
+      check_id: riley_008_01
+mock_state: {}

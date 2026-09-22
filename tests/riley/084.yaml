@@ -1,0 +1,80 @@
+id: 084
+narrative_anchor_date: '2028-01-01'
+test: Please send separate, concise Slack DMs to the three functional owners for our January routing-directory
+  refresh. Ask each person to confirm their own established shared-state lane by January 5, 2028. Keep
+  each note limited to that person’s lane and don’t imply authority over either of the other lanes.
+load_bearing_facts:
+- 80
+- 82
+- 81
+expected_tool_calls:
+- send_slack_dm
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: send_slack_dm
+      action_id: dm_owen
+      path: result.ok
+      value: true
+      check_id: riley_084_00
+    - type: field_equals
+      tool: send_slack_dm
+      action_id: dm_ines
+      path: result.ok
+      value: true
+      check_id: riley_084_01
+    - type: field_equals
+      tool: send_slack_dm
+      action_id: dm_daniela
+      path: result.ok
+      value: true
+      check_id: riley_084_02
+    - type: field_equals
+      tool: send_slack_dm
+      action_id: dm_owen
+      path: args.user
+      value: owen
+      check_id: riley_084_03
+    - type: field_equals
+      tool: send_slack_dm
+      action_id: dm_ines
+      path: args.user
+      value: ines
+      check_id: riley_084_04
+    - type: field_equals
+      tool: send_slack_dm
+      action_id: dm_daniela
+      path: args.user
+      value: daniela
+      check_id: riley_084_05
+    - type: field_llm_judge
+      tool: send_slack_dm
+      action_id: dm_owen
+      path: args
+      criterion: The message is a concise request for Owen to confirm by January 5, 2028 that his established
+        shared-state lane is reporting semantics. It must remain limited to Owen's lane and must not assign
+        or imply that he has authority over messaging consumption or transport/source reliability.
+      check_id: riley_084_06
+    - type: field_llm_judge
+      tool: send_slack_dm
+      action_id: dm_ines
+      path: args
+      criterion: The message is a concise request for Ines to confirm by January 5, 2028 that her established
+        shared-state lane is how messaging consumes the shared states. It must remain limited to Ines's
+        lane and must not assign or imply that she has authority over reporting semantics or transport/source
+        reliability.
+      check_id: riley_084_07
+    - type: field_llm_judge
+      tool: send_slack_dm
+      action_id: dm_daniela
+      path: args
+      criterion: The message is a concise request for Daniela to confirm by January 5, 2028 that her established
+        shared-state lane is transport and source reliability. It must remain limited to Daniela's lane
+        and must not assign or imply that she has authority over reporting semantics or messaging consumption.
+      check_id: riley_084_08
+mock_state: {}

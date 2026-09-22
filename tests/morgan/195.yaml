@@ -1,0 +1,32 @@
+id: '195'
+narrative_anchor_date: '2026-09-14'
+test: Create a 2023 retreat archive note identifying the organizer and budget owner.
+load_bearing_facts:
+- 60
+- 137
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      path: result.ok
+      value: true
+      check_id: morgan_195_00
+      action_id: morgan_195_create_doc
+    - type: field_llm_judge
+      path: result.document.body
+      criterion: Identifies Sarah as organizer/contact and HR as budget owner for
+        that retreat. Does not substitute the organizer for budget approval or make
+        it a timeless assignment.
+      tool: create_doc
+      check_id: morgan_195_01
+      action_id: morgan_195_create_doc
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

@@ -1,0 +1,61 @@
+id: '160'
+narrative_anchor_date: '2028-01-01'
+test: Find the newest South Slope management email about the $680 sink-cabinet charge
+  and reply with the established cause, repair result, and household balance, asking
+  for a corrected ledger in writing.
+load_bearing_facts:
+- 151
+- 153
+- 154
+- 155
+expected_tool_calls:
+- list_inbox
+- send_email
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    assertions:
+    - type: field_equals
+      tool: send_email
+      action_id: alex_160_send_email
+      path: result.ok
+      value: true
+      check_id: alex_160_00
+    - type: field_equals
+      tool: list_inbox
+      action_id: alex_160_read_email
+      path: result.0.id
+      value: ssm-charge-2027-12-30
+      check_id: alex_160_01
+    - type: field_equals
+      path: result.to
+      value: billing@southslopemanagement.com
+      tool: send_email
+      action_id: alex_160_send_email
+      check_id: alex_160_02
+    - type: field_llm_judge
+      path: result.body
+      criterion: The email disputes the $680 charge and says the cause was condensation
+        on an uninsulated cold-water riser, with no supply, drain, trap, wall, or
+        electrical leak. It says the riser was insulated, post-repair plumbing tests
+        were dry, the odor was gone, and Alex and Devika owe $0. It asks management
+        to remove the charge and confirm the corrected ledger in writing.
+      tool: send_email
+      action_id: alex_160_send_email
+      check_id: alex_160_03
+mock_state:
+  inbox:
+  - id: ssm-charge-2027-12-30
+    from: billing@southslopemanagement.com
+    subject: $680 tenant repair charge for 2025 sink-cabinet work — active plumbing
+      leak caused inside apartment
+    date: '2027-12-30T09:15:00-05:00'
+    category: billing
+    body: We have added a $680 tenant repair charge to your ledger for the 2025 sink-cabinet
+      work. Our records describe the work as addressing an active plumbing leak caused
+      inside the apartment.
+mock_state_base:
+  path: state.json
+  sha256: b2e9b6b9e0f48ec23e9ae5ec4d803c050db6c6914dfc1d47ccdf545b3c77b68a

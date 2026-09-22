@@ -1,0 +1,1379 @@
+id: '140'
+narrative_anchor_date: '2028-01-01'
+test: Update runbook entry metrics-pipeline-2023-cutover-order with the original service
+  sequence and the reasons for its first and last positions, clearly labeled as a
+  historical 2023 decision.
+load_bearing_facts:
+- 3
+expected_tool_calls:
+- update_runbook_entry
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    assertions:
+    - type: field_equals
+      tool: update_runbook_entry
+      action_id: alex_140_update_runbook_entry
+      path: result.ok
+      value: true
+      check_id: alex_140_00
+    - type: field_equals
+      path: result.runbook.id
+      value: metrics-pipeline-2023-cutover-order
+      tool: update_runbook_entry
+      action_id: alex_140_update_runbook_entry
+      check_id: alex_140_01
+    - type: field_llm_judge
+      path: result.runbook.body
+      criterion: The entry says the fixed 2023 order was ingest-edge first because
+        it had the lowest blast radius, metrics-router second, and shard-keeper last
+        because its long-tail cardinality logic gets complicated. It presents this
+        as the historical migration decision rather than a current general rule.
+      tool: update_runbook_entry
+      action_id: alex_140_update_runbook_entry
+      check_id: alex_140_02
+mock_state:
+  runbooks:
+  - id: rb_shard_keeper_rollback
+    service: shard-keeper
+    title: 'shard-keeper: rollback procedure (post-Apr-18 hardened path)'
+    body: '1. Remove the affected replica from follower reads.
+
+      2. Verify that the lease holder and epoch remain stable, with no acquisition
+      or relinquishment events, stale-owner messages, overlapping leadership, or write
+      errors.
+
+      3. Confirm that the replica is making forward catch-up progress.
+
+      4. Re-enter the follower read pool only after disk latency is back at baseline
+      and lag is below one second for fifteen continuous minutes.
+
+      5. Restart only if the replica stops progressing after the lease-safety checks.
+      Do not use an automatic timer response as the restart condition.'
+    owner: alex
+    backup: cyrus_team
+    created_at: '2023-05-22T16:00:00-04:00'
+    last_updated: '2023-05-22T16:00:00-04:00'
+    updated_at: '2025-02-06T08:40:00-05:00'
+  - id: rb_metrics_router_canary
+    service: metrics-router
+    title: 'metrics-router: canary alert response'
+    body: '# Metrics-router owner-led configuration windows
+
+
+      ## Current ownership effective December 5, 2025
+
+      - Wes is the formal metrics-router primary; Alex is the formal backup.
+
+      - Each configuration window requires a fresh opening decision from Wes, or from
+      Alex while covering for an unavailable Wes.
+
+      - Once a window is opened, mapped operators may make single-file pushes without
+      a separate approval before every safe push.
+
+      - Retired generations must remain at four or fewer.
+
+      - Cleanup pauses must remain at or below 100 milliseconds.
+
+      - The full health set must return to baseline after every push.
+
+      - Exceeding either the retired-generation or cleanup-pause threshold stops the
+      window immediately.
+
+      - After recovery, a fresh decision by Wes, or by Alex while covering for an
+      unavailable Wes, permits exactly one fully observed push.
+
+      - Opening another window requires a separate fresh decision after that push
+      returns the full health set to baseline.
+
+      - Active-generation consistency, route parity, dropped series, reload failure,
+      and restart remain rollback conditions.
+
+
+      ## October 7 stopped-window exercise
+
+      The second September push changed the intended single file. Retired generations
+      peaked at four and the cleanup pause was 103 milliseconds, exceeding the 100-millisecond
+      ceiling, so the window stopped immediately. Full health returned seven minutes
+      later, and no additional push occurred. There was no rollback condition. Wes
+      correctly classified this as a stopped window, not a completed safe push or
+      a reopened window.
+
+
+      ## October 8 completed recovery-push exercise and acceptance
+
+      Under the ownership rule then in force, Alex made a fresh decision authorizing
+      exactly one fully observed recovery push. Wes exercised the recorded 94-millisecond
+      recovery-push case. Retired generations remained at four or fewer, and the full
+      health set returned to baseline. This was the single permitted recovery push
+      and did not reopen a multi-push window. Hema accepted the exercised canary-response
+      reference for future use by Wes and other mapped operators. The reference is
+      no longer pending validation.
+
+
+      ## Host-maintenance rejoin gate — April 15 clarification
+
+      - A rejoining instance must remain isolated until it reports the current active
+      generation.
+
+      - A missing generation report does not count as healthy and does not satisfy
+      the rejoin gate.
+
+      - After the current active generation is reported, the ordinary consistency,
+      parity, dropped-series, route, and health checks must all pass before canary
+      isolation is released.
+
+      - This is a host-maintenance rejoin safety check only. It does not create or
+      open an owner-led configuration window or authorize a configuration push.
+
+
+      ## Negative route-snapshot age: host-time anomaly versus generation mismatch
+
+      - Isolate the affected instance when route_snapshot_age_seconds is negative.
+
+      - Do not automatically classify a negative route-snapshot age as a route-generation
+      mismatch or roll back the active configuration.
+
+      - Check host time separately from generation evidence. Determine whether the
+      instance reports the current generation and whether any route or configuration
+      change occurred.
+
+      - When the instance reports the current generation, no route or configuration
+      change occurred, and the evidence is host-local, use deploy-pipeline instance
+      replacement rather than configuration rollback.
+
+      - Keep the instance isolated until it reports the current active generation
+      and the ordinary consistency, parity, dropped-series, route, and full-health
+      gates all pass.
+
+      - Preserve the existing rollback conditions when the evidence actually shows
+      a generation, consistency, parity, dropped-series, reload, or restart failure.
+
+      - This guidance creates no deployment authorization or additional ownership
+      change.'
+    owner: wes
+    backup: alex
+    created_at: '2023-05-22T16:30:00-04:00'
+    last_updated: '2023-06-12T15:10:00-04:00'
+    updated_at: '2025-12-05T11:28:00-05:00'
+  - id: rb_ingest_edge_cutover
+    service: ingest-edge
+    title: 'ingest-edge: cutover playbook'
+    body: '## Active decoder controls — October 19–20, 2027
+
+
+      Production ingest-edge enforces one request-wide 1,048,576-byte aggregate decoded-attribute
+      limit across all gzip members and a 72-request decode-admission cap. Requests
+      with exactly 1,048,576 decoded attribute bytes pass; requests with 1,048,577
+      bytes fail before acceptance and enqueue regardless of gzip-member layout. Work
+      above 72 concurrent decode admissions receives retryable pre-acceptance results,
+      and no over-limit work is enqueued.
+
+
+      Every accepted request must have exactly one terminal outcome. Every admission
+      slot must be released exactly once after success, rejection, malformed input,
+      cancellation, or disconnect. Preserve the separate 8,000-point whole-batch rule
+      and the limit of eight waiting requests per tenant. Yuki retains implementation,
+      release, and rollback authority for these decoder controls.
+
+
+      ## PR 2519 opaque-key production behavior
+
+
+      Yuki deployed PR 2519 during the January 19, 2027 production window, completing
+      the production change at 10:37 AM. Yuki remained the release and rollback owner
+      for this change, and no rollback occurred.
+
+
+      The completed 24-hour production observation established that:
+
+      - Caller-supplied idempotency keys remain opaque within a tenant; ingest-edge
+      does not trim or lowercase them before tenant-bound lookup.
+
+      - Every executed case variant and every executed leading-, trailing-, and repeated-whitespace
+      variant remained a distinct tenant-bound idempotency identity.
+
+      - A genuine retry using the same tenant-bound key and operation returned its
+      original terminal result without another enqueue.
+
+      - No probe showed cross-tenant replay or replay across operations.
+
+
+      ## Randomized Retry-After production behavior
+
+
+      The randomized one-to-three-second `Retry-After` behavior is enabled as the
+      production behavior for ingest-edge. The rollout completed at 100%; do not return
+      to the baseline behavior.
+
+
+      ## Stop boundaries
+
+
+      Stop or roll back the rollout for any of the following:
+
+      - Any increase in 5xx responses.
+
+      - p99 at or above 190 ms.
+
+      - Queue depth at or above 76%.
+
+      - Accepted-throughput loss at or above 3%.
+
+      - Retry peaks at or above 130,000 attempts per second.
+
+
+      ## Observed rollout maxima
+
+
+      - 10% gate: 123,000 retry attempts per second; p99 172 ms; queue depth 74%;
+      accepted throughput 2.4% below baseline; no 5xx increase.
+
+      - 50% gate: 128,000 retry attempts per second; p99 186 ms; queue depth 75%;
+      accepted throughput 2.8% below baseline; no 5xx increase.
+
+      - 100% gate: 129,000 retry attempts per second; p99 188 ms; queue depth 75%;
+      accepted throughput 2.9% below baseline; no 5xx increase.
+
+
+      ## Production tenant-fair queue behavior
+
+
+      - Use tenant round-robin scheduling.
+
+      - Insert a tenant into the active ring immediately when its first request is
+      queued.
+
+      - Use eligible capacity without leaving it idle.
+
+      - Remove a tenant from the ring when cancellation empties its queue.
+
+      - Cap waiting requests at eight per tenant.
+
+
+      Preserve the existing four-active-per-pod limit, two-active-per-tenant limit,
+      bounded-decompression behavior, randomized one-to-three-second `Retry-After`
+      requirement, accepted-point and dropped-point integrity checks, and restart
+      checks.
+
+
+      ## Service-discovery membership restoration and closure
+
+
+      For a zone-imbalance response, use this bounded validation sequence:
+
+      - Compare ready endpoints with load-balancer membership separately by zone.
+
+      - After membership refresh, verify that traffic distribution has returned to
+      baseline.
+
+      - Confirm queue occupancy and caller errors remain at baseline.
+
+      - Before declaring closure, reconcile every accepted request to exactly one
+      caller-visible terminal result, with no duplicated or unaccounted accepted work
+      and no leaked queue occupancy.
+
+
+      This sequence does not change the owner map or make Alex the routine operator;
+      execution remains with the mapped owner and operator paths.
+
+
+      ## Tenant-burst operating check
+
+
+      For this tenant-burst instance:
+
+      - A tenant may have at most eight waiting requests.
+
+      - Excess requests must remain retryable and fail before acceptance.
+
+      - Every accepted request must reconcile to exactly one terminal result.
+
+      - Other tenants and caller errors must remain at baseline.
+
+      - An emptied queue must end at zero.
+
+
+      This operator check does not transfer implementation, release, or rollback ownership
+      from Yuki’s mapped path.'
+    owner: alex
+    backup: yuki
+    created_at: '2023-03-22T09:00:00-04:00'
+    last_updated: '2023-05-22T16:00:00-04:00'
+    updated_at: '2027-10-21T08:45:00-04:00'
+  - id: rb_shard_keeper_label_parity
+    service: shard-keeper
+    title: 'shard-keeper: label-name parity pre-push sync'
+    body: Mandatory pre-push sync with Nadia (alerting/dashboards) AND the rollup-service
+      owner (Cyrus team since May 22) before any label-name change reaches prod.
+    owner: alex
+    backup: nadia
+    created_at: '2023-05-22T16:45:00-04:00'
+    last_updated: '2023-05-22T16:45:00-04:00'
+  - id: rb_metrics_router_oncall_handoff
+    service: metrics-router
+    title: 'metrics-router: on-call handoff checklist'
+    body: '# Metrics-router on-call handoff checklist
+
+
+      ## Current service ownership effective December 5, 2025
+
+      - Wes is the formal metrics-router primary.
+
+      - Alex is the formal metrics-router backup and covers when Wes is unavailable.
+
+      - Alex remains the architectural reviewer and escalation path for triggered
+      cross-service invariant, provenance, or failure-mode exceptions; he is not the
+      ordinary release gate.
+
+
+      ## Handoff checks
+
+      - Active deploys.
+
+      - Open incidents.
+
+      - Recent canary state.
+
+      - Current Infra rotation composition: Alex, Nadia, Hema, Yuki, and Wes.
+
+      - Any triggered cross-service invariant, provenance, or failure-mode exception.
+
+
+      The Infra rotation is unchanged. Shard-keeper remains outside Wes''s solo scope
+      unless Alex or the Cyrus-team backup explicitly pairs with him.'
+    owner: wes
+    backup: alex
+    created_at: '2023-05-24T10:00:00-04:00'
+    last_updated: '2023-05-24T10:00:00-04:00'
+    updated_at: '2025-12-05T11:28:00-05:00'
+  - id: rb_devika_spring_night_blocks
+    service: devika-staffing
+    title: Devika spring night-shift blocks
+    body: 'Cyrus-maintained timeline.
+
+
+      Mar 31 block (first): 10 days, pre-migration-tension.
+
+
+      Apr 12 block (second): 14 days, overlapped with the shard-keeper outage week.
+
+
+      Jun 13 block (third): 10 days, post-migration-restart.'
+    owner: cyrus
+    backup: alex
+    created_at: '2023-04-12T09:00:00-04:00'
+    last_updated: '2023-06-13T09:00:00-04:00'
+  - id: rb_wes_feedback
+    service: onboarding
+    title: Wes feedback / mentoring runbook
+    body: 'Mentor: Alex. Notes from ramp arc — May 15 staging-deploy walk-through,
+      May 18 deploy-rule correction, Jun 12 Saturday canary assist, Jun 21 first solo
+      overnight.
+
+
+      ## Aug 16, 2023 — metrics-router load-test cardinality canary
+
+
+      - Wes took first pass on a sev3 metrics-router cardinality canary during a data-platform
+      load test.
+
+      - He checked for router/deploy evidence before reaching for rollback and isolated
+      the spike to an unbounded `experiment_id` label on load-test traffic.
+
+      - He pulled Alex in within the 45-minute secondary rule when he wanted confirmation
+      rather than letting the incident drift.
+
+      - He coordinated toward stopping the load test with Cyrus''s side; the canary
+      cleared without escalation or rollback.
+
+      - Coaching note: good production judgment; keep reinforcing "find the label
+      source before rolling the service" and keep the formal owner map unchanged.
+
+
+      ## Aug 23, 2023 — practical operating-scope note
+
+
+      - Hema and Alex reviewed Wes''s August evidence and agreed on a narrow practical
+      operating-scope expansion after the Aug 16 metrics-router canary judgment.
+
+      - Wes must continue to use the deploy pipeline rather than laptop deploys because
+      laptop deploys bypass the canary.
+
+      - Wes''s solo safe operating surface remains metrics-router non-prod and ingest-edge
+      staging.
+
+      - As of Aug 23, 2023, Wes can make first-pass production decisions for metrics-router
+      canaries and staging rollback calls for ingest-edge under the deploy-pipeline
+      rules.
+
+      - Shard-keeper remains outside Wes''s solo scope unless Alex or the Cyrus-team
+      backup explicitly pairs with him.
+
+      - This is a practical operating note only and does not change the formal owner
+      map.
+
+
+      ## Production canary example — Nov 21, 2023
+
+
+      Wes drove the daylight metrics-router sampling-window cleanup canary through
+      the deploy pipeline.
+
+
+      What happened:
+
+      - A replay-validation panel twitched for several minutes after the canary slice
+      went live.
+
+      - Live metrics-router p99 stayed flat.
+
+      - Live error rate stayed flat.
+
+      - Dropped writes stayed at zero.
+
+      - Rollup-service lag stayed flat.
+
+
+      Good judgment shown:
+
+      - Wes used the dashboard source labels to distinguish replay/mirror validation
+      movement from live-path health.
+
+      - He held promotion briefly instead of ignoring the twitch.
+
+      - He verified live-path metrics and rollup-service lag before proceeding.
+
+      - He proceeded without Alex taking over the decision.
+
+
+      Scope note:
+
+      This is Q4 evidence for first-pass metrics-router canary judgment under the
+      practical backup rules. It does not change the owner map, make Wes the default
+      daylight handoff, or expand his solo scope into shard-keeper.
+
+
+      ## Dec 22, 2023 — daylight first-pass handoff
+
+
+      After reviewing Wes''s Q4 examples, including the dashboard-source cleanup and
+      the Nov 21 metrics-router canary, Hema and Alex agreed that Wes is the default
+      daylight first-pass handoff for:
+
+
+      - `metrics-router` canary questions.
+
+      - `ingest-edge` staging rollback drills.
+
+
+      This is under the existing deploy-pipeline rules:
+
+
+      - Wes must use the deploy pipeline rather than laptop deploys; laptop deploys
+      bypass the canary.
+
+      - Wes''s solo safe surface continues to include `metrics-router` non-prod and
+      `ingest-edge` staging.
+
+      - Wes can make first-pass production decisions for `metrics-router` canaries
+      and staging rollback calls for `ingest-edge` under the deploy-pipeline rules.
+
+      - Alex no longer shadows every safe first-pass decision that falls inside this
+      practical backup scope.
+
+
+      Non-scope and ownership boundaries:
+
+
+      - `shard-keeper` remains outside Wes''s solo scope unless Alex or the Cyrus/data-platform
+      backup explicitly pairs with him.
+
+      - The `metrics-router` and `ingest-edge` owner map does not change.
+
+      - Wes is a genuine practical backup, but not a formal primary owner.'
+    owner: alex
+    backup: cyrus
+    created_at: '2023-05-04T09:00:00-04:00'
+    last_updated: '2023-06-21T09:00:00-04:00'
+    updated_at: '2023-12-22T15:50:00-05:00'
+  - id: rb_nadia_cross_review_history
+    service: metrics-pipeline
+    title: Nadia cross-review history
+    body: 'Pre-Apr-24: ad-hoc, no formal cross-review rule. Apr 28: formal cross-review
+      rule established after the shard-keeper outage. May 10: first formal Nadia-Alex
+      cross-review.'
+    owner: alex
+    backup: nadia
+    created_at: '2023-04-28T09:00:00-04:00'
+    last_updated: '2023-05-10T09:00:00-04:00'
+  - id: rb_rollup_service_ownership
+    service: rollup-service
+    title: Service identity and ownership
+    body: 'Pre-May-18: effectively un-owned; informally Alex kept an eye on it (kinda).
+      Post-May-18 audit: Cyrus team owns rollup-service.'
+    owner: cyrus_team
+    backup: alex
+    created_at: '2023-05-22T16:00:00-04:00'
+    last_updated: '2023-05-22T16:00:00-04:00'
+  - id: rb_rollup_service_ownership_rationale
+    service: rollup-service
+    title: Ownership and alerting rationale
+    body: 'Why Cyrus''s team owns rollup-service: ownership audit on May 22 assigned
+      it to Cyrus''s team, closing the gap exposed by the Apr 18 outage.'
+    owner: cyrus_team
+    backup: alex
+    created_at: '2023-05-22T16:00:00-04:00'
+    last_updated: '2023-05-22T16:00:00-04:00'
+  - id: rb_metrics_router_cutover_status
+    service: metrics-router
+    title: Cutover status
+    body: '# Cutover status
+
+
+      - Live metrics-router traffic uses the OTel/Prometheus path.
+
+      - Validation that formerly depended on the legacy mirror now runs from the OTel/Prometheus
+      path plus Cardinality Guardrails fixtures.
+
+      - Service deploy regressions should use the deploy-pipeline rollback path for
+      the affected live service.
+
+      - legacy-aggregator is archived legacy code only. It is not a production rollback
+      path, mirrored validation lane, or active replay source.'
+    owner: alex
+    backup: wes
+    created_at: '2023-04-03T09:00:00-04:00'
+    last_updated: '2023-04-18T09:00:00-04:00'
+    updated_at: '2024-01-17T11:10:00-05:00'
+  - id: rb_shard_keeper_cutover_status
+    service: shard-keeper
+    title: Cutover status
+    body: 'Current state as of Jul 12, 2023: shard-keeper cutover is complete and
+      shard-keeper is part of the normal metrics-pipeline baseline.
+
+
+      Operational handoff:
+
+      - No migration hold is active.
+
+      - Do not treat the old 95% shard-lag hold panels as a special cutover gate.
+
+      - Treat shard-lag as a normal rollup-service signal under standard thresholds.
+
+
+      Config-push rule still in force:
+
+      - Alex is primary owner for shard-keeper and the Cyrus team is backup owner/on-call.
+
+      - Any shard-keeper config push still requires the post-audit pre-push sync with
+      the other owner/on-call.'
+    owner: alex
+    backup: nadia
+    created_at: '2023-06-06T09:00:00-04:00'
+    last_updated: '2023-07-03T09:00:00-04:00'
+    updated_at: '2023-07-17T09:05:00-04:00'
+  - id: rb_shard_keeper_status_arc
+    service: shard-keeper
+    title: Status arc
+    body: '1. not_started (initial). 2. paused_pending_audit (Apr 28 after the outage).
+      3. migration_in_progress (post-restart). Current: ~92% complete as of Jul 3.'
+    owner: alex
+    backup: nadia
+    created_at: '2023-04-28T09:00:00-04:00'
+    last_updated: '2023-07-03T09:00:00-04:00'
+  - id: rb_shard_keeper_apr14_precondition
+    service: shard-keeper
+    title: Apr 18 outage precondition
+    body: Pre-outage state record placeholder.
+    owner: alex
+    backup: nadia
+    created_at: '2023-04-18T09:00:00-04:00'
+    last_updated: '2023-04-18T09:00:00-04:00'
+  - id: rb_shard_keeper_ownership_history
+    service: shard-keeper
+    title: Ownership history
+    body: 'Pre-May-18: Alex is the informal primary owner; no formal backup was named;
+      Cyrus team helped ad-hoc, but ownership was never formally written down.'
+    owner: alex
+    backup: cyrus_team
+    created_at: '2023-03-05T09:00:00-05:00'
+    last_updated: '2023-05-22T09:00:00-04:00'
+  - id: rb_ingest_edge_ownership_history
+    service: ingest-edge
+    title: Ownership history
+    body: 'Pre-May-18: Alex was primary; Yuki helped ad-hoc but was not formally named
+      as backup. Post-May-18: Alex primary, Yuki formal backup.'
+    owner: alex
+    backup: yuki
+    created_at: '2023-03-05T09:00:00-05:00'
+    last_updated: '2023-05-22T09:00:00-04:00'
+  - id: rb_incident_postmortem_standards
+    service: incident-response
+    title: Incident postmortem standards
+    body: Apr 18 postmortem set the bar for Sphere incident docs; that template should
+      be the standard going forward.
+    owner: alex
+    backup: hema
+    created_at: '2023-05-04T09:00:00-04:00'
+    last_updated: '2023-05-04T09:00:00-04:00'
+  - id: rb_communication_after_incidents
+    service: communication-after-incidents
+    title: Communication after incidents
+    body: 'Post-incident communication practice for Alex: morning-after Apr 19 reset;
+      Jun 19 brunch with Anya — Alex stayed calmer than the morning-after-Apr-15 thanks
+      to post-outage practice.'
+    owner: alex
+    backup: anya
+    created_at: '2023-04-19T09:00:00-04:00'
+    last_updated: '2023-06-19T09:00:00-04:00'
+  - id: rb_code_review_process
+    service: code-review
+    title: Code Review Process
+    body: Old (ad-hoc) Alex/Nadia review pattern, pre-Apr-24 cross-review rule; informal
+      sign-offs in DMs.
+    owner: alex
+    backup: nadia
+    created_at: '2023-04-05T09:00:00-04:00'
+    last_updated: '2023-04-28T09:00:00-04:00'
+  - id: rb_oncall_rotation_handoff
+    service: on-call
+    title: Rotation handoff
+    body: '# Rotation handoff
+
+
+      ## Infra roster
+
+      The roster remains unchanged: Alex, Nadia, Hema, Yuki, and Wes.
+
+
+      ## Metrics-router ownership effective December 5, 2025
+
+      - Wes is formal primary and Alex is formal backup.
+
+      - Wes owns routine implementation, production operations, release and rollback
+      decisions, and fresh opening decisions for owner-led windows under the existing
+      deploy-pipeline, canary, health-return, stop, and rollback rules.
+
+      - Alex may make an opening decision while covering for an unavailable Wes and
+      remains the architectural reviewer and escalation path only for triggered cross-service
+      invariant, provenance, or failure-mode exceptions.
+
+
+      ## Boundaries preserved
+
+      - Ingest-edge remains Alex primary with Yuki backup. Wes remains a practical
+      backup there, and Alex does not shadow every safe first-pass decision within
+      that scope.
+
+      - Shard-keeper remains Alex primary with the Cyrus team as backup and is outside
+      Wes''s solo scope unless Alex or the Cyrus-team backup explicitly pairs with
+      him.
+
+      - The broader Mosaic scale-response cycle remains open, and no capacity-related
+      production window is authorized.'
+    owner: alex
+    backup: hema
+    created_at: '2023-05-15T09:00:00-04:00'
+    last_updated: '2023-05-15T09:00:00-04:00'
+    updated_at: '2025-12-05T11:28:00-05:00'
+  - id: rb_1694794680002
+    service: metrics-router
+    title: 'metrics-router: check dashboard source before rollback language'
+    body: Before treating a p99 or CPU panel as rollback-worthy, verify whether the
+      panel is sourced from live metrics-router traffic or from replay-validation
+      / mirror samples. Live-path rollback criteria remain user-visible latency movement,
+      dropped writes, error-rate movement, or downstream rollup lag. Mirror/replay-only
+      movement should be called out as validation noise and handled outside the production
+      rollback path.
+    created_at: '2023-09-15T12:18:00-04:00'
+  - id: rb_1695397500003
+    service: metrics-router
+    title: Practical backup scope is not owner-map scope
+    body: '# Practical backup scope is not owner-map scope
+
+
+      When handing off infra coverage, do not infer ownership changes from practical
+      backup coverage.
+
+
+      - Use the deploy pipeline for metrics-router and ingest-edge changes. No laptop
+      deploys.
+
+      - Wes can make first-pass production decisions for metrics-router canaries and
+      staging rollback calls for ingest-edge when the deploy-pipeline and canary rules
+      are followed.
+
+      - Shard-keeper remains outside Wes''s solo scope unless Alex or the Cyrus-team
+      backup is explicitly pairing with him.
+
+      - A handoff should name the service, environment, deploy or canary window, observed
+      rollback criteria, and who owns the final decision.
+
+      - This guidance does not change the owner map.'
+    created_at: '2023-09-22T11:45:00-04:00'
+  - id: rb_1697635080004
+    service: metrics-router
+    title: 'Cardinality Guardrails: label-change preflight first cut'
+    body: "# Cardinality Guardrails: label-change preflight first cut\n\nThis entry
+      records the first acceptance-check pass for the Q4 Cardinality Guardrails work.
+      It is not a mature program, a general telemetry rewrite, a customer-facing surface,
+      or a legacy-aggregator retirement plan.\n\n## Reviewer checklist\n\n### 1. Scope
+      the change\nPass if the PR says whether it touches metrics-router, shard-keeper,
+      rollup-service, or a cross-service label boundary.\nFail if the PR changes label
+      names or label value shapes without naming the affected service boundary.\n\n###
+      2. New label keys or changed value shapes\nPass if every new label key or changed
+      value shape names an owner, source, expected cardinality shape, and whether
+      it is live-path or validation-only.\nFail if a new label can appear on live
+      metrics-router or shard-keeper traffic without an owner and expected cardinality
+      shape.\n\n### 3. Risky label families\n- `customer_id`: high-cardinality by
+      nature, but expected and already budgeted when owner/source are clear. Do not
+      fail solely because this label is high-cardinality.\n- `experiment_id`: fail
+      live router pushes unless new experiment labels are explicitly allowed and bounded.\n-
+      `route_pattern`: pass only when values are normalized route patterns; fail raw
+      IDs or raw paths.\n- `deployment_sha`: okay for canary visibility; fail noisy
+      joins with per-request labels.\n- `error_detail`: fail as a metrics label family.
+      Raw error strings or payload fragments should not become metric labels.\n\n###
+      4. Sample distinct counts before promotion\nPass if the reviewer can see sample
+      distinct counts from realistic traffic for new or changed label value shapes.\nFail
+      if the only evidence is a hand-wavy assertion that the canary is green.\n\n###
+      5. Rollup-service parity before cross-service label-name changes\nPass if rollup-service
+      expects the same label name and semantics before a label-name change crosses
+      service boundaries.\nFail if metrics-router or shard-keeper ships a label-name
+      change that downstream rollup-service consumers do not recognize.\n\n### 6.
+      Alert-source and rollback semantics\nPass if dashboards and alert text distinguish
+      live metrics-router traffic from replay or mirror validation samples.\nLive-path
+      movement can start rollback discussion.\nReplay or mirror validation movement
+      is investigation evidence and Q4 controls input, not rollback criteria.\nFail
+      if replay or mirror movement is described as a live rollback trigger.\n\n##
+      Ownership and non-goals\n\nService-level enforcement tradeoffs stay with Alex's
+      side of the metrics pipeline. Cyrus and data platform can provide cost examples
+      and validate cost intuition, but they do not own router or shard enforcement
+      gates.\n\nNon-goals: no customer-facing dashboard, no release-readiness score,
+      no broad telemetry rewrite, no legacy-aggregator retirement claim, no default
+      ownership change for enforcement, and no claim that Cardinality Guardrails is
+      complete.\n\n## First-use review notes — Nov 8, 2023\n\nThese notes clarify
+      how to apply the first-cut checklist. They do not make Cardinality Guardrails
+      mature, complete, or a general telemetry rewrite.\n\n- Local metrics-router
+      visibility labels: require owner, source, expected cardinality shape, and evidence
+      from live canary traffic or a representative live-path fixture when the value
+      shape can change on the hot path. Rollup-service signoff is not required for
+      labels that do not cross a service boundary.\n- Cross-service label names or
+      meaning changes: require rollup-service parity before promotion. A green metrics-router
+      canary does not substitute for downstream consumers expecting the same label
+      name and semantics.\n- `route_pattern`: pass only for normalized route patterns.
+      If a code path could emit raw account IDs, widget IDs, or raw paths on live
+      traffic, reviewers need live-path evidence or a representative live-path fixture;
+      replay validation alone is not enough.\n- Replay or mirror validation panels:
+      keep them visible as investigation evidence. Do not describe replay or mirror
+      movement as live rollback criteria.\n- Cost examples: keep them directional
+      and advisory. Cyrus/data platform can validate cost intuition, but enforcement
+      gates stay with the service owners.\n\n## Pilot prevention note — Nov 14, 2023\n\nThe
+      first concrete prevention case for this first-cut checklist came from a rollup-service
+      validation metrics proposal.\n\nProposed shape that did not ship:\n`rollup_validation_sample_total{validation_result=\"match|mismatch\",
+      replay_source_id=\"$source_id\"}`\n\nWhy it failed the checklist:\n- `replay_source_id`
+      is a raw replay-stream identifier.\n- Cyrus's sample showed the value is effectively
+      unbounded across replay sources, jobs, chunks, and backfills.\n- The debugging
+      need was real, but the raw identifier belongs in logs rather than as a metrics
+      label.\n\nAccepted shape:\n- Keep raw `replay_source_id` in logs for debugging.\n-
+      Use a bounded `source_class` metric label for rollup-service validation dashboards.\n-
+      Preserve validation visibility without introducing an unbounded label into the
+      metrics pipeline.\n\nThis is evidence that the first-cut Cardinality Guardrails
+      review can prevent a bad label shape without blocking the debugging need. It
+      does not make Cardinality Guardrails mature, complete, or a general telemetry
+      rewrite.\n\n## Raw identifier labels — first-cut guidance\n\nRaw identifiers
+      are not automatically forbidden as metric labels, but they need an explicit
+      value-shape check before review treats them as safe.\n\nUse the checklist questions:\n-
+      Is the value set bounded and named, or can it grow with requests, jobs, tenants,
+      chunks, backfills, or arbitrary source records?\n- Does the dashboard or alerting
+      use case require this as a metric dimension, or is the raw identifier only needed
+      for debugging?\n- If the raw identifier is effectively unbounded, keep it in
+      logs or trace context instead of the metrics label set.\n- If dashboard grouping
+      is required, prefer a bounded classification label such as `source_class` or
+      another reviewed enum.\n\nThis is first-cut Cardinality Guardrails review guidance.
+      It is not a blanket rule that all IDs are forbidden, it is not a general telemetry
+      rewrite, and it does not make Wes the default enforcement owner.\n\n## Required
+      operating rule — narrow label-change class\n\nFor production review after Dec
+      12, 2023, label changes that touch `metrics-router`, `shard-keeper`, or `rollup-service`
+      must run the Cardinality Guardrails checks below before the change is treated
+      as safe for production review.\n\nRequired checks:\n1. Label-cardinality preflight.\n
+      \  - Identify new or changed label keys and changed value-shape behavior.\n
+      \  - Show whether the value set is bounded, expected high-cardinality with an
+      owner/budget, or effectively unbounded.\n   - Use live canary evidence or a
+      representative live-path fixture for live-path value-shape changes; replay evidence
+      alone is not enough for a live-path label change.\n   - Keep unbounded raw identifiers
+      in logs or trace context unless a reviewed bounded metric dimension is justified.\n\n2.
+      Alert-source classification check.\n   - Classify whether the relevant panel
+      or alert signal is live-path, replay-source, mirror-source, or other validation-source
+      evidence.\n   - Replay or mirror movement can remain visible as investigation
+      evidence, but it is not rollback criteria by itself.\n   - Reviewers must not
+      allow validation-source panels to read like live rollback triggers.\n\nReview
+      path:\n- Nadia keeps alert semantics in the Cardinality Guardrails review path.\n-
+      Cyrus keeps the cost/cardinality angle attached to review.\n- Rollup-service
+      ownership remains with the Cyrus/data-platform side; this rule does not move
+      enforcement ownership to data platform.\n\nNon-goals:\n- This is not a mature
+      or complete Cardinality Guardrails program.\n- This is not a general telemetry
+      rewrite.\n- This does not make Wes or any practical backup the default enforcement
+      owner.\n\n## Completed production example — deployment.environment\n\nThe mapped
+      service owners completed the `deployment.environment` rollout through the production
+      OTel ingestion, metrics-router, and rollup-service path after the required label-cardinality
+      preflight and alert-source classification check.\n\n- Mixed-case allowed inputs
+      normalize only to `prod`, `staging`, or `dev`.\n- Absent input produces no `deployment.environment`
+      label.\n- `qa`, unknown, malformed, and arbitrary raw values are rejected before
+      publication and create no series.\n- Tenant distinct values cannot exceed three.\n-
+      The forty-eight-hour production observation found no rollup-service producer-consumer
+      mismatch.\n- Implementation and operational ownership remain with the mapped
+      service owners; Alex is not the catch-all implementer or operator for the change."
+    created_at: '2023-10-18T09:18:00-04:00'
+    updated_at: '2024-08-08T10:05:00-04:00'
+  - id: rb_legacy_aggregator_retirement_exit_gate
+    created_at: '2023-12-06T14:35:00-05:00'
+    body: '# legacy-aggregator: mirrored-write retirement exit gate
+
+
+      Status as of Dec 18, 2023: the mirrored-write validation lane has been stopped.
+
+
+      What changed:
+
+      - The final replay fixture pass was clean.
+
+      - Live `metrics-router` references are absent.
+
+      - Live `rollup-service` references are absent.
+
+      - The Cardinality Guardrails fixtures cover the prior cross-service label-change
+      class that made the legacy mirror feel useful after the Apr 18 label-name mismatch.
+
+      - Validation checks that previously depended on the legacy mirror now run from
+      the OTel/Prometheus path plus Cardinality Guardrails fixtures.
+
+
+      Current production role:
+
+      - `legacy-aggregator` is no longer part of the live path.
+
+      - `legacy-aggregator` is no longer part of the mirrored validation lane.
+
+      - `legacy-aggregator` remains only as archived legacy code.
+
+
+      Do not use `legacy-aggregator` as:
+
+      - A production rollback path.
+
+      - An active replay source.
+
+      - A source of live rollback criteria.
+
+
+      Responder guidance:
+
+      - Use live-path OTel/Prometheus signals for production health.
+
+      - Use Cardinality Guardrails fixtures for the covered label-change validation
+      cases.
+
+      - If an old dashboard, annotation, doc, or runbook refers to legacy mirrored
+      writes as active, treat it as stale until verified and clean or tag it clearly.
+
+
+      Non-goals:
+
+      - This does not make Cardinality Guardrails a mature or complete telemetry-governance
+      program.
+
+      - This does not turn replay or mirror movement into live-path rollback criteria.
+
+      - This does not create a new production fallback through archived legacy code.'
+    title: 'legacy-aggregator: mirrored-write retirement exit gate'
+    updated_at: '2023-12-18T10:22:00-05:00'
+  - id: rb_1707148200000
+    service: ingest-edge
+    title: 'ingest-edge: memory-slope canary stop rule'
+    body: During a staged rollout, pause at the current cohort when memory rises monotonically
+      for at least 15 minutes and queue age rises with it, even if error rate, dropped-point
+      count, and duplicate-accepted count remain flat. Before another attempt, compare
+      cache-key uniqueness against the prior version, inspect the allocation profile
+      for an unbounded type, and confirm whether queue age stabilizes when traffic
+      is held constant. If memory and queue age do not stabilize, roll back through
+      the deploy pipeline before any wider promotion. Record the integrity counters
+      separately; zero drops or duplicates do not make a continuing resource slope
+      safe.
+    created_at: '2024-02-05T10:50:00-05:00'
+  - id: rb_1710794400000
+    service: shard-keeper
+    title: 'shard-keeper: verify lease convergence after failover'
+    body: 'Process readiness alone is not the exit condition. In the staging failover
+      drill, all replacement replicas reported ready after 18 seconds, but lease ownership
+      did not converge until 96 seconds. Before declaring the failover complete, verify
+      all of the following: 1. Every partition has exactly one owner. 2. Lease epochs
+      remain monotonic. 3. No stale-owner messages appear for two full lease-renewal
+      intervals. If any of those checks fail, keep the failover open and page the
+      shard-keeper owner. Renewal-warning versus lease transfer: `renewal deadline
+      exceeded` alone does not prove a lease transfer. Check for a changed lease epoch,
+      explicit acquisition or relinquishment, overlapping leadership, and post-event
+      replication convergence. If the holder and epoch remain unchanged, no overlap
+      occurs, and lag returns to baseline, treat the event as a delayed renewal rather
+      than a failover; do not automatically restart.
+
+
+      ## Production lease-loss serving-gate invariant
+
+
+      On lease-loss notification, close the old holder''s serving gate before it can
+      return another routing response. The periodic poll is only a backup detector,
+      not the serving-safety mechanism. Production verification must include:
+
+      - gate closure before any later routing response
+
+      - exactly one serving holder throughout the transfer
+
+      - lease-loss notification to gate-close latency
+
+      - stale routing responses
+
+      - replacement acquisition time
+
+      - request p99
+
+      - errors
+
+      - restarts
+
+
+      A slow handoff or convergence warning is an availability signal to investigate
+      separately. By itself, it is not evidence that the old holder served after lease
+      loss or that the serving-safety invariant failed. The owner map and mapped deployment
+      responsibility remain unchanged.'
+    created_at: '2024-03-18T16:40:00-04:00'
+    updated_at: '2024-08-14T08:25:00-04:00'
+  - id: rb_1712320920010
+    service: ingest-edge
+    title: 'OTLP partial success: distinguish accepted from rejected points'
+    body: 'When an OTLP export returns a partial-success response:
+
+
+      1. Inspect the partial-success response body.
+
+      2. Report the exact rejected data-point count and the rejection reason.
+
+      3. State clearly that the valid portion of the export was accepted.
+
+      4. Have the customer correct or omit only the invalid data points, then replay
+      those corrected or omitted points as appropriate.
+
+      5. Do not replay the entire original batch: data that was already accepted can
+      be duplicated.
+
+      6. Escalate if the response does not contain a rejected count or a rejection
+      reason.'
+    created_at: '2024-04-05T08:42:00-04:00'
+  - id: rb_1732909200006
+    service: otel-collector
+    title: otel-collector 0.96.2-sphere.7 production checks
+    body: '# otel-collector 0.96.2-sphere.7 production checks
+
+
+      ## Deployment state
+
+      - The fixed build `0.96.2-sphere.7` completed its 5% production canary on January
+      8 and the authorized rolling deployment across the remaining production collector
+      tier on January 15.
+
+      - The remaining-tier rollout finished at 11:34 AM Eastern and remained under
+      observation through noon.
+
+
+      ## January 15 result
+
+      - No collector crash or forwarding loop.
+
+      - Accepted edge-gateway forwarding matched collector receipt counts.
+
+      - Valid-request error rate was 0.01 percentage point above baseline.
+
+      - p99 was 3 milliseconds above baseline.
+
+      - No rollback signal fired.
+
+
+      ## Response-check order
+
+      1. Check for a collector crash or forwarding loop.
+
+      2. Reconcile accepted edge-gateway forwarding with collector receipt counts.
+
+      3. Compare valid-request error rate with baseline; roll back if it is more than
+      0.1 percentage point above baseline for 15 minutes.
+
+      4. Compare p99 with baseline; roll back if it is more than 20 milliseconds above
+      baseline for 15 minutes.
+
+      5. Treat intentionally rejected malformed requests as expected only after the
+      valid-traffic and accounting checks remain clean.'
+    created_at: '2024-11-29T14:40:00-05:00'
+    updated_at: '2025-01-15T12:20:00-05:00'
+  - id: rb_1739214900012
+    service: ingest-edge
+    title: Handling batches above 8,000 points
+    body: '## Expected behavior
+
+
+      - Participating SDKs reject batches above 8,000 points before transmission and
+      tell callers to split them.
+
+      - Older or nonconforming clients receive deterministic HTTP 413 whole-batch
+      rejection from ingest-edge.
+
+      - The response must report zero accepted points, rejected points equal to the
+      submitted count, and reason `oversized_batch`.
+
+      - Do not retry the unchanged oversized batch; split it before another attempt.
+
+
+      ## Classification
+
+
+      A rise in correctly accounted HTTP 413 `oversized_batch` responses is expected
+      backstop behavior, not by itself an ingest-edge outage, when compliant traffic
+      remains healthy.
+
+
+      ## Escalate
+
+
+      Escalate if any oversized response reports accepted points above zero, rejected
+      points different from the submitted count, a reason other than `oversized_batch`,
+      unchanged automatic retries, duplication or loss after splitting, or error or
+      latency impact to compliant traffic.'
+    created_at: '2025-02-10T14:15:00-05:00'
+  - id: rb_quarterly_incident_practice
+    created_at: '2025-02-14T11:42:00-05:00'
+    body: '## Quarterly incident-practice module
+
+
+      Use timed scenarios during quarterly infra rotation onboarding. Every response
+      must state:
+
+
+      1. the incident clock and whether the secondary was engaged before the 45-minute
+      boundary when isolation failed;
+
+      2. the change classification, distinguishing Friday staging preparation with
+      no production state change from a production change;
+
+      3. the missing system control in the postmortem, without treating the triggering
+      operator action as the root cause.
+
+
+      ## Module owners
+
+
+      - Wes owns ongoing maintenance and teaching of the responder-path scenarios
+      and must synchronize them whenever the rotation runbook changes a responder
+      branch.
+
+      - Nadia retains the postmortem section.
+
+      - Alex maintains only the cross-service failure cases.
+
+
+      ## May 20, 2027 executed result
+
+
+      All three tabletop groups kept an over-budget replacement unroutable and refused
+      to treat restart as acceptance evidence. One group initially counted both cancellation
+      and completion, then corrected to one terminal winner and one matching accounting
+      contribution. Every group treated missing source classification as ineligible
+      for live rollback evidence. Wes taught the responder path, Nadia handled postmortem
+      framing, and Alex used only the three prepared cross-service prompts.
+
+
+      ## Host-time responder branch — July 9
+
+
+      For a negative route-snapshot-age case, isolate the instance and inspect host
+      time independently from route-generation evidence. If the fault is host-local,
+      replace the instance through the deploy pipeline rather than using configuration
+      rollback. Keep the instance isolated until it reports the current active generation
+      and the consistency, parity, dropped-series, route, and full-health checks all
+      return to baseline.
+
+
+      ## April 16 cross-service failure case — emergency label rename
+
+
+      Aggregate producer and consumer counts match, but the executable fixture shows
+      `storage_region` on the producer and `storage_zone` on the consumer.
+
+
+      Expected responder action:
+
+      - Block the shared rename.
+
+      - Preserve the label-cardinality and alert-source checks.
+
+      - Require both affected service owners for any corrected rerun.
+
+      - If the fixture cannot pass, use a service-local rollback or mitigation that
+      leaves the shared label contract unchanged.
+
+
+      ## October 15 cross-service failure case — accepted points versus accepted batches
+
+
+      ### Scenario
+
+      A production-ramp observation records that no accepted points were lost, but
+      the observation did not preserve enough batch identity to establish whether
+      any accepted batch was lost. The numeric queue-wait and retryable-refusal thresholds
+      remain within bounds, and the other observed health checks remain at baseline.
+
+
+      ### Facilitator key
+
+      1. **Incident clock:** Keep the evidence review open at the point where batch-level
+      loss cannot be established. Do not invent a clean batch result or an unsupported
+      timestamp. Apply the existing secondary-engagement branch if isolation fails
+      during an active incident.
+
+      2. **Change classification:** Classify this as an unresolved production-evidence
+      review, not authorization for another production change or window. No production
+      change or rollback follows from the missing evidence alone.
+
+      3. **System control:** Identify the missing accepted-batch identity instrumentation.
+      Point-level evidence that no accepted points were lost cannot establish that
+      the accepted-batch loss stop condition is clean. Leave the broader scale-response
+      cycle open and require the missing batch-level evidence before a later capacity-related
+      production window can be authorized.
+
+
+      This material preserves the existing incident-clock, change-classification,
+      and system-control structure. Wes teaches the responder path, Nadia reviews
+      the postmortem section, and Alex maintains this cross-service failure case.
+      It does not change service ownership or authorize production work.
+
+
+      ## Q3 bounded rollup-service label scenario — July 13, 2027
+
+
+      ### Scenario
+
+      Staging rollup-service output shows `tenant_size_class="17342"`. Responders
+      must identify that the published metric permits only `small`, `medium`, `large`,
+      or `unknown`, while the raw tenant hash belongs only in debug logs and must
+      never become a metric label. Production remains unchanged.
+
+
+      ### Expected responder action
+
+      1. **Incident clock:** Treat this as a triggered staging invariant review, not
+      as evidence of a production incident or production impact. Do not invent a production
+      event or timestamp.
+
+      2. **Change classification:** Require restoration of the bounded four-value
+      metric invariant and executed label-set and cardinality evidence before any
+      production decision.
+
+      3. **System control and ownership:** Keep the raw tenant hash in debug logs,
+      route implementation, release, and rollback decisions to Roman through the mapped
+      Data Platform owner path, and engage Alex only for the triggered invariant boundary
+      rather than as a recurring rollup-service gate.
+
+
+      Wes teaches the responder path, Nadia reviews the postmortem section, and Alex
+      maintains only this cross-service failure case. The scenario does not change
+      service ownership or authorize production work.
+
+
+      ## August 5, 2027 — Q3 executed outcome
+
+
+      The scheduled Q3 incident practice is complete. Responders identified `tenant_size_class=17342`
+      as violating the bounded `small`, `medium`, `large`, or `unknown` invariant
+      and kept the raw value out of metric labels. Wes taught the responder path,
+      Nadia kept the postmortem focused on the missing system guardrail rather than
+      blaming an operator, and Alex reviewed only the triggered invariant. Implementation,
+      release, and rollback decisions remained with Roman. The tabletop made no production,
+      release, or ownership decision.
+
+
+      ## Explicit-unknown ownership practice case — September 8, 2027
+
+
+      ### Scenario
+
+      The owner map returns explicit unknown for a service, and an automation proposes
+      assigning Alex as the fallback operational owner. This is a bounded practice
+      case, not a standing approval gate.
+
+
+      ### Expected responder action
+
+      1. Keep ownership explicit unknown and unassigned; do not silently assign Alex
+      or another fallback owner.
+
+      2. Route the correction through the authoritative owner-map path rather than
+      patching ownership in the automation.
+
+      3. Do not treat Alex, Nadia, or the facilitator as an implementation, release,
+      or rollback owner. Those decisions remain with the mapped owner path.
+
+
+      Wes continues to own responder-path teaching, and Nadia continues to review
+      the postmortem boundary. The scenario preserves the existing module ownership
+      split and creates no standing approval gate.
+
+
+      ## November 18, 2027 — cancellation-or-disconnect facilitator scenario
+
+
+      ### Scenario
+
+      An action has already been accepted when cancellation races with publication,
+      or when the caller disconnects after acceptance. Responders must preserve one
+      durable attempt identity and exactly one caller-visible terminal result rather
+      than allowing both `cancelled` and `published` outcomes or losing the accepted
+      attempt.
+
+
+      ### Facilitator requirements
+
+      1. **Incident clock and durable result:** Establish the accepted-attempt boundary,
+      preserve one durable identity, and require exactly one terminal winner across
+      cancellation, caller disconnect, process recovery, and publication.
+
+      2. **Mapped ownership:** Identify Wes as the mapped metrics-router implementation,
+      release, and rollback owner. A triggered failure-mode reviewer evaluates only
+      the durable single-terminal-result boundary and does not approve implementation,
+      release, or rollback.
+
+      3. **System control and postmortem:** Identify the missing durable terminal-accounting
+      guardrail rather than treating the triggering operator or caller action as the
+      root cause.
+
+
+      Wes teaches the responder path, Nadia reviews the postmortem section, and Alex
+      maintains the bounded cross-service failure case. This tabletop is not a production
+      procedure, production window, or ownership change.'
+    title: Quarterly incident practice module
+    updated_at: '2027-10-25T14:05:00-04:00'
+  - id: rb_lantern_pilot_explanation_timing
+    created_at: '2025-03-18T15:00:00-04:00'
+    body: '## Authorized accounts and term
+
+      Harbor Health and Mosaic Commerce continue uninterrupted from July 1 through
+      October 10, 2025 as the only Lantern customer-preview accounts. Access is read-only.
+      No additional account is authorized, and this extension makes no broader platform
+      decision.
+
+
+      ## Permitted surface
+
+      - Provenance-backed deploy events
+
+      - Published service ownership
+
+      - Timestamped incident-load summaries
+
+      - Explicit unknown states
+
+
+      ## Combined-explanation rule
+
+      Combine signals only when they belong to the same customer tenant and published
+      service, each input is independently current and provenance-complete, and the
+      newest-to-oldest source spread is no more than 24 hours. Valid wider spreads
+      remain separate and must not receive contemporaneous or causal wording.
+
+
+      ## Exclusions
+
+      Cost data; raw incident text; internal room metadata; employee identifiers or
+      comparisons; inferred or unpublished ownership; internal-only fallback data;
+      write access; and additional accounts.
+
+
+      ## Automatic technical stops and suspension
+
+      Stop and suspend all pilot access for any authorization-wrapper bypass; adapter
+      call after denial; cross-tenant material; stale or missing source rendered as
+      anything other than explicit unknown; deploy event without required provenance;
+      unpublished ownership; incident-load summary without its source timestamp; exposure
+      of raw incident text, internal room metadata, individual comparisons, inferred
+      ownership, or fallback internal-only metadata; or loss of read-only enforcement.
+      Access remains suspended until correction and a successful rerun of the affected
+      safety check. Latency and other errors do not independently stop the pilot unless
+      they cause one of these violations.
+
+
+      ## Ownership
+
+      Alex retains technical monitoring and failure-mode ownership. Iris retains customer
+      interpretation and feedback.'
+    title: Lantern preview authorization and operational handoff - through October
+      10, 2025
+    updated_at: '2025-06-27T11:52:00-04:00'
+  - id: rb_1764952080001
+    service: metrics-router
+    title: Service identity and ownership
+    body: '# Service identity and ownership
+
+
+      ## Effective December 5, 2025
+
+      - Service: metrics-router.
+
+      - Wes is the formal metrics-router primary; Alex is the formal backup owner.
+
+      - Wes owns routine metrics-router implementation, production operations, release
+      and rollback decisions, and opening owner-led windows under the established
+      deploy-pipeline, canary, health-return, stop, and rollback rules.
+
+      - Alex provides backup coverage when Wes is unavailable and reviews only triggered
+      cross-service invariant, provenance, or failure-mode exceptions rather than
+      gating ordinary metrics-router windows.
+
+
+      ## Unchanged boundaries
+
+      - The Infra on-call roster is unchanged.
+
+      - Ingest-edge remains Alex primary with Yuki backup.
+
+      - Shard-keeper remains Alex primary with the Cyrus team as backup and remains
+      outside Wes''s solo scope unless Alex or the Cyrus-team backup explicitly pairs
+      with him.
+
+      - Nadia continues to own alerting and dashboards.
+
+      - Rollup-service remains owned by the Cyrus team.
+
+      - For the bounded metrics-router scale response, Wes continues to own implementation
+      and load-test evidence, Cyrus and Roman own rollup-service capacity and parity
+      evidence, and Nadia owns queue and refusal alert semantics.
+
+      - The broader Mosaic scale-response cycle remains open, and no capacity-related
+      production window is authorized.'
+    created_at: '2025-12-05T11:28:00-05:00'
+  - id: metrics-pipeline-2023-cutover-order
+    service: metrics-pipeline
+    title: 2023 metrics-pipeline migration cutover order
+    body: '# 2023 migration service inventory
+
+
+      Unordered services covered by the migration: ingest-edge, metrics-router, and
+      shard-keeper.
+
+
+      The original sequencing decision and rationale are not recorded here.'
+    owner: alex
+    backup: nadia
+    created_at: '2023-03-07T10:15:00-05:00'
+    updated_at: '2027-12-31T09:00:00-05:00'
+mock_state_base:
+  path: state.json
+  sha256: b2e9b6b9e0f48ec23e9ae5ec4d803c050db6c6914dfc1d47ccdf545b3c77b68a

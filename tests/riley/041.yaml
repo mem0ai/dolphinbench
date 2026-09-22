@@ -1,0 +1,36 @@
+id: '041'
+narrative_anchor_date: '2028-01-01'
+test: Create a concise archival booking-rule card for the roasted-chicken private-event policy that applied
+  during the 2024 holiday season. Make it unmistakable that this is expired historical reference material,
+  not current policy. State whether it was an advance-count option, the per-booking commitment cap, protected
+  contingency portions, final entree-split deadline, and its relationship to the weekly menu. Save it
+  as a new document in the default folder.
+load_bearing_facts:
+- 60
+- 61
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_historical_rule_card
+      path: result.ok
+      value: true
+      check_id: riley_041_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_historical_rule_card
+      path: args
+      criterion: The document is unmistakably an expired historical rule for the 2024 holiday season.
+        It says roasted chicken was an advance-count private-event option; a one-case booking could commit
+        no more than 23 chicken meals; two portions remained protected for kitchen-only contingencies;
+        the final entree split was due seven days before service; and the dish remained separate from
+        the weekly menu.
+      check_id: riley_041_01
+mock_state: {}

@@ -1,0 +1,39 @@
+id: '061'
+narrative_anchor_date: '2026-09-14'
+test: Priya is waiting to start the onboarding mockup. Send her a Discord DM explaining
+  whether our Figma organization seat came through or still needs procurement to finish.
+load_bearing_facts:
+- 49
+expected_tool_calls:
+- send_discord_dm
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: send_discord_dm
+      path: result.ok
+      value: true
+      check_id: morgan_061_00
+      action_id: morgan_061_send_discord_dm
+    - type: field_equals
+      path: result.user
+      value: priya
+      tool: send_discord_dm
+      check_id: morgan_061_01
+      action_id: morgan_061_send_discord_dm
+    - type: field_llm_judge
+      path: result.message
+      criterion: Says the company Figma organization seat came through and is live,
+        so procurement is no longer blocking the mockup. Does not merely recommend
+        a company workspace or claim Priya has already been invited or assigned the
+        seat. No procurement timeline recap is required.
+      tool: send_discord_dm
+      check_id: morgan_061_02
+      action_id: morgan_061_send_discord_dm
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

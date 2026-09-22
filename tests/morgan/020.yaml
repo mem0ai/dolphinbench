@@ -1,0 +1,32 @@
+id: '020'
+narrative_anchor_date: '2026-09-14'
+test: Create a venue-screening checklist for the Redwood Ridge team offsite before
+  we choose a venue.
+load_bearing_facts:
+- 92
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      path: result.ok
+      value: true
+      check_id: morgan_020_00
+      action_id: morgan_020_create_doc
+    - type: field_llm_judge
+      path: result.document.body
+      criterion: Makes business-grade on-site internet mandatory and requires direct
+        confirmation from the property operations contact, rather than relying on
+        the website or marketing material. A merely optional connectivity check fails.
+      tool: create_doc
+      check_id: morgan_020_01
+      action_id: morgan_020_create_doc
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

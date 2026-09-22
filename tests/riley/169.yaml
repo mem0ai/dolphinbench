@@ -1,0 +1,37 @@
+id: '169'
+narrative_anchor_date: '2028-01-01'
+test: Please send a concise Slack DM to the person who owned the nudge copy for EXP-2023-05-expansion-nudge
+  when it was live. Ask them to verify the archived nudge-copy package and note any provenance correction
+  in `doc_expansion_nudge_copy_archive_2028`.
+load_bearing_facts:
+- 387
+expected_tool_calls:
+- send_slack_dm
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: send_slack_dm
+      action_id: send_archive_provenance_dm
+      path: result.ok
+      value: true
+      check_id: riley_169_00
+    - type: field_equals
+      tool: send_slack_dm
+      action_id: send_archive_provenance_dm
+      path: args.user
+      value: ines
+      check_id: riley_169_01
+    - type: field_llm_judge
+      tool: send_slack_dm
+      action_id: send_archive_provenance_dm
+      path: args
+      criterion: The message asks the recipient to verify the archived nudge-copy package for EXP-2023-05-expansion-nudge
+        and to note any provenance correction in `doc_expansion_nudge_copy_archive_2028`. Equivalent concise
+        wording is acceptable; either missing instruction must fail.
+      check_id: riley_169_02
+mock_state: {}

@@ -1,0 +1,45 @@
+id: '055'
+narrative_anchor_date: '2028-01-01'
+test: Create a short document in the Growth folder titled `July owner lanes — historical interpretation
+  guardrail`. It should help teams using the investigation framework in current readouts understand what
+  the July 2023 owner-lane arrangement did—and did not—establish. Keep it focused on the historical governance
+  point rather than turning it into a current process guide.
+load_bearing_facts:
+- 411
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_july_guardrail
+      path: result.ok
+      value: true
+      check_id: riley_055_00
+    - check_id: riley_055_01
+      type: field_equals
+      tool: create_doc
+      action_id: create_july_guardrail
+      path: args.title
+      value: July owner lanes — historical interpretation guardrail
+    - check_id: riley_055_02
+      type: field_equals
+      tool: create_doc
+      action_id: create_july_guardrail
+      path: args.folder
+      value: Growth
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_july_guardrail
+      path: args
+      criterion: The body is a short, focused historical governance note that clearly explains that the
+        July 2023 owner lanes borrowed or reused the investigation framework for that July work without
+        making the framework a formal, mandatory companywide process. It must not characterize the July
+        arrangement itself as establishing a companywide mandate.
+      check_id: riley_055_03
+mock_state: {}

@@ -1,0 +1,39 @@
+id: 089
+narrative_anchor_date: '2028-01-01'
+test: Create a compact historical note covering the first two hypothesis rulings in the February 2023
+  mid-segment churn investigation. Identify H1 and H2, who made each ruling, their dates and reasons,
+  and the hypotheses that remained after H2. Use people's names rather than `the first-person speaker`
+  or another role label. For H2, distinguish the person who pulled the comparisons and made the ruling
+  from Owen, who performed that morning's check.
+load_bearing_facts:
+- 309
+- 310
+- 311
+- 317
+- 323
+- 324
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_first_rulings_note
+      path: result.ok
+      value: true
+      check_id: riley_089_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_first_rulings_note
+      path: args
+      criterion: The note identifies H1 as the pricing-artifact hypothesis and says Owen closed it as
+        out for now on February 15, 2023. It identifies H2 as competitor cycle or a generic seasonal effect
+        and says Riley ruled it out on February 21 because historical February comparisons showed no matching
+        spike. It says H3 onboarding timing and H4 Customer Success coverage remained after H2.
+      check_id: riley_089_01
+mock_state: {}

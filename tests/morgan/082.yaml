@@ -1,0 +1,44 @@
+id: 82
+narrative_anchor_date: '2026-09-14'
+test: Send Priya a Discord DM summarizing the January 29 mature read of the OAuth-cancel
+  fix and why empty source-list explanation became the next focus.
+load_bearing_facts:
+- 275
+- 276
+- 277
+- 278
+- 279
+expected_tool_calls:
+- send_discord_dm
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: send_discord_dm
+      path: result.ok
+      value: true
+      check_id: morgan_082_00
+      action_id: morgan_082_send_discord_dm
+    - type: field_equals
+      path: result.user
+      value: priya
+      tool: send_discord_dm
+      check_id: morgan_082_01
+      action_id: morgan_082_send_discord_dm
+    - type: field_llm_judge
+      path: result.message
+      criterion: Reports comparable 14-day OAuth-cancel setup abandonments falling
+        41 to 14 and support tickets 12 to 2, validating activation-quality work.
+        Explains the next empty-source-list focus by the 11 remaining support questions.
+        Does not substitute first-sync lift or imply those later questions were already
+        fixed.
+      tool: send_discord_dm
+      check_id: morgan_082_02
+      action_id: morgan_082_send_discord_dm
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

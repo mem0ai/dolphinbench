@@ -1,0 +1,40 @@
+id: '155'
+narrative_anchor_date: '2028-01-01'
+test: Create a compact historical example card for the manager-communications library showing how I briefed
+  Priya after the second onboarding cohort confirmed the onboarding-trigger result. Make it a new document
+  with clearly labeled sections for Audience, What was confirmed, My interpretation, and Evidence still
+  wanted. Use our prior context to preserve the precise confidence posture and evidence boundary from
+  that briefing.
+load_bearing_facts:
+- 354
+- 355
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_priya_example_card
+      path: result.ok
+      value: true
+      check_id: riley_155_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_priya_example_card
+      path: args
+      criterion: 'The document body is a compact, reusable historical example card and clearly separates
+        the material into labeled sections corresponding to Audience, What was confirmed, My interpretation,
+        and Evidence still wanted. The Audience identifies Priya.
+
+
+        The card faithfully presents Riley''s Apr 3, 2023 briefing posture: the second onboarding cohort
+        had confirmed the onboarding-trigger result; Riley''s interpretation was cautiously optimistic
+        rather than fully conclusive; and she still wanted one more cohort after shipment before treating
+        the result as fully settled. Missing or contradicting any of these distinctions must fail.'
+      check_id: riley_155_01
+mock_state: {}

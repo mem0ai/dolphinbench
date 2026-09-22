@@ -1,0 +1,34 @@
+id: '013'
+narrative_anchor_date: '2028-01-01'
+test: We need a short operating note for investigation readouts. Create a document titled `Investigation
+  readout operating note` that states the standing practice, who it applies to, and the limits on template
+  and approval requirements.
+load_bearing_facts:
+- 14
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_operating_note
+      path: result.ok
+      value: true
+      check_id: riley_013_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_operating_note
+      path: args
+      criterion: 'The document clearly states that the investigation framework is the standing readout
+        practice and that it applies to Growth and Customer Success.
+
+
+        The document makes both boundaries explicit: the framework is not a companywide mandatory template,
+        and readouts are not subject to a centralized approval queue.'
+      check_id: riley_013_01
+mock_state: {}

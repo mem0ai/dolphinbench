@@ -1,0 +1,11 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "python3 -m venv .venv && .venv/bin/python -m pip install -r requirements.txt && PATH=\"$PWD/.venv/bin:$PATH\" npm run build",
+  "functions": {
+    "api/submission_validator.py": {
+      "maxDuration": 360,
+      "includeFiles": ".validation/**"
+    }
+  },
+  "crons": [{ "path": "/api/submission_validator/", "schedule": "* * * * *" }]
+}

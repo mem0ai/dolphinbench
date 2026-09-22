@@ -1,0 +1,42 @@
+id: 085
+narrative_anchor_date: '2028-01-01'
+test: Create a finance-ready worksheet comparing Maya Shah's original signed engagement with its signed
+  extension. For each period, show the dates, hourly rate, weekly and total caps, renewal term, assigned
+  deliverables, and access and decision-authority limits. Do not estimate hours, invoices, or payments.
+load_bearing_facts:
+- 137
+- 138
+- 139
+- 178
+- 179
+- 180
+- 181
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_engagement_worksheet
+      path: result.ok
+      value: true
+      check_id: riley_085_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_engagement_worksheet
+      path: args
+      criterion: The worksheet separates the original October 6, 2025-March 27, 2026 engagement at $72
+        per hour, at most 20 hours per week and $36,000 total, with no automatic renewal, from the March
+        30-June 26, 2026 extension at $72 per hour, at most 12 hours per week and $12,000 total, also
+        with no automatic renewal. It lists the original campaign inventory, audit calendar, and handoff
+        map and the extension's monthly sanitized campaign snapshot and June 12 source-completeness packet.
+        It says the work uses sanitized materials and gives Maya no Customer.io or production access and
+        no authority over meanings, review closure, releases, exceptions, customer corrections, incident
+        stops, or rollbacks. It does not invent actual hours, invoices, or payments.
+      check_id: riley_085_01
+mock_state: {}

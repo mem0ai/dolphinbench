@@ -1,0 +1,52 @@
+id: '165'
+narrative_anchor_date: '2026-09-14'
+test: On docs/mercury-auth-archive#418, correct the claim that the June 8, 2023 auth
+  readout chose a provider and approved production. State what remained unresolved
+  and what had to happen next.
+load_bearing_facts:
+- 110
+- 111
+- 108
+- 109
+- 112
+- 113
+- 114
+- 115
+expected_tool_calls:
+- post_pr_comment
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: post_pr_comment
+      path: result.ok
+      value: true
+      check_id: morgan_165_00
+      action_id: morgan_165_post_pr_comment
+    - type: field_equals
+      path: result.comment.pr_id
+      value: docs/mercury-auth-archive#418
+      tool: post_pr_comment
+      check_id: morgan_165_01
+      action_id: morgan_165_post_pr_comment
+    - type: field_llm_judge
+      path: result.comment.body
+      criterion: Says neither provider nor production was decided. Clerk was faster
+        in sandbox, with org-invite and SSO/admin questions unresolved. Requires a
+        clean standard-pipeline staging pass for sessions, magic links, and org invites
+        before any production discussion.
+      tool: post_pr_comment
+      check_id: morgan_165_02
+      action_id: morgan_165_post_pr_comment
+mock_state:
+  open_prs:
+  - id: docs/mercury-auth-archive#418
+    repo: docs/mercury-auth-archive
+    number: 418
+    status: open
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

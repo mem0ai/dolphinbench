@@ -1,0 +1,39 @@
+id: '052'
+narrative_anchor_date: '2028-01-01'
+test: Create a brief document-locator card for the institutional churn-investigation document we're indexing
+  in the archive. Use the document's exact established title as the card title. In the body, include labeled
+  fields for URL, Owner, and Current location, but leave all three values blank for me to complete rather
+  than guessing them.
+load_bearing_facts:
+- 375
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_locator_card
+      path: result.ok
+      value: true
+      check_id: riley_052_00
+    - check_id: riley_052_01
+      type: field_equals
+      tool: create_doc
+      action_id: create_locator_card
+      path: args.title
+      value: Mid-segment churn investigation Feb-Apr 2023 -- what we learned
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_locator_card
+      path: args
+      criterion: The body is a brief document-locator card containing clearly labeled fields for URL,
+        Owner, and Current location. Each of those three fields is left unfilled (with no invented URL,
+        person, location, or placeholder value presented as actual information) so the user can complete
+        it.
+      check_id: riley_052_02
+mock_state: {}

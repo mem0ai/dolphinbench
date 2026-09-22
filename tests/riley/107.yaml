@@ -1,0 +1,55 @@
+id: '107'
+narrative_anchor_date: '2028-01-01'
+test: Please review the legacy-trigger description in document `doc_lifecycle_trigger_migration_2028`
+  and post a correction comment that states how the original “See how teams use Helio” email actually
+  worked. Clearly label the corrected behavior as the pre-v2 configuration. Do not edit the document itself.
+load_bearing_facts:
+- 325
+expected_tool_calls:
+- post_doc_comment
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: post_doc_comment
+      action_id: post_legacy_trigger_correction
+      path: result.ok
+      value: true
+      check_id: riley_107_00
+    - check_id: riley_107_01
+      type: field_equals
+      tool: post_doc_comment
+      action_id: post_legacy_trigger_correction
+      path: args.doc_id
+      value: doc_lifecycle_trigger_migration_2028
+    - type: field_llm_judge
+      tool: post_doc_comment
+      action_id: post_legacy_trigger_correction
+      path: args
+      criterion: The comment must clearly correct the draft by explaining that the legacy v1 / pre-v2
+        configuration for “See how teams use Helio” sent exactly on calendar day 7 after signup, performed
+        no activation-state check, and therefore sent to both activated and not-yet-activated users on
+        the same day-7 clock. Missing, ambiguous, or contradictory descriptions must fail.
+      check_id: riley_107_02
+mock_state:
+  docs:
+  - id: doc_lifecycle_trigger_migration_2028
+    title: Lifecycle trigger migration — working draft
+    body: '# Lifecycle trigger migration
+
+
+      ## Legacy behavior
+
+      The original `See how teams use Helio` email was activation-aware: eligibility waited for activation
+      and then sent the message based on that state.
+
+
+      ## Migration note
+
+      The v2 work standardized the activation-aware behavior for the supported lifecycle segments.'
+    folder: Growth
+    created_at: '2027-12-20T10:00:00-06:00'

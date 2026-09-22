@@ -1,0 +1,51 @@
+id: '193'
+narrative_anchor_date: '2028-01-01'
+test: I'm assembling our 2028 investigation-framework refresher. Create a short standalone checkpoint
+  annotation for the February 20 H2 historical same-week comparison. Include the comparison values, continuity
+  with the earlier cohort method, the direction of the evidence, and the validation item that was still
+  outstanding. Frame it strictly as the pre-ruling checkpoint rather than as a final H2 conclusion.
+load_bearing_facts:
+- 321
+- 322
+- 323
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_checkpoint_annotation
+      path: result.ok
+      value: true
+      check_id: riley_193_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_checkpoint_annotation
+      path: args
+      criterion: 'The document clearly presents this as the February 20 H2 historical same-week comparison
+        checkpoint and explicitly keeps the assessment tentative or pre-ruling, rather than describing
+        it as a final H2 ruling.
+
+
+        The document accurately states that February 2022 mid-segment monthly churn was 2.2% and February
+        2021 mid-segment monthly churn was 2.0%.
+
+
+        The document states that the comparison used the same cohort logic as the January scan and Owen
+        check.
+
+
+        The document explains that there was no matching historical spike and that this was directional
+        evidence against the seasonal or competitor-cycle explanation, without elevating that evidence
+        to a final ruling.
+
+
+        The document identifies one more denominator-handling sanity check as still outstanding before
+        communicating the H2 conclusion strongly or formally.'
+      check_id: riley_193_01
+mock_state: {}

@@ -1,0 +1,46 @@
+id: '106'
+narrative_anchor_date: '2028-01-01'
+test: Create a short historical comparison note for new board-operations reviewers explaining why Helio
+  Start was excluded from the approved Q1 and Q2 2026 quarterly operating-evidence sections. For Q1, state
+  what the evidence meant for Q2 forecast credit. For Q2, state what the day-7 result did and did not
+  establish. Preserve the approved interpretation of the other three lanes in each package, and make the
+  quarter-specific distinction clear rather than describing both exclusions as generic immaturity.
+load_bearing_facts:
+- 182
+- 183
+- 185
+- 210
+- 211
+- 212
+- 213
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: historical_comparison_note
+      path: result.ok
+      value: true
+      check_id: riley_106_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: historical_comparison_note
+      path: args
+      criterion: 'The note says Helio Start was excluded from the Q1 2026 section because its two qualifying
+        mature cohorts permitted consideration of a capped proposal but its row lacked the exact cohort
+        dates required for board readiness; at that time there was no paid traffic, approved budget, or
+        acquisition evidence, and no Q2 forecast credit followed. It says Helio Start was excluded from
+        the Q2 2026 section because the fixed 50-workspace cohort did not yet have complete day-90 paid-active
+        status, refund-adjusted collected cash, and account-level support effort, and its 39-of-50 day-7
+        first-integration result supported no growth or forecast statement. For both quarters it preserves
+        the three included lanes: Expansion Assist as descriptive rather than causal evidence, pricing-page
+        path quality as post-rollout continuity rather than a new causal test, and CS auto-nudge as system-control
+        evidence. It also says the Q2 Expansion Assist lane had no revenue, pipeline, or forecast treatment.'
+      check_id: riley_106_01
+mock_state: {}

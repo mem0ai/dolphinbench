@@ -1,0 +1,29 @@
+id: '035'
+narrative_anchor_date: '2028-01-01'
+test: Create a short historical framing note for the completed February-April 2023 mid-segment churn investigation.
+load_bearing_facts:
+- 377
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_framing_note
+      path: result.ok
+      value: true
+      check_id: riley_035_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_framing_note
+      path: args
+      criterion: The note explains the city-planner book-club framing for the completed February-April
+        2023 mid-segment churn investigation, emphasizing that people hold partial maps and see different
+        parts of the same complex system.
+      check_id: riley_035_01
+mock_state: {}

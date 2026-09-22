@@ -1,0 +1,45 @@
+id: '040'
+narrative_anchor_date: '2028-01-01'
+test: Please create a brief historical decision-rights note titled “July 2023 decision rights — Helio
+  Start and retained-mid expansion” for our governance retrospective. Cover both workstreams during July
+  2023, distinguish the strategic decision lane from routine execution, and explicitly label the note
+  as a period-specific record rather than current org policy.
+load_bearing_facts:
+- 408
+- 410
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_historical_decision_rights_note
+      path: result.ok
+      value: true
+      check_id: riley_040_00
+    - check_id: riley_040_01
+      type: field_equals
+      tool: create_doc
+      action_id: create_historical_decision_rights_note
+      path: args.title
+      value: July 2023 decision rights — Helio Start and retained-mid expansion
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_historical_decision_rights_note
+      path: args
+      criterion: 'The body must state that during July 2023 Riley retained the decision rules, executive
+        tradeoffs, and cross-functional guardrails for both Helio Start and retained-mid expansion, while
+        making clear that routine execution was outside this retained high-level lane. Missing either
+        workstream or assigning Riley undifferentiated routine execution ownership must fail.
+
+
+        The body must clearly label the allocation as specific to July 2023 and must not present it as
+        current policy, a permanent org chart, or a formal company-wide process. Missing or contradictory
+        temporal framing must fail.'
+      check_id: riley_040_02
+mock_state: {}

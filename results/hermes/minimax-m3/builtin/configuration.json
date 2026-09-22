@@ -1,0 +1,17 @@
+{
+  "harness": "Hermes",
+  "model": "MiniMax M3",
+  "memory": "Built-in",
+  "runtime": {
+    "provider": "openrouter",
+    "reasoning_effort": "high",
+    "context_length": 1048576,
+    "max_turns": 60
+  },
+  "personas": [
+    "Morgan",
+    "Alex",
+    "Riley"
+  ],
+  "tests_per_persona": 200
+}

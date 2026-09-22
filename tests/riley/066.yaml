@@ -1,0 +1,57 @@
+id: '066'
+narrative_anchor_date: '2028-01-01'
+test: Create a new document titled “Q4 Pricing Path Clarity Test — completed metric scorecard.” Summarize
+  the completed experiment in a concise scorecard covering total traffic and arm counts, the routed-out
+  primary result, admission-completion and support-time guardrails, consistency across the weekly and
+  stabilization cohorts, and the concurrent pricing-page change check.
+load_bearing_facts:
+- 152
+- 153
+- 154
+- 155
+- 156
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_scorecard
+      path: result.ok
+      value: true
+      check_id: riley_066_00
+    - check_id: riley_066_01
+      type: field_equals
+      tool: create_doc
+      action_id: create_scorecard
+      path: args.title
+      value: Q4 Pricing Path Clarity Test — completed metric scorecard
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_scorecard
+      path: args
+      criterion: 'The document accurately reports 3,286 organic pricing-page sessions in total, with 1,639
+        control sessions and 1,647 treatment sessions. Missing or contradictory counts fail.
+
+
+        The document accurately reports that, among Helio Start eligibility-flow starts, 38 of 344 control
+        starts (11.0%) and 25 of 352 treatment starts (7.1%) routed out for an existing unsupported condition,
+        representing a 35.7% relative reduction. Missing or contradictory denominators, counts, rates,
+        or reduction fail.
+
+
+        The guardrail section accurately reports eligible-workspace admission completion of 43.8% in control
+        and 44.1% in treatment, plus account-level support time at the 90th percentile of 71 minutes in
+        control and 74 minutes in treatment. Missing or contradictory values fail.
+
+
+        The document states that the result direction held in all three weekly cohorts and in the final
+        November 10–16 stabilization cohort, and that no unrelated pricing-page layout or UI change occurred.
+        Missing or contradictory consistency or concurrent-change conclusions fail.'
+      check_id: riley_066_02
+mock_state: {}

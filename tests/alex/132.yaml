@@ -1,0 +1,35 @@
+id: '132'
+narrative_anchor_date: '2028-01-01'
+test: Create a short historical coaching note about Wes's first real solo overnight
+  and Hema's assessment of it.
+load_bearing_facts:
+- 65
+- 66
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: alex_132_create_doc
+      path: result.ok
+      value: true
+      check_id: alex_132_00
+    - type: field_llm_judge
+      path: result.document.body
+      criterion: The note says Wes handled his first real solo overnight well despite
+        a small metrics-router blip and involved support at about 40 minutes, which
+        was considered the right timing. It says Hema treated the shift as evidence
+        of growth without turning one clean shift into broad proof or a current performance
+        rating.
+      tool: create_doc
+      action_id: alex_132_create_doc
+      check_id: alex_132_01
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: b2e9b6b9e0f48ec23e9ae5ec4d803c050db6c6914dfc1d47ccdf545b3c77b68a

@@ -1,0 +1,44 @@
+id: 177
+narrative_anchor_date: '2026-09-14'
+test: Write slide 1 of Q1_2023_All_Hands_Archive with the financing, operating-timeline,
+  and hiring message planned for that all-hands.
+load_bearing_facts:
+- 3
+expected_tool_calls:
+- update_deck_slide
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: update_deck_slide
+      path: result.ok
+      value: true
+      check_id: morgan_177_00
+      action_id: morgan_177_update_deck_slide
+    - type: field_equals
+      path: result.deck
+      value: Q1_2023_All_Hands_Archive
+      tool: update_deck_slide
+      check_id: morgan_177_01
+      action_id: morgan_177_update_deck_slide
+    - type: field_eq_number
+      path: result.slide.number
+      value: 1
+      tool: update_deck_slide
+      check_id: morgan_177_02
+      action_id: morgan_177_update_deck_slide
+    - type: field_llm_judge
+      path: result.slide.content
+      criterion: Describes a possible February Series B if it came together, Q3 as
+        the main operating push, and restraint on hiring before then. Does not backdate
+        the eventual financing or present the proposed February round as completed.
+      tool: update_deck_slide
+      check_id: morgan_177_03
+      action_id: morgan_177_update_deck_slide
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

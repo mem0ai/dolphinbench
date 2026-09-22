@@ -1,0 +1,150 @@
+id: '033'
+narrative_anchor_date: '2028-01-01'
+test: Create a rollup-service runbook entry titled `Cardinality Guardrails parity
+  fixture` that records the accepted comparison and its pass and fail cases.
+load_bearing_facts:
+- 206
+- 207
+expected_tool_calls:
+- create_runbook_entry
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    assertions:
+    - type: field_equals
+      tool: create_runbook_entry
+      action_id: alex_033_create_runbook_entry
+      path: result.ok
+      value: true
+      check_id: alex_033_00
+    - type: field_equals
+      path: result.runbook.service
+      value: rollup-service
+      tool: create_runbook_entry
+      action_id: alex_033_create_runbook_entry
+      check_id: alex_033_01
+    - type: field_equals
+      path: result.runbook.title
+      value: Cardinality Guardrails parity fixture
+      tool: create_runbook_entry
+      action_id: alex_033_create_runbook_entry
+      check_id: alex_033_02
+    - type: field_llm_judge
+      path: result.runbook.body
+      criterion: The entry says to compare key presence in both directions and require
+        exact equality between each expected bounded-value set and the set observed
+        from rollup-service. It says a missing expected value or an unexpected downstream
+        value fails, while an exact key-and-value match passes.
+      tool: create_runbook_entry
+      action_id: alex_033_create_runbook_entry
+      check_id: alex_033_03
+mock_state:
+  prs:
+  - id: metrics-router#412
+    title: 'metrics-router: tidy config-loader, prep for OTel cutover finish'
+    author: alex
+    repo: metrics-router
+    branch: alex/cfg-loader-tidy
+    status: merged
+    reviewers:
+    - nadia
+    assignees:
+    - alex
+    opened_at: '2023-06-30T14:02:00-04:00'
+    age_days: 3
+    merged_at: '2023-07-11T09:25:00-04:00'
+  - id: shard-keeper#188
+    title: 'shard-keeper: rollback path hardening (lessons from Apr 18)'
+    author: alex
+    repo: shard-keeper
+    branch: alex/rollback-hardening
+    status: merged
+    reviewers:
+    - nadia
+    - cyrus
+    assignees:
+    - alex
+    opened_at: '2023-06-28T11:30:00-04:00'
+    age_days: 5
+    merged_at: '2023-08-08T10:15:00-04:00'
+  - id: ingest-edge#221
+    title: 'ingest-edge: bump OTel collector to 0.91'
+    author: wes
+    repo: ingest-edge
+    branch: wes/otel-091
+    status: merged
+    reviewers:
+    - alex
+    assignees:
+    - wes
+    opened_at: '2023-07-01T09:14:00-04:00'
+    age_days: 2
+    merged_at: '2023-08-03T13:20:00-04:00'
+  - id: metrics-router#414
+    title: 'metrics-router: add label-name parity check on push'
+    author: nadia
+    repo: metrics-router
+    branch: nadia/label-parity-check
+    status: merged
+    reviewers:
+    - alex
+    assignees:
+    - nadia
+    opened_at: '2023-06-29T16:48:00-04:00'
+    age_days: 4
+    merged_at: '2023-07-26T13:05:00-04:00'
+  - id: lantern#3
+    title: 'lantern: v0 architecture doc — circulating for comment'
+    author: alex
+    repo: lantern
+    branch: alex/v0-arch
+    status: merged
+    reviewers:
+    - iris
+    - hema
+    - theo
+    assignees:
+    - alex
+    opened_at: '2023-07-03T10:00:00-04:00'
+    age_days: 0
+    merged_at: '2023-07-24T12:15:00-04:00'
+  - id: shard-keeper#190
+    title: 'shard-keeper: small cutover-readiness fix'
+    author: cyrus
+    repo: shard-keeper
+    branch: cyrus/cutover-fix
+    status: merged
+    reviewers:
+    - alex
+    assignees:
+    - cyrus
+    opened_at: '2023-06-26T13:00:00-04:00'
+    age_days: 7
+    merged_at: '2023-09-21T09:18:00-04:00'
+  - id: cardinality-guardrails#527
+    title: 'guardrails: simplify shard-keeper/rollup parity fixture'
+    author: roman
+    repo: cardinality-guardrails
+    branch: roman/parity-subset-check
+    status: open
+    reviewers:
+    - alex
+    assignees:
+    - roman
+    opened_at: '2027-12-29T10:14:00-05:00'
+    change_summary: Implements expected-side-only checks for the shared shard-keeper-to-rollup-service
+      fixture. Keys and bounded values present only in the rollup-service result do
+      not fail the fixture.
+    patch: "for (const [key, expectedValues] of Object.entries(expected)) {\n  assert(observed.has(key));\n
+      \ for (const value of expectedValues) {\n    assert(observed.get(key).has(value));\n
+      \ }\n}\n// Additional observed keys and values are ignored."
+    tests:
+    - fails when an expected key is absent
+    - fails when an expected bounded value is absent
+    - passes when rollup-service returns an additional key
+    - passes when rollup-service returns an additional bounded value
+mock_state_base:
+  path: state.json
+  sha256: b2e9b6b9e0f48ec23e9ae5ec4d803c050db6c6914dfc1d47ccdf545b3c77b68a

@@ -1,0 +1,35 @@
+id: '149'
+narrative_anchor_date: '2028-01-01'
+test: Create a reusable readiness checklist for any 2028 Helio Start paid-acquisition proposal. State
+  the mature evidence required before budget or channel tactics can be discussed, how the evidence must
+  be combined, and the approved responsibility for the package. Do not invent separate owners for individual
+  evidence categories.
+load_bearing_facts:
+- 42
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_readiness_checklist
+      path: result.ok
+      value: true
+      check_id: riley_149_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_readiness_checklist
+      path: args
+      criterion: The document is a reusable intake checklist for Helio Start paid-acquisition proposals
+        considered in 2028. It makes the combined evidence review a prerequisite to discussing budget
+        or channel tactics. It requires mature retention status, refund-adjusted cash, and account-level
+        support effort to be evaluated together rather than as substitutes. It assigns Owen and Customer
+        Success responsibility for producing the combined evidence without inventing a separate category-level
+        ownership split.
+      check_id: riley_149_01
+mock_state: {}

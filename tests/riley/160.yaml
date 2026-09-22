@@ -1,0 +1,68 @@
+id: '160'
+narrative_anchor_date: '2028-01-01'
+test: Create an audit-ready evidence card for the historical CS auto-nudge production shadow. Include
+  the interval, reconciled outcomes and causes, suppressions, reviewer validations, release boundary,
+  and a plain explanation of external-system authority. Distinguish shadow evaluation from a production
+  switch.
+load_bearing_facts:
+- 102
+- 103
+- 104
+- 105
+- 114
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_shadow_evidence_card
+      path: result.ok
+      value: true
+      check_id: riley_160_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_shadow_evidence_card
+      path: args
+      criterion: 'The title clearly identifies the document as an evidence card or audit record for the
+        CS auto-nudge production shadow. A generic controls document or blank-template title fails.
+
+
+        The body states that the production shadow ran from April 25 through May 2, 2025, that both paths
+        evaluated live decisions, and that the shadow did not change the released audience. It must present
+        this as a pre-release shadow gate rather than claiming the integration switched production during
+        the shadow; missing or contradictory boundaries fail.
+
+
+        The body reconciles the complete shadow population: 204 live decisions total, 191 agreements,
+        and 13 decisions prevented from proceeding under the legacy eligibility result, with those 13
+        further reconciling to nine field-specific holds plus four suppressions. Missing, inconsistent,
+        or contradictory totals fail.
+
+
+        The body breaks down the nine field-specific holds into exactly seven caused by stale qualifying-human-admin
+        state and two caused by unresolved external-system authority for the connector''s required owner-level
+        permission or network-allowlist action. Missing causes, wrong counts, or a materially different
+        meaning of external-system authority fail.
+
+
+        The body states that exactly four decisions were suppressed because current Customer Success adoption
+        or renewal work was active. Missing, contradictory, or differently attributed suppressions fail.
+
+
+        The body records that Daniela verified the field-specific hold and suppression reasons and production
+        rollback behavior, and that Ines confirmed no held or suppressed case received adjacent lifecycle
+        messaging that assumed eligibility. Both reviewer findings must be present and correctly attributed;
+        missing or contradicted findings fail.
+
+
+        The body states that every observed difference followed an established shared-contract rule and
+        that there were no unmatched or unclassified cases. Missing or contradictory coverage findings
+        fail.'
+      check_id: riley_160_01
+mock_state: {}

@@ -1,0 +1,48 @@
+id: '072'
+narrative_anchor_date: '2028-01-01'
+test: Create a compact dated benchmark card for the shared state feed’s first three live weeks, using
+  the ledger close date. Include the evaluated-record count, the stale-or-conflicting fail-closed count,
+  the calculated fail-closed share, and whether eligibility, reporting, and messaging disagreed on authority,
+  active-admin, entitlement, or Customer Success-work status. Save it as a new document.
+load_bearing_facts:
+- 88
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: benchmark_doc
+      path: result.ok
+      value: true
+      check_id: riley_072_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: benchmark_doc
+      path: args
+      criterion: 'The title or body clearly identifies the document as a benchmark card or benchmark for
+        the shared state feed''s first live period.
+
+
+        The title or body clearly dates the benchmark to the ledger close date of March 28, 2025.
+
+
+        The body reports that 638 records were evaluated and that 22 stale or conflicting records failed
+        closed (the held/fail-closed count). Missing either count or attributing a different count must
+        fail.
+
+
+        The body gives a numeric fail-closed share correctly calculated from 22 divided by 638, such as
+        approximately 3.45% or an equivalently correct rounded percentage.
+
+
+        The body states that there was no disagreement across eligibility, reporting, and messaging for
+        the governed authority, active-admin, entitlement, or Customer Success-work statuses. Any claim
+        of a disagreement, or omission of the no-disagreement result, must fail.'
+      check_id: riley_072_01
+mock_state: {}

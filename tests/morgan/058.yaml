@@ -1,0 +1,45 @@
+id: 58
+narrative_anchor_date: '2026-09-14'
+test: PR scaffold/analytics#6214 counts sample imports and teammate invitations as
+  Mercury activation. Post a review comment correcting the activation rule and its
+  timing window.
+load_bearing_facts:
+- 104
+expected_tool_calls:
+- post_pr_comment
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: post_pr_comment
+      path: result.ok
+      value: true
+      check_id: morgan_058_00
+      action_id: morgan_058_post_pr_comment
+    - type: field_equals
+      path: result.comment.pr_id
+      value: scaffold/analytics#6214
+      tool: post_pr_comment
+      check_id: morgan_058_01
+      action_id: morgan_058_post_pr_comment
+    - type: field_llm_judge
+      path: result.comment.body
+      criterion: Counts real_source_connected or first_live_sync_completed within
+        7 days as activation. Excludes sample_import_completed and does not let invite_sent
+        alone activate an account. Describing invitations as supporting activity is
+        valid but the literal phrase supporting evidence is unnecessary.
+      tool: post_pr_comment
+      check_id: morgan_058_02
+      action_id: morgan_058_post_pr_comment
+mock_state:
+  open_prs:
+  - id: scaffold/analytics#6214
+    repo: scaffold/analytics
+    number: 6214
+    status: open
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

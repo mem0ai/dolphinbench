@@ -1,0 +1,42 @@
+{
+  "name": "dolphinbench-viz",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "data": "python3 build_data.py",
+    "docs": "python3 scripts/build_run_docs.py",
+    "db:setup": "node --env-file-if-exists=.env.local scripts/setup-db.mjs",
+    "accounts": "node --env-file-if-exists=.env.local scripts/accounts.mjs",
+    "dev": "next dev",
+    "prebuild": "npm run data && npm run docs && python3 build_results.py --check",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "test:e2e": "playwright test",
+    "test:submissions": "tsx --test tests/submissions.test.ts",
+    "preview": "DOLPHINBENCH_LOCAL_PREVIEW=1 next dev --hostname 127.0.0.1 --port 3108"
+  },
+  "dependencies": {
+    "@vercel/blob": "2.8.0",
+    "bcryptjs": "^3.0.3",
+    "highlight.js": "^11.12.0",
+    "lucide-react": "^0.460.0",
+    "next": "^16.3.0",
+    "postgres": "^3.4.9",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-markdown": "^10.1.0",
+    "remark-gfm": "^4.0.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.56.1",
+    "@types/node": "^22.7.4",
+    "@types/react": "^18.3.11",
+    "@types/react-dom": "^18.3.0",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.13",
+    "tsx": "^4.21.0",
+    "typescript": "^5.6.2"
+  }
+}

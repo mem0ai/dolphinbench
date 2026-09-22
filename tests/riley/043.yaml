@@ -1,0 +1,33 @@
+id: '043'
+narrative_anchor_date: '2028-01-01'
+test: Create a document archiving Mom’s 2026 prescription plan. Clearly identify it as an expired, historical
+  plan-year record rather than current coverage. Separate the fixed plan terms from the historical preferred-pharmacy
+  status and medication costs, and include the relevant plan-year dates and medication-specific treatment.
+load_bearing_facts:
+- 151
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_2026_archive
+      path: result.ok
+      value: true
+      check_id: riley_043_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_2026_archive
+      path: args
+      criterion: The document is clearly an expired historical record for January 1 through December 31,
+        2026. It identifies Golden State Rx Saver (PDP), a $31.70 monthly premium, and a $590 annual drug
+        deductible. It separately states that River Park was preferred and in-network; lisinopril 10 mg
+        and atorvastatin 20 mg were tier 1 and cost $0 there; and Ventolin HFA 90 mcg cost $47 there after
+        the deductible.
+      check_id: riley_043_01
+mock_state: {}

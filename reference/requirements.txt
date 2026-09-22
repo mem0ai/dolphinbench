@@ -1,0 +1,7 @@
+# Install alongside the repository's requirements.txt.
+openai>=1.40.0
+mem0ai==2.0.20
+honcho-ai==2.2.0
+hindsight-client==0.9.2
+supermemory==3.60.0
+modal==1.5.5

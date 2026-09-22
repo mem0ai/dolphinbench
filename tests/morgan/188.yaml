@@ -1,0 +1,32 @@
+id: '188'
+narrative_anchor_date: '2026-09-14'
+test: Create an archive note on what new work product owners were allowed to receive
+  during the reduced end-of-2023 holiday schedule.
+load_bearing_facts:
+- 162
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      path: result.ok
+      value: true
+      check_id: morgan_188_00
+      action_id: morgan_188_create_doc
+    - type: field_llm_judge
+      path: result.document.body
+      criterion: Keeps fresh investor/Northstar packaging asks off product owners
+        and defers non-customer-impacting work to January. Does not turn reduced coverage
+        into broad founder-prep work.
+      tool: create_doc
+      check_id: morgan_188_01
+      action_id: morgan_188_create_doc
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

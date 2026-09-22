@@ -1,0 +1,60 @@
+id: '057'
+narrative_anchor_date: '2028-01-01'
+test: Create a concise Helio Start decision evidence card for the March 2024 public-product decision.
+  Summarize the readiness cohort evidence across operating volume, support coverage, state integrity,
+  excluded operational cases, and the limits on what the evidence justified. Make the distinction between
+  what the cohort established and what it did not establish explicit. Create it as a new document in the
+  Growth folder.
+load_bearing_facts:
+- 8
+- 9
+- 10
+- 11
+- 12
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: evidence_card
+      path: result.ok
+      value: true
+      check_id: riley_057_00
+    - check_id: riley_057_01
+      type: field_equals
+      tool: create_doc
+      action_id: evidence_card
+      path: args.folder
+      value: Growth
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: evidence_card
+      path: args
+      criterion: 'The document states that the readiness cohort covered 120 applications and explains
+        that eligible accounts demonstrated activation at higher operating volume. Missing or contradictory
+        cohort scale or conclusion fails.
+
+
+        The document states that the admitted cohort''s support needs were handled within normal Customer
+        Success coverage. It must not imply that there were no support questions.
+
+
+        The document states that every admitted workspace had one current entitlement state and one current
+        support state. Missing or weakened state-integrity meaning fails.
+
+
+        The document states that no manual-billing, import, or migration case entered the admitted path.
+        All three excluded case types must be represented.
+
+
+        The document clearly concludes that the cohort supported a bounded GA or bounded public-product
+        decision, but did not justify unrestricted admission or removal of the existing refusal boundaries.
+        Missing or contradictory limits fail.'
+      check_id: riley_057_02
+mock_state: {}

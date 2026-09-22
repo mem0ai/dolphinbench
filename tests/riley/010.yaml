@@ -1,0 +1,30 @@
+id: '010'
+narrative_anchor_date: '2028-01-01'
+test: Create a short historical decision note for the April 21, 2023 staff review. State what evidence
+  was still required before the churn issue could be called fixed and when that evidence was expected.
+load_bearing_facts:
+- 372
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_evidence_gate_note
+      path: result.ok
+      value: true
+      check_id: riley_010_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_evidence_gate_note
+      path: args
+      criterion: The note says the churn issue would not be called fixed unless the third cohort supported
+        the leading hypothesis, and that cohort was expected the following week. It presents this as the
+        April 21, 2023 historical decision.
+      check_id: riley_010_01
+mock_state: {}

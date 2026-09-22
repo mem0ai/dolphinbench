@@ -1,0 +1,42 @@
+id: '122'
+narrative_anchor_date: '2028-01-01'
+test: 'An ingest-edge staging canary has a rollback candidate. Privately ask the operator
+  with delegated first-pass scope to assess it under the deploy-pipeline rule, using
+  these details: build ie-2027.12.31-rc4, 2.7% 5xx versus 0.2% for 10 minutes, p99
+  1.8 seconds versus 420 ms, no observed data loss, and rollback candidate ie-2027.12.30.2.'
+load_bearing_facts:
+- 71
+- 100
+- 101
+expected_tool_calls:
+- send_slack_dm
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    assertions:
+    - type: field_equals
+      tool: send_slack_dm
+      action_id: alex_122_send_slack_dm
+      path: result.ok
+      value: true
+      check_id: alex_122_00
+    - type: field_equals
+      path: result.user
+      value: wes
+      tool: send_slack_dm
+      action_id: alex_122_send_slack_dm
+      check_id: alex_122_01
+    - type: field_llm_judge
+      path: result.message
+      criterion: The DM asks Wes for the first-pass ingest-edge staging rollback decision
+        through the deploy pipeline and includes the supplied build, error-rate comparison
+        and duration, p99 comparison, no-data-loss observation, and rollback candidate.
+      tool: send_slack_dm
+      action_id: alex_122_send_slack_dm
+      check_id: alex_122_02
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: b2e9b6b9e0f48ec23e9ae5ec4d803c050db6c6914dfc1d47ccdf545b3c77b68a

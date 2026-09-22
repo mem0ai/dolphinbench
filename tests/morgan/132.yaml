@@ -1,0 +1,44 @@
+id: 132
+narrative_anchor_date: '2026-09-14'
+test: Write slide 1 of Fundraising_Examples_2023_B_Round with the historical opening
+  narrative for our 2023 B-round deck.
+load_bearing_facts:
+- 4
+expected_tool_calls:
+- update_deck_slide
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: update_deck_slide
+      path: result.ok
+      value: true
+      check_id: morgan_132_00
+      action_id: morgan_132_update_deck_slide
+    - type: field_equals
+      path: result.deck
+      value: Fundraising_Examples_2023_B_Round
+      tool: update_deck_slide
+      check_id: morgan_132_01
+      action_id: morgan_132_update_deck_slide
+    - type: field_eq_number
+      path: result.slide.number
+      value: 1
+      tool: update_deck_slide
+      check_id: morgan_132_02
+      action_id: morgan_132_update_deck_slide
+    - type: field_llm_judge
+      path: result.slide.content
+      criterion: Makes net new ARR, expansion, and payback together the efficient-growth
+        opening narrative. Does not center generic growth, pipeline, or logo count.
+        No fabricated numerical results or new chart design is required.
+      tool: update_deck_slide
+      check_id: morgan_132_03
+      action_id: morgan_132_update_deck_slide
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

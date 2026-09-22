@@ -1,0 +1,52 @@
+id: '077'
+narrative_anchor_date: '2028-01-01'
+test: 'Create a compact document using this exact title: `H2 evidence-quality annotation — Feb. 20 checkpoint`.
+  Treat it as a historical snapshot of directional evidence before a formal ruling. Record the same-window
+  comparison, continuity with the earlier analysis method, what direction the evidence pointed, and the
+  unresolved quality check at that time.'
+load_bearing_facts:
+- 321
+- 323
+- 322
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_h2_annotation
+      path: result.ok
+      value: true
+      check_id: riley_077_00
+    - check_id: riley_077_01
+      type: field_equals
+      tool: create_doc
+      action_id: create_h2_annotation
+      path: args.title
+      value: H2 evidence-quality annotation — Feb. 20 checkpoint
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_h2_annotation
+      path: args
+      criterion: 'The body accurately records the historical same-window comparison: February 2022 mid-segment
+        monthly churn was 2.2%, February 2021 was 2.0%, and there was no comparable historical spike.
+        Missing or contradicting either year, value, or the absence of a matching spike must fail.
+
+
+        The body states that the historical comparison used the same cohort logic as the January scan
+        and Owen check. A generic claim that the method was consistent, without identifying those prior
+        checks, is insufficient.
+
+
+        The body frames the Feb. 20 evidence as directional evidence against the seasonal and/or competitor-cycle
+        explanation, while clearly stating that an additional denominator-handling sanity check was still
+        outstanding and therefore the conclusion should not yet be stated as a formal ruling at that checkpoint.
+        It must preserve this as a dated historical pre-ruling snapshot rather than imply the check remains
+        unresolved today.'
+      check_id: riley_077_02
+mock_state: {}

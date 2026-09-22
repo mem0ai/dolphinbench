@@ -1,0 +1,45 @@
+id: '155'
+narrative_anchor_date: '2026-09-14'
+test: Write slide 4 of Q4_2025_Commercial_Usage_Archive with October 2025 Mercury
+  usage for Evergreen and Acme and whether the results warranted different pricing
+  terms.
+load_bearing_facts:
+- 263
+expected_tool_calls:
+- update_deck_slide
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: update_deck_slide
+      path: result.ok
+      value: true
+      check_id: morgan_155_00
+      action_id: morgan_155_update_deck_slide
+    - type: field_equals
+      path: result.deck
+      value: Q4_2025_Commercial_Usage_Archive
+      tool: update_deck_slide
+      check_id: morgan_155_01
+      action_id: morgan_155_update_deck_slide
+    - type: field_eq_number
+      path: result.slide.number
+      value: 4
+      tool: update_deck_slide
+      check_id: morgan_155_02
+      action_id: morgan_155_update_deck_slide
+    - type: field_llm_judge
+      path: result.slide.content
+      criterion: Reports Evergreen at 196 monthly active developers, still within
+        Growth's included 200, and Acme at 82 without a seat-versus-usage dispute.
+        Keeps standard hybrid terms unchanged, not a custom-pricing carveout.
+      tool: update_deck_slide
+      check_id: morgan_155_03
+      action_id: morgan_155_update_deck_slide
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

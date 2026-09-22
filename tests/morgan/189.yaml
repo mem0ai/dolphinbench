@@ -1,0 +1,142 @@
+id: '189'
+narrative_anchor_date: '2026-09-14'
+test: Update Kestrel Marketing's CRM notes with the April 2023 delivery-performance
+  issue and how it compared with Acme and Blueline.
+load_bearing_facts:
+- 71
+expected_tool_calls:
+- update_crm_row
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: update_crm_row
+      path: result.ok
+      value: true
+      check_id: morgan_189_00
+      action_id: morgan_189_update_crm_row
+    - type: field_equals
+      path: result.row.id
+      value: crm_kestrel_marketing
+      tool: update_crm_row
+      check_id: morgan_189_01
+      action_id: morgan_189_update_crm_row
+    - type: field_llm_judge
+      path: result.row.notes
+      criterion: Records Kestrel as the third contractor that month with slipping
+        deliverables, matching Acme and Blueline, but with the problem taking longer
+        to become apparent. Does not confuse delayed discovery with merely longer
+        delivery time.
+      tool: update_crm_row
+      check_id: morgan_189_02
+      action_id: morgan_189_update_crm_row
+mock_state:
+  crm:
+  - added_at: '2023-07-18T14:27:00-07:00'
+    id: crm_1689715620138
+    name: Pinecone
+    notes: 'July 2026 prepay offer declined: 6% discount on $60k annual prepay was
+      not worth creating prepaid capacity or vendor-risk framing while June was about
+      $4.0k and July is tracking about $4.1k with no replay spike.'
+    tags:
+    - vendor
+    - integration
+    - monthly-hygiene
+    - no-prepaid
+    - july2026-prepay-declined
+    updated_at: '2026-07-22T08:20:00-07:00'
+    trigger_condition: revisit only after August close if sustained Pinecone usage
+      materially exceeds the normal monthly hygiene range
+    status: monthly_hygiene_no_july_prepay
+    next_touch_date: '2026-08-31'
+  - added_at: '2023-08-02T10:56:00-07:00'
+    id: crm_1785189091939
+    name: Evergreen Bank
+    notes: 'November 2025 usage closed at 223 monthly active developers; treasury
+      and risk operations are active alongside the original department; Evergreen
+      is processing the standard first Growth overage band of $1,000 under existing
+      terms; no seat carveout, custom department package, or custom commercial exception.
+
+
+      Jan 27, 2026: annual Mercury Growth renewal signed for Feb 1, 2026 through Jan
+      31, 2027 on standard terms: $7,500 per month including up to 200 monthly active
+      developers, plus $1,000 per additional 50 monthly active developers. Quarterly
+      current-state/admin reviews are included for then-current admin controls only.
+      The signed renewal does not include a granular sync-operator commitment, custom
+      admin package, overage cap, department carveout, roadmap appendix, delivery
+      date, or advanced-admin renewal obligation. Treat this as a standard Growth
+      renewal, not a custom package or founder-owned follow-up.
+
+
+      Apr 16, 2026: first included 2026 current-state/admin review closed inside standard
+      Growth mechanics. Covered shipped SAML login, visible invite/source/admin audit
+      lookup, workspace-admin support, and March usage under standard Growth. No custom
+      admin policy, overage cap, granular-role date or package, procurement-security
+      item, add-on, or department carveout commitment. Sync-operator interest remains
+      later advanced-admin research only, with no committed date. Sarah Kim owns the
+      customer thread and Devon Hayes covers commercial/procurement context.'
+    status: q3_2026_admin_review_closed_current_scope
+    tags:
+    - mercury
+    - growth
+    - annual-customer
+    - evergreen
+    - current-state-admin-review-closed
+    - granular-sync-operator-logged-input
+    - no-commercial-exception
+    updated_at: '2026-07-16T11:35:00-07:00'
+    trigger_condition: new standard-term account health or a customer question; not
+      April overage as an expansion signal
+    next_touch_date: normal Q2 account check-in only
+  - added_at: '2023-08-02T10:56:00-07:00'
+    id: crm_1690998960154
+    name: Acme
+    notes: 'Aug 8, 2025: July API v2 large-export recurrence closed as bounded Atlas/API
+      v2 chunking/backoff fix. Patched path chunks long export ranges and backs off
+      before cursor path timeout. Acme reran the same 90-day export in production;
+      export completed and row counts matched narrower monthly replay/workaround checks.
+      No customer-visible data loss identified. Routing stayed support customer owner
+      + Leo Park first technical read + Jake product sequencing; not Compass, Mercury,
+      Devon, or founder-direct scope.'
+    updated_at: '2026-06-08T14:46:00-07:00'
+    status: normal_q2_atlas_api_v2_support_no_founder_route
+    tags:
+    - atlas
+    - api_v2
+    - support-routed
+    - normal-q2-2026
+    - no-founder-route
+  - added_at: '2023-10-25T13:26:00-07:00'
+    id: crm_1785284617707
+    name: Northstar Ventures
+    notes: 'Aug 21: Sofia declined the September 9 AI-infrastructure breakfast/update
+      ask. No data room, no September hold, no customer-facing Compass packet, and
+      no Series C market-warming from the owner-lane read. Sep 11: Northstar asked
+      whether to reserve an early diligence slot or get a lightweight data-room touch
+      before partners travel after hearing there is a Sep 18 Q3 operating-posture
+      read. Keep warm-later only. No active September process, no data-room touch,
+      and no diligence slot reservation unless re-engagement is explicitly chosen
+      after the read.'
+    status: warm_later_after_sep18_read_no_active_process
+    tags:
+    - investor
+    - b-round
+    - northstar
+    - narrow-short-list
+    - no-data-room
+    - aug21-panel-declined
+    - no-september-hold
+    trigger_condition: Re-engage only if explicitly chosen after the Sep 18 operating-posture
+      read; until then there is no active process, no data-room touch, and no diligence
+      slot reservation.
+    updated_at: '2026-09-11T14:36:00-07:00'
+    next_touch_date: after the Sep 18 read, only if re-engagement is explicitly chosen
+  - id: crm_kestrel_marketing
+    name: Kestrel Marketing
+    notes: ''
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

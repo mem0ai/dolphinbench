@@ -1,0 +1,45 @@
+id: '170'
+narrative_anchor_date: '2026-09-14'
+test: On mercury-release-notes#417, correct the historical expired-magic-link patch
+  description to its actual status and scope.
+load_bearing_facts:
+- 139
+- 140
+expected_tool_calls:
+- post_pr_comment
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: post_pr_comment
+      path: result.ok
+      value: true
+      check_id: morgan_170_00
+      action_id: morgan_170_post_pr_comment
+    - type: field_equals
+      path: result.comment.pr_id
+      value: mercury-release-notes#417
+      tool: post_pr_comment
+      check_id: morgan_170_01
+      action_id: morgan_170_post_pr_comment
+    - type: field_llm_judge
+      path: result.comment.body
+      criterion: Describes a green/cleared patch clarifying expired-link retry guidance
+        only. Does not change activation definition or expand auth-provider, SSO,
+        admin, or procurement scope. No separate sentence for every excluded area
+        is required.
+      tool: post_pr_comment
+      check_id: morgan_170_02
+      action_id: morgan_170_post_pr_comment
+mock_state:
+  open_prs:
+  - id: mercury-release-notes#417
+    repo: mercury-release-notes
+    number: 417
+    status: open
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

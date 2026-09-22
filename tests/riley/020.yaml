@@ -1,0 +1,128 @@
+id: '020'
+narrative_anchor_date: '2028-01-01'
+test: Create a 10-minute reminder at 9:00 AM Central three days before each 2028 employer HSA deposit.
+  Each reminder must include the deposit date, amount, and eligibility condition.
+load_bearing_facts:
+- 284
+expected_tool_calls:
+- create_calendar_event
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_calendar_event
+      action_id: jan_hsa_reminder
+      path: result.ok
+      value: true
+      check_id: riley_020_00
+    - type: field_equals
+      tool: create_calendar_event
+      action_id: apr_hsa_reminder
+      path: result.ok
+      value: true
+      check_id: riley_020_01
+    - type: field_equals
+      tool: create_calendar_event
+      action_id: jul_hsa_reminder
+      path: result.ok
+      value: true
+      check_id: riley_020_02
+    - type: field_equals
+      tool: create_calendar_event
+      action_id: oct_hsa_reminder
+      path: result.ok
+      value: true
+      check_id: riley_020_03
+    - type: datetime_absolute_eq
+      tool: create_calendar_event
+      action_id: jan_hsa_reminder
+      path: args.start
+      value: '2028-01-12T09:00:00-06:00'
+      check_id: riley_020_04
+    - type: datetime_absolute_eq
+      tool: create_calendar_event
+      action_id: jan_hsa_reminder
+      path: args.end
+      value: '2028-01-12T09:10:00-06:00'
+      check_id: riley_020_05
+    - type: datetime_absolute_eq
+      tool: create_calendar_event
+      action_id: apr_hsa_reminder
+      path: args.start
+      value: '2028-04-12T09:00:00-05:00'
+      check_id: riley_020_06
+    - type: datetime_absolute_eq
+      tool: create_calendar_event
+      action_id: apr_hsa_reminder
+      path: args.end
+      value: '2028-04-12T09:10:00-05:00'
+      check_id: riley_020_07
+    - type: datetime_absolute_eq
+      tool: create_calendar_event
+      action_id: jul_hsa_reminder
+      path: args.start
+      value: '2028-07-12T09:00:00-05:00'
+      check_id: riley_020_08
+    - type: datetime_absolute_eq
+      tool: create_calendar_event
+      action_id: jul_hsa_reminder
+      path: args.end
+      value: '2028-07-12T09:10:00-05:00'
+      check_id: riley_020_09
+    - type: datetime_absolute_eq
+      tool: create_calendar_event
+      action_id: oct_hsa_reminder
+      path: args.start
+      value: '2028-10-12T09:00:00-05:00'
+      check_id: riley_020_10
+    - type: datetime_absolute_eq
+      tool: create_calendar_event
+      action_id: oct_hsa_reminder
+      path: args.end
+      value: '2028-10-12T09:10:00-05:00'
+      check_id: riley_020_11
+    - type: field_llm_judge
+      tool: create_calendar_event
+      action_id: jan_hsa_reminder
+      path: args
+      criterion: The reminder identifies the $250 employer HSA deposit scheduled for January 15
+      check_id: riley_020_12
+    - type: field_llm_judge
+      tool: create_calendar_event
+      action_id: apr_hsa_reminder
+      path: args
+      criterion: The reminder identifies the $250 employer HSA deposit scheduled for April 15
+      check_id: riley_020_13
+    - type: field_llm_judge
+      tool: create_calendar_event
+      action_id: jul_hsa_reminder
+      path: args
+      criterion: The reminder identifies the $250 employer HSA deposit scheduled for July 15
+      check_id: riley_020_14
+    - type: field_llm_judge
+      tool: create_calendar_event
+      action_id: oct_hsa_reminder
+      path: args
+      criterion: The reminder identifies the $250 employer HSA deposit scheduled for October 15
+      check_id: riley_020_15
+mock_state:
+  calendar:
+  - id: evt_1828887300009
+    title: Cherrywood annual unit-condition inspection
+    start: '2028-01-13T08:45:00-06:00'
+    end: '2028-01-13T11:15:00-06:00'
+    attendees: []
+    body: Cherrywood’s routine inspection window is 9:00am–11:00am Central. Secure Kibo, provide unit
+      access, clear the utility closet and under-sink cabinets, and preserve the full inspection window.
+      The notice reports no current maintenance fault.
+  - id: evt_1828904400011
+    title: Routine dental cleaning
+    start: '2028-01-22T10:00:00-06:00'
+    end: '2028-01-22T10:45:00-06:00'
+    attendees: []
+    body: Routine preventive examination and cleaning; no new symptom or treatment issue. Bring the insurance
+      card and confirm any optional service before accepting it.

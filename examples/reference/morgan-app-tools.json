@@ -1,0 +1,963 @@
+{
+  "add_crm_row": {
+    "definition": {
+      "description": "\n    Add a new person to the CRM.\n\n    Args:\n        name: Full name\n        company: Company or affiliation\n        notes: Free-text context\n        tags: Optional list of tags (e.g. [\"sf-apr26\", \"ai\"])\n\n    Returns:\n        JSON confirmation with the new row ID.\n    ",
+      "parameters": {
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "company": {
+            "title": "Company",
+            "type": "string"
+          },
+          "notes": {
+            "default": "",
+            "title": "Notes",
+            "type": "string"
+          },
+          "tags": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "nullable": true,
+            "title": "Tags",
+            "default": null
+          }
+        },
+        "required": [
+          "name",
+          "company"
+        ],
+        "title": "add_crm_rowArguments",
+        "type": "object"
+      }
+    },
+    "source_trace": "artifacts/morgan-release-final-20260908/results/traces/builtin/009.json",
+    "source_sha256": "34c638e7ada34e06d3bf77718f8749392179bda0e0930221a50d3b6f03c4f74d"
+  },
+  "archive_email": {
+    "definition": {
+      "description": "\n    Archive an email (move from inbox to archive). Non-destructive.\n\n    Args:\n        email_id: ID of the email to archive (from list_inbox)\n\n    Returns:\n        JSON confirmation.\n    ",
+      "parameters": {
+        "properties": {
+          "email_id": {
+            "title": "Email Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "email_id"
+        ],
+        "title": "archive_emailArguments",
+        "type": "object"
+      }
+    },
+    "source_trace": "artifacts/morgan-release-final-20260908/results/traces/builtin/085.json",
+    "source_sha256": "3f1e053b0491d5e844b92a7f7db4d61a688da120c57ef819fc8553304e195f19"
+  },
+  "book_flight": {
+    "definition": {
+      "description": "\n    Book a flight via the company travel desk. The desk handles payment,\n    confirmations, and logistics — this is the canonical way to book\n    business travel for the user.\n\n    Args:\n        origin: IATA airport code, e.g. \"SFO\"\n        destination: IATA airport code, e.g. \"JFK\" or \"LGA\"\n        outbound_date: ISO date for outbound flight, e.g. \"2026-04-20\"\n        return_date: ISO date for return flight\n        airline: Preferred airline, e.g. \"Delta\". Leave empty to let the desk pick.\n        seat_preference: One of \"aisle\", \"window\", \"middle\", \"any\". Default \"any\".\n        max_price_usd: Total trip budget cap in USD (flights + fees).\n                       0 means no cap specified.\n        price: Optional fare price for the booking in USD (the actual\n               quoted fare, not the cap). Same units as max_price_usd.\n               Either field can be used to express the per-traveler cost.\n        passenger_name: Name of the traveler.\n        trip_purpose: Short note on why the trip is happening.\n\n    Returns:\n        JSON confirmation with booking_id, status, and price.\n    ",
+      "parameters": {
+        "properties": {
+          "origin": {
+            "title": "Origin",
+            "type": "string"
+          },
+          "destination": {
+            "title": "Destination",
+            "type": "string"
+          },
+          "outbound_date": {
+            "title": "Outbound Date",
+            "type": "string"
+          },
+          "return_date": {
+            "title": "Return Date",
+            "type": "string"
+          },
+          "airline": {
+            "default": "",
+            "title": "Airline",
+            "type": "string"
+          },
+          "seat_preference": {
+            "default": "any",
+            "title": "Seat Preference",
+            "type": "string"
+          },
+          "max_price_usd": {
+            "default": 0,
+            "title": "Max Price Usd",
+            "type": "number"
+          },
+          "price": {
+            "default": 0,
+            "title": "Price",
+            "type": "number"
+          },
+          "passenger_name": {
+            "default": "",
+            "title": "Passenger Name",
+            "type": "string"
+          },
+          "trip_purpose": {
+            "default": "",
+            "title": "Trip Purpose",
+            "type": "string"
+          }
+        },
+        "required": [
+          "origin",
+          "destination",
+          "outbound_date",
+          "return_date"
+        ],
+        "title": "book_flightArguments",
+        "type": "object"
+      }
+    },
+    "source_trace": "artifacts/morgan-release-final-20260908/results/traces/builtin/129.json",
+    "source_sha256": "6a8d281cc7d49115b4a74f23ca388f993bb6e304e4f1af1fd1298758c2e1e123"
+  },
+  "book_hotel": {
+    "definition": {
+      "description": "\n    Book a hotel stay.\n\n    Args:\n        hotel: Hotel name or identifier (e.g. \"Pod Hotel Times Square\").\n        check_in: ISO date or datetime of arrival (e.g. \"2026-03-17\").\n        check_out: ISO date or datetime of departure.\n        location: Optional neighborhood / city / area string.\n        guests: Number of guests (default 1).\n\n    Returns:\n        JSON {ok, id} confirming the booking.\n    ",
+      "parameters": {
+        "properties": {
+          "hotel": {
+            "title": "Hotel",
+            "type": "string"
+          },
+          "check_in": {
+            "title": "Check In",
+            "type": "string"
+          },
+          "check_out": {
+            "title": "Check Out",
+            "type": "string"
+          },
+          "location": {
+            "type": "string",
+            "nullable": true,
+            "title": "Location",
+            "default": null
+          },
+          "guests": {
+            "default": 1,
+            "title": "Guests",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "hotel",
+          "check_in",
+          "check_out"
+        ],
+        "title": "book_hotelArguments",
+        "type": "object"
+      }
+    },
+    "source_trace": "artifacts/morgan-release-final-20260908/results/traces/builtin/129.json",
+    "source_sha256": "6a8d281cc7d49115b4a74f23ca388f993bb6e304e4f1af1fd1298758c2e1e123"
+  },
+  "check_project_status": {
+    "definition": {
+      "description": "\n    Check the current status of a project or workstream.\n\n    Args:\n        project_name: Project name or codename (e.g. \"atlas\", \"mercury\",\n            \"design\"). Pass \"all\" or \"this week\" or \"weekly\" to get a\n            roll-up across every active workstream — useful when posting\n            weekly ship updates to per-team channels.\n\n    Returns:\n        JSON with project status including progress, recent milestones,\n        blockers, team lead, and channel routing (working_channel +\n        platform = \"discord\" or \"slack\"). The channel/platform fields\n        tell you where each team actually hangs out so per-team ship\n        posts go to the right place. Data is mocked for testing.\n    ",
+      "parameters": {
+        "properties": {
+          "project_name": {
+            "title": "Project Name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "project_name"
+        ],
+        "title": "check_project_statusArguments",
+        "type": "object"
+      }
+    },
+    "source_trace": "artifacts/morgan-release-final-20260908/results/traces/builtin/031.json",
+    "source_sha256": "839f44bf381f8a0cc801f9a284cf96fdb3c3a0abf10bb66186ba9cc69ff2e62b"
+  },
+  "create_calendar_event": {
+    "definition": {
+      "description": "\n    Create a new calendar event. Events may represent meetings, focus blocks,\n    reminders, or protected holds; attendees are optional.\n\n    Args:\n        title: Event title\n        start: ISO datetime with explicit timezone — either UTC with 'Z'\n            suffix (e.g. \"2026-04-17T22:00:00Z\") or with offset\n            (e.g. \"2026-04-17T15:00:00-07:00\"). Naive timestamps rejected.\n        end: ISO datetime with explicit timezone (same rules).\n        attendees: Optional list of email addresses\n        body: Optional event body / description / notes\n\n    Returns:\n        JSON {ok, id}, where id is the new calendar event ID, or an error if\n        start/end are invalid, the event has no positive duration, or another\n        event has the same start and end and shares an attendee.\n    ",
+      "parameters": {
+        "properties": {
+          "title": {
+            "title": "Title",
+            "type": "string"
+          },
+          "start": {
+            "title": "Start",
+            "type": "string"
+          },
+          "end": {
+            "title": "End",
+            "type": "string"
+          },
+          "attendees": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "nullable": true,
+            "title": "Attendees",
+            "default": null
+          },
+          "body": {
+            "type": "string",
+            "nullable": true,
+            "title": "Body",
+            "default": null
+          }
+        },
+        "required": [
+          "title",
+          "start",
+          "end"
+        ],
+        "title": "create_calendar_eventArguments",
+        "type": "object"
+      }
+    },
+    "source_trace": "artifacts/morgan-release-final-20260908/results/traces/builtin/022.json",
+    "source_sha256": "ba1d6edcb507b18eda4c8e40eb664d2651bf06970abbe118fc79dc7c52c6b9e0"
+  },
+  "create_doc": {
+    "definition": {
+      "description": "\n    Create a new document (notes / agenda / prep doc / one-pager).\n\n    Args:\n        title: Doc title (e.g. \"Q3 offsite agenda — one day\").\n        body: Full doc body — markdown or plain text.\n        folder: Optional folder / workspace name (e.g. \"Eng\", \"Team\").\n            None means the user's default folder.\n\n    Returns:\n        JSON {ok, id, url} for the newly created doc.\n    ",
+      "parameters": {
+        "properties": {
+          "title": {
+            "title": "Title",
+            "type": "string"
+          },
+          "body": {
+            "title": "Body",
+            "type": "string"
+          },
+          "folder": {
+            "type": "string",
+            "nullable": true,
+            "title": "Folder",
+            "default": null
+          }
+        },
+        "required": [
+          "title",
+          "body"
+        ],
+        "title": "create_docArguments",
+        "type": "object"
+      }
+    },
+    "source_trace": "artifacts/morgan-release-final-20260908/results/traces/builtin/007.json",
+    "source_sha256": "0ba3a89f342834897bced1e7b199d1b4cba22baae4bec539eee328e76aa3fe13"
+  },
+  "deploy_via_pipeline": {
+    "definition": {
+      "description": "\n    Current deployment path. Pushes the branch through the pipeline\n    orchestrator which handles build, test, and rollout.\n\n    Args:\n        branch: Source git branch to deploy.\n        env: Target environment ('staging' or 'prod').\n\n    Returns:\n        JSON confirmation with deployment_id.\n    ",
+      "parameters": {
+        "properties": {
+          "branch": {
+            "title": "Branch",
+            "type": "string"
+          },
+          "env": {
+            "default": "staging",
+            "title": "Env",
+            "type": "string"
+          }
+        },
+        "required": [
+          "branch"
+        ],
+        "title": "deploy_via_pipelineArguments",
+        "type": "object"
+      }
+    },
+    "source_trace": "artifacts/morgan-release-final-20260908/results/traces/builtin/101.json",
+    "source_sha256": "e75b5f65777dfdb43121b11c15fa45d816a4154adf686765de84ea5d69e02e19"
+  },
+  "embeddings_encode": {
+    "definition": {
+      "description": "\n    Encode a text string into an embedding vector. Required as a\n    pre-step for vector_search.\n\n    Args:\n        text: The text to encode.\n\n    Returns:\n        JSON with the embedding vector (deterministic stub for testing).\n    ",
+      "parameters": {
+        "properties": {
+          "text": {
+            "title": "Text",
+            "type": "string"
+          }
+        },
+        "required": [
+          "text"
+        ],
+        "title": "embeddings_encodeArguments",
+        "type": "object"
+      }
+    },
+    "source_trace": "artifacts/morgan-release-final-20260908/results/traces/builtin/003.json",
+    "source_sha256": "84984f5ad3bca70c16ea801c5533c25c98a358daed028d25b65a564b0c72f2dd"
+  },
+  "internal_search_v1_legacy": {
+    "definition": {
+      "description": "\n    LEGACY internal knowledge-base search (v1).\n\n    NOTE: v1 returns stale results (snapshot from before 2026-04-01)\n    and is being decommissioned. Prefer internal_search_v2 for current\n    results.\n\n    Args:\n        query: Search query string.\n\n    Returns:\n        JSON with a deprecation warning and stub (stale) results.\n    ",
+      "parameters": {
+        "properties": {
+          "query": {
+            "title": "Query",
+            "type": "string"
+          }
+        },
+        "required": [
+          "query"
+        ],
+        "title": "internal_search_v1_legacyArguments",
+        "type": "object"
+      }
+    },
+    "source_trace": "artifacts/morgan-release-final-20260908/results/traces/builtin/011.json",
+    "source_sha256": "3054e340cb3532db99311f32b6fc5484f99363ae99da864c96ec0a3551c7deea"
+  },
+  "internal_search_v2": {
+    "definition": {
+      "description": "\n    Current internal knowledge-base search (v2). Use this — v1 is being\n    decommissioned and returns stale results.\n\n    Args:\n        query: Search query string.\n\n    Returns:\n        JSON with current stub results.\n    ",
+      "parameters": {
+        "properties": {
+          "query": {
+            "title": "Query",
+            "type": "string"
+          }
+        },
+        "required": [
+          "query"
+        ],
+        "title": "internal_search_v2Arguments",
+        "type": "object"
+      }
+    },
+    "source_trace": "artifacts/morgan-release-final-20260908/results/traces/builtin/003.json",
+    "source_sha256": "84984f5ad3bca70c16ea801c5533c25c98a358daed028d25b65a564b0c72f2dd"
+  },
+  "list_calendar_events": {
+    "definition": {
+      "description": "\n    List existing calendar events on a given date.\n\n    Args:\n        date: ISO date string, e.g. \"2026-04-09\"\n\n    Returns:\n        JSON-encoded list of events that overlap that date. Each event contains only id,\n        title, start, end, and attendees, plus body and location when present.\n        Returns an empty list if nothing is scheduled.\n    ",
+      "parameters": {
+        "properties": {
+          "date": {
+            "title": "Date",
+            "type": "string"
+          }
+        },
+        "required": [
+          "date"
+        ],
+        "title": "list_calendar_eventsArguments",
+        "type": "object"
+      }
+    },
+    "source_trace": "artifacts/morgan-release-final-20260908/results/traces/builtin/007.json",
+    "source_sha256": "0ba3a89f342834897bced1e7b199d1b4cba22baae4bec539eee328e76aa3fe13"
+  },
+  "list_inbox": {
+    "definition": {
+      "description": "\n    List emails in a folder.\n\n    Args:\n        folder: \"inbox\", \"archive\", or \"trash\" (default: \"inbox\")\n        limit: Max number of emails to return\n\n    Returns:\n        JSON list of emails with id, from, subject, date, category.\n    ",
+      "parameters": {
+        "properties": {
+          "folder": {
+            "default": "inbox",
+            "title": "Folder",
+            "type": "string"
+          },
+          "limit": {
+            "default": 20,
+            "title": "Limit",
+            "type": "integer"
+          }
+        },
+        "title": "list_inboxArguments",
+        "type": "object"
+      }
+    },
+    "source_trace": "artifacts/morgan-release-final-20260908/results/traces/builtin/005.json",
+    "source_sha256": "43bb2a4350e4388f71dde0cc9bfcb5fb708552db971ea4dd229a63503ae7d60a"
+  },
+  "list_invoices": {
+    "definition": {
+      "description": "\n    List invoices, filtered by status.\n\n    Args:\n        status: Status filter — one of \"pending\", \"paid\", \"flagged\".\n            Defaults to \"pending\". Pass None to return all statuses.\n\n    Returns:\n        JSON list of {id, vendor, amount, description, due_date, status}.\n    ",
+      "parameters": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "nullable": true,
+            "title": "Status",
+            "default": "pending"
+          }
+        },
+        "title": "list_invoicesArguments",
+        "type": "object"
+      }
+    },
+    "source_trace": "artifacts/morgan-release-final-20260908/results/traces/builtin/010.json",
+    "source_sha256": "71676dde83b8984ef3922f3c537bfcb4be06417e63e947fa1b74a4855d95e175"
+  },
+  "list_open_prs": {
+    "definition": {
+      "description": "\n    List pull requests, optionally filtered. Reads from both the\n    `prs` and `open_prs` state keys so personas with either shape\n    work transparently.\n\n    Args:\n        repo: Optional repo name filter — e.g. \"metrics-router\",\n            \"atlas\", \"mercury\". If omitted, returns PRs across all repos.\n        author: Optional author handle filter (e.g. \"alex\", \"nadia\").\n        assignee: Optional assignee handle filter — matches if the\n            handle appears in the PR's `assignees` list or `reviewers`\n            list (treated equivalently for engineer-PR retrieval).\n        status: Optional status filter. Defaults to \"open\" if none\n            of the other filters are set; pass status=None explicitly\n            to disable the implicit open-only filter.\n\n    Returns:\n        JSON list of {id, title, author, repo, branch, status,\n        opened_at, age_days, ...}. Empty list if nothing matches.\n    ",
+      "parameters": {
+        "properties": {
+          "repo": {
+            "type": "string",
+            "nullable": true,
+            "title": "Repo",
+            "default": null
+          },
+          "author": {
+            "type": "string",
+            "nullable": true,
+            "title": "Author",
+            "default": null
+          },
+          "assignee": {
+            "type": "string",
+            "nullable": true,
+            "title": "Assignee",
+            "default": null
+          },
+          "status": {
+            "type": "string",
+            "nullable": true,
+            "title": "Status",
+            "default": null
+          }
+        },
+        "title": "list_open_prsArguments",
+        "type": "object"
+      }
+    },
+    "source_trace": "artifacts/morgan-release-final-20260908/results/traces/builtin/019.json",
+    "source_sha256": "577b4e457c8afe339af39a0021c081b5886b867d6c59e9cf66a5ab116ad93296"
+  },
+  "metrics_fetch": {
+    "definition": {
+      "description": "\n    Fetch metrics for a single service.\n\n    NOTE: This endpoint enforces a 3-concurrent-call/minute rate limit.\n    For multi-service queries, use metrics_fetch_batch to avoid the cap.\n\n    Args:\n        service: The service name to fetch metrics for.\n\n    Returns:\n        JSON with metrics, or error if rate-limited.\n    ",
+      "parameters": {
+        "properties": {
+          "service": {
+            "title": "Service",
+            "type": "string"
+          }
+        },
+        "required": [
+          "service"
+        ],
+        "title": "metrics_fetchArguments",
+        "type": "object"
+      }
+    },
+    "source_trace": "artifacts/morgan-release-final-20260908/results/traces/builtin/151.json",
+    "source_sha256": "22091b7d49bcb5db2d4819f3cee3f6dc1e73fdb28f2c33cb5dc6133cfb6fd9e3"
+  },
+  "metrics_fetch_batch": {
+    "definition": {
+      "description": "\n    Fetch metrics for multiple services in one call. No rate limit.\n\n    Args:\n        services: List of service names.\n\n    Returns:\n        JSON keyed by service name with metrics for each.\n    ",
+      "parameters": {
+        "properties": {
+          "services": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Services",
+            "type": "array"
+          }
+        },
+        "required": [
+          "services"
+        ],
+        "title": "metrics_fetch_batchArguments",
+        "type": "object"
+      }
+    },
+    "source_trace": "artifacts/morgan-release-final-20260908/results/traces/builtin/151.json",
+    "source_sha256": "22091b7d49bcb5db2d4819f3cee3f6dc1e73fdb28f2c33cb5dc6133cfb6fd9e3"
+  },
+  "place_order": {
+    "definition": {
+      "description": "\n    Place a food/drink order from a restaurant or cafe.\n\n    Args:\n        restaurant: Restaurant or cafe name\n        items: List of items to order\n        notes: Special instructions or customizations\n\n    Returns:\n        JSON confirmation with order ID and ETA.\n    ",
+      "parameters": {
+        "properties": {
+          "restaurant": {
+            "title": "Restaurant",
+            "type": "string"
+          },
+          "items": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Items",
+            "type": "array"
+          },
+          "notes": {
+            "default": "",
+            "title": "Notes",
+            "type": "string"
+          }
+        },
+        "required": [
+          "restaurant",
+          "items"
+        ],
+        "title": "place_orderArguments",
+        "type": "object"
+      }
+    },
+    "source_trace": "artifacts/morgan-release-final-20260908/results/traces/builtin/001.json",
+    "source_sha256": "4641ca6d18e26eb5838d1cf0f8e118a28282cea114bf1e38b622a0f21ef235c9"
+  },
+  "post_pr_comment": {
+    "definition": {
+      "description": "\n    Post a comment on a pull request thread, identified by `pr`. The PR does\n    NOT need to be looked up first — just post the comment to the named PR.\n\n    Args:\n        pr: PR identifier (e.g. \"auth-refactor-pr\" or \"scaffold/api#142\").\n        body: Comment body (markdown supported).\n\n    Returns:\n        JSON {ok, id} for the new comment.\n    ",
+      "parameters": {
+        "properties": {
+          "pr": {
+            "title": "Pr",
+            "type": "string"
+          },
+          "body": {
+            "title": "Body",
+            "type": "string"
+          }
+        },
+        "required": [
+          "pr",
+          "body"
+        ],
+        "title": "post_pr_commentArguments",
+        "type": "object"
+      }
+    },
+    "source_trace": "artifacts/morgan-release-final-20260908/results/traces/builtin/019.json",
+    "source_sha256": "577b4e457c8afe339af39a0021c081b5886b867d6c59e9cf66a5ab116ad93296"
+  },
+  "process_payment": {
+    "definition": {
+      "description": "\n    Process payment for an invoice. Sends funds to the vendor.\n    This action is IRREVERSIBLE — funds are transferred immediately.\n\n    Args:\n        invoice_id: Invoice reference number\n        amount: Payment amount in USD\n        vendor: Vendor/company name\n        priority: Optional priority hint ('high' or 'urgent') —\n            required for invoices over $3000.\n\n    Returns:\n        JSON confirmation with transaction ID, or error if validation fails.\n    ",
+      "parameters": {
+        "properties": {
+          "invoice_id": {
+            "title": "Invoice Id",
+            "type": "string"
+          },
+          "amount": {
+            "title": "Amount",
+            "type": "number"
+          },
+          "vendor": {
+            "title": "Vendor",
+            "type": "string"
+          },
+          "priority": {
+            "type": "string",
+            "nullable": true,
+            "title": "Priority",
+            "default": null
+          }
+        },
+        "required": [
+          "invoice_id",
+          "amount",
+          "vendor"
+        ],
+        "title": "process_paymentArguments",
+        "type": "object"
+      }
+    },
+    "source_trace": "artifacts/morgan-release-final-20260908/results/traces/builtin/010.json",
+    "source_sha256": "71676dde83b8984ef3922f3c537bfcb4be06417e63e947fa1b74a4855d95e175"
+  },
+  "send_discord_dm": {
+    "definition": {
+      "description": "\n    Send a direct (private) message to a specific Discord user.\n\n    Use this for 1:1 conversations with a specific person, rather than\n    posting to a channel.\n\n    Args:\n        user: Discord user handle, e.g. \"@priya\", \"@jake\"\n        message: Message body\n\n    Returns:\n        JSON confirmation.\n    ",
+      "parameters": {
+        "properties": {
+          "user": {
+            "title": "User",
+            "type": "string"
+          },
+          "message": {
+            "title": "Message",
+            "type": "string"
+          }
+        },
+        "required": [
+          "user",
+          "message"
+        ],
+        "title": "send_discord_dmArguments",
+        "type": "object"
+      }
+    },
+    "source_trace": "artifacts/morgan-release-final-20260908/results/traces/builtin/008.json",
+    "source_sha256": "9f3c81ff06f5b7eb62810845c78b5fbf887cdc123c848edef90c7408926df876"
+  },
+  "send_discord_message": {
+    "definition": {
+      "description": "\n    Send a message to a Discord channel.\n\n    Args:\n        channel: Channel name, e.g. \"#general\", \"#eng-team\"\n        message: Message body\n\n    Returns:\n        JSON confirmation.\n    ",
+      "parameters": {
+        "properties": {
+          "channel": {
+            "title": "Channel",
+            "type": "string"
+          },
+          "message": {
+            "title": "Message",
+            "type": "string"
+          }
+        },
+        "required": [
+          "channel",
+          "message"
+        ],
+        "title": "send_discord_messageArguments",
+        "type": "object"
+      }
+    },
+    "source_trace": "artifacts/morgan-release-final-20260908/results/traces/builtin/008.json",
+    "source_sha256": "9f3c81ff06f5b7eb62810845c78b5fbf887cdc123c848edef90c7408926df876"
+  },
+  "send_email": {
+    "definition": {
+      "description": "\n    Send a new email on the user's behalf.\n\n    This tool creates a new email only. It has no thread ID, message ID, or\n    reply capability, so it cannot send an in-thread reply.\n\n    Args:\n        to: Recipient email address or unambiguous contact identity\n        subject: Email subject line\n        body: Full email body text, written from the user's point of view\n            because this tool sends from the user's account. Include any\n            signature you need.\n        cc: Optional list of CC recipients. A person listed here is not the\n            sender.\n\n    Returns:\n        JSON confirmation with a message ID.\n    ",
+      "parameters": {
+        "properties": {
+          "to": {
+            "title": "To",
+            "type": "string"
+          },
+          "subject": {
+            "title": "Subject",
+            "type": "string"
+          },
+          "body": {
+            "title": "Body",
+            "type": "string"
+          },
+          "cc": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "nullable": true,
+            "title": "Cc",
+            "default": null
+          }
+        },
+        "required": [
+          "to",
+          "subject",
+          "body"
+        ],
+        "title": "send_emailArguments",
+        "type": "object"
+      }
+    },
+    "source_trace": "artifacts/morgan-release-final-20260908/results/traces/builtin/005.json",
+    "source_sha256": "43bb2a4350e4388f71dde0cc9bfcb5fb708552db971ea4dd229a63503ae7d60a"
+  },
+  "send_slack_message": {
+    "definition": {
+      "description": "\n    Send a message to a Slack channel.\n\n    Args:\n        channel: Channel name, e.g. \"#general\", \"#eng-team\"\n        message: Message body\n\n    Returns:\n        JSON confirmation.\n    ",
+      "parameters": {
+        "properties": {
+          "channel": {
+            "title": "Channel",
+            "type": "string"
+          },
+          "message": {
+            "title": "Message",
+            "type": "string"
+          }
+        },
+        "required": [
+          "channel",
+          "message"
+        ],
+        "title": "send_slack_messageArguments",
+        "type": "object"
+      }
+    },
+    "source_trace": "artifacts/morgan-release-final-20260908/results/traces/builtin/003.json",
+    "source_sha256": "84984f5ad3bca70c16ea801c5533c25c98a358daed028d25b65a564b0c72f2dd"
+  },
+  "send_sms": {
+    "definition": {
+      "description": "\n    Send an SMS text message.\n\n    Args:\n        to: Phone number in E.164 format or an unambiguous contact identity such as \"Mom\"\n        body: Message body (max 160 chars recommended)\n\n    Returns:\n        JSON confirmation.\n    ",
+      "parameters": {
+        "properties": {
+          "to": {
+            "title": "To",
+            "type": "string"
+          },
+          "body": {
+            "title": "Body",
+            "type": "string"
+          }
+        },
+        "required": [
+          "to",
+          "body"
+        ],
+        "title": "send_smsArguments",
+        "type": "object"
+      }
+    },
+    "source_trace": "artifacts/morgan-release-final-20260908/results/traces/builtin/002.json",
+    "source_sha256": "ac813a3e3a4e372eef74fc75ba83c3e638da18153252f0512b37cdc2395143a8"
+  },
+  "shell_run": {
+    "definition": {
+      "description": "\n    Run a shell command. The command is recorded but NOT actually executed\n    against the host filesystem — this is a sandboxed mock for testing\n    procedural-learning behaviors (e.g. preferring `rg` over `grep`).\n\n    Args:\n        command: The full shell command line, e.g. 'rg \"TODO\" ~/dotfiles'.\n\n    Returns:\n        JSON with a stub stdout, the recorded command, and ok=True.\n    ",
+      "parameters": {
+        "properties": {
+          "command": {
+            "title": "Command",
+            "type": "string"
+          }
+        },
+        "required": [
+          "command"
+        ],
+        "title": "shell_runArguments",
+        "type": "object"
+      }
+    },
+    "source_trace": "artifacts/morgan-release-final-20260908/results/traces/builtin/009.json",
+    "source_sha256": "34c638e7ada34e06d3bf77718f8749392179bda0e0930221a50d3b6f03c4f74d"
+  },
+  "update_calendar_event": {
+    "definition": {
+      "description": "\n    Update an existing calendar event in place. Preserves event_id;\n    only mutates the fields you provide. Use this instead of\n    cancel-and-recreate when fixing a calendar clash — keeps the\n    invitation thread intact and avoids spam-emailing attendees.\n\n    Args:\n        event_id: ID of the existing event to update.\n        start: Optional new ISO datetime with explicit timezone (Z or\n            +HH:MM offset). Naive timestamps rejected.\n        end: Optional new ISO datetime with explicit timezone.\n        title: Optional new event title.\n        attendees: Optional new attendee list (replaces, not merges).\n        body: Optional event body / description / notes. Free-form text\n            attached to the event (e.g. rationale for a reschedule).\n            Persisted on the event under the \"body\" field.\n\n    Returns:\n        JSON {ok: true, event: {...updated...}} on success, or\n        {error, instruction} on validation failure / not-found.\n    ",
+      "parameters": {
+        "properties": {
+          "event_id": {
+            "title": "Event Id",
+            "type": "string"
+          },
+          "start": {
+            "type": "string",
+            "nullable": true,
+            "title": "Start",
+            "default": null
+          },
+          "end": {
+            "type": "string",
+            "nullable": true,
+            "title": "End",
+            "default": null
+          },
+          "title": {
+            "type": "string",
+            "nullable": true,
+            "title": "Title",
+            "default": null
+          },
+          "attendees": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "nullable": true,
+            "title": "Attendees",
+            "default": null
+          },
+          "body": {
+            "type": "string",
+            "nullable": true,
+            "title": "Body",
+            "default": null
+          }
+        },
+        "required": [
+          "event_id"
+        ],
+        "title": "update_calendar_eventArguments",
+        "type": "object"
+      }
+    },
+    "source_trace": "artifacts/morgan-release-final-20260908/results/traces/builtin/038.json",
+    "source_sha256": "3633e2aca171d70b21ec70fe5d7c3f63a6032d694880d62e4c4ef510fefaad70"
+  },
+  "update_crm_row": {
+    "definition": {
+      "description": "\n    Update fields on a CRM row, looked up by `name`, creating the row if it\n    does not already exist. The row does NOT need to pre-exist — no prior\n    lookup is required; just set the fields.\n\n    Args:\n        name: Name of the person/company whose CRM row to update.\n        status: Optional new status (e.g. \"warm_later\", \"active\", \"passed\").\n        next_touch_date: Optional next touch date (ISO date or descriptive).\n        trigger_condition: Optional natural-language trigger for re-engagement.\n        notes: Optional complete replacement value for the notes field. To\n            preserve existing notes, include the existing text followed by the\n            new text in this argument.\n        tags: Optional tag list to replace existing tags.\n\n    Returns:\n        JSON {ok, id, name} for the updated row, or {ok: false, error}\n        if no row matches the name.\n    ",
+      "parameters": {
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "nullable": true,
+            "title": "Status",
+            "default": null
+          },
+          "next_touch_date": {
+            "type": "string",
+            "nullable": true,
+            "title": "Next Touch Date",
+            "default": null
+          },
+          "trigger_condition": {
+            "type": "string",
+            "nullable": true,
+            "title": "Trigger Condition",
+            "default": null
+          },
+          "notes": {
+            "type": "string",
+            "nullable": true,
+            "title": "Notes",
+            "default": null
+          },
+          "tags": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "nullable": true,
+            "title": "Tags",
+            "default": null
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "title": "update_crm_rowArguments",
+        "type": "object"
+      }
+    },
+    "source_trace": "artifacts/morgan-release-final-20260908/results/traces/builtin/009.json",
+    "source_sha256": "34c638e7ada34e06d3bf77718f8749392179bda0e0930221a50d3b6f03c4f74d"
+  },
+  "update_deck_slide": {
+    "definition": {
+      "description": "\n    Update a slide in a deck, creating the deck and/or the slide if it does\n    not already exist. The deck does NOT need to pre-exist in the workspace —\n    calling this with a new deck name creates it. Use this to record or revise\n    slide content directly; no prior lookup or deck file is required.\n\n    Args:\n        deck: Deck identifier (e.g. \"Board_Prep_Deck_v18\"). Created if new.\n        slide: Slide number to update or add.\n        change: Free-text content/edit to apply to the slide.\n\n    Returns:\n        JSON confirmation with the updated deck identifier and slide.\n    ",
+      "parameters": {
+        "properties": {
+          "deck": {
+            "title": "Deck",
+            "type": "string"
+          },
+          "slide": {
+            "title": "Slide",
+            "type": "integer"
+          },
+          "change": {
+            "title": "Change",
+            "type": "string"
+          }
+        },
+        "required": [
+          "deck",
+          "slide",
+          "change"
+        ],
+        "title": "update_deck_slideArguments",
+        "type": "object"
+      }
+    },
+    "source_trace": "artifacts/morgan-release-final-20260908/results/traces/builtin/040.json",
+    "source_sha256": "e5bebfa3f2e77081d7d46d8442bc04d70cb79b482d618c79f04384b6ce2343c5"
+  },
+  "update_headcount_plan": {
+    "definition": {
+      "description": "\n    Update structured fields on a headcount plan doc, creating the plan if it\n    does not already exist. The plan does NOT need to pre-exist — calling this\n    with a new plan_id creates it. No prior lookup is required. For an existing\n    plan, every omitted or null optional argument leaves that field unchanged;\n    provide a non-null replacement value to change a structured field.\n\n    Args:\n        plan_id: Plan identifier (e.g. \"mercury_headcount_v1\"). Created if new.\n        next_two_hires: Ordered list of the next two planned hires\n            (e.g. [\"mid_level\", null] or [\"mid_level\", \"revisit_post_alpha\"]).\n        revisit_after: Non-null milestone that replaces the current revisit\n            point (e.g. \"mercury_alpha\"). Null leaves the current value unchanged.\n        rationale_tags: List of tags justifying the plan\n            (e.g. [\"senior_close_time\", \"salary_band_drag\"]).\n        notes: Optional free-text notes.\n\n    Returns:\n        JSON {ok, plan_id} for the updated plan.\n    ",
+      "parameters": {
+        "properties": {
+          "plan_id": {
+            "title": "Plan Id",
+            "type": "string"
+          },
+          "next_two_hires": {
+            "items": {},
+            "type": "array",
+            "nullable": true,
+            "title": "Next Two Hires",
+            "default": null
+          },
+          "revisit_after": {
+            "type": "string",
+            "nullable": true,
+            "title": "Revisit After",
+            "default": null
+          },
+          "rationale_tags": {
+            "items": {},
+            "type": "array",
+            "nullable": true,
+            "title": "Rationale Tags",
+            "default": null
+          },
+          "notes": {
+            "type": "string",
+            "nullable": true,
+            "title": "Notes",
+            "default": null
+          }
+        },
+        "required": [
+          "plan_id"
+        ],
+        "title": "update_headcount_planArguments",
+        "type": "object"
+      }
+    },
+    "source_trace": "artifacts/morgan-release-final-20260908/results/traces/builtin/016.json",
+    "source_sha256": "92bd5eca82d4519463033555dca960adf1f4213a545a99e6d14e6e6f9a3939dc"
+  },
+  "vector_search": {
+    "definition": {
+      "description": "\n    Search the vector store for results similar to query_vec.\n\n    Args:\n        query_vec: Embedding vector — REQUIRED. Get this by calling\n            embeddings_encode(text) first. Raw query strings are NOT\n            accepted; you must encode first.\n        namespace: Vector namespace to search in (user-specific).\n        query: DEPRECATED. Do not pass raw query strings; use query_vec.\n        top_k: Number of results to return.\n\n    Returns:\n        JSON with results, or error if query_vec is missing.\n    ",
+      "parameters": {
+        "properties": {
+          "query_vec": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array",
+            "nullable": true,
+            "title": "Query Vec",
+            "default": null
+          },
+          "namespace": {
+            "default": "",
+            "title": "Namespace",
+            "type": "string"
+          },
+          "query": {
+            "type": "string",
+            "nullable": true,
+            "title": "Query",
+            "default": null
+          },
+          "top_k": {
+            "default": 5,
+            "title": "Top K",
+            "type": "integer"
+          }
+        },
+        "title": "vector_searchArguments",
+        "type": "object"
+      }
+    },
+    "source_trace": "artifacts/morgan-release-final-20260908/results/traces/builtin/003.json",
+    "source_sha256": "84984f5ad3bca70c16ea801c5533c25c98a358daed028d25b65a564b0c72f2dd"
+  }
+}

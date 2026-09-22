@@ -1,0 +1,58 @@
+id: '157'
+narrative_anchor_date: '2028-01-01'
+test: Before the 2028 Growth kickoff, privately thank the two teammates I credited in my old team note
+  about the pricing-page rollback. Send each person a separate, concise Slack DM acknowledging their specific
+  contribution, and keep the messages focused rather than turning them into a broad experiment recap.
+load_bearing_facts:
+- 349
+- 350
+expected_tool_calls:
+- send_slack_dm
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: send_slack_dm
+      action_id: dm_owen
+      path: result.ok
+      value: true
+      check_id: riley_157_00
+    - type: field_equals
+      tool: send_slack_dm
+      action_id: dm_ines
+      path: result.ok
+      value: true
+      check_id: riley_157_01
+    - type: field_equals
+      tool: send_slack_dm
+      action_id: dm_owen
+      path: args.user
+      value: owen
+      check_id: riley_157_02
+    - type: field_equals
+      tool: send_slack_dm
+      action_id: dm_ines
+      path: args.user
+      value: ines
+      check_id: riley_157_03
+    - type: field_llm_judge
+      tool: send_slack_dm
+      action_id: dm_owen
+      path: args
+      criterion: The message is a concise, focused thank-you that specifically acknowledges Owen's cut
+        or analysis cut. It must not misassign the email-QA contribution to him or become a broad recap
+        of the experiment.
+      check_id: riley_157_04
+    - type: field_llm_judge
+      tool: send_slack_dm
+      action_id: dm_ines
+      path: args
+      criterion: The message is a concise, focused thank-you that specifically acknowledges Ines for catching
+        the email QA issues before they became a larger problem. It must not misassign Owen's cut to her
+        or become a broad recap of the experiment.
+      check_id: riley_157_05
+mock_state: {}

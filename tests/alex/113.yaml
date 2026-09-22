@@ -1,0 +1,54 @@
+id: '113'
+narrative_anchor_date: '2028-01-01'
+test: Find the newest hospital payroll email about Devika's November 2025 leave and
+  reply with the established leave record.
+load_bearing_facts:
+- 163
+expected_tool_calls:
+- list_inbox
+- send_email
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    assertions:
+    - type: field_equals
+      tool: send_email
+      action_id: alex_113_send_email
+      path: result.ok
+      value: true
+      check_id: alex_113_00
+    - type: field_equals
+      tool: list_inbox
+      action_id: alex_113_read_email
+      path: result.0.id
+      value: email-payroll-2027-12-30-001
+      check_id: alex_113_01
+    - type: field_equals
+      path: result.to
+      value: payroll@meridianhospital.org
+      tool: send_email
+      action_id: alex_113_send_email
+      check_id: alex_113_02
+    - type: field_llm_judge
+      path: result.body
+      criterion: The reply says November 12, 2025 was already recorded within Devika's
+        approved November 10 through 14 leave, so no extra leave day or schedule exception
+        is needed.
+      tool: send_email
+      action_id: alex_113_send_email
+      check_id: alex_113_03
+mock_state:
+  inbox:
+  - id: email-payroll-2027-12-30-001
+    from: payroll@meridianhospital.org
+    subject: November 2025 leave reconciliation — Devika
+    date: '2027-12-30T09:20:00-05:00'
+    category: payroll
+    body: During our leave reconciliation, November 12, 2025 appears to require one
+      additional unpaid leave day because of the civil ceremony. Please let us know
+      if our record should be updated.
+mock_state_base:
+  path: state.json
+  sha256: b2e9b6b9e0f48ec23e9ae5ec4d803c050db6c6914dfc1d47ccdf545b3c77b68a

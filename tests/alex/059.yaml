@@ -1,0 +1,35 @@
+id: 059
+narrative_anchor_date: '2028-01-01'
+test: Create a concise 2023 metrics-pipeline chronology for the completed ingest-edge
+  and shard-keeper cutovers. Include the evidence at each completion and who marked
+  or accepted each cutover as complete.
+load_bearing_facts:
+- 14
+- 68
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: alex_059_create_doc
+      path: result.ok
+      value: true
+      check_id: alex_059_00
+    - type: field_llm_judge
+      path: result.document.body
+      criterion: The chronology records ingest-edge's clean 24-hour post-cutover check
+        and completion on March 22, 2023. It then records shard-keeper reaching 100%
+        with aligned alerting and rollup checks, no canary regression, and Hema's
+        completion acceptance on July 12, 2023.
+      tool: create_doc
+      action_id: alex_059_create_doc
+      check_id: alex_059_01
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: b2e9b6b9e0f48ec23e9ae5ec4d803c050db6c6914dfc1d47ccdf545b3c77b68a

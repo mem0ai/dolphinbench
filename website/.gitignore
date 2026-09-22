@@ -1,0 +1,14 @@
+node_modules
+.next
+out
+.vercel
+.env*.local
+.DS_Store
+public/data/
+*.tsbuildinfo
+test-results/
+__pycache__/
+.venv/
+playwright-report/
+.env*
+.validation/

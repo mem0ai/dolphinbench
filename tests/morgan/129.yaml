@@ -1,0 +1,66 @@
+id: '129'
+narrative_anchor_date: '2026-09-14'
+test: Check the company travel policy and, if compliant, book flight quote flight_129
+  and hotel quote hotel_129 for Morgan Chen's October 6-8 customer visit to Northstar
+  Retail. They cost $1,150 and $725 respectively. If not compliant, book neither.
+load_bearing_facts:
+- 52
+- 335
+expected_tool_calls:
+- book_flight
+- book_hotel
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: book_flight
+      path: result.ok
+      value: true
+      check_id: morgan_129_00
+      action_id: morgan_129_book_flight
+    - type: field_equals
+      path: result.booking.quote_id
+      value: flight_129
+      tool: book_flight
+      check_id: morgan_129_01
+      action_id: morgan_129_book_flight
+    - type: field_equals
+      tool: book_hotel
+      path: result.ok
+      value: true
+      check_id: morgan_129_02
+      action_id: morgan_129_book_hotel
+    - type: field_equals
+      tool: book_hotel
+      path: result.booking.quote_id
+      value: hotel_129
+      check_id: morgan_129_03
+      action_id: morgan_129_book_hotel
+mock_state:
+  flight_quotes:
+  - id: flight_129
+    airline: United
+    origin: SFO
+    destination: ORD
+    outbound_date: '2026-10-06'
+    return_date: '2026-10-08'
+    seat_preference: aisle
+    total_price_usd: 1150
+    currency: USD
+    available: true
+  hotel_quotes:
+  - id: hotel_129
+    hotel: Hyatt Place Chicago/Downtown-The Loop
+    location: Chicago Loop
+    check_in: '2026-10-06'
+    check_out: '2026-10-08'
+    guests: 1
+    total_price_usd: 725
+    currency: USD
+    available: true
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

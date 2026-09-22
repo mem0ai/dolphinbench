@@ -1,0 +1,34 @@
+id: '151'
+narrative_anchor_date: '2028-01-01'
+test: Create a historical evidence scorecard for the CS auto-nudge replay. Reconcile matches, field-specific
+  holds, and suppressions. Show each category total, each cause as a subtotal of its parent category,
+  and verify that all subtotals and the grand total add correctly. Explain how the non-matches relate
+  to the shared-state contract and whether any record with current, supported state changed outcome.
+load_bearing_facts:
+- 101
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_replay_scorecard
+      path: result.ok
+      value: true
+      check_id: riley_151_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_replay_scorecard
+      path: args
+      criterion: The scorecard reconciles 412 decisions into 386 matches and 26 cases prevented by the
+        shared-state contract. The 26 comprise 19 field-specific holds, including 15 for stale qualifying-human-admin
+        state and four for unresolved external-system authority, plus seven suppressions for active Customer
+        Success adoption or renewal work. It says no record with all required state current and supported
+        changed outcome.
+      check_id: riley_151_01
+mock_state: {}

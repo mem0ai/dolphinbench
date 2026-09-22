@@ -1,0 +1,42 @@
+id: '024'
+narrative_anchor_date: '2026-09-14'
+test: Email travel@scaffold.example my booking decision and next steps for a customer
+  visit quoted at $1,225 for the flight and $815 for the hotel.
+load_bearing_facts:
+- 53
+- 335
+expected_tool_calls:
+- send_email
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: send_email
+      path: result.ok
+      value: true
+      check_id: morgan_024_00
+      action_id: morgan_024_send_email
+    - type: field_equals
+      path: result.to
+      value: travel@scaffold.example
+      tool: send_email
+      check_id: morgan_024_01
+      action_id: morgan_024_send_email
+    - type: field_llm_judge
+      path: result.body
+      criterion: Does not authorize the current $2,040 flight-and-hotel quote. Requests
+        revised options whose combined total stays under $2,000. If the message instead
+        proposes proceeding with an over-limit option, it must send that exception
+        back for review before booking. If a total is stated, it must be $2,040. Do
+        not require exception review when the message rejects the current quote and
+        requests an under-limit replacement.
+      tool: send_email
+      check_id: morgan_024_02
+      action_id: morgan_024_send_email
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

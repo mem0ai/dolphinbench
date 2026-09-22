@@ -1,0 +1,71 @@
+id: 099
+narrative_anchor_date: '2028-01-01'
+test: Please create a durable archive-completion and future-handling note for our family photograph archive
+  using the project history. Also send Marcus Tanaka a concise, optional one-time update about possibly
+  reviewing identifications in the future, without scheduling anything or establishing a recurring call
+  cadence.
+load_bearing_facts:
+- 43
+- 239
+- 240
+- 244
+- 245
+- 246
+expected_tool_calls:
+- create_doc
+- send_sms
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: archive_handling_note
+      path: result.ok
+      value: true
+      check_id: riley_099_00
+    - type: field_equals
+      tool: send_sms
+      action_id: marcus_optional_review
+      path: result.ok
+      value: true
+      check_id: riley_099_01
+    - check_id: riley_099_02
+      type: field_equals
+      tool: send_sms
+      action_id: marcus_optional_review
+      path: args.to
+      value: '+15125550103'
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: archive_handling_note
+      path: args
+      criterion: 'The document clearly records that all 40 archived family photographs now have preservation
+        scans and that none remain undigitized. Missing or contradictory scan totals must fail.
+
+
+        The document directs future handlers to continue preserving all physical originals in their archival
+        sleeves and boxes, retain associated provenance such as envelopes, handwriting, and provenance
+        notes, and observe existing no-removal or no-alteration boundaries. It must not imply that scanning
+        permits disposal, alteration, residue removal, or loss of provenance.
+
+
+        The document says unresolved exact dates must remain explicitly unresolved unless supported by
+        evidence and must not be replaced with guesses.
+
+
+        The document clearly distinguishes the preservation scans or digital copies from the physical
+        originals and states that digital copies do not replace the originals.'
+      check_id: riley_099_03
+    - type: field_llm_judge
+      tool: send_sms
+      action_id: marcus_optional_review
+      path: args
+      criterion: The SMS is concise and presents possible future identification review as optional. It
+        must not schedule or propose a specific date or time, establish a recurring call, or imply an
+        ongoing cadence.
+      check_id: riley_099_04
+mock_state: {}

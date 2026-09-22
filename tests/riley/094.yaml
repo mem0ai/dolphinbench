@@ -1,0 +1,47 @@
+id: 094
+narrative_anchor_date: '2028-01-01'
+test: Create a historical routing card for the archived December 2025 board operating segment. Include
+  the original pre-read deadline, the exact operating-segment window and timezone, and the required evidence-section
+  separation. Make clear that the dates describe a past assignment rather than current meetings, and do
+  not collapse the evidence into one aggregate growth number.
+load_bearing_facts:
+- 143
+- 142
+- 144
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_historical_routing_card
+      path: result.ok
+      value: true
+      check_id: riley_094_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_historical_routing_card
+      path: args
+      criterion: 'The document clearly functions as a historical/archive routing card for a past December
+        2025 board operating assignment and does not present its dates as upcoming or current meetings.
+
+
+        The document states that the pre-read was due December 5, 2025 and that the original scheduled
+        board operating-segment window was December 10, 2025 from exactly 10:10 AM through 10:30 AM Central
+        time. It must not be necessary to claim that these were the observed actual start and end times.
+
+
+        The document establishes four distinct evidence sections or lanes: Helio Start; retained-mid Expansion
+        Assist; pricing-page path quality; and system controls. All four must be separately identifiable
+        rather than merged.
+
+
+        The document explicitly instructs readers not to combine the four evidence lanes into one aggregate
+        growth number, or otherwise conveys the same unambiguous prohibition.'
+      check_id: riley_094_01
+mock_state: {}

@@ -1,0 +1,47 @@
+id: '190'
+narrative_anchor_date: '2026-09-14'
+test: On scaffold/compass-archive#2718, correct what the April 2025 source-recency
+  review permitted for Compass owner prompts and wider exposure.
+load_bearing_facts:
+- 225
+- 226
+- 227
+- 228
+expected_tool_calls:
+- post_pr_comment
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: post_pr_comment
+      path: result.ok
+      value: true
+      check_id: morgan_190_00
+      action_id: morgan_190_post_pr_comment
+    - type: field_equals
+      path: result.comment.pr_id
+      value: scaffold/compass-archive#2718
+      tool: post_pr_comment
+      check_id: morgan_190_01
+      action_id: morgan_190_post_pr_comment
+    - type: field_llm_judge
+      path: result.comment.body
+      criterion: Allows continued owner-group use with evidence dates and caveats
+        attached, especially for close timing or unclear ownership. Does not treat
+        the review as authorization for wider exposure, customer-facing claims, or
+        a dashboard surface.
+      tool: post_pr_comment
+      check_id: morgan_190_02
+      action_id: morgan_190_post_pr_comment
+mock_state:
+  open_prs:
+  - id: scaffold/compass-archive#2718
+    repo: scaffold/compass-archive
+    number: 2718
+    status: open
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d

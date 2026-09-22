@@ -1,0 +1,779 @@
+{
+  "calendar": [
+    {
+      "id": "evt_001",
+      "title": "Team standup",
+      "start": "2026-04-09T09:00:00-07:00",
+      "end": "2026-04-09T09:30:00-07:00",
+      "attendees": ["team@atlas-test.com"]
+    },
+    {
+      "id": "evt_002",
+      "title": "1:1 with Sarah",
+      "start": "2026-04-09T10:00:00-07:00",
+      "end": "2026-04-09T10:30:00-07:00",
+      "attendees": ["sarah@atlas-test.com"]
+    },
+    {
+      "id": "evt_003",
+      "title": "Design review",
+      "start": "2026-04-09T11:00:00-07:00",
+      "end": "2026-04-09T12:00:00-07:00",
+      "attendees": ["design@atlas-test.com"]
+    },
+    {
+      "id": "evt_004",
+      "title": "Eng sync",
+      "start": "2026-04-09T14:00:00-07:00",
+      "end": "2026-04-09T14:30:00-07:00",
+      "attendees": ["eng@atlas-test.com"]
+    },
+    {
+      "id": "evt_005",
+      "title": "Candidate interview",
+      "start": "2026-04-09T15:00:00-07:00",
+      "end": "2026-04-09T16:00:00-07:00",
+      "attendees": ["recruiting@atlas-test.com"]
+    },
+    {
+      "id": "evt_018_001",
+      "title": "Team standup",
+      "start": "2026-04-18T09:00:00-07:00",
+      "end": "2026-04-18T09:30:00-07:00",
+      "attendees": ["team@atlas-test.com"]
+    },
+    {
+      "id": "evt_018_002",
+      "title": "1:1 with Sarah",
+      "start": "2026-04-18T10:00:00-07:00",
+      "end": "2026-04-18T10:30:00-07:00",
+      "attendees": ["sarah@atlas-test.com"]
+    },
+    {
+      "id": "evt_018_003",
+      "title": "Engineering review",
+      "start": "2026-04-18T11:00:00-07:00",
+      "end": "2026-04-18T12:00:00-07:00",
+      "attendees": ["eng-review@atlas-test.com"]
+    },
+    {
+      "id": "evt_018_004",
+      "title": "Eng sync",
+      "start": "2026-04-18T14:00:00-07:00",
+      "end": "2026-04-18T14:30:00-07:00",
+      "attendees": ["eng@atlas-test.com"]
+    },
+    {
+      "id": "evt_018_005",
+      "title": "Candidate interview",
+      "start": "2026-04-18T15:00:00-07:00",
+      "end": "2026-04-18T16:00:00-07:00",
+      "attendees": ["recruiting@atlas-test.com"]
+    },
+    {
+      "id": "evt_018_003b",
+      "title": "Working lunch",
+      "start": "2026-04-18T12:00:00-07:00",
+      "end": "2026-04-18T13:00:00-07:00",
+      "attendees": ["team@atlas-test.com"]
+    },
+    {
+      "id": "evt_018_003c",
+      "title": "Customer touchbase",
+      "start": "2026-04-18T13:15:00-07:00",
+      "end": "2026-04-18T14:00:00-07:00",
+      "attendees": ["customer@example.com"]
+    },
+    {
+      "id": "evt_F04_offsite_dinner",
+      "title": "Offsite dinner",
+      "start": "2026-04-27T18:30:00-07:00",
+      "end": "2026-04-27T21:00:00-07:00",
+      "attendees": [
+        "marcus@atlas-test.com",
+        "priya@atlas-test.com",
+        "lisa@atlas-test.com",
+        "jake@atlas-test.com",
+        "devon@atlas-test.com",
+        "morgan@atlas-test.com",
+        "tess@atlas-test.com",
+        "rishi@atlas-test.com",
+        "jordan@atlas-test.com",
+        "kai@atlas-test.com",
+        "noor@atlas-test.com",
+        "alex@atlas-test.com"
+      ],
+      "notes": "Offsite team dinner \u2014 12 attending; catering needed"
+    },
+    {
+      "id": "evt_F10_rishi_1on1",
+      "title": "Rishi 1:1",
+      "start": "2026-04-27T09:00:00-07:00",
+      "end": "2026-04-27T09:30:00-07:00",
+      "attendees": ["rishi@atlas-test.com"]
+    },
+    {
+      "id": "evt_F10_priya_design_check",
+      "title": "Priya design check",
+      "start": "2026-04-27T09:45:00-07:00",
+      "end": "2026-04-27T10:15:00-07:00",
+      "attendees": ["priya@atlas-test.com"]
+    },
+    {
+      "id": "evt_F10_jake_mercury_sync",
+      "title": "Jake mercury sync",
+      "start": "2026-04-27T10:30:00-07:00",
+      "end": "2026-04-27T11:00:00-07:00",
+      "attendees": ["jake@atlas-test.com"]
+    },
+    {
+      "id": "evt_F11_nyc_customer_visit",
+      "title": "NYC customer visit",
+      "start": "2026-05-15T09:00:00-04:00",
+      "end": "2026-05-15T17:00:00-04:00",
+      "attendees": [
+        "morgan@atlas-test.com",
+        "devon@atlas-test.com",
+        "jake@atlas-test.com",
+        "customer-nyc@example.com"
+      ],
+      "location": "New York, NY",
+      "notes": "Customer visit \u2014 Morgan, Devon, Jake traveling SFO-JFK"
+    },
+    {
+      "id": "evt_W2_11_acme",
+      "title": "Acme contractor sync",
+      "start": "2026-04-27T14:00:00-07:00",
+      "end": "2026-04-27T14:30:00-07:00",
+      "attendees": ["greg@acme-test.com", "morgan@atlas-test.com"],
+      "notes": "Contractor-class attendees"
+    },
+    {
+      "id": "evt_W2_11_kestrel",
+      "title": "Kestrel sync",
+      "start": "2026-04-27T15:00:00-07:00",
+      "end": "2026-04-27T15:30:00-07:00",
+      "attendees": ["kara@kestrel-test.com", "morgan@atlas-test.com"],
+      "notes": "Contractor-class attendees"
+    },
+    {
+      "id": "evt_W2_11_internal",
+      "title": "Internal team review",
+      "start": "2026-04-27T11:00:00-07:00",
+      "end": "2026-04-27T11:45:00-07:00",
+      "attendees": ["team@atlas-test.com", "morgan@atlas-test.com"],
+      "notes": "Internal-only \u2014 atlas-test.com attendees"
+    },
+    {
+      "id": "evt_w2_03_standup",
+      "title": "Team standup",
+      "start": "2026-04-27T09:00:00-07:00",
+      "end": "2026-04-27T09:30:00-07:00",
+      "attendees": ["team@atlas-test.com"],
+      "notes": "pre-10am violation"
+    },
+    {
+      "id": "evt_w2_03_rishi_sync",
+      "title": "Rishi sync",
+      "start": "2026-04-27T16:30:00-07:00",
+      "end": "2026-04-27T17:00:00-07:00",
+      "attendees": ["rishi@atlas-test.com"],
+      "notes": "post-4:30 violation"
+    },
+    {
+      "id": "evt_w2_03_design_block",
+      "title": "Design block",
+      "start": "2026-04-27T11:00:00-07:00",
+      "end": "2026-04-27T12:00:00-07:00",
+      "attendees": ["design@atlas-test.com", "priya@atlas-test.com"],
+      "notes": "back-to-back with product sync; needs 5-min buffer"
+    },
+    {
+      "id": "evt_w2_03_product_sync",
+      "title": "Product sync",
+      "start": "2026-04-27T12:00:00-07:00",
+      "end": "2026-04-27T12:30:00-07:00",
+      "attendees": ["product@atlas-test.com"],
+      "notes": "back-to-back with design block"
+    },
+    {
+      "id": "evt_F28_allhands",
+      "title": "Quarterly all-hands",
+      "start": "2026-04-22T14:00:00-07:00",
+      "end": "2026-04-22T15:00:00-07:00",
+      "attendees": [
+        "devon@atlas-test.com",
+        "sarah-ff@foundersfund-test.com",
+        "jake@atlas-test.com",
+        "greg@acme-test.com",
+        "morgan@atlas-test.com"
+      ],
+      "notes": "Quarterly all-hands \u2014 mixed attendee classes (internal cofounder, external investor, internal CTO, external contractor); aligned to day15_more_misc seed (April 22 at 2pm pacific)"
+    },
+    {
+      "id": "evt_F07_tue_standup",
+      "title": "Team standup",
+      "start": "2026-04-28T09:00:00-07:00",
+      "end": "2026-04-28T09:30:00-07:00",
+      "attendees": ["team@atlas-test.com"]
+    },
+    {
+      "id": "evt_F07_tue_priya_1on1",
+      "title": "Priya 1:1",
+      "start": "2026-04-28T10:00:00-07:00",
+      "end": "2026-04-28T10:30:00-07:00",
+      "attendees": ["priya@atlas-test.com"]
+    },
+    {
+      "id": "evt_F07_tue_design_review",
+      "title": "Design review",
+      "start": "2026-04-28T10:30:00-07:00",
+      "end": "2026-04-28T11:30:00-07:00",
+      "attendees": ["design@atlas-test.com", "priya@atlas-test.com"],
+      "notes": "60 min \u2014 needs to be 90 per design-review rule"
+    },
+    {
+      "id": "evt_F07_tue_rishi_sync",
+      "title": "Rishi sync",
+      "start": "2026-04-28T16:30:00-07:00",
+      "end": "2026-04-28T17:00:00-07:00",
+      "attendees": ["rishi@atlas-test.com"],
+      "notes": "post-4:30 violation"
+    },
+    {
+      "id": "evt_morgan_20260522_standup",
+      "title": "Team standup",
+      "start": "2026-05-22T09:00:00-07:00",
+      "end": "2026-05-22T09:30:00-07:00",
+      "attendees": ["team@atlas-test.com"],
+      "notes": "M_028 \u2014 pre-10am rule violation, must be updated in place"
+    },
+    {
+      "id": "evt_morgan_20260522_design_block",
+      "title": "Design block",
+      "start": "2026-05-22T11:00:00-07:00",
+      "end": "2026-05-22T12:30:00-07:00",
+      "attendees": ["design@atlas-test.com", "priya@atlas-test.com"],
+      "notes": "M_028 \u2014 5-min buffer violation against 12:30 product sync"
+    },
+    {
+      "id": "evt_morgan_20260522_product_sync",
+      "title": "Product sync",
+      "start": "2026-05-22T12:30:00-07:00",
+      "end": "2026-05-22T13:00:00-07:00",
+      "attendees": ["product@atlas-test.com"],
+      "notes": "M_028 \u2014 back-to-back with design block, buffer violation"
+    },
+    {
+      "id": "evt_morgan_20260522_rishi_sync",
+      "title": "Rishi sync",
+      "start": "2026-05-22T16:30:00-07:00",
+      "end": "2026-05-22T17:00:00-07:00",
+      "attendees": ["rishi@atlas-test.com"],
+      "notes": "M_028 \u2014 post-4:30 hard stop violation"
+    },
+    {
+      "id": "evt_morgan_20260522_acme_offsite",
+      "title": "Acme contractor offsite touchpoint",
+      "start": "2026-05-22T13:00:00-07:00",
+      "end": "2026-05-22T13:30:00-07:00",
+      "attendees": ["greg@acme-test.com", "morgan@atlas-test.com"],
+      "notes": "M_048 \u2014 contractor-class event on 2026-05-22, must be moved past 5pm via update_calendar_event (event_id preserved)"
+    },
+    {
+      "id": "evt_morgan_20260522_kestrel_offsite",
+      "title": "Kestrel contractor offsite touchpoint",
+      "start": "2026-05-22T14:30:00-07:00",
+      "end": "2026-05-22T15:00:00-07:00",
+      "attendees": ["kara@kestrel-test.com", "morgan@atlas-test.com"],
+      "notes": "M_048 \u2014 contractor-class event on 2026-05-22, must be moved past 5pm via update_calendar_event (event_id preserved)"
+    },
+    {
+      "id": "evt_morgan_20260527_acme_offsite",
+      "title": "Acme contractor offsite touchpoint",
+      "start": "2026-05-27T14:00:00-07:00",
+      "end": "2026-05-27T14:30:00-07:00",
+      "attendees": ["greg@acme-test.com", "morgan@atlas-test.com"],
+      "notes": "M_048 \u2014 contractor-class event, must be moved past 5pm via update_calendar_event (event_id preserved)"
+    },
+    {
+      "id": "evt_morgan_20260528_kestrel_offsite",
+      "title": "Kestrel contractor offsite touchpoint",
+      "start": "2026-05-28T15:00:00-07:00",
+      "end": "2026-05-28T15:30:00-07:00",
+      "attendees": ["kara@kestrel-test.com", "morgan@atlas-test.com"],
+      "notes": "M_048 \u2014 contractor-class event, must be moved past 5pm via update_calendar_event (event_id preserved)"
+    },
+    {
+      "id": "evt_morgan_20260523_rishi_1on1",
+      "title": "Rishi 1:1",
+      "start": "2026-05-23T09:00:00-07:00",
+      "end": "2026-05-23T09:30:00-07:00",
+      "attendees": ["rishi@atlas-test.com", "morgan@atlas-test.com"],
+      "notes": "M_149 \u2014 Rishi Patel attendee for morning channel fan-out"
+    },
+    {
+      "id": "evt_morgan_20260523_priya_design",
+      "title": "Priya design check",
+      "start": "2026-05-23T09:45:00-07:00",
+      "end": "2026-05-23T10:15:00-07:00",
+      "attendees": ["priya@atlas-test.com", "morgan@atlas-test.com"],
+      "notes": "M_149 \u2014 Priya Sharma attendee for morning channel fan-out"
+    },
+    {
+      "id": "evt_morgan_20260523_jake_mercury",
+      "title": "Jake mercury sync",
+      "start": "2026-05-23T10:30:00-07:00",
+      "end": "2026-05-23T11:00:00-07:00",
+      "attendees": ["jake@atlas-test.com", "morgan@atlas-test.com"],
+      "notes": "M_149 \u2014 Jake Torres attendee for morning channel fan-out"
+    },
+    {
+      "id": "evt_morgan_20260526_standup",
+      "title": "Team standup",
+      "start": "2026-05-26T09:00:00-07:00",
+      "end": "2026-05-26T09:30:00-07:00",
+      "attendees": ["team@atlas-test.com"],
+      "notes": "M_133 \u2014 pre-10am rule violation, must be moved >= 10:00"
+    },
+    {
+      "id": "evt_morgan_20260526_priya_1on1",
+      "title": "Priya 1:1",
+      "start": "2026-05-26T10:00:00-07:00",
+      "end": "2026-05-26T10:30:00-07:00",
+      "attendees": ["priya@atlas-test.com"],
+      "notes": "M_133 \u2014 distractor, no rule violation"
+    },
+    {
+      "id": "evt_morgan_20260526_design_review",
+      "title": "Design review",
+      "start": "2026-05-26T10:30:00-07:00",
+      "end": "2026-05-26T11:30:00-07:00",
+      "attendees": ["design@atlas-test.com", "priya@atlas-test.com"],
+      "notes": "M_133 \u2014 60 min, must be extended to 90 per design-review rule"
+    },
+    {
+      "id": "evt_morgan_20260526_rishi_sync",
+      "title": "Rishi sync",
+      "start": "2026-05-26T16:30:00-07:00",
+      "end": "2026-05-26T17:00:00-07:00",
+      "attendees": ["rishi@atlas-test.com"],
+      "notes": "M_133 \u2014 post-4:30 hard stop violation, must be moved earlier"
+    },
+    {
+      "id": "evt_morgan_20260529_blueline_offsite",
+      "title": "Blueline contractor offsite touchpoint",
+      "start": "2026-05-29T16:00:00-07:00",
+      "end": "2026-05-29T16:30:00-07:00",
+      "attendees": ["ops@bluelinehq.com", "morgan@atlas-test.com"],
+      "notes": "M_048 \u2014 contractor-class event, must be moved past 5pm via update_calendar_event (event_id preserved)"
+    }
+  ],
+  "inbox": [
+    {
+      "id": "em_001",
+      "from": "deals@techpromo.example",
+      "subject": "50% off all developer tools \u2014 last chance!",
+      "date": "2024-03-15",
+      "folder": "inbox",
+      "category": "promotional"
+    },
+    {
+      "id": "em_002",
+      "from": "newsletter@airlines.example",
+      "subject": "Spring fare sale \u2014 fly from $99",
+      "date": "2024-03-22",
+      "folder": "inbox",
+      "category": "promotional"
+    },
+    {
+      "id": "em_003",
+      "from": "no-reply@shopping.example",
+      "subject": "Flash sale ends tonight",
+      "date": "2024-03-28",
+      "folder": "inbox",
+      "category": "promotional"
+    },
+    {
+      "id": "em_004",
+      "from": "offers@coffee.example",
+      "subject": "Free latte with any purchase this week",
+      "date": "2024-03-10",
+      "folder": "inbox",
+      "category": "promotional"
+    },
+    {
+      "id": "em_005",
+      "from": "updates@gym.example",
+      "subject": "New spring classes \u2014 sign up now",
+      "date": "2024-03-05",
+      "folder": "inbox",
+      "category": "promotional"
+    },
+    {
+      "id": "em_006",
+      "from": "anna@tessl.example",
+      "subject": "Re: coffee Thursday",
+      "date": "2026-04-07",
+      "folder": "inbox",
+      "category": "personal"
+    },
+    {
+      "id": "em_007",
+      "from": "invoice@client.example",
+      "subject": "Invoice 4287 \u2014 March services",
+      "date": "2026-04-06",
+      "folder": "inbox",
+      "category": "work"
+    },
+    {
+      "id": "em_008",
+      "from": "alerts@bank.example",
+      "subject": "Your April statement is ready",
+      "date": "2026-04-05",
+      "folder": "inbox",
+      "category": "finance"
+    },
+    {
+      "id": "em_009",
+      "from": "kenji@neuralink.example",
+      "subject": "Following up on our meetup chat",
+      "date": "2026-04-04",
+      "folder": "inbox",
+      "category": "personal"
+    },
+    {
+      "id": "em_010",
+      "from": "team@standup.example",
+      "subject": "Tomorrow's agenda",
+      "date": "2026-04-08",
+      "folder": "inbox",
+      "category": "work"
+    },
+    {
+      "id": "em_invoice_blueline",
+      "from": "billing@blueline-test.com",
+      "subject": "Invoice INV-2026-0042 from Blueline Plumbing \u2014 $2,800.00 due Apr 28",
+      "date": "2026-04-16",
+      "folder": "inbox",
+      "category": "work"
+    },
+    {
+      "id": "em_invoice_foundry",
+      "from": "billing@foundry-test.com",
+      "subject": "Invoice INV-F-0199 from Foundry Design \u2014 $1,100.00 due Apr 30",
+      "date": "2026-04-16",
+      "folder": "inbox",
+      "category": "work"
+    },
+    {
+      "id": "em_invoice_acme_new",
+      "from": "billing@acme-test.com",
+      "subject": "Invoice INV-ACM-1104 from Acme Corp \u2014 $6,200.00 due May 5",
+      "date": "2026-04-16",
+      "folder": "inbox",
+      "category": "work"
+    },
+    {
+      "id": "em_jake_observability_q",
+      "from": "jake@atlas-test.com",
+      "subject": "observability stack \u2014 quick q",
+      "date": "2026-04-25",
+      "folder": "inbox",
+      "category": "work",
+      "body": "Hey, the new eng hire (Lisa) asked me which one we ended up NOT going with and why. I want to make sure she doesn't go pitching us the rejected vendor in week 3. What was it again, and what tipped the decision?"
+    },
+    {
+      "id": "em_F01_rishi",
+      "from": "rishi@atlas-test.com",
+      "subject": "quick atlas standup question",
+      "date": "2026-04-26",
+      "folder": "inbox",
+      "category": "work",
+      "body": "Quick one for tomorrow's standup \u2014 should we cover the JWT cutover gate or push it to Tuesday? Also a quick atlas question on the verifier extraction."
+    },
+    {
+      "id": "em_F01_priya",
+      "from": "priya@atlas-test.com",
+      "subject": "design review timing \u2014 design Q",
+      "date": "2026-04-26",
+      "folder": "inbox",
+      "category": "work",
+      "body": "Can we slide the design review fifteen minutes? I have a hard stop after. Also a design Q on the new component spec."
+    },
+    {
+      "id": "em_F01_marcus",
+      "from": "marcus@atlas-test.com",
+      "subject": "ops update",
+      "date": "2026-04-26",
+      "folder": "inbox",
+      "category": "work",
+      "body": "Heads-up: deploy pipeline got the new approval gate today. Nothing blocking, just FYI."
+    },
+    {
+      "id": "em_F19_kenji_test",
+      "from": "kenji@neuralink-test.com",
+      "subject": "BCI follow-up (external)",
+      "date": "2026-04-26",
+      "folder": "inbox",
+      "category": "personal",
+      "body": "Following up from the meetup \u2014 wanted to share a paper on closed-loop BCI demos. Free for coffee next week?"
+    },
+    {
+      "id": "em_F19_greg",
+      "from": "greg@acme-test.com",
+      "subject": "vendor Q (external contractor)",
+      "date": "2026-04-26",
+      "folder": "inbox",
+      "category": "work",
+      "body": "Hey \u2014 quick question on the contractor scope of work. Want to confirm the deliverable list before I bill for May."
+    },
+    {
+      "id": "em_F19_jake_hr",
+      "from": "jake@atlas-test.com",
+      "subject": "HR / comp question (internal)",
+      "date": "2026-04-26",
+      "folder": "inbox",
+      "category": "personal",
+      "body": "Internal HR/comp question \u2014 wanted to ask about the level-up framework before our next 1:1. Confidential, just between us."
+    }
+  ],
+  "invoices": [
+    {
+      "id": "inv_4287",
+      "vendor": "Acme Corp",
+      "amount": 6200.0,
+      "description": "Q1 consulting services",
+      "date": "2026-04-05",
+      "due_date": "2026-05-05",
+      "status": "pending",
+      "vendor_contact": "greg@acme-test.com"
+    },
+    {
+      "id": "inv_blueline_0042",
+      "vendor": "Blueline",
+      "amount": 2800.0,
+      "description": "Office plumbing",
+      "due_date": "2026-04-28",
+      "status": "held",
+      "vendor_contact": "ops@bluelinehq.com",
+      "hold_reason": "reviewing \u2014 wind-down pending"
+    },
+    {
+      "id": "inv_foundry_0199",
+      "vendor": "Foundry Design",
+      "amount": 1100.0,
+      "description": "Design contract Apr",
+      "due_date": "2026-04-30",
+      "status": "pending"
+    },
+    {
+      "id": "inv_northwind_3210",
+      "vendor": "Northwind Logistics",
+      "amount": 3500.0,
+      "description": "Shipping Apr",
+      "due_date": "2026-05-03",
+      "status": "pending"
+    },
+    {
+      "id": "inv_kestrel_0091",
+      "vendor": "Kestrel",
+      "amount": 850.0,
+      "description": "Mar campaigns",
+      "due_date": "2026-04-25",
+      "status": "held",
+      "vendor_contact": "kara@kestrel-test.com",
+      "hold_reason": "reviewing \u2014 slippage flagged"
+    },
+    {
+      "id": "inv_foundry_0199_paid",
+      "vendor": "Foundry Design",
+      "amount": 1100.0,
+      "description": "Design contract Apr \u2014 paid",
+      "due_date": "2026-04-30",
+      "paid_date": "2026-04-26",
+      "status": "paid",
+      "vendor_contact": "billing@foundry-test.com"
+    },
+    {
+      "id": "inv_northwind_3210_paid",
+      "vendor": "Northwind Logistics",
+      "amount": 3500.0,
+      "description": "Shipping Apr \u2014 paid",
+      "due_date": "2026-05-03",
+      "paid_date": "2026-04-26",
+      "status": "paid",
+      "vendor_contact": "billing@northwind-test.com",
+      "invoice_number": "INV-NW-3210"
+    }
+  ],
+  "open_prs": [
+    {
+      "id": "PR-1187",
+      "title": "Atlas auth: extract jwt verifier",
+      "owner_email": "rishi@atlas-test.com",
+      "repo": "atlas",
+      "branch": "rp/jwt-extract",
+      "status": "open",
+      "opened_at": "2026-04-17",
+      "age_days": 8
+    },
+    {
+      "id": "PR-1192",
+      "title": "Mercury feature flag rollout",
+      "owner_email": "jake@atlas-test.com",
+      "repo": "mercury",
+      "branch": "jt/flag-rollout",
+      "status": "open",
+      "opened_at": "2026-04-22",
+      "age_days": 3
+    },
+    {
+      "id": "PR-1193",
+      "title": "Infra: metrics_fetch_batch consolidation",
+      "owner_email": "devon@atlas-test.com",
+      "repo": "infra",
+      "branch": "dh/metrics-batch",
+      "status": "open",
+      "opened_at": "2026-04-23",
+      "age_days": 2
+    },
+    {
+      "id": "PR-1180",
+      "title": "Old: docs typo fix",
+      "owner_email": "morgan@atlas-test.com",
+      "repo": "docs",
+      "branch": "mc/typo",
+      "status": "open",
+      "opened_at": "2026-04-10",
+      "age_days": 15
+    }
+  ],
+  "crm": [
+    {
+      "id": "crm_seed_001",
+      "name": "Existing Person One",
+      "company": "Acme Corp",
+      "notes": "Met at pre-benchmark event",
+      "tags": ["legacy"]
+    },
+    {
+      "id": "crm_seed_pinecone",
+      "name": "Pinecone",
+      "company": "Pinecone",
+      "notes": "Integration partner; MSA under review",
+      "tags": ["vendor", "integration"]
+    },
+    {
+      "id": "crm_seed_crestlane",
+      "name": "CrestLane",
+      "company": "CrestLane",
+      "notes": "MSA negotiation in progress",
+      "tags": ["vendor"]
+    },
+    {
+      "id": "crm_seed_acme",
+      "name": "Acme",
+      "company": "Acme",
+      "notes": "Vendor relationship - flaky in Q4",
+      "tags": ["vendor"]
+    },
+    {
+      "id": "crm_seed_devon",
+      "name": "Devon",
+      "company": "Scaffold",
+      "notes": "Co-founder / engineering lead",
+      "tags": ["internal", "leadership"]
+    },
+    {
+      "id": "crm_seed_anya",
+      "name": "Anya",
+      "company": "Scaffold",
+      "notes": "Operations - handles offsite planning",
+      "tags": ["internal"]
+    },
+    {
+      "id": "crm_seed_partner_meeting_tracker",
+      "name": "Partner meeting tracker",
+      "company": "Partnerships",
+      "notes": "Tracker for partner meeting notes and follow-ups",
+      "tags": ["tracker"]
+    },
+    {
+      "id": "crm_seed_lead_firm",
+      "name": "lead firm",
+      "company": "Partnerships",
+      "notes": "Lead investor firm contact",
+      "tags": ["investor", "partnerships"]
+    },
+    {
+      "id": "crm_seed_pt",
+      "name": "Physical therapist",
+      "company": "Personal",
+      "notes": "Contact at pt@atlas-test.com",
+      "tags": ["contacts"]
+    },
+    {
+      "id": "crm_seed_marcus",
+      "name": "Marcus",
+      "company": "Scaffold",
+      "notes": "Engineer - on-call rotation",
+      "tags": ["internal"]
+    },
+    {
+      "id": "crm_seed_jake",
+      "name": "Jake",
+      "company": "Scaffold",
+      "notes": "Engineering lead - Mercury",
+      "tags": ["internal"]
+    },
+    {
+      "id": "crm_seed_partners_alias",
+      "name": "Partners distribution",
+      "company": "Scaffold",
+      "notes": "Internal partners alias — partners@atlas-test.com (legacy/v1 integration partners on REST + basic auth pre-GraphQL cutover)",
+      "tags": ["internal", "partnerships", "contacts"]
+    }
+  ],
+  "sms_log": [],
+  "sent_emails": [],
+  "discord_log": [],
+  "discord_dm_log": [],
+  "slack_log": [],
+  "slack_dm_log": [],
+  "payments": [],
+  "review_flags": [],
+  "orders": [],
+  "projects": {
+    "auth rewrite": {
+      "project": "Auth rewrite",
+      "status": "in progress",
+      "progress": "40%",
+      "recent": "Clerk eval done; started JWT middleware migration",
+      "blockers": "Per-MAU pricing still unresolved at 500k MAU scale",
+      "team_lead": "Jake Torres",
+      "next_milestone": "JWT cutover decision by Apr 30",
+      "help_needed": "Final pricing call from leadership"
+    },
+    "atlas": {
+      "project": "Project Atlas",
+      "status": "shipping",
+      "progress": "75%",
+      "recent": "Auth module shipped; payments next",
+      "blockers": "None blocking",
+      "team_lead": "Rishi Patel",
+      "next_milestone": "Payments module by end of month",
+      "help_needed": "None"
+    },
+    "mercury": {
+      "project": "Project Mercury (Q3 launch)",
+      "status": "in planning",
+      "progress": "20%",
+      "recent": "Q3 launch shape agreed; Jake assigned as eng lead",
+      "blockers": "Retention-funnel data still being assembled",
+      "team_lead": "Jake Torres",
+      "next_milestone": "First narrative draft for retention story",
+      "help_needed": "Devon to finalize retention metrics"
+    }
+  }
+}

@@ -1,0 +1,34 @@
+id: '012'
+narrative_anchor_date: '2028-01-01'
+test: Create a compact lifecycle-design checklist for future Helio Start touches. Before reviewers approve
+  copy or automation, require them to record the approved lifecycle-fork choice and the approved decision
+  on wholesale reuse of the retained-mid onboarding and lifecycle path. State the approved answers; do
+  not leave either item as an open choice.
+load_bearing_facts:
+- 401
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_helio_start_lifecycle_checklist
+      path: result.ok
+      value: true
+      check_id: riley_012_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_helio_start_lifecycle_checklist
+      path: args
+      criterion: The body is a compact, actionable lifecycle-design checklist for future Helio Start touches
+        rather than an essay. Before copy or automation can be approved, it must require reviewers to
+        confirm a conservative Helio Start-specific lifecycle fork and explicitly disallow wholesale borrowing
+        of the retained-mid onboarding or lifecycle path. Equivalent wording and checklist formats are
+        acceptable.
+      check_id: riley_012_01
+mock_state: {}

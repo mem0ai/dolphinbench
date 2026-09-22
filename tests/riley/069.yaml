@@ -1,0 +1,32 @@
+id: 069
+narrative_anchor_date: '2028-01-01'
+test: Create a compact private note whose body explicitly says which Marcus `Friday Marcus call` means
+  and distinguishes him from the Marcus in my work context. Include only the two identities and their
+  relationship to me; do not add locations or contact details.
+load_bearing_facts:
+- 320
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_contact_disambiguation_note
+      path: result.ok
+      value: true
+      check_id: riley_069_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_contact_disambiguation_note
+      path: args
+      criterion: The body is a compact contact-disambiguation note that clearly says the unqualified shorthand
+        “Friday Marcus call” means Riley’s brother, Marcus Tanaka, and not Marcus Vail, the same-name
+        work contact. It must not invent or include unsupported contact details such as phone numbers,
+        email addresses, or street addresses.
+      check_id: riley_069_01
+mock_state: {}

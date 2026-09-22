@@ -1,0 +1,302 @@
+version: 1
+global:
+  raw_mock_state_visibility:
+    rule: "mock_state is the tool database for a test, not prompt text shown to the agent."
+    visible_only_if: "An available tool returns the field, or an execution tool observably uses/mutates it."
+  recipient_policy:
+    rule: "Email/SMS tool args are strings in the mock server. For grading, an unambiguous person/contact identifier is acceptable unless the remembered value being tested is the literal email address or phone number."
+  load_bearing_facts:
+    rule: "Repair may replace linked session ids with existing life_sim session ids. It must not edit session text or invent remembered facts."
+tools:
+  list_calendar_events:
+    reads_state_keys: ["calendar"]
+    empty_result_is_valid: true
+    returns: "Events on the requested ISO date with only id, title, start, end, and attendees, plus body and location when present."
+    visibility: "Only matching calendar events and those returned fields are visible."
+  create_calendar_event:
+    writes_state_keys: ["calendar"]
+    does_not_require_lookup: true
+    hard_requirements:
+      - "start and end must include explicit timezone offsets or Z."
+      - "end must be later than start."
+    does_not_accept_fields:
+      - "description"
+      - "location"
+    notes:
+      - "Attendees are optional strings; the tool does not validate email format."
+      - "An optional body stores the event description or notes."
+      - "An event may be a meeting, focus block, reminder, or protected hold. A focus block or hold does not violate a no-meeting preference."
+      - "When the user supplies the desired time, create the event directly unless visible calendar state contains a conflict."
+  update_calendar_event:
+    reads_state_keys: ["calendar"]
+    writes_state_keys: ["calendar"]
+    hard_requirements:
+      - "event_id must match an existing calendar event."
+      - "start/end, if supplied, must include explicit timezone offsets or Z."
+    notes:
+      - "Use list_calendar_events(date) first when the event id is not provided."
+      - "The optional body replaces the event description or notes."
+  list_inbox:
+    reads_state_keys: ["inbox"]
+    empty_result_is_valid: true
+    returns: "Email records in the requested folder, newest first, up to limit."
+  send_email:
+    writes_state_keys: ["sent_emails"]
+    args_policy:
+      to: "String recipient. Prefer email when supplied, but the mock tool does not validate address format."
+      cc: "Optional list of string recipients. Prefer emails when supplied."
+    grading_policy: "Accept unambiguous recipient identity unless the test's memory nugget is the literal email address."
+    does_not_require_lookup: true
+    notes:
+      - "This tool sends body text only and cannot attach files."
+  archive_email:
+    reads_state_keys: ["inbox"]
+    writes_state_keys: ["inbox"]
+    hard_requirements:
+      - "email_id must match an existing inbox email."
+  delete_email:
+    reads_state_keys: ["inbox"]
+    writes_state_keys: ["inbox"]
+    hard_requirements:
+      - "email_id should match an existing inbox email."
+  send_sms:
+    writes_state_keys: ["sms_log"]
+    args_policy:
+      to: "String recipient. Prefer E.164 phone when supplied, but the mock tool does not validate phone format."
+    grading_policy: "Accept unambiguous recipient identity unless the test's memory nugget is the literal phone number."
+    does_not_require_lookup: true
+  send_slack_dm:
+    writes_state_keys: ["slack_dm_log"]
+    args_policy:
+      user: "Slack handle or unambiguous user name."
+  send_discord_dm:
+    writes_state_keys: ["discord_dm_log"]
+    args_policy:
+      user: "Discord handle or unambiguous user name."
+  send_slack_message:
+    writes_state_keys: ["slack_log"]
+    args_policy:
+      channel: "Channel name/string."
+  send_discord_message:
+    writes_state_keys: ["discord_log"]
+    args_policy:
+      channel: "Exact channel name/string. This argument does not target a thread or reply."
+    notes:
+      - "This tool posts to a channel. It cannot target an existing thread or reply context."
+  add_crm_row:
+    writes_state_keys: ["crm"]
+    does_not_require_lookup: true
+    notes:
+      - "Creates a new CRM row. It does not require a pre-existing contact id."
+  update_crm_row:
+    reads_state_keys: ["crm"]
+    writes_state_keys: ["crm"]
+    lookup_policy: "Looks up by name and creates the row if missing."
+    does_not_require_lookup: true
+    args_policy:
+      notes: "Complete replacement value. To preserve existing notes, include the existing text followed by the new text. Never put an instruction such as 'append to existing notes' in this value."
+  create_doc:
+    writes_state_keys: ["docs"]
+    args_policy:
+      folder: "Optional string. None means default folder. No folder lookup is required."
+    does_not_read_existing_docs: true
+  update_doc:
+    reads_state_keys: ["docs"]
+    writes_state_keys: ["docs"]
+    hard_requirements:
+      - "doc_id must match an existing document's exact docs[].id."
+    args_policy:
+      body: "With mode replace, this is the complete replacement body. With mode append, this is only the new text; the tool inserts a blank line between the existing body and this text."
+      mode: "replace replaces the existing body. append preserves the existing body and adds the supplied text after a blank line."
+      title: "Optional replacement title. Omit it to preserve the current title."
+      folder: "Optional replacement folder. Omit it to preserve the current folder."
+  post_pr_comment:
+    writes_state_keys: ["pr_comments"]
+    args_policy:
+      pr: "PR identifier string. The PR does not need to be looked up first."
+    does_not_require_lookup: true
+  post_doc_comment:
+    reads_state_keys: ["docs"]
+    writes_state_keys: ["doc_comments"]
+    empty_result_is_valid: true
+    hard_requirements:
+      - "When doc_id identifies an existing document by title or normalized title, use that document's exact docs[].id."
+    args_policy:
+      doc_id: "Exact ID for an existing document; an unrelated standalone comment-thread name is also allowed."
+  list_open_prs:
+    reads_state_keys: ["prs", "open_prs"]
+    empty_result_is_valid: true
+    returns: "id, title, author, repo, branch, status, opened_at, age_days, and other fields present in the PR objects."
+    visibility: "Only fields stored on returned PR objects are visible; diff/risk/next-step content is missing unless present in those objects."
+  get_pr:
+    reads_state_keys: ["prs", "open_prs"]
+    returns: "The complete first PR record whose id equals pr_id, or NOT_FOUND."
+    visibility: "Only fields stored on the matching PR object are visible."
+  gh_pr_create:
+    writes_state_keys: ["pull_requests"]
+    hard_requirements:
+      - "body must contain a Linear ticket id matching ENG-\\d+."
+      - "body must include a '## Test plan' heading."
+    notes:
+      - "If a test asks for PR creation, these are mechanical requirements, not memory facts."
+  embeddings_encode:
+    returns: "Deterministic embedding vector for input text."
+  vector_search:
+    hard_requirements:
+      - "query_vec is required; raw query string alone is rejected."
+    returns: "Deterministic stub snippets only."
+    visibility: "Does not expose real note or runbook content. Do not rely on it for factual summaries."
+  place_order:
+    writes_state_keys: ["orders"]
+    requires_concrete_values: ["restaurant", "items"]
+    hard_requirements:
+      - "items must be non-empty."
+    notes:
+      - "Restaurant and items must be concrete user choices, not placeholder wording."
+  list_invoices:
+    reads_state_keys: ["invoices"]
+    empty_result_is_valid: true
+    returns: "Invoices filtered by status with id, vendor, amount, description, due_date, status."
+    visibility: "Invoice data is visible only through list_invoices."
+  process_payment:
+    writes_state_keys: ["payments"]
+    hard_requirements:
+      - "Invoices over 3000 require priority='high' or priority='urgent'."
+  flag_for_review:
+    writes_state_keys: ["review_flags"]
+    notes:
+      - "Does not require the invoice to pre-exist, but the task may require list_invoices if amount/vendor are not in the query or memory."
+  check_project_status:
+    reads_state_keys: ["projects"]
+    returns: "The current project record from state, or an explicit unknown result when no matching record exists. Roll-up aliases return every project record currently present."
+    visibility: "Only fields present in the state-backed project record are visible; the tool does not supply a hidden default project status."
+  internal_search_v1_legacy:
+    generation_available: false
+    returns: "Stale stub search results with a deprecation warning."
+    notes:
+      - "Do not use as evidence for real note/runbook content."
+  internal_search_v2:
+    generation_available: false
+    returns: "Current stub search results."
+    notes:
+      - "Returns generic stub content, not arbitrary full documents."
+  list_oncall_schedule:
+    reads_state_keys: ["oncall_schedule"]
+    empty_result_is_valid: true
+    generation_requires_visible_records: true
+    returns: "On-call schedule records filtered by team and week_of."
+    visibility: "Only on-call records already present in app state are available."
+  metrics_fetch:
+    returns: "Mock metrics for one service."
+    hard_requirements:
+      - "Rate-limited to 3 calls per minute; use metrics_fetch_batch for multiple services."
+  metrics_fetch_batch:
+    returns: "Mock metrics keyed by service for a list of services."
+  shell_run:
+    external_effect: true
+    notes:
+      - "The mock records the requested command as the simulated execution effect."
+  book_flight:
+    external_effect: true
+    notes:
+      - "The travel desk returns a booking confirmation but does not store bookings in mock_state."
+  book_hotel:
+    writes_state_keys: ["hotel_bookings"]
+  deploy_via_pipeline:
+    external_effect: true
+    notes:
+      - "The pipeline returns a deployment confirmation but does not store deployments in mock_state."
+  acknowledge_incident:
+    writes_state_keys: ["incidents"]
+  escalate_incident:
+    writes_state_keys: ["incident_escalations"]
+  create_runbook_entry:
+    writes_state_keys: ["runbooks"]
+  update_runbook_entry:
+    reads_state_keys: ["runbooks"]
+    writes_state_keys: ["runbooks"]
+  review_pr:
+    writes_state_keys: ["pr_reviews"]
+  merge_pr:
+    reads_state_keys: ["prs", "open_prs"]
+    writes_state_keys: ["prs", "open_prs", "pr_merges"]
+  deploy_service:
+    writes_state_keys: ["deploys"]
+  rollback_deploy:
+    reads_state_keys: ["deploys"]
+    writes_state_keys: ["rollbacks"]
+  update_feature_flag:
+    reads_state_keys: ["feature_flags"]
+    writes_state_keys: ["feature_flags"]
+  list_feature_flags:
+    reads_state_keys: ["feature_flags"]
+    empty_result_is_valid: true
+  get_feature_flag:
+    reads_state_keys: ["feature_flags"]
+  query_event_funnel:
+    reads_state_keys: ["funnels"]
+  query_retention_cohort:
+    reads_state_keys: ["retention_cohorts"]
+  query_user_path:
+    reads_state_keys: ["user_paths"]
+  list_subscriptions:
+    reads_state_keys: ["subscriptions"]
+    empty_result_is_valid: true
+  get_subscription:
+    reads_state_keys: ["subscriptions"]
+  list_stripe_invoices:
+    reads_state_keys: ["stripe_invoices"]
+    empty_result_is_valid: true
+  get_customer:
+    reads_state_keys: ["customers"]
+  list_recent_churn:
+    reads_state_keys: ["churn_events"]
+    empty_result_is_valid: true
+  get_mrr_metrics:
+    reads_state_keys: ["mrr_snapshots"]
+    notes: "asof_date may name only a date listed in available_app_records.mrr_snapshots. Omitting it returns the latest saved snapshot. This action does not create a current snapshot."
+    required_existing_record:
+      app_records_key: "mrr_snapshots"
+      argument_fields:
+        asof_date: "asof_date"
+  get_churn_metrics:
+    reads_state_keys: ["churn_metrics"]
+    notes: "tier and asof_date must identify a snapshot listed in available_app_records.churn_metrics. Omitting asof_date returns the latest saved snapshot for the selected tier. This action does not create a current snapshot."
+    required_existing_record:
+      app_records_key: "churn_metrics"
+      argument_fields:
+        tier: "tier"
+        asof_date: "asof_date"
+      argument_defaults:
+        tier: "all"
+  get_arr_segments:
+    reads_state_keys: ["arr_segments"]
+    notes: "asof_date may name only a date listed in available_app_records.arr_segments. Omitting it returns the latest saved snapshot. This action does not create a current snapshot."
+    required_existing_record:
+      app_records_key: "arr_segments"
+      argument_fields:
+        asof_date: "asof_date"
+  query_experiment_results:
+    reads_state_keys: ["experiment_results"]
+  create_experiment:
+    writes_state_keys: ["experiments"]
+  update_experiment:
+    reads_state_keys: ["experiments"]
+    writes_state_keys: ["experiments"]
+  create_growth_brief:
+    writes_state_keys: ["growth_briefs"]
+  update_growth_brief:
+    reads_state_keys: ["growth_briefs"]
+    writes_state_keys: ["growth_briefs"]
+  update_deck_slide:
+    reads_state_keys: ["deck_edits"]
+    writes_state_keys: ["deck_edits"]
+    lookup_policy: "Creates deck/slide if missing."
+    does_not_require_lookup: true
+  update_headcount_plan:
+    reads_state_keys: ["headcount_plans"]
+    writes_state_keys: ["headcount_plans"]
+    lookup_policy: "Creates the plan if plan_id does not already exist."
+    does_not_require_lookup: true
+    notes:
+      - "For an existing plan, omitted or null optional arguments leave that field unchanged. Supply a non-null value to replace a structured field such as revisit_after."

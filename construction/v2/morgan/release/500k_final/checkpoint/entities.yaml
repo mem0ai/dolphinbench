@@ -1,0 +1,757 @@
+version: 1
+persona: morgan
+entities:
+- id: person:morgan_chen
+  name: Morgan Chen
+  kind: person
+  aliases:
+  - Morgan
+  - morgan chen
+  introduced_in: '000001'
+  reason: She is the persona and central actor whose relationships, preferences, decisions, and history
+    anchor the entire narrative.
+- id: organization:scaffold
+  name: Scaffold
+  kind: organization
+  aliases: []
+  introduced_in: '000001'
+  reason: It is Morgan's company and the developer data-integration platform where customers create workspaces,
+    connect and synchronize data sources, and use the data through APIs and connectors.
+- id: person:devon_hayes
+  name: Devon Hayes
+  kind: person
+  aliases:
+  - Devon
+  - devon
+  introduced_in: '000001'
+  reason: He is Morgan's co-founder and a constant counterpart in product, fundraising, hiring, and strategic
+    decisions.
+- id: person:jamie
+  name: Jamie
+  kind: person
+  aliases:
+  - jamie
+  introduced_in: '000001'
+  reason: Jamie is Morgan's partner and a recurring personal anchor across home life, scheduling, and
+    emotional context.
+- id: pet:kibo
+  name: Kibo
+  kind: pet
+  aliases:
+  - kibo
+  introduced_in: '000001'
+  reason: Kibo is Morgan's dog and a persistent part of household routines, constraints, and personal
+    continuity.
+- id: place:mission_district
+  name: Mission district
+  kind: place
+  aliases:
+  - Mission
+  - mission
+  introduced_in: '000001'
+  reason: It is Morgan's initial neighborhood and a repeated setting for home, coffee, walks, and local
+    logistics.
+- id: organization:blue_bottle
+  name: Blue Bottle
+  kind: organization
+  aliases: []
+  introduced_in: '000001'
+  reason: It is Morgan's recurring coffee shop preference and part of her durable daily routine.
+- id: event:q1_all_hands
+  name: Q1 all-hands
+  kind: event
+  aliases:
+  - all-hands
+  introduced_in: '000002'
+  reason: It is a recurring company meeting format that matters repeatedly for team communication and
+    planning continuity.
+- id: document:support_rotation_doc
+  name: support rotation doc
+  kind: document
+  aliases: []
+  introduced_in: '000003'
+  reason: It is a named internal document tied to ongoing operational process work.
+- id: person:priya
+  name: Priya
+  kind: person
+  aliases: []
+  introduced_in: '000010'
+  reason: She is a recurring teammate whose design work, reviews, scheduling role, and promotion path
+    matter over time.
+- id: organization:acme
+  name: Acme
+  kind: organization
+  aliases: []
+  introduced_in: '000012'
+  reason: It is a recurring customer/vendor counterpart tied to dashboard issues, ETA slips, billing problems,
+    and legal/NDA threads.
+- id: project:onboarding_flow
+  name: onboarding flow
+  kind: project
+  aliases:
+  - onboarding flow v2
+  introduced_in: '000010'
+  reason: It is a recurring product workstream central to Priya's praised design work and retention-related
+    product improvements.
+- id: person:jake
+  name: Jake
+  kind: person
+  aliases: []
+  introduced_in: '000020'
+  reason: He is a recurring teammate involved in customer issues, Mercury leadership, pricing, hiring,
+    and the Discord push.
+- id: product:sso
+  name: SSO
+  kind: product
+  aliases: []
+  introduced_in: '000020'
+  reason: It is a recurring customer-requested feature that informs product prioritization and auth planning.
+- id: channel:hacker_news
+  name: Hacker News
+  kind: channel
+  aliases:
+  - HN
+  introduced_in: '000021'
+  reason: It is a recurring communication motif in Devon's late-night messages and part of their ongoing
+    interpersonal rhythm.
+- id: service:aws
+  name: AWS
+  kind: service
+  aliases: []
+  introduced_in: '000022'
+  reason: It is a recurring infrastructure vendor tied to finance and operational costs.
+- id: organization:trader_joe_s
+  name: Trader Joe's
+  kind: organization
+  aliases:
+  - Trader Joe's order
+  introduced_in: '000025'
+  reason: It is a named recurring logistics service in Morgan's personal routine.
+- id: document:q4_2022_ship_list
+  name: 2022 Q4 ship list
+  kind: document
+  aliases: []
+  introduced_in: '000003'
+  reason: It is the retrospective list of work Scaffold shipped in Q4 2022 that Morgan revisited after
+    the January 2023 all-hands.
+- id: event:b_round
+  name: B-round
+  kind: event
+  aliases:
+  - B round
+  - round
+  introduced_in: '000002'
+  reason: It is the central fundraising effort whose progress, failure, and deferral drive major narrative
+    arcs.
+- id: channel:discord
+  name: Discord
+  kind: channel
+  aliases: []
+  introduced_in: '000046'
+  reason: It is the team communication platform whose possible adoption becomes an extended organizational
+    transition and later current state.
+- id: channel:slack
+  name: Slack
+  kind: channel
+  aliases: []
+  introduced_in: '000011'
+  reason: It is the original team communication platform and remains relevant as the prior system after
+    the move to Discord.
+- id: person:marcus
+  name: Marcus
+  kind: person
+  aliases: []
+  introduced_in: 000049
+  reason: He is a recurring teammate tied to on-call, release pipeline improvements, and later interpersonal
+    tension with Priya.
+- id: event:scaffold_two_year_mark
+  name: Scaffold two-year mark
+  kind: event
+  aliases:
+  - Scaffold's 2 years
+  - we're two
+  introduced_in: '000050'
+  reason: It is a named company milestone with an internal note and team dinner that marks organizational
+    continuity.
+- id: place:sonoma_lodge
+  name: Sonoma Lodge
+  kind: place
+  aliases: []
+  introduced_in: '000076'
+  reason: It is a repeatedly referenced offsite venue failure that drives a lasting offsite connectivity
+    rule.
+- id: organization:stripe
+  name: Stripe
+  kind: organization
+  aliases: []
+  introduced_in: '000077'
+  reason: It is both Morgan's former employer and a recurring payments platform in debugging and billing
+    discussions.
+- id: service:billing_service
+  name: billing-service
+  kind: service
+  aliases: []
+  introduced_in: 000078
+  reason: It is a named internal service involved in recurring billing and webhook debugging context.
+- id: tool:billingorchestrator
+  name: BillingOrchestrator
+  kind: tool
+  aliases: []
+  introduced_in: 000078
+  reason: It is a named internal component that matters for future debugging continuity around billing
+    logic.
+- id: tool:linear
+  name: Linear
+  kind: tool
+  aliases: []
+  introduced_in: 000086
+  reason: It is a named work tool that appears in Morgan's day-to-day product and issue-management flow.
+- id: organization:lead_firm
+  name: lead firm
+  kind: organization
+  aliases: []
+  introduced_in: 000096
+  reason: It is the focal investor counterpart in the B-round process and pass outcome.
+- id: document:data_room
+  name: data room
+  kind: document
+  aliases: []
+  introduced_in: '000103'
+  reason: It is a recurring fundraising artifact that matters in diligence and Devon's workstream.
+- id: service:zoom
+  name: Zoom
+  kind: service
+  aliases: []
+  introduced_in: '000110'
+  reason: It is a named communications tool used during the fundraising meeting cycle.
+- id: place:embarcadero_tower
+  name: Embarcadero Tower
+  kind: place
+  aliases:
+  - tower lobby
+  introduced_in: '000111'
+  reason: It is the repeated physical setting for investor meetings and a recognizable fundraising motif.
+- id: tool:mixpanel
+  name: Mixpanel
+  kind: tool
+  aliases: []
+  introduced_in: '000132'
+  reason: It is a named analytics source in the retention-data dispute that shapes board and fundraising
+    narratives.
+- id: tool:google_sheets
+  name: Google Sheets
+  kind: tool
+  aliases:
+  - Sheets
+  introduced_in: 000118
+  reason: It is a named working tool in Devon's data handling and deck preparation flow.
+- id: tool:google_slides
+  name: Google Slides
+  kind: tool
+  aliases:
+  - Slides
+  introduced_in: 000118
+  reason: It is a named deck-building tool central to fundraising and board materials.
+- id: person:elena_volkov
+  name: Elena Volkov
+  kind: person
+  aliases:
+  - Elena
+  introduced_in: '000161'
+  reason: She is a specific investor contact whose thoughtful pass and later warm follow-up remain strategically
+    relevant.
+- id: team:board
+  name: board
+  kind: team
+  aliases: []
+  introduced_in: '000155'
+  reason: It is the recurring governance audience for notes, calls, bridge planning, and retention scrutiny.
+- id: event:q3_launch
+  name: Q3 launch
+  kind: event
+  aliases:
+  - Q3 push
+  introduced_in: '000167'
+  reason: It becomes the major product and company milestone replacing near-term fundraising as the strategic
+    focus.
+- id: tool:looker
+  name: Looker
+  kind: tool
+  aliases: []
+  introduced_in: 000189
+  reason: It is a named analytics tool involved in retention reporting and board preparation.
+- id: person:anna_martinez
+  name: Anna Martinez
+  kind: person
+  aliases: []
+  introduced_in: '000222'
+  reason: She becomes the retention-data lead and a recurring voice in cohort-analysis and reporting decisions.
+- id: person:maya_chen
+  name: Maya Chen
+  kind: person
+  aliases:
+  - Maya
+  - maya
+  introduced_in: '000230'
+  reason: She is Morgan's sister and a recurring family figure whose visits and conversations matter for
+    continuity.
+- id: person:rishi
+  name: Rishi
+  kind: person
+  aliases: []
+  introduced_in: '000237'
+  reason: He is a recurring teammate tied to Atlas, customer-email routing, PR ownership, and possible
+    external introductions.
+- id: project:atlas
+  name: Atlas
+  kind: project
+  aliases: []
+  introduced_in: '000237'
+  reason: It is Scaffold's technical API and integration layer, covering API v2, auth and JWT verification,
+    webhooks, connectors, and connector documentation and support; Rishi owns it.
+- id: person:greg_shipman
+  name: Greg Shipman
+  kind: person
+  aliases:
+  - Greg
+  introduced_in: 000268
+  reason: He is Morgan's named Acme contact for ETA and accountability discussions.
+- id: organization:lemongrass
+  name: Lemongrass
+  kind: organization
+  aliases: []
+  introduced_in: 000280
+  reason: It is Morgan's recurring Friday takeout source and part of a stable personal routine.
+- id: tool:vs_code
+  name: VS Code
+  kind: tool
+  aliases: []
+  introduced_in: 000287
+  reason: It is Morgan's durable editor preference and part of her stable toolchain.
+- id: product:dracula
+  name: Dracula
+  kind: product
+  aliases: []
+  introduced_in: 000287
+  reason: It is the color theme Morgan uses in VS Code as part of her durable coding setup.
+- id: tool:typescript
+  name: TypeScript
+  kind: tool
+  aliases: []
+  introduced_in: 000287
+  reason: It is a core part of Morgan's day-to-day technical stack and working context.
+- id: tool:go
+  name: Go
+  kind: tool
+  aliases: []
+  introduced_in: 000287
+  reason: It is a named language Morgan uses for agent/runtime work and technical continuity.
+- id: organization:neuralink
+  name: Neuralink
+  kind: organization
+  aliases: []
+  introduced_in: 000290
+  reason: It is a recurring external organization connected to Kenji and Morgan's networking context.
+- id: person:kenji_nakamura
+  name: Kenji Nakamura
+  kind: person
+  aliases:
+  - Kenji
+  introduced_in: 000290
+  reason: He is a named external contact from Morgan's networking world with repeated mentions.
+- id: place:redwood_conference_room
+  name: Redwood conference room
+  kind: place
+  aliases:
+  - Redwood
+  introduced_in: 000295
+  reason: It is a named meeting location used in direct scheduling and internal coordination.
+- id: project:project_mercury
+  name: Project Mercury
+  kind: project
+  aliases:
+  - Mercury
+  introduced_in: 000296
+  reason: It is a major release of the Scaffold platform focused on customer setup and activation, including
+    workspace creation, first-source connection, first live sync, teammate invitations, admin roles, and
+    enterprise readiness; Jake owns its engineering.
+- id: product:clerk
+  name: Clerk
+  kind: product
+  aliases: []
+  introduced_in: 000297
+  reason: It is the auth provider Morgan evaluates and ultimately selects for the rewrite.
+- id: product:auth0
+  name: Auth0
+  kind: product
+  aliases: []
+  introduced_in: 000297
+  reason: It is a named auth-provider option in Morgan's rewrite decision process and later rejected shortlist.
+- id: tool:figma
+  name: Figma
+  kind: tool
+  aliases: []
+  introduced_in: 000129
+  reason: It becomes the default place for design review and a stable collaboration tool for the team.
+- id: organization:foundry
+  name: Foundry
+  kind: organization
+  aliases: []
+  introduced_in: '000305'
+  reason: It is a named contractor bid option in an open procurement decision.
+- id: routine:sonoma_offsite_rule
+  name: Sonoma offsite rule
+  kind: routine
+  aliases:
+  - offsite connectivity rule
+  introduced_in: '000312'
+  reason: It is a durable booking rule created from the Sonoma Lodge failure and referenced repeatedly
+    thereafter.
+- id: product:honeycomb
+  name: Honeycomb
+  kind: product
+  aliases: []
+  introduced_in: '000320'
+  reason: It is the chosen observability platform in a resolved tooling decision.
+- id: product:datadog
+  name: Datadog
+  kind: product
+  aliases: []
+  introduced_in: '000320'
+  reason: It is the named alternative observability platform Morgan compared against Honeycomb.
+- id: product:api_v2
+  name: API v2
+  kind: product
+  aliases:
+  - GraphQL API
+  - v2
+  introduced_in: '000321'
+  reason: It is the current API architecture after migration and a key durable product state.
+- id: product:api_v1
+  name: API v1
+  kind: product
+  aliases:
+  - v1
+  introduced_in: 000288
+  reason: It is the deprecated prior API whose history still matters for migration and stale-index cautions.
+- id: tool:graphql
+  name: GraphQL
+  kind: tool
+  aliases: []
+  introduced_in: '000321'
+  reason: It is the named API paradigm central to the completed v2 migration.
+- id: tool:jwt
+  name: JWT
+  kind: tool
+  aliases: []
+  introduced_in: '000321'
+  reason: It is the current auth mechanism for API v2 and a durable architectural fact.
+- id: person:jordan
+  name: Jordan
+  kind: person
+  aliases: []
+  introduced_in: '000324'
+  reason: He is a recurring teammate whose observability write-up and all-hands demo are specifically
+    tracked.
+- id: person:mike
+  name: Mike
+  kind: person
+  aliases: []
+  introduced_in: '000327'
+  reason: He is a named external contact Morgan met for coffee.
+- id: place:oakland
+  name: Oakland
+  kind: place
+  aliases: []
+  introduced_in: 000329
+  reason: It is Morgan's later home base after moving from the Mission and is essential for place continuity.
+- id: service:bart
+  name: BART
+  kind: service
+  aliases: []
+  introduced_in: 000319
+  reason: It is a recurring transit system in Morgan's commute and daily life after the move.
+- id: person:sarah_kim
+  name: Sarah Kim
+  kind: person
+  aliases: []
+  introduced_in: 000286
+  reason: She is a recurring external/admin contact who must be looped into outside email and retreat/offsite
+    logistics.
+- id: team:hr
+  name: HR
+  kind: team
+  aliases: []
+  introduced_in: '000325'
+  reason: It is a recurring internal function tied to retreat budget and people-process ownership.
+- id: document:senior_engineer_offer
+  name: senior engineer offer
+  kind: document
+  aliases:
+  - senior eng offer
+  introduced_in: 000329
+  reason: It is a specific ongoing hiring artifact awaiting legal clearance and thus still narrative-relevant.
+- id: organization:tessl
+  name: Tessl
+  kind: organization
+  aliases: []
+  introduced_in: '000340'
+  reason: It is a named startup in Morgan's network and relevant to possible Rishi introductions.
+- id: person:anna_rao
+  name: Anna Rao
+  kind: person
+  aliases: []
+  introduced_in: '000340'
+  reason: She is a named founder contact Morgan wants to keep in mind for networking and hiring introductions.
+- id: event:all_hands_q_a_format
+  name: all-hands -- Q&A format
+  kind: event
+  aliases:
+  - Q&A all-hands
+  introduced_in: '000354'
+  reason: It is a distinct named meeting experiment whose failure led to a durable lesson about team meeting
+    formats.
+- id: event:quarterly_all_hands
+  name: quarterly all-hands
+  kind: event
+  aliases: []
+  introduced_in: '000355'
+  reason: It is a separate recurring company-wide event that remains relevant for organizational cadence.
+- id: account:mchen_notes_v3
+  name: mchen-notes-v3
+  kind: account
+  aliases: []
+  introduced_in: 000358
+  reason: It is the current vector-store namespace for Morgan's notes and replaces stale older namespaces.
+- id: organization:kestrel_marketing
+  name: Kestrel Marketing
+  kind: organization
+  aliases:
+  - Kestrel
+  introduced_in: '000361'
+  reason: It is a recurring contractor with slipping deliverables and audience restrictions for roadmap
+    detail.
+- id: person:kara
+  name: Kara
+  kind: person
+  aliases: []
+  introduced_in: '000361'
+  reason: She is the named Kestrel contact and may matter in future contractor communications.
+- id: tool:internal_search_v1_legacy
+  name: internal_search_v1_legacy
+  kind: tool
+  aliases: []
+  introduced_in: '000363'
+  reason: It is the deprecated internal search index that Morgan explicitly forbids using for current
+    lookups.
+- id: tool:internal_search_v2
+  name: internal_search_v2
+  kind: tool
+  aliases: []
+  introduced_in: '000363'
+  reason: It is the current internal search index Morgan requires for live lookups.
+- id: channel:eng_releases
+  name: '#eng-releases'
+  kind: channel
+  aliases: []
+  introduced_in: 000368
+  reason: It is the required release-notes channel under a standing deployment communication rule.
+- id: channel:eng_all
+  name: '#eng-all'
+  kind: channel
+  aliases: []
+  introduced_in: 000368
+  reason: It is the broad engineering channel explicitly excluded from pre-green release-note posting.
+- id: organization:founders_fund
+  name: Founders Fund
+  kind: organization
+  aliases: []
+  introduced_in: '000373'
+  reason: It is a named investor organization involved in offsite planning and Morgan's investor context.
+- id: person:sarah_at_founders_fund
+  name: Sarah at Founders Fund
+  kind: person
+  aliases: []
+  introduced_in: '000373'
+  reason: She is a specific investor-side contact shaping the offsite format discussion.
+- id: organization:zulu_logistics
+  name: Zulu Logistics
+  kind: organization
+  aliases:
+  - Zulu
+  introduced_in: '000150'
+  reason: It is the counterpart in a major legal dispute that created a lasting 30-day termination-notice
+    rule.
+- id: person:mom
+  name: Mom
+  kind: person
+  aliases: []
+  introduced_in: '000270'
+  reason: She is a recurring family figure whose communication boundaries matter in Morgan's personal
+    continuity.
+- id: organization:pinecone
+  name: Pinecone
+  kind: organization
+  aliases: []
+  introduced_in: 000381
+  reason: It is a named integration partner with an active thread and follow-up expectation.
+- id: organization:tava_kitchen
+  name: Tava Kitchen
+  kind: organization
+  aliases: []
+  introduced_in: 000399
+  reason: It is the default offsite caterer under a standing planning rule.
+- id: organization:blueline_plumbing
+  name: Blueline Plumbing
+  kind: organization
+  aliases:
+  - Blueline
+  introduced_in: '000361'
+  reason: It is a recurring vendor associated with prior frustration, wind-down context, and current repair
+    logistics.
+- id: project:auth_rewrite
+  name: auth rewrite
+  kind: project
+  aliases:
+  - auth refactor
+  introduced_in: 000297
+  reason: Repeated workstream carrying provider deliberation, a final Clerk decision, and implementation
+    work.
+- id: person:reece
+  name: Reece
+  kind: person
+  aliases: []
+  introduced_in: '000155'
+  reason: He is a named former ops director hire whose problematic background and exit consumed board
+    time and may matter for future hiring-reference continuity.
+- id: event:q3_2022_weekend_incident
+  name: Q3 2022 weekend incident
+  kind: event
+  aliases:
+  - Q3 2022 incident
+  introduced_in: '000170'
+  reason: It is a distinct previously undocumented weekend incident with durable process implications
+    and should not be merged with the March production outage.
+- id: place:embarcadero
+  name: Embarcadero
+  kind: place
+  aliases: []
+  introduced_in: '000007'
+  reason: It is a specific named place that recurs across multiple sessions as the location of Morgan's
+    ongoing running routine.
+- id: document:board_note
+  name: board note
+  kind: document
+  aliases:
+  - board pre-read
+  introduced_in: '000167'
+  reason: It is a specific recurring artifact Morgan is drafting and sending to the board, with durable
+    framing decisions attached to it.
+- id: place:panhandle
+  name: Panhandle
+  kind: place
+  aliases: []
+  introduced_in: '000131'
+  reason: It is a specific named place used as the location of a running loop.
+- id: event:2023_03_02_board_call
+  name: 2023-03-02 board call
+  kind: event
+  aliases:
+  - board call on Mar 2
+  introduced_in: 000195
+  reason: It is a distinct named meeting occurrence with outcomes and decisions that should stay attached
+    to that specific call.
+- id: event:march_15_2023_prod_outage
+  name: March 15, 2023 prod outage
+  kind: event
+  aliases:
+  - Mar 15 outage
+  - March outage
+  introduced_in: '000243'
+  reason: It is a distinct production incident with root cause, duration, and retrospective actions, and
+    should not be merged with the separate Q3 2022 outage already in the registry.
+- id: place:valencia
+  name: Valencia
+  kind: place
+  aliases: []
+  introduced_in: 000183
+  reason: It is a specific named street/location used in personal planning context.
+- id: organization:drift_capital
+  name: Drift Capital
+  kind: organization
+  aliases: []
+  introduced_in: 000193
+  reason: It is a specific investor organization that was evaluated and explicitly passed on, with durable
+    rationale attached.
+- id: person:olivia
+  name: Olivia
+  kind: person
+  aliases: []
+  introduced_in: '000220'
+  reason: She is a specific Scaffold teammate whose departure and wind-down period are tracked and may
+    matter for future continuity.
+- id: place:tokyo
+  name: Tokyo
+  kind: place
+  aliases: []
+  introduced_in: '000333'
+  reason: Personal trip destination Morgan is trying to line up for Jamie before schedules get crowded
+    again.
+- id: person:leo_park
+  name: Leo Park
+  kind: person
+  aliases: []
+  introduced_in: extension_morgan_2023_06_16_007
+  reason: Staff engineer candidate who becomes Scaffold's first senior Mercury/platform hire after the
+    search drags.
+- id: organization:evergreen_bank
+  name: Evergreen Bank
+  kind: organization
+  aliases: []
+  introduced_in: extension_morgan_2023_07_29_005
+  reason: Large enterprise design partner whose Mercury feedback exposes enterprise-readiness gaps around
+    SSO, auditability, admin controls, and procurement packaging.
+- id: place:lake_merritt
+  name: Lake Merritt
+  kind: place
+  aliases: []
+  introduced_in: extension_morgan_2023_09_23_001
+  reason: Oakland running anchor Morgan starts using when the Oakland-to-SF commute makes the Embarcadero
+    run harder to protect.
+- id: document:q4_2023_ship_list
+  name: 2023 Q4 ship list
+  kind: document
+  aliases: []
+  introduced_in: extension_morgan_2023_10_01_001
+  reason: It is Scaffold's Q4 2023 planning list for Mercury hardening, onboarding, auth, API support
+    work, and owner tradeoffs.
+- id: organization:northstar_ventures
+  name: Northstar Ventures
+  kind: organization
+  aliases:
+  - Northstar
+  introduced_in: extension_morgan_2023_10_22_003
+  reason: Investor firm added to the narrow B-round short list after Elena's October calibration because
+    Sofia Alvarez is willing to dig into the real Mercury cohort, Evergreen, and pricing evidence without
+    forcing a broad process.
+- id: person:sofia_alvarez
+  name: Sofia Alvarez
+  kind: person
+  aliases: []
+  introduced_in: extension_morgan_2023_10_22_003
+  reason: Northstar Ventures partner who becomes the main diligence counterpart for the selective B-round
+    path, initially as an evaluator rather than a declared lead.
+- id: person:nadia_singh
+  name: Nadia Singh
+  kind: person
+  aliases: []
+  introduced_in: extension_morgan_2024_03_18_010
+  reason: Post-Series-B customer-growth leadership candidate with experience turning design-partner and
+    enterprise-adoption learning into repeatable customer-growth work.
+- id: project:project_compass
+  name: Project Compass
+  kind: project
+  aliases: []
+  introduced_in: extension_morgan_2025_01_15_004
+  reason: A Scaffold product and operating project exploring how the company’s internal customer-health
+    signals can support customer-facing and customer-success work.

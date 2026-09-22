@@ -1,0 +1,40 @@
+id: 039
+narrative_anchor_date: '2028-01-01'
+test: Email benefits@sphere.example to reconcile my expected 2026 HSA funding against
+  the amount that actually posted.
+load_bearing_facts:
+- 179
+expected_tool_calls:
+- send_email
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    assertions:
+    - type: field_equals
+      tool: send_email
+      action_id: alex_039_send_email
+      path: result.ok
+      value: true
+      check_id: alex_039_00
+    - type: field_equals
+      path: result.to
+      value: benefits@sphere.example
+      tool: send_email
+      action_id: alex_039_send_email
+      check_id: alex_039_01
+    - type: field_llm_judge
+      path: result.body
+      criterion: The email identifies expected 2026 employee funding as $81 from each
+        of 26 paychecks, totaling $2,106; employer funding as four $225 deposits totaling
+        $900; and planned combined funding as $3,006. It asks for the actual posted
+        total or any variance and does not present the planned amount as verified
+        actual funding.
+      tool: send_email
+      action_id: alex_039_send_email
+      check_id: alex_039_02
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: b2e9b6b9e0f48ec23e9ae5ec4d803c050db6c6914dfc1d47ccdf545b3c77b68a

@@ -1,0 +1,39 @@
+id: '171'
+narrative_anchor_date: '2028-01-01'
+test: Create a short evidence-lock note for the calibration appendix on Ines’s and Daniela’s distinct
+  Q3 2025 contributions. Clearly separate the messaging-governance interventions from the source-reliability
+  intervention, record what was prevented before operator exposure, and state whether rollback was used.
+load_bearing_facts:
+- 131
+- 132
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_evidence_lock_note
+      path: result.ok
+      value: true
+      check_id: riley_171_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_evidence_lock_note
+      path: args
+      criterion: 'The note clearly attributes to Ines two messaging-governance interventions involving
+        two internal draft instructions that incorrectly treated verified external authority as blanket
+        contact permission, and states that both instructions were corrected before either reached operators.
+        Missing the number of instructions, the nature of the error, the attribution to Ines, or the prevention
+        timing must fail.
+
+
+        The note separately attributes to Daniela the source-reliability contribution: the August 14 source-age
+        warning was the only pre-breach intervention in the locked evidence, and no rollback was used.
+        It must not conflate this intervention with Ines’s draft-instruction corrections.'
+      check_id: riley_171_01
+mock_state: {}

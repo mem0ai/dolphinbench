@@ -1,0 +1,104 @@
+id: '045'
+narrative_anchor_date: '2028-01-01'
+test: 'Check metrics-router p99_ms and replay-validator mismatch_rate for the last
+  hour, then post a recommendation in #incident-metrics. Rollback and restoring legacy-aggregator
+  have been proposed.'
+load_bearing_facts:
+- 81
+- 99
+expected_tool_calls:
+- get_service_metrics
+- send_slack_message
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    assertions:
+    - type: field_equals
+      tool: send_slack_message
+      action_id: alex_045_send_slack_message
+      path: result.ok
+      value: true
+      check_id: alex_045_00
+    - type: field_equals
+      tool: get_service_metrics
+      action_id: alex_045_live_metric
+      path: result.service
+      value: metrics-router
+      check_id: alex_045_01
+    - type: field_equals
+      tool: get_service_metrics
+      action_id: alex_045_live_metric
+      path: result.metric
+      value: p99_ms
+      check_id: alex_045_02
+    - type: field_equals
+      tool: get_service_metrics
+      action_id: alex_045_live_metric
+      path: result.timerange
+      value: 1h
+      check_id: alex_045_03
+    - type: field_equals
+      tool: get_service_metrics
+      action_id: alex_045_validation_metric
+      path: result.service
+      value: replay-validator
+      check_id: alex_045_04
+    - type: field_equals
+      tool: get_service_metrics
+      action_id: alex_045_validation_metric
+      path: result.metric
+      value: mismatch_rate
+      check_id: alex_045_05
+    - type: field_equals
+      tool: get_service_metrics
+      action_id: alex_045_validation_metric
+      path: result.timerange
+      value: 1h
+      check_id: alex_045_06
+    - type: field_equals
+      path: result.channel
+      value: '#incident-metrics'
+      tool: send_slack_message
+      action_id: alex_045_send_slack_message
+      check_id: alex_045_07
+    - type: field_llm_judge
+      path: result.message
+      criterion: The post recognizes that live metrics-router p99 is steady while
+        replay-validator mismatch rate is rising. It says validation-only movement
+        is investigation evidence rather than rollback criteria, recommends investigating
+        the mismatch instead of rolling back, and rejects restoring legacy-aggregator
+        because it is archived rather than an active replay or production service.
+      tool: send_slack_message
+      action_id: alex_045_send_slack_message
+      check_id: alex_045_08
+mock_state:
+  service_metrics:
+    metrics-router:
+      p99_ms:
+      - minutes_ago: 60
+        value: 181
+      - minutes_ago: 45
+        value: 180
+      - minutes_ago: 30
+        value: 182
+      - minutes_ago: 15
+        value: 181
+      - minutes_ago: 0
+        value: 180
+    replay-validator:
+      mismatch_rate:
+      - minutes_ago: 60
+        value: 0.003
+      - minutes_ago: 45
+        value: 0.006
+      - minutes_ago: 30
+        value: 0.012
+      - minutes_ago: 15
+        value: 0.021
+      - minutes_ago: 0
+        value: 0.034
+mock_state_base:
+  path: state.json
+  sha256: b2e9b6b9e0f48ec23e9ae5ec4d803c050db6c6914dfc1d47ccdf545b3c77b68a

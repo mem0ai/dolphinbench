@@ -1,0 +1,40 @@
+id: '159'
+narrative_anchor_date: '2028-01-01'
+test: Create a compact 2028 lifecycle QA specification document for the entitlement-name regression coverage
+  in the renewal reminder, trial-expiry education, and integration summary templates. Cover populated
+  and missing entitlement-name cases, the authoritative rendering source, fallback behavior, and the legacy
+  source that must never be referenced.
+load_bearing_facts:
+- 90
+- 91
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2028-01-01'
+    semantic_judge_version: 2
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      action_id: create_2028_lifecycle_qa_spec
+      path: result.ok
+      value: true
+      check_id: riley_159_00
+    - type: field_llm_judge
+      tool: create_doc
+      action_id: create_2028_lifecycle_qa_spec
+      path: args
+      criterion: 'The title clearly identifies the document as a 2028 lifecycle entitlement-name regression
+        or QA specification.
+
+
+        The body provides QA coverage for each of these three templates: renewal reminder, trial-expiry
+        education, and integration summary. For every template, it specifies that a populated entitlement
+        name renders from the governed or authoritative field `entitlement.display_name`, a missing value
+        renders the exact fallback `your plan`, and the template must never reference the legacy field
+        `workspace.plan_name`. It also makes clear that entitlement-name changes must flow through the
+        governed entitlement field. Missing or contradictory mappings fail this check.'
+      check_id: riley_159_01
+mock_state: {}

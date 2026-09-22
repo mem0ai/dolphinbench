@@ -1,0 +1,34 @@
+id: 142
+narrative_anchor_date: '2026-09-14'
+test: Create a brief reconnection note recalling my impression of Anna Rao at our
+  April 19, 2023 meeting. Keep that memory separate from anything we still need to
+  learn about her current work.
+load_bearing_facts:
+- 65
+expected_tool_calls:
+- create_doc
+grade:
+  type: tool_trace
+  config:
+    check_version: 2
+    today: '2026-09-14'
+    assertions:
+    - type: field_equals
+      tool: create_doc
+      path: result.ok
+      value: true
+      check_id: morgan_142_00
+      action_id: morgan_142_create_doc
+    - type: field_llm_judge
+      path: result.document.body
+      criterion: Describes Morgan's historical impression of Anna as very sharp and
+        shipping/executing fast, not merely talking. Does not present that assessment
+        as a freshly verified fact about 2026. No invented partnership plan or fixed
+        count of questions is required.
+      tool: create_doc
+      check_id: morgan_142_01
+      action_id: morgan_142_create_doc
+mock_state: {}
+mock_state_base:
+  path: state.json
+  sha256: ea94a8c67f454b2ce9f81812ff69d1c4e5ccc2270fef995b738c532d70b63f9d
