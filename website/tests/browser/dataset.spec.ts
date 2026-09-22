@@ -36,12 +36,8 @@ for (const viewport of [
       page.getByRole('heading', { name: 'Dataset', exact: true }),
     ).toBeVisible();
     await expect(page.locator('article')).toHaveCount(3);
-    await expect(page.locator('main')).toContainText('Release');
-    await expect(page.locator('main')).toContainText(release.release_sha256);
-    await expect(page.getByRole('link', { name: 'Release details', exact: true })).toHaveAttribute(
-      'href',
-      'https://github.com/mem0ai/dolphinbench',
-    );
+    await expect(page.locator('main')).not.toContainText(release.release_sha256);
+    await expect(page.getByRole('link', { name: 'Release details', exact: true })).toHaveCount(0);
     await expect(page.locator('main canvas')).toHaveCount(0);
     await expect(page.getByText('Messages / month')).toHaveCount(0);
     await expect(page.getByText('Monthly counts')).toHaveCount(0);

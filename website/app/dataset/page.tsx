@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { data, formatDate, number, personaHref } from '@/lib/data';
-import { repositoryName, repositoryUrl } from '@/lib/site';
 import StructuredData, { datasetSchema } from '@/components/StructuredData';
 
 export const metadata = {
@@ -57,13 +56,6 @@ export default function DatasetPage() {
           </article>
         ))}
       </section>
-      <div className="flex flex-wrap justify-between gap-4 pt-6 text-sm text-muted">
-        <span>
-          Release <span className="font-mono text-ink break-all">{data.release_sha256}</span>. Histories, tests,
-          simulated apps, and grader ship in <span className="font-mono text-ink">{repositoryName}</span>.
-        </span>
-        <a href={repositoryUrl} className="text-link">Release details</a>
-      </div>
     </div>
   );
 }
