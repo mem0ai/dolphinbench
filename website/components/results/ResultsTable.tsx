@@ -78,8 +78,8 @@ export default function ResultsTable({
                     />
                     <Logo src={memoryLogos[row.memory.name]} size={18} className="rounded" />
                     {row.memory.name}
-                    <button type="button" className="result-expand" title="Scores and evidence"
-                      aria-label={`Scores and evidence for ${row.memory.name}, ${row.model.name}, ${row.harness.name}`}
+                    <button type="button" className="result-expand" title="Run details"
+                      aria-label={`Run details for ${row.memory.name}, ${row.model.name}, ${row.harness.name}`}
                       aria-expanded={expanded === row.id} aria-controls={`result-${encodeURIComponent(row.id)}`}
                       onClick={() => setExpanded(expanded === row.id ? null : row.id)}><ChevronDown size={16} aria-hidden="true" /></button>
                   </span>
@@ -96,7 +96,6 @@ export default function ResultsTable({
                   <span className="block font-mono text-xs text-muted">
                     {row.passes} / {row.total}
                   </span>
-                  {row.runs_url && <a className="text-link text-sm" href={row.runs_url}>View evidence</a>}
                 </td>
                 <td className="text-right font-mono text-sm">{formatTotalCost(row)}</td>
                 <td className="text-right font-mono text-sm">{formatLatency(row.median_latency_seconds)}</td>
@@ -107,10 +106,7 @@ export default function ResultsTable({
                   <dt><a className="text-link" href={row.runs_url ? `${row.runs_url}/${persona}` : row.personas[persona].source.url}>{personaNames[persona]}</a></dt>
                   <dd>{row.personas[persona].passes} / 200 <span className="text-muted">({percent(row.personas[persona].passes / 200)})</span></dd>
                 </div>)}</dl>
-                <nav className="result-evidence" aria-label={`Evidence for ${row.memory.name}, ${row.model.name}, ${row.harness.name}`}>
-                  {([['configuration', 'Configuration'], ['source', 'Source bundle'], ['recordings', 'Recordings'], ['grades', 'Grades']] as const).map(([key, label]) =>
-                    <a key={key} className="text-link" href={row.evidence[key].url}>{label}</a>)}
-                </nav>
+                {row.runs_url && <a className="mt-4 inline-block text-link" href={row.runs_url}>View run details</a>}
                 {row.agent_inference_cost_scope && <p className="mt-3 text-xs text-muted">{row.agent_inference_cost_scope}</p>}
               </td></tr>}
               </Fragment>

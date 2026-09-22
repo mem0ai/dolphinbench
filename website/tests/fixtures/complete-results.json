@@ -3,6 +3,7 @@
   "configurations": [
     {
       "id": "synthetic-mem0",
+      "runs_url": "https://example.com/synthetic-only/mem0",
       "memory": {
         "id": "mem0",
         "name": "Mem0"
