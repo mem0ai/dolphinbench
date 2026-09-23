@@ -69,8 +69,10 @@ const external = { target: '_blank', rel: 'noopener noreferrer' } as const;
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${fustat.variable} ${jetbrainsMono.variable}`}>
-      <body className="min-h-screen bg-paper font-sans text-ink antialiased">
+      <head>
         <Analytics />
+      </head>
+      <body className="min-h-screen bg-paper font-sans text-ink antialiased">
         <StructuredData data={[websiteSchema(), organizationSchema()]} />
         <Header />
         <main id="main-content">{children}</main>

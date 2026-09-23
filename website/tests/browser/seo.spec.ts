@@ -84,24 +84,41 @@ test('inner pages describe themselves and private pages stay out of the index', 
   expect(await meta(page, 'meta[name="robots"]')).toBe('noindex, nofollow');
 });
 
-test('the Google tag loads on public pages and stays off the private receipt link', async ({ page }) => {
-  // next/script injects the tag after hydration, so it lands in the body rather than the head.
+test('the complete Google tag is in the initial head and stays off private receipts', async ({ page, request }) => {
   const tag = page.locator('script[src*="googletagmanager.com/gtag/js"]');
   const dataLayer = () => page.evaluate(() => (window as { dataLayer?: unknown[] }).dataLayer?.length ?? 0);
   // Never let a test run report into the property.
   await page.route('**://*.googletagmanager.com/**', route => route.abort());
 
+  const response = await request.get('/');
+  expect(response.status()).toBe(200);
+  const head = (await response.text()).split('</head>')[0];
+  expect(head).toMatch(/<script[^>]+src="https:\/\/www\.googletagmanager\.com\/gtag\/js\?id=G-DS880BMQ34"/);
+  expect(head).toContain("gtag('config', 'G-DS880BMQ34');");
+
   await page.goto('/');
   await expect(tag).toHaveAttribute('src', /[?&]id=G-DS880BMQ34(&|$)/);
-  await expect.poll(dataLayer).toBeGreaterThan(0);
-  await page.goto('/leaderboard/');
+  await expect(page.locator('head #google-analytics')).toHaveCount(1);
+  await expect.poll(dataLayer).toBe(2);
+  await page.getByRole('navigation', { name: 'Primary navigation' }).getByRole('link', { name: 'Leaderboard', exact: true }).click();
+  await expect(page).toHaveURL(/\/leaderboard\/$/);
   await expect(tag).toHaveCount(1);
+  expect(await dataLayer()).toBe(2);
 
   // gtag reports the full URL, and the receipt fragment is a capability token.
+  const receiptResponse = await request.get('/run/receipt/');
+  const receiptHead = (await receiptResponse.text()).split('</head>')[0];
+  expect(receiptHead).not.toContain('googletagmanager.com');
+  expect(receiptHead).not.toContain("gtag('config'");
   await page.goto('/run/receipt/#00000000-0000-4000-8000-000000000000.' + 'x'.repeat(43));
   await expect(page.locator('body')).toContainText('Submission receipt');
   await expect(tag).toHaveCount(0);
   expect(await dataLayer()).toBe(0);
+
+  await page.getByRole('navigation', { name: 'Primary navigation' }).getByRole('link', { name: 'Home', exact: true }).click();
+  await expect(page).toHaveURL(/\/$/);
+  await expect(tag).toHaveCount(1);
+  await expect.poll(dataLayer).toBe(2);
 });
 
 test('robots, sitemap, and llms.txt are served without a session', async ({ request }) => {

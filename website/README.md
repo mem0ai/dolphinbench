@@ -246,6 +246,8 @@ call models. Set `PLAYWRIGHT_BASE_URL` to that server when running the browser t
 
 Every page carries the Google tag (`gtag.js`) for Google Analytics 4 property
 `G-DS880BMQ34`, mounted from the root layout through `components/Analytics.tsx`.
+Public pages include the complete script in the initial HTML `<head>` so Google
+Search Console can verify ownership using the Analytics tag.
 The measurement ID is a public identifier and lives in `lib/site.ts`; it is not
 an environment variable, so no deployment step can silently drop the tag.
 
