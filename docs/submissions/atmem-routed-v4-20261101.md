@@ -66,8 +66,7 @@ responses; 3,923 reader responses in scored records. Subscription/hardware/energ
 are separate. Submission `total_cost_usd=0` covers local/subscription ingestion
 and reader incremental API cash; paid judging is in `accounting.json`.
 
-Historical Mem0 reference 424/600 is 55 passes lower (+9.17 pp gap), under unmatched
-end-to-end conditions. This is not a matched memory-only advantage or official
-ranking. Morgan 085/Morgan 130 fixture limitations are unchanged; there is no
-repeated-run variance estimate or learning claim. Please review eligibility
-for a self-submitted listing; no independent verification is claimed.
+Morgan 085/Morgan 130 fixture limitations are unchanged. This is one self-tested
+campaign, with no repeated-run variance estimate or learning claim. Please review
+eligibility for listing the final 479/600 result; no independent verification
+or official acceptance is claimed.
