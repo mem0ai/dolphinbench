@@ -1,0 +1,30 @@
+{
+  "status": "self-tested-unverified-submission-for-review",
+  "memory": "AtMem 2.3.10b1 + routed-v4/i3 research source",
+  "published_beta": "2.3.11b1; remains beta; different artifact",
+  "harness": "Hermes",
+  "reader": "openai/gpt-5.6-luna",
+  "reader_reasoning_effort": "high",
+  "judge": "gpt-5.6-sol",
+  "judge_reasoning_effort": "medium",
+  "passed": 479,
+  "tasks": 600,
+  "by_persona": {
+    "morgan": 171,
+    "alex": 152,
+    "riley": 156
+  },
+  "median_task_latency_seconds": 39.372709103976376,
+  "benchmark_revision": "81cb6f8405b40a9e76089cef650806a80af06ea2",
+  "harness_commit": "bd38c5fcce270033e0e13df0c090592562e6fd38",
+  "condition_sha256": "371fc4aa324910033d1525032e2ed84f67722abf61c4d2090886e88a73618fb6",
+  "evidence_repository": "https://huggingface.co/datasets/atmem/dolphinbench-routed-v4-20261101",
+  "evidence_revision": "aa5849e2a6bba876ba9af4dc777a94bfe398e3ba",
+  "submission_sha256": "4e3130b5be2ba2aab4fa23570c69867fe1cfa1289be735f782a658170e559a05",
+  "article_url": "https://huggingface.co/datasets/atmem/dolphinbench-routed-v4-20261101/blob/aa5849e2a6bba876ba9af4dc777a94bfe398e3ba/ARTICLE.md",
+  "independently_verified": false,
+  "matched_comparator": false,
+  "paid_judge_cost_usd": 3.905882,
+  "subscription_costs_separate": true,
+  "methodology_and_recovery_exceptions": "See accompanying Markdown and pinned dataset card; only the final 479/600 result is submitted by this PR."
+}
