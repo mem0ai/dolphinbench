@@ -26,5 +26,5 @@
   "matched_comparator": false,
   "paid_judge_cost_usd": 3.905882,
   "subscription_costs_separate": true,
-  "methodology_and_recovery_exceptions": "See accompanying Markdown and pinned dataset card; original 390/600 artifact remains immutable."
+  "methodology_and_recovery_exceptions": "See accompanying Markdown and pinned dataset card; only the final 479/600 result is submitted by this PR."
 }

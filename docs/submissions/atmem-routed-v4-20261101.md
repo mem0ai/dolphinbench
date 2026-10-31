@@ -1,8 +1,9 @@
 # AtMem routed-v4 / i3: 479/600, self-tested
 
-This adds a second recorded run for maintainer review. It does not replace the
-original AtMem 2.3.10b1 390/600 evidence or change official results, tasks,
-grading, website code or leaderboard entries.
+This submits the final routed-v4 campaign for maintainer review. Only this
+479/600 result is proposed for listing. It does not change official results,
+tasks, grading, website code or leaderboard entries. Earlier research data
+remains archived on Hugging Face and is not a separate submission in this PR.
 
 | Persona | Passed / 200 |
 | --- | ---: |
@@ -65,7 +66,6 @@ responses; 3,923 reader responses in scored records. Subscription/hardware/energ
 are separate. Submission `total_cost_usd=0` covers local/subscription ingestion
 and reader incremental API cash; paid judging is in `accounting.json`.
 
-Compared with earlier 390/600: 120 recoveries, 31 regressions, net 89 (+14.83 pp).
 Historical Mem0 reference 424/600 is 55 passes lower (+9.17 pp gap), under unmatched
 end-to-end conditions. This is not a matched memory-only advantage or official
 ranking. Morgan 085/Morgan 130 fixture limitations are unchanged; there is no
