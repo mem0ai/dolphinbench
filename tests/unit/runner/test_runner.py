@@ -25,7 +25,7 @@ from harness.adapter import Interaction, InteractionRecord, load_adapter
 from harness.adapters.hermes import HermesAdapter, READ_ONLY, TOOLSETS
 from harness.runner import Runner, main, run_lock
 from harness.submission import SubmissionError, read_zip, validate
-from tests.unit.submissions.test_submission import fixture
+from tests.unit.submissions.test_submission import EMPTY_REPLY_NUDGE, assistant, fixture
 from harness.dataset import load_test
 
 
@@ -294,6 +294,22 @@ class RunnerTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "Uncertain interaction"):
                 self.runner.ingest()
             self.assertEqual(call.call_count, 1)
+
+    def test_only_known_hermes_continuations_follow_the_source_message(self):
+        spec = self.release["morgan"]["sessions"][0]
+
+        def nudged(content):
+            return lambda request: InteractionRecord({"model": "fixture-model"}, [
+                {"role": "user", "content": request.dated_message}, assistant(""),
+                {"role": "user", "content": content}, assistant("Noted.")])
+
+        with patch.object(self.adapter, "run_interaction", side_effect=nudged("An invented request.")):
+            with self.assertRaisesRegex(SubmissionError, "different user message"):
+                self.runner._execute("ingestion", "morgan", spec)
+        (self.root / "ingestion/morgan/000001.inflight").unlink()
+        with patch.object(self.adapter, "run_interaction", side_effect=nudged(EMPTY_REPLY_NUDGE)):
+            record = self.runner._execute("ingestion", "morgan", spec)
+        self.assertEqual(record["row"]["messages"][2]["content"], EMPTY_REPLY_NUDGE)
 
     def test_identity_and_lock_reject_changed_or_concurrent_runs(self):
         with self.assertRaisesRegex(ValueError, "inputs changed"):

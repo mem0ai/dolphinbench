@@ -27,6 +27,8 @@ USAGE = {"prompt_tokens": 10, "completion_tokens": 2,
 SETTINGS = {"model": "fixture-model", "reasoning_effort": "high"}
 JUDGE = {"model": "gpt-5.6-sol", "reasoning_effort": "medium"}
 RELEASE_PATH = Path(__file__).resolve().parents[3]
+EMPTY_REPLY_NUDGE = ("You just executed tool calls but returned an empty response. "
+                     "Please process the tool results above and continue with the task.")
 
 
 def assistant(content):
@@ -154,6 +156,17 @@ class SubmissionTests(unittest.TestCase):
                     tests["tests"][0]["grading"][0]["passed"] = False
                 with self.assertRaises(submission.SubmissionError):
                     submission.validate(ingestion, tests, releases)
+
+    def test_only_known_hermes_continuations_follow_the_source_message(self):
+        rows = (self.ingestion["sessions"][0], self.tests["tests"][0])
+        for row in rows:
+            row["messages"][-1:-1] = [assistant(""), {"role": "user", "content": EMPTY_REPLY_NUDGE}]
+        self.assertEqual(self.validate()["passes"], 600)
+        for row in rows:
+            row["messages"][-2]["content"] = "An invented request."
+            with self.assertRaisesRegex(submission.SubmissionError, "differs"):
+                self.validate()
+            row["messages"][-2]["content"] = EMPTY_REPLY_NUDGE
 
     def test_missing_results_usage_and_unapproved_fields_fail(self):
         for change in ("result", "usage", "attempts", "provider", "message_index", "negative", "bool", "nan"):
@@ -503,6 +516,24 @@ class RecorderTests(unittest.TestCase):
         second["messages"][0]["content"] = "Rewritten context."
         with self.assertRaisesRegex(submission.SubmissionError, "rewritten"):
             build_rollout([first, second])
+
+    def test_hermes_empty_reply_recovery_keeps_the_recorded_reply(self):
+        first = self.event()
+        call = copy.deepcopy(first["assistant"])
+        call.pop("usage")
+        second = {"settings": dict(SETTINGS), "messages": [*copy.deepcopy(first["messages"]), call,
+                  {"role": "tool", "tool_call_id": "one", "content": {"ok": True}}], "assistant": assistant("")}
+        third = {"settings": dict(SETTINGS), "messages": [*copy.deepcopy(second["messages"]),
+                 {"role": "assistant", "content": "(empty)"}, {"role": "user", "content": EMPTY_REPLY_NUDGE}],
+                 "assistant": assistant("Ordered.")}
+        result = build_rollout([first, second, third])
+        self.assertEqual([m["role"] for m in result["messages"]],
+                         ["user", "assistant", "tool", "assistant", "user", "assistant"])
+        self.assertEqual(result["messages"][3], assistant(""))
+        submission.check_messages(result["messages"], "recorded")
+        third["messages"][3]["content"] = "Rewritten reply."
+        with self.assertRaisesRegex(submission.SubmissionError, "rewritten"):
+            build_rollout([first, second, third])
 
     def test_responses_api_messages_and_tool_arguments_are_normalized(self):
         messages = chat_messages([
