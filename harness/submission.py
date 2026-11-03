@@ -31,6 +31,13 @@ SETTINGS_FIELDS = {"model", "reasoning_effort", "temperature", "top_p", "max_tok
                    "max_completion_tokens", "max_output_tokens", "context_length", "response_format", "system_prompt",
                    "tools", "stop", "seed", "parallel_tool_calls"}
 MESSAGE_FIELDS = {"role", "content", "tool_calls", "tool_call_id", "usage", "duration_ms", "settings"}
+# Hermes adds one of these user turns when the model stops early, such as an empty reply after tool
+# results. They match the continuations the reference execution accepts.
+HERMES_SYNTHETIC_CONTINUATION_MESSAGES = {
+    "[System: Continue now. Execute the required tool calls and only send your final answer after completing the task.]",
+    "Your previous turn indicated a tool call but none was included. Do not narrate a plan or restate intent — issue the actual tool call now to continue the task.",
+    "You just executed tool calls but returned an empty response. Please process the tool results above and continue with the task.",
+}
 
 
 class SubmissionError(ValueError):
@@ -248,6 +255,11 @@ def clean_message(message: dict) -> dict:
     return result
 
 
+def only_continuations(users: list) -> bool:
+    """Whether every user turn after the source message is a known Hermes continuation."""
+    return all(isinstance(text, str) and text in HERMES_SYNTHETIC_CONTINUATION_MESSAGES for text in users)
+
+
 def check_messages(messages: Any, label: str) -> list[dict]:
     if not isinstance(messages, list) or not messages:
         raise SubmissionError(f"{label}: missing conversation")
@@ -427,11 +439,11 @@ def validate(ingestion: dict, tests: dict, releases: dict, *, pricing: dict | No
             source = expected[key]
             if phase == "ingestion":
                 dated_message = f"[{source['narrative_date']}] {source['messages'][0].strip()}"
-                if users != [dated_message]:
+                if users[:1] != [dated_message] or not only_continuations(users[1:]):
                     raise SubmissionError(f"{label}: user message differs from the released history")
             else:
                 dated_request = f"[{source['narrative_anchor_date']}] {source['test'].strip()}"
-                if users not in ([source["test"]], [dated_request]):
+                if users[:1] not in ([source["test"]], [dated_request]) or not only_continuations(users[1:]):
                     raise SubmissionError(f"{label}: user request differs from the published test")
                 grading = row["grading"]
                 assertions = source["grade"]["config"]["assertions"]

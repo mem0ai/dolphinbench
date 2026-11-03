@@ -53,6 +53,9 @@ def _plain(message):
               if key not in {"usage", "duration_ms", "settings"}}
     if result.get("tool_calls") and not result.get("content"):
         result.pop("content", None)
+    if result.get("role") == "assistant" and result.get("content") in ("", "(empty)"):
+        # Hermes resends an empty reply as "(empty)" when it nudges the model to continue.
+        result.pop("content")
     return result
 
 

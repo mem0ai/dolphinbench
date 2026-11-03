@@ -20,7 +20,8 @@ from graders.mechanical import grade_tool_trace
 from harness.adapter import Interaction, load_adapter
 from harness.durable_json import save_json as save
 from harness.submission import (
-    SubmissionError, check_messages, check_settings, check_total_cost, load_json, read_release, write_zip,
+    SubmissionError, check_messages, check_settings, check_total_cost, load_json, only_continuations, read_release,
+    write_zip,
 )
 from harness.submission import _hoist_system_prompt, _shared, record_settings
 
@@ -176,7 +177,7 @@ class Runner:
         check_settings(result.settings, f"{phase}/{persona}/{item_id}")
         check_messages(result.messages, f"{phase}/{persona}/{item_id}")
         users = [m["content"] for m in result.messages if m["role"] == "user"]
-        if users != [request.dated_message]:
+        if users[:1] != [request.dated_message] or not only_continuations(users[1:]):
             raise SubmissionError("Adapter returned a different user message or conversation boundary")
         row = {"persona": persona, "session_id" if phase == "ingestion" else "test_id": item_id,
                "messages": result.messages, "duration_ms": duration}
