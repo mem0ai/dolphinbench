@@ -1,0 +1,27 @@
+{
+  "status": "self-tested-unverified-submission-for-review",
+  "name": "Graphon V1",
+  "harness": "Graphon harness (DolphinBench runner)",
+  "reader": "gpt-5.6-luna",
+  "reader_reasoning_effort": "high",
+  "memory": "Graphon Engine",
+  "judge": "gpt-5.6-sol",
+  "judge_reasoning_effort": "medium",
+  "judge_route": "OpenAI API (same model, settings and prompts as the release)",
+  "passed": 504,
+  "tasks": 600,
+  "by_persona": {
+    "morgan": 175,
+    "alex": 164,
+    "riley": 165
+  },
+  "median_task_latency_seconds": 28.8,
+  "total_cost_usd": 11.84,
+  "benchmark_revision": "81cb6f8405b40a9e76089cef650806a80af06ea2",
+  "website_submission_id": "b5e08113-a8ec-4705-8027-459b58d577c4",
+  "website_validation_status": "queued; 3 of 3 validation attempts did not finish",
+  "submission_url": "https://github.com/sphillips-graphon/dolphinbench/releases/download/graphon-v1-20261103/graphon-v1-submission.zip",
+  "submission_sha256": "aefe6a52b29b6c03f3015cfc1caa848a40445fcc9f1e0b873a71497f80e61581",
+  "independently_verified": false,
+  "tuned_on_public_tests": true
+}
