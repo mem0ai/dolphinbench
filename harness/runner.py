@@ -22,7 +22,7 @@ from harness.durable_json import save_json as save
 from harness.submission import (
     SubmissionError, check_messages, check_settings, check_total_cost, load_json, read_release, write_zip,
 )
-from harness.submission import _hoist_system_prompt, _shared, record_settings
+from harness.submission import _hoist_system_prompt, _shared, compact_settings, compact_system_prompts, record_settings
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -275,11 +275,16 @@ class Runner:
                         row["grading"] = grade["checks"]
                     rows[phase].append(row)
             _hoist_system_prompt(settings[phase], rows[phase])
-        return write_zip(output, {"settings": settings["ingestion"], "sessions": rows["ingestion"],
-                                  "total_cost_usd": self._saved_cost("ingestion")},
-                         {"settings": settings["tests"], "judge_settings": judge_settings or JUDGE,
-                          "total_cost_usd": self._saved_cost("tests"),
-                          "tests": rows["tests"]}, self.release)
+        ingestion = {"settings": settings["ingestion"], "sessions": rows["ingestion"],
+                     "total_cost_usd": self._saved_cost("ingestion")}
+        tests = {"settings": settings["tests"], "judge_settings": judge_settings or JUDGE,
+                 "total_cost_usd": self._saved_cost("tests"), "tests": rows["tests"]}
+        # Settings that differ from the phase default and system prompts that differ between records
+        # are written once, in per-phase tables, instead of in every response and every record.
+        for document, key in ((ingestion, "sessions"), (tests, "tests")):
+            compact_settings(document, key)
+            compact_system_prompts(document, key)
+        return write_zip(output, ingestion, tests, self.release)
 
 
 def main(argv=None):

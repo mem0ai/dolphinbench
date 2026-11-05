@@ -10,7 +10,8 @@ from pathlib import Path
 
 from harness.costing import load_pricing
 from harness.submission import (
-    SubmissionError, _shared, _hoist_system_prompt, record_settings, clean_message, check_total_cost, load_json, read_release, read_zip, validate, write_zip,
+    SubmissionError, _shared, _hoist_system_prompt, compact_settings, compact_system_prompts, record_settings,
+    clean_message, check_total_cost, load_json, read_release, read_zip, validate, write_zip,
 )
 from harness.submission import link_ingestion
 
@@ -134,10 +135,14 @@ def build_documents(ingestion_paths: dict[str, Path], test_paths: dict[str, Path
     _hoist_system_prompt(test_settings, tests)
     _hoist_system_prompt(judge_settings, [check for test in tests for check in test["grading"]
                                         if check.get("messages")])
-    return ({"settings": ingestion_settings, "sessions": sessions,
-             "total_cost_usd": math.fsum(costs["ingestion"])},
-            {"settings": test_settings, "judge_settings": judge_settings, "tests": tests,
-             "total_cost_usd": math.fsum(costs["tests"])})
+    ingestion_document = {"settings": ingestion_settings, "sessions": sessions,
+                          "total_cost_usd": math.fsum(costs["ingestion"])}
+    test_document = {"settings": test_settings, "judge_settings": judge_settings, "tests": tests,
+                     "total_cost_usd": math.fsum(costs["tests"])}
+    for document, key in ((ingestion_document, "sessions"), (test_document, "tests")):
+        compact_settings(document, key)
+        compact_system_prompts(document, key)
+    return ingestion_document, test_document
 
 
 def _paths(values: list[str]) -> dict[str, Path]:

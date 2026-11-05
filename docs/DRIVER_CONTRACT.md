@@ -88,9 +88,16 @@ grading evidence. You can return `duration_ms` when your runtime measures it
 directly. See [the return types](../harness/adapter.py) for optional fields.
 
 For changing model settings or tool definitions, attach the complete
-`settings` to the affected response. Context rewriting that cannot be
-represented as an append-only conversation is not supported by this export
-format. Disclose internal model calls your recording cannot capture.
+`settings` to the affected response. The packager then writes each distinct
+settings object once, in the phase's `settings_snapshots` table, and leaves a
+`settings_ref` index on the response; likewise a leading system message that
+differs between records is written once in the phase's `system_prompts` table
+and referenced by the record's `system_prompt_ref`. Both forms are equivalent
+and the validator accepts either; the tables keep a run whose tool
+descriptions differ per persona or per profile (as Hermes's do) within the
+file size limits. Context rewriting that cannot be represented as an
+append-only conversation is not supported by this export format. Disclose
+internal model calls your recording cannot capture.
 
 The runner reads app actions from the server log. If you supply `app_calls`
 yourself, each action must match a recorded conversation call, including

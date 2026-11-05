@@ -109,6 +109,92 @@ class SubmissionTests(unittest.TestCase):
             submission.check_messages([{"role": "user", "content": "hi", "settings": SETTINGS},
                                        assistant("hello")], "fixture")
 
+    def test_settings_snapshots_and_system_prompt_tables_resolve_to_the_inline_form(self):
+        releases, ingestion, tests = fixture()
+        inline = copy.deepcopy((ingestion, tests))
+        other = {"model": "fixture-model", "reasoning_effort": "high", "tools": [{"name": "t", "description": "x"}]}
+        for row in ingestion["sessions"][1:]:
+            row["messages"].insert(0, {"role": "system", "content": f"You help {row['persona']}."})
+            for message in row["messages"]:
+                if message["role"] == "assistant":
+                    message["settings"] = other
+        for row in tests["tests"]:
+            row["messages"].insert(0, {"role": "system", "content": f"Profile {row['persona']}-{row['test_id']}"})
+        expanded = copy.deepcopy((ingestion, tests))
+        submission.compact_settings(ingestion, "sessions")
+        submission.compact_system_prompts(ingestion, "sessions")
+        submission.compact_settings(tests, "tests")
+        submission.compact_system_prompts(tests, "tests")
+        self.assertEqual(ingestion["settings_snapshots"], [other])
+        self.assertEqual(len(ingestion["system_prompts"]), 2)
+        self.assertEqual(len(tests["system_prompts"]), 600)
+        self.assertNotIn("settings_snapshots", tests)
+        compacted = json.dumps((ingestion, tests))
+        self.assertNotIn('"settings": {"model": "fixture-model", "reasoning_effort": "high", "tools"', compacted)
+        self.assertEqual(sum("settings_ref" in m for row in ingestion["sessions"] for m in row["messages"]), 2)
+        self.assertTrue(all("system_prompt_ref" in row for row in tests["tests"]))
+        self.assertTrue(all(m["role"] != "system" for row in tests["tests"] for m in row["messages"]))
+        pricing = {"models": {"fixture-model": {"input_cost_per_token": 1, "output_cost_per_token": 1}}}
+        compact_result = submission.validate(ingestion, tests, releases, pricing=pricing)
+        expanded_result = submission.validate(*expanded, releases, pricing=pricing)
+        self.assertEqual(compact_result, expanded_result)
+        self.assertEqual(compact_result["passes"], 600)
+        self.assertEqual(submission.validate(*inline, releases, pricing=pricing)["passes"], 600)
+        for row in ingestion["sessions"]:
+            messages = submission.expanded_messages(row, ingestion["system_prompts"])
+            if "system_prompt_ref" in row:
+                self.assertEqual(messages[0], {"role": "system", "content": f"You help {row['persona']}."})
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "submission.zip"
+            submission.write_zip(path, ingestion, tests, releases, pricing=pricing)
+            self.assertEqual(submission.read_zip(path), (ingestion, tests))
+
+    def test_bad_table_references_are_rejected(self):
+        releases, ingestion, tests = fixture()
+        row = ingestion["sessions"][0]
+        answer = next(m for m in row["messages"] if m["role"] == "assistant")
+        answer["settings_ref"] = 0
+        with self.assertRaisesRegex(submission.SubmissionError, "settings_ref"):
+            submission.validate(ingestion, tests, releases)
+        ingestion["settings_snapshots"] = [dict(SETTINGS)]
+        submission.validate(ingestion, tests, releases)
+        answer["settings"] = dict(SETTINGS)
+        with self.assertRaisesRegex(submission.SubmissionError, "settings_ref"):
+            submission.validate(ingestion, tests, releases)
+        del answer["settings"]
+        answer["settings_ref"] = 1
+        with self.assertRaisesRegex(submission.SubmissionError, "settings_ref"):
+            submission.validate(ingestion, tests, releases)
+        answer["settings_ref"] = 0
+        ingestion["settings_snapshots"] = [{"model": ""}]
+        with self.assertRaisesRegex(submission.SubmissionError, "settings_snapshots"):
+            submission.validate(ingestion, tests, releases)
+        ingestion["settings_snapshots"] = [dict(SETTINGS)]
+        row["system_prompt_ref"] = 0
+        with self.assertRaisesRegex(submission.SubmissionError, "system_prompt_ref"):
+            submission.validate(ingestion, tests, releases)
+        ingestion["system_prompts"] = ["Be brief."]
+        submission.validate(ingestion, tests, releases)
+        ingestion["system_prompts"] = [1]
+        with self.assertRaisesRegex(submission.SubmissionError, "system_prompts"):
+            submission.validate(ingestion, tests, releases)
+        del ingestion["system_prompts"]
+        with self.assertRaisesRegex(submission.SubmissionError, "system_prompt_ref"):
+            submission.validate(ingestion, tests, releases)
+        user = row["messages"][0]
+        del row["system_prompt_ref"]
+        user["settings_ref"] = 0
+        with self.assertRaisesRegex(submission.SubmissionError, "settings belong"):
+            submission.validate(ingestion, tests, releases)
+
+    def test_record_settings_shares_a_differing_snapshot_instead_of_copying_it(self):
+        incoming = {"model": "fixture-model", "reasoning_effort": "low"}
+        rows = [{"messages": [assistant("a"), assistant("b")]}]
+        current = submission.record_settings(dict(SETTINGS), incoming, rows, "fixture")
+        self.assertEqual(current, SETTINGS)
+        self.assertIs(rows[0]["messages"][0]["settings"], rows[0]["messages"][1]["settings"])
+        self.assertEqual(rows[0]["messages"][0]["settings"], incoming)
+
     def setUp(self):
         self.releases, self.ingestion, self.tests = fixture()
         self.network = patch("urllib.request.urlopen", side_effect=AssertionError("A local check made a network call"))
