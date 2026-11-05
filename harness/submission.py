@@ -30,7 +30,13 @@ ZIP_READ_BYTES = 64 * 1024
 SETTINGS_FIELDS = {"model", "reasoning_effort", "temperature", "top_p", "max_tokens",
                    "max_completion_tokens", "max_output_tokens", "context_length", "response_format", "system_prompt",
                    "tools", "stop", "seed", "parallel_tool_calls"}
-MESSAGE_FIELDS = {"role", "content", "tool_calls", "tool_call_id", "usage", "duration_ms", "settings"}
+MESSAGE_FIELDS = {"role", "content", "tool_calls", "tool_call_id", "usage", "duration_ms", "settings",
+                  "settings_ref"}
+# Optional per-phase tables that keep repeated settings and system prompts out of every message: a
+# response may carry `settings_ref` (an index into the phase's `settings_snapshots`) instead of a
+# complete `settings` object, and a record may carry `system_prompt_ref` (an index into the phase's
+# `system_prompts`) in place of a leading system message. Both resolve to exactly the inline form.
+PHASE_TABLES = {"settings_snapshots", "system_prompts"}
 
 
 class SubmissionError(ValueError):
@@ -45,7 +51,11 @@ def _shared(current: dict | None, incoming: dict, label: str) -> dict:
 
 
 def record_settings(current: dict | None, incoming: dict, records: list[dict], label: str) -> dict:
-    """Use phase defaults, retaining a complete snapshot when a response differs."""
+    """Use phase defaults, retaining a complete snapshot when a response differs.
+
+    A differing snapshot is attached by reference, not copied: thousands of responses sharing one
+    settings object cost one object in memory, and `compact_settings` later replaces them with
+    `settings_ref` indexes so the file does not repeat the object either."""
     check_settings(incoming, label)
     if current is None:
         return copy.deepcopy(incoming)
@@ -53,14 +63,14 @@ def record_settings(current: dict | None, incoming: dict, records: list[dict], l
         for row in records:
             for message in row["messages"]:
                 if message["role"] == "assistant" and "settings" not in message:
-                    message["settings"] = copy.deepcopy(incoming)
+                    message["settings"] = incoming
     return current
 
 
 def _hoist_system_prompt(settings: dict, records: list[dict]) -> None:
     if not records:
         return
-    if any("settings" in m for row in records for m in row["messages"]):
+    if any("settings" in m or "settings_ref" in m for row in records for m in row["messages"]):
         return
     prompts = [row["messages"][0] for row in records if row.get("messages")]
     if len(prompts) != len(records) or any(m.get("role") != "system" for m in prompts):
@@ -72,6 +82,83 @@ def _hoist_system_prompt(settings: dict, records: list[dict]) -> None:
     settings["system_prompt"] = content
     for record in records:
         record["messages"].pop(0)
+
+
+def compact_settings(document: dict, rows_key: str) -> None:
+    """Replace every response's complete `settings` object with a `settings_ref` into the phase's
+    `settings_snapshots` table, one entry per distinct object. The runner records the same tool list
+    on every response of an interaction, and a harness whose tool descriptions differ per persona or
+    per profile (Hermes writes the profile folder and the deferred-tool count into them) would
+    otherwise repeat about 30 KB in every one of tens of thousands of responses."""
+    snapshots: list[dict] = []
+    index: dict[str, int] = {}
+    for row in document[rows_key]:
+        for message in row["messages"]:
+            if "settings" not in message:
+                continue
+            key = json.dumps(message["settings"], sort_keys=True, allow_nan=False)
+            if key not in index:
+                index[key] = len(snapshots)
+                snapshots.append(message["settings"])
+            message["settings_ref"] = index[key]
+            del message["settings"]
+    if snapshots:
+        document["settings_snapshots"] = snapshots
+
+
+def compact_system_prompts(document: dict, rows_key: str) -> None:
+    """Move each record's leading system message into the phase's `system_prompts` table, one entry
+    per distinct text, leaving `system_prompt_ref` on the record. `_hoist_system_prompt` handles the
+    case where every record shares one prompt; this one handles prompts that differ by persona,
+    profile or day, which otherwise stay in every record."""
+    prompts: list[str] = []
+    index: dict[str, int] = {}
+    for row in document[rows_key]:
+        messages = row.get("messages") or []
+        first = messages[0] if messages else None
+        if (not isinstance(first, dict) or first.get("role") != "system"
+                or not isinstance(first.get("content"), str) or set(first) != {"role", "content"}):
+            continue
+        content = first["content"]
+        if content not in index:
+            index[content] = len(prompts)
+            prompts.append(content)
+        row["system_prompt_ref"] = index[content]
+        messages.pop(0)
+    if prompts:
+        document["system_prompts"] = prompts
+
+
+def resolve_settings(message: dict, default: dict, snapshots: list[dict] | None) -> dict:
+    """The complete settings a response ran with: inline, referenced, or the phase default."""
+    if "settings" in message:
+        return message["settings"]
+    if "settings_ref" in message:
+        return (snapshots or [])[message["settings_ref"]]
+    return default
+
+
+def _check_tables(document: dict, label: str) -> tuple[list[dict], list[str]]:
+    snapshots = document.get("settings_snapshots", [])
+    if not isinstance(snapshots, list):
+        raise SubmissionError(f"{label}: settings_snapshots must be a list")
+    for position, snapshot in enumerate(snapshots):
+        check_settings(snapshot, f"{label} settings_snapshots[{position}]")
+    prompts = document.get("system_prompts", [])
+    if not isinstance(prompts, list) or any(not isinstance(p, str) for p in prompts):
+        raise SubmissionError(f"{label}: system_prompts must be a list of strings")
+    return snapshots, prompts
+
+
+def expanded_messages(row: dict, prompts: list[str]) -> list[dict]:
+    """The record's messages with a referenced system prompt restored as the first message."""
+    messages = row["messages"]
+    if "system_prompt_ref" not in row:
+        return messages
+    ref = row["system_prompt_ref"]
+    if type(ref) is not int or not 0 <= ref < len(prompts):
+        raise SubmissionError("system_prompt_ref is not an index into system_prompts")
+    return [{"role": "system", "content": prompts[ref]}, *messages]
 
 
 def link_ingestion(mapping: list[dict[str, Any]], records: list[dict[str, Any]],
@@ -248,7 +335,7 @@ def clean_message(message: dict) -> dict:
     return result
 
 
-def check_messages(messages: Any, label: str) -> list[dict]:
+def check_messages(messages: Any, label: str, snapshots: list[dict] | None = None) -> list[dict]:
     if not isinstance(messages, list) or not messages:
         raise SubmissionError(f"{label}: missing conversation")
     pending = {}
@@ -268,9 +355,13 @@ def check_messages(messages: Any, label: str) -> list[dict]:
             token_counts(message.get("usage"))
             if "settings" in message:
                 check_settings(message["settings"], f"{where} settings")
+            if "settings_ref" in message:
+                ref = message["settings_ref"]
+                if "settings" in message or type(ref) is not int or not 0 <= ref < len(snapshots or []):
+                    raise SubmissionError(f"{where}: settings_ref is not an index into settings_snapshots")
         elif "usage" in message:
             raise SubmissionError(f"{where}: usage belongs to an assistant response")
-        if role != "assistant" and "settings" in message:
+        if role != "assistant" and ("settings" in message or "settings_ref" in message):
             raise SubmissionError(f"{where}: settings belong to an assistant response")
         if role != "assistant" and "tool_calls" in message:
             raise SubmissionError(f"{where}: only assistants request tools")
@@ -325,7 +416,8 @@ def check_total_cost(value: Any, label: str) -> float:
     return value
 
 
-def _phase_stats(records: list[dict], settings: dict, pricing: dict | None) -> dict:
+def _phase_stats(records: list[dict], settings: dict, pricing: dict | None,
+                 snapshots: list[dict] | None = None) -> dict:
     totals = {key: 0 for key in ("input_tokens", "cache_read_input_tokens",
                                 "cache_creation_input_tokens", "output_tokens", "reasoning_tokens")}
     cost = 0.0
@@ -339,7 +431,7 @@ def _phase_stats(records: list[dict], settings: dict, pricing: dict | None) -> d
             for key, value in counts.items():
                 totals[key] += value
             responses += 1
-            model = message.get("settings", settings)["model"]
+            model = resolve_settings(message, settings, snapshots)["model"]
             entry = (pricing or {}).get("models", {}).get(model)
             rates = ("input_cost_per_token", "output_cost_per_token")
             if (not isinstance(entry, dict) or any(
@@ -357,9 +449,10 @@ def _phase_stats(records: list[dict], settings: dict, pricing: dict | None) -> d
             "unpriced_model_responses": unknown}
 
 
-def grading_calls(row: dict, label: str) -> list[dict]:
+def grading_calls(row: dict, label: str, snapshots: list[dict] | None = None,
+                  prompts: list[str] | None = None) -> list[dict]:
     """Keep model-visible tool text separate from the benchmark server's result."""
-    transcript = check_messages(row["messages"], label)
+    transcript = check_messages(expanded_messages(row, prompts or []), label, snapshots)
     if "app_calls" not in row:
         return transcript
     calls = row["app_calls"]
@@ -377,14 +470,15 @@ def grading_calls(row: dict, label: str) -> list[dict]:
 
 
 def validate(ingestion: dict, tests: dict, releases: dict, *, pricing: dict | None = None) -> dict:
-    _fields(ingestion, {"settings", "sessions", "total_cost_usd"}, set(), "ingestion.json")
-    _fields(tests, {"settings", "judge_settings", "tests", "total_cost_usd"}, set(), "tests.json")
+    _fields(ingestion, {"settings", "sessions", "total_cost_usd"}, PHASE_TABLES, "ingestion.json")
+    _fields(tests, {"settings", "judge_settings", "tests", "total_cost_usd"}, PHASE_TABLES, "tests.json")
     ingestion_cost = check_total_cost(ingestion["total_cost_usd"], "ingestion.json")
     test_cost = check_total_cost(tests["total_cost_usd"], "tests.json")
     total_cost = check_total_cost(ingestion_cost + test_cost, "submission")
     check_settings(ingestion["settings"], "ingestion settings")
     check_settings(tests["settings"], "test settings")
     check_settings(tests["judge_settings"], "judge settings")
+    tables = {"ingestion": _check_tables(ingestion, "ingestion.json"), "tests": _check_tables(tests, "tests.json")}
     if (tests["judge_settings"]["model"] != "gpt-5.6-sol"
             or tests["judge_settings"].get("reasoning_effort") != "medium"):
         raise SubmissionError("Judge settings must use gpt-5.6-sol with medium reasoning")
@@ -408,11 +502,12 @@ def validate(ingestion: dict, tests: dict, releases: dict, *, pricing: dict | No
             raise SubmissionError(f"{phase}: records must be a list")
         seen = set()
         by_persona = {p: [] for p in releases}
+        snapshots, prompts = tables[phase]
         for row in rows:
             required = {"persona", id_field, "duration_ms", "messages"}
             if phase == "tests":
                 required.add("grading")
-            _fields(row, required, {"app_calls"}, phase)
+            _fields(row, required, {"app_calls", "system_prompt_ref"}, phase)
             if not isinstance(row["persona"], str) or not isinstance(row[id_field], str):
                 raise SubmissionError(f"{phase}: persona and {id_field} must be strings")
             key = (row["persona"], row[id_field])
@@ -422,7 +517,10 @@ def validate(ingestion: dict, tests: dict, releases: dict, *, pricing: dict | No
             seen.add(key)
             by_persona[key[0]].append(key[1])
             _duration(row["duration_ms"], label)
-            actions = grading_calls(row, label)
+            try:
+                actions = grading_calls(row, label, snapshots, prompts)
+            except SubmissionError as exc:
+                raise SubmissionError(f"{label}: {exc}" if str(exc).startswith("system_prompt_ref") else str(exc)) from None
             users = [m["content"] for m in row["messages"] if m["role"] == "user"]
             source = expected[key]
             if phase == "ingestion":
@@ -474,9 +572,9 @@ def validate(ingestion: dict, tests: dict, releases: dict, *, pricing: dict | No
                     raise SubmissionError(f"{persona}: ingestion sessions are out of order")
     return {"passes": sum(passed.values()), "tests": 600, "passes_by_persona": passed,
             "total_cost_usd": total_cost,
-            "ingestion": {**_phase_stats(ingestion["sessions"], ingestion["settings"], pricing),
+            "ingestion": {**_phase_stats(ingestion["sessions"], ingestion["settings"], pricing, tables["ingestion"][0]),
                           "total_cost_usd": ingestion_cost},
-            "execution": {**_phase_stats(tests["tests"], tests["settings"], pricing),
+            "execution": {**_phase_stats(tests["tests"], tests["settings"], pricing, tables["tests"][0]),
                           "total_cost_usd": test_cost},
             "grading": _phase_stats(judge_records, tests["judge_settings"], pricing)}
 
