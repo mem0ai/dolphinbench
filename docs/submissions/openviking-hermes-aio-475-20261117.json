@@ -1,0 +1,31 @@
+{
+  "status": "self-tested-unverified-submission-for-review",
+  "harness": "Hermes Agent 0.21.0",
+  "reader": "gpt-5.6-luna",
+  "reader_reasoning_effort": "high",
+  "memory": "OpenViking commercial service + frozen Hermes native memory + restored Hermes session history",
+  "judge": "gpt-5.6-sol",
+  "judge_reasoning_effort": "medium",
+  "passed": 475,
+  "tasks": 600,
+  "accuracy": 0.7916666666666666,
+  "by_persona": {
+    "morgan": 164,
+    "alex": 149,
+    "riley": 162
+  },
+  "median_task_latency_seconds": 33.604443430900574,
+  "latency_scope": "Selected saved interaction duration; excludes setup and grading",
+  "total_cost_usd": null,
+  "benchmark_revision": "0cac824baa281f11736657c422fb86abca7a4857",
+  "release_manifest_sha256": "40107f293243a6cb3941c16e75ce2e3495ed31c68a1015b8537efeb8dfec2ae9",
+  "offline_grader_replay": true,
+  "replayed_checks": 1920,
+  "independently_verified": false,
+  "name": "Hermes + GPT 5.6 Luna + OpenViking",
+  "submission_url": "https://github.com/PapriKey/dolphinbench/releases/download/openviking-hermes-475-20261117/DolphinBench-OpenViking-Hermes-475.zip",
+  "submission_file": "DolphinBench-OpenViking-Hermes-475.zip",
+  "submission_sha256": "042b155d170250b0bf3980cb49abc609807d1f85bfe42273a94d2c401bfc2c20",
+  "submission_bytes": 151695012,
+  "evidence_release_url": "https://github.com/PapriKey/dolphinbench/releases/tag/openviking-hermes-475-20261117"
+}
