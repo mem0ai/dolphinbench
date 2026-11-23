@@ -1,0 +1,31 @@
+{
+  "status": "self-tested-unverified-submission-for-review",
+  "name": "Kagura Memory Cloud (Hermes)",
+  "harness": "Hermes 935c1e8 with the release's evaluation patch, on the DolphinBench runner (adapter extending the runner's Hermes adapter)",
+  "reader": "gpt-5.6-luna",
+  "reader_reasoning_effort": "high",
+  "reader_route": "OpenAI API (Responses)",
+  "memory": "Kagura Memory Cloud v0.156.0, self-hosted, through a Hermes memory plugin; Hermes built-in memory on",
+  "judge": "gpt-5.6-sol",
+  "judge_reasoning_effort": "medium",
+  "judge_route": "OpenAI API (same model, settings and prompts as the release)",
+  "passed": 455,
+  "tasks": 600,
+  "by_persona": {
+    "morgan": 165,
+    "alex": 145,
+    "riley": 145
+  },
+  "median_task_latency_seconds": 41.0,
+  "total_cost_usd": 97.90,
+  "cost_excludes": "the memory server's own models (self-hosted embedding, reranker and the LLM that checks replacements)",
+  "benchmark_revision": "81cb6f8405b40a9e76089cef650806a80af06ea2",
+  "packaged_with_raised_size_cap": true,
+  "website_submission_id": null,
+  "website_validation_status": "not submitted: the ZIP (330 MiB) is over the website's 256 MiB limit",
+  "submission_url": "https://github.com/kagura-ai/dolphinbench/releases/download/kagura-memory-cloud-hermes-20261123/kagura-memory-cloud-hermes-submission.zip",
+  "source_url": "https://github.com/kagura-ai/dolphinbench/tree/kagura-memory-cloud-hermes-20261123/docs/submissions/kagura-memory-cloud-hermes-20261123-source",
+  "submission_sha256": "86918af18ed6b85dcccf94cc6e3fca240414b874da1f42f1a05c2a0269d677f4",
+  "independently_verified": false,
+  "tuned_on_public_tests": true
+}
